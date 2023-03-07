@@ -110,6 +110,7 @@ set(MOLLER_SCRIPTS
   MakeScanMacros3.py
   submit.py
   submit.sh
+  ExtractScanResults.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

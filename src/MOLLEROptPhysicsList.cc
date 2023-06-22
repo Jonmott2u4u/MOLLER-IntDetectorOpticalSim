@@ -1,3 +1,5 @@
+#include "G4Version.hh"
+
 #include "MOLLEROptPhysicsList.hh"
 
 
@@ -38,7 +40,6 @@ void MOLLEROptPhysicsList::ConstructProcess()
   theWLSProcess = new G4OpWLS();
 
   theScintProcess = new G4Scintillation();
-  theScintProcess->SetScintillationYieldFactor(1.);
   theScintProcess->SetTrackSecondariesFirst(true);
 
   theCerenkovProcess = new G4Cerenkov();
@@ -70,12 +71,12 @@ void MOLLEROptPhysicsList::ConstructProcess()
   pManager->AddDiscreteProcess(theBoundaryProcess);
 
   theWLSProcess->UseTimeProfile("delta");
-  //theWLSProcess->UseTimeProfile("exponential");
 
   pManager->AddDiscreteProcess(theWLSProcess);
-
-  theScintProcess->SetScintillationYieldFactor(1.);
+  
+  #if G4VERSION_NUMBER < 1100
   theScintProcess->SetScintillationExcitationRatio(0.0);
+  #endif
   theScintProcess->SetTrackSecondariesFirst(true);
 
   // Use Birks Correction in the Scintillation process

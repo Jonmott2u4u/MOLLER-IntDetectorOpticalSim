@@ -46,10 +46,7 @@ When running MakeScanMacros3.py and submit.py you have to add the output directo
 
 The following versions of ROOT and G4 are used:
 * ROOT 6.22/08 with all required and recommended support programs
-* Geant4 10.06
-* The simulation uses a modified G4OpBoundaryProcess class, to allow evaluation of angle dependent reflectivity
-* The corresponding modified class files are in the 'data' subdirectory and need to be copied to 'G4SourceDir/source/processes/optical/'  
-* and G4 needs to recompiled.
+* Geant4 10.07.03
 
 
 # READOUT

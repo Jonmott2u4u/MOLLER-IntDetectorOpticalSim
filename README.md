@@ -40,13 +40,15 @@ ExtractScanResults.C: Reads files.dat and outputs plots of the PE yield with a l
 
 The geometry generated has a box between the upper and lower cones of the detector. Its height (controllable in the macros) can be anything greater than 0.0
 
+The energy of the beam is determined using the flux vs. energy spectrum of cosmic muons near sea level. Changing the beam energy from the macros will do nothing
+
 When running MakeScanMacros3.py and submit.py you have to add the output directories for the generated files. The lines to edit are below:
 * MakeScanMacros3.py: text_root += "file-path/build/root_files/root-file"
 * submit.py: outDir = "file-path/build/root_files/"
 
 The following versions of ROOT and G4 are used:
 * ROOT 6.22/08 with all required and recommended support programs
-* Geant4 10.06
+* Geant4 10.06.03
 * The simulation uses a modified G4OpBoundaryProcess class, to allow evaluation of angle dependent reflectivity
 * The corresponding modified class files are in the 'data' subdirectory and need to be copied to 'G4SourceDir/source/processes/optical/'  
 * and G4 needs to recompiled.

@@ -1,4 +1,7 @@
 #include "MOLLEROptPrimaryGeneratorAction.hh"
+#include <stdlib.h>
+#include <iostream>
+
 
 MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction* Constr)
 {
@@ -103,7 +106,30 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
-  particleGun->SetParticleEnergy(Energy*MeV);
+
+  //Following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
+  //****************************************
+  G4double rand_int = G4UniformRand()*342800;
+  rand_int = rand_int/1;
+  FILE *fptr;
+  /*while (rand_int = 0.0){
+    rand_int = G4UniformRand()*342800;
+  }*/
+  fptr = fopen("cosmics.txt", "r");
+  G4int inc = 1;
+  G4int energy = getw(fptr);//Distinct from Energy variable
+  while (inc < rand_int){
+    energy = getw(fptr);
+    inc++;
+  }
+  //G4cout << "Muon energy is: " << energy << " MeV \n" << G4endl;
+  //G4cout << "Random integer was: " << rand_int << "\n" << G4endl;
+  //G4cout << "\n Increment reached: " << inc << "\n" << G4endl;
+  fclose(fptr);
+  //*****************************************
+
+  //particleGun->SetParticleEnergy(Energy*MeV); Uses energy set by macro
+  particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

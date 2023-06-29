@@ -45,7 +45,7 @@ NumEvents = [100,100000,100000,100000,100000,100,100,100000,100000]   #Number of
 #lo - LightGuideUpperInterface       - length of light guide overall (not including the box)
 
 #The following parameters control the beam
-#hr = Electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
+#hr = Electron hit region            - quartz, lower cone/funnel, or upper cone/funnel, among other things
 #cut = quartz segmentation           - segment of quartz to hit. Location and size of segment determined by total number of segments, which is adjusted in src/MOLLEROptPrimaryGeneratorAction.cc
 #theta/phi = beam angles             - controls the angle of the beam about the normal to the quartz. These are currently disabled and do nothing
 #sa = Solid angle of beam            - controls the angular spread of the beam about the z-axis (beam axis)

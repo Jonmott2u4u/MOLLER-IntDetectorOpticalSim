@@ -105,6 +105,7 @@ set(MOLLER_SCRIPTS
   macros/myRun.mac
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
+  data/cosmics.txt
   R6ParamScan/placeholder.md
   rootfiles/placeholder.md
   MakeScanMacros3.py

@@ -11,6 +11,7 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   Materials       = mat;
 
   Detector        = NULL;
+  Detector_Copy   = NULL;
   LightGuide      = NULL;
 
   fWorldLengthInX = 0.0; 
@@ -25,6 +26,7 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
 MOLLEROptConstruction::~MOLLEROptConstruction()
 {
   if (Detector)           delete Detector;
+  if (Detector_Copy)	  delete Detector_Copy;
   //if (Material)         delete Material;
   if (MOLLERMessenger)    delete MOLLERMessenger;             
 }
@@ -33,7 +35,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
   Detector   = new MOLLEROptDetector(TrackingReadout,"Ring5",Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
-  
+  Detector_Copy = new MOLLEROptDetector_Copy(TrackingReadout, "Ring5", Materials); 
   fWorldLengthInX =  15.0*m;
   fWorldLengthInY =  15.0*m;
   fWorldLengthInZ =  30.0*m;
@@ -81,8 +83,31 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->ConstructDetector(World_Physical);
   Detector->SetCenterPositionInY(12*cm);
 
+  // Copy all Detector variables 
+  Detector_Copy->SetQuartzSizeX(8.4*cm);
+  Detector_Copy->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
+  Detector_Copy->SetQuartzSizeZ(1.5*cm);
+  Detector_Copy->SetLowerInterfacePlane(5.6*cm);
+  Detector_Copy->SetUpperInterfacePlane(25*cm);
+  Detector_Copy->SetLowerConeFrontFaceAngle(28*degree); //degrees
+  Detector_Copy->SetLowerConeBackFaceAngle(22*degree);
+  Detector_Copy->SetLowerConeSideFaceAngle(0*degree);
+  Detector_Copy->SetQuartzInterfaceOpeningZ(1.8*cm);
+  Detector_Copy->SetQuartzInterfaceOpeningX(9.2*cm);
+  Detector_Copy->SetPMTInterfaceOpeningZ(5.6*cm);
+  Detector_Copy->SetPMTInterfaceOpeningX(5.6*cm);
+  Detector_Copy->SetQuartzToPMTOffsetInZ(-0.3*cm);
+  Detector_Copy->SetPMTCathodeRadius(3.5*cm);
+  Detector_Copy->SetPMTCathodeThickness(0.1*cm);
+  Detector_Copy->SetAzimuthalRotationAngle(0);
+  Detector_Copy->SetPolarRotationAngle(0);
+  Detector_Copy->Initialize();
+  Detector_Copy->ConstructDetector(World_Physical);
+  Detector_Copy->SetCenterPositionInY(12*cm);
+
+
   World_Logical->SetVisAttributes (G4VisAttributes::Invisible);
-  
+
   DumpGeometricalTree(World_Physical);
   
   return World_Physical;
@@ -91,11 +116,13 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 void MOLLEROptConstruction::GetQuartzLimits(G4double *vals)
 {
   Detector->GetQuartzLimits(vals);
+  Detector_Copy->GetQuartzLimits(vals);
 }
 
 void MOLLEROptConstruction::GetLightGuideLimits(G4double *vals)
 {
   Detector->GetLightGuideLimits(vals);
+  Detector_Copy->GetLightGuideLimits(vals);
 }
 
 

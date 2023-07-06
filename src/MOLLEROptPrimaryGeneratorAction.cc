@@ -13,7 +13,7 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  G4ParticleDefinition* particle = G4MuonMinus::Definition();
+  G4ParticleDefinition* particle = G4Electron::Definition();
   particleGun->SetParticleDefinition(particle);
 }
 

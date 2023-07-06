@@ -19,7 +19,7 @@ class MOLLEROptMessenger: public G4UImessenger
     
 private:
   MOLLEROptConstruction* Construction;
-  
+
   G4UIdirectory*             MOLLEROptDir;
   G4UIcmdWithAnInteger*      RadiationDamageCmd;
   G4UIcmdWithoutParameter*   UpdateGeometryCmd;

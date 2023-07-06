@@ -5,7 +5,6 @@
 #include "Root_include.h"
 #include "Geant4_include.hh" 
 #include "MOLLEROptConstruction.hh"
-
 #include "MOLLEROptPrimaryGeneratorActionMessenger.hh"
 
 class MOLLEROptPrimaryGeneratorActionMessenger;
@@ -15,7 +14,7 @@ class G4Event;
 class MOLLEROptPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
 public:
-   MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction*);    
+   MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction*);
   ~MOLLEROptPrimaryGeneratorAction();
   
 public:

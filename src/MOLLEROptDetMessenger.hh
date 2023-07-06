@@ -8,18 +8,21 @@
 #include "MOLLEROptDetector.hh"
 
 class MOLLEROptDetector;
+class MOLLEROptDetector_Copy;
 
 class MOLLEROptDetectorMessenger: public G4UImessenger
 {
   public:
     MOLLEROptDetectorMessenger(MOLLEROptDetector*);
+    MOLLEROptDetectorMessenger(MOLLEROptDetector_Copy*);
    ~MOLLEROptDetectorMessenger();
-    
+  
     void SetNewValue(G4UIcommand*, G4String);
     
 private:
   MOLLEROptDetector*         Det;
-  
+  MOLLEROptDetector_Copy*    Det_Copy;
+
   G4UIdirectory*             Dir;
 
   G4UIcmdWithAString*        DetMatCmd;

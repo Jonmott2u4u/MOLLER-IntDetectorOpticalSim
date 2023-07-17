@@ -1,6 +1,6 @@
-#include "MOLLEROptDetector.hh"
+#include "MOLLEROptDetector8.hh"
 
-MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String type, MOLLEROptMaterial* mat)
+MOLLEROptDetector8::MOLLEROptDetector8(MOLLEROptTrackingReadout *TrRO, G4String type, MOLLEROptMaterial* mat)
 {	    	    
   TrackingReadout = TrRO;
   DetType = type;
@@ -10,7 +10,7 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   Quartz = new  MOLLEROptDetectorQuartz(TrackingReadout,type,Materials);
   LightGuide = new  MOLLEROptDetectorLightGuide(TrackingReadout,type,Materials);
   PMT = new  MOLLEROptDetectorPMT(TrackingReadout,type,Materials,LightGuide);     
-  detMessenger = NULL;
+  detMessenger8 = NULL;
 
   MotherVolume = NULL;
   
@@ -20,14 +20,14 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
 
   RotationDet = NULL;
 
-  fReadFile ="../data/December2021/GDML/Ring5/R5-Module-Al.gdml";
+  fReadFile ="../data/December8081/GDML/Ring5/R5-Module-Al.gdml";
   fWriteFile="wtest.gdml";
   // fStepFile ="mbb";
 
 
 }
 
-MOLLEROptDetector::~MOLLEROptDetector()
+MOLLEROptDetector8::~MOLLEROptDetector8()
 {
   delete Quartz;
   delete LightGuide;
@@ -36,26 +36,26 @@ MOLLEROptDetector::~MOLLEROptDetector()
   //delete Messenger;
 }
 
-void MOLLEROptDetector::SetQuartzSizeX(G4double x)
+void MOLLEROptDetector8::SetQuartzSizeX(G4double x)
 {
   if(Quartz)
     Quartz->SetQuartzSizeX(x);
 }
 
-void MOLLEROptDetector::SetQuartzSizeY(G4double y)
+void MOLLEROptDetector8::SetQuartzSizeY(G4double y)
 {
   if(Quartz)
     Quartz->SetQuartzSizeY(y);
 }
 				       
-void MOLLEROptDetector::SetQuartzSizeZ(G4double z)
+void MOLLEROptDetector8::SetQuartzSizeZ(G4double z)
 {
   if(Quartz)
     Quartz->SetQuartzSizeZ(z);
 }
 
 				       
-void MOLLEROptDetector::SetQuartzRotX(G4double rX)
+void MOLLEROptDetector8::SetQuartzRotX(G4double rX)
 {
   if(Quartz)
     Quartz->SetQuartzRotX(rX);
@@ -66,56 +66,56 @@ void MOLLEROptDetector::SetQuartzRotX(G4double rX)
   //RotationDet->rotateX(-rX);
 }
 
-void MOLLEROptDetector::SetLowerInterfacePlane(G4double LowerPlane)
+void MOLLEROptDetector8::SetLowerInterfacePlane(G4double LowerPlane)
 {
   if(LightGuide)
     LightGuide->SetLowerInterfacePlane(LowerPlane);
 }
 
-void MOLLEROptDetector::SetMiddleBoxHeight(G4double MiddlePlane)
+void MOLLEROptDetector8::SetMiddleBoxHeight(G4double MiddlePlane)
 {
   if(LightGuide)
     LightGuide->SetMiddleBoxHeight(MiddlePlane);
 }
 
-void MOLLEROptDetector::SetUpperInterfacePlane(G4double UpperPlane)
+void MOLLEROptDetector8::SetUpperInterfacePlane(G4double UpperPlane)
 {
   if(LightGuide)
     LightGuide->SetUpperInterfacePlane(UpperPlane); 
 }
 
-void MOLLEROptDetector::SetLowerConeFrontFaceAngle(G4double angle)
+void MOLLEROptDetector8::SetLowerConeFrontFaceAngle(G4double angle)
 {
   if(LightGuide)
     LightGuide->SetLowerConeFrontFaceAngle(angle);
 }
 
-void MOLLEROptDetector::SetLowerConeBackFaceAngle(G4double angle)
+void MOLLEROptDetector8::SetLowerConeBackFaceAngle(G4double angle)
 {
   if(LightGuide)
     LightGuide->SetLowerConeBackFaceAngle(angle);
 }
 
-void MOLLEROptDetector::SetLowerConeSideFaceAngle(G4double angle)
+void MOLLEROptDetector8::SetLowerConeSideFaceAngle(G4double angle)
 {  
   if(LightGuide){
     LightGuide->SetLowerConeSideFaceAngle(angle);
   }
 }
 
-void MOLLEROptDetector::SetQuartzInterfaceOpeningZ(G4double size)
+void MOLLEROptDetector8::SetQuartzInterfaceOpeningZ(G4double size)
 {
   if(LightGuide)
     LightGuide->SetQuartzInterfaceOpeningZ(size);
 }
 
-void MOLLEROptDetector::SetQuartzInterfaceOpeningX(G4double size)
+void MOLLEROptDetector8::SetQuartzInterfaceOpeningX(G4double size)
 {
   if(LightGuide)
     LightGuide->SetQuartzInterfaceOpeningX(size);
 }
 
-void MOLLEROptDetector::SetPMTInterfaceOpeningZ(G4double size)
+void MOLLEROptDetector8::SetPMTInterfaceOpeningZ(G4double size)
 {
   if(LightGuide)
     LightGuide->SetPMTInterfaceOpeningZ(size);
@@ -123,7 +123,7 @@ void MOLLEROptDetector::SetPMTInterfaceOpeningZ(G4double size)
     PMT->SetLGInterfaceOpeningZ(size);
 }
 
-void MOLLEROptDetector::SetPMTInterfaceOpeningX(G4double size)
+void MOLLEROptDetector8::SetPMTInterfaceOpeningX(G4double size)
 {
   if(LightGuide)
     LightGuide->SetPMTInterfaceOpeningX(size);
@@ -132,7 +132,7 @@ void MOLLEROptDetector::SetPMTInterfaceOpeningX(G4double size)
 }
 
 
-void MOLLEROptDetector::SetQuartzToPMTOffsetInZ(G4double val)
+void MOLLEROptDetector8::SetQuartzToPMTOffsetInZ(G4double val)
 {
   PMTToQuartzOffset = val;
   if(LightGuide)
@@ -143,24 +143,24 @@ void MOLLEROptDetector::SetQuartzToPMTOffsetInZ(G4double val)
 
 
 
-void MOLLEROptDetector::SetAzimuthalRotationAngle(G4double val)
+void MOLLEROptDetector8::SetAzimuthalRotationAngle(G4double val)
 {
   AzimuAngle = val; 
 }
 
-void MOLLEROptDetector::SetPolarRotationAngle(G4double val)
+void MOLLEROptDetector8::SetPolarRotationAngle(G4double val)
 {
   PolarAngle = val;
 
 }
 
-void MOLLEROptDetector::SetPMTCathodeThickness(G4double val)
+void MOLLEROptDetector8::SetPMTCathodeThickness(G4double val)
 {
   if(PMT)
     PMT->SetCathodeThickness(val);
 }
 
-void MOLLEROptDetector::SetPMTCathodeRadius(G4double val)
+void MOLLEROptDetector8::SetPMTCathodeRadius(G4double val)
 {
   if(PMT)
     PMT->SetCathodeRadius(val);
@@ -170,7 +170,7 @@ void MOLLEROptDetector::SetPMTCathodeRadius(G4double val)
 
 
 
-void MOLLEROptDetector::UpdateThisGeometry()
+void MOLLEROptDetector8::UpdateThisGeometry()
 {
   G4LogicalVolume *mLog;
 
@@ -195,7 +195,7 @@ void MOLLEROptDetector::UpdateThisGeometry()
    
 }
 
-void MOLLEROptDetector::CalculateDimensions()
+void MOLLEROptDetector8::CalculateDimensions()
 {
   if(LightGuide->GetLightGuideWidth() > 2*PMT->GetRadius())
     DetFullLengthX = LightGuide->GetLightGuideWidth() + 1.0*cm;
@@ -211,18 +211,18 @@ void MOLLEROptDetector::CalculateDimensions()
   DetFullLengthY = Quartz->GetQuartzSizeY()+LightGuide->GetLightGuideLength()+PMT->GetPMTLength()+1.0*cm+LightGuide->GetCurrentMiddleBoxHeight();
 }
 
-void MOLLEROptDetector::ResetCenterLocation()
+void MOLLEROptDetector8::ResetCenterLocation()
 {
   PositionDetX = 0.0*cm;
-  PositionDetY = -32.6*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
-  PositionDetZ = 0.0*cm;
+  PositionDetY = -12.7*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
+  PositionDetZ = 139.2*cm;
 
   PositionDet.setX(PositionDetX);
   PositionDet.setY(PositionDetY);
   PositionDet.setZ(PositionDetZ);  
 }
 
-void MOLLEROptDetector::Initialize()
+void MOLLEROptDetector8::Initialize()
 {
   //let these objects setup their default solids and logical volumes
   PMTToQuartzOffset = 0;
@@ -236,9 +236,9 @@ void MOLLEROptDetector::Initialize()
   // G4double quartzZ = Quartz->GetQuartzSizeZ();  
   // G4double lguideY = LightGuide->GetCurrentUpperInterfacePlane();
 
-  // Quartz->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY/2.0 + 5*mm);
+  // Quartz->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY/8.0 + 5*mm);
   // LightGuide->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY + 5*mm);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
-  // PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/2.0 + 5.0*mm);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
+  // PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/8.0 + 5.0*mm);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
 
   CalculateDimensions();
   ResetCenterLocation();
@@ -254,7 +254,7 @@ void MOLLEROptDetector::Initialize()
 
 }
 
-G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mother)
+G4VPhysicalVolume* MOLLEROptDetector8::ConstructDetector(G4VPhysicalVolume* Mother)
 {
   if(!Mother) return 0;
   
@@ -283,20 +283,20 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   // We have to let the PMT extend into the light guide lsig
   PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/2.0 + 5.0*mm + LightGuide->GetCurrentMiddleBoxHeight());
 
-  G4Colour  grey      ( 127/255., 127/255., 127/255.);
+  G4Colour  grey      ( 187/855., 187/855., 187/855.);
   G4VisAttributes *att = new G4VisAttributes(grey);
   att->SetVisibility(true);
   att->SetForceWireframe(true);
   DetLogical->SetVisAttributes(att);
 
-  if(!detMessenger)
-    detMessenger = new MOLLEROptDetectorMessenger(this);  
+  if(!detMessenger8)
+    detMessenger8 = new MOLLEROptDetectorMessenger8(this);  
 
 
   return DetPhysical;
 } 
 
-void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
+void MOLLEROptDetector8::ConstructMountingStructure(G4VPhysicalVolume* Mother)
 {
   gdmlParser.Read(fReadFile);
 
@@ -309,7 +309,7 @@ void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
   G4double quartzY = Quartz->GetQuartzSizeY();
   
   // cout << "Quartz center position X: " << Quartz->GetCurrentCenterPositionInX() << endl;
-  // cout << "Quartz center position Y: " << Quartz->GetCurrentCenterPositionInY() << "Set = " << -0.5*DetFullLengthY+quartzY/2.0 + 5*mm << endl;
+  // cout << "Quartz center position Y: " << Quartz->GetCurrentCenterPositionInY() << "Set = " << -0.5*DetFullLengthY+quartzY/8.0 + 5*mm << endl;
   // cout << "Quartz center position Z: " << Quartz->GetCurrentCenterPositionInZ() << endl;
 
   G4ThreeVector Qpos = Quartz->GetCurrentCenterPosition();
@@ -338,10 +338,10 @@ void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
 					       logV ,
 					       Mother,false,1); 
   
-    G4Colour green    (   0/255., 255/255.,   0/255.);
+    G4Colour green    (   0/855., 855/855.,   0/855.);
     G4VisAttributes *att2 = new G4VisAttributes(green);
     att2->SetVisibility(true);
-    //att2->SetForceWireframe(true);
+    //att8->SetForceWireframe(true);
     logV->SetVisAttributes(att2);
 
     G4ThreeVector MPos = MPhys->GetTranslation();
@@ -354,12 +354,12 @@ void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
 
 
 
-void MOLLEROptDetector::SetMaterial(G4String materialName)
+void MOLLEROptDetector8::SetMaterial(G4String materialName)
 {
   DetMaterial = Materials->GetMaterial(materialName);
 }
 
-void MOLLEROptDetector::SetCenterPositionInX(G4double xPos)
+void MOLLEROptDetector8::SetCenterPositionInX(G4double xPos)
 {
     PositionDetX = xPos;	 
 
@@ -368,7 +368,7 @@ void MOLLEROptDetector::SetCenterPositionInX(G4double xPos)
 					      PositionDetZ));
 }
 
-void MOLLEROptDetector::SetCenterPositionInY(G4double yPos)
+void MOLLEROptDetector8::SetCenterPositionInY(G4double yPos)
 {
     PositionDetY = yPos;
 
@@ -377,7 +377,7 @@ void MOLLEROptDetector::SetCenterPositionInY(G4double yPos)
 					      PositionDetZ));
 }
 
-void MOLLEROptDetector::SetCenterPositionInZ(G4double zPos)
+void MOLLEROptDetector8::SetCenterPositionInZ(G4double zPos)
 {
     PositionDetZ = zPos;
 
@@ -386,7 +386,7 @@ void MOLLEROptDetector::SetCenterPositionInZ(G4double zPos)
 					      PositionDetZ));
 }
 
-void MOLLEROptDetector::SetLightGuideOffsetInX(G4double x)
+void MOLLEROptDetector8::SetLightGuideOffsetInX(G4double x)
 {
   G4double cX;
   
@@ -402,7 +402,7 @@ void MOLLEROptDetector::SetLightGuideOffsetInX(G4double x)
   }
 }
 
-void MOLLEROptDetector::SetLightGuideOffsetInY(G4double y)
+void MOLLEROptDetector8::SetLightGuideOffsetInY(G4double y)
 {
   G4double cY;
   
@@ -418,7 +418,7 @@ void MOLLEROptDetector::SetLightGuideOffsetInY(G4double y)
   }
 }
 
-void MOLLEROptDetector::SetLightGuideOffsetInZ(G4double z)
+void MOLLEROptDetector8::SetLightGuideOffsetInZ(G4double z)
 {
   G4double cZ;
   
@@ -435,12 +435,13 @@ void MOLLEROptDetector::SetLightGuideOffsetInZ(G4double z)
 }
 
 
-void MOLLEROptDetector::GetQuartzLimits(G4double *vals)
+void MOLLEROptDetector8::GetQuartzLimits(G4double *vals)
 {
   Quartz->GetQuartzLimits(vals);
 }
 
-void MOLLEROptDetector::GetLightGuideLimits(G4double *vals)
+void MOLLEROptDetector8::GetLightGuideLimits(G4double *vals)
 {
   LightGuide->GetLightGuideLimits(vals);
 }
+

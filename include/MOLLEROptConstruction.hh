@@ -9,8 +9,17 @@
 
 #include "MOLLEROptMessenger.hh"
 #include "MOLLEROptMaterial.hh"
-#include "MOLLEROptDetector.hh"
 #include "MOLLEROptTrackingReadout.hh"
+
+//Includes for all detectors
+#include "MOLLEROptDetector.hh"
+#include "MOLLEROptDetector2.hh"
+#include "MOLLEROptDetector3.hh"
+#include "MOLLEROptDetector4.hh"
+#include "MOLLEROptDetector5.hh"
+#include "MOLLEROptDetector6.hh"
+#include "MOLLEROptDetector7.hh"
+#include "MOLLEROptDetector8.hh"
 
 class MOLLEROptMessenger;
 class MOLLEROptTrackingReadout;
@@ -43,8 +52,15 @@ private:
   
   void DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int depth=0);
   
-  MOLLEROptDetector*              Detector;
-  MOLLEROptDetector_Copy*	  Detector_Copy;	
+  MOLLEROptDetector*               Detector;
+  MOLLEROptDetector2*	       	   Detector2;	
+  MOLLEROptDetector3*              Detector3;
+  MOLLEROptDetector4*              Detector4;
+  MOLLEROptDetector5*              Detector5;
+  MOLLEROptDetector6*              Detector6;
+  MOLLEROptDetector7*              Detector7;
+  MOLLEROptDetector8*              Detector8;
+  
   MOLLEROptDetectorLightGuide*    LightGuide;
 
   MOLLEROptMessenger*  MOLLERMessenger;

@@ -1,5 +1,5 @@
-#ifndef MOLLEROptDetector_h
-#define MOLLEROptDetector_h 
+#ifndef MOLLEROptDetector7_h
+#define MOLLEROptDetector7_h 
 
 #include "cpp_include.h"
 #include "Root_include.h"
@@ -10,17 +10,17 @@
 #include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorQuartz.hh"
 #include "MOLLEROptDetectorPMT.hh"
-#include "MOLLEROptDetectorMessenger.hh"
+#include "MOLLEROptDetectorMessenger7.hh"
 
 #include "G4GDMLParser.hh"
 
-class MOLLEROptDetectorMessenger;
+class MOLLEROptDetectorMessenger7;
 
-class MOLLEROptDetector
+class MOLLEROptDetector7
 {
 public:
-  MOLLEROptDetector(MOLLEROptTrackingReadout*, G4String type, MOLLEROptMaterial* mat);
-  ~MOLLEROptDetector();
+  MOLLEROptDetector7(MOLLEROptTrackingReadout*, G4String type, MOLLEROptMaterial* mat);
+  ~MOLLEROptDetector7();
 
   G4VPhysicalVolume* ConstructDetector(G4VPhysicalVolume* Mother);
   void ConstructMountingStructure(G4VPhysicalVolume* Mother);
@@ -87,7 +87,7 @@ private:
 
   G4String DetType; //like: Ring5, or Ring1 ...
   
-  MOLLEROptDetectorMessenger*  detMessenger;
+  MOLLEROptDetectorMessenger7*  detMessenger7;
   MOLLEROptTrackingReadout *TrackingReadout;
   MOLLEROptMaterial* Materials;
   MOLLEROptDetectorLightGuide* LightGuide; 
@@ -128,5 +128,6 @@ private:
 
   
 };
+
 
 #endif

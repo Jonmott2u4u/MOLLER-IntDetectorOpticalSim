@@ -66,70 +66,260 @@
 #    --->    |    |
 #   Beam (Z) |_ __|
 #
-#               ^
+#               ^a
 #              / \  (y)
 #               |
 #  (x) into screen
 
 
+## Parameters for Ring 1 ##
+
 #/Det/LightGuideLowerConeSideAngle 21 deg        #These are normally straight, unless the quartz is very narrow
 
-/Det/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/Det/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/Det/LightGuideLowerConeBackAngle 21 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det/LightGuideLowerConeFrontAngle 19 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
-/Det/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
-/Det/LightGuideMiddleBox 90 mm			 #Height of box between upper and lower cones	
-/Det/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
+/Det/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+/Det/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
+/Det/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Det/LightGuideQuartzInterfaceOpeningX 26.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Det/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+/Det/LightGuideQuartzInterfaceOpeningX 17.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det/LightGuideQuartzInterfaceOpeningZ 2.9 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
 
 /Det/QuartzSizeZ 20 mm
-/Det/QuartzSizeX 260 mm
-/Det/QuartzSizeY 100 mm                          #Without the 45 degree cut
+/Det/QuartzSizeX 169 mm
+/Det/QuartzSizeY 50 mm                          #Without the 45 degree cut
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/Det/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode,
+# NEEDS CORRECT VALUE FOR RING 1
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
 /Det/UpdateGeometry
 
-## Defaults for detector copy ##
 
+## Parameters for Ring 2 ##
 
-/Det_Copy/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/Det_Copy/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/Det2/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det2/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
-/Det_Copy/LightGuideLowerInterface 200 mm              #Distance between quartz-LG interface and lower interface plane
-/Det_Copy/LightGuideMiddleBox 200 mm			 #Height of box between upper and lower cones	
-/Det_Copy/LightGuideUpperInterface 300 mm             #Distance between upper and lower interface planes
+/Det2/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+/Det2/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
+/Det2/LightGuideUpperInterface 205 mm             #Distance between upper and lower interface planes
 
-/Det_Copy/LightGuidePMTInterfaceOpeningX 17.0 cm       #These should stay fixed - set by the PMT size 
-/Det_Copy/LightGuidePMTInterfaceOpeningZ 17.0 cm
+/Det2/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det2/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Det_Copy/LightGuideQuartzInterfaceOpeningX 46.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Det_Copy/LightGuideQuartzInterfaceOpeningZ 12.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+/Det2/LightGuideQuartzInterfaceOpeningX 18.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det2/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
 
-/Det_Copy/QuartzSizeZ 20 mm
-/Det_Copy/QuartzSizeX 260 mm
-/Det_Copy/QuartzSizeY 100 mm                          #Without the 45 degree cut
-/Det_Copy/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+/Det2/QuartzSizeZ 20 mm
+/Det2/QuartzSizeX 179 mm
+/Det2/QuartzSizeY 60 mm                          #Without the 45 degree cut
+/Det2/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Det_Copy/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
-/Det_Copy/PolarRotation 3 deg                         #counter rotate the detector as a whole
+/Det2/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det2/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det_Copy/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/Det2/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
-/Det_Copy/UpdateGeometry
+
+/Det2/UpdateGeometry
+
+
+## Parameters for Ring 3 ##
+
+/Det3/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det3/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+
+/Det3/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+/Det3/LightGuideMiddleBox 300 mm			 #Height of box between upper and lower cones	
+/Det3/LightGuideUpperInterface 259 mm             #Distance between upper and lower interface planes
+
+/Det3/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det3/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/Det3/LightGuideQuartzInterfaceOpeningX 19.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det3/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+
+/Det3/QuartzSizeZ 20 mm
+/Det3/QuartzSizeX 190 mm
+/Det3/QuartzSizeY 60 mm                          #Without the 45 degree cut
+/Det3/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+
+/Det3/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det3/PolarRotation 3 deg                         #counter rotate the detector as a whole
+
+/Det3/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
+/Det3/UpdateGeometry
+
+
+## Parameters for Ring 4 ##
+
+/Det4/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det4/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+
+/Det4/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+/Det4/LightGuideMiddleBox 200 mm			 #Height of box between upper and lower cones	
+/Det4/LightGuideUpperInterface 253 mm             #Distance between upper and lower interface planes
+
+/Det4/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det4/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/Det4/LightGuideQuartzInterfaceOpeningX 22.1 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det4/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+
+/Det4/QuartzSizeZ 20 mm
+/Det4/QuartzSizeX 213 mm
+/Det4/QuartzSizeY 120 mm                          #Without the 45 degree cut
+/Det4/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+
+/Det4/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det4/PolarRotation 3 deg                         #counter rotate the detector as a whole
+
+/Det4/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
+/Det4/UpdateGeometry
+
+
+## Parameters for Ring 5a ##
+
+/Det5/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det5/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+
+/Det5/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+/Det5/LightGuideMiddleBox 0.000001 mm			 #Height of box between upper and lower cones	
+/Det5/LightGuideUpperInterface 326.5 mm             #Distance between upper and lower interface planes
+
+/Det5/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det5/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/Det5/LightGuideQuartzInterfaceOpeningX 8.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det5/LightGuideQuartzInterfaceOpeningZ 2.2 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+
+/Det5/QuartzSizeZ 15 mm
+/Det5/QuartzSizeX 80 mm
+/Det5/QuartzSizeY 140 mm                          #Without the 45 degree cut
+/Det5/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+
+/Det5/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det5/PolarRotation 3 deg                         #counter rotate the detector as a whole
+
+/Det5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
+/Det5/UpdateGeometry
+
+
+## Parameters for Ring 5b ## 
+
+/Det6/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det6/LightGuideLowerConeFrontAngle 16 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+
+/Det6/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
+/Det6/LightGuideMiddleBox 0.000001 mm	 	  #Height of box between upper and lower cones	
+/Det6/LightGuideUpperInterface 330 mm             #Distance between upper and lower interface planes
+
+/Det6/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det6/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/Det6/LightGuideQuartzInterfaceOpeningX 8.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det6/LightGuideQuartzInterfaceOpeningZ 1.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+
+/Det6/QuartzSizeZ 17 mm
+/Det6/QuartzSizeX 80 mm
+/Det6/QuartzSizeY 157 mm                          #Without the 45 degree cut
+/Det6/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+
+/Det6/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det6/PolarRotation 3 deg                         #counter rotate the detector as a whole
+
+/Det6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
+/Det6/UpdateGeometry
+
+## Parameters for Ring 5c ##
+
+/Det7/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det7/LightGuideLowerConeFrontAngle 16 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+
+/Det7/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
+/Det7/LightGuideMiddleBox 0.000001 mm		  #Height of box between upper and lower cones	
+/Det7/LightGuideUpperInterface 330 mm             #Distance between upper and lower interface planes
+
+/Det7/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det7/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/Det7/LightGuideQuartzInterfaceOpeningX 8.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det7/LightGuideQuartzInterfaceOpeningZ 1.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+
+/Det7/QuartzSizeZ 17 mm
+/Det7/QuartzSizeX 80 mm
+/Det7/QuartzSizeY 157 mm                          #Without the 45 degree cut
+/Det7/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+
+/Det7/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det7/PolarRotation 3 deg                         #counter rotate the detector as a whole
+
+/Det7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
+/Det7/UpdateGeometry
+
+## Parameters for Ring 6 ##
+
+/Det8/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det8/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+
+/Det8/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
+/Det8/LightGuideMiddleBox 90 mm			 #Height of box between upper and lower cones	
+/Det8/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
+
+/Det8/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det8/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/Det8/LightGuideQuartzInterfaceOpeningX 26.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/Det8/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+
+/Det8/QuartzSizeZ 20 mm
+/Det8/QuartzSizeX 260 mm
+/Det8/QuartzSizeY 100 mm                          #Without the 45 degree cut
+/Det8/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+
+/Det8/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+/Det8/PolarRotation 3 deg                         #counter rotate the detector as a whole
+
+/Det8/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+
+/Det8/UpdateGeometry
+
 
 
 /Generator/EventHitRegion 5                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz

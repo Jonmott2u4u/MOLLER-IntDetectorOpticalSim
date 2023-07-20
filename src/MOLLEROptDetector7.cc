@@ -213,9 +213,9 @@ void MOLLEROptDetector7::CalculateDimensions()
 
 void MOLLEROptDetector7::ResetCenterLocation()
 {
-  PositionDetX = 8.7*cm;
-  PositionDetY = -16.5*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
-  PositionDetZ = 112.6*cm;
+  PositionDetX = 0*cm;
+  PositionDetY = 0*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
+  PositionDetZ = 40*cm;
 
   PositionDet.setX(PositionDetX);
   PositionDet.setY(PositionDetY);

@@ -97,8 +97,7 @@
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode,
-# NEEDS CORRECT VALUE FOR RING 1
+/Det/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode,
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
@@ -326,7 +325,7 @@
 /Generator/QuartzHitRegion 0                     #Can be set from 0->9. Selects the cut of the quartz you wish to scan. Value does not matter if EventHitRegion != 7
 /Generator/BeamTheta 0				 #Units of degrees. Not in use
 /Generator/BeamPhi 0				 #Units of degrees. Not in use
-/Generator/BeamSolidAngle 60                       #Units of degrees. Determines angular spread of the beam from the z-axis
-/Generator/BeamEnergy 10000			 #Units of MeV
+/Generator/BeamSolidAngle 0                       #Units of degrees. Determines angular spread of the beam from the z-axis
+/Generator/BeamEnergy 8000			 #Units of MeV
 
 #/run/beamOn 1000

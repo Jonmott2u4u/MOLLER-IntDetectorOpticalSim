@@ -10,6 +10,13 @@
 #include "MOLLEROptMessenger.hh"
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
+#include "MOLLEROptTrackingReadout2.hh"
+#include "MOLLEROptTrackingReadout3.hh"
+#include "MOLLEROptTrackingReadout4.hh"
+#include "MOLLEROptTrackingReadout5.hh"
+#include "MOLLEROptTrackingReadout6.hh"
+#include "MOLLEROptTrackingReadout7.hh"
+#include "MOLLEROptTrackingReadout8.hh"
 
 //Includes for all detectors
 #include "MOLLEROptDetector.hh"
@@ -23,12 +30,19 @@
 
 class MOLLEROptMessenger;
 class MOLLEROptTrackingReadout;
+class MOLLEROptTrackingReadout2;
+class MOLLEROptTrackingReadout3;
+class MOLLEROptTrackingReadout4;
+class MOLLEROptTrackingReadout5;
+class MOLLEROptTrackingReadout6;
+class MOLLEROptTrackingReadout7;
+class MOLLEROptTrackingReadout8;
 
 class MOLLEROptConstruction : public G4VUserDetectorConstruction
 {
 public:
   
-  MOLLEROptConstruction(MOLLEROptTrackingReadout*, MOLLEROptMaterial*);
+  MOLLEROptConstruction(MOLLEROptTrackingReadout*,MOLLEROptTrackingReadout2*,MOLLEROptTrackingReadout3*,MOLLEROptTrackingReadout4*,MOLLEROptTrackingReadout5*,MOLLEROptTrackingReadout6*,MOLLEROptTrackingReadout7*,MOLLEROptTrackingReadout8*, MOLLEROptMaterial*);
     ~MOLLEROptConstruction();
 
 public:
@@ -48,6 +62,13 @@ public:
 private:
   
   MOLLEROptTrackingReadout *TrackingReadout;
+  MOLLEROptTrackingReadout2 *TrackingReadout2;
+  MOLLEROptTrackingReadout3 *TrackingReadout3;
+  MOLLEROptTrackingReadout4 *TrackingReadout4;
+  MOLLEROptTrackingReadout5 *TrackingReadout5;
+  MOLLEROptTrackingReadout6 *TrackingReadout6;
+  MOLLEROptTrackingReadout7 *TrackingReadout7;
+  MOLLEROptTrackingReadout8 *TrackingReadout8;
   MOLLEROptMaterial* Materials;
   
   void DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int depth=0);

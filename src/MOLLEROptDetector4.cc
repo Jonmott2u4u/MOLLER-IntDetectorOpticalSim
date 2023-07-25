@@ -1,15 +1,15 @@
 #include "MOLLEROptDetector4.hh"
 
-MOLLEROptDetector4::MOLLEROptDetector4(MOLLEROptTrackingReadout *TrRO, G4String type, MOLLEROptMaterial* mat)
+MOLLEROptDetector4::MOLLEROptDetector4(MOLLEROptTrackingReadout4 *TrRO4, G4String type, MOLLEROptMaterial* mat)
 {	    	    
-  TrackingReadout = TrRO;
+  TrackingReadout4 = TrRO4;
   DetType = type;
   Materials = mat;
   DetMaterial = Materials->GetMaterial("Air");  
 
-  Quartz = new  MOLLEROptDetectorQuartz(TrackingReadout,type,Materials);
-  LightGuide = new  MOLLEROptDetectorLightGuide(TrackingReadout,type,Materials);
-  PMT = new  MOLLEROptDetectorPMT(TrackingReadout,type,Materials,LightGuide);     
+  Quartz = new  MOLLEROptDetectorQuartz4(TrackingReadout4,type,Materials);
+  LightGuide = new  MOLLEROptDetectorLightGuide4(TrackingReadout4,type,Materials);
+  PMT = new  MOLLEROptDetectorPMT4(TrackingReadout4,type,Materials,LightGuide);     
   detMessenger4 = NULL;
 
   MotherVolume = NULL;

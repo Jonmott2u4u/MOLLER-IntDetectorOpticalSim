@@ -1,9 +1,9 @@
 #include "MOLLEROptPMTSD5.hh"
 
-MOLLEROptPMTSD5::MOLLEROptPMTSD5(G4String name, MOLLEROptTrackingReadout5* TrRO)
+MOLLEROptPMTSD5::MOLLEROptPMTSD5(G4String name, MOLLEROptTrackingReadout5* TrRO5)
   :G4VSensitiveDetector(name)
 {
-  TrackingReadout5 = TrRO;
+  TrackingReadout5 = TrRO5;
   theCollectionName = G4String("PMTHitCollection");
 
   collectionName.insert(theCollectionName); 

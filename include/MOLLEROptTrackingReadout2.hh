@@ -111,7 +111,7 @@ private:
   Int_t GetNumTracks(){return Tracks.size();};
   Int_t GetNumPhotonTracks(){return PhotonTracks;};
   Int_t GetNumElectronTracks(){return ElectronTracks;};
-  TrackData2* GetTrackData(Int_t n) {if(n >= 0 && n < Tracks.size()) return Tracks[n]; return 0;};
+  TrackData2* GetTrackData2(Int_t n) {if(n >= 0 && n < Tracks.size()) return Tracks[n]; return 0;};
   Int_t GetStepInQuartz(Int_t TID);
   void SetRadiationDamageHistograms(TH2 *hst, TH2 *hst2, TH2 *hst3, TH2 *hst4);
   void StoreQuartzOpticalPlots(TProfile*,TProfile*,TProfile*,TProfile*,TH1D*);

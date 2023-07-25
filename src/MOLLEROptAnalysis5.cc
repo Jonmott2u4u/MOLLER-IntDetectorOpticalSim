@@ -44,14 +44,14 @@ void MOLLEROptAnalysis5::Finish()
   if (MOLLEROptFile)           delete MOLLEROptFile;
 }   
 
-void MOLLEROptAnalysis5::BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackingReadout5 *TrRO) 
+void MOLLEROptAnalysis5::BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackingReadout5 *TrRO5) 
 {   
 
   if(ROOTFileFlag){
 
     MOLLEROptFile = new TFile(Form("%s_%04d.root",name1.c_str(),runID),"RECREATE","MOLLEROpt ROOT file");
   }
-  TrackingReadout5 = TrRO;
+  TrackingReadout5 = TrRO5;
     
   ConstructRootNtuple();
 }

@@ -1,9 +1,9 @@
 #include "MOLLEROptLightGuideSD4.hh"
 
-MOLLEROptLightGuideSD4::MOLLEROptLightGuideSD4(G4String name, MOLLEROptTrackingReadout4* TrRO)
+MOLLEROptLightGuideSD4::MOLLEROptLightGuideSD4(G4String name, MOLLEROptTrackingReadout4* TrRO4)
   :G4VSensitiveDetector(name)
 {
-  TrackingReadout4 = TrRO;
+  TrackingReadout4 = TrRO4;
   theCollectionName = G4String("LightGuideHitCollection");
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;

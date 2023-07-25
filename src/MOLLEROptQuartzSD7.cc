@@ -1,9 +1,9 @@
 #include "MOLLEROptQuartzSD7.hh"
 
-MOLLEROptQuartzSD7::MOLLEROptQuartzSD7(G4String name, MOLLEROptTrackingReadout7* TrRO)
+MOLLEROptQuartzSD7::MOLLEROptQuartzSD7(G4String name, MOLLEROptTrackingReadout7* TrRO7)
   :G4VSensitiveDetector(name)
 {
-  TrackingReadout7 = TrRO;
+  TrackingReadout7 = TrRO7;
   theCollectionName = G4String("QuartzHitCollection");
 
   collectionName.insert(theCollectionName); 

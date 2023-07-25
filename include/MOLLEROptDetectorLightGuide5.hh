@@ -202,7 +202,7 @@ private:
   
   ofstream STLFile;
   
-  G4VSensitiveDetector* LightGuideSD;
+  G4VSensitiveDetector* LightGuideSD5;
   
 };
 #endif

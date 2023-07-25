@@ -1,10 +1,10 @@
 #include "MOLLEROptDetectorQuartz2.hh"
 
-MOLLEROptDetectorQuartz2::MOLLEROptDetectorQuartz2(MOLLEROptTrackingReadout2 *TrRO, G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorQuartz2::MOLLEROptDetectorQuartz2(MOLLEROptTrackingReadout2 *TrRO2, G4String name, MOLLEROptMaterial* mat)
 {
   Name = name+"_Quartz";
   
-  TrackingReadout2 = TrRO;
+  TrackingReadout2 = TrRO2;
   Materials = mat;
   QuartzMaterial = Materials->GetMaterial("Quartz");  
 

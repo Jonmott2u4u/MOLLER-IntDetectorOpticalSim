@@ -107,7 +107,7 @@ private:
   G4double LGInterfaceOpeningX;
 
   G4SDManager* SDman;
-  G4VSensitiveDetector* CathSD;
+  G4VSensitiveDetector* CathSD5;
 
 
 };

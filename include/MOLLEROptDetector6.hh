@@ -6,10 +6,10 @@
 #include "Geant4_include.hh"
 
 #include "MOLLEROptMaterial.hh"
-#include "MOLLEROptTrackingReadout.hh"
-#include "MOLLEROptDetectorLightGuide.hh"
-#include "MOLLEROptDetectorQuartz.hh"
-#include "MOLLEROptDetectorPMT.hh"
+#include "MOLLEROptTrackingReadout6.hh"
+#include "MOLLEROptDetectorLightGuide6.hh"
+#include "MOLLEROptDetectorQuartz6.hh"
+#include "MOLLEROptDetectorPMT6.hh"
 #include "MOLLEROptDetectorMessenger6.hh"
 
 #include "G4GDMLParser.hh"
@@ -19,7 +19,7 @@ class MOLLEROptDetectorMessenger6;
 class MOLLEROptDetector6
 {
 public:
-  MOLLEROptDetector6(MOLLEROptTrackingReadout*, G4String type, MOLLEROptMaterial* mat);
+  MOLLEROptDetector6(MOLLEROptTrackingReadout6*, G4String type, MOLLEROptMaterial* mat);
   ~MOLLEROptDetector6();
 
   G4VPhysicalVolume* ConstructDetector(G4VPhysicalVolume* Mother);
@@ -88,12 +88,12 @@ private:
   G4String DetType; //like: Ring5, or Ring1 ...
   
   MOLLEROptDetectorMessenger6*  detMessenger6;
-  MOLLEROptTrackingReadout *TrackingReadout;
+  MOLLEROptTrackingReadout6 *TrackingReadout6;
   MOLLEROptMaterial* Materials;
-  MOLLEROptDetectorLightGuide* LightGuide; 
-  MOLLEROptDetectorQuartz*     Quartz;
-  MOLLEROptDetectorQuartz*     Quartz2;
-  MOLLEROptDetectorPMT*        PMT;
+  MOLLEROptDetectorLightGuide6* LightGuide; 
+  MOLLEROptDetectorQuartz6*     Quartz;
+  MOLLEROptDetectorQuartz6*     Quartz2;
+  MOLLEROptDetectorPMT6*        PMT;
   //MOLLEROptDetectorStructure*  Structure;
 
   G4VPhysicalVolume* MotherVolume;

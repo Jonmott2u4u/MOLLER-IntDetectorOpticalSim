@@ -40,7 +40,7 @@
 
 */
 
-MOLLEROptDetectorLightGuide4::MOLLEROptDetectorLightGuide4(MOLLEROptTrackingReadout4 *TrRO, G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorLightGuide4::MOLLEROptDetectorLightGuide4(MOLLEROptTrackingReadout4 *TrRO4, G4String name, MOLLEROptMaterial* mat)
 {
   thisName = name+"_LG";
 
@@ -65,7 +65,7 @@ MOLLEROptDetectorLightGuide4::MOLLEROptDetectorLightGuide4(MOLLEROptTrackingRead
   GuideMaterial = Materials->GetMaterial("Aluminum");
   GuideCoreMaterial = Materials->GetMaterial("Air");
 
-  TrackingReadout4 = TrRO;
+  TrackingReadout4 = TrRO4;
 
   RotationLG = NULL;
 
@@ -222,10 +222,10 @@ void MOLLEROptDetectorLightGuide4::Initialize()
   CreateOpticalSurface(GuideLogical);
 
   G4SDManager* SDman = G4SDManager::GetSDMpointer();
-  LightGuideSD = new MOLLEROptLightGuideSD4("/LightGuide",TrackingReadout4);
-  SDman->AddNewDetector(LightGuideSD);  
+  LightGuideSD4 = new MOLLEROptLightGuideSD4("/LightGuide",TrackingReadout4);
+  SDman->AddNewDetector(LightGuideSD4);  
 
-  GuideCoreLogical->SetSensitiveDetector(LightGuideSD);
+  GuideCoreLogical->SetSensitiveDetector(LightGuideSD4);
   
   G4Colour  magenta   ( 255/255.,   0/255., 255/255.);   
   G4VisAttributes* LGVisAtt = new G4VisAttributes(magenta);

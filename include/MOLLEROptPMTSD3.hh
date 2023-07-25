@@ -14,7 +14,7 @@ class MOLLEROptPMTSD3 : public G4VSensitiveDetector
 {
 
 public:
-  MOLLEROptPMTSD3(G4String name, MOLLEROptTrackingReadout3* TrRO);
+  MOLLEROptPMTSD3(G4String name, MOLLEROptTrackingReadout3* TrRO3);
   virtual ~MOLLEROptPMTSD3();
 
   virtual void Initialize(G4HCofThisEvent* HCE);

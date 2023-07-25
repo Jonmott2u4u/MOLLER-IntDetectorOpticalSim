@@ -14,7 +14,7 @@ class MOLLEROptLightGuideSD7 : public G4VSensitiveDetector
 {
 
 public:
-  MOLLEROptLightGuideSD7(G4String name, MOLLEROptTrackingReadout7* TrRO);
+  MOLLEROptLightGuideSD7(G4String name, MOLLEROptTrackingReadout7* TrRO7);
   virtual ~MOLLEROptLightGuideSD7();
 
   virtual void Initialize(G4HCofThisEvent* HCE);

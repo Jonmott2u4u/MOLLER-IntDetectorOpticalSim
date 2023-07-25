@@ -1,15 +1,15 @@
 #include "MOLLEROptDetector7.hh"
 
-MOLLEROptDetector7::MOLLEROptDetector7(MOLLEROptTrackingReadout *TrRO, G4String type, MOLLEROptMaterial* mat)
+MOLLEROptDetector7::MOLLEROptDetector7(MOLLEROptTrackingReadout7 *TrRO7, G4String type, MOLLEROptMaterial* mat)
 {	    	    
-  TrackingReadout = TrRO;
+  TrackingReadout7 = TrRO7;
   DetType = type;
   Materials = mat;
   DetMaterial = Materials->GetMaterial("Air");  
 
-  Quartz = new  MOLLEROptDetectorQuartz(TrackingReadout,type,Materials);
-  LightGuide = new  MOLLEROptDetectorLightGuide(TrackingReadout,type,Materials);
-  PMT = new  MOLLEROptDetectorPMT(TrackingReadout,type,Materials,LightGuide);     
+  Quartz = new  MOLLEROptDetectorQuartz7(TrackingReadout7,type,Materials);
+  LightGuide = new  MOLLEROptDetectorLightGuide7(TrackingReadout7,type,Materials);
+  PMT = new  MOLLEROptDetectorPMT7(TrackingReadout7,type,Materials,LightGuide);     
   detMessenger7 = NULL;
 
   MotherVolume = NULL;
@@ -213,9 +213,9 @@ void MOLLEROptDetector7::CalculateDimensions()
 
 void MOLLEROptDetector7::ResetCenterLocation()
 {
-  PositionDetX = 0*cm;
-  PositionDetY = 0*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
-  PositionDetZ = 40*cm;
+  PositionDetX = 0.0*cm;
+  PositionDetY = 0.0*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
+  PositionDetZ = 40.0*cm;
 
   PositionDet.setX(PositionDetX);
   PositionDet.setY(PositionDetY);

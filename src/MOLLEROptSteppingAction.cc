@@ -7,6 +7,59 @@ MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout* TrRO)
   ErrorVal = G4ThreeVector(1e6,1e6,1e6);
 }
 
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout2* TrRO2)
+{ 
+  fSecondary = NULL;
+  TrackingReadout2 = TrRO2;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout3* TrRO3)
+{ 
+  fSecondary = NULL;
+  TrackingReadout3 = TrRO3;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout4* TrRO4)
+{ 
+  fSecondary = NULL;
+  TrackingReadout4 = TrRO4;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout5* TrRO5)
+{ 
+  fSecondary = NULL;
+  TrackingReadout5 = TrRO5;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout6* TrRO6)
+{ 
+  fSecondary = NULL;
+  TrackingReadout6 = TrRO6;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout7* TrRO7)
+{ 
+  fSecondary = NULL;
+  TrackingReadout7 = TrRO7;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
+
+MOLLEROptSteppingAction::MOLLEROptSteppingAction(MOLLEROptTrackingReadout8* TrRO8)
+{ 
+  fSecondary = NULL;
+  TrackingReadout8 = TrRO8;
+  ErrorVal = G4ThreeVector(1e6,1e6,1e6);
+}
+
 void MOLLEROptSteppingAction::UserSteppingAction(const G4Step* theStep)
 { 
   G4Track* theTrack = theStep->GetTrack();
@@ -69,6 +122,13 @@ void MOLLEROptSteppingAction::UserSteppingAction(const G4Step* theStep)
 	  //cout << "Detection in " << "postStep = " << postStep->GetPhysicalVolume()->GetName() << ", preStep = " << preStep->GetPhysicalVolume()->GetName() << endl;
 
 	  TrackingReadout->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout2->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout3->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout4->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout5->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout6->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout7->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
+	  TrackingReadout8->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
 	  //theStep->GetTrack()->SetTrackStatus(fStopAndKill);
 
 	  // G4SDManager* SDman = G4SDManager::GetSDMpointer();

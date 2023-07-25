@@ -1,6 +1,6 @@
 #include "MOLLEROptConstruction.hh"
 
-MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout, MOLLEROptMaterial* mat) 
+MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout,MOLLEROptTrackingReadout2 *trReadout2, MOLLEROptTrackingReadout3 *trReadout3, MOLLEROptTrackingReadout4 *trReadout4, MOLLEROptTrackingReadout5 *trReadout5, MOLLEROptTrackingReadout6 *trReadout6, MOLLEROptTrackingReadout7 *trReadout7, MOLLEROptTrackingReadout8 *trReadout8, MOLLEROptMaterial* mat) 
   : G4VUserDetectorConstruction()
 {
   World_Solid    = NULL;  
@@ -25,6 +25,13 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   fWorldLengthInZ = 0.0;
 
   TrackingReadout = trReadout;
+  TrackingReadout2 = trReadout2;
+  TrackingReadout3 = trReadout3;
+  TrackingReadout4 = trReadout4;
+  TrackingReadout5 = trReadout5;
+  TrackingReadout6 = trReadout6;
+  TrackingReadout7 = trReadout7;
+  TrackingReadout8 = trReadout8;
 
   MOLLERMessenger = new MOLLEROptMessenger(this);
 }
@@ -47,13 +54,13 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
   Detector    = new MOLLEROptDetector(TrackingReadout,"Ring1",Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
-  Detector2   = new MOLLEROptDetector2(TrackingReadout,"Ring2",Materials); 
-  Detector3   = new MOLLEROptDetector3(TrackingReadout,"Ring3",Materials);
-  Detector4   = new MOLLEROptDetector4(TrackingReadout,"Ring4",Materials);
-  Detector5   = new MOLLEROptDetector5(TrackingReadout,"Ring5a",Materials);
-  Detector6   = new MOLLEROptDetector6(TrackingReadout,"Ring5b",Materials);
-  Detector7   = new MOLLEROptDetector7(TrackingReadout,"Ring5c",Materials);
-  Detector8   = new MOLLEROptDetector8(TrackingReadout,"Ring6",Materials);
+  Detector2   = new MOLLEROptDetector2(TrackingReadout2,"Ring2",Materials); 
+  Detector3   = new MOLLEROptDetector3(TrackingReadout3,"Ring3",Materials);
+  Detector4   = new MOLLEROptDetector4(TrackingReadout4,"Ring4",Materials);
+  Detector5   = new MOLLEROptDetector5(TrackingReadout5,"Ring5a",Materials);
+  Detector6   = new MOLLEROptDetector6(TrackingReadout6,"Ring5b",Materials);
+  Detector7   = new MOLLEROptDetector7(TrackingReadout7,"Ring5c",Materials);
+  Detector8   = new MOLLEROptDetector8(TrackingReadout8,"Ring6",Materials);
   fWorldLengthInX =  25.0*m;
   fWorldLengthInY =  25.0*m;
   fWorldLengthInZ =  40.0*m;
@@ -323,4 +330,3 @@ void MOLLEROptConstruction::UpdateGeometry()
   G4RunManager::GetRunManager()->DefineWorldVolume(Construct());
   G4RunManager::GetRunManager()->GeometryHasBeenModified();
 }
-

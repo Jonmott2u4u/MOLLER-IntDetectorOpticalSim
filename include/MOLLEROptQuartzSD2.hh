@@ -14,7 +14,7 @@ class MOLLEROptQuartzSD2 : public G4VSensitiveDetector
 {
 
 public:
-  MOLLEROptQuartzSD2(G4String name, MOLLEROptTrackingReadout2* TrRO);
+  MOLLEROptQuartzSD2(G4String name, MOLLEROptTrackingReadout2* TrRO2);
   virtual ~MOLLEROptQuartzSD2();
 
   virtual void Initialize(G4HCofThisEvent* HCE);

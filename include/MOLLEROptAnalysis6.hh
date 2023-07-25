@@ -19,7 +19,7 @@ public:
 public:
 
   // void BeginOfRun(G4int runID, G4double pressure, G4double coll);
-  void BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackingReadout6 *TrRO);
+  void BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackingReadout6 *TrRO6);
   void EndOfRun();
   void EndOfEvent(G4int flag);
 

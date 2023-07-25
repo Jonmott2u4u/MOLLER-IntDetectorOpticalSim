@@ -1,11 +1,11 @@
 #include "MOLLEROptDetectorPMT3.hh"
 
-MOLLEROptDetectorPMT3::MOLLEROptDetectorPMT3(MOLLEROptTrackingReadout3 *TrRO, G4String name, MOLLEROptMaterial* mat, MOLLEROptDetectorLightGuide3* guide)
+MOLLEROptDetectorPMT3::MOLLEROptDetectorPMT3(MOLLEROptTrackingReadout3 *TrRO3, G4String name, MOLLEROptMaterial* mat, MOLLEROptDetectorLightGuide3* guide)
 {
   Name = name+"_PMT";
 
   LightGuide3 = guide;
-  TrackingReadout3 = TrRO;
+  TrackingReadout3 = TrRO3;
   Materials = mat;
   PMTMaterial = Materials->GetMaterial("Air");  //PMT with quartz window
   PMTCathodeMaterial = Materials->GetMaterial("Aluminum");//Photocathode");  //PMT with quartz window
@@ -14,7 +14,7 @@ MOLLEROptDetectorPMT3::MOLLEROptDetectorPMT3(MOLLEROptTrackingReadout3 *TrRO, G4
   PMTLogical  = NULL;
   PMTPhysical = NULL;
   Rotation    = NULL;
-  CathSD      = NULL;
+  CathSD3      = NULL;
 
   PMTCathodeSurface = NULL;
   CathodeMatPropTable = NULL;
@@ -85,9 +85,9 @@ void MOLLEROptDetectorPMT3::Initialize()
   PMTCathodeLogical->SetVisAttributes(VisAtt2);
 
   SDman = G4SDManager::GetSDMpointer();
-  CathSD = new MOLLEROptPMTSD3("/Cathode",TrackingReadout3);
-  SDman->AddNewDetector(CathSD);  
-  PMTWindowLogical->SetSensitiveDetector(CathSD);
+  CathSD3 = new MOLLEROptPMTSD3("/Cathode",TrackingReadout3);
+  SDman->AddNewDetector(CathSD3);  
+  PMTWindowLogical->SetSensitiveDetector(CathSD3);
 
 }
 
@@ -242,7 +242,7 @@ void MOLLEROptDetectorPMT3::SetCenterPositionInZ(G4double zPos)
 void MOLLEROptDetectorPMT3::ClearVolumes()
 {
   //SDman->Activate("/Cathode",false);
-  if(CathSD)      delete CathSD;
+  if(CathSD3)      delete CathSD3;
   if(PMTPhysical) delete PMTPhysical;
   if(PMTLogical)  delete PMTLogical;
   if(PMTCathodePhysical) delete PMTCathodePhysical;

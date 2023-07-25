@@ -45,7 +45,7 @@ public:
   void StoreTrackVertexMomentum(G4ThreeVector vmom) {TrackVertexMomentum = vmom;};
   void StoreTrackVertexPosition(G4ThreeVector vpos) {TrackVertexPosition = vpos;};
   void StoreIncidentPhotonAngle(G4double angle) {IncidentPhotonAngle = angle;};
-  void StoreReflectionProcess(G4OpBoundaryProcessStatus proc) {ReflectionProcess = proc;};
+  void StoreReflectionProcess(G4OpBoundaryProcessStatus proc5) {ReflectionProcess = proc5;};
 
   G4ThreeVector GetTrackVertexMomentum(){return TrackVertexMomentum;};
   G4ThreeVector GetTrackVertexPosition(){return TrackVertexPosition;};

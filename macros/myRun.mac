@@ -175,12 +175,12 @@
 
 /Det/UpdateGeometry
 
-/Generator/EventHitRegion 5                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz
+/Generator/EventHitRegion 5                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 9x9 cm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz
 /Generator/QuartzHitRegion 0                     #Can be set from 0->9. Selects the cut of the quartz you wish to scan. Value does not matter if EventHitRegion != 7
 /Generator/BeamTheta 0				 #Units of degrees. Not in use
 /Generator/BeamPhi 0				 #Units of degrees. Not in use
 /Generator/BeamSolidAngle 0                       #Units of degrees. Determines angular spread of the beam from the z-axis
-/Generator/BeamEnergy 8000			 #Units of MeV
+#/Generator/BeamEnergy 8000			 #Units of MeV. This currently does nothing, since the energy spectra is imported from cosmics.txt
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457

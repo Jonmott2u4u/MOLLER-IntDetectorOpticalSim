@@ -1,4 +1,7 @@
 #include "MOLLEROptPrimaryGeneratorAction.hh"
+#include <stdlib.h>
+#include <iostream>
+
 
 MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction* Constr)
 {
@@ -13,7 +16,7 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  G4ParticleDefinition* particle = G4Electron::Definition();
+  G4ParticleDefinition* particle = G4MuonMinus::Definition();
   particleGun->SetParticleDefinition(particle);
 }
 
@@ -70,17 +73,17 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = LGlim[6]+90*mm + (LGlim[7]-LGlim[6]-10*mm)*G4UniformRand(); //Also hard-coded
   }
   else if(EventRegion == 5){
-    //2x2 mm^2 spot on quartz
-    x = (Qlim[1]+Qlim[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim[3]+Qlim[2])/2.0 -2 +4*G4UniformRand();
+    //9x9 cm^2 spot on quartz center
+    x = (Qlim[1]+Qlim[0])/2.0 -45 +90*G4UniformRand();
+    y = (Qlim[3]+Qlim[2])/2.0 -45 +90*G4UniformRand();
   }
   else if(EventRegion == 6){
-    //2x2 mm^2 spot on lower guide cone
+    //4x4 mm^2 spot on lower guide cone
     x = (LGlim[1]+LGlim[0])/2.0 -2 +4*G4UniformRand();
     y = (LGlim[3]+LGlim[2])/2.0 -2 +4*G4UniformRand();
   }  
   else if(EventRegion == 7){
-    //2x2 mm^2 spot on upper guide cone
+    //4x4 mm^2 spot on upper guide cone
     x = (LGlim[5]+LGlim[4])/2.0 -2 +4*G4UniformRand();
     y = (LGlim[7]+LGlim[6])/2.0 -2 +4*G4UniformRand();
   }  
@@ -103,7 +106,30 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
-  particleGun->SetParticleEnergy(Energy*MeV);
+
+  //Following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
+  //****************************************
+  G4double rand_int = G4UniformRand()*342800;
+  rand_int = rand_int/1;
+  FILE *fptr;
+  while (rand_int < 15457){//Applies an energy cutoff below 200 MeV
+    rand_int = G4UniformRand()*342800;
+  }
+  fptr = fopen("data/cosmics.txt", "r");
+  G4int inc = 1;
+  G4int energy = getw(fptr);//Distinct from Energy variable
+  while (inc < rand_int){
+    energy = getw(fptr);
+    inc++;
+  }
+  //G4cout << "Muon energy is: " << energy << " MeV \n" << G4endl;
+  //G4cout << "Random integer was: " << rand_int << "\n" << G4endl;
+  //G4cout << "\n Increment reached: " << inc << "\n" << G4endl;
+  fclose(fptr);
+  //*****************************************
+
+  //particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
+  particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

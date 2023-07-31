@@ -24,10 +24,21 @@ public:
 private:
 
   MOLLEROptTrackingReadout* TrackingReadout;
+  //MOLLEROptTrackingReadout* TrackingReadout2;  
   
   MOLLEROptQuartzHitsCollection*  HitsCollection;
+  MOLLEROptQuartzHitsCollection*  HitsCollection2;
+  MOLLEROptQuartzHitsCollection*  HitsCollection3;
+  MOLLEROptQuartzHitsCollection*  HitsCollection4;
+  MOLLEROptQuartzHitsCollection*  HitsCollection5;
+  MOLLEROptQuartzHitsCollection*  HitsCollection6;
+  MOLLEROptQuartzHitsCollection*  HitsCollection7;
+  MOLLEROptQuartzHitsCollection*  HitsCollection8;
+  
   G4String theCollectionName;
+  //G4String theCollectionName2;  
   G4int theCollectionID;
+  //G4int theCollectionID2;  
   const std::vector<const G4Track*>* Secondaries;
 
 };

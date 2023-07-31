@@ -30,8 +30,7 @@ public:
   void UpdateGeometry();
   void ExportGeometrySTL();
   void WriteSTLFacet(G4ThreeVector *vertices);
-
-
+  
   void SetLowerInterfacePlane(G4double LowerPlane)   {LowerInterfacePlane = LowerPlane;};
   void SetUpperInterfacePlane(G4double UpperPlane)   {UpperInterfacePlane = UpperPlane; GuideTotalLength = UpperPlane;};
   void SetMiddleBoxHeight(G4double MiddlePlane)      {MiddleBoxHeight = MiddlePlane;};
@@ -40,37 +39,29 @@ public:
   void SetLowerConeSideFaceAngle(G4double angle)     {LowerConeSideFaceAngle = angle;};
   void SetQuartzInterfaceOpeningZ(G4double size)     {QuartzInterfaceOpeningZ = size;};
   void SetQuartzInterfaceOpeningX(G4double size)     {QuartzInterfaceOpeningX = size;};
-  void SetPMTInterfaceOpeningZ(G4double size)        {PMTInterfaceOpeningZ = size;};
-  void SetPMTInterfaceOpeningX(G4double size)        {PMTInterfaceOpeningX = size;};
   void SetQuartzToPMTOffsetInZ(G4double val)         {QuartzToPMTOffsetInZ = val;};
   void SetCenterPositionInX(G4double xPos);
   void SetCenterPositionInY(G4double yPos);
   void SetCenterPositionInZ(G4double zPos);
+  void SetPMTInterfaceOpeningZ(G4double size)        {PMTInterfaceOpeningZ = size;};
+  void SetPMTInterfaceOpeningX(G4double size)        {PMTInterfaceOpeningX = size;};
   void SetPMTOpeningRadius(G4double val)             {PMTOpeningRadius = val;};
-
   G4double GetCurrentLowerInterfacePlane()     {return LowerInterfacePlane;};
   G4double GetCurrentUpperInterfacePlane()     {return UpperInterfacePlane;};
   G4double GetCurrentMiddleBoxHeight()         {return MiddleBoxHeight;};
   G4double GetCurrentLowerConeFrontFaceAngle() {return LowerConeFrontFaceAngle;};
   G4double GetCurrentLowerConeBackFaceAngle()  {return LowerConeBackFaceAngle;};
   G4double GetCurrentLowerConeSideFaceAngle()  {return LowerConeSideFaceAngle;};
-  G4double GetCurrentQuartzInterfaceOpeningY() {return QuartzInterfaceOpeningZ;};
-  G4double GetCurrentQuartzInterfaceOpeningX() {return QuartzInterfaceOpeningX;};
   G4double GetCurrentPMTInterfaceOpeningY()    {return PMTInterfaceOpeningZ;};
   G4double GetCurrentPMTInterfaceOpeningX()    {return PMTInterfaceOpeningX;};
-  G4double GetCurrentQuartzToPMTOffsetInY()    {return QuartzToPMTOffsetInZ;};
-  // G4double GetCurrentCenterPositionInX()       {return CenterPositionX;};
-  // G4double GetCurrentCenterPositionInY()       {return CenterPositionZ;};
-  // G4double GetCurrentCenterPositionInZ()       {return CenterPositionY;};
-
-  G4double GetCurrentCenterPositionInX() {return GuidePhysical->GetTranslation().x();}//PositionX;};
-  G4double GetCurrentCenterPositionInY() {return GuidePhysical->GetTranslation().y();}//PositionY;};
-  G4double GetCurrentCenterPositionInZ() {return GuidePhysical->GetTranslation().z();}//PositionZ;};
-  G4ThreeVector GetCurrentCenterPosition() {return GuidePhysical->GetTranslation();};
-
+  G4double GetCurrentQuartzToPMTOffsetInZ()    {return QuartzToPMTOffsetInZ;};
+  G4double GetCurrentCenterPositionInX()       {return GuidePhysical->GetTranslation().x();}//PositionX;};
+  G4double GetCurrentCenterPositionInY()       {return GuidePhysical->GetTranslation().y();}//PositionY;};
+  G4double GetCurrentCenterPositionInZ()       {return GuidePhysical->GetTranslation().z();}//PositionZ;};
+  G4ThreeVector GetCurrentCenterPosition()     {return GuidePhysical->GetTranslation();};
   G4double GetLightGuideLength()               {return GuideTotalLength;};
-  G4double GetLightGuideWidth()               {return GuideTotalWidth;};
-  G4double GetLightGuideDepth()               {return GuideTotalDepth;};
+  G4double GetLightGuideWidth()                {return GuideTotalWidth;};
+  G4double GetLightGuideDepth()                {return GuideTotalDepth;};
 
   void GetLightGuideLimits(G4double *vals);
   void GetLightGuideLowerConeSideVertices(std::vector<G4TwoVector> *Vertices);

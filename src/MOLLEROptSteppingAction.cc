@@ -40,9 +40,9 @@ void MOLLEROptSteppingAction::UserSteppingAction(const G4Step* theStep)
   if(theStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()){
 
     if(postStep->GetPhysicalVolume() && preStep->GetPhysicalVolume()){
-      if(postStep->GetPhysicalVolume()->GetName() == "Ring5_PMT_Cathode_Physical"
-	 || preStep->GetPhysicalVolume()->GetName() == "Ring5_LG_GuideTop_Physical"
-	 || preStep->GetPhysicalVolume()->GetName() == "Ring5_PMT_Physical"){
+      if(postStep->GetPhysicalVolume()->GetName() == "Ring_PMT_Cathode_Physical"
+	 || preStep->GetPhysicalVolume()->GetName() == "Ring_LG_GuideTop_Physical"
+	 || preStep->GetPhysicalVolume()->GetName() == "Ring_PMT_Physical"){
 	
 	//cout << "Killed in " << postStep->GetPhysicalVolume()->GetName() << endl; 	
 	theStep->GetTrack()->SetTrackStatus(fStopAndKill);

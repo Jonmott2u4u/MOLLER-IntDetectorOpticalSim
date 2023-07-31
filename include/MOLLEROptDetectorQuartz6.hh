@@ -1,5 +1,5 @@
-#ifndef MOLLEROptDetectorQuartz_h
-#define MOLLEROptDetectorQuartz_h 
+#ifndef MOLLEROptDetectorQuartz6_h
+#define MOLLEROptDetectorQuartz6_h 
 
 #include "cpp_include.h"
 #include "Root_include.h"
@@ -11,11 +11,11 @@
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
 
-class MOLLEROptDetectorQuartz 
+class MOLLEROptDetectorQuartz6 
 {
 public:
-  MOLLEROptDetectorQuartz(MOLLEROptTrackingReadout*, G4String type, MOLLEROptMaterial* mat);
-  ~MOLLEROptDetectorQuartz();
+  MOLLEROptDetectorQuartz6(MOLLEROptTrackingReadout*, G4String type6, MOLLEROptMaterial* mat);
+  ~MOLLEROptDetectorQuartz6();
 
   void Construct(G4VPhysicalVolume* Mother);
   void Initialize();
@@ -89,7 +89,7 @@ private:
   G4double PositionZ;
 
   G4SDManager* SDman;
-  G4VSensitiveDetector* QuartzSD;
+  G4VSensitiveDetector* QuartzSD6;
 
   G4bool SegRadDamageFlag;
   

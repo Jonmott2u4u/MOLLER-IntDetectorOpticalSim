@@ -11,7 +11,8 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   Materials       = mat;
 
   Detector        = NULL;
-  LightGuide      = NULL;
+  //LightGuide1      = NULL;
+  //Detector2        = NULL;
 
   fWorldLengthInX = 0.0; 
   fWorldLengthInY = 0.0;
@@ -24,14 +25,14 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
 
 MOLLEROptConstruction::~MOLLEROptConstruction()
 {
-  if (Detector)           delete Detector;
+  if (Detector)          delete Detector;
   //if (Material)         delete Material;
   if (MOLLERMessenger)    delete MOLLERMessenger;             
 }
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  Detector   = new MOLLEROptDetector(TrackingReadout,"Ring5",Materials);
+  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring", Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
   
   fWorldLengthInX =  15.0*m;
@@ -60,26 +61,127 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   // LightGuide->ConstructComponent(World_Physical);
   // LightGuide->SetCenterPositionInY(7.5*cm);
 
-  Detector->SetQuartzSizeX(8.4*cm);
-  Detector->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Detector->SetQuartzSizeZ(1.5*cm);
-  Detector->SetLowerInterfacePlane(5.6*cm);
-  Detector->SetUpperInterfacePlane(25*cm);
-  Detector->SetLowerConeFrontFaceAngle(28*degree); //degrees
-  Detector->SetLowerConeBackFaceAngle(22*degree);
-  Detector->SetLowerConeSideFaceAngle(0*degree);
-  Detector->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Detector->SetQuartzInterfaceOpeningX(9.2*cm);
+  //Ring 1
+  Detector->SetQuartzSizeX1(8.4*cm);
+  Detector->SetQuartzSizeY1(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ1(1.5*cm);
+  Detector->SetLowerInterfacePlane1(5.6*cm);
+  Detector->SetMiddleBoxHeight1(9.0*cm);
+  Detector->SetUpperInterfacePlane1(25*cm);
+  Detector->SetLowerConeFrontFaceAngle1(28*degree);
+  Detector->SetLowerConeBackFaceAngle1(22*degree);
+  Detector->SetLowerConeSideFaceAngle1(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ1(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX1(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ1(-0.3*cm);  
+  
+  //Ring 2
+  Detector->SetQuartzSizeX2(8.4*cm);
+  Detector->SetQuartzSizeY2(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ2(1.5*cm);
+  Detector->SetLowerInterfacePlane2(5.6*cm);
+  Detector->SetMiddleBoxHeight2(9.0*cm);
+  Detector->SetUpperInterfacePlane2(25*cm);
+  Detector->SetLowerConeFrontFaceAngle2(28*degree);
+  Detector->SetLowerConeBackFaceAngle2(22*degree);
+  Detector->SetLowerConeSideFaceAngle2(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ2(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX2(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ2(-0.3*cm);  
+
+  //Ring 3
+  Detector->SetQuartzSizeX3(8.4*cm);
+  Detector->SetQuartzSizeY3(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ3(1.5*cm);
+  Detector->SetLowerInterfacePlane3(5.6*cm);
+  Detector->SetMiddleBoxHeight3(9.0*cm);
+  Detector->SetUpperInterfacePlane3(25*cm);
+  Detector->SetLowerConeFrontFaceAngle3(28*degree);
+  Detector->SetLowerConeBackFaceAngle3(22*degree);
+  Detector->SetLowerConeSideFaceAngle3(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ3(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX3(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ3(-0.3*cm);  
+  
+  //Ring 4
+  Detector->SetQuartzSizeX4(8.4*cm);
+  Detector->SetQuartzSizeY4(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ4(1.5*cm);
+  Detector->SetLowerInterfacePlane4(5.6*cm);
+  Detector->SetMiddleBoxHeight4(9.0*cm);
+  Detector->SetUpperInterfacePlane4(25*cm);
+  Detector->SetLowerConeFrontFaceAngle4(28*degree);
+  Detector->SetLowerConeBackFaceAngle4(22*degree);
+  Detector->SetLowerConeSideFaceAngle4(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ4(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX4(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ4(-0.3*cm);  
+  
+  //Ring 5
+  Detector->SetQuartzSizeX5(8.4*cm);
+  Detector->SetQuartzSizeY5(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ5(1.5*cm);
+  Detector->SetLowerInterfacePlane5(5.6*cm);
+  Detector->SetMiddleBoxHeight5(9.0*cm);
+  Detector->SetUpperInterfacePlane5(25*cm);
+  Detector->SetLowerConeFrontFaceAngle5(28*degree);
+  Detector->SetLowerConeBackFaceAngle5(22*degree);
+  Detector->SetLowerConeSideFaceAngle5(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ5(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX5(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ5(-0.3*cm);  
+ 
+  //Ring 6
+  Detector->SetQuartzSizeX6(8.4*cm);
+  Detector->SetQuartzSizeY6(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ6(1.5*cm);
+  Detector->SetLowerInterfacePlane6(5.6*cm);
+  Detector->SetMiddleBoxHeight6(9.0*cm);
+  Detector->SetUpperInterfacePlane6(25*cm);
+  Detector->SetLowerConeFrontFaceAngle6(28*degree);
+  Detector->SetLowerConeBackFaceAngle6(22*degree);
+  Detector->SetLowerConeSideFaceAngle6(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ6(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX6(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ6(-0.3*cm);  
+  
+  //Ring 7
+  Detector->SetQuartzSizeX7(8.4*cm);
+  Detector->SetQuartzSizeY7(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ7(1.5*cm);
+  Detector->SetLowerInterfacePlane7(5.6*cm);
+  Detector->SetMiddleBoxHeight7(9.0*cm);
+  Detector->SetUpperInterfacePlane7(25*cm);
+  Detector->SetLowerConeFrontFaceAngle7(28*degree);
+  Detector->SetLowerConeBackFaceAngle7(22*degree);
+  Detector->SetLowerConeSideFaceAngle7(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ7(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX7(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ7(-0.3*cm);  
+  
+  //Ring 8
+  Detector->SetQuartzSizeX8(8.4*cm);
+  Detector->SetQuartzSizeY8(15*cm);  //without the 45 degree cut region
+  Detector->SetQuartzSizeZ8(1.5*cm);
+  Detector->SetLowerInterfacePlane8(5.6*cm);
+  Detector->SetMiddleBoxHeight8(9.0*cm);
+  Detector->SetUpperInterfacePlane8(25*cm);
+  Detector->SetLowerConeFrontFaceAngle8(28*degree);
+  Detector->SetLowerConeBackFaceAngle8(22*degree);
+  Detector->SetLowerConeSideFaceAngle8(0*degree);
+  Detector->SetQuartzInterfaceOpeningZ8(1.8*cm);
+  Detector->SetQuartzInterfaceOpeningX8(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ8(-0.3*cm);  
+  
+  //General objects
   Detector->SetPMTInterfaceOpeningZ(5.6*cm);
   Detector->SetPMTInterfaceOpeningX(5.6*cm);  
-  Detector->SetQuartzToPMTOffsetInZ(-0.3*cm);
   Detector->SetPMTCathodeRadius(3.5*cm);
   Detector->SetPMTCathodeThickness(0.1*cm);
   Detector->SetAzimuthalRotationAngle(0);
   Detector->SetPolarRotationAngle(0);
   Detector->Initialize();
   Detector->ConstructDetector(World_Physical);
-  Detector->SetCenterPositionInY(12*cm);
 
   World_Logical->SetVisAttributes (G4VisAttributes::GetInvisible);
   
@@ -114,7 +216,6 @@ void MOLLEROptConstruction::DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int
   }
   G4cout << G4endl;
   for(int i=0;i<aVolume->GetLogicalVolume()->GetNoDaughters();i++){
-    
     
     DumpGeometricalTree(aVolume->GetLogicalVolume()->GetDaughter(i),depth+1);
 

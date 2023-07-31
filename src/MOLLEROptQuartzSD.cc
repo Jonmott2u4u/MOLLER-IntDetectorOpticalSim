@@ -3,11 +3,20 @@
 MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* TrRO)
   :G4VSensitiveDetector(name)
 {
+  //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
-  theCollectionName = G4String("QuartzHitCollection");
+  if(SensitiveDetectorName == "Quartz"){
+    theCollectionName = G4String("QuartzHitCollection");
+  }
+  else if(SensitiveDetectorName == "Quartz2"){
+    theCollectionName = G4String("QuartzHitCollection2");
+  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;
+  //G4cout << "\n\n" << SensitiveDetectorName<<" \n\n" << G4endl;  
+  //G4cout << "\n\n" << name<<" \n\n" << G4endl;  
+  
 }
 
 MOLLEROptQuartzSD::~MOLLEROptQuartzSD()
@@ -17,10 +26,57 @@ MOLLEROptQuartzSD::~MOLLEROptQuartzSD()
 
 void MOLLEROptQuartzSD::Initialize(G4HCofThisEvent* HCE)
 {
-  HitsCollection = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
-  theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
-  
-  HCE->AddHitsCollection(theCollectionID , HitsCollection);
+  //G4cout << "\n\n" << collectionName[0] <<" \n\n" << G4endl;
+  if(theCollectionName == "QuartzHitCollection"){
+    HitsCollection = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection);
+    //G4cout << "\n\n DET 1 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection2"){
+    HitsCollection2 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection2);
+    //G4cout << "\n\n DET 2 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection3"){
+    HitsCollection3 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection3);
+    //G4cout << "\n\n DET 3 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection4"){
+    HitsCollection4 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection4);
+    //G4cout << "\n\n DET 4 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection5"){
+    HitsCollection5 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection5);
+    //G4cout << "\n\n DET 5 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection6"){
+    HitsCollection6 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection6);
+    //G4cout << "\n\n DET 6 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection7"){
+    HitsCollection7 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection7);
+    //G4cout << "\n\n DET 7 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection8"){
+    HitsCollection8 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection8);
+    //G4cout << "\n\n DET 8 \n\n" << G4endl;
+  }
+    //G4cout << "\n\n Initialized \n\n" << G4endl;
+
 }
 
 G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchable)
@@ -72,7 +128,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 	    QEx = 1;
 	    
 	  }
-	  if((postStep->GetPhysicalVolume()->GetName().contains("Ring5_Physical") ||
+	  if((postStep->GetPhysicalVolume()->GetName().contains("Ring_Physical") ||
 	      postStep->GetPhysicalVolume()->GetName().contains("LG_Physical") )&&
 	     preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")){
 	    incidentAngle = 90.0 - 180*0.5*(1 - acos(imom.dot(fmom))/TMath::Pi());
@@ -85,8 +141,32 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 				      1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
 				      incidentAngle);
 	// G4cout << "Quartz Incident Angle: " << incidentAngle << G4endl;	  
-	
-	HitsCollection->insert(aHit); 
+  	//G4cout << "\n\n" << theCollectionName <<" \n\n" << G4endl;	
+	if(theCollectionName == "QuartzHitCollection"){
+	  HitsCollection->insert(aHit); 
+	  //G4cout << "\n\n ENTERED \n\n " << G4endl;	  
+	}
+	else if(theCollectionName == "QuartzHitCollection2"){
+          HitsCollection2->insert(aHit);
+	}
+	else if(theCollectionName == "QuartzHitCollection3"){
+          HitsCollection3->insert(aHit);
+	}
+	else if(theCollectionName == "QuartzHitCollection4"){
+          HitsCollection4->insert(aHit);
+	}
+	else if(theCollectionName == "QuartzHitCollection5"){
+          HitsCollection5->insert(aHit);
+	}
+	else if(theCollectionName == "QuartzHitCollection6"){
+          HitsCollection6->insert(aHit);
+	}
+	else if(theCollectionName == "QuartzHitCollection7"){
+          HitsCollection7->insert(aHit);
+	}
+	else if(theCollectionName == "QuartzHitCollection8"){
+          HitsCollection8->insert(aHit);
+	}
       }
     }
   }

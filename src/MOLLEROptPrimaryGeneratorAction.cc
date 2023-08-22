@@ -37,26 +37,91 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //G4double p_z = TMath::Cos(theta*pi/180);			     //Allows you to assign angles to the beam using macros. Replaced by sa
   G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
     
-  G4double Qlim[4];
-  G4double LGlim[8];
-  Construction->GetQuartzLimits(Qlim);
-  Construction->GetLightGuideLimits(LGlim);
+  G4double Qlim1[4];
+  G4double Qlim2[4];
+  G4double Qlim3[4];
+  G4double Qlim4[4];
+  G4double Qlim5[4];
+  G4double Qlim6[4];
+  G4double Qlim7[4];
+  G4double Qlim8[4];
+  G4double LGlim1[8];
+  G4double LGlim2[8];
+  G4double LGlim3[8];
+  G4double LGlim4[8];
+  G4double LGlim5[8];
+  G4double LGlim6[8];
+  G4double LGlim7[8];
+  G4double LGlim8[8];
+  Construction->GetQuartz1Limits(Qlim1);//Ring 1
+  Construction->GetQuartz2Limits(Qlim2);//Ring 2
+  Construction->GetQuartz3Limits(Qlim3);//Ring 3
+  Construction->GetQuartz4Limits(Qlim4);//Ring 4
+  Construction->GetQuartz5Limits(Qlim5);//Ring 5
+  Construction->GetQuartz6Limits(Qlim6);//Ring 6
+  Construction->GetQuartz7Limits(Qlim7);//Ring 7
+  Construction->GetQuartz8Limits(Qlim8);//Ring 8
+  Construction->GetLightGuide1Limits(LGlim1);//Currently R6. Overwritten each time a detector is generated. Can easily be changed
+  Construction->GetLightGuide2Limits(LGlim2);
+  Construction->GetLightGuide3Limits(LGlim3);
+  Construction->GetLightGuide4Limits(LGlim4);
+  Construction->GetLightGuide5Limits(LGlim5);
+  Construction->GetLightGuide6Limits(LGlim6);
+  Construction->GetLightGuide7Limits(LGlim7);
+  Construction->GetLightGuide8Limits(LGlim8);
 
-  if(Qlim[0]<=0) Qlim[0] += 1; else Qlim[0] -= 1; 
-  if(Qlim[1]<=0) Qlim[1] += 1; else Qlim[1] -= 1; 
-  if(Qlim[2]<=0) Qlim[2] += 1; else Qlim[2] -= 1; 
-  if(Qlim[3]<=0) Qlim[3] += 1; else Qlim[3] -= 1; 
+//~~~~~~~~Commenting this out does not effect anything, but leaving as is for now~~~~~~~~~~~~~~~~~
+  if(Qlim1[0]<=0) Qlim1[0] += 1; else Qlim1[0] -= 1; 
+  if(Qlim1[1]<=0) Qlim1[1] += 1; else Qlim1[1] -= 1; 
+  if(Qlim1[2]<=0) Qlim1[2] += 1; else Qlim1[2] -= 1; 
+  if(Qlim1[3]<=0) Qlim1[3] += 1; else Qlim1[3] -= 1;
 
-  if(LGlim[0]<=0) LGlim[0] += 1; else LGlim[0] -= 1; 
-  if(LGlim[1]<=0) LGlim[1] += 1; else LGlim[1] -= 1; 
-  if(LGlim[2]<=0) LGlim[2] += 1; else LGlim[2] -= 1; 
-  if(LGlim[3]<=0) LGlim[3] += 1; else LGlim[3] -= 1; 
-  if(LGlim[4]<=0) LGlim[4] += 1; else LGlim[4] -= 1; 
-  if(LGlim[5]<=0) LGlim[5] += 1; else LGlim[5] -= 1; 
-  if(LGlim[6]<=0) LGlim[6] += 1; else LGlim[6] -= 1; 
-  if(LGlim[7]<=0) LGlim[7] += 1; else LGlim[7] -= 1; 
+  if(Qlim2[0]<=0) Qlim2[0] += 1; else Qlim2[0] -= 1; 
+  if(Qlim2[1]<=0) Qlim2[1] += 1; else Qlim2[1] -= 1; 
+  if(Qlim2[2]<=0) Qlim2[2] += 1; else Qlim2[2] -= 1; 
+  if(Qlim2[3]<=0) Qlim2[3] += 1; else Qlim2[3] -= 1; 
 
+  if(Qlim3[0]<=0) Qlim3[0] += 1; else Qlim3[0] -= 1; 
+  if(Qlim3[1]<=0) Qlim3[1] += 1; else Qlim3[1] -= 1; 
+  if(Qlim3[2]<=0) Qlim3[2] += 1; else Qlim3[2] -= 1; 
+  if(Qlim3[3]<=0) Qlim3[3] += 1; else Qlim3[3] -= 1; 
 
+  if(Qlim4[0]<=0) Qlim4[0] += 1; else Qlim4[0] -= 1; 
+  if(Qlim4[1]<=0) Qlim4[1] += 1; else Qlim4[1] -= 1; 
+  if(Qlim4[2]<=0) Qlim4[2] += 1; else Qlim4[2] -= 1; 
+  if(Qlim4[3]<=0) Qlim4[3] += 1; else Qlim4[3] -= 1; 
+
+  if(Qlim5[0]<=0) Qlim5[0] += 1; else Qlim5[0] -= 1; 
+  if(Qlim5[1]<=0) Qlim5[1] += 1; else Qlim5[1] -= 1; 
+  if(Qlim5[2]<=0) Qlim5[2] += 1; else Qlim5[2] -= 1; 
+  if(Qlim5[3]<=0) Qlim5[3] += 1; else Qlim5[3] -= 1; 
+
+  if(Qlim6[0]<=0) Qlim6[0] += 1; else Qlim6[0] -= 1; 
+  if(Qlim6[1]<=0) Qlim6[1] += 1; else Qlim6[1] -= 1; 
+  if(Qlim6[2]<=0) Qlim6[2] += 1; else Qlim6[2] -= 1; 
+  if(Qlim6[3]<=0) Qlim6[3] += 1; else Qlim6[3] -= 1; 
+
+  if(Qlim7[0]<=0) Qlim7[0] += 1; else Qlim7[0] -= 1; 
+  if(Qlim7[1]<=0) Qlim7[1] += 1; else Qlim7[1] -= 1; 
+  if(Qlim7[2]<=0) Qlim7[2] += 1; else Qlim7[2] -= 1; 
+  if(Qlim7[3]<=0) Qlim7[3] += 1; else Qlim7[3] -= 1; 
+
+  if(Qlim8[0]<=0) Qlim8[0] += 1; else Qlim8[0] -= 1; 
+  if(Qlim8[1]<=0) Qlim8[1] += 1; else Qlim8[1] -= 1; 
+  if(Qlim8[2]<=0) Qlim8[2] += 1; else Qlim8[2] -= 1; 
+  if(Qlim8[3]<=0) Qlim8[3] += 1; else Qlim8[3] -= 1;
+
+  if(LGlim1[0]<=0) LGlim1[0] += 1; else LGlim1[0] -= 1; 
+  if(LGlim1[1]<=0) LGlim1[1] += 1; else LGlim1[1] -= 1; 
+  if(LGlim1[2]<=0) LGlim1[2] += 1; else LGlim1[2] -= 1; 
+  if(LGlim1[3]<=0) LGlim1[3] += 1; else LGlim1[3] -= 1; 
+  if(LGlim1[4]<=0) LGlim1[4] += 1; else LGlim1[4] -= 1; 
+  if(LGlim1[5]<=0) LGlim1[5] += 1; else LGlim1[5] -= 1; 
+  if(LGlim1[6]<=0) LGlim1[6] += 1; else LGlim1[6] -= 1; 
+  if(LGlim1[7]<=0) LGlim1[7] += 1; else LGlim1[7] -= 1; 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/*~~~~~~~Previously used for just 1 detector. Replaced by next section~~~~~~~~~~~~~~~~~~~~~
   if(EventRegion == 2){
   //On Lower Light Guide cone
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
@@ -73,9 +138,9 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = LGlim[6]+90*mm + (LGlim[7]-LGlim[6]-10*mm)*G4UniformRand(); //Also hard-coded
   }
   else if(EventRegion == 5){
-    //9x9 cm^2 spot on quartz center
-    x = (Qlim[1]+Qlim[0])/2.0 -45 +90*G4UniformRand();
-    y = (Qlim[3]+Qlim[2])/2.0 -45 +90*G4UniformRand();
+    //2x2 mm^2 spot on quartz center
+    x = (Qlim[1]+Qlim[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim[3]+Qlim[2])/2.0 -2 +4*G4UniformRand();
   }
   else if(EventRegion == 6){
     //4x4 mm^2 spot on lower guide cone
@@ -101,6 +166,52 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //On Quartz
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
     y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
+  }
+*/
+  if(EventRegion == 1){
+    //2x2 mm^2 spot on R1 quartz center
+    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 2){
+    //2x2 mm^2 spot on R2 quartz center
+    x = (Qlim2[1]+Qlim2[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 3){
+    //2x2 mm^2 spot on R3 quartz center
+    x = (Qlim3[1]+Qlim3[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 4){
+    //2x2 mm^2 spot on R4 quartz center
+    x = (Qlim4[1]+Qlim4[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 5){
+    //2x2 mm^2 spot on R5 FF quartz center
+    x = (Qlim5[1]+Qlim5[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 6){
+    //2x2 mm^2 spot on R5 BF 1 quartz center
+    x = (Qlim6[1]+Qlim6[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 7){
+    //2x2 mm^2 spot on R5 BF 2 quartz center
+    x = (Qlim7[1]+Qlim7[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else if(EventRegion == 8){
+    //2x2 mm^2 spot on R6 quartz center
+    x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand();
+  }
+  else{
+    //Defaults to Ring 1
+    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand();
   }
 
 

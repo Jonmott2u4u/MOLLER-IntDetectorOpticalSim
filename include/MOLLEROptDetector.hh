@@ -200,8 +200,22 @@ public:
   G4LogicalVolume*   GetLogicalVolume()    {return DetLogical;}
   G4VPhysicalVolume* GetPhysicalVolume()   {return DetPhysical;}
 
-  void GetQuartzLimits(G4double *vals);
-  void GetLightGuideLimits(G4double *vals);
+  void GetQuartz1Limits(G4double *vals);
+  void GetQuartz2Limits(G4double *vals);
+  void GetQuartz3Limits(G4double *vals);
+  void GetQuartz4Limits(G4double *vals);
+  void GetQuartz5Limits(G4double *vals);
+  void GetQuartz6Limits(G4double *vals);
+  void GetQuartz7Limits(G4double *vals);
+  void GetQuartz8Limits(G4double *vals);
+  void GetLightGuide1Limits(G4double *vals);
+  void GetLightGuide2Limits(G4double *vals);
+  void GetLightGuide3Limits(G4double *vals);
+  void GetLightGuide4Limits(G4double *vals);
+  void GetLightGuide5Limits(G4double *vals);
+  void GetLightGuide6Limits(G4double *vals);
+  void GetLightGuide7Limits(G4double *vals);
+  void GetLightGuide8Limits(G4double *vals);
 
 
 private:

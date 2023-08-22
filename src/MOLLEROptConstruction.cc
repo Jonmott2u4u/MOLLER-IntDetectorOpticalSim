@@ -131,7 +131,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetQuartzInterfaceOpeningX5(9.2*cm);
   Detector->SetQuartzToPMTOffsetInZ5(-0.3*cm);  
  
-  //Ring 6
+  //Ring 6 (R5 backflush 1)
   Detector->SetQuartzSizeX6(8.4*cm);
   Detector->SetQuartzSizeY6(15*cm);  //without the 45 degree cut region
   Detector->SetQuartzSizeZ6(1.5*cm);
@@ -145,7 +145,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetQuartzInterfaceOpeningX6(9.2*cm);
   Detector->SetQuartzToPMTOffsetInZ6(-0.3*cm);  
   
-  //Ring 7
+  //Ring 7 (R5 backflush 2)
   Detector->SetQuartzSizeX7(8.4*cm);
   Detector->SetQuartzSizeY7(15*cm);  //without the 45 degree cut region
   Detector->SetQuartzSizeZ7(1.5*cm);
@@ -159,7 +159,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetQuartzInterfaceOpeningX7(9.2*cm);
   Detector->SetQuartzToPMTOffsetInZ7(-0.3*cm);  
   
-  //Ring 8
+  //Ring 8 (R6)
   Detector->SetQuartzSizeX8(8.4*cm);
   Detector->SetQuartzSizeY8(15*cm);  //without the 45 degree cut region
   Detector->SetQuartzSizeZ8(1.5*cm);
@@ -190,14 +190,70 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   return World_Physical;
 }
 
-void MOLLEROptConstruction::GetQuartzLimits(G4double *vals)
+void MOLLEROptConstruction::GetQuartz1Limits(G4double *vals)
 {
-  Detector->GetQuartzLimits(vals);
+  Detector->GetQuartz1Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz2Limits(G4double *vals)
+{
+  Detector->GetQuartz2Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz3Limits(G4double *vals)
+{
+  Detector->GetQuartz3Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz4Limits(G4double *vals)
+{
+  Detector->GetQuartz4Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz5Limits(G4double *vals)
+{
+  Detector->GetQuartz5Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz6Limits(G4double *vals)
+{
+  Detector->GetQuartz6Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz7Limits(G4double *vals)
+{
+  Detector->GetQuartz7Limits(vals);
+}
+void MOLLEROptConstruction::GetQuartz8Limits(G4double *vals)
+{
+  Detector->GetQuartz8Limits(vals);
 }
 
-void MOLLEROptConstruction::GetLightGuideLimits(G4double *vals)
+void MOLLEROptConstruction::GetLightGuide1Limits(G4double *vals)
 {
-  Detector->GetLightGuideLimits(vals);
+  Detector->GetLightGuide1Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide2Limits(G4double *vals)
+{
+  Detector->GetLightGuide2Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide3Limits(G4double *vals)
+{
+  Detector->GetLightGuide3Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide4Limits(G4double *vals)
+{
+  Detector->GetLightGuide4Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide5Limits(G4double *vals)
+{
+  Detector->GetLightGuide5Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide6Limits(G4double *vals)
+{
+  Detector->GetLightGuide6Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide7Limits(G4double *vals)
+{
+  Detector->GetLightGuide7Limits(vals);
+}
+void MOLLEROptConstruction::GetLightGuide8Limits(G4double *vals)
+{
+  Detector->GetLightGuide8Limits(vals);
 }
 
 

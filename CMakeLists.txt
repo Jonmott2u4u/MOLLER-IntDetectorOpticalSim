@@ -108,9 +108,12 @@ set(MOLLER_SCRIPTS
   data/cosmics.txt
   R6ParamScan/placeholder.md
   rootfiles/placeholder.md
-  MakeScanMacros3.py
-  submit.py
-  submit.sh
+  #MakeScanMacros3.py
+  #submit.py
+  #submit.sh
+  MacroGenerator.py
+  MacroSubmitter.py
+  MacroSubmitter.sh
   ExtractScanResults.C
 )
 

@@ -163,7 +163,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/R8/SetCenterPositionInZ 1392 mm" + "\n\n"
             Text += "#------------------#General commands --------------------#" + "\n\n"
             Text += "/Det/QuartzRotX -3 deg" + "\n"
-            Text += "/Det/PolarRotation 0 deg //Normally 3, but set to 0 for now (Misses R6 otherwise)" + "\n"
+            Text += "/Det/PolarRotation 0 deg" + "\n"
             Text += "/Det/QuartzBevelSize 0.5 mm" + "\n"
             Text += "/Det/LightGuidePMTInterfaceOpeningX 7.0 cm" + "\n"
             Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"
@@ -176,7 +176,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/RunAction/SetOutputName " + FileIDString + "\n"
             Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
             Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-            text_root += "/home/jonmott/simulations/MOLLER-mocha/build/rootfiles/" + FileIDString + ".root" + "\n"
+            text_root += "/home/jonmott/simulations/MOLLER-IntDetectorOpticalSim/build/rootfiles/" + FileIDString + ".root" + "\n"
 
             FileName = OutputFilePrefix + FileIDString + ".mac"
             fout = open(datadir+FileName, "w")

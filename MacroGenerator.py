@@ -19,7 +19,7 @@ RndSeed2 = random.randrange(600001, 900000) #
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 8    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
+hr_start = 1    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
 hr_stop = 8
 hr_step = 1     #Increments over each value of hr
 
@@ -42,8 +42,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text = ""
             FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_ID"+str(id)
             Text += "#------------------#Ring 1 commands --------------------#" + "\n\n"
-            Text += "/R1/LightGuideLowerConeBackAngle 21 deg" + "\n"
-            Text += "/R1/LightGuideLowerConeFrontAngle 19 deg" + "\n"
+            Text += "/R1/LightGuideLowerConeBackAngle 22 deg" + "\n"
+            Text += "/R1/LightGuideLowerConeFrontAngle 18 deg" + "\n"
             Text += "/R1/LightGuideLowerInterface 75 mm" + "\n"
             Text += "/R1/LightGuideMiddleBox 400 mm" + "\n"
             Text += "/R1/LightGuideUpperInterface 251 mm" + "\n"
@@ -51,7 +51,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/R1/LightGuideQuartzInterfaceOpeningZ 2.7 cm " + "\n"
             Text += "/R1/QuartzSizeZ 20 mm" + "\n"
             Text += "/R1/QuartzSizeX 169 mm" + "\n"
-            Text += "/R1/QuartzSizeY 50 mm" + "\n"                
+            Text += "/R1/QuartzSizeY 30 mm" + "\n"                
             Text += "/R1/LightGuideQuartzToPMTOffset -2 mm" + "\n"
             Text += "/R1/SetCenterPositionInX 0 mm" + "\n"
             Text += "/R1/SetCenterPositionInY 0 mm" + "\n"
@@ -101,12 +101,12 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/R4/SetCenterPositionInX 0 mm" + "\n"
             Text += "/R4/SetCenterPositionInY 0 mm" + "\n"
             Text += "/R4/SetCenterPositionInZ 580 mm" + "\n\n"
-            Text += "#------------------#Ring 5 FF commands --------------------#" + "\n\n"
+            Text += "#------------------#Ring 5 BF commands --------------------#" + "\n\n"
             Text += "/R5/LightGuideLowerConeBackAngle 19 deg" + "\n"
             Text += "/R5/LightGuideLowerConeFrontAngle 18 deg" + "\n"
-            Text += "/R5/LightGuideLowerInterface 75 mm" + "\n"
+            Text += "/R5/LightGuideLowerInterface 90 mm" + "\n"
             Text += "/R5/LightGuideMiddleBox 0.001 mm" + "\n"
-            Text += "/R5/LightGuideUpperInterface 326.5 mm" + "\n"
+            Text += "/R5/LightGuideUpperInterface 329.5 mm" + "\n"
             Text += "/R5/LightGuideQuartzInterfaceOpeningX 8.8 cm" + "\n"
             Text += "/R5/LightGuideQuartzInterfaceOpeningZ 2.4 cm " + "\n"
             Text += "/R5/QuartzSizeZ 17 mm" + "\n"
@@ -116,12 +116,12 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/R5/SetCenterPositionInX 0 mm" + "\n"
             Text += "/R5/SetCenterPositionInY 0 mm" + "\n"
             Text += "/R5/SetCenterPositionInZ 848 mm" + "\n\n"
-            Text += "#------------------#Ring 5 BF 1 commands --------------------#" + "\n\n"
-            Text += "/R6/LightGuideLowerConeBackAngle 22 deg" + "\n"
-            Text += "/R6/LightGuideLowerConeFrontAngle 16 deg" + "\n"
+            Text += "#------------------#Ring 5 FF1 commands --------------------#" + "\n\n"
+            Text += "/R6/LightGuideLowerConeBackAngle 19 deg" + "\n"
+            Text += "/R6/LightGuideLowerConeFrontAngle 18 deg" + "\n"
             Text += "/R6/LightGuideLowerInterface 90 mm" + "\n"
             Text += "/R6/LightGuideMiddleBox 0.001 mm" + "\n"
-            Text += "/R6/LightGuideUpperInterface 330 mm" + "\n"
+            Text += "/R6/LightGuideUpperInterface 329.5 mm" + "\n"
             Text += "/R6/LightGuideQuartzInterfaceOpeningX 8.8 cm" + "\n"
             Text += "/R6/LightGuideQuartzInterfaceOpeningZ 2.4 cm " + "\n"
             Text += "/R6/QuartzSizeZ 17 mm" + "\n"
@@ -131,12 +131,12 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/R6/SetCenterPositionInX -86.7 mm" + "\n"
             Text += "/R6/SetCenterPositionInY 0 mm" + "\n"
             Text += "/R6/SetCenterPositionInZ 1116 mm" + "\n\n"
-            Text += "#------------------#Ring 5 BF 2 commands --------------------#" + "\n\n"
-            Text += "/R7/LightGuideLowerConeBackAngle 22 deg" + "\n"
-            Text += "/R7/LightGuideLowerConeFrontAngle 16 deg" + "\n"
+            Text += "#------------------#Ring 5 FF2 commands --------------------#" + "\n\n"
+            Text += "/R7/LightGuideLowerConeBackAngle 19 deg" + "\n"
+            Text += "/R7/LightGuideLowerConeFrontAngle 18 deg" + "\n"
             Text += "/R7/LightGuideLowerInterface 90 mm" + "\n"
             Text += "/R7/LightGuideMiddleBox 0.001 mm" + "\n"
-            Text += "/R7/LightGuideUpperInterface 330 mm" + "\n"
+            Text += "/R7/LightGuideUpperInterface 329.5 mm" + "\n"
             Text += "/R7/LightGuideQuartzInterfaceOpeningX 8.8 cm" + "\n"
             Text += "/R7/LightGuideQuartzInterfaceOpeningZ 2.4 cm " + "\n"
             Text += "/R7/QuartzSizeZ 17 mm" + "\n"
@@ -158,7 +158,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/R8/QuartzSizeX 260 mm" + "\n"
             Text += "/R8/QuartzSizeY 100 mm" + "\n"                
             Text += "/R8/LightGuideQuartzToPMTOffset 0 mm" + "\n"
-            Text += "/R8/SetCenterPositionInX 300 mm" + "\n"
+            Text += "/R8/SetCenterPositionInX 0 mm" + "\n"
             Text += "/R8/SetCenterPositionInY 0 mm" + "\n"
             Text += "/R8/SetCenterPositionInZ 1392 mm" + "\n\n"
             Text += "#------------------#General commands --------------------#" + "\n\n"
@@ -176,7 +176,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/RunAction/SetOutputName " + FileIDString + "\n"
             Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
             Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-            text_root += "/home/jonmott/simulations/MOLLER-IntDetectorOpticalSim/build/rootfiles/" + FileIDString + ".root" + "\n"
+            text_root += "/home/jonmott/simulations/K-Temp-yay/build/rootfiles/" + FileIDString + ".root" + "\n"
 
             FileName = OutputFilePrefix + FileIDString + ".mac"
             fout = open(datadir+FileName, "w")
@@ -192,3 +192,4 @@ files_dat.write(text_root)
 files_dat.close()
 
             
+s

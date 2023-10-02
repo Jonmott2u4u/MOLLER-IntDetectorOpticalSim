@@ -28,8 +28,8 @@ ID_step = 1
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
     for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
-            FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_ID"+str(id)
-            rootfile = "_sa"+str(sa)+"_hR"+str(hr)+"_ID"+str(id) + ".root"
+            FileIDString = "_sa"+str(sa)+"_hR"+str(hr)
+            rootfile = "_sa"+str(sa)+"_hR"+str(hr)+".root"
             jobs="jobs"
             if not os.path.exists(jobs):
                 os.system("mkdir "+jobs)

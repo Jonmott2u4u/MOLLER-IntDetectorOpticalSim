@@ -1,3 +1,50 @@
+/vis/open OGL 1280x800-0+0
+/vis/viewer/set/autoRefresh false
+/vis/verbose errors
+/vis/drawVolume
+/vis/viewer/set/viewpointVector -1 0 0
+/vis/viewer/set/lightsVector -1 0 0
+/vis/viewer/set/style surface
+/vis/viewer/set/auxiliaryEdge true
+/vis/viewer/set/lineSegmentsPerCircle 100
+/vis/scene/add/hits
+/vis/scene/endOfEventAction accumulate
+#/vis/set/textColour green
+#/vis/set/textLayout right
+#/vis/scene/add/text2D 0.9 -.9 24 ! ! Xen
+#/vis/set/textLayout    # Revert to normal (left adjusted) layout
+#/vis/set/textColour    # Revert to default text colour (blue)
+#
+# Axes, scale, etc.
+#/vis/scene/add/scale   # Simple scale line
+/vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
+/vis/scene/add/eventID # Drawn at end of event
+#/vis/scene/add/date    # Date stamp
+#/vis/scene/add/logo2D  # Simple logo
+#/vis/scene/add/logo    # 3D logo
+#
+# Frame
+#/vis/set/colour red
+#/vis/set/lineWidth 2
+#/vis/scene/add/frame   # Simple frame around the view
+#/vis/set/colour        # Revert to default colour (white)
+#/vis/set/lineWidth     # Revert to default line width (1.)
+#
+# To get nice view
+/vis/viewer/set/style surface
+/vis/viewer/set/hiddenMarker true
+/vis/viewer/set/viewpointThetaPhi 100 150
+#
+# Re-establish auto refreshing and verbosity:
+/vis/viewer/set/autoRefresh true
+/vis/verbose warnings
+#
+# For file-based drivers, use this to create an empty detector view:
+#/vis/viewer/flush
+/control/verbose 0
+# Increases display limit of photons 
+/vis/ogl/set/displayListLimit 500000
+
 #  Geometry help:
 #
 #            | PMT|  
@@ -42,7 +89,7 @@
 /R1/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R1/SetCenterPositionInX 0 mm
 /R1/SetCenterPositionInY 0 mm
-/R1/SetCenterPositionInZ 0 mm
+/R1/SetCenterPositionInZ 1396 mm
 
 #------------------#Ring 2 commands --------------------#
 
@@ -58,8 +105,8 @@
 /R2/QuartzSizeY 60 mm                          #Without the 45 degree cut
 /R2/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R2/SetCenterPositionInX 0 mm
-/R2/SetCenterPositionInY 0 mm
-/R2/SetCenterPositionInZ 266 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+/R2/SetCenterPositionInY 37 mm
+/R2/SetCenterPositionInZ 1128 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #------------------#Ring 3 commands --------------------#
 
@@ -75,8 +122,8 @@
 /R3/QuartzSizeY 60 mm                          #Without the 45 degree cut
 /R3/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R3/SetCenterPositionInX 0 mm
-/R3/SetCenterPositionInY 0 mm
-/R3/SetCenterPositionInZ 423 mm
+/R3/SetCenterPositionInY 94 mm
+/R3/SetCenterPositionInZ 861 mm
 
 #------------------#Ring 4 commands --------------------#
 
@@ -92,8 +139,8 @@
 /R4/QuartzSizeY 120 mm                          #Without the 45 degree cut
 /R4/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R4/SetCenterPositionInX 0 mm
-/R4/SetCenterPositionInY 0 mm
-/R4/SetCenterPositionInZ 580 mm
+/R4/SetCenterPositionInY 146 mm
+/R4/SetCenterPositionInZ 593 mm
 
 #------------------#Ring 5 BF commands (identical to FF. Verified w/ CAD)--------------------# 
 
@@ -109,8 +156,8 @@
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
-/R5/SetCenterPositionInY 0 mm
-/R5/SetCenterPositionInZ 848 mm
+/R5/SetCenterPositionInY 221 mm
+/R5/SetCenterPositionInZ 431 mm
 
 #------------------#Ring 5 FF1 commands--------------------#
 
@@ -126,8 +173,8 @@
 /R6/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R6/SetCenterPositionInX -86.7 mm
-/R6/SetCenterPositionInY 0 mm
-/R6/SetCenterPositionInZ 1116 mm
+/R6/SetCenterPositionInY 230 mm
+/R6/SetCenterPositionInZ 274 mm
 
 #------------------#Ring 5 FF2 commands--------------------#
 
@@ -143,8 +190,8 @@
 /R7/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R7/SetCenterPositionInX 86.7 mm
-/R7/SetCenterPositionInY 0 mm
-/R7/SetCenterPositionInZ 1116 mm
+/R7/SetCenterPositionInY 230 mm
+/R7/SetCenterPositionInZ 274 mm
 
 #------------------#Ring 6 commands --------------------#
 
@@ -160,8 +207,8 @@
 /R8/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /R8/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R8/SetCenterPositionInX 0 mm
-/R8/SetCenterPositionInY 0 mm
-/R8/SetCenterPositionInZ 1392 mm
+/R8/SetCenterPositionInY 330 mm
+/R8/SetCenterPositionInZ 0 mm
 
 #------------------#General commands --------------------#
 
@@ -175,13 +222,13 @@
 
 /Det/UpdateGeometry
 
-/Generator/EventHitRegion 5                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz
+/Generator/EventHitRegion 1                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz
 /Generator/QuartzHitRegion 0                     #Can be set from 0->9. Selects the cut of the quartz you wish to scan. Value does not matter if EventHitRegion != 7
 /Generator/BeamTheta 0				 #Units of degrees. Not in use
 /Generator/BeamPhi 0				 #Units of degrees. Not in use
 /Generator/BeamSolidAngle 0                       #Units of degrees. Determines angular spread of the beam from the z-axis
 /Generator/BeamEnergy 8000			 #Units of MeV
 
-/RunAction/SetID 3
-/random/setSeeds 346082 823457
-/run/beamOn 1
+#/RunAction/SetID 3
+#/random/setSeeds 346082 823457
+#/run/beamOn 1

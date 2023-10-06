@@ -20,7 +20,7 @@ NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000] #Number of events 
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 1    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
-hr_stop = 8
+hr_stop = 1
 hr_step = 1     #Increments over each value of hr
 
 #cut_start = 0  #Breaks the quartz tiles up into multiple segments. How it is broken up is determined using hr. Not currently implemented for the 8 detector setup
@@ -176,7 +176,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/RunAction/SetOutputName " + FileIDString + "\n"
             Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
             Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-            text_root += "/home/jonmott/simulations/K-Temp-yay/build/rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
+            #text_root += "/home/jonmott/simulations/Moller-mocha/build/rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
+            text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
 
             FileName = OutputFilePrefix + FileIDString + ".mac"
             fout = open(datadir+FileName, "w")

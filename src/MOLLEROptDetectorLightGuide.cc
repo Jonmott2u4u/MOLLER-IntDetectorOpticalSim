@@ -230,8 +230,9 @@ void MOLLEROptDetectorLightGuide::Initialize()
   
   RotationLG = new G4RotationMatrix;
   RotationLG->rotateX(TMath::Pi()*rad/2.0);
-
-  GuideLogical = new G4LogicalVolume(GuideSolid,GuideMaterial,thisName+"_Logical");
+  
+  //GuideLogical = new G4LogicalVolume(GuideSolid,GuideMaterial,thisName+"_Logical");
+  GuideLogical = new G4LogicalVolume(GuideSolidTarget,GuideMaterial,thisName+"_Logical");
   GuideCoreLogical = new G4LogicalVolume(InnerSolid,GuideCoreMaterial,thisName+"_Core_Logical");
   
   CreateOpticalSurface(GuideLogical);
@@ -294,6 +295,203 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   UpperConeVertices[7] = G4TwoVector(PMTInterfaceOpeningX/2,PMTInterfaceOpeningZ/2-QuartzToPMTOffsetInZ);  
   
   G4Box *GuideMiddleBoxSolid = new G4Box(thisName+"_InnerSolid",LowerIP_x,(LowerIP_pz-LowerIP_nz)/2,MiddleBoxHeight/2);
+
+    //Making QuadrangulalFacet panels for the light guide (rather than assembling boxes and cones)
+  //Each facet corresponds to a panel of reflective material for the LG
+  //Points in the ThreeVectors should be loaded in X-Z-Y order
+
+  G4TessellatedSolid *panel1 = new G4TessellatedSolid(thisName+"_panel1");
+  G4TessellatedSolid *panel2 = new G4TessellatedSolid(thisName+"_panel2");
+  G4TessellatedSolid *panel3 = new G4TessellatedSolid(thisName+"_panel3");
+  G4TessellatedSolid *panel4 = new G4TessellatedSolid(thisName+"_panel4");
+  G4double panelDepth = 1*mm;
+
+  //Panel 1 ***************************************************************************************************************************
+  G4QuadrangularFacet *facet11 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet12 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet13 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet14 = new 
+  G4QuadrangularFacet(G4ThreeVector(LowerIP_x, LowerIP_nz, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet15 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet16 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+
+  //Panel 2 ***************************************************************************************************************************
+  G4QuadrangularFacet *facet21 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet22 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet23 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet24 = new 
+  G4QuadrangularFacet(G4ThreeVector(LowerIP_x, LowerIP_pz, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet25 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet26 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+
+  //Panel 3 ***************************************************************************************************************************
+  G4QuadrangularFacet *facet31 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet32 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2+panelDepth, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2+panelDepth, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x+panelDepth, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x+panelDepth, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet33 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2+panelDepth, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2+panelDepth, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet34 = new 
+  G4QuadrangularFacet(G4ThreeVector(LowerIP_x+panelDepth, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x+panelDepth, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet35 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2+panelDepth, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x+panelDepth, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet36 = new 
+  G4QuadrangularFacet(G4ThreeVector(QuartzInterfaceOpeningX/2+panelDepth, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(LowerIP_x+panelDepth, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+
+  //Panel 4 ***************************************************************************************************************************
+  G4QuadrangularFacet *facet41 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet42 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2-panelDepth, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2-panelDepth, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x-panelDepth, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x-panelDepth, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet43 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2-panelDepth, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2-panelDepth, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet44 = new 
+  G4QuadrangularFacet(G4ThreeVector(-LowerIP_x-panelDepth, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x-panelDepth, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet45 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2-panelDepth, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, QuartzInterfaceOpeningZ/2+panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x-panelDepth, LowerIP_pz+panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+  G4QuadrangularFacet *facet46 = new 
+  G4QuadrangularFacet(G4ThreeVector(-QuartzInterfaceOpeningX/2-panelDepth, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-QuartzInterfaceOpeningX/2, -QuartzInterfaceOpeningZ/2-panelDepth, -LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      G4ThreeVector(-LowerIP_x-panelDepth, LowerIP_nz-panelDepth, LowerInterfacePlane/2),
+		      ABSOLUTE);
+
+
+  //Assembling panels ******************************************************************************************************************
+
+  panel1->AddFacet((G4VFacet*) facet11);
+  panel1->AddFacet((G4VFacet*) facet12);
+  panel1->AddFacet((G4VFacet*) facet13); 
+  panel1->AddFacet((G4VFacet*) facet14); 
+  panel1->AddFacet((G4VFacet*) facet15);
+  panel1->AddFacet((G4VFacet*) facet16);  
+  panel1->SetSolidClosed(true);
+
+  panel2->AddFacet((G4VFacet*) facet21);
+  panel2->AddFacet((G4VFacet*) facet22);
+  panel2->AddFacet((G4VFacet*) facet23); 
+  panel2->AddFacet((G4VFacet*) facet24); 
+  panel2->AddFacet((G4VFacet*) facet25);
+  panel2->AddFacet((G4VFacet*) facet26);  
+  panel2->SetSolidClosed(true);
+
+  panel3->AddFacet((G4VFacet*) facet31);
+  panel3->AddFacet((G4VFacet*) facet32);
+  panel3->AddFacet((G4VFacet*) facet33); 
+  panel3->AddFacet((G4VFacet*) facet34); 
+  panel3->AddFacet((G4VFacet*) facet35);
+  panel3->AddFacet((G4VFacet*) facet36);  
+  panel3->SetSolidClosed(true);
+
+  panel4->AddFacet((G4VFacet*) facet41);
+  panel4->AddFacet((G4VFacet*) facet42);
+  panel4->AddFacet((G4VFacet*) facet43); 
+  panel4->AddFacet((G4VFacet*) facet44); 
+  panel4->AddFacet((G4VFacet*) facet45);
+  panel4->AddFacet((G4VFacet*) facet46);  
+  panel4->SetSolidClosed(true);
   
   //now do the outer surface ******************************************************************************************************
 
@@ -361,6 +559,16 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   
   // GuideSolid = new G4SubtractionSolid(thisName+"_Solid",OuterSolid,InnerSolid);
   GuideSolid = new G4SubtractionSolid(thisName+"_Solid",tempSolid,LowerConeSideCutout,rot,trans);
+
+  //Assembling the panels for the light guide
+  trans = G4ThreeVector(0,0,0);
+  PanelAssembly1 = new G4UnionSolid(thisName+"_PanelAssembly1_Solid", panel1, panel2, rot, trans);
+  PanelAssembly2 = new G4UnionSolid(thisName+"_PanelAssembly2_Solid", PanelAssembly1, panel3, rot, trans);
+  PanelAssembly3 = new G4UnionSolid(thisName+"_PanelAssembly3_Solid", PanelAssembly2, panel4, rot, trans);
+
+  trans = G4ThreeVector(600*mm,0,0);
+  //TestPanelGuideSolid2 = new G4UnionSolid(thisName+"_TestPanelSolid2", GuideSolid, TestPanel2, rot, trans);
+  GuideSolidTarget = new G4UnionSolid(thisName+"_TestPanelSolid2", GuideSolid, PanelAssembly3, rot, trans);
 
   //*******************************************************************************************************************
 
@@ -529,7 +737,8 @@ void MOLLEROptDetectorLightGuide::UpdateGeometry()
   // G4PhysicalVolumeStore::GetInstance()->DeRegister(GuidePhysical);
   // G4LogicalVolumeStore::GetInstance()->DeRegister(GuideLogical);
   
-  G4SolidStore::GetInstance()->DeRegister(GuideSolid);
+  G4SolidStore::GetInstance()->DeRegister(GuideSolidTarget);
+  //G4SolidStore::GetInstance()->DeRegister(GuideSolid);
   G4SolidStore::GetInstance()->DeRegister(InnerSolid);
   G4SolidStore::GetInstance()->DeRegister(GuideTopSolid);
   G4SolidStore::GetInstance()->DeRegister(GuideCoreSolid);
@@ -545,7 +754,8 @@ void MOLLEROptDetectorLightGuide::UpdateGeometry()
   delete UpperCone_out;
   delete OuterSolid;
 
-  delete GuideSolid;
+  delete GuideSolidTarget;
+  //delete GuideSolid;
   delete GuideTopSolid;
   delete GuideTopBoxSolid;
   delete GuideTopCutoutSolid;
@@ -553,7 +763,8 @@ void MOLLEROptDetectorLightGuide::UpdateGeometry()
 
   DefineGeometry();
   
-  GuideLogical->SetSolid(GuideSolid);
+  GuideLogical->SetSolid(GuideSolidTarget);
+  //GuideLogical->SetSolid(GuideSolid);
   GuideCoreLogical->SetSolid(GuideCoreSolid);
   GuideTopLogical->SetSolid(GuideTopSolid);
 

@@ -1,6 +1,8 @@
 #ifndef MOLLEROptDetectorLightGuide_h
 #define MOLLEROptDetectorLightGuide_h 
 
+#include "G4QuadrangularFacet.hh"
+#include "G4TriangularFacet.hh"
 #include "cpp_include.h"
 #include "Root_include.h"
 #include "Geant4_include.hh"
@@ -101,6 +103,107 @@ private:
   G4LogicalSkinSurface* GuideLogicalSkinSurface;
   G4MaterialPropertiesTable* GuideMatPropTable;
 
+  //tessellated solid variables 
+  G4double targetSize;
+  G4double panelDepth;
+  
+  G4TessellatedSolid  *panel1;
+  G4QuadrangularFacet *facet11;
+  G4QuadrangularFacet *facet12;
+  G4QuadrangularFacet *facet13;
+  G4QuadrangularFacet *facet14;
+  G4QuadrangularFacet *facet15;
+  G4QuadrangularFacet *facet16;
+
+  G4TessellatedSolid  *panel2;
+  G4QuadrangularFacet *facet21;
+  G4QuadrangularFacet *facet22;
+  G4QuadrangularFacet *facet23;
+  G4QuadrangularFacet *facet24;
+  G4QuadrangularFacet *facet25;
+  G4QuadrangularFacet *facet26;
+
+  G4TessellatedSolid  *panel3;
+  G4QuadrangularFacet *facet31;
+  G4QuadrangularFacet *facet32;
+  G4QuadrangularFacet *facet33;
+  G4QuadrangularFacet *facet34;
+  G4QuadrangularFacet *facet35;
+  G4QuadrangularFacet *facet36;
+
+  G4TessellatedSolid  *panel4;
+  G4QuadrangularFacet *facet41;
+  G4QuadrangularFacet *facet42;
+  G4QuadrangularFacet *facet43;
+  G4QuadrangularFacet *facet44;
+  G4QuadrangularFacet *facet45;
+  G4QuadrangularFacet *facet46;
+
+  G4TessellatedSolid  *panel5;
+  G4QuadrangularFacet *facet51;
+  G4QuadrangularFacet *facet52;
+  G4QuadrangularFacet *facet53;
+  G4QuadrangularFacet *facet54;
+  G4QuadrangularFacet *facet55;
+  G4QuadrangularFacet *facet56;
+
+  G4TessellatedSolid  *panel6;
+  G4QuadrangularFacet *facet61;
+  G4QuadrangularFacet *facet62;
+  G4QuadrangularFacet *facet63;
+  G4QuadrangularFacet *facet64;
+  G4QuadrangularFacet *facet65;
+  G4QuadrangularFacet *facet66;
+
+  G4TessellatedSolid  *panel7;
+  G4QuadrangularFacet *facet71;
+  G4QuadrangularFacet *facet72;
+  G4QuadrangularFacet *facet73;
+  G4QuadrangularFacet *facet74;
+  G4QuadrangularFacet *facet75;
+  G4QuadrangularFacet *facet76;
+
+  G4TessellatedSolid  *panel8;
+  G4QuadrangularFacet *facet81;
+  G4QuadrangularFacet *facet82;
+  G4QuadrangularFacet *facet83;
+  G4QuadrangularFacet *facet84;
+  G4QuadrangularFacet *facet85;
+  G4QuadrangularFacet *facet86;
+
+  G4TessellatedSolid  *panel9;
+  G4QuadrangularFacet *facet91;
+  G4QuadrangularFacet *facet92;
+  G4QuadrangularFacet *facet93;
+  G4QuadrangularFacet *facet94;
+  G4QuadrangularFacet *facet95;
+  G4QuadrangularFacet *facet96;
+
+  G4TessellatedSolid  *panel10;
+  G4QuadrangularFacet *facet101;
+  G4QuadrangularFacet *facet102;
+  G4QuadrangularFacet *facet103;
+  G4QuadrangularFacet *facet104;
+  G4QuadrangularFacet *facet105;
+  G4QuadrangularFacet *facet106;
+
+  G4TessellatedSolid  *panel11;
+  G4QuadrangularFacet *facet111;
+  G4QuadrangularFacet *facet112;
+  G4QuadrangularFacet *facet113;
+  G4QuadrangularFacet *facet114;
+  G4QuadrangularFacet *facet115;
+  G4QuadrangularFacet *facet116;
+
+  G4TessellatedSolid  *panel12;
+  G4QuadrangularFacet *facet121;
+  G4QuadrangularFacet *facet122;
+  G4QuadrangularFacet *facet123;
+  G4QuadrangularFacet *facet124;
+  G4QuadrangularFacet *facet125;
+  G4QuadrangularFacet *facet126;
+
+
   G4LogicalVolume*    GuideCoreLogical;
   G4VPhysicalVolume*  GuideCorePhysical; 
   G4Material*         GuideCoreMaterial;
@@ -129,6 +232,20 @@ private:
   G4GenericTrap *LowerCone_out;
   G4GenericTrap *UpperCone_out;
   G4UnionSolid *OuterSolid;
+  G4UnionSolid *GuideSolidTarget;
+
+  //PanelAssembly objects
+  G4UnionSolid *PanelAssembly1;
+  G4UnionSolid *PanelAssembly2;
+  G4UnionSolid *PanelAssembly3;
+  G4UnionSolid *PanelAssembly4;
+  G4UnionSolid *PanelAssembly5;
+  G4UnionSolid *PanelAssembly6;
+  G4UnionSolid *PanelAssembly7;
+  G4UnionSolid *PanelAssembly8;
+  G4UnionSolid *PanelAssembly9;
+  G4UnionSolid *PanelAssembly10;
+  G4UnionSolid *PanelAssembly11;
 
   // G4UnionSolid *GuideSolid;
   G4SubtractionSolid *GuideSolid;

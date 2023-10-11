@@ -130,6 +130,8 @@ private:
   G4GenericTrap *UpperCone_out;
   G4UnionSolid *OuterSolid;
 
+  G4SubtractionSolid *BackPanelRemoved;
+
   // G4UnionSolid *GuideSolid;
   G4SubtractionSolid *GuideSolid;
 

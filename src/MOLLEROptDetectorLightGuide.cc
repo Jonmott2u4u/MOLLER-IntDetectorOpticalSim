@@ -338,12 +338,19 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   
   G4RotationMatrix *rot = new G4RotationMatrix;
 
+  //********************* Removing the back panel from the lower cone *************************************************
+
+  G4ThreeVector  trans = G4ThreeVector(0,-QuartzInterfaceOpeningZ/2,0);
+  
+  BackPanelRemoved = new G4SubtractionSolid(thisName+"_OuterSolid",LowerCone_out,LowerCone,rot,trans);
+
   //********************* Adding the box between the cones ************************************************************
   
-  G4ThreeVector  trans = G4ThreeVector(0,LowerInterfacePlane*(TMath::Tan(LowerConeFrontFaceAngle) - TMath::Tan(LowerConeBackFaceAngle))/2,(LowerInterfacePlane+MiddleBoxHeight)/2);
+  trans = G4ThreeVector(0,LowerInterfacePlane*(TMath::Tan(LowerConeFrontFaceAngle) - TMath::Tan(LowerConeBackFaceAngle))/2,(LowerInterfacePlane+MiddleBoxHeight)/2);
   
   IntermediateInnerSolid = new G4UnionSolid(thisName+"_InnerSolid",LowerCone,GuideMiddleBoxSolid,rot,trans);
-  IntermediateOuterSolid = new G4UnionSolid(thisName+"_OuterSolid",LowerCone_out,GuideMiddleBoxSolid_out,rot,trans);
+  //IntermediateOuterSolid = new G4UnionSolid(thisName+"_OuterSolid",LowerCone_out,GuideMiddleBoxSolid_out,rot,trans);
+  IntermediateOuterSolid = new G4UnionSolid(thisName+"_OuterSolid",BackPanelRemoved,GuideMiddleBoxSolid_out,rot,trans);
   
   trans = G4ThreeVector(0,0,UpperInterfacePlane/2 + MiddleBoxHeight); //MOVES UPPER CONE UP BY MiddleBoxHeight
   

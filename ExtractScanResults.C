@@ -21,7 +21,7 @@ void ExtractResults()
   std::string line;
   TFile *file;
   
-  Double_t param=17.0;     //Change based on what is being scanned
+  Double_t param=1.0;     //Change based on what is being scanned
   Double_t param_step=1.0; //Increment for the horizontal axis
   Double_t fa=89; //Value doesn't seem to matter
   Int_t hr;

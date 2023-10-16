@@ -9,8 +9,8 @@ sourceDir = "./"
 datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 1    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
-hr_stop = 1
+hr_start = 9    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
+hr_stop = 9
 hr_step = 1     #Increments over each value of hr
 
 #cut_start = 0  #Breaks the quartz tiles up into multiple segments. How it is broken up is determined using hr. Not currently implemented for the 8 detector setup
@@ -21,8 +21,8 @@ sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- 
 sa_stop = 0
 sa_step = 5
 
-ID_start = 2    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 2
+ID_start = 3    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 3
 ID_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
@@ -53,5 +53,5 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 jsubf.write("cd "+home+"\n")
                 jsubf.write("echo \"Current working directory is `pwd`\"\n")	
                 jsubf.write("./MOLLEROpt "+FileName+"\n")
-                #jsubf.write("mv "+rootfile+" "+outDir+rootfile+"\n")
+                jsubf.write("mv "+rootfile+" "+outDir+rootfile+"\n")
                 print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")

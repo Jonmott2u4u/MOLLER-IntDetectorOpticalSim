@@ -16,7 +16,8 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  G4ParticleDefinition* particle = G4MuonMinus::Definition();
+  //G4ParticleDefinition* particle = G4MuonMinus::Definition();
+  G4ParticleDefinition* particle = G4Electron::Definition();
   particleGun->SetParticleDefinition(particle);
 }
 
@@ -212,9 +213,14 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand() + 0*TMath::Sin(3*pi/180);
   }
+  else if(EventRegion == 9){
+    //Hits a random location from the top of R6 quartz to the bottom of R1 quartz (may hit empty space on sides of quartz)
+    x = Qlim8[0] + (Qlim8[1]-Qlim8[0])*G4UniformRand();
+    y = (Qlim1[2] + 1396*TMath::Sin(3*pi/180)) + (Qlim8[3]-Qlim1[2]-1396*TMath::Sin(3*pi/180))*G4UniformRand();
+  }
   else{
     //Defaults to Ring 1
-    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
   }
 
@@ -243,8 +249,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   fclose(fptr);
   //*****************************************
 
-  //particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
-  particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
+  particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
+  //particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

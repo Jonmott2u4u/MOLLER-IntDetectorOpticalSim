@@ -25,33 +25,38 @@ ID_start = 1    #Set this to distinguish identical runs (to prevent file overwri
 ID_stop = 1
 ID_step = 1
 
+det_start = 1   #The detector you wish to scan over
+det_stop = 6
+det_step = 1
+
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
     for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
-            FileIDString = "_sa"+str(sa)+"_hR"+str(hr)
-            rootfile = "_sa"+str(sa)+"_hR"+str(hr)+".root"
-            jobs="jobs"
-            if not os.path.exists(jobs):
-                os.system("mkdir "+jobs)
-            
-            outDir = "rootfiles/"
-            home = sourceDir
-            FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
-            if os.path.exists(FileName):
-                jsubf=open(jobs+"/"+OutputFilePrefix + FileIDString+".sh", "w")
-                jsubf.write("#!/bin/bash\n")
-                #jsubf.write("#SBATCH --account=halla\n")
-                jsubf.write("#SBATCH --partition=mocha\n")
-                jsubf.write("#SBATCH --job-name=PMT_EP\n")
-                jsubf.write("#SBATCH --output=out.out\n")
-                jsubf.write("#SBATCH --error=e.err\n")
-                jsubf.write("#SBATCH --time=24:00:00\n")
-                jsubf.write("#SBATCH --nodes=1\n")
-                jsubf.write("#SBATCH --ntasks=1\n")
-                jsubf.write("#SBATCH --cpus-per-task=1\n")
-                jsubf.write("#SBATCH --mem=40G\n")
-                jsubf.write("cd "+home+"\n")
-                jsubf.write("echo \"Current working directory is `pwd`\"\n")	
-                jsubf.write("./MOLLEROpt "+FileName+"\n")
-                jsubf.write("mv "+rootfile+" "+outDir+rootfile+"\n")
-                print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")
+            for det in np.arange(det_start,det_stop+det_step,det_step):
+                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_det"+str(det)
+                rootfile = FileIDString + ".root"
+                jobs="jobs"
+                if not os.path.exists(jobs):
+                    os.system("mkdir "+jobs)
+
+                outDir = "rootfiles/"
+                home = sourceDir
+                FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
+                if os.path.exists(FileName):
+                    jsubf=open(jobs+"/"+OutputFilePrefix + FileIDString+".sh", "w")
+                    jsubf.write("#!/bin/bash\n")
+                    #jsubf.write("#SBATCH --account=halla\n")
+                    jsubf.write("#SBATCH --partition=mocha\n")
+                    jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                    jsubf.write("#SBATCH --output=out.out\n")
+                    jsubf.write("#SBATCH --error=e.err\n")
+                    jsubf.write("#SBATCH --time=24:00:00\n")
+                    jsubf.write("#SBATCH --nodes=1\n")
+                    jsubf.write("#SBATCH --ntasks=1\n")
+                    jsubf.write("#SBATCH --cpus-per-task=1\n")
+                    jsubf.write("#SBATCH --mem=40G\n")
+                    jsubf.write("cd "+home+"\n")
+                    jsubf.write("echo \"Current working directory is `pwd`\"\n")	
+                    jsubf.write("./MOLLEROpt "+FileName+"\n")
+                    jsubf.write("mv "+rootfile+" "+outDir+rootfile+"\n")
+                    print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")

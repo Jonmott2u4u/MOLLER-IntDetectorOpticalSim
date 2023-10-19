@@ -111,6 +111,9 @@ set(MOLLER_SCRIPTS
   MakeScanMacros3.py
   submit.py
   submit.sh
+  MacroGenerator.py
+  MacroSubmitter.py
+  MacroSubmitter.sh
   ExtractScanResults.C
 )
 

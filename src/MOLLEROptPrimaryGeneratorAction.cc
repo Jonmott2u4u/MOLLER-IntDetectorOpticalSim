@@ -128,8 +128,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   fclose(fptr);
   //*****************************************
 
-  //particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
-  particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
+  particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
+  //particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

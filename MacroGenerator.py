@@ -64,7 +64,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"
             Text += "/Det/UpdateGeometry" + "\n\n"
             Text += "/Generator/EventHitRegion " + str(hr) + "\n"
-            Text += "/Generator/QuartzHitRegion " + str(cut) + "\n"
+            #Text += "/Generator/QuartzHitRegion " + str(cut) + "\n"
             Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
             Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
             Text += "/RunAction/SetID " + str(id) + "\n"

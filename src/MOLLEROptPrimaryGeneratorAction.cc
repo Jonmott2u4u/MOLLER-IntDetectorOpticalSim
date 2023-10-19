@@ -73,9 +73,9 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = LGlim[6]+90*mm + (LGlim[7]-LGlim[6]-10*mm)*G4UniformRand(); //Also hard-coded
   }
   else if(EventRegion == 5){
-    //9x9 cm^2 spot on quartz center
-    x = (Qlim[1]+Qlim[0])/2.0 -45 +90*G4UniformRand();
-    y = (Qlim[3]+Qlim[2])/2.0 -45 +90*G4UniformRand();
+    //2x2m^2 spot on quartz center
+    x = (Qlim[1]+Qlim[0])/2.0 -1 +2*G4UniformRand();
+    y = (Qlim[3]+Qlim[2])/2.0 -1 +2*G4UniformRand();
   }
   else if(EventRegion == 6){
     //4x4 mm^2 spot on lower guide cone

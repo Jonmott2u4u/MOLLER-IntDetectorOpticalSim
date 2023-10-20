@@ -112,6 +112,9 @@ void MOLLEROptDetectorEvent::Initialize()
   PMTCathodeHitY.clear();  
   PMTCathodeHitY.resize(0);
 
+  PMTCathodeHitZ.clear();  
+  PMTCathodeHitZ.resize(0);
+
   PMTWindowReflectionAngle.clear();  
   PMTWindowReflectionAngle.resize(0);
 

@@ -152,6 +152,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	  PMTSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionX((Float_t)track->PMTHitX/cm);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionY((Float_t)track->PMTHitY/cm);
+    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
 	  optPhEng = track->InitKinEnergy/eV;

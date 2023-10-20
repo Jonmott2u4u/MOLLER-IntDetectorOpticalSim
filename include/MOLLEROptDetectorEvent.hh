@@ -27,6 +27,7 @@ private:
   vector <Float_t> PMTPhotonEnergy;
   vector <Float_t> PMTCathodeHitX;
   vector <Float_t> PMTCathodeHitY;
+  vector <Float_t> PMTCathodeHitZ;
   vector <Float_t> PMTWindowReflectionAngle;
   
   vector <Int_t> LightGuideTrackHit;
@@ -97,6 +98,7 @@ public:
   void AddPMTTrackHit(Int_t tID){PMTTrackHit = tID;};
   void AddPMTHitPositionX(Float_t x) {PMTCathodeHitX.push_back(x);};
   void AddPMTHitPositionY(Float_t y) {PMTCathodeHitY.push_back(y);};
+  void AddPMTHitPositionZ(Float_t z) {PMTCathodeHitZ.push_back(z);};
   void AddQuartzHitPositionX(Float_t x) {QuartzHitX.push_back(x);};
   void AddQuartzHitPositionY(Float_t y) {QuartzHitY.push_back(y);};
   void AddPMTWindowReflectionAngle(Float_t ang) {PMTWindowReflectionAngle.push_back(ang);};

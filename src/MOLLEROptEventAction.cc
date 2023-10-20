@@ -123,6 +123,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(1);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionX((Float_t)track->QuartzHitX/cm);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionY((Float_t)track->QuartzHitY/cm);
+    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionZ((Float_t)track->QuartzHitZ/cm);
 	}	
 	// for(int p = 0; p < track->SecPhotonAngle.size(); p++){
 	// }
@@ -179,7 +180,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
     analysis->FillRootNtuple();
   }
-
+  //tempmarker
+  //if()
   analysis->AddPhotoElectronEvent(PMTPe);
   analysis->AddCathodeDetectionEvent(TrackingReadout->GetCathodeDetections());
   

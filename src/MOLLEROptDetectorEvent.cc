@@ -79,6 +79,9 @@ void MOLLEROptDetectorEvent::Initialize()
   QuartzHitY.clear();  
   QuartzHitY.resize(0);
 
+  QuartzHitZ.clear();  
+  QuartzHitZ.resize(0);
+
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);
 

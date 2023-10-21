@@ -58,13 +58,38 @@ void MOLLEROptTrackingReadout::AddStepNCherenkovs(Int_t id, Int_t nsec)
 
 void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
 {
-
+  //int ticker = 1;
   for(int n = 0; n < Tracks.size(); n++)
     if(Tracks[n]->ID == id){
       Tracks[n]->Detected = 1;
+      if(Tracks[n]->PMTHitZ/cm > 120 /*&& ticker == 1*/){
+        R1_CathodeDetections++;
+        //ticker++;
+      }
+      if(100 < (Tracks[n]->PMTHitZ/cm) && 120 > (Tracks[n]->PMTHitZ/cm)){
+        R2_CathodeDetections++;
+      }
+      if(70 < (Tracks[n]->PMTHitZ/cm) && 90 > (Tracks[n]->PMTHitZ/cm)){
+        R3_CathodeDetections++;
+      }
+      if(50 < (Tracks[n]->PMTHitZ/cm) && 70 > (Tracks[n]->PMTHitZ/cm)){
+        R4_CathodeDetections++;
+      }
+      if(30 < (Tracks[n]->PMTHitZ/cm) && 50 > (Tracks[n]->PMTHitZ/cm)){
+        R5_CathodeDetections++;
+      }
+      if(10 < (Tracks[n]->PMTHitZ/cm) && 30 > (Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm) < -4){
+        R6_CathodeDetections++;
+      }
+      if(10 < (Tracks[n]->PMTHitZ/cm) && 30 > (Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm) > 4){
+        R7_CathodeDetections++;
+      }
+      if(Tracks[n]->PMTHitZ/cm < 10){
+        R8_CathodeDetections++;
+      }
     }
   
-  CathodeDetections++;
+  //CathodeDetections++;
 };
 
 
@@ -248,7 +273,15 @@ void MOLLEROptTrackingReadout::Initialize()
   
   ElectronTracks = 0;
   PhotonTracks = 0;
-  CathodeDetections = 0;
+  //CathodeDetections = 0;
+  R1_CathodeDetections = 0;
+  R2_CathodeDetections = 0;
+  R3_CathodeDetections = 0;
+  R4_CathodeDetections = 0;
+  R5_CathodeDetections = 0;
+  R6_CathodeDetections = 0;
+  R7_CathodeDetections = 0;
+  R8_CathodeDetections = 0;
 }
 
  

@@ -21,8 +21,23 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     PMTOptPhotonDistrHist = new TProfile("PMTOptPhotonDistrHist","",800,100,900);
     QuartzOptPhotonDistrHist = new TProfile("QuartzOptPhotonDistrHist","",800,100,900);
     LightGuideOptPhotonDistrHist = new TProfile("LightGuideOptPhotonDistrHist","",800,100,900);
-    PhotoElectronDistrHist = new TH1D("PhotoElectronDistrHist","",100,0,100);
-    CathodeEventsDistrHist = new TH1D("CathodeEventsDistrHist","",100,0,100);
+    R1_PhotoElectronDistrHist = new TH1D("R1_PhotoElectronDistrHist","",100,0,100);
+    R1_CathodeEventsDistrHist = new TH1D("R1_CathodeEventsDistrHist","",100,0,100);
+    R2_PhotoElectronDistrHist = new TH1D("R2_PhotoElectronDistrHist","",100,0,100);
+    R2_CathodeEventsDistrHist = new TH1D("R2_CathodeEventsDistrHist","",100,0,100);
+    R3_PhotoElectronDistrHist = new TH1D("R3_PhotoElectronDistrHist","",100,0,100);
+    R3_CathodeEventsDistrHist = new TH1D("R3_CathodeEventsDistrHist","",100,0,100);
+    R4_PhotoElectronDistrHist = new TH1D("R4_PhotoElectronDistrHist","",100,0,100);
+    R4_CathodeEventsDistrHist = new TH1D("R4_CathodeEventsDistrHist","",100,0,100);
+    R5_PhotoElectronDistrHist = new TH1D("R5_PhotoElectronDistrHist","",100,0,100);
+    R5_CathodeEventsDistrHist = new TH1D("R5_CathodeEventsDistrHist","",100,0,100);
+    R6_PhotoElectronDistrHist = new TH1D("R6_PhotoElectronDistrHist","",100,0,100);
+    R6_CathodeEventsDistrHist = new TH1D("R6_CathodeEventsDistrHist","",100,0,100);
+    R7_PhotoElectronDistrHist = new TH1D("R7_PhotoElectronDistrHist","",100,0,100);
+    R7_CathodeEventsDistrHist = new TH1D("R7_CathodeEventsDistrHist","",100,0,100);
+    R8_PhotoElectronDistrHist = new TH1D("R8_PhotoElectronDistrHist","",100,0,100);
+    R8_CathodeEventsDistrHist = new TH1D("R8_CathodeEventsDistrHist","",100,0,100);
+    
     EventCnt = 0;
 }
 
@@ -64,8 +79,22 @@ void MOLLEROptAnalysis::EndOfRun()
     PMTOptPhotonDistrHist->Write();
     QuartzOptPhotonDistrHist->Write();
     LightGuideOptPhotonDistrHist->Write();
-    PhotoElectronDistrHist->Write();
-    CathodeEventsDistrHist->Write();
+    R1_PhotoElectronDistrHist->Write();
+    R1_CathodeEventsDistrHist->Write();
+    R2_PhotoElectronDistrHist->Write();
+    R2_CathodeEventsDistrHist->Write();
+    R3_PhotoElectronDistrHist->Write();
+    R3_CathodeEventsDistrHist->Write();
+    R4_PhotoElectronDistrHist->Write();
+    R4_CathodeEventsDistrHist->Write();
+    R5_PhotoElectronDistrHist->Write();
+    R5_CathodeEventsDistrHist->Write();
+    R6_PhotoElectronDistrHist->Write();
+    R6_CathodeEventsDistrHist->Write();
+    R7_PhotoElectronDistrHist->Write();
+    R7_CathodeEventsDistrHist->Write();
+    R8_PhotoElectronDistrHist->Write();
+    R8_CathodeEventsDistrHist->Write();
     TrackingReadout->WriteAbsProfiles();
     MOLLEROptFile->Write("",TObject::kOverwrite); // Writing the data to the ROOT file
     

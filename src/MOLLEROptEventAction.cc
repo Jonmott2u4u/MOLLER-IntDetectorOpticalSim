@@ -160,28 +160,28 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	  OptParam* op = TrackingReadout->GetOpticalParameters();
 	  for(int n = 0; n < op->npar-1; n++)
 	    if(optPhEng >= op->EPhoton[n]/eV && optPhEng < op->EPhoton[n+1]/eV){
-	      if((track->PMTHitZ/cm) > 120){
+	      if(track->PMTHitZ/cm > 120){
           R1_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(100 < (track->PMTHitZ/cm) < 120){
+        if(100 < track->PMTHitZ/cm && track->PMTHitZ/cm < 120){
           R2_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(70 < (track->PMTHitZ/cm) < 90){
+        if(70 < track->PMTHitZ/cm && track->PMTHitZ/cm < 90){
           R3_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(50 < (track->PMTHitZ/cm) < 70){
+        if(50 < track->PMTHitZ/cm && track->PMTHitZ/cm < 70){
           R4_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(30 < (track->PMTHitZ/cm) < 50){
+        if(30 < track->PMTHitZ/cm && track->PMTHitZ/cm < 50){
           R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(10 < (track->PMTHitZ/cm) < 30 && (track->PMTHitX/cm) < -4){
+        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm < -4){
           R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(10 < (track->PMTHitZ/cm) < 30 && (track->PMTHitX/cm) > 4){
+        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm > 4){
           R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if((track->PMTHitZ/cm) < 10){
+        if(track->PMTHitZ/cm < 10){
           R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
 	    }

@@ -32,7 +32,14 @@ public:
   Int_t PMTHitFlag;
   Int_t QuartzHitFlag;
   Int_t LGHitFlag;
-  Int_t Detected;
+  Int_t R1_Detected;
+  Int_t R2_Detected;
+  Int_t R3_Detected;
+  Int_t R4_Detected;
+  Int_t R5_Detected;
+  Int_t R6_Detected;
+  Int_t R7_Detected;
+  Int_t R8_Detected;
   Float_t InitEnergy;
   Float_t InitKinEnergy;
   Float_t InitWavelength;

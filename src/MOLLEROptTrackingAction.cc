@@ -50,7 +50,14 @@ void MOLLEROptTrackingAction::PreUserTrackingAction(const G4Track* aTrack)
   nTrack->PMTHitX = 6666;
   nTrack->PMTHitY = 6666;
   nTrack->PMTHitZ = 6666;
-  nTrack->Detected = 0;
+  nTrack->R1_Detected = 0;
+  nTrack->R2_Detected = 0;
+  nTrack->R3_Detected = 0;
+  nTrack->R4_Detected = 0;
+  nTrack->R5_Detected = 0;
+  nTrack->R6_Detected = 0;
+  nTrack->R7_Detected = 0;
+  nTrack->R8_Detected = 0;
   
   nTrack->InitEnergy = aTrack->GetTotalEnergy();
   nTrack->InitKinEnergy = aTrack->GetKineticEnergy();

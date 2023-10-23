@@ -70,7 +70,15 @@ private:
   vector <TrackData*> Tracks;
   Int_t ElectronTracks;
   Int_t PhotonTracks;
-  Int_t CathodeDetections;
+  //Int_t CathodeDetections;
+  Int_t R1_CathodeDetections;
+  Int_t R2_CathodeDetections;
+  Int_t R3_CathodeDetections;
+  Int_t R4_CathodeDetections;
+  Int_t R5_CathodeDetections;
+  Int_t R6_CathodeDetections;
+  Int_t R7_CathodeDetections;
+  Int_t R8_CathodeDetections;
 
   TH2D *DetectorRateGlobal;
   TH2D *DetectorRateGlobalRotated;
@@ -104,7 +112,15 @@ private:
   void AddSecPhoton(Int_t id, Float_t ang, Float_t wvl);
   void AddStepNCherenkovs(Int_t n, Int_t nsec);
   void IncrementEventCathodeDetection(Int_t ID);
-  Int_t GetCathodeDetections() {return CathodeDetections;};
+  //Int_t GetCathodeDetections() {return CathodeDetections;};
+  Int_t R1_GetCathodeDetections() {return R1_CathodeDetections;};
+  Int_t R2_GetCathodeDetections() {return R2_CathodeDetections;};
+  Int_t R3_GetCathodeDetections() {return R3_CathodeDetections;};
+  Int_t R4_GetCathodeDetections() {return R4_CathodeDetections;};
+  Int_t R5_GetCathodeDetections() {return R5_CathodeDetections;};
+  Int_t R6_GetCathodeDetections() {return R6_CathodeDetections;};
+  Int_t R7_GetCathodeDetections() {return R7_CathodeDetections;};
+  Int_t R8_GetCathodeDetections() {return R8_CathodeDetections;};
   void SetPMTHitLocation(Int_t id, G4ThreeVector loc, Float_t angle);
   void SetQuartzHitLocation(Int_t id, G4ThreeVector loc);
   Bool_t TrackExists(Int_t ID);

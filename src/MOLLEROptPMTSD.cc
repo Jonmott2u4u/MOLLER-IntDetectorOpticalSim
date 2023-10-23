@@ -93,7 +93,8 @@ G4bool MOLLEROptPMTSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchab
 					aStep->GetTrack()->GetKineticEnergy(),
 					1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),0);
 	  
-	  TrackingReadout->SetPMTHitLocation(aStep->GetTrack()->GetTrackID(),localpos,incidentAngle);
+	  //TrackingReadout->SetPMTHitLocation(aStep->GetTrack()->GetTrackID(),localpos,incidentAngle);
+	  TrackingReadout->SetPMTHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,incidentAngle);
 	  //HitsCollection->insert(aHit); 
 	// }
       // }

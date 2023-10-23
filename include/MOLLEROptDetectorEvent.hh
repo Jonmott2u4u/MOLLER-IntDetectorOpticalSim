@@ -27,6 +27,7 @@ private:
   vector <Float_t> PMTPhotonEnergy;
   vector <Float_t> PMTCathodeHitX;
   vector <Float_t> PMTCathodeHitY;
+  vector <Float_t> PMTCathodeHitZ;
   vector <Float_t> PMTWindowReflectionAngle;
   
   vector <Int_t> LightGuideTrackHit;
@@ -40,6 +41,7 @@ private:
   vector <Int_t> QuartzTrackHit;
   vector <Float_t> QuartzHitX;
   vector <Float_t> QuartzHitY;
+  vector <Float_t> QuartzHitZ;
   // vector <Float_t> QuartzPhotonEnergy;
   Float_t QuartzPhotonEnergy;
   vector <Float_t> QuartzSecondaryPhotonAngle;
@@ -97,8 +99,10 @@ public:
   void AddPMTTrackHit(Int_t tID){PMTTrackHit = tID;};
   void AddPMTHitPositionX(Float_t x) {PMTCathodeHitX.push_back(x);};
   void AddPMTHitPositionY(Float_t y) {PMTCathodeHitY.push_back(y);};
+  void AddPMTHitPositionZ(Float_t z) {PMTCathodeHitZ.push_back(z);};
   void AddQuartzHitPositionX(Float_t x) {QuartzHitX.push_back(x);};
   void AddQuartzHitPositionY(Float_t y) {QuartzHitY.push_back(y);};
+  void AddQuartzHitPositionZ(Float_t z) {QuartzHitZ.push_back(z);};
   void AddPMTWindowReflectionAngle(Float_t ang) {PMTWindowReflectionAngle.push_back(ang);};
 
   void AddTrackInitMomDirection(Float_t x, Float_t y, Float_t z) {

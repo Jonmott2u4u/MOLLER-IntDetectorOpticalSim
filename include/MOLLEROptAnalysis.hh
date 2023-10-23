@@ -37,8 +37,22 @@ public:
   void AddToAverageQuartzOptPhotonDist(Float_t wvl, Float_t wgt){QuartzOptPhotonDistrHist->Fill(wvl,wgt);};
   void AddToAverageLightGuideOptPhotonDist(Float_t wvl, Float_t wgt){LightGuideOptPhotonDistrHist->Fill(wvl,wgt);};
 
-  void AddPhotoElectronEvent(Double_t pe){ PhotoElectronDistrHist->Fill(pe);};
-  void AddCathodeDetectionEvent(Int_t events) {CathodeEventsDistrHist->Fill(events);};
+  void R1_AddPhotoElectronEvent(Double_t pe){ R1_PhotoElectronDistrHist->Fill(pe);};
+  void R1_AddCathodeDetectionEvent(Int_t events) {R1_CathodeEventsDistrHist->Fill(events);};
+  void R2_AddPhotoElectronEvent(Double_t pe){ R2_PhotoElectronDistrHist->Fill(pe);};
+  void R2_AddCathodeDetectionEvent(Int_t events) {R2_CathodeEventsDistrHist->Fill(events);};
+  void R3_AddPhotoElectronEvent(Double_t pe){ R3_PhotoElectronDistrHist->Fill(pe);};
+  void R3_AddCathodeDetectionEvent(Int_t events) {R3_CathodeEventsDistrHist->Fill(events);};
+  void R4_AddPhotoElectronEvent(Double_t pe){ R4_PhotoElectronDistrHist->Fill(pe);};
+  void R4_AddCathodeDetectionEvent(Int_t events) {R4_CathodeEventsDistrHist->Fill(events);};
+  void R5_AddPhotoElectronEvent(Double_t pe){ R5_PhotoElectronDistrHist->Fill(pe);};
+  void R5_AddCathodeDetectionEvent(Int_t events) {R5_CathodeEventsDistrHist->Fill(events);};
+  void R6_AddPhotoElectronEvent(Double_t pe){ R6_PhotoElectronDistrHist->Fill(pe);};
+  void R6_AddCathodeDetectionEvent(Int_t events) {R6_CathodeEventsDistrHist->Fill(events);};
+  void R7_AddPhotoElectronEvent(Double_t pe){ R7_PhotoElectronDistrHist->Fill(pe);};
+  void R7_AddCathodeDetectionEvent(Int_t events) {R7_CathodeEventsDistrHist->Fill(events);};
+  void R8_AddPhotoElectronEvent(Double_t pe){ R8_PhotoElectronDistrHist->Fill(pe);};
+  void R8_AddCathodeDetectionEvent(Int_t events) {R8_CathodeEventsDistrHist->Fill(events);};
 
   MOLLEROptMainEvent* MOLLERMainEvent;
 
@@ -54,8 +68,22 @@ private:
   TProfile*    PMTOptPhotonDistrHist;
   TProfile*    QuartzOptPhotonDistrHist;
   TProfile*    LightGuideOptPhotonDistrHist;
-  TH1D*    PhotoElectronDistrHist;
-  TH1D*    CathodeEventsDistrHist;
+  TH1D*    R1_PhotoElectronDistrHist;
+  TH1D*    R1_CathodeEventsDistrHist;
+  TH1D*    R2_PhotoElectronDistrHist;
+  TH1D*    R2_CathodeEventsDistrHist;
+  TH1D*    R3_PhotoElectronDistrHist;
+  TH1D*    R3_CathodeEventsDistrHist;
+  TH1D*    R4_PhotoElectronDistrHist;
+  TH1D*    R4_CathodeEventsDistrHist;
+  TH1D*    R5_PhotoElectronDistrHist;
+  TH1D*    R5_CathodeEventsDistrHist;
+  TH1D*    R6_PhotoElectronDistrHist;
+  TH1D*    R6_CathodeEventsDistrHist;
+  TH1D*    R7_PhotoElectronDistrHist;
+  TH1D*    R7_CathodeEventsDistrHist;
+  TH1D*    R8_PhotoElectronDistrHist;
+  TH1D*    R8_CathodeEventsDistrHist;
   
   TVectorD *NumberOfPrimaries;
   Float_t OptPhotonDist[800];

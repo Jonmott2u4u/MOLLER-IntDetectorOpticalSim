@@ -52,11 +52,12 @@ void ExtractResults()
     param_run = param + counter*param_step;
     //fa = 89;
 
-    tmp = (TH1D*)file->Get("CathodeEventsDistrHist");
+    tmp = (TH1D*)file->Get("R1_CathodeEventsDistrHist");
     
     hst = (TH1D*)tmp->Clone(Form("CEH_%s",runID.Data()));
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");
+    hst->GetXaxis()->SetRangeUser(1,100);
     hst->SetDirectory(0);
 
     m = FindGraph(fa,hr);
@@ -234,7 +235,7 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
   gStyle->SetLabelSize(0.03,"x");
   gStyle->SetLabelSize(0.03,"y");
   
-  hst->GetXaxis()->SetRange(0,100);
+  //hst->GetXaxis()->SetRange(1,100);
   hst->Draw();
   fitsnr->Draw("lsame");
   

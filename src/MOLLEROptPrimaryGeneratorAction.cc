@@ -215,7 +215,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
   else if(EventRegion == 9){
     //Hits a random location from the top of R6 quartz to the bottom of R1 quartz (may hit empty space on sides of quartz)
-    x = Qlim8[0] + (Qlim8[1]-Qlim8[0])*G4UniformRand();
+    x = Qlim1[0] + (Qlim1[1]-Qlim1[0])*G4UniformRand();
     y = (Qlim1[2] + 1396*TMath::Sin(3*pi/180)) + (Qlim8[3]-Qlim1[2]-1396*TMath::Sin(3*pi/180))*G4UniformRand();
   }
   else{

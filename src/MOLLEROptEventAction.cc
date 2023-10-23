@@ -86,7 +86,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
   G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt; 
   G4double LGTrackLength, QuartzTrackLength, TotalTrackLength;
-  G4double PMTPe = 0;
+  G4double R1_PMTPe = 0, R2_PMTPe = 0, R3_PMTPe = 0, R4_PMTPe = 0, R5_PMTPe = 0, R6_PMTPe = 0, R7_PMTPe = 0, R8_PMTPe = 0;
   G4int NumSecPhotons = 0;
   G4int hitflag = 0;
  
@@ -123,6 +123,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(1);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionX((Float_t)track->QuartzHitX/cm);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionY((Float_t)track->QuartzHitY/cm);
+    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionZ((Float_t)track->QuartzHitZ/cm);
 	}	
 	// for(int p = 0; p < track->SecPhotonAngle.size(); p++){
 	// }
@@ -152,13 +153,37 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	  PMTSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionX((Float_t)track->PMTHitX/cm);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionY((Float_t)track->PMTHitY/cm);
+    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
 	  optPhEng = track->InitKinEnergy/eV;
 	  OptParam* op = TrackingReadout->GetOpticalParameters();
 	  for(int n = 0; n < op->npar-1; n++)
 	    if(optPhEng >= op->EPhoton[n]/eV && optPhEng < op->EPhoton[n+1]/eV){
-	      PMTPe += gRandom->PoissonD(op->QEff[n]);
+	      if((track->PMTHitZ/cm) > 120){
+          R1_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if(100 < (track->PMTHitZ/cm) < 120){
+          R2_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if(70 < (track->PMTHitZ/cm) < 90){
+          R3_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if(50 < (track->PMTHitZ/cm) < 70){
+          R4_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if(30 < (track->PMTHitZ/cm) < 50){
+          R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if(10 < (track->PMTHitZ/cm) < 30 && (track->PMTHitX/cm) < -4){
+          R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if(10 < (track->PMTHitZ/cm) < 30 && (track->PMTHitX/cm) > 4){
+          R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
+        if((track->PMTHitZ/cm) < 10){
+          R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        }
 	    }
 	  PMThit++;
 	}
@@ -178,9 +203,24 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
     analysis->FillRootNtuple();
   }
-
-  analysis->AddPhotoElectronEvent(PMTPe);
-  analysis->AddCathodeDetectionEvent(TrackingReadout->GetCathodeDetections());
+  //tempmarker
+  analysis->R1_AddPhotoElectronEvent(R1_PMTPe);
+  analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+  analysis->R2_AddPhotoElectronEvent(R2_PMTPe);
+  analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+  analysis->R3_AddPhotoElectronEvent(R3_PMTPe);
+  analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  analysis->R4_AddPhotoElectronEvent(R4_PMTPe);
+  analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+  analysis->R5_AddPhotoElectronEvent(R5_PMTPe);
+  analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+  analysis->R6_AddPhotoElectronEvent(R6_PMTPe);
+  analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+  analysis->R7_AddPhotoElectronEvent(R7_PMTPe);
+  analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+  analysis->R8_AddPhotoElectronEvent(R8_PMTPe);
+  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  
   
   for(int n = 1; n <= QuartzSecOptPhotonCnt->GetNbinsX(); n++)
     analysis->AddToAverageQuartzOptPhotonDist(QuartzSecOptPhotonCnt->GetBinCenter(n),QuartzSecOptPhotonCnt->GetBinContent(n));

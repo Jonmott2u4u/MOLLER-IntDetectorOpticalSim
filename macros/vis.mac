@@ -18,7 +18,7 @@
 # Axes, scale, etc.
 #/vis/scene/add/scale   # Simple scale line
 /vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
-/vis/scene/add/eventID # Drawn at end of event
+/vis/scene/add/eventID # Drawn at end of the event
 #/vis/scene/add/date    # Date stamp
 #/vis/scene/add/logo2D  # Simple logo
 #/vis/scene/add/logo    # 3D logo
@@ -28,14 +28,14 @@
 #/vis/set/lineWidth 2
 #/vis/scene/add/frame   # Simple frame around the view
 #/vis/set/colour        # Revert to default colour (white)
-#/vis/set/lineWidth     # Revert to default line width (1.)
+#/vis/set/lineWidth     # Revert to the default line width (1.)
 #
-# To get nice view
+# To get a nice view
 /vis/viewer/set/style surface
-/vis/viewer/set/hiddenMarker true
+/vis/viewer/set/hiddenmarker true
 /vis/viewer/set/viewpointThetaPhi 100 150
 #
-# Re-establish auto refreshing and verbosity:
+# Re-establish auto-refreshing and verbosity:
 /vis/viewer/set/autoRefresh true
 /vis/verbose warnings
 #
@@ -53,10 +53,10 @@
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \ 
-#	 |	      |
-#	 |   Middle   |
-#	 |   Box      |
-#	 |	      |  ________ Lower Interface
+#	       |	          |
+#	       |   Middle   |
+#	       |   Box      |
+#	       |	          |  ________ Lower Interface
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -76,8 +76,8 @@
 
 #------------------#Ring 1 commands --------------------#
 
-/R1/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R1/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R1/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R1/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R1/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
 /R1/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
 /R1/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
@@ -93,8 +93,8 @@
 
 #------------------#Ring 2 commands --------------------#
 
-/R2/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R2/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R2/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R2/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R2/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
 /R2/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
 /R2/LightGuideUpperInterface 205 mm             #Distance between upper and lower interface planes
@@ -110,8 +110,8 @@
 
 #------------------#Ring 3 commands --------------------#
 
-/R3/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R3/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R3/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R3/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R3/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
 /R3/LightGuideMiddleBox 300 mm			 #Height of box between upper and lower cones	
 /R3/LightGuideUpperInterface 259 mm             #Distance between upper and lower interface planes
@@ -127,8 +127,8 @@
 
 #------------------#Ring 4 commands --------------------#
 
-/R4/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R4/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R4/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R4/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R4/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
 /R4/LightGuideMiddleBox 200 mm			 #Height of box between upper and lower cones	
 /R4/LightGuideUpperInterface 253 mm             #Distance between upper and lower interface planes
@@ -144,8 +144,8 @@
 
 #------------------#Ring 5 BF commands (identical to FF. Verified w/ CAD)--------------------# 
 
-/R5/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R5/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R5/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R5/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R5/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
 /R5/LightGuideMiddleBox 0.001 mm		#Height of box between upper and lower cones	
 /R5/LightGuideUpperInterface 329.5 mm             #Distance between upper and lower interface planes
@@ -161,8 +161,8 @@
 
 #------------------#Ring 5 FF1 commands--------------------#
 
-/R6/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R6/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R6/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R6/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R6/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
 /R6/LightGuideMiddleBox 0.001 mm	        #Height of box between upper and lower cones	
 /R6/LightGuideUpperInterface 329.5 mm             #Distance between upper and lower interface planes
@@ -178,8 +178,8 @@
 
 #------------------#Ring 5 FF2 commands--------------------#
 
-/R7/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R7/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R7/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R7/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R7/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
 /R7/LightGuideMiddleBox 0.001 mm		#Height of box between upper and lower cones	
 /R7/LightGuideUpperInterface 329.5 mm             #Distance between upper and lower interface planes
@@ -195,8 +195,8 @@
 
 #------------------#Ring 6 commands --------------------#
 
-/R8/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/R8/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/R8/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/R8/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R8/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
 /R8/LightGuideMiddleBox 90 mm			 #Height of box between upper and lower cones	
 /R8/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
@@ -217,17 +217,17 @@
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
-#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
-#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
+#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damage factors
+#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radiation damage to 70 MRad (the other possibility is 170)
 
 /Det/UpdateGeometry
 
-/Generator/EventHitRegion 9                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz
-/Generator/QuartzHitRegion 0                     #Can be set from 0->9. Selects the cut of the quartz you wish to scan. Value does not matter if EventHitRegion != 7
-/Generator/BeamTheta 0				 #Units of degrees. Not in use
-/Generator/BeamPhi 0				 #Units of degrees. Not in use
-/Generator/BeamSolidAngle 0                       #Units of degrees. Determines angular spread of the beam from the z-axis
-/Generator/BeamEnergy 8000			 #Units of MeV
+/Generator/EventHitRegion 9                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion)
+/Generator/SegmentHitRegion 0                    # Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
+/Generator/BeamTheta 0				                   #Units of degrees. Not in use
+/Generator/BeamPhi 0			                    	 #Units of degrees. Not in use
+/Generator/BeamSolidAngle 0                      #Units of degrees. Determines the angular spread of the beam from the z-axis
+/Generator/BeamEnergy 8000		                	 #Units of MeV
 
 #/RunAction/SetID 3
 #/random/setSeeds 346082 823457

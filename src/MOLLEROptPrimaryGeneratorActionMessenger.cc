@@ -35,7 +35,7 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
   SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
   SegmentHitRegionCmd->SetDefaultValue(1);
-  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=0");
+  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=1");
   SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);

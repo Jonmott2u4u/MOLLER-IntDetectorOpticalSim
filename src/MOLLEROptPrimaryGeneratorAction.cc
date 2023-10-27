@@ -120,6 +120,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(LGlim1[5]<=0) LGlim1[5] += 1; else LGlim1[5] -= 1; 
   if(LGlim1[6]<=0) LGlim1[6] += 1; else LGlim1[6] -= 1; 
   if(LGlim1[7]<=0) LGlim1[7] += 1; else LGlim1[7] -= 1; 
+
+  //Other LGlimits (2->8) will be added when needed
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /*~~~~~~~Previously used for just 1 detector. Replaced by next section~~~~~~~~~~~~~~~~~~~~~
@@ -170,46 +172,46 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
 */
   if(EventRegion == 1){
-    //2x2 mm^2 spot on R1 quartz center
+    //4x4 mm^2 spot on R1 quartz center
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
     //y = Qlim1[3] - 1;
   }
   else if(EventRegion == 2){
-    //2x2 mm^2 spot on R2 quartz center
+    //4x4 mm^2 spot on R2 quartz center
     x = (Qlim2[1]+Qlim2[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand() + 1128*TMath::Sin(3*pi/180);
     //y = Qlim2[3] - 1;
   }
   else if(EventRegion == 3){
-    //2x2 mm^2 spot on R3 quartz center
+    //4x4 mm^2 spot on R3 quartz center
     x = (Qlim3[1]+Qlim3[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand() + 861*TMath::Sin(3*pi/180);
     //y = Qlim3[3] - 1;
   }
   else if(EventRegion == 4){
-    //2x2 mm^2 spot on R4 quartz center
+    //4x4 mm^2 spot on R4 quartz center
     x = (Qlim4[1]+Qlim4[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand() + 593*TMath::Sin(3*pi/180);
     //y = Qlim4[3] - 1;
   }
   else if(EventRegion == 5){
-    //2x2 mm^2 spot on R5 FF quartz center
+    //4x4 mm^2 spot on R5 FF quartz center
     x = (Qlim5[1]+Qlim5[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand() + 431*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 6){
-    //2x2 mm^2 spot on R5 BF 1 quartz center
+    //4x4 mm^2 spot on R5 BF 1 quartz center
     x = (Qlim6[1]+Qlim6[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand() + 274*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 7){
-    //2x2 mm^2 spot on R5 BF 2 quartz center
+    //4x4 mm^2 spot on R5 BF 2 quartz center
     x = (Qlim7[1]+Qlim7[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand() + 274*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 8){
-    //2x2 mm^2 spot on R6 quartz center
+    //4x4 mm^2 spot on R6 quartz center
     x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand() + 0*TMath::Sin(3*pi/180);
   }
@@ -218,17 +220,22 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = Qlim1[0] + (Qlim1[1]-Qlim1[0])*G4UniformRand();
     y = (Qlim1[2] + 1396*TMath::Sin(3*pi/180)) + (Qlim8[3]-Qlim1[2]-1396*TMath::Sin(3*pi/180))*G4UniformRand();
   }
+  else if(EventRegion == 10){
+    //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
+    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
+    y = Qlim[2] + 1396*TMath::Sin(3*pi/180) + 10*(cut-G4UniformRand());
+  }
   else{
     //Defaults to Ring 1
-    x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
+    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
+     y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
   }
 
 
   particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
-  //Following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
+  //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************
   G4double rand_int = G4UniformRand()*342800;
   rand_int = rand_int/1;

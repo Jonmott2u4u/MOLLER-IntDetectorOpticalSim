@@ -9,13 +9,13 @@ sourceDir = "./"
 datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 9    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
-hr_stop = 9
+hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan
+hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1  #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
-cut_stop = 1
-cut_step = 1
+cut_stop = 65
+cut_step = 2
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). May be removed and set in src/...PrimaryGeneratorAction.cc for new UMass cosmic stand
 sa_stop = 0

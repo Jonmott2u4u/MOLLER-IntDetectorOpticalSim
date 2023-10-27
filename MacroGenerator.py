@@ -23,9 +23,9 @@ hr_start = 9    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 =
 hr_stop = 9
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 1   #
-cut_step = 1
+cut_start = 1   #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_stop = 65   #
+cut_step = 2
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). May be removed and set in src/...PrimaryGeneratorAction.cc for new UMass cosmic stand
 sa_stop = 0
@@ -41,7 +41,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
                 Text = ""
-                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)
+                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)
                 Text += "#------------------#Ring 1 commands --------------------#" + "\n\n"
                 Text += "/R1/LightGuideLowerConeBackAngle 22 deg" + "\n"
                 Text += "/R1/LightGuideLowerConeFrontAngle 18 deg" + "\n"

@@ -34,10 +34,10 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 jobs="jobs"
                 if not os.path.exists(jobs):
                     os.system("mkdir "+jobs)
-                    outDir = "rootfiles/"
-                    home = sourceDir
-                    FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
-                    if os.path.exists(FileName):
+                outDir = "rootfiles/"
+                home = sourceDir
+                FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
+                if os.path.exists(FileName):
                     jsubf=open(jobs+"/"+OutputFilePrefix + FileIDString+".sh", "w")
                     jsubf.write("#!/bin/bash\n")
                     #jsubf.write("#SBATCH --account=halla\n")

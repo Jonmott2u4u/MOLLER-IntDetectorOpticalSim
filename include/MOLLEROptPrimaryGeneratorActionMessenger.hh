@@ -26,7 +26,7 @@ private:
   G4UIcmdWithoutParameter* resetCmd;
   G4UIcmdWithAnInteger     *InitEventCounterCmd;
   G4UIcmdWithAnInteger     *EventHitRegionCmd;
-  G4UIcmdWithAnInteger     *QuartzHitRegionCmd;
+  G4UIcmdWithAnInteger     *SegmentHitRegionCmd;
   G4UIcmdWithAnInteger     *BeamThetaCmd;
   G4UIcmdWithAnInteger     *BeamPhiCmd;
   G4UIcmdWithAnInteger     *BeamSolidAngleCmd;

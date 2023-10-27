@@ -24,7 +24,7 @@ public:
   void ResetNtupleEventCounter() {EventCounter = 0;};
   void SetNtupleEventCounter(G4int cnt) {EventCounter = cnt;};
   void SetEventHitRgion(G4int reg) {EventRegion = reg;};
-  void SetQuartzHitRegion(G4int reg) {cut = reg;};
+  void SetSegmentHitRegion(G4int reg) {cut = reg;};
   void SetBeamTheta(G4int reg) {theta = reg;};
   void SetBeamPhi(G4int reg) {phi = reg;};
   void SetBeamSolidAngle(G4int reg) {sa = reg;};

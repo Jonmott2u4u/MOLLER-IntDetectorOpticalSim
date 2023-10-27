@@ -23,9 +23,9 @@ hr_start = 9    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 =
 hr_stop = 9
 hr_step = 1     #Increments over each value of hr
 
-#cut_start = 0  #Breaks the quartz tiles up into multiple segments. How it is broken up is determined using hr. Not currently implemented for the 8 detector setup
-#cut_stop = 9
-#cut_step = 1
+cut_start = 0  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_stop = 0
+cut_step = 1
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). May be removed and set in src/...PrimaryGeneratorAction.cc for new UMass cosmic stand
 sa_stop = 0
@@ -169,7 +169,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"
             Text += "/Det/UpdateGeometry" + "\n\n"
             Text += "/Generator/EventHitRegion " + str(hr) + "\n"
-            #Text += "/Generator/QuartzHitRegion " + str(cut) + "\n"
+            Text += "/Generator/SegmentHitRegion " + str(cut) + "\n"
             Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
             Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
             Text += "/RunAction/SetID " + str(id) + "\n"

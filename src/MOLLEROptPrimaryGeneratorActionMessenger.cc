@@ -31,12 +31,12 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   EventHitRegionCmd->SetRange("EventHitRegion>=1");
   EventHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  QuartzHitRegionCmd = new G4UIcmdWithAnInteger("/Generator/QuartzHitRegion",this);
-  QuartzHitRegionCmd->SetGuidance("Set cut of quartz to look at.");
-  QuartzHitRegionCmd->SetParameterName("QuartzHitRegion",true);
-  QuartzHitRegionCmd->SetDefaultValue(1);
-  QuartzHitRegionCmd->SetRange("QuartzHitRegion>=0");
-  QuartzHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  SegmentHitRegionCmd = new G4UIcmdWithAnInteger("/Generator/SegmentHitRegion",this);
+  SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
+  SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
+  SegmentHitRegionCmd->SetDefaultValue(1);
+  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=0");
+  SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);
   BeamThetaCmd->SetGuidance("Set angle of beam in y direction from z axis.");
@@ -87,8 +87,8 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
   if( command == EventHitRegionCmd )
     { pPrimaryGeneratorAction->SetEventHitRgion(EventHitRegionCmd->GetNewIntValue(newValue)); }
 
-  if( command == QuartzHitRegionCmd )
-    { pPrimaryGeneratorAction->SetQuartzHitRegion(QuartzHitRegionCmd->GetNewIntValue(newValue)); }
+  if( command == SegmentHitRegionCmd )
+    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewIntValue(newValue)); }
 
   if( command == BeamThetaCmd )
     { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue)); }

@@ -1,4 +1,6 @@
 //#include <fstream>
+#include <iostream>
+#include <TString.h>
 
 Double_t langaufun(Double_t *x, Double_t *par);  
 TF1 *langaufit(TH1D *his, Double_t *fitrange, Double_t *startvalues, Double_t *parlimitslo, Double_t *parlimitshi, Double_t *fitparams, Double_t *fiterrors, Double_t *ChiSqr, Int_t *NDF);
@@ -13,14 +15,14 @@ std::vector <TGraphErrors*> fA_PEmean_hR3;
 std::vector <TGraphErrors*> fA_Exnse;
 TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
-void ExtractResults()
+void ExtractScanResults()
 {
   gSystem->Load("libMOLLEROptDictionaries.so");
 
-  std::ifstream rfiles("files.dat");
+  std::ifstream rfiles("temp.dat");
   std::string line;
   TFile *file;
-  
+
   Double_t param=1.0;     //Change based on what is being scanned
   Double_t param_step=1.0; //Increment for the horizontal axis
   Double_t fa=89; //Value doesn't seem to matter
@@ -42,22 +44,23 @@ void ExtractResults()
     from = 0;
     file = TFile::Open(line.data());
 
+    //hr=hitR[0];
     hr=hitR[0];
       
     cout << line.data() << endl;
     tmpStr = line.data();
     tmpStr = tmpStr.ReplaceAll("MOLLEROpt_","");
-    runID = 0002;      
+    runID = 0003;      
     
     param_run = param + counter*param_step;
     //fa = 89;
 
-    tmp = (TH1D*)file->Get("R1_CathodeEventsDistrHist");
+    tmp = (TH1D*)file->Get("R8_CathodeEventsDistrHist");
     
     hst = (TH1D*)tmp->Clone(Form("CEH_%s",runID.Data()));
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");
-    hst->GetXaxis()->SetRangeUser(1,100);
+    hst->GetXaxis()->SetRangeUser(0,100);
     hst->SetDirectory(0);
 
     m = FindGraph(fa,hr);
@@ -72,6 +75,7 @@ void ExtractResults()
 	
 	fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,fitP[3]/fitP[1]);
 	fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,(fitP[3]/fitP[1])*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
+
       }
       else if(hr == 2){
 	
@@ -86,8 +90,6 @@ void ExtractResults()
 	
       }
     }
-    
-    
     file->Close("R");    
     counter = counter + 1.0;
   }
@@ -115,8 +117,8 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr2->SetName(Form("Exnse_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
     gr2->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //Change based on what is being scanned
-    gr2->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //
+    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
+    gr2->GetXaxis()->SetTitle("Segment position [cm]"); //
     fA_PEmean.push_back(gr);
     fA_Exnse.push_back(gr2);
     C_mp->cd(1);
@@ -140,8 +142,12 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     TGraphErrors* gr = new TGraphErrors();
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //Change based on what is being scanned
+    gr->SetTitle("Segment scan photoelectron yield");
+    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
+    gr->GetYaxis()->SetTitle("Raw PE mean");
     fA_PEmean_hR2.push_back(gr);
+    C_mp->cd(1);
+    gr->Draw("AP");
     return fA_PEmean_hR2.size()-1;
 
   }
@@ -158,7 +164,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     TGraphErrors* gr = new TGraphErrors();
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //Change based on what is being scanned
+    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
     fA_PEmean_hR3.push_back(gr);
     return fA_PEmean_hR3.size()-1;
 
@@ -239,7 +245,7 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
   hst->Draw();
   fitsnr->Draw("lsame");
   
-  
+
 }
 
 

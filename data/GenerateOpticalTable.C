@@ -167,17 +167,18 @@ void FillGuideReflectivity()
   Float_t x,y,e;
   Int_t n = 0, bin;
 
-  double wvl, eng;
+  double wvl, eng, scale;
   
   while(!iFile.eof()){
 
     iFile >> x >> y >> e;
 
     wvl = x;
-
     eng = 1242.0/wvl;
-    LG30Refl->Fill(eng,y,1);
-    LG30Reflwv->Fill(x,y,1);
+    scale = 0.95;
+    //scale = 1.;
+    LG30Refl->Fill(eng,scale*y,1);
+    LG30Reflwv->Fill(x,scale*y,1);
 
   }
 
@@ -188,10 +189,11 @@ void FillGuideReflectivity()
     iFile2 >> x >> y >> e;
 
     wvl = x;
-
     eng = 1242.0/wvl;
-    LG45Refl->Fill(eng,y,1);
-    LG45Reflwv->Fill(x,y,1);
+    scale = 0.95;
+    //scale = 1.;
+    LG45Refl->Fill(eng,scale*y,1);
+    LG45Reflwv->Fill(x,scale*y,1);
 
   }
 
@@ -203,8 +205,10 @@ void FillGuideReflectivity()
     
     wvl = x;
     eng = 1242.0/wvl;
-    LG60Refl->Fill(eng,y,1);
-    LG60Reflwv->Fill(x,y,1);
+    scale = 0.95;
+    //scale = 1.;
+    LG60Refl->Fill(eng,scale*y,1);
+    LG60Reflwv->Fill(x,scale*y,1);
   }
 
   iFile3.close();
@@ -214,10 +218,11 @@ void FillGuideReflectivity()
     iFile4 >> x >> y >> e;
     
     wvl = x;
-    
     eng = 1242.0/wvl;
-    LG90Refl->Fill(eng,y,1);
-    LG90Reflwv->Fill(x,y,1);
+    scale = 0.95;
+    //scale = 1.;
+    LG90Refl->Fill(eng,scale*y,1);
+    LG90Reflwv->Fill(x,scale*y,1);
   }
 
   iFile4.close();

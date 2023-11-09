@@ -15,14 +15,14 @@ hr_step = 1     #Increments over each value of hr
 
 cut_start = 1  #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
 cut_stop = 65
-cut_step = 2
+cut_step = 1
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). May be removed and set in src/...PrimaryGeneratorAction.cc for new UMass cosmic stand
 sa_stop = 0
 sa_step = 5
 
-ID_start = 3    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 3
+ID_start = 2    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 2
 ID_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):

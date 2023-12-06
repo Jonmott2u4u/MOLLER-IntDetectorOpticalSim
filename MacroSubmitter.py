@@ -13,16 +13,16 @@ hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 
 hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 1  #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
+cut_start = 0.5 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
 cut_stop = 65
-cut_step = 1
+cut_step = 0.5
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). May be removed and set in src/...PrimaryGeneratorAction.cc for new UMass cosmic stand
 sa_stop = 0
 sa_step = 5
 
-ID_start = 2    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 2
+ID_start = 4    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 4
 ID_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):

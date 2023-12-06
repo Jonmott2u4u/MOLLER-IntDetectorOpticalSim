@@ -16,23 +16,23 @@ Energy = 8000 #Units of MeV. Normally disabled, but can be reenabled in MOLLEROp
 RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
 RndSeed2 = random.randrange(600001, 900000) #
 
-NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,5000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 10   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
 hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 1   #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 65   #
-cut_step = 1
+cut_start = 0.5  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_stop = 65  #
+cut_step = 0.5
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). May be removed and set in src/...PrimaryGeneratorAction.cc for new UMass cosmic stand
 sa_stop = 0
 sa_step = 5
 
-ID_start = 2    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 2
+ID_start = 4    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 4
 ID_step = 1
 
 text_root = ""
@@ -170,7 +170,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"
                 Text += "/Det/UpdateGeometry" + "\n\n"
                 Text += "/Generator/EventHitRegion " + str(hr) + "\n"
-                Text += "/Generator/SegmentHitRegion " + str(cut) + "\n"
+                Text += "/Generator/SegmentHitRegion " + str(cut) + " cm" + "\n"
                 Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
                 Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
                 Text += "/RunAction/SetID " + str(id) + "\n"

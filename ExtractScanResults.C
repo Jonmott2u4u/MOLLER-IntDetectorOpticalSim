@@ -19,7 +19,10 @@ void ExtractScanResults()
 {
   gSystem->Load("libMOLLEROptDictionaries.so");
 
-  std::ifstream rfiles("temp.dat");
+  //std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
+  //ring_dat.open ("sim_R3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
+
+  std::ifstream rfiles("r6.dat");
   std::string line;
   TFile *file;
 
@@ -37,15 +40,18 @@ void ExtractScanResults()
   Ssiz_t from = 0;
   Double_t fitP[4], fitE[4];
   TGraphErrors *gr, *gr2;
+
+  Int_t counter_vec;
  
   counter=0; 
+  counter_vec=0;
   while(std::getline(rfiles, line)){
 
     from = 0;
     file = TFile::Open(line.data());
 
-    //hr=hitR[0];
     hr=hitR[0];
+    //hr=hitR[1];
       
     cout << line.data() << endl;
     tmpStr = line.data();
@@ -53,9 +59,8 @@ void ExtractScanResults()
     runID = 0003;      
     
     param_run = param + counter*param_step;
-    //fa = 89;
 
-    tmp = (TH1D*)file->Get("R8_CathodeEventsDistrHist");
+    tmp = (TH1D*)file->Get("R8_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
     
     hst = (TH1D*)tmp->Clone(Form("CEH_%s",runID.Data()));
     hst->SetTitle("Photoelectron Distribution");
@@ -66,33 +71,36 @@ void ExtractScanResults()
     m = FindGraph(fa,hr);
  
     if(m >= 0){
-
       if(hr == 1){
-	DoFit(hst,fitP,fitE);
-	
-	fA_PEmean[m]->SetPoint(fA_PEmean[m]->GetN(),param_run,fitP[1]);
-	fA_PEmean[m]->SetPointError(fA_PEmean[m]->GetN()-1,0,fitE[1]);
-	
-	fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,fitP[3]/fitP[1]);
-	fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,(fitP[3]/fitP[1])*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
+      
+        DoFit(hst,fitP,fitE);
+        
+        fA_PEmean[m]->SetPoint(fA_PEmean[m]->GetN(),param_run,fitP[1]);
+        fA_PEmean[m]->SetPointError(fA_PEmean[m]->GetN()-1,0,fitE[1]);
+        
+        fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,fitP[3]/fitP[1]);
+        fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,(fitP[3]/fitP[1])*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
 
       }
       else if(hr == 2){
-	
-	fA_PEmean_hR2[m]->SetPoint(fA_PEmean_hR2[m]->GetN(),param_run,hst->GetMean());
-	fA_PEmean_hR2[m]->SetPointError(fA_PEmean_hR2[m]->GetN()-1,0,hst->GetMeanError());
-	
+        
+        fA_PEmean_hR2[m]->SetPoint(fA_PEmean_hR2[m]->GetN(),param_run,hst->GetMean());
+        fA_PEmean_hR2[m]->SetPointError(fA_PEmean_hR2[m]->GetN()-1,0,hst->GetMeanError());
+        
       }    
       else if(hr == 3){
-	
-	fA_PEmean_hR3[m]->SetPoint(fA_PEmean_hR3[m]->GetN(),param_run,hst->GetMean());
-	fA_PEmean_hR3[m]->SetPointError(fA_PEmean_hR3[m]->GetN()-1,0,hst->GetMeanError());
+        
+        fA_PEmean_hR3[m]->SetPoint(fA_PEmean_hR3[m]->GetN(),param_run,hst->GetMean());
+        fA_PEmean_hR3[m]->SetPointError(fA_PEmean_hR3[m]->GetN()-1,0,hst->GetMeanError());
 	
       }
     }
+    //ring_dat <<param_run<<" "<<fitP[1]<<" "<<fitE[1]<<" "<<fitP[3]<<" "<<fitE[3]<<" "<<hst->GetMean()<<" "<<hst->GetRMS()<<" "<<100.*fitP[3]/fitP[1]<<" "<<100.*(hst->GetRMS())/(hst->GetMean())<<"\n";
     file->Close("R");    
     counter = counter + 1.0;
+    counter_vec++;
   }
+  //ring_dat.close();
   rfiles.close();
 }
 
@@ -119,6 +127,8 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr2->SetMarkerStyle(21);
     gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
     gr2->GetXaxis()->SetTitle("Segment position [cm]"); //
+    gr->GetYaxis()->SetTitle("Langau PEs");
+    gr2->GetYaxis()->SetTitle("Resolution [GSigma/MP]");
     fA_PEmean.push_back(gr);
     fA_Exnse.push_back(gr2);
     C_mp->cd(1);
@@ -198,8 +208,8 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
   // Setting fit range and start values
   Double_t fr[2];
   Double_t sv[4], pllo[4], plhi[4], fp[4], fpe[4];
-  fr[0] = peaks_m[0] - 8;
-  fr[1] = peaks_m[0] + 8;
+  fr[0] = 0.6*peaks_m[0];
+  fr[1] = 1.6*peaks_m[0];
 
   sv[0] = fr[1] - fr[0];
   sv[1] = peaks_m[0];

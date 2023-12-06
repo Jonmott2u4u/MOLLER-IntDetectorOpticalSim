@@ -223,7 +223,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   else if(EventRegion == 10){
     //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = Qlim1[2] + 1396*TMath::Sin(3*pi/180) + 10*(cut-G4UniformRand());
+    y = Qlim1[2] + 1396*TMath::Sin(3*pi/180) + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
   }
   else{
     //Defaults to Ring 1

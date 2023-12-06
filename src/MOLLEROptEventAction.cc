@@ -116,24 +116,22 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 									      track->InitMomDirZ);      
       
       if(track->Particle == myElectron){
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
+	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
+	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
 
-	if(track->QuartzHitFlag){
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(1);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionX((Float_t)track->QuartzHitX/cm);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionY((Float_t)track->QuartzHitY/cm);
-    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionZ((Float_t)track->QuartzHitZ/cm);
-	}	
-	// for(int p = 0; p < track->SecPhotonAngle.size(); p++){
-	// }
-	for(int p = 0; p < track->StepNChPhotons.size(); p++){
-	  // analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzStepNPhotons(track->StepNChPhotons[p]);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzElectronStepLength(track->StepLength[p]/cm);
-	}
-	for(int p = 0; p < track->SecPhotonAngle.size(); p++)
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+        if(track->QuartzHitFlag & (track->QuartzHitX/cm < 10000) & (track->QuartzHitY/cm > -10000)){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionX((Float_t)track->QuartzHitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionY((Float_t)track->QuartzHitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionZ((Float_t)track->QuartzHitZ/cm);
+        }	
+        for(int p = 0; p < track->StepNChPhotons.size(); p++){
+          // analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzStepNPhotons(track->StepNChPhotons[p]);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzElectronStepLength(track->StepLength[p]/cm);
+        }
+        for(int p = 0; p < track->SecPhotonAngle.size(); p++)
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
       }
       if(track->Particle == myPhoton){
 	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(track->ID);	

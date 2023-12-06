@@ -31,11 +31,12 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   EventHitRegionCmd->SetRange("EventHitRegion>=1");
   EventHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  SegmentHitRegionCmd = new G4UIcmdWithAnInteger("/Generator/SegmentHitRegion",this);
+  SegmentHitRegionCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitRegion",this);
   SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
   SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
   SegmentHitRegionCmd->SetDefaultValue(1);
   SegmentHitRegionCmd->SetRange("SegmentHitRegion>=0");
+  SegmentHitRegionCmd->SetDefaultUnit("cm");
   SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);
@@ -88,7 +89,7 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
     { pPrimaryGeneratorAction->SetEventHitRgion(EventHitRegionCmd->GetNewIntValue(newValue)); }
 
   if( command == SegmentHitRegionCmd )
-    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewIntValue(newValue)); }
+    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewDoubleValue(newValue)); }
 
   if( command == BeamThetaCmd )
     { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue)); }

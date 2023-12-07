@@ -225,14 +225,22 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
     y = Qlim1[2] + 1396*TMath::Sin(3*pi/180) + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
   }
+  else if(EventRegion == 11){
+    //Cosmic distribution for new cosmic stand. Based on 2 large trapezoidal scintillator paddles ~ 2134 mm apart. Approximating as 600x600 mm rectangle
+    //Top scint is ~ 365 mm above center of R6 tile
+    //Bot scint is ~ 373 mm below center of R1 tile
+    //When using, set sa to ~16 in macros
+    y = (Qlim8[3]+Qlim8[2])/2.0 - 50 - 429 + 600*G4UniformRand();
+    x = (Qlim8[1]+Qlim8[0])/2.0 - 130 - 265 + 600*G4UniformRand();
+  }
   else{
     //Defaults to Ring 1
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-     y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
   }
 
 
-  particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
+  particleGun->SetParticlePosition(G4ThreeVector((x-365.0*p_x)*mm,(y-365.0*p_y)*mm, -(365*p_z)*mm)); //241 is usually set to 300. No particular reason why
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

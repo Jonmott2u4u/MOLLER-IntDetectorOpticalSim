@@ -13,10 +13,10 @@ OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output f
 
 Energy = 8000 #Units of MeV. Currently disabled, but can be reenabled in MOLLEROptPrimaryGeneratorAction.cc
 
-RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
-RndSeed2 = random.randrange(600001, 900000) #
+#RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
+#RndSeed2 = random.randrange(600001, 900000) #
 
-NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,1000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
@@ -25,14 +25,14 @@ hr_step = 1     #Increments over each value of hr
 
 cut_start = 0  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
 cut_stop = 0  #
-cut_step = 0.5
+cut_step = 1
 
 sa_start = 16    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new UMass cosmic stand
 sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_stop = 100
 ID_step = 1
 
 text_root = ""
@@ -40,6 +40,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
     for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
+                RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
+                RndSeed2 = random.randrange(600001, 900000) #
                 Text = ""
                 FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)
                 Text += "#------------------#Ring 1 commands --------------------#" + "\n\n"
@@ -180,7 +182,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 #text_root += "/home/jonmott/simulations/Moller-mocha/build/rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
                 text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
     
-                FileName = OutputFilePrefix + FileIDString + ".mac"
+                FileName = OutputFilePrefix + FileIDString + "_ID" + str(id) + ".mac"
                 fout = open(datadir+FileName, "w")
                 fout.write(Text)
                 fout.close()

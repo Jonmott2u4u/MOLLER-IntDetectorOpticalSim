@@ -15,21 +15,21 @@ hr_step = 1     #Increments over each value of hr
 
 cut_start = 0 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
 cut_stop = 0
-cut_step = 0.5
+cut_step = 1
 
 sa_start = 16    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
 sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_stop = 100
 ID_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
     for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)
+                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)+"_ID"+str(id)
                 rootfile = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)+".root"
                 jobs="jobs"
                 if not os.path.exists(jobs):

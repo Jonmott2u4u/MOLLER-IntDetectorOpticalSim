@@ -16,7 +16,7 @@ Energy = 8000 #Units of MeV. Currently disabled, but can be reenabled in MOLLERO
 #RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
 #RndSeed2 = random.randrange(600001, 900000) #
 
-NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,1000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand

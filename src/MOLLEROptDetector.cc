@@ -1,6 +1,6 @@
 #include "MOLLEROptDetector.hh"
 
-MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, MOLLEROptMaterial* mat)
+MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, G4String type9, MOLLEROptMaterial* mat)
 {	    	    
   TrackingReadout = TrRO;
   DetType1 = type1;
@@ -11,6 +11,7 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   DetType6 = type6;
   DetType7 = type7;
   DetType8 = type8;
+  DetType9 = type9;
   Materials = mat;
   DetMaterial = Materials->GetMaterial("Air");  
 
@@ -45,6 +46,8 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   Quartz8 = new  MOLLEROptDetectorQuartz8(TrackingReadout,type8,Materials);
   LightGuide8 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type8,Materials);
   PMT8 = new  MOLLEROptDetectorPMT(TrackingReadout,type8,Materials,LightGuide8);
+
+  Scintillator = new  MOLLEROptDetectorScintillator(TrackingReadout,type9,Materials);
 
   detMessenger = NULL;
 
@@ -96,6 +99,8 @@ MOLLEROptDetector::~MOLLEROptDetector()
   delete Quartz8;
   delete LightGuide8;
   delete PMT8;
+
+  delete Scintillator;
 
 }
 
@@ -889,7 +894,26 @@ void MOLLEROptDetector::SetQuartzToPMTOffsetInZ8(G4double val)
     PMT8->SetCenterPositionInZ(val);
 }
 
+//Scintillator objects
 
+
+void MOLLEROptDetector::SetScintillatorSizeX(G4double x)
+{
+  if(Scintillator)
+    Scintillator->SetQuartzSizeX(x);
+}
+
+void MOLLEROptDetector::SetScintillatorSizeY(G4double y)
+{
+  if(Scintillator)
+    Scintillator->SetQuartzSizeY(y);
+}
+				       
+void MOLLEROptDetector::SetScintillatorSizeZ(G4double z)
+{
+  if(Scintillator)
+    Scintillator->SetQuartzSizeZ(z);
+}
 
 
 void MOLLEROptDetector::UpdateThisGeometry()
@@ -924,6 +948,7 @@ void MOLLEROptDetector::UpdateThisGeometry()
   PMT8->UpdateGeometry();
   Quartz8->UpdateGeometry();
   LightGuide8->UpdateGeometry();
+  Scintillator->UpdateGeometry();
   CalculateDimensions();
   DetSolid = new G4Box(DetType1+"_Solid",
 		       10* DetFullLengthX1, 
@@ -1035,6 +1060,7 @@ void MOLLEROptDetector::CalculateDimensions()
   DetFullLengthY6 = Quartz6->GetQuartzSizeY()+LightGuide6->GetLightGuideLength()+PMT6->GetPMTLength()+1.0*cm+LightGuide6->GetCurrentMiddleBoxHeight();
   DetFullLengthY7 = Quartz7->GetQuartzSizeY()+LightGuide7->GetLightGuideLength()+PMT7->GetPMTLength()+1.0*cm+LightGuide7->GetCurrentMiddleBoxHeight();
   DetFullLengthY8 = Quartz8->GetQuartzSizeY()+LightGuide8->GetLightGuideLength()+PMT8->GetPMTLength()+1.0*cm+LightGuide8->GetCurrentMiddleBoxHeight();
+  DetFullLengthYscint = Scintillator->GetQuartzSizeY();
 }
 
 void MOLLEROptDetector::ResetCenterLocation()
@@ -1086,6 +1112,7 @@ void MOLLEROptDetector::Initialize()
   Quartz8->Initialize();
   LightGuide8->Initialize();
   PMT8->Initialize();
+  Scintillator->Initialize();
   
   CalculateDimensions();
   ResetCenterLocation();
@@ -1146,6 +1173,9 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   G4double quartzZ8 = Quartz8->GetQuartzSizeZ();
   G4double lguideY8 = LightGuide8->GetCurrentUpperInterfacePlane();
   G4double Offset8  = LightGuide8->GetCurrentQuartzToPMTOffsetInZ();
+
+  G4double scinty = Scintillator->GetQuartzSizeY();
+  G4double scintz = Scintillator->GetQuartzSizeZ();
 
   G4double Qrot = Quartz1->GetQuartzRotationX();
      
@@ -1271,6 +1301,12 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   PMT8->SetCenterPositionInX(PositionDetX8);
   PMT8->SetCenterPositionInZ(PositionDetZ8+Offset8);    
   PMT8->SetCenterPositionInY(-0.5*DetFullLengthY8+quartzY8+lguideY8+PMT8->GetPMTLength()/2.0 + 5.0*mm + LightGuide8->GetCurrentMiddleBoxHeight() + PositionDetY8);
+
+  //Scintillator
+  Scintillator->Construct(DetPhysical);
+  Scintillator->SetCenterPositionInX(PositionDetXscint);
+  Scintillator->SetCenterPositionInZ(0.5*scinty*(TMath::Sin(Qrot)) + PositionDetZscint);
+  Scintillator->SetCenterPositionInY(-0.5*DetFullLengthYscint + 0.5*scinty + 0.5*scinty*(1.0-TMath::Cos(Qrot)) + 0.5*scintz*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetYscint);
 
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);
@@ -1634,6 +1670,34 @@ void MOLLEROptDetector::SetCenterPositionInZ8(G4double zPos)
 					      PositionDetZ8));
 }
 
+//Scintillator objects
+void MOLLEROptDetector::SetCenterPositionInXscint(G4double xPos)
+{
+    PositionDetXscint = xPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXscint,
+					      PositionDetYscint, 
+					      PositionDetZscint));
+}
+
+void MOLLEROptDetector::SetCenterPositionInYscint(G4double yPos)
+{
+    PositionDetYscint = yPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXscint,
+					      PositionDetYscint, 
+					      PositionDetZscint));
+}
+
+void MOLLEROptDetector::SetCenterPositionInZscint(G4double zPos)
+{
+    PositionDetZscint = zPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXscint,
+					      PositionDetYscint, 
+					      PositionDetZscint));
+}
+
 //General objects (with edits)
 void MOLLEROptDetector::SetLightGuideOffsetInX(G4double x)
 {
@@ -1868,6 +1932,10 @@ void MOLLEROptDetector::GetQuartz7Limits(G4double *vals)
 void MOLLEROptDetector::GetQuartz8Limits(G4double *vals)
 {
   Quartz8->GetQuartzLimits(vals);
+}
+void MOLLEROptDetector::GetScintillatorLimits(G4double *vals)
+{
+  Scintillator->GetQuartzLimits(vals);
 }
 
 void MOLLEROptDetector::GetLightGuide1Limits(G4double *vals)

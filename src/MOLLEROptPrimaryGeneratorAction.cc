@@ -31,12 +31,6 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double x = 0;
   G4double y = 0;
   G4double pi = TMath::Pi();
-  G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
-  G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); G4double sinTheta = std::sqrt(1-cosTheta*cosTheta); G4double Phi = 2*pi*G4UniformRand();
-  //G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
-  //G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
-  //G4double p_z = TMath::Cos(theta*pi/180);			     //Allows you to assign angles to the beam using macros. Replaced by sa
-  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
     
   G4double Qlim1[4];
   G4double Qlim2[4];
@@ -54,6 +48,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double LGlim6[8];
   G4double LGlim7[8];
   G4double LGlim8[8];
+  G4double Slim[4];
   Construction->GetQuartz1Limits(Qlim1);//Ring 1
   Construction->GetQuartz2Limits(Qlim2);//Ring 2
   Construction->GetQuartz3Limits(Qlim3);//Ring 3
@@ -70,6 +65,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   Construction->GetLightGuide6Limits(LGlim6);
   Construction->GetLightGuide7Limits(LGlim7);
   Construction->GetLightGuide8Limits(LGlim8);
+  Construction->GetScintillatorLimits(Slim);//Ring 8
 
 //~~~~~~~~Commenting this out does not effect anything, but leaving as is for now~~~~~~~~~~~~~~~~~
   if(Qlim1[0]<=0) Qlim1[0] += 1; else Qlim1[0] -= 1; 
@@ -111,6 +107,11 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(Qlim8[1]<=0) Qlim8[1] += 1; else Qlim8[1] -= 1; 
   if(Qlim8[2]<=0) Qlim8[2] += 1; else Qlim8[2] -= 1; 
   if(Qlim8[3]<=0) Qlim8[3] += 1; else Qlim8[3] -= 1;
+
+  if(Slim[0]<=0) Slim[0] += 1; else Slim[0] -= 1; 
+  if(Slim[1]<=0) Slim[1] += 1; else Slim[1] -= 1; 
+  if(Slim[2]<=0) Slim[2] += 1; else Slim[2] -= 1; 
+  if(Slim[3]<=0) Slim[3] += 1; else Slim[3] -= 1;
 
   if(LGlim1[0]<=0) LGlim1[0] += 1; else LGlim1[0] -= 1; 
   if(LGlim1[1]<=0) LGlim1[1] += 1; else LGlim1[1] -= 1; 
@@ -239,8 +240,13 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
   }
 
+  G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
+  G4double Phi = 2*pi*G4UniformRand();
+  G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); 
+  G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
+  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
 
-  particleGun->SetParticlePosition(G4ThreeVector((x-365.0*p_x)*mm,(y-365.0*p_y)*mm, -(365*p_z)*mm)); //241 is usually set to 300. No particular reason why
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, y*mm, -365*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

@@ -34,6 +34,8 @@ private:
   MOLLEROptQuartzHitsCollection*  HitsCollection6;
   MOLLEROptQuartzHitsCollection*  HitsCollection7;
   MOLLEROptQuartzHitsCollection*  HitsCollection8;
+  MOLLEROptQuartzHitsCollection*  HitsCollection9;
+
   
   G4String theCollectionName;
   //G4String theCollectionName2;  

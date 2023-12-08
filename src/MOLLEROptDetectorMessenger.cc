@@ -13,6 +13,7 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   Dir6 = new G4UIdirectory("/R6/");
   Dir7 = new G4UIdirectory("/R7/");
   Dir8 = new G4UIdirectory("/R8/");
+  Dir9 = new G4UIdirectory("/Scint/");
   Dir -> SetGuidance("General ring control.");
   Dir1 -> SetGuidance("R1 control.");
   Dir2 -> SetGuidance("R2 control.");
@@ -22,6 +23,7 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   Dir6 -> SetGuidance("R6 control.");
   Dir7 -> SetGuidance("R7 control.");
   Dir8 -> SetGuidance("R8 control.");
+  Dir9 -> SetGuidance("Scintillator control.");
   
   //Ring 1 commands
   DetZPositionCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/SetCenterPositionInZ",this);
@@ -774,6 +776,43 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   LightGuideQuartzToPMTOffsetCmd8->SetParameterName("Size",true);                                               
   LightGuideQuartzToPMTOffsetCmd8->SetUnitCategory("Length");                                                   
   LightGuideQuartzToPMTOffsetCmd8->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  //Scintillator objects
+  DetZPositionCmdScint =  new G4UIcmdWithADoubleAndUnit("/Scint/SetCenterPositionInZ",this);
+  DetZPositionCmdScint->SetGuidance("Set the Z position of the Scintillator"); 
+  DetZPositionCmdScint->SetParameterName("Size",true);
+  DetZPositionCmdScint->SetUnitCategory("Length");
+  DetZPositionCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetYPositionCmdScint =  new G4UIcmdWithADoubleAndUnit("/Scint/SetCenterPositionInY",this);
+  DetYPositionCmdScint->SetGuidance("Set the Y position of the Scintillator"); 
+  DetYPositionCmdScint->SetParameterName("Size",true);
+  DetYPositionCmdScint->SetUnitCategory("Length");
+  DetYPositionCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetXPositionCmdScint =  new G4UIcmdWithADoubleAndUnit("/Scint/SetCenterPositionInX",this);
+  DetXPositionCmdScint->SetGuidance("Set the X position of the Scintillator"); 
+  DetXPositionCmdScint->SetParameterName("Size",true);
+  DetXPositionCmdScint->SetUnitCategory("Length");
+  DetXPositionCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  QuartzSizeZCmdScint =  new G4UIcmdWithADoubleAndUnit("/Scint/QuartzSizeZ",this);
+  QuartzSizeZCmdScint->SetGuidance("Set the size of the quartz in Z"); 
+  QuartzSizeZCmdScint->SetParameterName("Size",true);
+  QuartzSizeZCmdScint->SetUnitCategory("Length");
+  QuartzSizeZCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);                  
+
+  QuartzSizeYCmdScint =  new G4UIcmdWithADoubleAndUnit("/Scint/QuartzSizeY",this);
+  QuartzSizeYCmdScint->SetGuidance("Set the size of the quartz in Y"); 
+  QuartzSizeYCmdScint->SetParameterName("Size",true);
+  QuartzSizeYCmdScint->SetUnitCategory("Length");
+  QuartzSizeYCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  QuartzSizeXCmdScint =  new G4UIcmdWithADoubleAndUnit("/Scint/QuartzSizeX",this);
+  QuartzSizeXCmdScint->SetGuidance("Set the size of the quartz in X"); 
+  QuartzSizeXCmdScint->SetParameterName("Size",true);
+  QuartzSizeXCmdScint->SetUnitCategory("Length");
+  QuartzSizeXCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);
   
   //General objects
   LightGuidePMTInterfaceOpeningXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuidePMTInterfaceOpeningX",this); 
@@ -979,6 +1018,14 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(LightGuideQuartzInterfaceOpeningZCmd8 ) delete LightGuideQuartzInterfaceOpeningZCmd8; 
   if(LightGuideQuartzToPMTOffsetCmd8       ) delete LightGuideQuartzToPMTOffsetCmd8;  
 
+  //Scintillator objects
+  if(DetXPositionCmdScint			             ) delete DetXPositionCmdScint;
+  if(DetYPositionCmdScint			             ) delete DetYPositionCmdScint;
+  if(DetZPositionCmdScint			             ) delete DetZPositionCmdScint;
+  if(QuartzSizeXCmdScint                   ) delete QuartzSizeXCmdScint;                       
+  if(QuartzSizeYCmdScint                   ) delete QuartzSizeYCmdScint;                       
+  if(QuartzSizeZCmdScint                   ) delete QuartzSizeZCmdScint;
+
   //General objects
   if(LightGuideOffsetXCmd                  ) delete LightGuideOffsetXCmd;                 
   if(LightGuideOffsetYCmd                  ) delete LightGuideOffsetYCmd;                 
@@ -1133,6 +1180,14 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == LightGuideQuartzInterfaceOpeningZCmd8 ){ Det->SetQuartzInterfaceOpeningZ8(LightGuideQuartzInterfaceOpeningZCmd8->GetNewDoubleValue(newValue));}
   if( command == LightGuideQuartzToPMTOffsetCmd8 )      { Det->SetQuartzToPMTOffsetInZ8(LightGuideQuartzToPMTOffsetCmd8->GetNewDoubleValue(newValue));}
 
+  //Scintillator objects
+  if( command == DetXPositionCmdScint ) 			{ Det->SetCenterPositionInXscint(DetXPositionCmdScint->GetNewDoubleValue(newValue));}
+  if( command == DetYPositionCmdScint ) 			{ Det->SetCenterPositionInYscint(DetYPositionCmdScint->GetNewDoubleValue(newValue));}
+  if( command == DetZPositionCmdScint ) 			{ Det->SetCenterPositionInZscint(DetZPositionCmdScint->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeXCmdScint )                      { Det->SetScintillatorSizeX(QuartzSizeXCmdScint->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeYCmdScint )                      { Det->SetScintillatorSizeY(QuartzSizeYCmdScint->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeZCmdScint )                      { Det->SetScintillatorSizeZ(QuartzSizeZCmdScint->GetNewDoubleValue(newValue));}
+
   //General objects
   if( command == UpdateGeometryCmd )                    { Det->UpdateThisGeometry();}
   if( command == SegRadDamageCmd)                       { Det->SetSegRadDamageFlag();}
@@ -1141,7 +1196,7 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == LightGuideOffsetXCmd )                 { Det->SetLightGuideOffsetInX(LightGuideOffsetXCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideOffsetYCmd )                 { Det->SetLightGuideOffsetInY(LightGuideOffsetYCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideOffsetZCmd )                 { Det->SetLightGuideOffsetInZ(LightGuideOffsetZCmd->GetNewDoubleValue(newValue));}
-  if( command == DetMatCmd ) 			        { Det->SetMaterial(newValue);}
+  if( command == DetMatCmd ) 			                      { Det->SetMaterial(newValue);}
   if( command == QuartzBevelCmd )                       { Det->SetQuartzBevel(QuartzBevelCmd->GetNewDoubleValue(newValue));}
   if( command == QuartzRotXCmd )                        { Det->SetQuartzRotX(QuartzRotXCmd->GetNewDoubleValue(newValue));}
   if( command == PolarRotationCmd )                     { Det->SetPolarRotationAngle(PolarRotationCmd->GetNewDoubleValue(newValue));}

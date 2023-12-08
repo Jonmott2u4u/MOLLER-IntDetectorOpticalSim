@@ -49,6 +49,7 @@ public:
   void       GetLightGuide6Limits(G4double *vals);
   void       GetLightGuide7Limits(G4double *vals);
   void       GetLightGuide8Limits(G4double *vals);
+  void       GetScintillatorLimits(G4double *vals);
 
 private:
   

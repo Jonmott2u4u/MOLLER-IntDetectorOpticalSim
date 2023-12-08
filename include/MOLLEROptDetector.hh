@@ -16,6 +16,7 @@
 #include "MOLLEROptDetectorQuartz6.hh"
 #include "MOLLEROptDetectorQuartz7.hh"
 #include "MOLLEROptDetectorQuartz8.hh"
+#include "MOLLEROptDetectorScintillator.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
 
@@ -26,7 +27,7 @@ class MOLLEROptDetectorMessenger;
 class MOLLEROptDetector
 {
 public:
-  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, MOLLEROptMaterial* mat);
+  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, G4String type9, MOLLEROptMaterial* mat);
   ~MOLLEROptDetector();
 
   G4VPhysicalVolume* ConstructDetector(G4VPhysicalVolume* Mother);
@@ -176,6 +177,14 @@ public:
   void SetQuartzInterfaceOpeningX8(G4double size);
   void SetQuartzToPMTOffsetInZ8(G4double val);
 
+  //Scintillator objects
+  void SetCenterPositionInXscint(G4double xPos);
+  void SetCenterPositionInYscint(G4double yPos);
+  void SetCenterPositionInZscint(G4double zPos);
+  void SetScintillatorSizeX(G4double x); 
+  void SetScintillatorSizeY(G4double y); 
+  void SetScintillatorSizeZ(G4double z);
+
   //General objects
   void SetQuartzRotX(G4double r);
   void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive y axis (up) in radians
@@ -216,6 +225,7 @@ public:
   void GetLightGuide6Limits(G4double *vals);
   void GetLightGuide7Limits(G4double *vals);
   void GetLightGuide8Limits(G4double *vals);
+  void GetScintillatorLimits(G4double *vals);
 
 
 private:
@@ -235,6 +245,7 @@ private:
   G4String DetType6;
   G4String DetType7;
   G4String DetType8;
+  G4String DetType9;
 
   MOLLEROptDetectorMessenger*  detMessenger;
   MOLLEROptTrackingReadout *TrackingReadout;
@@ -263,6 +274,7 @@ private:
   MOLLEROptDetectorLightGuide* LightGuide8; 
   MOLLEROptDetectorQuartz8*     Quartz8;
   MOLLEROptDetectorPMT*        PMT8;
+  MOLLEROptDetectorScintillator*     Scintillator;
 
   G4VPhysicalVolume* MotherVolume;
 
@@ -296,6 +308,9 @@ private:
   G4double DetFullLengthX8;
   G4double DetFullLengthY8;
   G4double DetFullLengthZ8;
+  G4double DetFullLengthXscint;
+  G4double DetFullLengthYscint;
+  G4double DetFullLengthZscint;
 
   G4ThreeVector     PositionDet1;
   G4ThreeVector     PositionDet2;
@@ -332,6 +347,9 @@ private:
   G4double PositionDetX8;
   G4double PositionDetY8;
   G4double PositionDetZ8;
+  G4double PositionDetXscint;
+  G4double PositionDetYscint;
+  G4double PositionDetZscint;
 
   G4double AzimuAngle;
   G4double PolarAngle;

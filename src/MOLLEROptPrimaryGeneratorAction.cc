@@ -231,8 +231,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //Top scint is ~ 365 mm above center of R6 tile
     //Bot scint is ~ 373 mm below center of R1 tile
     //When using, set sa to ~16 in macros
-    y = (Qlim8[3]+Qlim8[2])/2.0 - 50 - 429 + 600*G4UniformRand();
-    x = (Qlim8[1]+Qlim8[0])/2.0 - 130 - 265 + 600*G4UniformRand();
+    y = (Slim8[3]+Slim8[2])*G4UniformRand();
+    x = (Slim8[1]+Slim8[0])*G4UniformRand();
   }
   else{
     //Defaults to Ring 1

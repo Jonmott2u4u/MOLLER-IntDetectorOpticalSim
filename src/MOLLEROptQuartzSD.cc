@@ -195,7 +195,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
           HitsCollection8->insert(aHit);
 	}
   else if(theCollectionName == "ScintHitCollection"){
-          HitsCollection8->insert(aHit);
+          HitsCollection9->insert(aHit);
 	}
       }
     }

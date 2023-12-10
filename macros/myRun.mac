@@ -163,6 +163,15 @@
 /R8/SetCenterPositionInY 330 mm
 /R8/SetCenterPositionInZ 0 mm
 
+#------------------#Scintillator commands ---------------#
+
+/Scint/QuartzSizeZ 0.1 mm
+/Scint/QuartzSizeX 600 mm
+/Scint/QuartzSizeY 720 mm                       #Without the 45 degree cut
+/Scint/SetCenterPositionInX -95 mm
+/Scint/SetCenterPositionInY -100 mm
+/Scint/SetCenterPositionInZ 1769 mm
+
 #------------------#General commands --------------------#
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide

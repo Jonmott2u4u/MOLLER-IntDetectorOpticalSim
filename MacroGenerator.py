@@ -32,7 +32,7 @@ sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 100
+ID_stop = 1
 ID_step = 1
 
 text_root = ""
@@ -164,6 +164,13 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/R8/SetCenterPositionInX 0 mm" + "\n"
                 Text += "/R8/SetCenterPositionInY 330 mm" + "\n"
                 Text += "/R8/SetCenterPositionInZ 0 mm" + "\n\n"
+                Text += "#------------------#Scintillator commands ---------------#" + "\n\n"
+                Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"
+                Text += "/Scint/QuartzSizeX 600 mm" + "\n"
+                Text += "/Scint/QuartzSizeY 720 mm" + "\n"
+                Text += "/Scint/SetCenterPositionInX -95 mm" + "\n"
+                Text += "/Scint/SetCenterPositionInY -100 mm" + "\n"
+                Text += "/Scint/SetCenterPositionInZ 1769 mm" + "\n"
                 Text += "#------------------#General commands --------------------#" + "\n\n"
                 Text += "/Det/QuartzRotX -3 deg" + "\n"
                 Text += "/Det/PolarRotation 3 deg" + "\n"

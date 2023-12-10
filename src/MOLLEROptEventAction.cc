@@ -119,7 +119,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
 
-        if(track->QuartzHitFlag & (track->QuartzHitX/cm < 10000) & (track->QuartzHitY/cm > -10000)){
+        if(track->QuartzHitFlag & (track->QuartzHitX/cm < 10000) & (track->QuartzHitY/cm > -10000) & (track->QuartzHitZ/cm < 10000)){
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionX((Float_t)track->QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionY((Float_t)track->QuartzHitY/cm);

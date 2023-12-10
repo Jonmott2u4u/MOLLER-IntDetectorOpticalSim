@@ -32,7 +32,7 @@ sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_stop = 100
 ID_step = 1
 
 text_root = ""

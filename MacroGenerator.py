@@ -19,8 +19,8 @@ RndSeed2 = random.randrange(600001, 900000) #
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 1    #See macros for hr info
-hr_stop = 1
+hr_start = 5    #See macros for hr info
+hr_stop = 5
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 10  #Breaks the quartz tiles up into multiple segments. Only works for EventRegion == 8,9. Currently not looped over. If it needs to be used, add to loop

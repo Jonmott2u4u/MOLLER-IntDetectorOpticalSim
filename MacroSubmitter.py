@@ -9,8 +9,8 @@ sourceDir = "./"
 datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 1    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6
-hr_stop = 1
+hr_start = 5    #See macros for hr info
+hr_stop = 5
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 10  #Breaks the quartz tiles up into multiple segments. How it is broken up is determined using hr. Not currently implemented for the 8 detector setup

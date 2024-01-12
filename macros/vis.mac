@@ -214,9 +214,9 @@
 
 /Scint/QuartzSizeZ 0.1 mm
 /Scint/QuartzSizeX 600 mm
-/Scint/QuartzSizeY 720 mm                       #Without the 45 degree cut
+/Scint/QuartzSizeY 660 mm                       #Without the 45 degree cut
 /Scint/SetCenterPositionInX -95 mm
-/Scint/SetCenterPositionInY -100 mm
+/Scint/SetCenterPositionInY -63 mm
 /Scint/SetCenterPositionInZ 1769 mm
 
 #------------------#General commands --------------------#

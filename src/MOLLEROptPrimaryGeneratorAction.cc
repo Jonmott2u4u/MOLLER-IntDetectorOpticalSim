@@ -48,7 +48,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double LGlim6[8];
   G4double LGlim7[8];
   G4double LGlim8[8];
-  G4double Slim[4];
+  G4double Slim[8];
   Construction->GetQuartz1Limits(Qlim1);//Ring 1
   Construction->GetQuartz2Limits(Qlim2);//Ring 2
   Construction->GetQuartz3Limits(Qlim3);//Ring 3
@@ -112,6 +112,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(Slim[1]<=0) Slim[1] += 1; else Slim[1] -= 1; 
   if(Slim[2]<=0) Slim[2] += 1; else Slim[2] -= 1; 
   if(Slim[3]<=0) Slim[3] += 1; else Slim[3] -= 1;
+  if(Slim[4]<=0) Slim[4] += 1; else Slim[4] -= 1; 
+  if(Slim[5]<=0) Slim[5] += 1; else Slim[5] -= 1; 
+  if(Slim[6]<=0) Slim[6] += 1; else Slim[6] -= 1; 
+  if(Slim[7]<=0) Slim[7] += 1; else Slim[7] -= 1;
 
   if(LGlim1[0]<=0) LGlim1[0] += 1; else LGlim1[0] -= 1; 
   if(LGlim1[1]<=0) LGlim1[1] += 1; else LGlim1[1] -= 1; 

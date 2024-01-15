@@ -285,10 +285,14 @@ void MOLLEROptDetectorScintillator::GetQuartzLimits(G4double *vals)
 
   G4ThreeVector trans =  QuartzPhysical->GetTranslation();
 
-  vals[0] = -FullLengthX/2+trans.x();
-  vals[1] = FullLengthX/2+trans.x(); 
-  vals[2] = -FullLengthY/2+trans.y();
-  vals[3] = FullLengthY/2+trans.y();  
+  vals[0] = -FullLengthX/2+100+trans.x();
+  vals[1] = FullLengthX/2-100+trans.x(); 
+  vals[2] = FullLengthX/2+trans.x();
+  vals[3] = -FullLengthX/2+trans.x(); 
+  vals[4] = -FullLengthY/2+trans.y();
+  vals[5] = FullLengthY/2+trans.y(); 
+  vals[6] = FullLengthY/2+trans.y();
+  vals[7] = -FullLengthY/2+trans.y();
 
  
 }

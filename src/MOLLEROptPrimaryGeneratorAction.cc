@@ -181,56 +181,56 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(EventRegion == 1){
     //4x4 mm^2 spot on R1 quartz center
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);
     //y = Qlim1[3] - 1;
   }
   else if(EventRegion == 2){
     //4x4 mm^2 spot on R2 quartz center
     x = (Qlim2[1]+Qlim2[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand() + 1128*TMath::Sin(3*pi/180);
     //y = Qlim2[3] - 1;
   }
   else if(EventRegion == 3){
     //4x4 mm^2 spot on R3 quartz center
     x = (Qlim3[1]+Qlim3[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand() + 861*TMath::Sin(3*pi/180);
     //y = Qlim3[3] - 1;
   }
   else if(EventRegion == 4){
     //4x4 mm^2 spot on R4 quartz center
     x = (Qlim4[1]+Qlim4[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand() + 593*TMath::Sin(3*pi/180);
     //y = Qlim4[3] - 1;
   }
   else if(EventRegion == 5){
     //4x4 mm^2 spot on R5 FF quartz center
     x = (Qlim5[1]+Qlim5[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand() + 431*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 6){
     //4x4 mm^2 spot on R5 BF 1 quartz center
     x = (Qlim6[1]+Qlim6[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand() + 274*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 7){
     //4x4 mm^2 spot on R5 BF 2 quartz center
     x = (Qlim7[1]+Qlim7[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand() + 274*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 8){
     //4x4 mm^2 spot on R6 quartz center
     x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand() + 0*TMath::Sin(3*pi/180);
   }
   else if(EventRegion == 9){
     //Hits a random location from the top of R6 quartz to the bottom of R1 quartz (may hit empty space on sides of quartz)
     x = Qlim1[0] + (Qlim1[1]-Qlim1[0])*G4UniformRand();
-    y = Qlim1[2] + (Qlim8[3]-Qlim1[2])*G4UniformRand();
+    y = (Qlim1[2] + 1396*TMath::Sin(3*pi/180)) + (Qlim8[3]-Qlim1[2]-1396*TMath::Sin(3*pi/180))*G4UniformRand();
   }
   else if(EventRegion == 10){
     //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = Qlim1[2] + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
+    y = Qlim1[2] + 1396*TMath::Sin(3*pi/180) + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
   }
   else if(EventRegion == 11){
     //Cosmic distribution for new cosmic stand. Based on 2 large trapezoidal scintillator paddles ~ 2134 mm apart. Approximating as 600x600 mm rectangle
@@ -239,13 +239,13 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //When using, set sa to ~16 in macros
     y_base = Slim[4] + (Slim[5]-Slim[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
     x_shift = (Slim[3]-Slim[1])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but may work for other shapes)
-    y = y_base; //+ 1769*TMath::Sin(3*pi/180);
+    y = y_base + 1769*TMath::Sin(3*pi/180);
     x = (Slim[0]-x_shift) + (Slim[1]-Slim[0] + 2.*x_shift)*G4UniformRand();
   }
   else{
     //Defaults to Ring 1
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand();
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1396*TMath::Sin(3*pi/180);;
   }
 
   G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)

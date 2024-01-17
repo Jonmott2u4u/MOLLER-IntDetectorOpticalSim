@@ -16,8 +16,8 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  //G4ParticleDefinition* particle = G4MuonMinus::Definition();
-  G4ParticleDefinition* particle = G4Electron::Definition();
+  G4ParticleDefinition* particle = G4MuonMinus::Definition();
+  //G4ParticleDefinition* particle = G4Electron::Definition();
   particleGun->SetParticleDefinition(particle);
 }
 
@@ -30,6 +30,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   G4double x = 0;
   G4double y = 0;
+  G4double x_shift = 0;
+  G4double y_base = 0;
   G4double pi = TMath::Pi();
     
   G4double Qlim1[4];
@@ -235,8 +237,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //Top scint is ~ 365 mm above center of R6 tile
     //Bot scint is ~ 373 mm below center of R1 tile
     //When using, set sa to ~16 in macros
-    y = Slim[2] + (Slim[3]-Slim[2])*G4UniformRand() + 1769*TMath::Sin(3*pi/180);
-    x = Slim[0] + (Slim[1]-Slim[0])*G4UniformRand();
+    y_base = Slim[4] + (Slim[5]-Slim[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
+    x_shift = (Slim[3]-Slim[1])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but may work for other shapes)
+    y = y_base + 1769*TMath::Sin(3*pi/180);
+    x = (Slim[0]-x_shift) + (Slim[1]-Slim[0] + 2.*x_shift)*G4UniformRand();
   }
   else{
     //Defaults to Ring 1

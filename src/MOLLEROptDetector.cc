@@ -1309,7 +1309,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   Scintillator->SetCenterPositionInX(PositionDetXscint);
   Scintillator->SetCenterPositionInZ(0.5*scinty*(TMath::Sin(Qrot)) + PositionDetZscint);
   Scintillator->SetCenterPositionInY(-0.5*DetFullLengthYscint + 0.5*scinty + 0.5*scinty*(1.0-TMath::Cos(Qrot)) + 0.5*scintz*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetYscint);
-  Scintillator->SetQuartzRotX(-1.5*degree);
+  Scintillator->SetQuartzRotX(-1.5*degree); //Used to counteract rotation caused by improper implementation of polar angle for multiple detectors
 
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);

@@ -923,7 +923,8 @@ void MOLLEROptDetector::UpdateThisGeometry()
   G4GeometryManager::GetInstance()->OpenGeometry();
   
   delete DetPhysical;
-  RotationDet->rotateX(PolarAngle);  
+  RotationDet->rotateX(PolarAngle);
+  RotationDet->rotateZ(6.43*degree);
   PMT1->UpdateGeometry();
   Quartz1->UpdateGeometry();
   LightGuide1->UpdateGeometry();
@@ -1310,6 +1311,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   Scintillator->SetCenterPositionInZ(0.5*scinty*(TMath::Sin(Qrot)) + PositionDetZscint);
   Scintillator->SetCenterPositionInY(-0.5*DetFullLengthYscint + 0.5*scinty + 0.5*scinty*(1.0-TMath::Cos(Qrot)) + 0.5*scintz*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetYscint);
   Scintillator->SetQuartzRotX(-1.5*degree); //Used to counteract rotation caused by improper implementation of polar angle for multiple detectors
+  Scintillator->SetQuartzRotZ(-3.215*degree); //Rotates scintillator from 6.43 degrees to 0 about the z-axis
 
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);

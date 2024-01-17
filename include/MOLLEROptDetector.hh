@@ -187,6 +187,7 @@ public:
 
   //General objects
   void SetQuartzRotX(G4double r);
+  void SetQuartzRotZ(G4double r);
   void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive y axis (up) in radians
   void SetPolarRotationAngle(G4double a); //w.r.t. to the positive z axis (downstream) in radians
 

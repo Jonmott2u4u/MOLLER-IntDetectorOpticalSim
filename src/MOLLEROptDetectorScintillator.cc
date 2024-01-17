@@ -19,6 +19,7 @@ MOLLEROptDetectorScintillator::MOLLEROptDetectorScintillator(MOLLEROptTrackingRe
   OpticalParameters = Materials->GetOpticalParametersTable();
 
   QRotationX = 0;
+  QRotationZ = 0;
   
   Vertices.resize(8);
 
@@ -153,6 +154,13 @@ void MOLLEROptDetectorScintillator::SetQuartzRotX(G4double rot)
   // 					       PositionY, 
   // 					       PositionZ));
     
+}
+void MOLLEROptDetectorScintillator::SetQuartzRotZ(G4double rot)
+{
+
+  QRotationZ = rot;
+  Rotation->rotateZ(rot);
+  QuartzPhysical->SetRotation(Rotation);
 }
 
 void MOLLEROptDetectorScintillator::SetCenterPositionInX(G4double xPos)

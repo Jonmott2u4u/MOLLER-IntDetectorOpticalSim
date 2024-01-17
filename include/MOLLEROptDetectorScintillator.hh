@@ -41,11 +41,13 @@ public:
   void SetQuartzSizeZ(G4double z){FullLengthZ = z;};
   void SetBevelSize(G4double bev) {bevel = bev;};
   void SetQuartzRotX(G4double r);
+  void SetQuartzRotZ(G4double r);
   G4double GetQuartzSizeX() {return FullLengthX;}; 
   G4double GetQuartzSizeY() {return FullLengthY;}; 
   G4double GetQuartzSizeZ() {return FullLengthZ;};
 
   G4double GetQuartzRotationX(){return QRotationX;};
+  G4double GetQuartzRotationZ(){return QRotationZ;};
 
   void GetQuartzLimits(G4double *vals);
 
@@ -83,6 +85,7 @@ private:
   G4ThreeVector     Position;
   G4RotationMatrix* Rotation;
   G4double   QRotationX;
+  G4double   QRotationZ;
 
   G4double PositionX;
   G4double PositionY;

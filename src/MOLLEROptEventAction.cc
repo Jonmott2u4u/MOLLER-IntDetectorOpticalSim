@@ -183,8 +183,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
 	    }
-	  PMThit++;
     }
+	  PMThit++;
 	}
 	  
 	for(int s = 0; s < track->NSteps; s++){

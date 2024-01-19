@@ -156,7 +156,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
 	  optPhEng = track->InitKinEnergy/eV;
 	  OptParam* op = TrackingReadout->GetOpticalParameters();
-	  for(int n = 0; n < op->npar-1; n++)
+	  for(int n = 0; n < op->npar-1; n++){
 	    if(optPhEng >= op->EPhoton[n]/eV && optPhEng < op->EPhoton[n+1]/eV){
 	      if(track->PMTHitZ/cm > 120){
           R1_PMTPe += gRandom->PoissonD(op->QEff[n]);
@@ -184,6 +184,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         }
 	    }
 	  PMThit++;
+    }
 	}
 	  
 	for(int s = 0; s < track->NSteps; s++){

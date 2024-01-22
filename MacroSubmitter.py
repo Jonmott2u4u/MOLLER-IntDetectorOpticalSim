@@ -33,7 +33,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
     for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for det in np.arange(det_start,det_stop+det_step,det_step):
-                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_det"+str(det)
+                FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_det"+str(det)+"_ID"+str(id)
                 rootfile = FileIDString + ".root"
                 jobs="jobs"
                 if not os.path.exists(jobs):

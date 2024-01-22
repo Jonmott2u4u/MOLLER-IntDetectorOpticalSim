@@ -13,9 +13,6 @@ OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output f
 
 Energy = 8000 #Units of MeV. Normally disabled, but can be reenabled in MOLLEROptPrimaryGeneratorAction.cc
 
-RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
-RndSeed2 = random.randrange(600001, 900000) #
-
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 #Scannable parameters (those that can be easily adjusted for each run)
@@ -44,6 +41,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
     for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for det in np.arange(det_start,det_stop+det_step,det_step):
+                RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
+                RndSeed2 = random.randrange(600001, 900000) #       
                 Text = ""
                 FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_det"+str(det)
                 if det == 1:
@@ -191,7 +190,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
                 text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
 
-                FileName = OutputFilePrefix + FileIDString + ".mac"
+                FileName = OutputFilePrefix + FileIDString + "_ID" + str(id) + ".mac"
                 fout = open(datadir+FileName, "w")
                 fout.write(Text)
                 fout.close()

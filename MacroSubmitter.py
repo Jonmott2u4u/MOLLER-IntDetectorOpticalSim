@@ -21,7 +21,7 @@ sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 50
+ID_stop = 10
 ID_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
@@ -31,6 +31,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)+"_ID"+str(id)
                 rootfile = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)+".root"
                 jobs="jobs"
+		outDir = "rootfiles/"
                 if not os.path.exists(jobs):
                     os.system("mkdir "+jobs)
                 home = sourceDir
@@ -39,28 +40,26 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     jsubf=open(jobs+"/"+OutputFilePrefix + FileIDString+".sh", "w")
                     jsubf.write("#!/bin/bash\n")
                     #---Submission info for Mocha---
-                    outDir = "rootfiles/"
-                    jsubf.write("#SBATCH --partition=mocha\n")
-                    jsubf.write("#SBATCH --job-name=PMT_EP\n")
-                    jsubf.write("#SBATCH --output=out.out\n")
-                    jsubf.write("#SBATCH --error=e.err\n")
-                    jsubf.write("#SBATCH --time=24:00:00\n")
-                    jsubf.write("#SBATCH --nodes=1\n")
-                    jsubf.write("#SBATCH --ntasks=1\n")
-                    jsubf.write("#SBATCH --cpus-per-task=1\n")
-                    jsubf.write("#SBATCH --mem=40G\n")
-                    #---Submission info for IFarm---
-                    #outDir="/lustre19/expphy/volatile/halla/moller12gev/'username'/'path-to-file'/build/rootfiles/"
-                    #jsubf.write("#SBATCH --account=halla\n")
-                    #jsubf.write("#SBATCH --partition=production\n")
+                    #jsubf.write("#SBATCH --partition=mocha\n")
                     #jsubf.write("#SBATCH --job-name=PMT_EP\n")
-                    #jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
-                    #jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
+                    #jsubf.write("#SBATCH --output=out.out\n")
+                    #jsubf.write("#SBATCH --error=e.err\n")
                     #jsubf.write("#SBATCH --time=24:00:00\n")
                     #jsubf.write("#SBATCH --nodes=1\n")
                     #jsubf.write("#SBATCH --ntasks=1\n")
                     #jsubf.write("#SBATCH --cpus-per-task=1\n")
-                    #jsubf.write("#SBATCH --mem=80G\n")
+                    #jsubf.write("#SBATCH --mem=40G\n")
+                    #---Submission info for IFarm---
+                    jsubf.write("#SBATCH --account=halla\n")
+                    jsubf.write("#SBATCH --partition=production\n")
+                    jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                    jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
+                    jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
+                    jsubf.write("#SBATCH --time=24:00:00\n")
+                    jsubf.write("#SBATCH --nodes=1\n")
+                    jsubf.write("#SBATCH --ntasks=1\n")
+                    jsubf.write("#SBATCH --cpus-per-task=1\n")
+                    jsubf.write("#SBATCH --mem=80G\n")
                     #---General submission info---
                     jsubf.write("cd "+home+"\n")
                     jsubf.write("echo \"Current working directory is `pwd`\"\n")	

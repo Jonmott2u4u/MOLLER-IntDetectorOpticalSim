@@ -32,7 +32,7 @@ sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 50
+ID_stop = 10
 ID_step = 1
 
 text_root = ""
@@ -186,9 +186,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                 Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                 Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-                #The below 2 lines are for Mocha and IFarm respectively. Hopefully the Mocha line works for the ifarm. If it does not, use the 2nd line instead
                 text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
-                #text_root += "lustre19/expphy/volatile/halla/moller12gev/'username'/'path-to-file'/build/rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
     
                 FileName = OutputFilePrefix + FileIDString + "_ID" + str(id) + ".mac"
                 fout = open(datadir+FileName, "w")

@@ -6,7 +6,7 @@
 // #define myPositron 2
 // #define myGamma    3  //as in non-optical photon including x-ray
 // #define myProton   4
-// #define myNeutron  5
+// #define myBeam     5  //Used to be myNeutron, but does not seem to be implemented
 // #define myTriton   6
 // #define myAlpha    7
 // #define myHelium3  8
@@ -70,7 +70,7 @@ void MOLLEROptDetectorEvent::Initialize()
   LightGuideTrackHit.clear();  
   LightGuideTrackHit.resize(0);
 
-  QuartzTrackHit.clear();  
+  QuartzTrackHit.clear();
   QuartzTrackHit.resize(0);
 
   QuartzHitX.clear();  

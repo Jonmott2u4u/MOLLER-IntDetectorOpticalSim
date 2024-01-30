@@ -26,8 +26,8 @@ void MOLLEROptTrackingAction::PreUserTrackingAction(const G4Track* aTrack)
     //   G4cout << "Creator Process = " << proc->GetProcessName() << G4endl;
     // }
   }
-  else if(aTrack->GetDefinition() == G4Electron::ElectronDefinition() &&  aTrack->GetKineticEnergy() > 1.0/MeV){
-    nTrack->Particle = myElectron;
+  else if((aTrack->GetDefinition() == G4Electron::ElectronDefinition() || aTrack->GetDefinition() == G4MuonMinus::MuonMinusDefinition()) &&  aTrack->GetKineticEnergy() > 1.0/MeV){
+    nTrack->Particle = myBeam;
     // G4cout << "ID = " << aTrack->GetTrackID() << G4endl;
     // G4cout << "Parent ID = " << aTrack->GetParentID() << G4endl;
     // G4cout << "Track Energy = " << aTrack->GetKineticEnergy()/keV << G4endl;      
@@ -45,6 +45,7 @@ void MOLLEROptTrackingAction::PreUserTrackingAction(const G4Track* aTrack)
   nTrack->LGLength = 0;
   nTrack->LGSteps = 0;
   nTrack->QExitFlag = 0;
+  //nTrack->QuartzHitFlag = 0;
   nTrack->PMTHitFlag = 0;
   nTrack->LGHitFlag = 0;
   nTrack->PMTHitX = 6666;

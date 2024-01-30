@@ -115,12 +115,12 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,
 									      track->InitMomDirZ);      
       
-      if(track->Particle == myElectron){
+      if(track->Particle == myBeam){
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
 
-        if(track->QuartzHitFlag & (track->QuartzHitX/cm < 10000) & (track->QuartzHitY/cm > -10000) & (track->QuartzHitZ/cm < 10000)){
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(1);
+        if(track->QuartzHitFlag & (track->QuartzHitX/cm < 10000) & (track->QuartzHitY/cm >- 10000) & (track->QuartzHitY/cm < 10000) & (track->QuartzHitZ/cm < 10000)){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackHit(track->QuartzHitFlag);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionX((Float_t)track->QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionY((Float_t)track->QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzHitPositionZ((Float_t)track->QuartzHitZ/cm);

@@ -39,6 +39,7 @@ private:
   vector <Int_t> LightGuideReflectionProcess;
 
   vector <Int_t> QuartzTrackHit;
+
   vector <Float_t> QuartzHitX;
   vector <Float_t> QuartzHitY;
   vector <Float_t> QuartzHitZ;

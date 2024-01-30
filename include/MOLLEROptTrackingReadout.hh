@@ -9,6 +9,7 @@
 #define myPositron 2
 #define myGamma    3  //as in non-optical photon including x-ray
 #define myPhoton   4  //as in optical photon
+#define myBeam     5  //Replacement for myElectron in beam
 
 #define myQuartz 10
 #define myLightGuide 11

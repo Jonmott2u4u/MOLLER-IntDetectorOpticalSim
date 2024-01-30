@@ -137,14 +137,20 @@ void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, Fl
 
 void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
 {
-
+  /*G4cout << "Setting Quartz Hit Location" << G4endl;*/
   Int_t tr = -1;
   
   for(int n = 0; n < Tracks.size(); n++)
     if(Tracks[n]->ID == id) tr = n;
 
   if(tr == -1) return;
-  if(!Tracks[tr]->QuartzHitFlag) Tracks[tr]->QuartzHitFlag = 1;
+  if(!Tracks[tr]->QuartzHitFlag){ 
+    Tracks[tr]->QuartzHitFlag = 1;
+    /*G4cout << "Setting Hit Flag Set" << G4endl;
+    G4cout << "QuartzHitX = " << loc.x() << G4endl;
+    G4cout << "QuartzHitY = " << loc.y() << G4endl;
+    G4cout << "QuartzHitZ = " << loc.z() << G4endl;*/
+  }
   
   Tracks[tr]->QuartzHitX = loc.x();
   Tracks[tr]->QuartzHitY = loc.y();
@@ -160,7 +166,7 @@ void MOLLEROptTrackingReadout::AddNewTrack(TrackData *track)
   
   if(track->Particle == myPhoton)
     PhotonTracks++;
-  if(track->Particle == myElectron)
+  if(track->Particle == myBeam)
     ElectronTracks++;
 
 }

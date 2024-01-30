@@ -226,7 +226,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 	if(preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")) nsec++;
       }
     }
-    TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myElectron,
+    TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myBeam,
 				  aStep->GetStepLength(),0,0,myQuartz,0,
 				  aStep->GetTrack()->GetKineticEnergy(),0,0);
     TrackingReadout->AddStepNCherenkovs(aStep->GetTrack()->GetTrackID(),nsec);

@@ -217,7 +217,7 @@ void MOLLEROptSteppingAction::DrawTracks(G4bool drawFlag, G4Track *theTrack)
         if( particleType == G4OpticalPhoton::OpticalPhotonDefinition())
           { 
 	    colour = blue; }
-        if( particleType == G4Electron  ::ElectronDefinition())
+        if( particleType == G4Electron::ElectronDefinition() || particleType == G4MuonMinus::MuonMinusDefinition())
           { 
 	    colour = red; 
 	  }

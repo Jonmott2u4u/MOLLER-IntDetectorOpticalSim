@@ -117,7 +117,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/R5/QuartzSizeY 140 mm" + "\n"                
                 Text += "/R5/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                 Text += "/R5/SetCenterPositionInX 0 mm" + "\n"
-                Text += "/R5/SetCenterPositionInY 222 mm" + "\n"
+                Text += "/R5/SetCenterPositionInY 231.6 mm" + "\n"
                 Text += "/R5/SetCenterPositionInZ 431 mm" + "\n\n"
                 Text += "#------------------#Ring 5 FF1 commands --------------------#" + "\n\n"
                 Text += "/R6/LightGuideLowerConeBackAngle 19 deg" + "\n"

@@ -140,26 +140,26 @@ void MOLLEROptDetectorLightGuide::CreateOpticalSurface(G4LogicalVolume *logV)
   #if G4VERSION_NUMBER >= 1100
   G4MaterialPropertiesTable *GuideMatPropTable = new G4MaterialPropertiesTable();
 
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
+  /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar(), true);
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);
-  /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
+  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);*/
+  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar(), true);
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);*/
+  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);
   
   #else
   G4MaterialPropertiesTable *GuideMatPropTable = new G4MaterialPropertiesTable();
 
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
+  /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar());
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());
-  /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
+  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());*/
+  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar());
   GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());*/
+  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());
 
   #endif
   

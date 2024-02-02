@@ -17,7 +17,7 @@ TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
 void ExtractScanResults()
 {
-  gSystem->Load("libMOLLEROptDictionaries.so");
+  //gSystem->Load("libMOLLEROptDictionaries.so");
 
   //std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
   //ring_dat.open ("sim_R3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten

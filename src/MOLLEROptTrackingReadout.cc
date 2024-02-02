@@ -144,18 +144,60 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
     if(Tracks[n]->ID == id) tr = n;
 
   if(tr == -1) return;
-  if(!Tracks[tr]->QuartzHitFlag){ 
-    Tracks[tr]->QuartzHitFlag = 1;
-    /*G4cout << "Setting Hit Flag Set" << G4endl;
-    G4cout << "QuartzHitX = " << loc.x() << G4endl;
-    G4cout << "QuartzHitY = " << loc.y() << G4endl;
-    G4cout << "QuartzHitZ = " << loc.z() << G4endl;*/
+  if((!Tracks[tr]->R1QuartzHitFlag) & (loc.z()/cm < 150) & (loc.z()/cm > 130)){ 
+    Tracks[tr]->R1QuartzHitFlag = 1;
+    Tracks[tr]->R1QuartzHitX = loc.x();
+    Tracks[tr]->R1QuartzHitY = loc.y();
+    Tracks[tr]->R1QuartzHitZ = loc.z();
   }
-  
-  Tracks[tr]->QuartzHitX = loc.x();
-  Tracks[tr]->QuartzHitY = loc.y();
-  Tracks[tr]->QuartzHitZ = loc.z();
-
+  if((!Tracks[tr]->R2QuartzHitFlag) & (loc.z()/cm < 120) & (loc.z()/cm > 100)){ 
+    Tracks[tr]->R2QuartzHitFlag = 1;
+    Tracks[tr]->R2QuartzHitX = loc.x();
+    Tracks[tr]->R2QuartzHitY = loc.y();
+    Tracks[tr]->R2QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->R3QuartzHitFlag) & (loc.z()/cm < 100) & (loc.z()/cm > 80)){ 
+    Tracks[tr]->R3QuartzHitFlag = 1;
+    Tracks[tr]->R3QuartzHitX = loc.x();
+    Tracks[tr]->R3QuartzHitY = loc.y();
+    Tracks[tr]->R3QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->R4QuartzHitFlag) & (loc.z()/cm < 70) & (loc.z()/cm > 50)){ 
+    Tracks[tr]->R4QuartzHitFlag = 1;
+    Tracks[tr]->R4QuartzHitX = loc.x();
+    Tracks[tr]->R4QuartzHitY = loc.y();
+    Tracks[tr]->R4QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->R5QuartzHitFlag) & (loc.z()/cm < 50) & (loc.z()/cm > 35)){ 
+    Tracks[tr]->R5QuartzHitFlag = 1;
+    Tracks[tr]->R5QuartzHitX = loc.x();
+    Tracks[tr]->R5QuartzHitY = loc.y();
+    Tracks[tr]->R5QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->R6QuartzHitFlag) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm < 0)){ //Currently not working properly due to rotation of segment
+    Tracks[tr]->R6QuartzHitFlag = 1;
+    Tracks[tr]->R6QuartzHitX = loc.x();
+    Tracks[tr]->R6QuartzHitY = loc.y();
+    Tracks[tr]->R6QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->R7QuartzHitFlag) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm > 0)){ //Currently not working properly due to rotation of segment
+    Tracks[tr]->R7QuartzHitFlag = 1;
+    Tracks[tr]->R7QuartzHitX = loc.x();
+    Tracks[tr]->R7QuartzHitY = loc.y();
+    Tracks[tr]->R7QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->R8QuartzHitFlag) & (loc.z()/cm < 10)){ 
+    Tracks[tr]->R8QuartzHitFlag = 1;
+    Tracks[tr]->R8QuartzHitX = loc.x();
+    Tracks[tr]->R8QuartzHitY = loc.y();
+    Tracks[tr]->R8QuartzHitZ = loc.z();
+  }
+  if((!Tracks[tr]->ScintHitFlag) & (loc.z()/cm > 170)){ 
+    Tracks[tr]->ScintHitFlag = 1;
+    Tracks[tr]->ScintHitX = loc.x();
+    Tracks[tr]->ScintHitY = loc.y();
+    Tracks[tr]->ScintHitZ = loc.z();
+  }
 }
 
 

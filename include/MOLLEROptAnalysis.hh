@@ -54,6 +54,15 @@ public:
   void R8_AddPhotoElectronEvent(Double_t pe){ R8_PhotoElectronDistrHist->Fill(pe);};
   void R8_AddCathodeDetectionEvent(Int_t events) {R8_CathodeEventsDistrHist->Fill(events);};
 
+  void R1Only_AddCathodeDetectionEvent(Int_t events) {R1Only_CathodeEventsDistrHist->Fill(events);};
+  void R2Only_AddCathodeDetectionEvent(Int_t events) {R2Only_CathodeEventsDistrHist->Fill(events);};
+  void R3Only_AddCathodeDetectionEvent(Int_t events) {R3Only_CathodeEventsDistrHist->Fill(events);};
+  void R4Only_AddCathodeDetectionEvent(Int_t events) {R4Only_CathodeEventsDistrHist->Fill(events);};
+  void R5Only_AddCathodeDetectionEvent(Int_t events) {R5Only_CathodeEventsDistrHist->Fill(events);};
+  void R6Only_AddCathodeDetectionEvent(Int_t events) {R6Only_CathodeEventsDistrHist->Fill(events);};
+  void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
+  void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
+
   MOLLEROptMainEvent* MOLLERMainEvent;
 
 private:
@@ -68,6 +77,7 @@ private:
   TProfile*    PMTOptPhotonDistrHist;
   TProfile*    QuartzOptPhotonDistrHist;
   TProfile*    LightGuideOptPhotonDistrHist;
+
   TH1D*    R1_PhotoElectronDistrHist;
   TH1D*    R1_CathodeEventsDistrHist;
   TH1D*    R2_PhotoElectronDistrHist;
@@ -84,6 +94,15 @@ private:
   TH1D*    R7_CathodeEventsDistrHist;
   TH1D*    R8_PhotoElectronDistrHist;
   TH1D*    R8_CathodeEventsDistrHist;
+
+  TH1D*    R1Only_CathodeEventsDistrHist; //Unlike R#_CathodeEvents, only includes PEs from electrons that hit only that detector
+  TH1D*    R2Only_CathodeEventsDistrHist; //
+  TH1D*    R3Only_CathodeEventsDistrHist; //
+  TH1D*    R4Only_CathodeEventsDistrHist; //
+  TH1D*    R5Only_CathodeEventsDistrHist; //
+  TH1D*    R6Only_CathodeEventsDistrHist; //
+  TH1D*    R7Only_CathodeEventsDistrHist; //
+  TH1D*    R8Only_CathodeEventsDistrHist; //
   
   TVectorD *NumberOfPrimaries;
   Float_t OptPhotonDist[800];

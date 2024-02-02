@@ -201,7 +201,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
     }
   }
   
-  if(aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()){
+  if((aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()) || (aStep->GetTrack()->GetDefinition() == G4MuonMinus::MuonMinusDefinition())){
     
 
     G4ThreeVector primom = aStep->GetTrack()->GetMomentumDirection();

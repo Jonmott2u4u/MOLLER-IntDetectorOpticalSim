@@ -37,9 +37,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 jobs="jobs"
                 if not os.path.exists(jobs):
                     os.system("mkdir "+jobs)
-
-                outDir = "rootfiles/" #If path does not work, use full path in ifarm (example below)
-                #outDir="/lustre19/expphy/volatile/halla/moller12gev/'username'/'path-to-file'/build/rootfiles/"
+                outDir = "rootfiles/"
                 home = sourceDir
                 FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
                 if os.path.exists(FileName):

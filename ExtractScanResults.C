@@ -13,9 +13,9 @@ std::vector <TGraphErrors*> fA_PEmean_hR3;
 std::vector <TGraphErrors*> fA_Exnse;
 TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
-void ExtractResults()
+void ExtractScanResults()
 {
-  gSystem->Load("libMOLLEROptDictionaries.so");
+  //gSystem->Load("libMOLLEROptDictionaries.so");
 
   std::ifstream rfiles("files.dat");
   std::string line;

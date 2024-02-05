@@ -10,8 +10,10 @@
 #include "MOLLEROptLightGuideHit.hh"
 #include "MOLLEROptPMTHit.hh"
 #include "MOLLEROptTrackingReadout.hh"
+#include "MOLLEROptEventActionMessenger.hh"
 
 class MOLLEROptAnalysis;
+class MOLLEROptEventActionMessenger;
 
 struct lTrackData
 {
@@ -32,6 +34,10 @@ public:
   void BeginOfEventAction(const G4Event* evt);
   void EndOfEventAction(const G4Event* evt);
   
+public:
+
+  void SetDetectorFocus(G4int reg) {Det = reg;};
+
 private:
 
   void Initialize();
@@ -39,6 +45,7 @@ private:
   void AddQuartzTrackStep(G4int id, G4int step);
   char buffer[100];
   G4int CollID[3];
+  G4int Det;
 
   //vector <Int_t> ProcessedTrack;
   vector <lTrackData*> ProcessedTrack;
@@ -58,6 +65,8 @@ private:
   TH1D *LightGuideSecOptPhotonCnt;
 
   ofstream oFile;
+
+  MOLLEROptEventActionMessenger* EventMessenger;
 };
 
 #endif

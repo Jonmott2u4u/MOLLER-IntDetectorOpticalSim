@@ -5,6 +5,8 @@ MOLLEROptEventAction::MOLLEROptEventAction(MOLLEROptAnalysis* AN, MOLLEROptTrack
   analysis    = AN;
   TrackingReadout  = TrRO;
 
+  EventMessenger = new MOLLEROptEventActionMessenger(this);
+
   PMTSecOptPhotonCnt = new TH1D("PMTSecOptPhotonCnt","",800,100,900);
   PMTSecOptPhotonCnt->SetBit(TH1::kIsAverage);
 
@@ -271,14 +273,33 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	
       }
     }
-    //if(R1_Tracker == 1) analysis->FillRootNtuple();
-    //if(R2_Tracker == 1) analysis->FillRootNtuple();
-    //if(R3_Tracker == 1) analysis->FillRootNtuple();
-    //if(R4_Tracker == 1) analysis->FillRootNtuple();
-    //if(R5_Tracker == 1) analysis->FillRootNtuple();
-    //if(R6_Tracker == 1) analysis->FillRootNtuple();
-    //if(R7_Tracker == 1) analysis->FillRootNtuple();
-    if(R8_Tracker == 1) analysis->FillRootNtuple();
+    if(Det == 0){
+      analysis->FillRootNtuple();
+    }
+    if(Det == 1){
+      if(R1_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 2){
+      if(R2_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 3){
+      if(R3_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 4){
+      if(R4_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 5){
+      if(R5_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 6){
+      if(R6_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 7){
+      if(R7_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 8){
+      if(R8_Tracker == 1) analysis->FillRootNtuple();
+    }
   }
   //tempmarker
   analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct

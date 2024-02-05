@@ -271,7 +271,14 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	
       }
     }
-    analysis->FillRootNtuple();
+    //if(R1_Tracker == 1) analysis->FillRootNtuple();
+    //if(R2_Tracker == 1) analysis->FillRootNtuple();
+    //if(R3_Tracker == 1) analysis->FillRootNtuple();
+    //if(R4_Tracker == 1) analysis->FillRootNtuple();
+    //if(R5_Tracker == 1) analysis->FillRootNtuple();
+    //if(R6_Tracker == 1) analysis->FillRootNtuple();
+    //if(R7_Tracker == 1) analysis->FillRootNtuple();
+    if(R8_Tracker == 1) analysis->FillRootNtuple();
   }
   //tempmarker
   analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct

@@ -99,6 +99,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4int R6_Tracker = 0;
   G4int R7_Tracker = 0;
   G4int R8_Tracker = 0;
+  G4int Scint_Tracker = 0;
+  G4int GEM_Tracker = 0;
 
  
   Float_t  optPhEng, wvl, bwdt = QuartzSecOptPhotonCnt->GetBinWidth(2);
@@ -184,10 +186,22 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionX((Float_t)track->ScintHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionY((Float_t)track->ScintHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionZ((Float_t)track->ScintHitZ/cm);
-          //G4cout << "SCINTILLATOR" << G4endl;
-
         }
-        if(track->ScintHitFlag){
+        if(track->GEMScint1HitFlag & (track->GEMScint1HitX/cm < 10000) & (track->GEMScint1HitY/cm >- 10000) & (track->GEMScint1HitY/cm < 10000) & (track->GEMScint1HitZ/cm < 500)){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1TrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionX((Float_t)track->GEMScint1HitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionY((Float_t)track->GEMScint1HitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionZ((Float_t)track->GEMScint1HitZ/cm);
+        }
+        if(track->GEMScint2HitFlag & (track->GEMScint2HitX/cm < 10000) & (track->GEMScint2HitY/cm >- 10000) & (track->GEMScint2HitY/cm < 10000) & (track->GEMScint2HitZ/cm < 500)){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2TrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionX((Float_t)track->GEMScint2HitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionY((Float_t)track->GEMScint2HitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionZ((Float_t)track->GEMScint2HitZ/cm);
+        }
+        if((track->ScintHitFlag)){
+          Scint_Tracker = 1;
+          if((track->GEMScint1HitFlag) & (track->GEMScint2HitFlag)) GEM_Tracker = 1;
           if((track->R1QuartzHitFlag) & (!track->R2QuartzHitFlag) & (!track->R3QuartzHitFlag) & (!track->R4QuartzHitFlag) & (!track->R5QuartzHitFlag) & (!track->R6QuartzHitFlag) & (!track->R7QuartzHitFlag) & (!track->R8QuartzHitFlag)) R1_Tracker = 1;
           if((!track->R1QuartzHitFlag) & (track->R2QuartzHitFlag) & (!track->R3QuartzHitFlag) & (!track->R4QuartzHitFlag) & (!track->R5QuartzHitFlag) & (!track->R6QuartzHitFlag) & (!track->R7QuartzHitFlag) & (!track->R8QuartzHitFlag)) R2_Tracker = 1;
           if((!track->R1QuartzHitFlag) & (!track->R2QuartzHitFlag) & (track->R3QuartzHitFlag) & (!track->R4QuartzHitFlag) & (!track->R5QuartzHitFlag) & (!track->R6QuartzHitFlag) & (!track->R7QuartzHitFlag) & (!track->R8QuartzHitFlag)) R3_Tracker = 1;
@@ -300,8 +314,15 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     if(Det == 8){
       if(R8_Tracker == 1) analysis->FillRootNtuple();
     }
+    if(Det == 9){
+      if(Scint_Tracker == 1) analysis->FillRootNtuple();
+    }
+    if(Det == 10 || Det == 11){
+      if(GEM_Tracker == 1) analysis->FillRootNtuple();
+    }
   }
-  //tempmarker
+  //Stores all PEs regardless of criteria above
+  /*
   analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
   analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
   analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
@@ -318,6 +339,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
   analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  */
 
   //Build system for sorting PEs into histograms for e- that hit only one quartz tile. Purpose is to mimic certain cuts made on UMass cosmic stand data
   if(R1_Tracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
@@ -328,6 +350,28 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R6_Tracker == 1) analysis->R6Only_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
   if(R7_Tracker == 1) analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   if(R8_Tracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+
+  //Sorting based on whether both GEMs were hit
+  if (GEM_Tracker == 1){
+  analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
+  analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+  analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
+  analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+  analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
+  analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
+  analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+  analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
+  analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+  analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
+  analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+  analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
+  analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+  analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
+  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  }
+
+
   //Sorting complete
   
   

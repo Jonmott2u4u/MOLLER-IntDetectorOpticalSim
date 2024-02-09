@@ -32,7 +32,7 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring","9Ring", Materials);
+  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring","9Ring","10Ring","11Ring", Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
   
   fWorldLengthInX =  15.0*m;
@@ -175,8 +175,18 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 
   //Scintillator (After R1)
   Detector->SetScintillatorSizeX(60.0*cm);
-  Detector->SetScintillatorSizeY(72.0*cm);  //without the 45 degree cut region
+  Detector->SetScintillatorSizeY(60.0*cm);
   Detector->SetScintillatorSizeZ(0.01*cm);
+
+  //GEM Scint 1
+  Detector->SetGEMScint1SizeX(10.0*cm);
+  Detector->SetGEMScint1SizeY(10.0*cm);
+  Detector->SetGEMScint1SizeZ(0.01*cm);
+
+  //GEM Scint 1
+  Detector->SetGEMScint2SizeX(10.0*cm);
+  Detector->SetGEMScint2SizeY(10.0*cm);
+  Detector->SetGEMScint2SizeZ(0.01*cm);
   
   //General objects
   Detector->SetPMTInterfaceOpeningZ(5.6*cm);
@@ -230,6 +240,14 @@ void MOLLEROptConstruction::GetQuartz8Limits(G4double *vals)
 void MOLLEROptConstruction::GetScintillatorLimits(G4double *vals)
 {
   Detector->GetScintillatorLimits(vals);
+}
+void MOLLEROptConstruction::GetGEMScint1Limits(G4double *vals)
+{
+  Detector->GetGEMScint1Limits(vals);
+}
+void MOLLEROptConstruction::GetGEMScint2Limits(G4double *vals)
+{
+  Detector->GetGEMScint2Limits(vals);
 }
 
 void MOLLEROptConstruction::GetLightGuide1Limits(G4double *vals)

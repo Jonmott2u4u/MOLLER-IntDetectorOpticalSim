@@ -30,6 +30,8 @@ private:
   G4UIdirectory*             Dir7;
   G4UIdirectory*             Dir8;
   G4UIdirectory*             Dir9;
+  G4UIdirectory*             Dir10;
+  G4UIdirectory*             Dir11;
   G4UIcmdWithAString*        DetMatCmd;
   
   //Ring 1 objects
@@ -175,6 +177,22 @@ private:
   G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint;
+
+  //GEM Scintillator 1 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdGEMScint1;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdGEMScint1;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdGEMScint1;
+  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdGEMScint1;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdGEMScint1;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdGEMScint1;
+
+  //GEM Scintillator 2 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdGEMScint2;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdGEMScint2;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdGEMScint2;
+  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdGEMScint2;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdGEMScint2;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdGEMScint2;
 
   //General commands
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;                       

@@ -17,6 +17,8 @@
 #include "MOLLEROptDetectorQuartz7.hh"
 #include "MOLLEROptDetectorQuartz8.hh"
 #include "MOLLEROptDetectorScintillator.hh"
+#include "MOLLEROptDetectorGEMScint1.hh"
+#include "MOLLEROptDetectorGEMScint2.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
 
@@ -27,7 +29,7 @@ class MOLLEROptDetectorMessenger;
 class MOLLEROptDetector
 {
 public:
-  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, G4String type9, MOLLEROptMaterial* mat);
+  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, G4String type9, G4String type10, G4String type11, MOLLEROptMaterial* mat);
   ~MOLLEROptDetector();
 
   G4VPhysicalVolume* ConstructDetector(G4VPhysicalVolume* Mother);
@@ -185,6 +187,22 @@ public:
   void SetScintillatorSizeY(G4double y); 
   void SetScintillatorSizeZ(G4double z);
 
+  //GEM scintillator 1 objects
+  void SetCenterPositionInXGEMScint1(G4double xPos);
+  void SetCenterPositionInYGEMScint1(G4double yPos);
+  void SetCenterPositionInZGEMScint1(G4double zPos);
+  void SetGEMScint1SizeX(G4double x); 
+  void SetGEMScint1SizeY(G4double y); 
+  void SetGEMScint1SizeZ(G4double z);
+
+  //GEM scintillator 2 objects
+  void SetCenterPositionInXGEMScint2(G4double xPos);
+  void SetCenterPositionInYGEMScint2(G4double yPos);
+  void SetCenterPositionInZGEMScint2(G4double zPos);
+  void SetGEMScint2SizeX(G4double x); 
+  void SetGEMScint2SizeY(G4double y); 
+  void SetGEMScint2SizeZ(G4double z);
+
   //General objects
   void SetQuartzRotX(G4double r);
   void SetQuartzRotZ(G4double r);
@@ -227,7 +245,8 @@ public:
   void GetLightGuide7Limits(G4double *vals);
   void GetLightGuide8Limits(G4double *vals);
   void GetScintillatorLimits(G4double *vals);
-
+  void GetGEMScint1Limits(G4double *vals);
+  void GetGEMScint2Limits(G4double *vals);
 
 private:
 
@@ -247,6 +266,8 @@ private:
   G4String DetType7;
   G4String DetType8;
   G4String DetType9;
+  G4String DetType10;
+  G4String DetType11;
 
   MOLLEROptDetectorMessenger*  detMessenger;
   MOLLEROptTrackingReadout *TrackingReadout;
@@ -276,6 +297,8 @@ private:
   MOLLEROptDetectorQuartz8*     Quartz8;
   MOLLEROptDetectorPMT*        PMT8;
   MOLLEROptDetectorScintillator*     Scintillator;
+  MOLLEROptDetectorGEMScint1*     GEMScint1;
+  MOLLEROptDetectorGEMScint2*     GEMScint2;
 
   G4VPhysicalVolume* MotherVolume;
 
@@ -312,6 +335,12 @@ private:
   G4double DetFullLengthXscint;
   G4double DetFullLengthYscint;
   G4double DetFullLengthZscint;
+  G4double DetFullLengthXGEMScint1;
+  G4double DetFullLengthYGEMScint1;
+  G4double DetFullLengthZGEMScint1;
+  G4double DetFullLengthXGEMScint2;
+  G4double DetFullLengthYGEMScint2;
+  G4double DetFullLengthZGEMScint2;
 
   G4ThreeVector     PositionDet1;
   G4ThreeVector     PositionDet2;
@@ -351,6 +380,12 @@ private:
   G4double PositionDetXscint;
   G4double PositionDetYscint;
   G4double PositionDetZscint;
+  G4double PositionDetXGEMScint1;
+  G4double PositionDetYGEMScint1;
+  G4double PositionDetZGEMScint1;
+  G4double PositionDetXGEMScint2;
+  G4double PositionDetYGEMScint2;
+  G4double PositionDetZGEMScint2;
 
   G4double AzimuAngle;
   G4double PolarAngle;

@@ -144,31 +144,31 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
     if(Tracks[n]->ID == id) tr = n;
 
   if(tr == -1) return;
-  if((!Tracks[tr]->R1QuartzHitFlag) & (loc.z()/cm < 150) & (loc.z()/cm > 130)){ 
+  if((!Tracks[tr]->R1QuartzHitFlag) & (loc.z()/cm < 145) & (loc.z()/cm > 137)){ 
     Tracks[tr]->R1QuartzHitFlag = 1;
     Tracks[tr]->R1QuartzHitX = loc.x();
     Tracks[tr]->R1QuartzHitY = loc.y();
     Tracks[tr]->R1QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R2QuartzHitFlag) & (loc.z()/cm < 120) & (loc.z()/cm > 100)){ 
+  if((!Tracks[tr]->R2QuartzHitFlag) & (loc.z()/cm < 117) & (loc.z()/cm > 111)){ 
     Tracks[tr]->R2QuartzHitFlag = 1;
     Tracks[tr]->R2QuartzHitX = loc.x();
     Tracks[tr]->R2QuartzHitY = loc.y();
     Tracks[tr]->R2QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R3QuartzHitFlag) & (loc.z()/cm < 100) & (loc.z()/cm > 80)){ 
+  if((!Tracks[tr]->R3QuartzHitFlag) & (loc.z()/cm < 90) & (loc.z()/cm > 84)){ 
     Tracks[tr]->R3QuartzHitFlag = 1;
     Tracks[tr]->R3QuartzHitX = loc.x();
     Tracks[tr]->R3QuartzHitY = loc.y();
     Tracks[tr]->R3QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R4QuartzHitFlag) & (loc.z()/cm < 70) & (loc.z()/cm > 50)){ 
+  if((!Tracks[tr]->R4QuartzHitFlag) & (loc.z()/cm < 62) & (loc.z()/cm > 57)){ 
     Tracks[tr]->R4QuartzHitFlag = 1;
     Tracks[tr]->R4QuartzHitX = loc.x();
     Tracks[tr]->R4QuartzHitY = loc.y();
     Tracks[tr]->R4QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R5QuartzHitFlag) & (loc.z()/cm < 50) & (loc.z()/cm > 35)){ 
+  if((!Tracks[tr]->R5QuartzHitFlag) & (loc.z()/cm < 45) & (loc.z()/cm > 40)){ 
     Tracks[tr]->R5QuartzHitFlag = 1;
     Tracks[tr]->R5QuartzHitX = loc.x();
     Tracks[tr]->R5QuartzHitY = loc.y();
@@ -186,7 +186,7 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
     Tracks[tr]->R7QuartzHitY = loc.y();
     Tracks[tr]->R7QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R8QuartzHitFlag) & (loc.z()/cm < 10)){ 
+  if((!Tracks[tr]->R8QuartzHitFlag) & (loc.z()/cm < 5)){ 
     Tracks[tr]->R8QuartzHitFlag = 1;
     Tracks[tr]->R8QuartzHitX = loc.x();
     Tracks[tr]->R8QuartzHitY = loc.y();
@@ -197,6 +197,18 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
     Tracks[tr]->ScintHitX = loc.x();
     Tracks[tr]->ScintHitY = loc.y();
     Tracks[tr]->ScintHitZ = loc.z();
+  }
+  if((!Tracks[tr]->GEMScint1HitFlag) & (loc.z()/cm < 55) & (loc.z()/cm > 45)){ 
+    Tracks[tr]->GEMScint1HitFlag = 1;
+    Tracks[tr]->GEMScint1HitX = loc.x();
+    Tracks[tr]->GEMScint1HitY = loc.y();
+    Tracks[tr]->GEMScint1HitZ = loc.z();
+  }
+  if((!Tracks[tr]->GEMScint2HitFlag) & (loc.z()/cm < 105) & (loc.z()/cm > 92)){ 
+    Tracks[tr]->GEMScint2HitFlag = 1;
+    Tracks[tr]->GEMScint2HitX = loc.x();
+    Tracks[tr]->GEMScint2HitY = loc.y();
+    Tracks[tr]->GEMScint2HitZ = loc.z();
   }
 }
 

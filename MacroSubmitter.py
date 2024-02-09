@@ -21,10 +21,10 @@ sa_stop = 16
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 10
+ID_stop = 1
 ID_step = 1
 
-det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
+det_start = 8    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
 det_stop = 8
 det_step = 1
 

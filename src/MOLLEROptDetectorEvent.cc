@@ -88,6 +88,10 @@ void MOLLEROptDetectorEvent::Initialize()
   R8QuartzTrackHit.resize(0);
   ScintTrackHit.clear();  
   ScintTrackHit.resize(0);
+  GEMScint1TrackHit.clear();  
+  GEMScint1TrackHit.resize(0);
+  GEMScint2TrackHit.clear();  
+  GEMScint2TrackHit.resize(0);
 
   R1QuartzHitX.clear();  
   R1QuartzHitX.resize(0);
@@ -107,6 +111,10 @@ void MOLLEROptDetectorEvent::Initialize()
   R8QuartzHitX.resize(0);
   ScintHitX.clear();  
   ScintHitX.resize(0);
+  GEMScint1HitX.clear();  
+  GEMScint1HitX.resize(0);
+  GEMScint2HitX.clear();  
+  GEMScint2HitX.resize(0);
 
   R1QuartzHitY.clear();  
   R1QuartzHitY.resize(0);
@@ -126,6 +134,10 @@ void MOLLEROptDetectorEvent::Initialize()
   R8QuartzHitY.resize(0);
   ScintHitY.clear();  
   ScintHitY.resize(0);
+  GEMScint1HitY.clear();  
+  GEMScint1HitY.resize(0);
+  GEMScint2HitY.clear();  
+  GEMScint2HitY.resize(0);
 
   R1QuartzHitZ.clear();  
   R1QuartzHitZ.resize(0);
@@ -145,6 +157,10 @@ void MOLLEROptDetectorEvent::Initialize()
   R8QuartzHitZ.resize(0);
   ScintHitZ.clear();  
   ScintHitZ.resize(0);
+  GEMScint1HitZ.clear();  
+  GEMScint1HitZ.resize(0);
+  GEMScint2HitZ.clear();  
+  GEMScint2HitZ.resize(0);
 
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);

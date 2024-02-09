@@ -47,6 +47,8 @@ private:
   vector <Int_t> R7QuartzTrackHit;
   vector <Int_t> R8QuartzTrackHit;
   vector <Int_t> ScintTrackHit;
+  vector <Int_t> GEMScint1TrackHit;
+  vector <Int_t> GEMScint2TrackHit;
 
   vector <Float_t> R1QuartzHitX;
   vector <Float_t> R2QuartzHitX;
@@ -57,6 +59,8 @@ private:
   vector <Float_t> R7QuartzHitX;
   vector <Float_t> R8QuartzHitX;
   vector <Float_t> ScintHitX;
+  vector <Float_t> GEMScint1HitX;
+  vector <Float_t> GEMScint2HitX;
   vector <Float_t> R1QuartzHitY;
   vector <Float_t> R2QuartzHitY;
   vector <Float_t> R3QuartzHitY;
@@ -66,6 +70,8 @@ private:
   vector <Float_t> R7QuartzHitY;
   vector <Float_t> R8QuartzHitY;
   vector <Float_t> ScintHitY;
+  vector <Float_t> GEMScint1HitY;
+  vector <Float_t> GEMScint2HitY;
   vector <Float_t> R1QuartzHitZ;
   vector <Float_t> R2QuartzHitZ;
   vector <Float_t> R3QuartzHitZ;
@@ -75,6 +81,8 @@ private:
   vector <Float_t> R7QuartzHitZ;
   vector <Float_t> R8QuartzHitZ;
   vector <Float_t> ScintHitZ;
+  vector <Float_t> GEMScint1HitZ;
+  vector <Float_t> GEMScint2HitZ;
 
   // vector <Float_t> QuartzPhotonEnergy;
   Float_t QuartzPhotonEnergy;
@@ -144,6 +152,8 @@ public:
   void AddR7QuartzTrackHit(Int_t tID){R7QuartzTrackHit.push_back(tID);};
   void AddR8QuartzTrackHit(Int_t tID){R8QuartzTrackHit.push_back(tID);};
   void AddScintTrackHit(Int_t tID){ScintTrackHit.push_back(tID);};
+  void AddGEMScint1TrackHit(Int_t tID){GEMScint1TrackHit.push_back(tID);};
+  void AddGEMScint2TrackHit(Int_t tID){GEMScint2TrackHit.push_back(tID);};
 
   void AddR1QuartzHitPositionX(Float_t x) {R1QuartzHitX.push_back(x);};
   void AddR1QuartzHitPositionY(Float_t y) {R1QuartzHitY.push_back(y);};
@@ -172,6 +182,12 @@ public:
   void AddScintHitPositionX(Float_t x) {ScintHitX.push_back(x);};
   void AddScintHitPositionY(Float_t y) {ScintHitY.push_back(y);};
   void AddScintHitPositionZ(Float_t z) {ScintHitZ.push_back(z);};
+  void AddGEMScint1HitPositionX(Float_t x) {GEMScint1HitX.push_back(x);};
+  void AddGEMScint1HitPositionY(Float_t y) {GEMScint1HitY.push_back(y);};
+  void AddGEMScint1HitPositionZ(Float_t z) {GEMScint1HitZ.push_back(z);};
+  void AddGEMScint2HitPositionX(Float_t x) {GEMScint2HitX.push_back(x);};
+  void AddGEMScint2HitPositionY(Float_t y) {GEMScint2HitY.push_back(y);};
+  void AddGEMScint2HitPositionZ(Float_t z) {GEMScint2HitZ.push_back(z);};
 
   void AddTrackInitMomDirection(Float_t x, Float_t y, Float_t z) {
     InitialTrackMomDirectionX = x;

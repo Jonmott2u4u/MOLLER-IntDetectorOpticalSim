@@ -40,6 +40,8 @@ public:
   Int_t R7QuartzHitFlag;
   Int_t R8QuartzHitFlag;
   Int_t ScintHitFlag;
+  Int_t GEMScint1HitFlag;
+  Int_t GEMScint2HitFlag;
   Int_t LGHitFlag;
   Int_t R1_Detected;
   Int_t R2_Detected;
@@ -86,6 +88,12 @@ public:
   Float_t ScintHitX;
   Float_t ScintHitY;
   Float_t ScintHitZ;
+  Float_t GEMScint1HitX;
+  Float_t GEMScint1HitY;
+  Float_t GEMScint1HitZ;
+  Float_t GEMScint2HitX;
+  Float_t GEMScint2HitY;
+  Float_t GEMScint2HitZ;
   vector <Float_t> StepLength;
   vector <Float_t> StepAngle;  
   vector <Float_t> SecPhotonAngle;  

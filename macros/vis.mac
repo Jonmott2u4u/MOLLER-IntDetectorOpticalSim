@@ -156,7 +156,7 @@
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
-/R5/SetCenterPositionInY 331.6 mm               # Default: 231.6. Set to 331 for debugging
+/R5/SetCenterPositionInY 231.6 mm               # Default: 231.6. Set to 331 for debugging
 /R5/SetCenterPositionInZ 431 mm
 
 #------------------#Ring 5 FF1 commands--------------------#
@@ -218,6 +218,20 @@
 /Scint/SetCenterPositionInX -95 mm              # -95
 /Scint/SetCenterPositionInY -93 mm              # -93
 /Scint/SetCenterPositionInZ 1769 mm             # 1769
+
+/GEMScint1/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm
+/GEMScint1/QuartzSizeX 100 mm                   # 100 mm
+/GEMScint1/QuartzSizeY 200 mm                   # 100 mm
+/GEMScint1/SetCenterPositionInX 0 mm            # 
+/GEMScint1/SetCenterPositionInY -126.20 mm      # 
+/GEMScint1/SetCenterPositionInZ 500 mm          # 
+
+/GEMScint2/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm
+/GEMScint2/QuartzSizeX 100 mm                   # 100 mm
+/GEMScint2/QuartzSizeY 200 mm                   # 100 mm
+/GEMScint2/SetCenterPositionInX 0 mm            # 
+/GEMScint2/SetCenterPositionInY -150.84 mm      # 
+/GEMScint2/SetCenterPositionInZ 970 mm          # 
 
 #------------------#General commands --------------------#
 

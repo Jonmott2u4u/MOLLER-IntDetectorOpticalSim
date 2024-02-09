@@ -14,6 +14,8 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   Dir7 = new G4UIdirectory("/R7/");
   Dir8 = new G4UIdirectory("/R8/");
   Dir9 = new G4UIdirectory("/Scint/");
+  Dir10 = new G4UIdirectory("/GEMScint1/");
+  Dir11 = new G4UIdirectory("/GEMScint2/");
   Dir -> SetGuidance("General ring control.");
   Dir1 -> SetGuidance("R1 control.");
   Dir2 -> SetGuidance("R2 control.");
@@ -24,6 +26,8 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   Dir7 -> SetGuidance("R7 control.");
   Dir8 -> SetGuidance("R8 control.");
   Dir9 -> SetGuidance("Scintillator control.");
+  Dir10 -> SetGuidance("GEM Scintillator 1 control.");
+  Dir11 -> SetGuidance("GEM Scintillator 2 control.");
   
   //Ring 1 commands
   DetZPositionCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/SetCenterPositionInZ",this);
@@ -813,6 +817,80 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   QuartzSizeXCmdScint->SetParameterName("Size",true);
   QuartzSizeXCmdScint->SetUnitCategory("Length");
   QuartzSizeXCmdScint->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  //GEM Scintillator 1 objects
+  DetZPositionCmdGEMScint1 =  new G4UIcmdWithADoubleAndUnit("/GEMScint1/SetCenterPositionInZ",this);
+  DetZPositionCmdGEMScint1->SetGuidance("Set the Z position of the Scintillator"); 
+  DetZPositionCmdGEMScint1->SetParameterName("Size",true);
+  DetZPositionCmdGEMScint1->SetUnitCategory("Length");
+  DetZPositionCmdGEMScint1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetYPositionCmdGEMScint1 =  new G4UIcmdWithADoubleAndUnit("/GEMScint1/SetCenterPositionInY",this);
+  DetYPositionCmdGEMScint1->SetGuidance("Set the Y position of the Scintillator"); 
+  DetYPositionCmdGEMScint1->SetParameterName("Size",true);
+  DetYPositionCmdGEMScint1->SetUnitCategory("Length");
+  DetYPositionCmdGEMScint1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetXPositionCmdGEMScint1 =  new G4UIcmdWithADoubleAndUnit("/GEMScint1/SetCenterPositionInX",this);
+  DetXPositionCmdGEMScint1->SetGuidance("Set the X position of the Scintillator"); 
+  DetXPositionCmdGEMScint1->SetParameterName("Size",true);
+  DetXPositionCmdGEMScint1->SetUnitCategory("Length");
+  DetXPositionCmdGEMScint1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  QuartzSizeZCmdGEMScint1 =  new G4UIcmdWithADoubleAndUnit("/GEMScint1/QuartzSizeZ",this);
+  QuartzSizeZCmdGEMScint1->SetGuidance("Set the size of the quartz in Z"); 
+  QuartzSizeZCmdGEMScint1->SetParameterName("Size",true);
+  QuartzSizeZCmdGEMScint1->SetUnitCategory("Length");
+  QuartzSizeZCmdGEMScint1->AvailableForStates(G4State_PreInit,G4State_Idle);                  
+
+  QuartzSizeYCmdGEMScint1 =  new G4UIcmdWithADoubleAndUnit("/GEMScint1/QuartzSizeY",this);
+  QuartzSizeYCmdGEMScint1->SetGuidance("Set the size of the quartz in Y"); 
+  QuartzSizeYCmdGEMScint1->SetParameterName("Size",true);
+  QuartzSizeYCmdGEMScint1->SetUnitCategory("Length");
+  QuartzSizeYCmdGEMScint1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  QuartzSizeXCmdGEMScint1 =  new G4UIcmdWithADoubleAndUnit("/GEMScint1/QuartzSizeX",this);
+  QuartzSizeXCmdGEMScint1->SetGuidance("Set the size of the quartz in X"); 
+  QuartzSizeXCmdGEMScint1->SetParameterName("Size",true);
+  QuartzSizeXCmdGEMScint1->SetUnitCategory("Length");
+  QuartzSizeXCmdGEMScint1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  //GEM Scintillator 2 objects
+  DetZPositionCmdGEMScint2 =  new G4UIcmdWithADoubleAndUnit("/GEMScint2/SetCenterPositionInZ",this);
+  DetZPositionCmdGEMScint2->SetGuidance("Set the Z position of the Scintillator"); 
+  DetZPositionCmdGEMScint2->SetParameterName("Size",true);
+  DetZPositionCmdGEMScint2->SetUnitCategory("Length");
+  DetZPositionCmdGEMScint2->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetYPositionCmdGEMScint2 =  new G4UIcmdWithADoubleAndUnit("/GEMScint2/SetCenterPositionInY",this);
+  DetYPositionCmdGEMScint2->SetGuidance("Set the Y position of the Scintillator"); 
+  DetYPositionCmdGEMScint2->SetParameterName("Size",true);
+  DetYPositionCmdGEMScint2->SetUnitCategory("Length");
+  DetYPositionCmdGEMScint2->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetXPositionCmdGEMScint2 =  new G4UIcmdWithADoubleAndUnit("/GEMScint2/SetCenterPositionInX",this);
+  DetXPositionCmdGEMScint2->SetGuidance("Set the X position of the Scintillator"); 
+  DetXPositionCmdGEMScint2->SetParameterName("Size",true);
+  DetXPositionCmdGEMScint2->SetUnitCategory("Length");
+  DetXPositionCmdGEMScint2->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  QuartzSizeZCmdGEMScint2 =  new G4UIcmdWithADoubleAndUnit("/GEMScint2/QuartzSizeZ",this);
+  QuartzSizeZCmdGEMScint2->SetGuidance("Set the size of the quartz in Z"); 
+  QuartzSizeZCmdGEMScint2->SetParameterName("Size",true);
+  QuartzSizeZCmdGEMScint2->SetUnitCategory("Length");
+  QuartzSizeZCmdGEMScint2->AvailableForStates(G4State_PreInit,G4State_Idle);                  
+
+  QuartzSizeYCmdGEMScint2 =  new G4UIcmdWithADoubleAndUnit("/GEMScint2/QuartzSizeY",this);
+  QuartzSizeYCmdGEMScint2->SetGuidance("Set the size of the quartz in Y"); 
+  QuartzSizeYCmdGEMScint2->SetParameterName("Size",true);
+  QuartzSizeYCmdGEMScint2->SetUnitCategory("Length");
+  QuartzSizeYCmdGEMScint2->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  QuartzSizeXCmdGEMScint2 =  new G4UIcmdWithADoubleAndUnit("/GEMScint2/QuartzSizeX",this);
+  QuartzSizeXCmdGEMScint2->SetGuidance("Set the size of the quartz in X"); 
+  QuartzSizeXCmdGEMScint2->SetParameterName("Size",true);
+  QuartzSizeXCmdGEMScint2->SetUnitCategory("Length");
+  QuartzSizeXCmdGEMScint2->AvailableForStates(G4State_PreInit,G4State_Idle);
   
   //General objects
   LightGuidePMTInterfaceOpeningXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuidePMTInterfaceOpeningX",this); 
@@ -1026,6 +1104,22 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(QuartzSizeYCmdScint                   ) delete QuartzSizeYCmdScint;                       
   if(QuartzSizeZCmdScint                   ) delete QuartzSizeZCmdScint;
 
+  //GEM Scintillator 1 objects
+  if(DetXPositionCmdGEMScint1			             ) delete DetXPositionCmdGEMScint1;
+  if(DetYPositionCmdGEMScint1			             ) delete DetYPositionCmdGEMScint1;
+  if(DetZPositionCmdGEMScint1			             ) delete DetZPositionCmdGEMScint1;
+  if(QuartzSizeXCmdGEMScint1                   ) delete QuartzSizeXCmdGEMScint1;                       
+  if(QuartzSizeYCmdGEMScint1                   ) delete QuartzSizeYCmdGEMScint1;                       
+  if(QuartzSizeZCmdGEMScint1                   ) delete QuartzSizeZCmdGEMScint1;
+
+  //GEM Scintillator 2 objects
+  if(DetXPositionCmdGEMScint2			             ) delete DetXPositionCmdGEMScint2;
+  if(DetYPositionCmdGEMScint2			             ) delete DetYPositionCmdGEMScint2;
+  if(DetZPositionCmdGEMScint2			             ) delete DetZPositionCmdGEMScint2;
+  if(QuartzSizeXCmdGEMScint2                   ) delete QuartzSizeXCmdGEMScint2;                       
+  if(QuartzSizeYCmdGEMScint2                   ) delete QuartzSizeYCmdGEMScint2;                       
+  if(QuartzSizeZCmdGEMScint2                   ) delete QuartzSizeZCmdGEMScint2;
+
   //General objects
   if(LightGuideOffsetXCmd                  ) delete LightGuideOffsetXCmd;                 
   if(LightGuideOffsetYCmd                  ) delete LightGuideOffsetYCmd;                 
@@ -1187,6 +1281,22 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == QuartzSizeXCmdScint )                      { Det->SetScintillatorSizeX(QuartzSizeXCmdScint->GetNewDoubleValue(newValue));}
   if( command == QuartzSizeYCmdScint )                      { Det->SetScintillatorSizeY(QuartzSizeYCmdScint->GetNewDoubleValue(newValue));}
   if( command == QuartzSizeZCmdScint )                      { Det->SetScintillatorSizeZ(QuartzSizeZCmdScint->GetNewDoubleValue(newValue));}
+
+  //GEM Scintillator 1 objects
+  if( command == DetXPositionCmdGEMScint1 ) 			{ Det->SetCenterPositionInXGEMScint1(DetXPositionCmdGEMScint1->GetNewDoubleValue(newValue));}
+  if( command == DetYPositionCmdGEMScint1 ) 			{ Det->SetCenterPositionInYGEMScint1(DetYPositionCmdGEMScint1->GetNewDoubleValue(newValue));}
+  if( command == DetZPositionCmdGEMScint1 ) 			{ Det->SetCenterPositionInZGEMScint1(DetZPositionCmdGEMScint1->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeXCmdGEMScint1 )                      { Det->SetGEMScint1SizeX(QuartzSizeXCmdGEMScint1->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeYCmdGEMScint1 )                      { Det->SetGEMScint1SizeY(QuartzSizeYCmdGEMScint1->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeZCmdGEMScint1 )                      { Det->SetGEMScint1SizeZ(QuartzSizeZCmdGEMScint1->GetNewDoubleValue(newValue));}
+
+  //GEM Scintillator 2 objects
+  if( command == DetXPositionCmdGEMScint2 ) 			{ Det->SetCenterPositionInXGEMScint2(DetXPositionCmdGEMScint2->GetNewDoubleValue(newValue));}
+  if( command == DetYPositionCmdGEMScint2 ) 			{ Det->SetCenterPositionInYGEMScint2(DetYPositionCmdGEMScint2->GetNewDoubleValue(newValue));}
+  if( command == DetZPositionCmdGEMScint2 ) 			{ Det->SetCenterPositionInZGEMScint2(DetZPositionCmdGEMScint2->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeXCmdGEMScint2 )                      { Det->SetGEMScint2SizeX(QuartzSizeXCmdGEMScint2->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeYCmdGEMScint2 )                      { Det->SetGEMScint2SizeY(QuartzSizeYCmdGEMScint2->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeZCmdGEMScint2 )                      { Det->SetGEMScint2SizeZ(QuartzSizeZCmdGEMScint2->GetNewDoubleValue(newValue));}
 
   //General objects
   if( command == UpdateGeometryCmd )                    { Det->UpdateThisGeometry();}

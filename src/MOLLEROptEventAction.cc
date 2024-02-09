@@ -322,7 +322,6 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
   }
   //Stores all PEs regardless of criteria above
-  /*
   analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
   analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
   analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
@@ -339,7 +338,6 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
   analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-  */
 
   //Build system for sorting PEs into histograms for e- that hit only one quartz tile. Purpose is to mimic certain cuts made on UMass cosmic stand data
   if(R1_Tracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
@@ -351,25 +349,25 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R7_Tracker == 1) analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   if(R8_Tracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
 
-  //Sorting based on whether both GEMs were hit
-  if (GEM_Tracker == 1){
-  analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
-  analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-  analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
-  analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-  analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
-  analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
-  analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-  analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
-  analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-  analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
-  analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-  analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
-  analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-  analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
-  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-  }
+  //Sorting based on whether both GEMs were hit. Not working as intented yet
+  /*if (GEM_Tracker == 1){
+    analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
+    analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+    analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
+    analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+    analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
+    analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+    analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
+    analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+    analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
+    analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+    analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
+    analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+    analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
+    analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+    analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
+    analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  }*/
 
 
   //Sorting complete

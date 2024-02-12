@@ -91,16 +91,17 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4double R1_PMTPe = 0, R2_PMTPe = 0, R3_PMTPe = 0, R4_PMTPe = 0, R5_PMTPe = 0, R6_PMTPe = 0, R7_PMTPe = 0, R8_PMTPe = 0;
   G4int NumSecPhotons = 0;
   G4int hitflag = 0;
-  G4int R1_Tracker = 0; //Tracks whether a detector's quartz tile has been hit in a given event
-  G4int R2_Tracker = 0;
-  G4int R3_Tracker = 0;
-  G4int R4_Tracker = 0;
-  G4int R5_Tracker = 0;
-  G4int R6_Tracker = 0;
-  G4int R7_Tracker = 0;
-  G4int R8_Tracker = 0;
-  G4int Scint_Tracker = 0;
-  G4int GEM_Tracker = 0;
+  //G4int R1_Tracker, R2_Tracker, R3_Tracker, R4_Tracker, R5_Tracker, R6_Tracker, R7_Tracker, R8_Tracker, Scint_Tracker, GEM_Tracker; //Tracks whether a detector's quartz tile has been hit in a given event
+  G4int R1_Tracker = 0;    
+  G4int R2_Tracker = 0;    
+  G4int R3_Tracker = 0;    
+  G4int R4_Tracker = 0;    
+  G4int R5_Tracker = 0;    
+  G4int R6_Tracker = 0;    
+  G4int R7_Tracker = 0;    
+  G4int R8_Tracker = 0;    
+  G4int Scint_Tracker = 0; 
+  G4int GEM_Tracker = 0;   
 
  
   Float_t  optPhEng, wvl, bwdt = QuartzSecOptPhotonCnt->GetBinWidth(2);
@@ -199,7 +200,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionY((Float_t)track->GEMScint2HitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionZ((Float_t)track->GEMScint2HitZ/cm);
         }
-        if((track->ScintHitFlag)){
+        if((track->ScintHitFlag) & (Scint_Tracker != 1)){
           Scint_Tracker = 1;
           if((track->GEMScint1HitFlag) & (track->GEMScint2HitFlag)) GEM_Tracker = 1;
           if((track->R1QuartzHitFlag) & (!track->R2QuartzHitFlag) & (!track->R3QuartzHitFlag) & (!track->R4QuartzHitFlag) & (!track->R5QuartzHitFlag) & (!track->R6QuartzHitFlag) & (!track->R7QuartzHitFlag) & (!track->R8QuartzHitFlag)) R1_Tracker = 1;
@@ -322,7 +323,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
   }
   //Stores all PEs regardless of criteria above
-  analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
+  /*analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
   analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
   analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
   analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
@@ -337,7 +338,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
   analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
-  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());*/
 
   //Build system for sorting PEs into histograms for e- that hit only one quartz tile. Purpose is to mimic certain cuts made on UMass cosmic stand data
   if(R1_Tracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
@@ -350,7 +351,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R8_Tracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
 
   //Sorting based on whether both GEMs were hit. Not working as intented yet
-  /*if (GEM_Tracker == 1){
+  if(GEM_Tracker == 1){
+    //G4cout << "HISTO" << G4endl;
     analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
     analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
     analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
@@ -367,7 +369,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
     analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
     analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-  }*/
+  }
 
 
   //Sorting complete

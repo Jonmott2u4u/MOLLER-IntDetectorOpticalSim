@@ -104,7 +104,7 @@ private:
 
 public:
 
-  
+
   MOLLEROptDetectorEvent();
   virtual ~MOLLEROptDetectorEvent();
 

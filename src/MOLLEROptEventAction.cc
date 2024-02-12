@@ -350,7 +350,9 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R7_Tracker == 1) analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   if(R8_Tracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
 
-  //Sorting based on whether both GEMs were hit. Not working as intented yet
+  //Sorting based on whether both GEMs were hit.
+  //The data is stored properly, but if Det != 0 in the macros, the numbers will appear to not add up with those saved in the root files.
+  //For verification that this works, set Det = 0 before running.
   if(GEM_Tracker == 1){
     //G4cout << "HISTO" << G4endl;
     analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct

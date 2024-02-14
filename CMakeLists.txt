@@ -108,10 +108,12 @@ set(MOLLER_SCRIPTS
   data/cosmics.txt
   R6ParamScan/placeholder.md
   rootfiles/placeholder.md
+  plots/placeholder.md
   MacroGenerator.py
   MacroSubmitter.py
   MacroSubmitter.sh
   ExtractScanResults.C
+  PlotExtractor.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

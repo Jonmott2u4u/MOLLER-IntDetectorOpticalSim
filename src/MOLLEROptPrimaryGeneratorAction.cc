@@ -238,9 +238,9 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //Bot scint is ~ 373 mm below center of R1 tile
     //When using, set sa to ~16 in macros
     y_base = Slim[4] + (Slim[5]-Slim[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
-    x_shift = (Slim[3]-Slim[1])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but may work for other shapes)
+    x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but may work for other shapes)
     y = y_base + 1769*TMath::Sin(3*pi/180);
-    x = (Slim[0]-x_shift) + (Slim[1]-Slim[0] + 2.*x_shift)*G4UniformRand();
+    x = (Slim[0]+x_shift) + (Slim[1]-Slim[0] - 2.*x_shift)*G4UniformRand();
   }
   else{
     //Defaults to Ring 1

@@ -273,10 +273,10 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         if(30 < track->PMTHitZ/cm && track->PMTHitZ/cm < 50){
           R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm < -4){
+        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm < 0){
           R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm > 4){
+        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm > 0){
           R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
         if(track->PMTHitZ/cm < 10){
@@ -335,7 +335,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
   }
   //Stores all PEs regardless of criteria above
-  /*analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
+  analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
   analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
   analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
   analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
@@ -350,7 +350,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
   analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
   analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
-  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());*/
+  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
 
   //Build system for sorting PEs into histograms for e- that hit only one quartz tile. Purpose is to mimic certain cuts made on UMass cosmic stand data
   if(R1_Tracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
@@ -365,7 +365,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   //Sorting based on whether both GEMs were hit.
   //The data is stored properly, but if Det != 0 in the macros, the numbers will appear to not add up with those saved in the root files.
   //For verification that this works, set Det = 0 before running.
-  if(GEM_Tracker == 1){
+  /*if(GEM_Tracker == 1){
     //G4cout << "HISTO" << G4endl;
     analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
     analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
@@ -383,7 +383,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
     analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
     analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-  }
+  }*/
 
 
   //Sorting complete

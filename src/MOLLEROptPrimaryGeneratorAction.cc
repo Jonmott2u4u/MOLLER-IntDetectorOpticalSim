@@ -252,7 +252,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double Phi = 2*pi*G4UniformRand();
   G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   G4double ThetaInc = G4UniformRand();
-  while (ThetaInc >= (cosTheta*cosTheta)){
+  while (ThetaInc > (cosTheta*cosTheta)){
     cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   }
   //G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); 

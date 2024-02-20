@@ -250,7 +250,12 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
   G4double Phi = 2*pi*G4UniformRand();
-  G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); 
+  G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
+  G4double ThetaInc = G4UniformRand();
+  while (ThetaInc >= (cosTheta*cosTheta)){
+    cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
+  }
+  //G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); 
   G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
   G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
 

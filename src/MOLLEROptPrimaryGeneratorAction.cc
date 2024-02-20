@@ -28,15 +28,7 @@ MOLLEROptPrimaryGeneratorAction::~MOLLEROptPrimaryGeneratorAction()
 void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   G4double x = 0;
-  G4double y = 0;
-  G4double pi = TMath::Pi();
-  G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
-  G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); G4double sinTheta = std::sqrt(1-cosTheta*cosTheta); G4double Phi = 2*pi*G4UniformRand();
-  //G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
-  //G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
-  //G4double p_z = TMath::Cos(theta*pi/180);			     //Allows you to assign angles to the beam using macros. Replaced by sa
-  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
-    
+  G4double y = 0;   
   G4double Qlim[4];
   G4double LGlim[8];
   Construction->GetQuartzLimits(Qlim);
@@ -103,6 +95,20 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
   }
 
+  G4double pi = TMath::Pi();
+  G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
+  G4double Phi = 2*pi*G4UniformRand();
+  G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
+  G4double ThetaInc = G4UniformRand();
+  while (ThetaInc > (cosTheta*cosTheta)){
+    cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
+  }
+  G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
+  //G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
+  //G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
+  //G4double p_z = TMath::Cos(theta*pi/180);			     //Allows you to assign angles to the beam using macros. Replaced by sa
+  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
+
 
   particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
@@ -112,7 +118,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double rand_int = G4UniformRand()*342800;
   rand_int = rand_int/1;
   FILE *fptr;
-  while (rand_int < 15457){//Applies an energy cutoff below 200 MeV
+  while (rand_int < 15457){//Applies an energy cutoff of 100 MeV & below @ 15457
     rand_int = G4UniformRand()*342800;
   }
   fptr = fopen("data/cosmics.txt", "r");

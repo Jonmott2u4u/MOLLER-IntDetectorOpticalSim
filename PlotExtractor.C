@@ -25,7 +25,7 @@ void PlotExtractor()
             //PE spectrum for beams that hit only one quartz tile
             tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
             hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
-            hst->SetTitle("R%i Photoelectron Distribution");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
             hst->GetXaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(1,100);

@@ -18,7 +18,7 @@ void PlotExtractor()
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
             hst->GetXaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(1,100);
+            hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
             hst->SaveAs(Form("plots/R%i_raw_spectrum.root",det));
 
@@ -28,7 +28,7 @@ void PlotExtractor()
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
             hst->GetXaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(1,100);
+            hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
             hst->SaveAs(Form("plots/R%i_quartz_cut.root",det));
         }

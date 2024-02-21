@@ -27,16 +27,16 @@ cut_start = 0  #Used for hr = 10. Selects a section of the full segment to scan 
 cut_stop = 0  #
 cut_step = 1
 
-sa_start = 16    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new UMass cosmic stand
-sa_stop = 16
+sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Calculate new value when choosing scint geometry
+sa_stop = 17
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 ID_stop = 1
 ID_step = 1
 
-det_start = 8    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 8
+det_start = 9    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
+det_stop = 9
 det_step = 1
 
 text_root = ""

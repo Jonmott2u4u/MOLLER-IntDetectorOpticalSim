@@ -213,9 +213,9 @@
 #------------------#Scintillator commands ---------------#
 
 /Scint/QuartzSizeZ 0.1 mm                       # Default: 0.1 mm
-/Scint/QuartzSizeX 600 mm                       # 600 mm
+/Scint/QuartzSizeX 260 mm                       # 600 mm
 /Scint/QuartzSizeY 600 mm                       # 600 mm
-/Scint/SetCenterPositionInX -95 mm              # -95
+/Scint/SetCenterPositionInX 0 mm              # -95
 /Scint/SetCenterPositionInY -93 mm              # -93
 /Scint/SetCenterPositionInZ 1769 mm             # 1769
 

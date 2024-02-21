@@ -92,16 +92,24 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, ScintHit, GEM1Hit, GEM2Hit; //Tracks whether a detector's quartz tile has been hit in a given event
   G4int NumSecPhotons = 0;
   G4int hitflag = 0;
-  G4int R1_Tracker = 0;    
-  G4int R2_Tracker = 0;    
-  G4int R3_Tracker = 0;    
-  G4int R4_Tracker = 0;    
-  G4int R5_Tracker = 0;    
-  G4int R6_Tracker = 0;    
-  G4int R7_Tracker = 0;    
-  G4int R8_Tracker = 0;    
-  G4int Scint_Tracker = 0; 
-  G4int GEM_Tracker = 0;   
+  G4int R1_Tracker = 0;  //Stores whether the R1 tile (+ scint) has been hit this event  
+  G4int R2_Tracker = 0;  //
+  G4int R3_Tracker = 0;  //  
+  G4int R4_Tracker = 0;  //  
+  G4int R5_Tracker = 0;  //  
+  G4int R6_Tracker = 0;  //  
+  G4int R7_Tracker = 0;  //  
+  G4int R8_Tracker = 0;  //
+  G4int R1_SoloTracker = 0;  //Stores whether only the R1 tile (+ scint) has been hit this event
+  G4int R2_SoloTracker = 0;  //
+  G4int R3_SoloTracker = 0;  //  
+  G4int R4_SoloTracker = 0;  //  
+  G4int R5_SoloTracker = 0;  //  
+  G4int R6_SoloTracker = 0;  //  
+  G4int R7_SoloTracker = 0;  //  
+  G4int R8_SoloTracker = 0;  //  
+  G4int Scint_Tracker = 0;   //Stores whether the spectrum defining scintillator has been hit
+  G4int GEM_Tracker = 0;     //Stores whether both GEMs were hit this run (can be adjusted to one or two)
 
  
   Float_t  optPhEng, wvl, bwdt = QuartzSecOptPhotonCnt->GetBinWidth(2);
@@ -214,15 +222,23 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         }
         if((ScintHit == 1) /*& (Scint_Tracker != 1)*/){
           Scint_Tracker = 1;
+          if(R1Hit==1) R1_Tracker = 1;
+          if(R2Hit==1) R2_Tracker = 1;
+          if(R3Hit==1) R3_Tracker = 1;
+          if(R4Hit==1) R4_Tracker = 1;
+          if(R5Hit==1) R5_Tracker = 1;
+          if(R6Hit==1) R6_Tracker = 1;
+          if(R7Hit==1) R7_Tracker = 1;
+          if(R8Hit==1) R8_Tracker = 1;
           if((GEM1Hit==1) & (GEM2Hit==1)) GEM_Tracker = 1;
-          if((R1Hit==1) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R1_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==1) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R2_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==0) & (R3Hit==1) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R3_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==1) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R4_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==1) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R5_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==1) & (R7Hit==0) & (R8Hit==0)) R6_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_Tracker = 1;
-          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==1)) R8_Tracker = 1;
+          if((R1Hit==1) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R1_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==1) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R2_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==0) & (R3Hit==1) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R3_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==1) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R4_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==1) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R5_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==1) & (R7Hit==0) & (R8Hit==0)) R6_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_SoloTracker = 1;
+          if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==1)) R8_SoloTracker = 1;
         }
         for(int p = 0; p < track->StepNChPhotons.size(); p++){
           // analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
@@ -304,28 +320,28 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       analysis->FillRootNtuple();
     }
     if(Det == 1){
-      if(R1_Tracker == 1) analysis->FillRootNtuple();
+      if(R1_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 2){
-      if(R2_Tracker == 1) analysis->FillRootNtuple();
+      if(R2_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 3){
-      if(R3_Tracker == 1) analysis->FillRootNtuple();
+      if(R3_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 4){
-      if(R4_Tracker == 1) analysis->FillRootNtuple();
+      if(R4_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 5){
-      if(R5_Tracker == 1) analysis->FillRootNtuple();
+      if(R5_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 6){
-      if(R6_Tracker == 1) analysis->FillRootNtuple();
+      if(R6_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 7){
-      if(R7_Tracker == 1) analysis->FillRootNtuple();
+      if(R7_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 8){
-      if(R8_Tracker == 1) analysis->FillRootNtuple();
+      if(R8_SoloTracker == 1) analysis->FillRootNtuple();
     }
     if(Det == 9){
       if(Scint_Tracker == 1) analysis->FillRootNtuple();
@@ -334,37 +350,35 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       if(GEM_Tracker == 1) analysis->FillRootNtuple();
     }
   }
-  //Stores all PEs regardless of criteria above
-  analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
-  analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-  analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
-  analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-  analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
-  analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
-  analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-  analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
-  analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-  analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
-  analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-  analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
-  analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-  analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
-  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  //Stores PEs if Scint has been hit
+  if(R1_Tracker == 1) analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+  if(R2_Tracker == 1) analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+  if(R3_Tracker == 1) analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R4_Tracker == 1) analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R5_Tracker == 1) analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R6_Tracker == 1) analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R7_Tracker == 1) analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R8_Tracker == 1) analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  //analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
+  //analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
+  //analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
+  //analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
+  //analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
+  //analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
+  //analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
+  //analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
 
-  //Build system for sorting PEs into histograms for e- that hit only one quartz tile. Purpose is to mimic certain cuts made on UMass cosmic stand data
-  if(R1_Tracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-  if(R2_Tracker == 1) analysis->R2Only_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-  if(R3_Tracker == 1) analysis->R3Only_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R4_Tracker == 1) analysis->R4Only_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-  if(R5_Tracker == 1) analysis->R5Only_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-  if(R6_Tracker == 1) analysis->R6Only_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-  if(R7_Tracker == 1) analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-  if(R8_Tracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+  //Stores PEs if Scint & one tile have been hit
+  if(R1_SoloTracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+  if(R2_SoloTracker == 1) analysis->R2Only_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+  if(R3_SoloTracker == 1) analysis->R3Only_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R4_SoloTracker == 1) analysis->R4Only_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+  if(R5_SoloTracker == 1) analysis->R5Only_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+  if(R6_SoloTracker == 1) analysis->R6Only_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+  if(R7_SoloTracker == 1) analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+  if(R8_SoloTracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
 
-  //Sorting based on whether both GEMs were hit.
-  //The data is stored properly, but if Det != 0 in the macros, the numbers will appear to not add up with those saved in the root files.
-  //For verification that this works, set Det = 0 before running.
+  //Sorting based on whether Scint & both GEMs were hit.
   /*if(GEM_Tracker == 1){
     //G4cout << "HISTO" << G4endl;
     analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct

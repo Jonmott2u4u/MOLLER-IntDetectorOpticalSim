@@ -142,69 +142,71 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
   
   for(int n = 0; n < Tracks.size(); n++)
     if(Tracks[n]->ID == id) tr = n;
-
+  //G4cout << "Track:" << tr << G4endl;
+  //G4cout << loc.z() << G4endl;
+  //G4cout << Tracks[tr]->ScintHitFlag << G4endl;
   if(tr == -1) return;
-  if((!Tracks[tr]->R1QuartzHitFlag) & (loc.z()/cm < 145) & (loc.z()/cm > 137)){ 
+  if((Tracks[tr]->R1QuartzHitFlag == 0) & (loc.z()/cm < 145) & (loc.z()/cm > 137)){ 
     Tracks[tr]->R1QuartzHitFlag = 1;
     Tracks[tr]->R1QuartzHitX = loc.x();
     Tracks[tr]->R1QuartzHitY = loc.y();
     Tracks[tr]->R1QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R2QuartzHitFlag) & (loc.z()/cm < 117) & (loc.z()/cm > 111)){ 
+  if((Tracks[tr]->R2QuartzHitFlag == 0) & (loc.z()/cm < 117) & (loc.z()/cm > 111)){ 
     Tracks[tr]->R2QuartzHitFlag = 1;
     Tracks[tr]->R2QuartzHitX = loc.x();
     Tracks[tr]->R2QuartzHitY = loc.y();
     Tracks[tr]->R2QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R3QuartzHitFlag) & (loc.z()/cm < 90) & (loc.z()/cm > 84)){ 
+  if((Tracks[tr]->R3QuartzHitFlag == 0) & (loc.z()/cm < 90) & (loc.z()/cm > 84)){ 
     Tracks[tr]->R3QuartzHitFlag = 1;
     Tracks[tr]->R3QuartzHitX = loc.x();
     Tracks[tr]->R3QuartzHitY = loc.y();
     Tracks[tr]->R3QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R4QuartzHitFlag) & (loc.z()/cm < 62) & (loc.z()/cm > 57)){ 
+  if((Tracks[tr]->R4QuartzHitFlag == 0) & (loc.z()/cm < 62) & (loc.z()/cm > 57)){ 
     Tracks[tr]->R4QuartzHitFlag = 1;
     Tracks[tr]->R4QuartzHitX = loc.x();
     Tracks[tr]->R4QuartzHitY = loc.y();
     Tracks[tr]->R4QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R5QuartzHitFlag) & (loc.z()/cm < 45) & (loc.z()/cm > 40)){ 
+  if((Tracks[tr]->R5QuartzHitFlag == 0) & (loc.z()/cm < 45) & (loc.z()/cm > 40)){ 
     Tracks[tr]->R5QuartzHitFlag = 1;
     Tracks[tr]->R5QuartzHitX = loc.x();
     Tracks[tr]->R5QuartzHitY = loc.y();
     Tracks[tr]->R5QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R6QuartzHitFlag) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm < 0)){ //Currently not working properly due to rotation of segment
+  if((Tracks[tr]->R6QuartzHitFlag == 0) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm < 0)){
     Tracks[tr]->R6QuartzHitFlag = 1;
     Tracks[tr]->R6QuartzHitX = loc.x();
     Tracks[tr]->R6QuartzHitY = loc.y();
     Tracks[tr]->R6QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R7QuartzHitFlag) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm > 0)){ //Currently not working properly due to rotation of segment
+  if((Tracks[tr]->R7QuartzHitFlag == 0) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm > 0)){
     Tracks[tr]->R7QuartzHitFlag = 1;
     Tracks[tr]->R7QuartzHitX = loc.x();
     Tracks[tr]->R7QuartzHitY = loc.y();
     Tracks[tr]->R7QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->R8QuartzHitFlag) & (loc.z()/cm < 5)){ 
+  if((Tracks[tr]->R8QuartzHitFlag == 0) & (loc.z()/cm < 5) & (loc.z()/cm > -20)){ 
     Tracks[tr]->R8QuartzHitFlag = 1;
     Tracks[tr]->R8QuartzHitX = loc.x();
     Tracks[tr]->R8QuartzHitY = loc.y();
     Tracks[tr]->R8QuartzHitZ = loc.z();
   }
-  if((!Tracks[tr]->ScintHitFlag) & (loc.z()/cm > 170)){ 
+  if((Tracks[tr]->ScintHitFlag == 0) & (loc.z()/cm > 170) & (loc.z()/cm < 300)){ 
     Tracks[tr]->ScintHitFlag = 1;
     Tracks[tr]->ScintHitX = loc.x();
     Tracks[tr]->ScintHitY = loc.y();
     Tracks[tr]->ScintHitZ = loc.z();
   }
-  if((!Tracks[tr]->GEMScint1HitFlag) & (loc.z()/cm < 55) & (loc.z()/cm > 45)){ 
+  if((Tracks[tr]->GEMScint1HitFlag == 0) & (loc.z()/cm < 55) & (loc.z()/cm > 45)){ 
     Tracks[tr]->GEMScint1HitFlag = 1;
     Tracks[tr]->GEMScint1HitX = loc.x();
     Tracks[tr]->GEMScint1HitY = loc.y();
     Tracks[tr]->GEMScint1HitZ = loc.z();
   }
-  if((!Tracks[tr]->GEMScint2HitFlag) & (loc.z()/cm < 105) & (loc.z()/cm > 92)){ 
+  if((Tracks[tr]->GEMScint2HitFlag == 0) & (loc.z()/cm < 105) & (loc.z()/cm > 92)){ 
     Tracks[tr]->GEMScint2HitFlag = 1;
     Tracks[tr]->GEMScint2HitX = loc.x();
     Tracks[tr]->GEMScint2HitY = loc.y();

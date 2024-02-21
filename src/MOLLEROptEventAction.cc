@@ -140,9 +140,10 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       
       if(track->Particle == myBeam){
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
+        //G4cout << track->ID << G4endl; //Original particle has ID = 1
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
 
-        if(track->R1QuartzHitFlag & (track->R1QuartzHitX/cm < 10000) & (track->R1QuartzHitY/cm >- 10000) & (track->R1QuartzHitY/cm < 10000) & (track->R1QuartzHitZ/cm < 500)){
+        if(track->R1QuartzHitFlag & (track->ID == 1)){
           R1Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1QuartzHitPositionX((Float_t)track->R1QuartzHitX/cm);
@@ -150,70 +151,70 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1QuartzHitPositionZ((Float_t)track->R1QuartzHitZ/cm);
           //G4cout << "RING 1" << track->R1QuartzHitFlag << G4endl;
         }
-        	if(track->R2QuartzHitFlag & (track->R2QuartzHitX/cm < 10000) & (track->R2QuartzHitY/cm >- 10000) & (track->R2QuartzHitY/cm < 10000) & (track->R2QuartzHitZ/cm < 500)){
+        	if(track->R2QuartzHitFlag & (track->ID == 1)){
           R2Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2QuartzHitPositionX((Float_t)track->R2QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2QuartzHitPositionY((Float_t)track->R2QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2QuartzHitPositionZ((Float_t)track->R2QuartzHitZ/cm);
         }
-        if(track->R3QuartzHitFlag & (track->R3QuartzHitX/cm < 10000) & (track->R3QuartzHitY/cm >- 10000) & (track->R3QuartzHitY/cm < 10000) & (track->R3QuartzHitZ/cm < 500)){
+        if(track->R3QuartzHitFlag & (track->ID == 1)){
           R3Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3QuartzHitPositionX((Float_t)track->R3QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3QuartzHitPositionY((Float_t)track->R3QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3QuartzHitPositionZ((Float_t)track->R3QuartzHitZ/cm);
         }
-        if(track->R4QuartzHitFlag & (track->R4QuartzHitX/cm < 10000) & (track->R4QuartzHitY/cm >- 10000) & (track->R4QuartzHitY/cm < 10000) & (track->R4QuartzHitZ/cm < 500)){
+        if(track->R4QuartzHitFlag & (track->ID == 1)){
           R4Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4QuartzHitPositionX((Float_t)track->R4QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4QuartzHitPositionY((Float_t)track->R4QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4QuartzHitPositionZ((Float_t)track->R4QuartzHitZ/cm);
         }
-        if(track->R5QuartzHitFlag & (track->R5QuartzHitX/cm < 10000) & (track->R5QuartzHitY/cm >- 10000) & (track->R5QuartzHitY/cm < 10000) & (track->R5QuartzHitZ/cm < 500)){
+        if(track->R5QuartzHitFlag & (track->ID == 1)){
           R5Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5QuartzHitPositionX((Float_t)track->R5QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5QuartzHitPositionY((Float_t)track->R5QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5QuartzHitPositionZ((Float_t)track->R5QuartzHitZ/cm);
         }
-        if(track->R6QuartzHitFlag & (track->R6QuartzHitX/cm < 10000) & (track->R6QuartzHitY/cm >- 10000) & (track->R6QuartzHitY/cm < 10000) & (track->R6QuartzHitZ/cm < 500)){
+        if(track->R6QuartzHitFlag & (track->ID == 1)){
           R6Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6QuartzHitPositionX((Float_t)track->R6QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6QuartzHitPositionY((Float_t)track->R6QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6QuartzHitPositionZ((Float_t)track->R6QuartzHitZ/cm);
         }
-        if(track->R7QuartzHitFlag & (track->R7QuartzHitX/cm < 10000) & (track->R7QuartzHitY/cm >- 10000) & (track->R7QuartzHitY/cm < 10000) & (track->R7QuartzHitZ/cm < 500)){
+        if(track->R7QuartzHitFlag & (track->ID == 1)){
           R7Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7QuartzHitPositionX((Float_t)track->R7QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7QuartzHitPositionY((Float_t)track->R7QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7QuartzHitPositionZ((Float_t)track->R7QuartzHitZ/cm);
         }
-        if(track->R8QuartzHitFlag & (track->R8QuartzHitX/cm < 10000) & (track->R8QuartzHitY/cm >- 10000) & (track->R8QuartzHitY/cm < 10000) & (track->R8QuartzHitZ/cm < 500)){
+        if(track->R8QuartzHitFlag & (track->ID == 1)){
           R8Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionX((Float_t)track->R8QuartzHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionY((Float_t)track->R8QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionZ((Float_t)track->R8QuartzHitZ/cm);
         }
-        if(track->ScintHitFlag & (track->ScintHitX/cm < 10000) & (track->ScintHitY/cm >- 10000) & (track->ScintHitY/cm < 10000) & (track->ScintHitZ/cm < 500)){
+        if(track->ScintHitFlag & (track->ID == 1)){
           ScintHit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionX((Float_t)track->ScintHitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionY((Float_t)track->ScintHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionZ((Float_t)track->ScintHitZ/cm);
         }
-        if(track->GEMScint1HitFlag & (track->GEMScint1HitX/cm < 10000) & (track->GEMScint1HitY/cm >- 10000) & (track->GEMScint1HitY/cm < 10000) & (track->GEMScint1HitZ/cm < 500)){
+        if(track->GEMScint1HitFlag & (track->ID == 1)){
           GEM1Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1TrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionX((Float_t)track->GEMScint1HitX/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionY((Float_t)track->GEMScint1HitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionZ((Float_t)track->GEMScint1HitZ/cm);
         }
-        if(track->GEMScint2HitFlag & (track->GEMScint2HitX/cm < 10000) & (track->GEMScint2HitY/cm >- 10000) & (track->GEMScint2HitY/cm < 10000) & (track->GEMScint2HitZ/cm < 500)){
+        if(track->GEMScint2HitFlag & (track->ID == 1)){
           GEM2Hit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2TrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionX((Float_t)track->GEMScint2HitX/cm);
@@ -354,11 +355,11 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R1_Tracker == 1) analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
   if(R2_Tracker == 1) analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
   if(R3_Tracker == 1) analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R4_Tracker == 1) analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R5_Tracker == 1) analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R6_Tracker == 1) analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R7_Tracker == 1) analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R8_Tracker == 1) analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  if(R4_Tracker == 1) analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+  if(R5_Tracker == 1) analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+  if(R6_Tracker == 1) analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+  if(R7_Tracker == 1) analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+  if(R8_Tracker == 1) analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
   //analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
   //analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
   //analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct

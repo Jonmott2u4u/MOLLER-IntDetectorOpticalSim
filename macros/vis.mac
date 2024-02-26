@@ -213,30 +213,31 @@
 #------------------#Scintillator commands ---------------#
 
 /Scint/QuartzSizeZ 0.1 mm                       # Default: 0.1 mm
-/Scint/QuartzSizeX 260 mm                       # 600 mm
-/Scint/QuartzSizeY 600 mm                       # 600 mm
-/Scint/SetCenterPositionInX 0 mm              # -95
-/Scint/SetCenterPositionInY -93 mm              # -93
+/Scint/QuartzSizeX 300 mm                       # 600 mm
+/Scint/QuartzSizeY 300 mm                       # 600 mm
+/Scint/SetCenterPositionInX 0 mm                # -95
+#/Scint/SetCenterPositionInY -243 mm             # -93 for QuartzSizeY=600, 57 for 300 to cover R5 -> R6, -243 to cover R1 -> R4. These are values for the 3deg polar angle
+/Scint/SetCenterPositionInY -80 mm             # -186 for QuartzSizeY=600, -80 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
 /Scint/SetCenterPositionInZ 1769 mm             # 1769
 
 /GEMScint1/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm
 /GEMScint1/QuartzSizeX 100 mm                   # 100 mm
 /GEMScint1/QuartzSizeY 200 mm                   # 100 mm
 /GEMScint1/SetCenterPositionInX 0 mm            # 
-/GEMScint1/SetCenterPositionInY -126.20 mm      # 
+/GEMScint1/SetCenterPositionInY -116 mm         # -126.20 for 3deg polar angle, -116 for 6deg
 /GEMScint1/SetCenterPositionInZ 500 mm          # 
 
 /GEMScint2/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm
 /GEMScint2/QuartzSizeX 100 mm                   # 100 mm
 /GEMScint2/QuartzSizeY 200 mm                   # 100 mm
 /GEMScint2/SetCenterPositionInX 0 mm            # 
-/GEMScint2/SetCenterPositionInY -150.84 mm      # 
+/GEMScint2/SetCenterPositionInY -165 mm         # -150.84 for 3deg polar angle, -165 for 6deg
 /GEMScint2/SetCenterPositionInZ 970 mm          # 
 
 #------------------#General commands --------------------#
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
-/Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
+/Det/PolarRotation 6 deg                         #counter rotate the detector as a whole
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
@@ -246,10 +247,10 @@
 /Det/UpdateGeometry
 
 /Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
-/Generator/SegmentHitRegion 0 cm                #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
+/Generator/SegmentHitRegion 0 cm                  #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use
-/Generator/BeamSolidAngle 16                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Old cosmic stand was ~5. Current is ~16
+/Generator/BeamSolidAngle 11                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 
 /Storage/DetectorFocus 0                          #Sets which detector has its info stored in root files. Set to 0 for all detectors, 1 for R1, 2 for R2, etc

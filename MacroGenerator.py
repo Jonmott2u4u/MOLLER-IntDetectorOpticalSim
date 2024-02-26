@@ -27,12 +27,12 @@ cut_start = 0  #Used for hr = 10. Selects a section of the full segment to scan 
 cut_stop = 0  #
 cut_step = 1
 
-sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Calculate new value when choosing scint geometry
-sa_stop = 17
+sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+sa_stop = 11
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_stop = 10
 ID_step = 1
 
 det_start = 9    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
@@ -171,28 +171,29 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R8/SetCenterPositionInZ 0 mm" + "\n\n"
                     Text += "#------------------#Trapezoidal Scintillator commands ---------------#" + "\n\n"
                     Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"
-                    Text += "/Scint/QuartzSizeX 260 mm" + "\n"
-                    Text += "/Scint/QuartzSizeY 600 mm" + "\n"
+                    Text += "/Scint/QuartzSizeX 300 mm" + "\n"
+                    Text += "/Scint/QuartzSizeY 300 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/Scint/SetCenterPositionInY -93 mm" + "\n"
+                    #Text += "/Scint/SetCenterPositionInY -93 mm" + "\n" # -93 for QuartzSizeY=600, 57 for 300 to cover R5 -> R6, -243 to cover R1 -> R4. These are values for the 3deg polar angle
+                    Text += "/Scint/SetCenterPositionInY -280 mm" + "\n" # -186 for QuartzSizeY=600, -80 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
                     Text += "/Scint/SetCenterPositionInZ 1769 mm" + "\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeX 100 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeY 200 mm" + "\n"
                     Text += "/GEMScint1/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/GEMScint1/SetCenterPositionInY -126.2 mm" + "\n"
+                    Text += "/GEMScint1/SetCenterPositionInY -116 mm" + "\n" # -126.20 for 3deg polar angle, -116 for 6deg
                     Text += "/GEMScint1/SetCenterPositionInZ 500 mm" + "\n"
                     Text += "#------------------#GEM Scintillator 2 commands ---------------#" + "\n\n"
                     Text += "/GEMScint2/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint2/QuartzSizeX 100 mm" + "\n"
                     Text += "/GEMScint2/QuartzSizeY 200 mm" + "\n"
                     Text += "/GEMScint2/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/GEMScint2/SetCenterPositionInY -150.84 mm" + "\n"
+                    Text += "/GEMScint2/SetCenterPositionInY -165 mm" + "\n" # -150.84 for 3deg polar angle, -165 for 6deg
                     Text += "/GEMScint2/SetCenterPositionInZ 970 mm" + "\n"
                     Text += "#------------------#General commands --------------------#" + "\n\n"
                     Text += "/Det/QuartzRotX -3 deg" + "\n"
-                    Text += "/Det/PolarRotation 3 deg" + "\n"
+                    Text += "/Det/PolarRotation 6 deg" + "\n"
                     Text += "/Det/QuartzBevelSize 0.5 mm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningX 7.0 cm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"

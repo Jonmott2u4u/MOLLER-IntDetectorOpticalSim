@@ -254,6 +254,7 @@
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 
 /Storage/DetectorFocus 0                          #Sets which detector has its info stored in root files. Set to 0 for all detectors, 1 for R1, 2 for R2, etc
+/Storage/BeamEnergyCut 0.0                        #Sets minimum beam energy. Events below the threshold are not stored
 
 #/RunAction/SetID 3
 #/random/setSeeds 346082 823457

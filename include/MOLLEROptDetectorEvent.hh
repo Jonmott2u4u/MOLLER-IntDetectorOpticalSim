@@ -20,6 +20,8 @@ private:
   Float_t InitialTrackMomDirectionX;
   Float_t InitialTrackMomDirectionY;
   Float_t InitialTrackMomDirectionZ;
+
+  vector <Float_t> InitialBeamEnergy;
   
   // vector <Int_t> PMTTrackHit;
   Int_t PMTTrackHit;
@@ -117,26 +119,21 @@ public:
   void AddLightGuideReflectionProcess(Int_t proc){LightGuideReflectionProcess.push_back(proc);};
   void AddLightGuideTrackData(Float_t LGTrackL, Int_t LGSteps);
 
-  // void AddQuartzPhotonEnergy(Float_t eng) {QuartzPhotonEnergy.push_back(eng);};
   void AddQuartzPhotonEnergy(Float_t eng) {QuartzPhotonEnergy = eng;};
   void AddQuartzStepLength(Float_t dx){ QuartzStepLength.push_back(dx);};
   void AddQuartzElectronStepLength(Float_t dx) {QuartzElectronStepLength.push_back(dx);};
   void AddQuartzIncidentPhotonAngle(Float_t angle) {QuartzIncidentPhotonAngle.push_back(angle);};
   void AddQuartzTrackData(Float_t QTrackL, Int_t QSteps);
   void AddQuartzStepNPhotons(Int_t n){QuartzStepNPhotons.push_back(n);};
-  // void AddQuartzPhotonAtExitFlag(Int_t flag){QuartzPhotonAtExit.push_back(flag);};
   void AddQuartzPhotonAtExitFlag(Int_t flag){QuartzPhotonAtExit = flag;};
   void AddQuartzTrackSecPhotonAngle(Float_t angle) {QuartzSecondaryPhotonAngle.push_back(angle);}
 
-  // void AddElectronTrackID(Int_t tID){ElectronTrackID.push_back(tID);};
-  // void AddPhotonTrackID(Int_t tID){PhotonTrackID.push_back(tID);};
   void AddElectronTrackID(Int_t tID){ElectronTrackID = tID;};
   void AddPhotonTrackID(Int_t tID){PhotonTrackID = tID;};
 
-  // void AddParticleType(Int_t pTyp) {PType.push_back(pTyp);};
+  void AddInitialBeamEnergy(Float_t eng) {InitialBeamEnergy.push_back(eng);};
 
   void AddPMTPhotonEnergy(Float_t eng) {PMTPhotonEnergy.push_back(eng);};
-  // void AddPMTTrackHit(Int_t tID){PMTTrackHit.push_back(tID);};
   void AddPMTTrackHit(Int_t tID){PMTTrackHit = tID;};
   void AddPMTHitPositionX(Float_t x) {PMTCathodeHitX.push_back(x);};
   void AddPMTHitPositionY(Float_t y) {PMTCathodeHitY.push_back(y);};

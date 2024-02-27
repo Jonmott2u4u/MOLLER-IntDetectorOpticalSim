@@ -142,6 +142,9 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
         //G4cout << track->ID << G4endl; //Original particle has ID = 1
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
+        if(track->ID == 1){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddInitialBeamEnergy(track->InitKinEnergy/GeV);
+        }
 
         if(track->R1QuartzHitFlag & (track->ID == 1)){
           R1Hit = 1;
@@ -200,7 +203,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionY((Float_t)track->R8QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionZ((Float_t)track->R8QuartzHitZ/cm);
         }
-        if(track->ScintHitFlag & (track->ID == 1)){
+        if(track->ScintHitFlag & (track->ID == 1) ){
           ScintHit = 1;
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintTrackHit(1);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionX((Float_t)track->ScintHitX/cm);
@@ -221,7 +224,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionY((Float_t)track->GEMScint2HitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionZ((Float_t)track->GEMScint2HitZ/cm);
         }
-        if((ScintHit == 1) /*& (Scint_Tracker != 1)*/){
+        if(((ScintHit == 1) & (track->InitKinEnergy/GeV >= EnergyCut)) /*& (Scint_Tracker != 1)*/){
           Scint_Tracker = 1;
           if(R1Hit==1) R1_Tracker = 1;
           if(R2Hit==1) R2_Tracker = 1;

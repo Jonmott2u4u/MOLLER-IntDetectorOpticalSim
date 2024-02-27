@@ -12,9 +12,7 @@ datadir =  "R6ParamScan/"                   #Location where macros are stored af
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
 Energy = 8000 #Units of MeV. Currently disabled, but can be reenabled in MOLLEROptPrimaryGeneratorAction.cc
-
-#RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
-#RndSeed2 = random.randrange(600001, 900000) #
+EnergyCut = 0.1 #Sets a minimum energy for beam particles to be accepted in units of GeV
 
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,100000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
@@ -23,8 +21,8 @@ hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 =
 hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 0  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 0  #
+cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_stop = 1  #
 cut_step = 1
 
 sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
@@ -203,6 +201,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
                     Text += "/Generator/BeamSolidAngle " + str(sa) + "\n"
                     Text += "/Storage/DetectorFocus " + str(det) + "\n"
+                    Text += "/Storage/BeamEnergyCut " + str(EnergyCut) + "\n"
                     Text += "/RunAction/SetID " + str(id) + "\n"
                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"

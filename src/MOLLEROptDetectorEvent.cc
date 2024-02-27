@@ -165,8 +165,8 @@ void MOLLEROptDetectorEvent::Initialize()
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);
 
-  // QuartzPhotonEnergy.clear();  
-  // QuartzPhotonEnergy.resize(0);
+  InitialBeamEnergy.clear();
+  InitialBeamEnergy.resize(0);
 
   QuartzPhotonEnergy = 0;
 

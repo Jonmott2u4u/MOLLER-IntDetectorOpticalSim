@@ -216,8 +216,8 @@
 /Scint/QuartzSizeX 300 mm                       # 600 mm
 /Scint/QuartzSizeY 300 mm                       # 600 mm
 /Scint/SetCenterPositionInX 0 mm                # -95
-#/Scint/SetCenterPositionInY -243 mm             # -93 for QuartzSizeY=600, 57 for 300 to cover R5 -> R6, -243 to cover R1 -> R4. These are values for the 3deg polar angle
-/Scint/SetCenterPositionInY -80 mm             # -186 for QuartzSizeY=600, -80 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
+#/Scint/SetCenterPositionInY -243 mm            # -93 for QuartzSizeY=600, 57 for 300 to cover R5 -> R6, -243 to cover R1 -> R4. These are values for the 3deg polar angle
+/Scint/SetCenterPositionInY 0 mm                # -186 for QuartzSizeY=600, 0 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
 /Scint/SetCenterPositionInZ 1769 mm             # 1769
 
 /GEMScint1/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm

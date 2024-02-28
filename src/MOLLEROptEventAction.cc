@@ -224,7 +224,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionY((Float_t)track->GEMScint2HitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionZ((Float_t)track->GEMScint2HitZ/cm);
         }
-        if(((ScintHit == 1) & (track->InitKinEnergy/GeV >= EnergyCut)) /*& (Scint_Tracker != 1)*/){
+        if((ScintHit == 1)){
           Scint_Tracker = 1;
           if(R1Hit==1) R1_Tracker = 1;
           if(R2Hit==1) R2_Tracker = 1;

@@ -23,7 +23,6 @@ private:
   
   G4UIdirectory*           Dir;
   G4UIcmdWithAnInteger     *DetectorFocusCmd;
-  G4UIcmdWithADouble        *BeamEnergyCutCmd;
 
 };
 

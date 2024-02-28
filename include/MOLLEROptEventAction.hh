@@ -37,7 +37,6 @@ public:
 public:
 
   void SetDetectorFocus(G4int reg) {Det = reg;};
-  void SetBeamEnergyCut(G4float reg) {EnergyCut = reg;};
 
 private:
 
@@ -47,7 +46,6 @@ private:
   char buffer[100];
   G4int CollID[3];
   G4int Det;
-  G4double EnergyCut;
 
   //vector <Int_t> ProcessedTrack;
   vector <lTrackData*> ProcessedTrack;

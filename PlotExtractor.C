@@ -1,7 +1,7 @@
 #include <iostream>
 #include <TString.h>
 
-void PlotExtractor()
+void PlotExtractor_pos()
 {
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -20,7 +20,7 @@ void PlotExtractor()
             hst->GetXaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_raw_spectrum.root",det));
+            //hst->SaveAs(Form("plots/R%i_raw_spectrum.root",det));
 
             //PE spectrum for beams that hit only one quartz tile
             tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
@@ -30,9 +30,29 @@ void PlotExtractor()
             hst->GetXaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_quartz_cut.root",det));
+            //hst->SaveAs(Form("plots/R%i_quartz_cut.root",det));
+
+            /*TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+            cout << tree << endl;
+            TCanvas *canvas = new TCanvas("canvas","canvas");
+            tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),"","colz");
+            canvas->SaveAs(Form("R%i_quartz_hit_pos.root",det));*/
         }
-        
         file->Close("R");
     }
 }
+
+/*void PlotExtractor_Energy{
+
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TFile *file;
+    TH1D *hst, *tmp;
+    int det = 0;
+
+    while(std::getline(rfiles, line)){
+        file = TFile::Open(line.data());
+        det++;
+        
+    }
+}*/

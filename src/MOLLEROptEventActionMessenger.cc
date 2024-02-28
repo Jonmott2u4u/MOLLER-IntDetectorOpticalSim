@@ -15,13 +15,6 @@ MOLLEROptEventActionMessenger::MOLLEROptEventActionMessenger(MOLLEROptEventActio
     DetectorFocusCmd->SetRange("DetectorFocus>=0");
     DetectorFocusCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-    BeamEnergyCutCmd = new G4UIcmdWithADouble("/Storage/BeamEnergyCut",this);
-    BeamEnergyCutCmd->SetGuidance("Set the minimum energy required for events to be stored.");
-    BeamEnergyCutCmd->SetParameterName("BeamEnergyCut",true);
-    BeamEnergyCutCmd->SetDefaultValue(0.0);
-    BeamEnergyCutCmd->SetRange("BeamEnergyCut>=0");
-    BeamEnergyCutCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
-
 }
 
 MOLLEROptEventActionMessenger::~MOLLEROptEventActionMessenger()
@@ -33,6 +26,4 @@ void MOLLEROptEventActionMessenger::SetNewValue(G4UIcommand* command, G4String n
 {
     if( command == DetectorFocusCmd )
         { EventAction->SetDetectorFocus(DetectorFocusCmd->GetNewIntValue(newValue));}
-    if( command == BeamEnergyCutCmd )
-        { EventAction->SetBeamEnergyCut(BeamEnergyCutCmd->GetNewDoubleValue(newValue));}
 }

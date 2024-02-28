@@ -16,8 +16,9 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  G4ParticleDefinition* particle = G4MuonMinus::Definition();
-  //G4ParticleDefinition* particle = G4Electron::Definition();
+  G4ParticleDefinition* particle = G4Electron::Definition();;
+  if (PrimaryParticle == 1) particle = G4Electron::Definition();
+  if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
   particleGun->SetParticleDefinition(particle);
 }
 
@@ -264,28 +265,34 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************
-  G4double rand_int = G4UniformRand()*342800; //342800 is from the length of the file cosmics.txt
-  rand_int = rand_int/1;
-  G4int E_cutoff = 0;         //15457 to use muons @ 200 MeV & above, 0 to accept all energies
+  G4int muon_energy;
+  G4int pass = 0;
   FILE *fptr;
-  while (rand_int < E_cutoff){//Applies an energy cutoff
-    rand_int = G4UniformRand()*342800;
-  }
-  fptr = fopen("data/cosmics.txt", "r");
-  G4int inc = 1;
-  G4int muon_energy = getw(fptr);//Distinct from Energy variable
-  while (inc < rand_int){
+  while(pass == 0){
+    G4double rand_int = G4UniformRand()*342800; //342800 is from the length of the file cosmics.txt
+    rand_int = rand_int/1;
+    fptr = fopen("data/cosmics.txt", "r");
     muon_energy = getw(fptr);
-    inc++;
+    G4int inc = 1;
+    pass = 1;
+    while (inc < rand_int){
+      muon_energy = getw(fptr);
+      inc++;
+    }
+    if (muon_energy <= EnergyCut){
+      pass = 0;
+    }
+    fclose(fptr);
   }
+
   //G4cout << "Muon energy is: " << energy << " MeV \n" << G4endl;
   //G4cout << "Random integer was: " << rand_int << "\n" << G4endl;
   //G4cout << "\n Increment reached: " << inc << "\n" << G4endl;
-  fclose(fptr);
+  //fclose(fptr);
   //*****************************************
 
-  //particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
-  particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution
+  if (PrimaryParticle == 1) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
+  if (PrimaryParticle == 2) particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

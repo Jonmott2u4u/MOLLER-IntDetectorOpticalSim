@@ -24,6 +24,13 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   InitEventCounterCmd->SetRange("StartingEvent>=0");
   InitEventCounterCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  PrimaryParticleCmd = new G4UIcmdWithAnInteger("/Generator/PrimaryParticle",this);
+  PrimaryParticleCmd->SetGuidance("Set Primary (beam) particle.");
+  PrimaryParticleCmd->SetParameterName("PrimaryParticle",true);
+  PrimaryParticleCmd->SetDefaultValue(1);
+  PrimaryParticleCmd->SetRange("PrimaryParticle>=1");
+  PrimaryParticleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   EventHitRegionCmd = new G4UIcmdWithAnInteger("/Generator/EventHitRegion",this);
   EventHitRegionCmd->SetGuidance("Set region in which event hits.");
   EventHitRegionCmd->SetParameterName("EventHitRegion",true);
@@ -61,11 +68,18 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamSolidAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamEnergyCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergy",this);
-  BeamEnergyCmd->SetGuidance("Set Energy of beam.");
+  BeamEnergyCmd->SetGuidance("Set Energy of beam in units of MeV.");
   BeamEnergyCmd->SetParameterName("BeamEnergy",true);
   BeamEnergyCmd->SetDefaultValue(8000);
   BeamEnergyCmd->SetRange("BeamEnergy > 0");
   BeamEnergyCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  BeamEnergyCutCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergyCut",this);
+  BeamEnergyCutCmd->SetGuidance("Set Energy cut of beam in units of MeV.");
+  BeamEnergyCutCmd->SetParameterName("BeamEnergyCut",true);
+  BeamEnergyCutCmd->SetDefaultValue(0);
+  BeamEnergyCutCmd->SetRange("BeamEnergyCut >= 0");
+  BeamEnergyCutCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
 
 }
@@ -80,27 +94,32 @@ MOLLEROptPrimaryGeneratorActionMessenger::~MOLLEROptPrimaryGeneratorActionMessen
 void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command, G4String newValue)
 {       
   if( command == resetCmd )
-    {pPrimaryGeneratorAction->ResetNtupleEventCounter(); }
+    {pPrimaryGeneratorAction->ResetNtupleEventCounter();}
 
   if( command == InitEventCounterCmd )
-    { pPrimaryGeneratorAction->SetNtupleEventCounter(InitEventCounterCmd->GetNewIntValue(newValue)); }
+    { pPrimaryGeneratorAction->SetNtupleEventCounter(InitEventCounterCmd->GetNewIntValue(newValue));}
+
+  if( command == PrimaryParticleCmd )
+    { pPrimaryGeneratorAction->SetPrimaryParticle(PrimaryParticleCmd->GetNewIntValue(newValue));}
 
   if( command == EventHitRegionCmd )
-    { pPrimaryGeneratorAction->SetEventHitRgion(EventHitRegionCmd->GetNewIntValue(newValue)); }
+    { pPrimaryGeneratorAction->SetEventHitRegion(EventHitRegionCmd->GetNewIntValue(newValue));}
 
   if( command == SegmentHitRegionCmd )
-    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewDoubleValue(newValue)); }
+    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewDoubleValue(newValue));}
 
   if( command == BeamThetaCmd )
-    { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue)); }
+    { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue));}
 
   if( command == BeamPhiCmd )
-    { pPrimaryGeneratorAction->SetBeamPhi(BeamPhiCmd->GetNewIntValue(newValue)); }
+    { pPrimaryGeneratorAction->SetBeamPhi(BeamPhiCmd->GetNewIntValue(newValue));}
 
   if( command == BeamSolidAngleCmd )
-    { pPrimaryGeneratorAction->SetBeamSolidAngle(BeamSolidAngleCmd->GetNewIntValue(newValue)); }
- 
-  if( command == BeamEnergyCmd )
-    { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue)); }
+    { pPrimaryGeneratorAction->SetBeamSolidAngle(BeamSolidAngleCmd->GetNewIntValue(newValue));}
 
+  if( command == BeamEnergyCmd )
+    { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue));}
+
+  if( command == BeamEnergyCutCmd )
+    { pPrimaryGeneratorAction->SetBeamEnergyCut(BeamEnergyCutCmd->GetNewIntValue(newValue));}
 }

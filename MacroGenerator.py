@@ -174,7 +174,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Scint/QuartzSizeY 300 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
                     #Text += "/Scint/SetCenterPositionInY -93 mm" + "\n" # -93 for QuartzSizeY=600, 57 for 300 to cover R5 -> R6, -243 to cover R1 -> R4. These are values for the 3deg polar angle
-                    Text += "/Scint/SetCenterPositionInY -80 mm" + "\n" # -186 for QuartzSizeY=600, -80 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
+                    Text += "/Scint/SetCenterPositionInY -280 mm" + "\n" # -186 for QuartzSizeY=600, -80 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
                     Text += "/Scint/SetCenterPositionInZ 1769 mm" + "\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"

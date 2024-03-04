@@ -44,7 +44,7 @@ private:
   Bool_t TrackHasBeenProcessed(G4int ID);
   void AddQuartzTrackStep(G4int id, G4int step);
   char buffer[100];
-  G4int CollID[3];
+  //G4int CollID[3];
   G4int Det;
 
   //vector <Int_t> ProcessedTrack;

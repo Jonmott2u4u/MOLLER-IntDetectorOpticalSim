@@ -135,7 +135,7 @@ void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, Fl
   
 }
 
-void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
+void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz)
 {
   /*G4cout << "Setting Quartz Hit Location" << G4endl;*/
   Int_t tr = -1;
@@ -146,67 +146,67 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc)
   //G4cout << loc.z() << G4endl;
   //G4cout << Tracks[tr]->ScintHitFlag << G4endl;
   if(tr == -1) return;
-  if((Tracks[tr]->R1QuartzHitFlag == 0) & (loc.z()/cm < 145) & (loc.z()/cm > 137)){ 
+  if((Tracks[tr]->R1QuartzHitFlag == 0) & (quartz == "QuartzHitCollection")){ 
     Tracks[tr]->R1QuartzHitFlag = 1;
     Tracks[tr]->R1QuartzHitX = loc.x();
     Tracks[tr]->R1QuartzHitY = loc.y();
     Tracks[tr]->R1QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R2QuartzHitFlag == 0) & (loc.z()/cm < 117) & (loc.z()/cm > 111)){ 
+  if((Tracks[tr]->R2QuartzHitFlag == 0) & (quartz == "QuartzHitCollection2")){ 
     Tracks[tr]->R2QuartzHitFlag = 1;
     Tracks[tr]->R2QuartzHitX = loc.x();
     Tracks[tr]->R2QuartzHitY = loc.y();
     Tracks[tr]->R2QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R3QuartzHitFlag == 0) & (loc.z()/cm < 90) & (loc.z()/cm > 84)){ 
+  if((Tracks[tr]->R3QuartzHitFlag == 0) & (quartz == "QuartzHitCollection3")){ 
     Tracks[tr]->R3QuartzHitFlag = 1;
     Tracks[tr]->R3QuartzHitX = loc.x();
     Tracks[tr]->R3QuartzHitY = loc.y();
     Tracks[tr]->R3QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R4QuartzHitFlag == 0) & (loc.z()/cm < 62) & (loc.z()/cm > 57)){ 
+  if((Tracks[tr]->R4QuartzHitFlag == 0) & (quartz == "QuartzHitCollection4")){ 
     Tracks[tr]->R4QuartzHitFlag = 1;
     Tracks[tr]->R4QuartzHitX = loc.x();
     Tracks[tr]->R4QuartzHitY = loc.y();
     Tracks[tr]->R4QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R5QuartzHitFlag == 0) & (loc.z()/cm < 45) & (loc.z()/cm > 40)){ 
+  if((Tracks[tr]->R5QuartzHitFlag == 0) & (quartz == "QuartzHitCollection5")){ 
     Tracks[tr]->R5QuartzHitFlag = 1;
     Tracks[tr]->R5QuartzHitX = loc.x();
     Tracks[tr]->R5QuartzHitY = loc.y();
     Tracks[tr]->R5QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R6QuartzHitFlag == 0) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm < 0)){
+  if((Tracks[tr]->R6QuartzHitFlag == 0) & (quartz == "QuartzHitCollection6")){
     Tracks[tr]->R6QuartzHitFlag = 1;
     Tracks[tr]->R6QuartzHitX = loc.x();
     Tracks[tr]->R6QuartzHitY = loc.y();
     Tracks[tr]->R6QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R7QuartzHitFlag == 0) & (loc.z()/cm < 35) & (loc.z()/cm > 20) & (loc.x()/cm > 0)){
+  if((Tracks[tr]->R7QuartzHitFlag == 0) & (quartz == "QuartzHitCollection7")){
     Tracks[tr]->R7QuartzHitFlag = 1;
     Tracks[tr]->R7QuartzHitX = loc.x();
     Tracks[tr]->R7QuartzHitY = loc.y();
     Tracks[tr]->R7QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->R8QuartzHitFlag == 0) & (loc.z()/cm < 5) & (loc.z()/cm > -20)){ 
+  if((Tracks[tr]->R8QuartzHitFlag == 0) & (quartz == "QuartzHitCollection8")){ 
     Tracks[tr]->R8QuartzHitFlag = 1;
     Tracks[tr]->R8QuartzHitX = loc.x();
     Tracks[tr]->R8QuartzHitY = loc.y();
     Tracks[tr]->R8QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->ScintHitFlag == 0) & (loc.z()/cm > 170) & (loc.z()/cm < 300)){ 
+  if((Tracks[tr]->ScintHitFlag == 0) & (quartz ==  "ScintHitCollection")){ 
     Tracks[tr]->ScintHitFlag = 1;
     Tracks[tr]->ScintHitX = loc.x();
     Tracks[tr]->ScintHitY = loc.y();
     Tracks[tr]->ScintHitZ = loc.z();
   }
-  if((Tracks[tr]->GEMScint1HitFlag == 0) & (loc.z()/cm < 55) & (loc.z()/cm > 45)){ 
+  if((Tracks[tr]->GEMScint1HitFlag == 0) & (quartz == "GEMScint1HitCollection")){ 
     Tracks[tr]->GEMScint1HitFlag = 1;
     Tracks[tr]->GEMScint1HitX = loc.x();
     Tracks[tr]->GEMScint1HitY = loc.y();
     Tracks[tr]->GEMScint1HitZ = loc.z();
   }
-  if((Tracks[tr]->GEMScint2HitFlag == 0) & (loc.z()/cm < 105) & (loc.z()/cm > 92)){ 
+  if((Tracks[tr]->GEMScint2HitFlag == 0) & (quartz == "GEMScint2HitCollection")){ 
     Tracks[tr]->GEMScint2HitFlag = 1;
     Tracks[tr]->GEMScint2HitX = loc.x();
     Tracks[tr]->GEMScint2HitY = loc.y();

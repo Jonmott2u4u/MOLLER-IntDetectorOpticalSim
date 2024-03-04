@@ -170,7 +170,7 @@ private:
   Int_t R7_GetCathodeDetections() {return R7_CathodeDetections;};
   Int_t R8_GetCathodeDetections() {return R8_CathodeDetections;};
   void SetPMTHitLocation(Int_t id, G4ThreeVector loc, Float_t angle);
-  void SetQuartzHitLocation(Int_t id, G4ThreeVector loc);
+  void SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz);
   Bool_t TrackExists(Int_t ID);
   Int_t GetNumTracks(){return Tracks.size();};
   Int_t GetNumPhotonTracks(){return PhotonTracks;};

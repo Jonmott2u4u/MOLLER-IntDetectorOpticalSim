@@ -66,26 +66,9 @@ void MOLLEROptSteppingAction::UserSteppingAction(const G4Step* theStep)
                       //is the photocathode because it is the only one with
                       //non-zero efficiency
         {
-	  //cout << "Detection in " << "postStep = " << postStep->GetPhysicalVolume()->GetName() << ", preStep = " << preStep->GetPhysicalVolume()->GetName() << endl;
 
 	  TrackingReadout->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
-	  //theStep->GetTrack()->SetTrackStatus(fStopAndKill);
 
-	  // G4SDManager* SDman = G4SDManager::GetSDMpointer();
-          // G4String sdName="/MainDetectorPMTSD";
-          // MollerDetMainDetector_PMTSD* pmtSD = (MollerDetMainDetector_PMTSD*)SDman->FindSensitiveDetector(sdName);
-          // if(pmtSD)
-	  //   {
-	  //     if(USERVERBOSELEVEL>0)
-	  // 	G4cout << " A photon is detected!" << G4endl;
-	  //     //   pmtSD->ProcessHits(theStep,NULL);
-	      
-	  //     pmtSD->ProcessHits_constStep(theStep,NULL, 1); //last parameter is a flag to indicate that a photon is exactly detected.
-	  //   }
-          // //trackInformation->AddTrackStatusFlag(hitPMT);
-
-
-	  
 	}
 	break;
       case FresnelReflection:

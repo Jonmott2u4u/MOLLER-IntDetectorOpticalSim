@@ -14,7 +14,14 @@ MOLLEROptDetectorPMT::MOLLEROptDetectorPMT(MOLLEROptTrackingReadout *TrRO, G4Str
   PMTLogical  = NULL;
   PMTPhysical = NULL;
   Rotation    = NULL;
-  CathSD      = NULL;
+  CathSD1      = NULL;
+  CathSD2      = NULL;
+  CathSD3      = NULL;
+  CathSD4      = NULL;
+  CathSD5      = NULL;
+  CathSD6      = NULL;
+  CathSD7      = NULL;
+  CathSD8      = NULL;
 
   PMTCathodeSurface = NULL;
   CathodeMatPropTable = NULL;
@@ -83,11 +90,47 @@ void MOLLEROptDetectorPMT::Initialize()
   VisAtt2->SetVisibility(true);
   VisAtt2->SetForceWireframe(true);
   PMTCathodeLogical->SetVisAttributes(VisAtt2);
-
   SDman = G4SDManager::GetSDMpointer();
-  CathSD = new MOLLEROptPMTSD("/Cathode",TrackingReadout);
-  SDman->AddNewDetector(CathSD);  
-  PMTWindowLogical->SetSensitiveDetector(CathSD);
+  if(Name == "1Ring_PMT"){
+    CathSD1 = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
+    SDman->AddNewDetector(CathSD1);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD1);
+  }
+  if(Name == "2Ring_PMT"){
+    CathSD2 = new MOLLEROptPMTSD("/Cathode2",TrackingReadout);
+    SDman->AddNewDetector(CathSD2);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD2);
+  }
+  if(Name == "3Ring_PMT"){
+    CathSD3 = new MOLLEROptPMTSD("/Cathode3",TrackingReadout);
+    SDman->AddNewDetector(CathSD3);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD3);
+  }
+  if(Name == "4Ring_PMT"){
+    CathSD4 = new MOLLEROptPMTSD("/Cathode4",TrackingReadout);
+    SDman->AddNewDetector(CathSD4);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD4);
+  }
+  if(Name == "5Ring_PMT"){
+    CathSD5 = new MOLLEROptPMTSD("/Cathode5",TrackingReadout);
+    SDman->AddNewDetector(CathSD5);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD5);
+  }
+  if(Name == "6Ring_PMT"){
+    CathSD6 = new MOLLEROptPMTSD("/Cathode6",TrackingReadout);
+    SDman->AddNewDetector(CathSD6);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD6);
+  }
+  if(Name == "7Ring_PMT"){
+    CathSD7 = new MOLLEROptPMTSD("/Cathode7",TrackingReadout);
+    SDman->AddNewDetector(CathSD7);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD7);
+  }
+  if(Name == "8Ring_PMT"){
+    CathSD8 = new MOLLEROptPMTSD("/Cathode8",TrackingReadout);
+    SDman->AddNewDetector(CathSD8);  
+    PMTWindowLogical->SetSensitiveDetector(CathSD8);
+  }
 
 }
 
@@ -242,7 +285,14 @@ void MOLLEROptDetectorPMT::SetCenterPositionInZ(G4double zPos)
 void MOLLEROptDetectorPMT::ClearVolumes()
 {
   //SDman->Activate("/Cathode",false);
-  if(CathSD)      delete CathSD;
+  if(CathSD1)      delete CathSD1;
+  if(CathSD2)      delete CathSD2;
+  if(CathSD3)      delete CathSD3;
+  if(CathSD4)      delete CathSD4;
+  if(CathSD5)      delete CathSD5;
+  if(CathSD6)      delete CathSD6;
+  if(CathSD7)      delete CathSD7;
+  if(CathSD8)      delete CathSD8;
   if(PMTPhysical) delete PMTPhysical;
   if(PMTLogical)  delete PMTLogical;
   if(PMTCathodePhysical) delete PMTCathodePhysical;

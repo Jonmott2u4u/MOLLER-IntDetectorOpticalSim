@@ -13,9 +13,11 @@ OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output f
 
 Particle = 2    #Sets the initial particle type. 1 for electrons, 2 for muons
 Energy = 8000   #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
-EnergyCut = 100 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
+EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,100000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
+ScintYPos = [-380,-320,-245,-140,30,150]
+ScintZPos = [1911,1643,1376,1108,946,515]
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
@@ -23,15 +25,15 @@ hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 5   #The cut variable is rarely used, so it is often repurposed. Currently it is being used for energy cuts
+cut_stop = 6   #Currently repurposed to move scintillator around
 cut_step = 1
 
-sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
-sa_stop = 11
+sa_start = 5    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+sa_stop = 5
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 10
+ID_stop = 15
 ID_step = 1
 
 det_start = 9    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
@@ -170,35 +172,35 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R8/SetCenterPositionInZ 0 mm" + "\n\n"
                     Text += "#------------------#Trapezoidal Scintillator commands ---------------#" + "\n\n"
                     Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"
-                    Text += "/Scint/QuartzSizeX 300 mm" + "\n"
-                    Text += "/Scint/QuartzSizeY 300 mm" + "\n"
+                    Text += "/Scint/QuartzSizeX 90 mm" + "\n"
+                    Text += "/Scint/QuartzSizeY 90 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
-                    #Text += "/Scint/SetCenterPositionInY -93 mm" + "\n" # -93 for QuartzSizeY=600, 57 for 300 to cover R5 -> R6, -243 to cover R1 -> R4. These are values for the 3deg polar angle
-                    Text += "/Scint/SetCenterPositionInY -280 mm" + "\n" # -186 for QuartzSizeY=600, -80 for 300 to cover R5 -> R6, -280 to cover R1 -> R4. These are values for the 6deg polar angle
-                    Text += "/Scint/SetCenterPositionInZ 1769 mm" + "\n"
+                    Text += "/Scint/SetCenterPositionInY " + str(ScintYPos[cut-1]) + " mm" +"\n"
+                    Text += "/Scint/SetCenterPositionInY " + str(ScintZPos[cut-1]) + " mm" +"\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeX 100 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeY 200 mm" + "\n"
                     Text += "/GEMScint1/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/GEMScint1/SetCenterPositionInY -116 mm" + "\n" # -126.20 for 3deg polar angle, -116 for 6deg
+                    Text += "/GEMScint1/SetCenterPositionInY 400 mm" + "\n"
                     Text += "/GEMScint1/SetCenterPositionInZ 500 mm" + "\n"
                     Text += "#------------------#GEM Scintillator 2 commands ---------------#" + "\n\n"
                     Text += "/GEMScint2/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint2/QuartzSizeX 100 mm" + "\n"
                     Text += "/GEMScint2/QuartzSizeY 200 mm" + "\n"
                     Text += "/GEMScint2/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/GEMScint2/SetCenterPositionInY -165 mm" + "\n" # -150.84 for 3deg polar angle, -165 for 6deg
+                    Text += "/GEMScint2/SetCenterPositionInY 400 mm" + "\n"
                     Text += "/GEMScint2/SetCenterPositionInZ 970 mm" + "\n"
                     Text += "#------------------#General commands --------------------#" + "\n\n"
                     Text += "/Det/QuartzRotX -3 deg" + "\n"
-                    Text += "/Det/PolarRotation 6 deg" + "\n"
+                    Text += "/Det/PolarRotation 3 deg" + "\n"
                     Text += "/Det/QuartzBevelSize 0.5 mm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningX 7.0 cm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"
                     Text += "/Det/UpdateGeometry" + "\n\n"
                     Text += "/Generator/PrimaryParticle " + str(Particle) + "\n"
                     Text += "/Generator/EventHitRegion " + str(hr) + "\n"
+                    Text += "/Generator/EventSpawnZ " + str(ScintZPos[cut-1]) + " mm" + "\n"
                     Text += "/Generator/SegmentHitRegion " + str(cut) + " cm" + "\n"
                     Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
                     Text += "/Generator/BeamEnergyCut " + str(EnergyCut*cut) + "\n"

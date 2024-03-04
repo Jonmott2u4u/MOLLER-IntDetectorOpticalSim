@@ -13,15 +13,15 @@ hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
-cut_stop = 5
+cut_stop = 6
 cut_step = 1
 
-sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 11
+sa_start = 5    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+sa_stop = 5
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 10
+ID_stop = 1
 ID_step = 1
 
 det_start = 9    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0

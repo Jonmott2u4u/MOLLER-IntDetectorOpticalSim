@@ -27,12 +27,13 @@ private:
   G4UIcmdWithAnInteger       *InitEventCounterCmd;
   G4UIcmdWithAnInteger       *PrimaryParticleCmd;
   G4UIcmdWithAnInteger       *EventHitRegionCmd;
-  G4UIcmdWithADoubleAndUnit  *SegmentHitRegionCmd;
   G4UIcmdWithAnInteger       *BeamThetaCmd;
   G4UIcmdWithAnInteger       *BeamPhiCmd;
   G4UIcmdWithAnInteger       *BeamSolidAngleCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCutCmd;
+  G4UIcmdWithADoubleAndUnit  *EventSpawnZCmd;
+  G4UIcmdWithADoubleAndUnit  *SegmentHitRegionCmd;
 
 };
 

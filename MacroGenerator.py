@@ -176,7 +176,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Scint/QuartzSizeY 90 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInY " + str(ScintYPos[cut-1]) + " mm" +"\n"
-                    Text += "/Scint/SetCenterPositionInY " + str(ScintZPos[cut-1]) + " mm" +"\n"
+                    Text += "/Scint/SetCenterPositionInZ " + str(ScintZPos[cut-1]) + " mm" +"\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeX 100 mm" + "\n"

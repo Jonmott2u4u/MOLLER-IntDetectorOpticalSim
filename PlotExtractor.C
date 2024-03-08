@@ -1,7 +1,7 @@
 #include <iostream>
 #include <TString.h>
 
-void PlotExtractor_pos()
+void PlotExtractor()
 {
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -20,7 +20,7 @@ void PlotExtractor_pos()
             hst->GetXaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            //hst->SaveAs(Form("plots/R%i_raw_spectrum.root",det));
+            hst->SaveAs(Form("plots/R%i_raw_spectrum.root",det));
 
             //PE spectrum for beams that hit only one quartz tile
             tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
@@ -30,7 +30,7 @@ void PlotExtractor_pos()
             hst->GetXaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            //hst->SaveAs(Form("plots/R%i_quartz_cut.root",det));
+            hst->SaveAs(Form("plots/R%i_quartz_cut.root",det));
 
             /*TTree *tree = (TTree*)file->Get("MOLLEROptTree");
             cout << tree << endl;

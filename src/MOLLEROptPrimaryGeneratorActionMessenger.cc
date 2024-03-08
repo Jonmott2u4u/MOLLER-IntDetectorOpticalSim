@@ -38,12 +38,12 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   EventHitRegionCmd->SetRange("EventHitRegion>=1");
   EventHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  EventSpawnZCmd = new G4UIcmdWithADoubleAndUnit("/Generator/EventSpawnZ",this);
-  EventSpawnZCmd->SetGuidance("Set the z location to spawn the particle. Currently subtracts 1030 mm from the value given");
-  EventSpawnZCmd->SetParameterName("EventSpawnZ",true);
-  EventSpawnZCmd->SetDefaultValue(1);
-  EventSpawnZCmd->SetRange("EventSpawnZ>=-10000");
-  EventSpawnZCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  EventShiftCmd = new G4UIcmdWithADoubleAndUnit("/Generator/EventShift",this);
+  EventShiftCmd->SetGuidance("Shift the spawning location of the primary particle.");
+  EventShiftCmd->SetParameterName("EventShift",true);
+  EventShiftCmd->SetDefaultValue(1);
+  EventShiftCmd->SetRange("EventShift>=-10000");
+  EventShiftCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   SegmentHitRegionCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitRegion",this);
   SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
@@ -112,8 +112,8 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
   if( command == EventHitRegionCmd )
     { pPrimaryGeneratorAction->SetEventHitRegion(EventHitRegionCmd->GetNewIntValue(newValue));}
 
-  if( command == EventSpawnZCmd )
-    { pPrimaryGeneratorAction->SetEventSpawnZ(EventSpawnZCmd->GetNewDoubleValue(newValue));}
+  if( command == EventShiftCmd )
+    { pPrimaryGeneratorAction->SetEventShift(EventShiftCmd->GetNewDoubleValue(newValue));}
 
   if( command == SegmentHitRegionCmd )
     { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewDoubleValue(newValue));}

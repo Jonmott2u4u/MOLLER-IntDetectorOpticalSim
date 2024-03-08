@@ -1378,19 +1378,19 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 
   //Counter-rotates scintillators to counteract rotation of cosmic stand. 
   //Must be done before X rotation. For some reason specifying Z before X does X before Z
-  //Scintillator->SetQuartzRotZ(-3.215*degree); //Rotates scintillator from 6.43 degrees to 0 about the z-axis
-  //GEMScint1->SetQuartzRotZ(-3.215*degree);
-  //GEMScint2->SetQuartzRotZ(-3.215*degree);
+  /*Scintillator->SetQuartzRotZ(-3.215*degree); //Rotates scintillator from 6.43 degrees to 0 about the z-axis
+  GEMScint1->SetQuartzRotZ(-3.215*degree);
+  GEMScint2->SetQuartzRotZ(-3.215*degree);*/
 
   //Counter-rotates scintillators to counteract rotation of cosmic stand -- Used for 3 degree setup
-  Scintillator->SetQuartzRotX(-1.5*degree);
+  /*Scintillator->SetQuartzRotX(-1.5*degree);
   GEMScint1->SetQuartzRotX(-1.5*degree); 
-  GEMScint2->SetQuartzRotX(-1.5*degree);
+  GEMScint2->SetQuartzRotX(-1.5*degree);*/
  
   //Counter-rotates scintillators to counteract rotation of cosmic stand -- Used for 6 degree setup
-  /*Scintillator->SetQuartzRotX(-3*degree);
+  Scintillator->SetQuartzRotX(-3*degree);
   GEMScint1->SetQuartzRotX(-3*degree); 
-  GEMScint2->SetQuartzRotX(-3*degree);*/
+  GEMScint2->SetQuartzRotX(-3*degree);
 
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);

@@ -32,7 +32,7 @@ private:
   G4UIcmdWithAnInteger       *BeamSolidAngleCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCutCmd;
-  G4UIcmdWithADoubleAndUnit  *EventSpawnZCmd;
+  G4UIcmdWithADoubleAndUnit  *EventShiftCmd;
   G4UIcmdWithADoubleAndUnit  *SegmentHitRegionCmd;
 
 };

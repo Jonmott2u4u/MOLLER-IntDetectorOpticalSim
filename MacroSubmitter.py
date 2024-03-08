@@ -13,11 +13,11 @@ hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
-cut_stop = 6
+cut_stop = 1
 cut_step = 1
 
-sa_start = 5    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 5
+sa_start = 14    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+sa_stop = 14
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)

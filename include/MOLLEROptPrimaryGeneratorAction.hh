@@ -25,7 +25,7 @@ public:
   void SetNtupleEventCounter(G4int cnt) {EventCounter = cnt;};
   void SetPrimaryParticle(G4int reg) {PrimaryParticle = reg;};
   void SetEventHitRegion(G4int reg) {EventRegion = reg;};
-  void SetEventSpawnZ(G4double reg) {z_spawn = reg;};
+  void SetEventShift(G4double reg) {shift = reg;};
   void SetSegmentHitRegion(G4double reg) {cut = reg;};
   void SetBeamTheta(G4int reg) {theta = reg;};
   void SetBeamPhi(G4int reg) {phi = reg;};
@@ -44,7 +44,7 @@ private:
   G4int sa;
   G4int Energy;
   G4int EnergyCut;
-  G4double z_spawn;
+  G4double shift;
   G4double cut;
   
   G4ParticleGun* particleGun;

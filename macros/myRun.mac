@@ -1,19 +1,19 @@
 #  Geometry help:
 #
 #            | PMT|  
-#            ------       ________ Upper Interface
+#            ------      ________ Upper Interface
 #           /      \        
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \ 
-#	    |	           |
-#	    |   Middle     |
-#	    |   Box        |
-#	    |	           |  ________ Lower Interface
+#	       |	          |
+#	       |   Middle   |
+#	       |   Box      |
+#	       |	          |  ________ Lower Interface
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
-#           \Cone  /      ________ Quartz-LG interface plane
+#           \Cone  /     ________ Quartz-LG interface plane
 #            |    |
 #            |    | Quartz
 #            |    |
@@ -109,7 +109,7 @@
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
-/R5/SetCenterPositionInY 231.6 mm               # Default: 231.6. Set to 331 while debugging
+/R5/SetCenterPositionInY 231.6 mm               # Default: 231.6. Set to 331 for debugging
 /R5/SetCenterPositionInZ 431 mm
 
 #------------------#Ring 5 FF1 commands--------------------#
@@ -163,43 +163,33 @@
 /R8/SetCenterPositionInY 330 mm
 /R8/SetCenterPositionInZ 0 mm
 
-#------------------#Scintillator commands ---------------#
+#------------------#Scintillator commands ---------------# GEMScint1 is being used to define where particles spawn
 
-/Scint/QuartzSizeZ 0.1 mm                       # Default: 0.1 mm
-/Scint/QuartzSizeX 90 mm                       # 600 mm
-/Scint/QuartzSizeY 90 mm                       # 600 mm
-/Scint/SetCenterPositionInX 0 mm                # 
-#/Scint/SetCenterPositionInY -380 mm             # R1 
-#/Scint/SetCenterPositionInZ 1911 mm             #
-#/Scint/SetCenterPositionInY -320 mm            # R2 
-#/Scint/SetCenterPositionInZ 1643 mm            #
-#/Scint/SetCenterPositionInY -245 mm            # R3 
-#/Scint/SetCenterPositionInZ 1376 mm            #
-#/Scint/SetCenterPositionInY -140 mm            # R4 
-#/Scint/SetCenterPositionInZ 1108 mm            #
-#/Scint/SetCenterPositionInY 30 mm              # R5 
-#/Scint/SetCenterPositionInZ 946 mm             #
-/Scint/SetCenterPositionInY 150 mm             # R6 
-/Scint/SetCenterPositionInZ 515 mm             #
+/Scint/QuartzSizeZ 0.1 mm                      # Default: 0.1 mm
+/Scint/QuartzSizeX 300 mm                       # 600 mm
+/Scint/QuartzSizeY 300 mm                       # 600 mm
+/Scint/SetCenterPositionInX 0 mm               # 
+/Scint/SetCenterPositionInY -34 mm            # Positions for shifted 30x30 scints used in UMass lab. -34 for R5->R6, -234 for R1->R4
+/Scint/SetCenterPositionInZ 1769 mm           # 
 
-/GEMScint1/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm
+/GEMScint1/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
 /GEMScint1/QuartzSizeX 100 mm                   # 100 mm
-/GEMScint1/QuartzSizeY 200 mm                   # 100 mm
-/GEMScint1/SetCenterPositionInX 0 mm            # 
-/GEMScint1/SetCenterPositionInY -126 mm      # 
-/GEMScint1/SetCenterPositionInZ 500 mm          # 
+/GEMScint1/QuartzSizeY 200 mm                   # 200 mm
+/GEMScint1/SetCenterPositionInX 0 mm           # 
+/GEMScint1/SetCenterPositionInY 1000 mm        #
+/GEMScint1/SetCenterPositionInZ 500 mm         #  
 
-/GEMScint2/QuartzSizeZ 0.1 mm                   # Default: 0.1 mm
+/GEMScint2/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
 /GEMScint2/QuartzSizeX 100 mm                   # 100 mm
 /GEMScint2/QuartzSizeY 200 mm                   # 100 mm
-/GEMScint2/SetCenterPositionInX 0 mm            # 
-/GEMScint2/SetCenterPositionInY -151 mm      # 
-/GEMScint2/SetCenterPositionInZ 970 mm          #
+/GEMScint2/SetCenterPositionInX 0 mm           # 
+/GEMScint2/SetCenterPositionInY 1000 mm        #
+/GEMScint2/SetCenterPositionInZ 900 mm         # 
 
 #------------------#General commands --------------------#
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
-/Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
+/Det/PolarRotation 6 deg                         #counter rotate the detector as a whole
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
@@ -208,14 +198,14 @@
 
 /Det/UpdateGeometry
 
-/Generator/PrimaryParticle 1                     #Sets the initial particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand
-/Generator/EventSpawnZ 515 mm                     #Make this the same as the scint Z location. Spawns particles 1030 mm before that point. Use mm
-/Generator/SegmentHitRegion 0                    #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/BeamTheta 0				                   #Units of degrees. Not in use
-/Generator/BeamPhi 0				                     #Units of degrees. Not in use
-/Generator/BeamSolidAngle 0                      #Units of degrees. Determines the angular spread of the beam from the z-axis. For Cosmic Stand use ~16
-/Generator/BeamEnergy 8000			                 #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
+/Generator/PrimaryParticle 2                      #Sets the initial particle type. 1 for electrons, 2 for muons
+/Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
+/Generator/EventShift -56 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
+/Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
+/Generator/BeamTheta 0				              #Units of degrees. Not in use
+/Generator/BeamPhi 0			                  #Units of degrees. Not in use
+/Generator/BeamSolidAngle 14                       #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
+/Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for beam particles
 
 /Storage/DetectorFocus 0                          #Sets which detector has its info stored in root files. Set to 0 for all detectors, 1 for R1, 2 for R2, etc

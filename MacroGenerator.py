@@ -18,7 +18,7 @@ EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in uni
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,100000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 #ScintYPos = [-380,-320,-245,-140,30,150]
 #ScintZPos = [1911,1643,1376,1108,946,515]
-shift = -56     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc
+shift = -112     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand

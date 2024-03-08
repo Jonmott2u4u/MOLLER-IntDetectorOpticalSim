@@ -200,7 +200,7 @@
 
 /Generator/PrimaryParticle 2                      #Sets the initial particle type. 1 for electrons, 2 for muons
 /Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
-/Generator/EventShift -56 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
+/Generator/EventShift -112 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use

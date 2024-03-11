@@ -43,9 +43,6 @@ void MOLLEROptDetectorEvent::Initialize()
   TotalTrackLength.clear();  
   TotalTrackLength.resize(0);
 
-  // QuartzTrackLength.clear();  
-  // QuartzTrackLength.resize(0);
-
   QuartzTrackLength = 0;
 
   LightGuideTrackLength.clear();  
@@ -54,16 +51,10 @@ void MOLLEROptDetectorEvent::Initialize()
   TotalSteps.clear();  
   TotalSteps.resize(0);
 
-  // QuartzSteps.clear();  
-  // QuartzSteps.resize(0);
-
   QuartzSteps = 0;
 
   LightGuideSteps.clear();  
   LightGuideSteps.resize(0);
-
-  // PMTTrackHit.clear();  
-  // PMTTrackHit.resize(0);
 
   PMTTrackHit = 0;
 
@@ -176,12 +167,8 @@ void MOLLEROptDetectorEvent::Initialize()
   LightGuidePhotonEnergy.clear();  
   LightGuidePhotonEnergy.resize(0);
 
-  // ElectronTrackID.clear();
-  // ElectronTrackID.resize(0);
-
   QuartzElectronStepLength.clear();
   QuartzElectronStepLength.resize(0);
-
 
   ElectronTrackID = 0;
   PhotonTrackID = 0;
@@ -198,6 +185,23 @@ void MOLLEROptDetectorEvent::Initialize()
 
   PMTWindowReflectionAngle.clear();  
   PMTWindowReflectionAngle.resize(0);
+
+  R1PEs.clear();
+  R1PEs.resize(0);
+  R2PEs.clear();
+  R2PEs.resize(0);
+  R3PEs.clear();
+  R3PEs.resize(0);
+  R4PEs.clear();
+  R4PEs.resize(0);
+  R5PEs.clear();
+  R5PEs.resize(0);
+  R6PEs.clear();
+  R6PEs.resize(0);
+  R7PEs.clear();
+  R7PEs.resize(0);
+  R8PEs.clear();
+  R8PEs.resize(0);
 
 }	
 

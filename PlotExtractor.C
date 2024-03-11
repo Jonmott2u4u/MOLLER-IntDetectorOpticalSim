@@ -35,7 +35,7 @@ void PlotExtractor()
             /*TTree *tree = (TTree*)file->Get("MOLLEROptTree");
             cout << tree << endl;
             TCanvas *canvas = new TCanvas("canvas","canvas");
-            tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),"","colz");
+            tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),Form("MOLLEROptData.MOLLERDetectorEvent.INSERT-VARIABLE-HERE CONDITION",det),"colz");
             canvas->SaveAs(Form("R%i_quartz_hit_pos.root",det));*/
         }
         file->Close("R");

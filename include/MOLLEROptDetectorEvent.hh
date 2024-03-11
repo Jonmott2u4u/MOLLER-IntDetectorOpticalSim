@@ -22,23 +22,34 @@ private:
   Float_t InitialTrackMomDirectionZ;
 
   vector <Float_t> InitialBeamEnergy;
-  
-  // vector <Int_t> PMTTrackHit;
+
   Int_t PMTTrackHit;
-  
   vector <Float_t> PMTPhotonEnergy;
   vector <Float_t> PMTCathodeHitX;
   vector <Float_t> PMTCathodeHitY;
   vector <Float_t> PMTCathodeHitZ;
   vector <Float_t> PMTWindowReflectionAngle;
   
-  vector <Int_t> LightGuideTrackHit;
-  vector <Float_t> LightGuidePhotonEnergy;
   vector <Int_t> LightGuideSteps;
+  vector <Int_t> LightGuideTrackHit;
+  vector <Int_t> LightGuideReflectionProcess;
+  vector <Float_t> LightGuidePhotonEnergy;
   vector <Float_t> LightGuideStepLength;
   vector <Float_t> LightGuideTrackLength;
   vector <Float_t> LightGuideIncidentPhotonAngle;
-  vector <Int_t> LightGuideReflectionProcess;
+
+  Int_t QuartzSteps;
+  Int_t  QuartzPhotonAtExit;
+  Float_t QuartzPhotonEnergy;
+  Float_t QuartzTrackLength;
+  vector <Int_t> TotalSteps;
+  vector <Int_t>  QuartzStepNPhotons;
+  vector <Float_t> QuartzSecondaryPhotonAngle;
+  vector <Float_t> QuartzStepLength;
+  vector <Float_t> QuartzElectronStepLength;
+  vector <Float_t> QuartzIncidentPhotonAngle;
+
+  vector <Float_t> TotalTrackLength; 
 
   vector <Int_t> R1QuartzTrackHit;
   vector <Int_t> R2QuartzTrackHit;
@@ -86,23 +97,15 @@ private:
   vector <Float_t> GEMScintillator1HitZ;
   vector <Float_t> GEMScintillator2HitZ;
 
-  // vector <Float_t> QuartzPhotonEnergy;
-  Float_t QuartzPhotonEnergy;
-  vector <Float_t> QuartzSecondaryPhotonAngle;
-  // vector <Int_t> QuartzSteps;
-  Int_t QuartzSteps;
-  vector <Float_t> QuartzStepLength;
-  vector <Float_t> QuartzElectronStepLength;
-  vector <Float_t> QuartzIncidentPhotonAngle;
-  // vector <Float_t> QuartzTrackLength;
-  Float_t QuartzTrackLength;
-  vector <Int_t>  QuartzStepNPhotons;
-  // vector <Int_t>  QuartzPhotonAtExit;
-  Int_t  QuartzPhotonAtExit;
+  vector <Int_t> R1PEs;
+  vector <Int_t> R2PEs;
+  vector <Int_t> R3PEs;
+  vector <Int_t> R4PEs;
+  vector <Int_t> R5PEs;
+  vector <Int_t> R6PEs;
+  vector <Int_t> R7PEs;
+  vector <Int_t> R8PEs;
 
-  vector <Int_t> TotalSteps;
-  vector <Float_t> TotalTrackLength;  
-  
 
 public:
 
@@ -185,6 +188,15 @@ public:
   void AddGEMScint2HitPositionX(Float_t x) {GEMScintillator2HitX.push_back(x);};
   void AddGEMScint2HitPositionY(Float_t y) {GEMScintillator2HitY.push_back(y);};
   void AddGEMScint2HitPositionZ(Float_t z) {GEMScintillator2HitZ.push_back(z);};
+
+  void AddR1PEs(Int_t pes) {R1PEs.push_back(pes);};
+  void AddR2PEs(Int_t pes) {R2PEs.push_back(pes);};
+  void AddR3PEs(Int_t pes) {R3PEs.push_back(pes);};
+  void AddR4PEs(Int_t pes) {R4PEs.push_back(pes);};
+  void AddR5PEs(Int_t pes) {R5PEs.push_back(pes);};
+  void AddR6PEs(Int_t pes) {R6PEs.push_back(pes);};
+  void AddR7PEs(Int_t pes) {R7PEs.push_back(pes);};
+  void AddR8PEs(Int_t pes) {R8PEs.push_back(pes);};
 
   void AddTrackInitMomDirection(Float_t x, Float_t y, Float_t z) {
     InitialTrackMomDirectionX = x;

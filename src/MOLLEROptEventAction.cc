@@ -320,38 +320,98 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	
       }
     }
+    //Stores data in root for specific detectors. Used to control amount of data that is saved for large simulations
+    //This also stores PEs as variables at the end of the event (specifically during the last track to prevent overwrite)
     if(Det == 0){
+      if(track->ID == 1){
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(TrackingReadout->R1_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(TrackingReadout->R2_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3PEs(TrackingReadout->R3_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4PEs(TrackingReadout->R4_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5PEs(TrackingReadout->R5_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6PEs(TrackingReadout->R6_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7PEs(TrackingReadout->R7_GetCathodeDetections());
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8PEs(TrackingReadout->R8_GetCathodeDetections());
+      }
       analysis->FillRootNtuple();
     }
     if(Det == 1){
-      if(R1_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R1_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(TrackingReadout->R1_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 2){
-      if(R2_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R2_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(TrackingReadout->R2_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 3){
-      if(R3_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R3_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3PEs(TrackingReadout->R3_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 4){
-      if(R4_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R4_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4PEs(TrackingReadout->R4_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 5){
-      if(R5_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R5_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5PEs(TrackingReadout->R5_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 6){
-      if(R6_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R6_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6PEs(TrackingReadout->R6_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 7){
-      if(R7_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R7_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7PEs(TrackingReadout->R7_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 8){
-      if(R8_SoloTracker == 1) analysis->FillRootNtuple();
+      if(R8_SoloTracker == 1){
+        if(track->ID == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8PEs(TrackingReadout->R8_GetCathodeDetections());
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 9){
-      if(Scint_Tracker == 1) analysis->FillRootNtuple();
+      if(Scint_Tracker == 1){
+        if(track->ID == 1){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(TrackingReadout->R1_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(TrackingReadout->R2_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3PEs(TrackingReadout->R3_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4PEs(TrackingReadout->R4_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5PEs(TrackingReadout->R5_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6PEs(TrackingReadout->R6_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7PEs(TrackingReadout->R7_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8PEs(TrackingReadout->R8_GetCathodeDetections());
+        }
+        analysis->FillRootNtuple();
+      }
     }
     if(Det == 10 || Det == 11){
-      if(GEM_Tracker == 1) analysis->FillRootNtuple();
+      if(GEM_Tracker == 1){
+        if(track->ID == 1){
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(TrackingReadout->R1_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(TrackingReadout->R2_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3PEs(TrackingReadout->R3_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4PEs(TrackingReadout->R4_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5PEs(TrackingReadout->R5_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6PEs(TrackingReadout->R6_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7PEs(TrackingReadout->R7_GetCathodeDetections());
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8PEs(TrackingReadout->R8_GetCathodeDetections());
+        }
+        analysis->FillRootNtuple();
+      }
     }
   }
   //Stores PEs if Scint has been hit

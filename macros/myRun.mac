@@ -95,7 +95,7 @@
 /R4/SetCenterPositionInY 146 mm
 /R4/SetCenterPositionInZ 593 mm
 
-#------------------#Ring 5 BF commands (identical to FF. Verified w/ CAD)--------------------# 
+#------------------#Ring 5 FF commands (identical to BF. Verified w/ CAD)--------------------# 
 
 /R5/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /R5/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
@@ -109,10 +109,10 @@
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
-/R5/SetCenterPositionInY 231.6 mm               # Default: 231.6. Set to 331 for debugging
-/R5/SetCenterPositionInZ 431 mm
+/R5/SetCenterPositionInY 233.9 mm               # Default: 231.6. Set to 331 for debugging
+/R5/SetCenterPositionInZ 274 mm
 
-#------------------#Ring 5 FF1 commands--------------------#
+#------------------#Ring 5 BF1 commands--------------------#
 
 /R6/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /R6/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
@@ -126,10 +126,10 @@
 /R6/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R6/SetCenterPositionInX -86.7 mm
-/R6/SetCenterPositionInY 233.9 mm
-/R6/SetCenterPositionInZ 274 mm
+/R6/SetCenterPositionInY 231.6 mm
+/R6/SetCenterPositionInZ 431 mm
 
-#------------------#Ring 5 FF2 commands--------------------#
+#------------------#Ring 5 BF2 commands--------------------#
 
 /R7/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /R7/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
@@ -143,8 +143,8 @@
 /R7/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R7/SetCenterPositionInX 86.7 mm
-/R7/SetCenterPositionInY 233.9 mm
-/R7/SetCenterPositionInZ 274 mm
+/R7/SetCenterPositionInY 231.6 mm
+/R7/SetCenterPositionInZ 431 mm
 
 #------------------#Ring 6 commands --------------------#
 
@@ -198,13 +198,13 @@
 
 /Det/UpdateGeometry
 
-/Generator/PrimaryParticle 2                      #Sets the initial particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
-/Generator/EventShift -112 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
+/Generator/PrimaryParticle 1                      #Sets the initial particle type. 1 for electrons, 2 for muons
+/Generator/EventHitRegion 8                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
+/Generator/EventShift 0 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use
-/Generator/BeamSolidAngle 14                       #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
+/Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for beam particles
 

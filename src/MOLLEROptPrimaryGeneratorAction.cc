@@ -80,14 +80,14 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = (LGlim[7]+LGlim[6])/2.0 -2 +4*G4UniformRand();
   }  
   else if(EventRegion == 8){
-    //Vertical cut on the quartz (currently 10 implemented, can be changed here)
-    x = Qlim[0] + ((Qlim[1]-Qlim[0])/10)*cut + ((Qlim[1]-Qlim[0])/10)*G4UniformRand();
+    //x cut on the quartz (currently 10 implemented, can be changed here)
+    x = Qlim[0] + ((Qlim[1]-Qlim[0])/20)*cut + ((Qlim[1]-Qlim[0])/20)*G4UniformRand();
     y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
    }
   else if(EventRegion == 9){
-    //Horizontal cut on the quartz (currently 10 implemented, can be changed here)
+    //y cut on the quartz (currently 10 implemented, can be changed here)
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
-    y = Qlim[2] + ((Qlim[3]-Qlim[2])/10)*cut + ((Qlim[3]-Qlim[2])/10)*G4UniformRand();
+    y = Qlim[2] + ((Qlim[3]-Qlim[2])/20)*cut + ((Qlim[3]-Qlim[2])/20)*G4UniformRand();
   }
   else{ 
     //On Quartz

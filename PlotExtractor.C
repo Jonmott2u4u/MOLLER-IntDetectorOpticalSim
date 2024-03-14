@@ -1,7 +1,7 @@
 #include <iostream>
 #include <TString.h>
 
-void PlotExtractor()
+void PlotExtractor_pes()
 {
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -42,17 +42,32 @@ void PlotExtractor()
     }
 }
 
-/*void PlotExtractor_Energy{
+//This object performs cuts over the quartz in the x-direction in 1 cm increments. Goal is to see position dependence of PE yield, among other things
+void PlotExtractor_quartzcut{
 
     std::ifstream rfiles("files.dat");
     std::string line;
     TFile *file;
     TH1D *hst, *tmp;
-    int det = 0;
+    int pos, file = 0;
 
     while(std::getline(rfiles, line)){
         file = TFile::Open(line.data());
-        det++;
-        
+        file++;
+        for(int det=1; det<9; det++){
+            pos = -13;
+            while(pos <= 12){
+                pos++;
+                TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+                TCanvas *canvas_pes = new TCanvas("canvas_pes","canvas_pes");
+                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iSoloPEs",det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX > %i-1)",det,pos,det,pos),"goff");
+                canvas_pes->SaveAs(Form("plots/r%i/file%i_pes_pos_%i.root",det,file,pos));
+
+                TCanvas *canvas_pos = new TCanvas("canvas_pos","canvas_pos");
+                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX > %i-1)",det,pos,det,pos),"goff");
+                canvas_pos->SaveAs(Form("plots/r%i/file%i_quartz_pos_%i.root",det,file,pos));
+
+            }
+        }
     }
-}*/
+}

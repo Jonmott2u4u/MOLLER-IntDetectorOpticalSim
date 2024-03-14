@@ -106,6 +106,15 @@ private:
   vector <Int_t> R7PEs;
   vector <Int_t> R8PEs;
 
+  vector <Int_t> R1SoloPEs;
+  vector <Int_t> R2SoloPEs;
+  vector <Int_t> R3SoloPEs;
+  vector <Int_t> R4SoloPEs;
+  vector <Int_t> R5SoloPEs;
+  vector <Int_t> R6SoloPEs;
+  vector <Int_t> R7SoloPEs;
+  vector <Int_t> R8SoloPEs;
+
 
 public:
 
@@ -197,6 +206,14 @@ public:
   void AddR6PEs(Int_t pes) {R6PEs.push_back(pes);};
   void AddR7PEs(Int_t pes) {R7PEs.push_back(pes);};
   void AddR8PEs(Int_t pes) {R8PEs.push_back(pes);};
+  void AddR1SoloPEs(Int_t pes) {R1SoloPEs.push_back(pes);};
+  void AddR2SoloPEs(Int_t pes) {R2SoloPEs.push_back(pes);};
+  void AddR3SoloPEs(Int_t pes) {R3SoloPEs.push_back(pes);};
+  void AddR4SoloPEs(Int_t pes) {R4SoloPEs.push_back(pes);};
+  void AddR5SoloPEs(Int_t pes) {R5SoloPEs.push_back(pes);};
+  void AddR6SoloPEs(Int_t pes) {R6SoloPEs.push_back(pes);};
+  void AddR7SoloPEs(Int_t pes) {R7SoloPEs.push_back(pes);};
+  void AddR8SoloPEs(Int_t pes) {R8SoloPEs.push_back(pes);};
 
   void AddTrackInitMomDirection(Float_t x, Float_t y, Float_t z) {
     InitialTrackMomDirectionX = x;

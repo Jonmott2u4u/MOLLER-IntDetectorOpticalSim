@@ -203,6 +203,23 @@ void MOLLEROptDetectorEvent::Initialize()
   R8PEs.clear();
   R8PEs.resize(0);
 
+  R1SoloPEs.clear();
+  R1SoloPEs.resize(0);
+  R2SoloPEs.clear();
+  R2SoloPEs.resize(0);
+  R3SoloPEs.clear();
+  R3SoloPEs.resize(0);
+  R4SoloPEs.clear();
+  R4SoloPEs.resize(0);
+  R5SoloPEs.clear();
+  R5SoloPEs.resize(0);
+  R6SoloPEs.clear();
+  R6SoloPEs.resize(0);
+  R7SoloPEs.clear();
+  R7SoloPEs.resize(0);
+  R8SoloPEs.clear();
+  R8SoloPEs.resize(0);
+
 }	
 
 

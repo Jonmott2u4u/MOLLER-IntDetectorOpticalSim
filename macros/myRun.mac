@@ -109,8 +109,8 @@
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
-/R5/SetCenterPositionInY 233.9 mm               # Default: 231.6. Set to 331 for debugging
-/R5/SetCenterPositionInZ 274 mm
+/R5/SetCenterPositionInY 233 mm               # Default: 231.6. Set to 331 for debugging
+/R5/SetCenterPositionInZ 155 mm
 
 #------------------#Ring 5 BF1 commands--------------------#
 
@@ -126,8 +126,8 @@
 /R6/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R6/SetCenterPositionInX -86.7 mm
-/R6/SetCenterPositionInY 231.6 mm
-/R6/SetCenterPositionInZ 431 mm
+/R6/SetCenterPositionInY 233 mm
+/R6/SetCenterPositionInZ 285 mm
 
 #------------------#Ring 5 BF2 commands--------------------#
 
@@ -143,8 +143,8 @@
 /R7/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R7/SetCenterPositionInX 86.7 mm
-/R7/SetCenterPositionInY 231.6 mm
-/R7/SetCenterPositionInZ 431 mm
+/R7/SetCenterPositionInY 233 mm
+/R7/SetCenterPositionInZ 285 mm
 
 #------------------#Ring 6 commands --------------------#
 

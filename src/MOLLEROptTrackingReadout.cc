@@ -79,19 +79,19 @@ void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
         R4_CathodeDetections++;
         Tracks[n]->R4_Detected = 1;
       }
-      if(10 < Tracks[n]->PMTHitZ/cm && 30 > Tracks[n]->PMTHitZ/cm){
+      if(2 < Tracks[n]->PMTHitZ/cm && 30 > Tracks[n]->PMTHitZ/cm){
         R5_CathodeDetections++;
         Tracks[n]->R5_Detected = 1;
       }
-      if((30 < Tracks[n]->PMTHitZ/cm) && (50 > Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm < 0)){
+      if((2 < Tracks[n]->PMTHitZ/cm) && (30 > Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm < 0)){
         R6_CathodeDetections++;
         Tracks[n]->R6_Detected = 1;
       }
-      if((30 < Tracks[n]->PMTHitZ/cm) && (50 > Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm > 0)){
+      if((2 < Tracks[n]->PMTHitZ/cm) && (30 > Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm > 0)){
         R7_CathodeDetections++;
         Tracks[n]->R7_Detected = 1;
       }
-      if(Tracks[n]->PMTHitZ/cm < 10){
+      if(Tracks[n]->PMTHitZ/cm < 2){
         R8_CathodeDetections++;
         Tracks[n]->R8_Detected = 1;
       }

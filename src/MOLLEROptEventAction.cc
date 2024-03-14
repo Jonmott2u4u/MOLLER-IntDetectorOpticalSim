@@ -290,16 +290,16 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         if(50 < track->PMTHitZ/cm && track->PMTHitZ/cm < 70){
           R4_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(10 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30){
+        if(2 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30){
           R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(30 < track->PMTHitZ/cm && track->PMTHitZ/cm < 50 && track->PMTHitX/cm < 0){
+        if(2 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm < 0){
           R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(30 < track->PMTHitZ/cm && track->PMTHitZ/cm < 50 && track->PMTHitX/cm > 0){
+        if(2 < track->PMTHitZ/cm && track->PMTHitZ/cm < 30 && track->PMTHitX/cm > 0){
           R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
-        if(track->PMTHitZ/cm < 10){
+        if(track->PMTHitZ/cm < 2){
           R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
         }
 	    }

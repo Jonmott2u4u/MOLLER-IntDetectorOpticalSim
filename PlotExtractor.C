@@ -1,7 +1,7 @@
 #include <iostream>
 #include <TString.h>
 
-void PlotExtractor_pes()
+void raw_pes()
 {
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -43,31 +43,33 @@ void PlotExtractor_pes()
 }
 
 //This object performs cuts over the quartz in the x-direction in 1 cm increments. Goal is to see position dependence of PE yield, among other things
-void PlotExtractor_quartzcut{
+void quartzcut(){
 
     std::ifstream rfiles("files.dat");
     std::string line;
     TFile *file;
     TH1D *hst, *tmp;
-    int pos, file = 0;
+    int pos, file_open = 0;
 
     while(std::getline(rfiles, line)){
         file = TFile::Open(line.data());
-        file++;
-        for(int det=1; det<9; det++){
-            pos = -13;
-            while(pos <= 12){
+        file_open++;
+        for(int det=4; det<5; det++){
+            pos = -11;
+            while(pos <= 1){
                 pos++;
+		        pos++;
                 TTree *tree = (TTree*)file->Get("MOLLEROptTree");
                 TCanvas *canvas_pes = new TCanvas("canvas_pes","canvas_pes");
-                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iSoloPEs",det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX > %i-1)",det,pos,det,pos),"goff");
-                canvas_pes->SaveAs(Form("plots/r%i/file%i_pes_pos_%i.root",det,file,pos));
+                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iSoloPEs",det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY > %i-2)",det,pos,det,pos));
+                canvas_pes->SaveAs(Form("plots/r%i/file%i_pes_pos_%i.root",det,file_open,pos));
 
                 TCanvas *canvas_pos = new TCanvas("canvas_pos","canvas_pos");
-                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX > %i-1)",det,pos,det,pos),"goff");
-                canvas_pos->SaveAs(Form("plots/r%i/file%i_quartz_pos_%i.root",det,file,pos));
+                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY > %i-2)",det,pos,det,pos),"colz");
+                canvas_pos->SaveAs(Form("plots/r%i/file%i_quartz_pos_%i.root",det,file_open,pos));
 
             }
         }
+        file->Close("R");
     }
 }

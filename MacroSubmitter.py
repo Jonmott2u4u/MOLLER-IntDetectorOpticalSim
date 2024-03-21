@@ -24,8 +24,8 @@ ID_start = 1    #Set this to distinguish identical runs (to prevent file overwri
 ID_stop = 100
 ID_step = 1
 
-det_start = 9    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 9
+det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
+det_stop = 4
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):

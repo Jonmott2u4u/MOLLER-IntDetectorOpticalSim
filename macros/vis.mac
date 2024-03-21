@@ -156,7 +156,7 @@
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
-/R5/SetCenterPositionInY 233 mm                 # 
+/R5/SetCenterPositionInY 240 mm                 # 
 /R5/SetCenterPositionInZ 155 mm
 
 #------------------#Ring 5 BF1 commands--------------------#
@@ -216,8 +216,8 @@
 /Scint/QuartzSizeX 300 mm                      # 600 mm
 /Scint/QuartzSizeY 600 mm                      # 600 mm
 /Scint/SetCenterPositionInX 0 mm               # 
-/Scint/SetCenterPositionInY -150 mm            # Positions for shifted 30x30 scints used in UMass lab. -34 for R5->R6, -234 for R1->R4. Each is 56 mm higher than before. Use -150 for 30x60 scint
-/Scint/SetCenterPositionInZ 1769 mm           # 
+/Scint/SetCenterPositionInY -105 mm            # Positions for shifted 30x30 scints used in UMass lab. -34 for R5->R6, -234 for R1->R4. Each is 56 mm higher than before.
+/Scint/SetCenterPositionInZ 1769 mm            # 
 
 /GEMScint1/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
 /GEMScint1/QuartzSizeX 100 mm                  # 100 mm

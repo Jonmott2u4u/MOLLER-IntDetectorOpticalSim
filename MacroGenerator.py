@@ -18,7 +18,7 @@ EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in uni
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,100000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 #ScintYPos = [-380,-320,-245,-140,30,150]
 #ScintZPos = [1911,1643,1376,1108,946,515]
-shift = -125     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
+shift = -100     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
@@ -29,8 +29,8 @@ cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan 
 cut_stop = 1   #Currently repurposed to move scintillator around
 cut_step = 1
 
-sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
-sa_stop = 17
+sa_start = 14    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+sa_stop = 14
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
@@ -64,8 +64,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R1/QuartzSizeY 30 mm" + "\n"                
                     Text += "/R1/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R1/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R1/SetCenterPositionInY 0 mm" + "\n"
-                    Text += "/R1/SetCenterPositionInZ 1396 mm" + "\n\n"
+                    Text += "/R1/SetCenterPositionInY 13 mm" + "\n"
+                    Text += "/R1/SetCenterPositionInZ 1423.94 mm" + "\n\n"
                     Text += "#------------------#Ring 2 commands --------------------#" + "\n\n"
                     Text += "/R2/LightGuideLowerConeBackAngle 22 deg" + "\n"
                     Text += "/R2/LightGuideLowerConeFrontAngle 18 deg" + "\n"
@@ -79,8 +79,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R2/QuartzSizeY 60 mm" + "\n"                
                     Text += "/R2/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R2/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R2/SetCenterPositionInY 37 mm" + "\n"
-                    Text += "/R2/SetCenterPositionInZ 1128 mm" + "\n\n"
+                    Text += "/R2/SetCenterPositionInY 49 mm" + "\n"
+                    Text += "/R2/SetCenterPositionInZ 1145.60 mm" + "\n\n"
                     Text += "#------------------#Ring 3 commands --------------------#" + "\n\n"
                     Text += "/R3/LightGuideLowerConeBackAngle 22 deg" + "\n"
                     Text += "/R3/LightGuideLowerConeFrontAngle 18 deg" + "\n"
@@ -94,8 +94,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R3/QuartzSizeY 60 mm" + "\n"                
                     Text += "/R3/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R3/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R3/SetCenterPositionInY 94 mm" + "\n"
-                    Text += "/R3/SetCenterPositionInZ 861 mm" + "\n\n"
+                    Text += "/R3/SetCenterPositionInY 100 mm" + "\n"
+                    Text += "/R3/SetCenterPositionInZ 871.51 mm" + "\n\n"
                     Text += "#------------------#Ring 4 commands --------------------#" + "\n\n"
                     Text += "/R4/LightGuideLowerConeBackAngle 22 deg" + "\n"
                     Text += "/R4/LightGuideLowerConeFrontAngle 17 deg" + "\n"
@@ -109,8 +109,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R4/QuartzSizeY 120 mm" + "\n"                
                     Text += "/R4/LightGuideQuartzToPMTOffset 3 mm" + "\n"
                     Text += "/R4/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R4/SetCenterPositionInY 146 mm" + "\n"
-                    Text += "/R4/SetCenterPositionInZ 593 mm" + "\n\n"
+                    Text += "/R4/SetCenterPositionInY 151 mm" + "\n"
+                    Text += "/R4/SetCenterPositionInZ 592.08 mm" + "\n\n"
                     Text += "#------------------#Ring 5 FF commands --------------------#" + "\n\n"
                     Text += "/R5/LightGuideLowerConeBackAngle 19 deg" + "\n"
                     Text += "/R5/LightGuideLowerConeFrontAngle 18 deg" + "\n"
@@ -125,7 +125,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R5/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R5/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/R5/SetCenterPositionInY 240 mm" + "\n"
-                    Text += "/R5/SetCenterPositionInZ 155 mm" + "\n\n"
+                    Text += "/R5/SetCenterPositionInZ 151.64 mm" + "\n\n"
                     Text += "#------------------#Ring 5 BF1 commands --------------------#" + "\n\n"
                     Text += "/R6/LightGuideLowerConeBackAngle 19 deg" + "\n"
                     Text += "/R6/LightGuideLowerConeFrontAngle 18 deg" + "\n"
@@ -140,7 +140,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R6/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R6/SetCenterPositionInX -86.7 mm" + "\n"
                     Text += "/R6/SetCenterPositionInY 233 mm" + "\n"
-                    Text += "/R6/SetCenterPositionInZ 285 mm" + "\n\n"
+                    Text += "/R6/SetCenterPositionInZ 302.47 mm" + "\n\n"
                     Text += "#------------------#Ring 5 BF2 commands --------------------#" + "\n\n"
                     Text += "/R7/LightGuideLowerConeBackAngle 19 deg" + "\n"
                     Text += "/R7/LightGuideLowerConeFrontAngle 18 deg" + "\n"
@@ -155,7 +155,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R7/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R7/SetCenterPositionInX 86.7 mm" + "\n"
                     Text += "/R7/SetCenterPositionInY 233 mm" + "\n"
-                    Text += "/R7/SetCenterPositionInZ 285 mm" + "\n\n"
+                    Text += "/R7/SetCenterPositionInZ 302.47 mm" + "\n\n"
                     Text += "#------------------#Ring 6 commands --------------------#" + "\n\n"
                     Text += "/R8/LightGuideLowerConeBackAngle 20 deg" + "\n"
                     Text += "/R8/LightGuideLowerConeFrontAngle 17 deg" + "\n"
@@ -170,16 +170,16 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R8/LightGuideQuartzToPMTOffset 0 mm" + "\n"
                     Text += "/R8/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/R8/SetCenterPositionInY 330 mm" + "\n"
-                    Text += "/R8/SetCenterPositionInZ 0 mm" + "\n\n"
+                    Text += "/R8/SetCenterPositionInZ 1.78 mm" + "\n\n"
                     Text += "#------------------#Scintillator commands ---------------#" + "\n\n"
                     Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/Scint/QuartzSizeX 300 mm" + "\n"
-                    Text += "/Scint/QuartzSizeY 600 mm" + "\n"
+                    Text += "/Scint/QuartzSizeY 300 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
                     #Text += "/Scint/SetCenterPositionInY " + str(ScintYPos[cut-1]) + " mm" +"\n"
                     #Text += "/Scint/SetCenterPositionInZ " + str(ScintZPos[cut-1]) + " mm" +"\n"
-                    Text += "/Scint/SetCenterPositionInY -105 mm" +"\n" # -34 for R5->R6, -234 for R1->R4.
-                    Text += "/Scint/SetCenterPositionInZ 1769 mm" +"\n"
+                    Text += "/Scint/SetCenterPositionInY -250 mm" +"\n" # -34 for R5->R6, -234 for R1->R4.
+                    Text += "/Scint/SetCenterPositionInZ 1761.65 mm" +"\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeX 100 mm" + "\n"

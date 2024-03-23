@@ -88,8 +88,8 @@
 /R1/QuartzSizeY 30 mm                          #Without the 45 degree cut
 /R1/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R1/SetCenterPositionInX 0 mm
-/R1/SetCenterPositionInY 0 mm
-/R1/SetCenterPositionInZ 1396 mm
+/R1/SetCenterPositionInY 13 mm
+/R1/SetCenterPositionInZ 1423.94 mm
 
 #------------------#Ring 2 commands --------------------#
 
@@ -105,8 +105,8 @@
 /R2/QuartzSizeY 60 mm                          #Without the 45 degree cut
 /R2/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R2/SetCenterPositionInX 0 mm
-/R2/SetCenterPositionInY 37 mm
-/R2/SetCenterPositionInZ 1128 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+/R2/SetCenterPositionInY 49 mm
+/R2/SetCenterPositionInZ 1145.60 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #------------------#Ring 3 commands --------------------#
 
@@ -122,8 +122,8 @@
 /R3/QuartzSizeY 60 mm                          #Without the 45 degree cut
 /R3/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R3/SetCenterPositionInX 0 mm
-/R3/SetCenterPositionInY 94 mm
-/R3/SetCenterPositionInZ 861 mm
+/R3/SetCenterPositionInY 100 mm
+/R3/SetCenterPositionInZ 871.51 mm
 
 #------------------#Ring 4 commands --------------------#
 
@@ -139,8 +139,8 @@
 /R4/QuartzSizeY 120 mm                          #Without the 45 degree cut
 /R4/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R4/SetCenterPositionInX 0 mm
-/R4/SetCenterPositionInY 146 mm
-/R4/SetCenterPositionInZ 593 mm
+/R4/SetCenterPositionInY 151 mm
+/R4/SetCenterPositionInZ 592.08 mm
 
 #------------------#Ring 5 FF commands (identical to BF. Verified w/ CAD)--------------------# 
 
@@ -157,7 +157,7 @@
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
 /R5/SetCenterPositionInY 240 mm                 # 
-/R5/SetCenterPositionInZ 155 mm
+/R5/SetCenterPositionInZ 151.64 mm
 
 #------------------#Ring 5 BF1 commands--------------------#
 
@@ -174,7 +174,7 @@
 /R6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R6/SetCenterPositionInX -86.7 mm
 /R6/SetCenterPositionInY 233 mm
-/R6/SetCenterPositionInZ 285 mm
+/R6/SetCenterPositionInZ 302.47 mm
 
 #------------------#Ring 5 BF2 commands--------------------#
 
@@ -191,7 +191,7 @@
 /R7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R7/SetCenterPositionInX 86.7 mm
 /R7/SetCenterPositionInY 233 mm
-/R7/SetCenterPositionInZ 285 mm
+/R7/SetCenterPositionInZ 302.47 mm
 
 #------------------#Ring 6 commands --------------------#
 
@@ -208,23 +208,23 @@
 /R8/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R8/SetCenterPositionInX 0 mm
 /R8/SetCenterPositionInY 330 mm
-/R8/SetCenterPositionInZ 0 mm
+/R8/SetCenterPositionInZ 1.78 mm
 
 #------------------#Scintillator commands ---------------# GEMScint1 is being used to define where particles spawn
 
 /Scint/QuartzSizeZ 0.1 mm                      # Default: 0.1 mm
 /Scint/QuartzSizeX 300 mm                      # 600 mm
-/Scint/QuartzSizeY 600 mm                      # 600 mm
+/Scint/QuartzSizeY 300 mm                      # 600 mm
 /Scint/SetCenterPositionInX 0 mm               # 
-/Scint/SetCenterPositionInY -105 mm            # Positions for shifted 30x30 scints used in UMass lab. -34 for R5->R6, -234 for R1->R4. Each is 56 mm higher than before.
-/Scint/SetCenterPositionInZ 1769 mm            # 
+/Scint/SetCenterPositionInY -250 mm            # Positions for shifted 30x30 scints used in UMass lab.
+/Scint/SetCenterPositionInZ 1761.68 mm         # 1786.39 for trap, 1761.68 else
 
 /GEMScint1/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
 /GEMScint1/QuartzSizeX 100 mm                  # 100 mm
 /GEMScint1/QuartzSizeY 200 mm                  # 200 mm
 /GEMScint1/SetCenterPositionInX 0 mm           # 
 /GEMScint1/SetCenterPositionInY 1000 mm        #
-/GEMScint1/SetCenterPositionInZ 500 mm         #  
+/GEMScint1/SetCenterPositionInZ 500 mm         #
 
 /GEMScint2/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
 /GEMScint2/QuartzSizeX 100 mm                  # 100 mm
@@ -247,11 +247,11 @@
 
 /Generator/PrimaryParticle 2                      #Sets the initial particle type. 1 for electrons, 2 for muons
 /Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
-/Generator/EventShift 0 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc. Common value is -112 mm
+/Generator/EventShift -100 mm                      #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc. Common value is -112 mm
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use
-/Generator/BeamSolidAngle 17                       #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
+/Generator/BeamSolidAngle 14                       #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for beam particles
 

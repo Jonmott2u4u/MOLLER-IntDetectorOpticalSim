@@ -16,7 +16,7 @@ cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical f
 cut_stop = 1
 cut_step = 1
 
-sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+sa_start = 14    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
 sa_stop = 17
 sa_step = 5
 

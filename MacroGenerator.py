@@ -29,9 +29,9 @@ cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan 
 cut_stop = 1   #Currently repurposed to move scintillator around
 cut_step = 1
 
-sa_start = 14.0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
-sa_stop = 14.0
-sa_step = 5.0
+sa_start = 14    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+sa_stop = 14
+sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 ID_stop = 40

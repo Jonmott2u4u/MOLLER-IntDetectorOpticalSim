@@ -67,10 +67,10 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamPhiCmd->SetRange("BeamPhi<=360");
   BeamPhiCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  BeamSolidAngleCmd = new G4UIcmdWithAnInteger("/Generator/BeamSolidAngle",this);
+  BeamSolidAngleCmd = new G4UIcmdWithADoubleAndUnit("/Generator/BeamSolidAngle",this);
   BeamSolidAngleCmd->SetGuidance("Set maximum angle of beam from z-axis. Beam can take any angle between that and 0");
   BeamSolidAngleCmd->SetParameterName("BeamSolidAngle",true);
-  BeamSolidAngleCmd->SetDefaultValue(0);
+  BeamSolidAngleCmd->SetDefaultValue(0.);
   BeamSolidAngleCmd->SetRange("BeamSolidAngle<=360");
   BeamSolidAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
@@ -125,7 +125,7 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
     { pPrimaryGeneratorAction->SetBeamPhi(BeamPhiCmd->GetNewIntValue(newValue));}
 
   if( command == BeamSolidAngleCmd )
-    { pPrimaryGeneratorAction->SetBeamSolidAngle(BeamSolidAngleCmd->GetNewIntValue(newValue));}
+    { pPrimaryGeneratorAction->SetBeamSolidAngle(BeamSolidAngleCmd->GetNewDoubleValue(newValue));}
 
   if( command == BeamEnergyCmd )
     { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue));}

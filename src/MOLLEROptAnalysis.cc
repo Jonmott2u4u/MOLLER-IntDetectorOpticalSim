@@ -26,15 +26,6 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6_CathodeEventsDistrHist = new TH1D("R6_CathodeEventsDistrHist","",100,0,100);
     R7_CathodeEventsDistrHist = new TH1D("R7_CathodeEventsDistrHist","",100,0,100);
     R8_CathodeEventsDistrHist = new TH1D("R8_CathodeEventsDistrHist","",100,0,100);
-    R1_InitialBeamAngleHist = new TH1F("R1_InitialBeamAngleHist","",100,0,100);
-    R2_InitialBeamAngleHist = new TH1F("R2_InitialBeamAngleHist","",100,0,100);
-    R3_InitialBeamAngleHist = new TH1F("R3_InitialBeamAngleHist","",100,0,100);
-    R4_InitialBeamAngleHist = new TH1F("R4_InitialBeamAngleHist","",100,0,100);
-    R5_InitialBeamAngleHist = new TH1F("R5_InitialBeamAngleHist","",100,0,100);
-    R6_InitialBeamAngleHist = new TH1F("R6_InitialBeamAngleHist","",100,0,100);
-    R7_InitialBeamAngleHist = new TH1F("R7_InitialBeamAngleHist","",100,0,100);
-    R8_InitialBeamAngleHist = new TH1F("R8_InitialBeamAngleHist","",100,0,100);
-
     R1Only_CathodeEventsDistrHist = new TH1D("R1Only_CathodeEventsDistrHist","",100,0,100);
     R2Only_CathodeEventsDistrHist = new TH1D("R2Only_CathodeEventsDistrHist","",100,0,100);
     R3Only_CathodeEventsDistrHist = new TH1D("R3Only_CathodeEventsDistrHist","",100,0,100);
@@ -43,14 +34,25 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_CathodeEventsDistrHist = new TH1D("R6Only_CathodeEventsDistrHist","",100,0,100);
     R7Only_CathodeEventsDistrHist = new TH1D("R7Only_CathodeEventsDistrHist","",100,0,100);
     R8Only_CathodeEventsDistrHist = new TH1D("R8Only_CathodeEventsDistrHist","",100,0,100);
-    R1Only_InitialBeamAngleHist = new TH1F("R1Only_InitialBeamAngleHist","",100,0,100);
-    R2Only_InitialBeamAngleHist = new TH1F("R2Only_InitialBeamAngleHist","",100,0,100);
-    R3Only_InitialBeamAngleHist = new TH1F("R3Only_InitialBeamAngleHist","",100,0,100);
-    R4Only_InitialBeamAngleHist = new TH1F("R4Only_InitialBeamAngleHist","",100,0,100);
-    R5Only_InitialBeamAngleHist = new TH1F("R5Only_InitialBeamAngleHist","",100,0,100);
-    R6Only_InitialBeamAngleHist = new TH1F("R6Only_InitialBeamAngleHist","",100,0,100);
-    R7Only_InitialBeamAngleHist = new TH1F("R7Only_InitialBeamAngleHist","",100,0,100);
-    R8Only_InitialBeamAngleHist = new TH1F("R8Only_InitialBeamAngleHist","",100,0,100);
+
+    R1_InitialBeamAngleHist = new TH1F("R1_InitialBeamAngleHist","",100,0,25);
+    R2_InitialBeamAngleHist = new TH1F("R2_InitialBeamAngleHist","",100,0,25);
+    R3_InitialBeamAngleHist = new TH1F("R3_InitialBeamAngleHist","",100,0,25);
+    R4_InitialBeamAngleHist = new TH1F("R4_InitialBeamAngleHist","",100,0,25);
+    R5_InitialBeamAngleHist = new TH1F("R5_InitialBeamAngleHist","",100,0,25);
+    R6_InitialBeamAngleHist = new TH1F("R6_InitialBeamAngleHist","",100,0,25);
+    R7_InitialBeamAngleHist = new TH1F("R7_InitialBeamAngleHist","",100,0,25);
+    R8_InitialBeamAngleHist = new TH1F("R8_InitialBeamAngleHist","",100,0,25);
+    R1Only_InitialBeamAngleHist = new TH1F("R1Only_InitialBeamAngleHist","",100,0,25);
+    R2Only_InitialBeamAngleHist = new TH1F("R2Only_InitialBeamAngleHist","",100,0,25);
+    R3Only_InitialBeamAngleHist = new TH1F("R3Only_InitialBeamAngleHist","",100,0,25);
+    R4Only_InitialBeamAngleHist = new TH1F("R4Only_InitialBeamAngleHist","",100,0,25);
+    R5Only_InitialBeamAngleHist = new TH1F("R5Only_InitialBeamAngleHist","",100,0,25);
+    R6Only_InitialBeamAngleHist = new TH1F("R6Only_InitialBeamAngleHist","",100,0,25);
+    R7Only_InitialBeamAngleHist = new TH1F("R7Only_InitialBeamAngleHist","",100,0,25);
+    R8Only_InitialBeamAngleHist = new TH1F("R8Only_InitialBeamAngleHist","",100,0,25);
+
+    NoHit_InitialBeamAngleHist = new TH1F("NoHit_InitialBeamAngleHist","",100,0,25);
 
     R1_PhotoElectronDistrHist = new TH1D("R1_PhotoElectronDistrHist","",100,0,100);
     R2_PhotoElectronDistrHist = new TH1D("R2_PhotoElectronDistrHist","",100,0,100);
@@ -68,8 +70,6 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_PhotoElectronDistrHist = new TH1D("R6Only_PhotoElectronDistrHist","",100,0,100);
     R7Only_PhotoElectronDistrHist = new TH1D("R7Only_PhotoElectronDistrHist","",100,0,100);
     R8Only_PhotoElectronDistrHist = new TH1D("R8Only_PhotoElectronDistrHist","",100,0,100);
-
-    NoHit_InitialBeamAngleHist = new TH1F("NoHit_InitialBeamAngleHist","",100,0,100);
 
 
     

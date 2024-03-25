@@ -22,6 +22,7 @@ private:
   Float_t InitialTrackMomDirectionZ;
 
   vector <Float_t> InitialBeamEnergy;
+  vector <Float_t> InitialBeamAngle;
 
   Int_t PMTTrackHit;
   vector <Float_t> PMTPhotonEnergy;
@@ -144,6 +145,7 @@ public:
   void AddPhotonTrackID(Int_t tID){PhotonTrackID = tID;};
 
   void AddInitialBeamEnergy(Float_t eng) {InitialBeamEnergy.push_back(eng);};
+  void AddInitialBeamAngle(Float_t aang) {InitialBeamAngle.push_back(aang);};
 
   void AddPMTPhotonEnergy(Float_t eng) {PMTPhotonEnergy.push_back(eng);};
   void AddPMTTrackHit(Int_t tID){PMTTrackHit = tID;};

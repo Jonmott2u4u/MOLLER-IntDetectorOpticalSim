@@ -1,4 +1,5 @@
 #include "MOLLEROptEventAction.hh"
+#include <math.h>
 
 MOLLEROptEventAction::MOLLEROptEventAction(MOLLEROptAnalysis* AN, MOLLEROptTrackingReadout* TrRO)
 {
@@ -85,10 +86,11 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
   Initialize();
   analysis->MOLLERMainEvent->MOLLERPrimEvent.Initialize(); 
-
-  G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt; 
+  
+  G4float InitialBeamAngle = 99;
   G4double LGTrackLength, QuartzTrackLength, TotalTrackLength;
   G4double R1_PMTPe = 0, R2_PMTPe = 0, R3_PMTPe = 0, R4_PMTPe = 0, R5_PMTPe = 0, R6_PMTPe = 0, R7_PMTPe = 0, R8_PMTPe = 0;
+  G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt;
   G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, ScintHit, GEM1Hit, GEM2Hit; //Tracks whether a detector's quartz tile has been hit in a given event
   G4int NumSecPhotons = 0;
   G4int hitflag = 0;
@@ -135,8 +137,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
       analysis->MOLLERMainEvent->MOLLERDetectorEvent.SetEventID(evt->GetEventID());
       analysis->MOLLERMainEvent->MOLLERDetectorEvent.SetTrackParentID(track->ParentID);      
-      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,
-									      track->InitMomDirZ);      
+      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);      
+
       
       if(track->Particle == myBeam){
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(track->ID);
@@ -144,6 +146,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 	      analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(0);
         if(track->ID == 1){
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddInitialBeamEnergy(track->InitKinEnergy/GeV);
+          InitialBeamAngle = asin(sqrt(pow(track->InitMomDirX,2) + pow(track->InitMomDirY,2)))*180./TMath::Pi();
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddInitialBeamAngle(InitialBeamAngle);
         }
 
         if(track->R1QuartzHitFlag & (track->ID == 1)){
@@ -253,71 +257,71 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
       }
       if(track->Particle == myPhoton){
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(track->ID);	
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(0);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackData(track->QLength/cm, track->QSteps);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzPhotonAtExitFlag(track->QExitFlag);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTTrackHit(track->PMTHitFlag);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideTrackHit(track->LGHitFlag);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
-	analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
-	QuartzSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
-	if(track->QExitFlag)
-	  LightGuideSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
-	if(track->PMTHitFlag){
-    //G4cout << "PHOTON" << G4endl;
-	  PMTSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionX((Float_t)track->PMTHitX/cm);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionY((Float_t)track->PMTHitY/cm);
-    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
-	  analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
-	  optPhEng = track->InitKinEnergy/eV;
-	  OptParam* op = TrackingReadout->GetOpticalParameters();
-	  for(int n = 0; n < op->npar-1; n++){
-	    if(optPhEng >= op->EPhoton[n]/eV && optPhEng < op->EPhoton[n+1]/eV){
-	      if(track->PMTHitZ/cm > 120){
-          R1_PMTPe += gRandom->PoissonD(op->QEff[n]);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPhotonTrackID(track->ID);	
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddElectronTrackID(0);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackData(track->QLength/cm, track->QSteps);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzPhotonAtExitFlag(track->QExitFlag);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTTrackHit(track->PMTHitFlag);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideTrackHit(track->LGHitFlag);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
+        analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
+        QuartzSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
+        if(track->QExitFlag)
+          LightGuideSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
+        if(track->PMTHitFlag){
+          //G4cout << "PHOTON" << G4endl;
+          PMTSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionX((Float_t)track->PMTHitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionY((Float_t)track->PMTHitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
+          optPhEng = track->InitKinEnergy/eV;
+          OptParam* op = TrackingReadout->GetOpticalParameters();
+          for(int n = 0; n < op->npar-1; n++){
+            if(optPhEng >= op->EPhoton[n]/eV && optPhEng < op->EPhoton[n+1]/eV){
+              if(track->PMTHitZ/cm > 120){
+                R1_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(100 < track->PMTHitZ/cm && track->PMTHitZ/cm < 120){
+                R2_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(70 < track->PMTHitZ/cm && track->PMTHitZ/cm < 90){
+                R3_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(45 < track->PMTHitZ/cm && track->PMTHitZ/cm < 70){
+                R4_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(5 < track->PMTHitZ/cm && track->PMTHitZ/cm < 15){
+                R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(15 < track->PMTHitZ/cm && track->PMTHitZ/cm < 35 && track->PMTHitX/cm < 0){
+                R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(15 < track->PMTHitZ/cm && track->PMTHitZ/cm < 35 && track->PMTHitX/cm > 0){
+                R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+              if(track->PMTHitZ/cm < 5){
+                R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
+              }
+            }
+          }
+          PMThit++;
         }
-        if(100 < track->PMTHitZ/cm && track->PMTHitZ/cm < 120){
-          R2_PMTPe += gRandom->PoissonD(op->QEff[n]);
+          
+        for(int s = 0; s < track->NSteps; s++){
+          if(track->StepVolume[s] == myQuartz){
+            analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzStepLength(track->StepLength[s]/cm);
+            analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzIncidentPhotonAngle(track->StepAngle[s]);
+          }
+          if(track->StepVolume[s] == myLightGuide){
+            analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideStepLength(track->StepLength[s]/cm);
+            analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideIncidentPhotonAngle(track->StepAngle[s]);
+          }
         }
-        if(70 < track->PMTHitZ/cm && track->PMTHitZ/cm < 90){
-          R3_PMTPe += gRandom->PoissonD(op->QEff[n]);
-        }
-        if(45 < track->PMTHitZ/cm && track->PMTHitZ/cm < 70){
-          R4_PMTPe += gRandom->PoissonD(op->QEff[n]);
-        }
-        if(5 < track->PMTHitZ/cm && track->PMTHitZ/cm < 15){
-          R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
-        }
-        if(15 < track->PMTHitZ/cm && track->PMTHitZ/cm < 35 && track->PMTHitX/cm < 0){
-          R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
-        }
-        if(15 < track->PMTHitZ/cm && track->PMTHitZ/cm < 35 && track->PMTHitX/cm > 0){
-          R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
-        }
-        if(track->PMTHitZ/cm < 5){
-          R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
-        }
-	    }
-    }
-	  PMThit++;
-	}
-	  
-	for(int s = 0; s < track->NSteps; s++){
-	  if(track->StepVolume[s] == myQuartz){
-	    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzStepLength(track->StepLength[s]/cm);
-	    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzIncidentPhotonAngle(track->StepAngle[s]);
-	  }
-	  if(track->StepVolume[s] == myLightGuide){
-	    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideStepLength(track->StepLength[s]/cm);
-	    analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddLightGuideIncidentPhotonAngle(track->StepAngle[s]);
-	  }
-	}
-	
+        
       }
     }
     //Stores data in root for specific detectors. Used to control amount of data that is saved for large simulations
@@ -447,55 +451,88 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
   }
   //Stores PEs if Scint has been hit
-  if(R1_Tracker == 1) analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-  if(R2_Tracker == 1) analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-  if(R3_Tracker == 1) analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R4_Tracker == 1) analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-  if(R5_Tracker == 1) analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-  if(R6_Tracker == 1) analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-  if(R7_Tracker == 1) analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-  if(R8_Tracker == 1) analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-  //analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
-  //analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
-  //analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
-  //analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
-  //analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
-  //analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
-  //analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
-  //analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
-
-  //Stores PEs if Scint & one tile have been hit
-  if(R1_SoloTracker == 1) analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-  if(R2_SoloTracker == 1) analysis->R2Only_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-  if(R3_SoloTracker == 1) analysis->R3Only_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-  if(R4_SoloTracker == 1) analysis->R4Only_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-  if(R5_SoloTracker == 1) analysis->R5Only_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-  if(R6_SoloTracker == 1) analysis->R6Only_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-  if(R7_SoloTracker == 1) analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-  if(R8_SoloTracker == 1) analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-
-  //Sorting based on whether Scint & both GEMs were hit.
-  /*if(GEM_Tracker == 1){
-    //G4cout << "HISTO" << G4endl;
-    analysis->R1_AddPhotoElectronEvent(R1_PMTPe);//Defunct
+  if(R1_Tracker == 1){
     analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-    analysis->R2_AddPhotoElectronEvent(R2_PMTPe);//Defunct
+    analysis->R1_AddPhotoElectronEvent(R1_PMTPe);
+    analysis->R1_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R2_Tracker == 1){
     analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-    analysis->R3_AddPhotoElectronEvent(R3_PMTPe);//Defunct
+    analysis->R2_AddPhotoElectronEvent(R2_PMTPe);
+    analysis->R2_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R3_Tracker == 1){
     analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-    analysis->R4_AddPhotoElectronEvent(R4_PMTPe);//Defunct
+    analysis->R3_AddPhotoElectronEvent(R3_PMTPe);
+    analysis->R3_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R4_Tracker == 1){
     analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-    analysis->R5_AddPhotoElectronEvent(R5_PMTPe);//Defunct
+    analysis->R4_AddPhotoElectronEvent(R4_PMTPe);
+    analysis->R4_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R5_Tracker == 1){
     analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-    analysis->R6_AddPhotoElectronEvent(R6_PMTPe);//Defunct
+    analysis->R5_AddPhotoElectronEvent(R5_PMTPe);
+    analysis->R5_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R6_Tracker == 1){
     analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-    analysis->R7_AddPhotoElectronEvent(R7_PMTPe);//Defunct
+    analysis->R6_AddPhotoElectronEvent(R6_PMTPe);
+    analysis->R6_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R7_Tracker == 1){
     analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-    analysis->R8_AddPhotoElectronEvent(R8_PMTPe);//Defunct
+    analysis->R7_AddPhotoElectronEvent(R7_PMTPe);
+    analysis->R7_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R8_Tracker == 1){
     analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-  }*/
-
-
+    analysis->R8_AddPhotoElectronEvent(R8_PMTPe);
+    analysis->R8_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  //Stores PEs if Scint & one tile have been hit
+  if(R1_SoloTracker == 1){
+    analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+    analysis->R1Only_AddPhotoElectronEvent(R1_PMTPe);
+    analysis->R1Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R2_SoloTracker == 1){
+    analysis->R2Only_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+    analysis->R2Only_AddPhotoElectronEvent(R2_PMTPe);
+    analysis->R2Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R3_SoloTracker == 1){
+    analysis->R3Only_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+    analysis->R3Only_AddPhotoElectronEvent(R3_PMTPe);
+    analysis->R3Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R4_SoloTracker == 1){
+    analysis->R4Only_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+    analysis->R4Only_AddPhotoElectronEvent(R4_PMTPe);
+    analysis->R4Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R5_SoloTracker == 1){
+    analysis->R5Only_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+    analysis->R5Only_AddPhotoElectronEvent(R5_PMTPe);
+    analysis->R5Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R6_SoloTracker == 1){
+    analysis->R6Only_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+    analysis->R6Only_AddPhotoElectronEvent(R6_PMTPe);
+    analysis->R6Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R7_SoloTracker == 1){
+    analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+    analysis->R7Only_AddPhotoElectronEvent(R7_PMTPe);
+    analysis->R7Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(R8_SoloTracker == 1){
+    analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
+    analysis->R8Only_AddPhotoElectronEvent(R8_PMTPe);
+    analysis->R8Only_AddInitialBeamAngleHist(InitialBeamAngle);
+  }
+  if(Scint_Tracker == 0) analysis->NoHit_AddInitialBeamAngleHist(InitialBeamAngle);
   //Sorting complete
   
   

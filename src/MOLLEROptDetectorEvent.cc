@@ -159,6 +159,9 @@ void MOLLEROptDetectorEvent::Initialize()
   InitialBeamEnergy.clear();
   InitialBeamEnergy.resize(0);
 
+  InitialBeamAngle.clear();
+  InitialBeamAngle.resize(0);
+
   QuartzPhotonEnergy = 0;
 
   QuartzStepNPhotons.clear();

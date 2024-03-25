@@ -62,6 +62,32 @@ public:
   void R6Only_AddCathodeDetectionEvent(Int_t events) {R6Only_CathodeEventsDistrHist->Fill(events);};
   void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
   void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
+  void R1Only_AddPhotoElectronEvent(Double_t pe){ R1Only_PhotoElectronDistrHist->Fill(pe);};
+  void R2Only_AddPhotoElectronEvent(Double_t pe){ R2Only_PhotoElectronDistrHist->Fill(pe);};
+  void R3Only_AddPhotoElectronEvent(Double_t pe){ R3Only_PhotoElectronDistrHist->Fill(pe);};
+  void R4Only_AddPhotoElectronEvent(Double_t pe){ R4Only_PhotoElectronDistrHist->Fill(pe);};
+  void R5Only_AddPhotoElectronEvent(Double_t pe){ R5Only_PhotoElectronDistrHist->Fill(pe);};
+  void R6Only_AddPhotoElectronEvent(Double_t pe){ R6Only_PhotoElectronDistrHist->Fill(pe);};
+  void R7Only_AddPhotoElectronEvent(Double_t pe){ R7Only_PhotoElectronDistrHist->Fill(pe);};
+  void R8Only_AddPhotoElectronEvent(Double_t pe){ R8Only_PhotoElectronDistrHist->Fill(pe);};
+
+  void R1_AddInitialBeamAngleHist(Float_t aang){ R1_InitialBeamAngleHist->Fill(aang);};
+  void R2_AddInitialBeamAngleHist(Float_t aang){ R2_InitialBeamAngleHist->Fill(aang);};
+  void R3_AddInitialBeamAngleHist(Float_t aang){ R3_InitialBeamAngleHist->Fill(aang);};
+  void R4_AddInitialBeamAngleHist(Float_t aang){ R4_InitialBeamAngleHist->Fill(aang);};
+  void R5_AddInitialBeamAngleHist(Float_t aang){ R5_InitialBeamAngleHist->Fill(aang);};
+  void R6_AddInitialBeamAngleHist(Float_t aang){ R6_InitialBeamAngleHist->Fill(aang);};
+  void R7_AddInitialBeamAngleHist(Float_t aang){ R7_InitialBeamAngleHist->Fill(aang);};
+  void R8_AddInitialBeamAngleHist(Float_t aang){ R8_InitialBeamAngleHist->Fill(aang);};
+  void R1Only_AddInitialBeamAngleHist(Float_t aang){ R1Only_InitialBeamAngleHist->Fill(aang);};
+  void R2Only_AddInitialBeamAngleHist(Float_t aang){ R2Only_InitialBeamAngleHist->Fill(aang);};
+  void R3Only_AddInitialBeamAngleHist(Float_t aang){ R3Only_InitialBeamAngleHist->Fill(aang);};
+  void R4Only_AddInitialBeamAngleHist(Float_t aang){ R4Only_InitialBeamAngleHist->Fill(aang);};
+  void R5Only_AddInitialBeamAngleHist(Float_t aang){ R5Only_InitialBeamAngleHist->Fill(aang);};
+  void R6Only_AddInitialBeamAngleHist(Float_t aang){ R6Only_InitialBeamAngleHist->Fill(aang);};
+  void R7Only_AddInitialBeamAngleHist(Float_t aang){ R7Only_InitialBeamAngleHist->Fill(aang);};
+  void R8Only_AddInitialBeamAngleHist(Float_t aang){ R8Only_InitialBeamAngleHist->Fill(aang);};
+  void NoHit_AddInitialBeamAngleHist(Float_t aang){ NoHit_InitialBeamAngleHist->Fill(aang);};
 
   MOLLEROptMainEvent* MOLLERMainEvent;
 
@@ -103,6 +129,32 @@ private:
   TH1D*    R6Only_CathodeEventsDistrHist; //
   TH1D*    R7Only_CathodeEventsDistrHist; //
   TH1D*    R8Only_CathodeEventsDistrHist; //
+  TH1D*    R1Only_PhotoElectronDistrHist; //
+  TH1D*    R2Only_PhotoElectronDistrHist; //
+  TH1D*    R3Only_PhotoElectronDistrHist; //
+  TH1D*    R4Only_PhotoElectronDistrHist; //
+  TH1D*    R5Only_PhotoElectronDistrHist; //
+  TH1D*    R6Only_PhotoElectronDistrHist; //
+  TH1D*    R7Only_PhotoElectronDistrHist; //
+  TH1D*    R8Only_PhotoElectronDistrHist; //
+
+  TH1F*    R1_InitialBeamAngleHist;
+  TH1F*    R2_InitialBeamAngleHist;
+  TH1F*    R3_InitialBeamAngleHist;
+  TH1F*    R4_InitialBeamAngleHist;
+  TH1F*    R5_InitialBeamAngleHist;
+  TH1F*    R6_InitialBeamAngleHist;
+  TH1F*    R7_InitialBeamAngleHist;
+  TH1F*    R8_InitialBeamAngleHist;
+  TH1F*    R1Only_InitialBeamAngleHist;
+  TH1F*    R2Only_InitialBeamAngleHist;
+  TH1F*    R3Only_InitialBeamAngleHist;
+  TH1F*    R4Only_InitialBeamAngleHist;
+  TH1F*    R5Only_InitialBeamAngleHist;
+  TH1F*    R6Only_InitialBeamAngleHist;
+  TH1F*    R7Only_InitialBeamAngleHist;
+  TH1F*    R8Only_InitialBeamAngleHist;
+  TH1F*    NoHit_InitialBeamAngleHist;
   
   TVectorD *NumberOfPrimaries;
   Float_t OptPhotonDist[800];

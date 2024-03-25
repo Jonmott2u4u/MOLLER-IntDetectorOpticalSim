@@ -72,6 +72,7 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamSolidAngleCmd->SetParameterName("BeamSolidAngle",true);
   BeamSolidAngleCmd->SetDefaultValue(0.);
   BeamSolidAngleCmd->SetRange("BeamSolidAngle<=360");
+  BeamSolidAngleCmd->SetDefaultUnit("deg");
   BeamSolidAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamEnergyCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergy",this);

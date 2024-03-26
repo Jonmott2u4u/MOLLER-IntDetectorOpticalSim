@@ -149,7 +149,7 @@ void MOLLEROptAnalysis::EndOfRun()
     R7Only_InitialBeamAngleHist->Write();
     R8Only_InitialBeamAngleHist->Write();
 
-    R1_PhotoElectronDistrHist->Write();
+    /*R1_PhotoElectronDistrHist->Write();
     R2_PhotoElectronDistrHist->Write();
     R3_PhotoElectronDistrHist->Write();
     R4_PhotoElectronDistrHist->Write();
@@ -164,7 +164,7 @@ void MOLLEROptAnalysis::EndOfRun()
     R5Only_PhotoElectronDistrHist->Write();
     R6Only_PhotoElectronDistrHist->Write();
     R7Only_PhotoElectronDistrHist->Write();
-    R8Only_PhotoElectronDistrHist->Write();
+    R8Only_PhotoElectronDistrHist->Write();*/
 
     NoHit_InitialBeamAngleHist->Write();
 

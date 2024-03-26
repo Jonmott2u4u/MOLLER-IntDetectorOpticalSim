@@ -216,8 +216,8 @@
 /Scint/QuartzSizeX 300 mm                      # 600 mm
 /Scint/QuartzSizeY 600 mm                      # 600 mm
 /Scint/SetCenterPositionInX 0 mm               # 
-/Scint/SetCenterPositionInY 115.04 mm          # Positions for 
-/Scint/SetCenterPositionInZ -391.14 mm         # 1786.39 for trap, 1761.68 else
+/Scint/SetCenterPositionInY 112.88 mm          # Positions for 
+/Scint/SetCenterPositionInZ -380.08 mm         # 1786.39 for trap, 1761.68 else
 
 /GEMScint1/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
 /GEMScint1/QuartzSizeX 90 mm                   # 100 mm

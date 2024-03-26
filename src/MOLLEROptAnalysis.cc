@@ -87,6 +87,40 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R7Only_InitialBeamAngleHist = new TH1F("R7Only_InitialBeamAngleHist","",100,0,25);
     R8Only_InitialBeamAngleHist = new TH1F("R8Only_InitialBeamAngleHist","",100,0,25);
 
+    R1_GEM1_InitialBeamAngleHist = new TH1F("R1_GEM1_InitialBeamAngleHist","",100,0,25);
+    R2_GEM1_InitialBeamAngleHist = new TH1F("R2_GEM1_InitialBeamAngleHist","",100,0,25);
+    R3_GEM1_InitialBeamAngleHist = new TH1F("R3_GEM1_InitialBeamAngleHist","",100,0,25);
+    R4_GEM1_InitialBeamAngleHist = new TH1F("R4_GEM1_InitialBeamAngleHist","",100,0,25);
+    R5_GEM1_InitialBeamAngleHist = new TH1F("R5_GEM1_InitialBeamAngleHist","",100,0,25);
+    R6_GEM1_InitialBeamAngleHist = new TH1F("R6_GEM1_InitialBeamAngleHist","",100,0,25);
+    R7_GEM1_InitialBeamAngleHist = new TH1F("R7_GEM1_InitialBeamAngleHist","",100,0,25);
+    R8_GEM1_InitialBeamAngleHist = new TH1F("R8_GEM1_InitialBeamAngleHist","",100,0,25);
+    R1Only_GEM1_InitialBeamAngleHist = new TH1F("R1Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R2Only_GEM1_InitialBeamAngleHist = new TH1F("R2Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R3Only_GEM1_InitialBeamAngleHist = new TH1F("R3Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R4Only_GEM1_InitialBeamAngleHist = new TH1F("R4Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R5Only_GEM1_InitialBeamAngleHist = new TH1F("R5Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R6Only_GEM1_InitialBeamAngleHist = new TH1F("R6Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R7Only_GEM1_InitialBeamAngleHist = new TH1F("R7Only_GEM1_InitialBeamAngleHist","",100,0,25);
+    R8Only_GEM1_InitialBeamAngleHist = new TH1F("R8Only_GEM1_InitialBeamAngleHist","",100,0,25);
+
+    R1_GEM2_InitialBeamAngleHist = new TH1F("R1_GEM2_InitialBeamAngleHist","",100,0,25);
+    R2_GEM2_InitialBeamAngleHist = new TH1F("R2_GEM2_InitialBeamAngleHist","",100,0,25);
+    R3_GEM2_InitialBeamAngleHist = new TH1F("R3_GEM2_InitialBeamAngleHist","",100,0,25);
+    R4_GEM2_InitialBeamAngleHist = new TH1F("R4_GEM2_InitialBeamAngleHist","",100,0,25);
+    R5_GEM2_InitialBeamAngleHist = new TH1F("R5_GEM2_InitialBeamAngleHist","",100,0,25);
+    R6_GEM2_InitialBeamAngleHist = new TH1F("R6_GEM2_InitialBeamAngleHist","",100,0,25);
+    R7_GEM2_InitialBeamAngleHist = new TH1F("R7_GEM2_InitialBeamAngleHist","",100,0,25);
+    R8_GEM2_InitialBeamAngleHist = new TH1F("R8_GEM2_InitialBeamAngleHist","",100,0,25);
+    R1Only_GEM2_InitialBeamAngleHist = new TH1F("R1Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R2Only_GEM2_InitialBeamAngleHist = new TH1F("R2Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R3Only_GEM2_InitialBeamAngleHist = new TH1F("R3Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R4Only_GEM2_InitialBeamAngleHist = new TH1F("R4Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R5Only_GEM2_InitialBeamAngleHist = new TH1F("R5Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R6Only_GEM2_InitialBeamAngleHist = new TH1F("R6Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R7Only_GEM2_InitialBeamAngleHist = new TH1F("R7Only_GEM2_InitialBeamAngleHist","",100,0,25);
+    R8Only_GEM2_InitialBeamAngleHist = new TH1F("R8Only_GEM2_InitialBeamAngleHist","",100,0,25);
+
     NoHit_InitialBeamAngleHist = new TH1F("NoHit_InitialBeamAngleHist","",100,0,25);
 
     
@@ -200,6 +234,39 @@ void MOLLEROptAnalysis::EndOfRun()
     R7Only_InitialBeamAngleHist->Write();
     R8Only_InitialBeamAngleHist->Write();
 
+    R1_GEM1_InitialBeamAngleHist->Write();
+    R2_GEM1_InitialBeamAngleHist->Write();
+    R3_GEM1_InitialBeamAngleHist->Write();
+    R4_GEM1_InitialBeamAngleHist->Write();
+    R5_GEM1_InitialBeamAngleHist->Write();
+    R6_GEM1_InitialBeamAngleHist->Write();
+    R7_GEM1_InitialBeamAngleHist->Write();
+    R8_GEM1_InitialBeamAngleHist->Write();
+    R1Only_GEM1_InitialBeamAngleHist->Write();
+    R2Only_GEM1_InitialBeamAngleHist->Write();
+    R3Only_GEM1_InitialBeamAngleHist->Write();
+    R4Only_GEM1_InitialBeamAngleHist->Write();
+    R5Only_GEM1_InitialBeamAngleHist->Write();
+    R6Only_GEM1_InitialBeamAngleHist->Write();
+    R7Only_GEM1_InitialBeamAngleHist->Write();
+    R8Only_GEM1_InitialBeamAngleHist->Write();
+
+    R1_GEM2_InitialBeamAngleHist->Write();
+    R2_GEM2_InitialBeamAngleHist->Write();
+    R3_GEM2_InitialBeamAngleHist->Write();
+    R4_GEM2_InitialBeamAngleHist->Write();
+    R5_GEM2_InitialBeamAngleHist->Write();
+    R6_GEM2_InitialBeamAngleHist->Write();
+    R7_GEM2_InitialBeamAngleHist->Write();
+    R8_GEM2_InitialBeamAngleHist->Write();
+    R1Only_GEM2_InitialBeamAngleHist->Write();
+    R2Only_GEM2_InitialBeamAngleHist->Write();
+    R3Only_GEM2_InitialBeamAngleHist->Write();
+    R4Only_GEM2_InitialBeamAngleHist->Write();
+    R5Only_GEM2_InitialBeamAngleHist->Write();
+    R6Only_GEM2_InitialBeamAngleHist->Write();
+    R7Only_GEM2_InitialBeamAngleHist->Write();
+    R8Only_GEM2_InitialBeamAngleHist->Write();
 
     NoHit_InitialBeamAngleHist->Write();
 

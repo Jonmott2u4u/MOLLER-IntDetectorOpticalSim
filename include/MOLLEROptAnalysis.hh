@@ -105,6 +105,41 @@ public:
   void R6Only_AddInitialBeamAngleHist(Float_t aang){ R6Only_InitialBeamAngleHist->Fill(aang);};
   void R7Only_AddInitialBeamAngleHist(Float_t aang){ R7Only_InitialBeamAngleHist->Fill(aang);};
   void R8Only_AddInitialBeamAngleHist(Float_t aang){ R8Only_InitialBeamAngleHist->Fill(aang);};
+
+  void R1_GEM1_AddInitialBeamAngleHist(Float_t aang){ R1_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R2_GEM1_AddInitialBeamAngleHist(Float_t aang){ R2_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R3_GEM1_AddInitialBeamAngleHist(Float_t aang){ R3_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R4_GEM1_AddInitialBeamAngleHist(Float_t aang){ R4_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R5_GEM1_AddInitialBeamAngleHist(Float_t aang){ R5_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R6_GEM1_AddInitialBeamAngleHist(Float_t aang){ R6_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R7_GEM1_AddInitialBeamAngleHist(Float_t aang){ R7_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R8_GEM1_AddInitialBeamAngleHist(Float_t aang){ R8_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R1Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R1Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R2Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R2Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R3Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R3Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R4Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R4Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R5Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R5Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R6Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R6Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R7Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R7Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+  void R8Only_GEM1_AddInitialBeamAngleHist(Float_t aang){ R8Only_GEM1_InitialBeamAngleHist->Fill(aang);};
+
+  void R1_GEM2_AddInitialBeamAngleHist(Float_t aang){ R1_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R2_GEM2_AddInitialBeamAngleHist(Float_t aang){ R2_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R3_GEM2_AddInitialBeamAngleHist(Float_t aang){ R3_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R4_GEM2_AddInitialBeamAngleHist(Float_t aang){ R4_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R5_GEM2_AddInitialBeamAngleHist(Float_t aang){ R5_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R6_GEM2_AddInitialBeamAngleHist(Float_t aang){ R6_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R7_GEM2_AddInitialBeamAngleHist(Float_t aang){ R7_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R8_GEM2_AddInitialBeamAngleHist(Float_t aang){ R8_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R1Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R1Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R2Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R2Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R3Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R3Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R4Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R4Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R5Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R5Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R6Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R6Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R7Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R7Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+  void R8Only_GEM2_AddInitialBeamAngleHist(Float_t aang){ R8Only_GEM2_InitialBeamAngleHist->Fill(aang);};
+
   void NoHit_AddInitialBeamAngleHist(Float_t aang){ NoHit_InitialBeamAngleHist->Fill(aang);};
 
 
@@ -191,6 +226,42 @@ private:
   TH1F*    R6Only_InitialBeamAngleHist;
   TH1F*    R7Only_InitialBeamAngleHist;
   TH1F*    R8Only_InitialBeamAngleHist;
+
+  TH1F*    R1_GEM1_InitialBeamAngleHist;
+  TH1F*    R2_GEM1_InitialBeamAngleHist;
+  TH1F*    R3_GEM1_InitialBeamAngleHist;
+  TH1F*    R4_GEM1_InitialBeamAngleHist;
+  TH1F*    R5_GEM1_InitialBeamAngleHist;
+  TH1F*    R6_GEM1_InitialBeamAngleHist;
+  TH1F*    R7_GEM1_InitialBeamAngleHist;
+  TH1F*    R8_GEM1_InitialBeamAngleHist;
+  TH1F*    R1Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R2Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R3Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R4Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R5Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R6Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R7Only_GEM1_InitialBeamAngleHist;
+  TH1F*    R8Only_GEM1_InitialBeamAngleHist;
+
+  TH1F*    R1_GEM2_InitialBeamAngleHist;
+  TH1F*    R2_GEM2_InitialBeamAngleHist;
+  TH1F*    R3_GEM2_InitialBeamAngleHist;
+  TH1F*    R4_GEM2_InitialBeamAngleHist;
+  TH1F*    R5_GEM2_InitialBeamAngleHist;
+  TH1F*    R6_GEM2_InitialBeamAngleHist;
+  TH1F*    R7_GEM2_InitialBeamAngleHist;
+  TH1F*    R8_GEM2_InitialBeamAngleHist;
+  TH1F*    R1Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R2Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R3Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R4Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R5Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R6Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R7Only_GEM2_InitialBeamAngleHist;
+  TH1F*    R8Only_GEM2_InitialBeamAngleHist;
+
+
   TH1F*    NoHit_InitialBeamAngleHist;
   
   TVectorD *NumberOfPrimaries;

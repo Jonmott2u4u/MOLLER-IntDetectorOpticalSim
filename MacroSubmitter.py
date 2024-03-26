@@ -16,16 +16,16 @@ cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical f
 cut_stop = 1
 cut_step = 1
 
-sa_start = 14.0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 14.0
-sa_step = 5.0
+sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+sa_stop = 17
+sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 40
+ID_stop = 10
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 4
+det_stop = 8
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):

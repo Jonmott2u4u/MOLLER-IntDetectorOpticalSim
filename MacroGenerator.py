@@ -18,7 +18,7 @@ EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in uni
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,100000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 #ScintYPos = [-380,-320,-245,-140,30,150]
 #ScintZPos = [1911,1643,1376,1108,946,515]
-shift = -100     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
+shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
@@ -29,16 +29,16 @@ cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan 
 cut_stop = 1   #Currently repurposed to move scintillator around
 cut_step = 1
 
-sa_start = 14    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
-sa_stop = 14
+sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+sa_stop = 17
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 40
+ID_stop = 10
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 4
+det_stop = 8
 det_step = 1
 
 text_root = ""
@@ -174,26 +174,24 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "#------------------#Scintillator commands ---------------#" + "\n\n"
                     Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/Scint/QuartzSizeX 300 mm" + "\n"
-                    Text += "/Scint/QuartzSizeY 300 mm" + "\n"
+                    Text += "/Scint/QuartzSizeY 600 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
-                    #Text += "/Scint/SetCenterPositionInY " + str(ScintYPos[cut-1]) + " mm" +"\n"
-                    #Text += "/Scint/SetCenterPositionInZ " + str(ScintZPos[cut-1]) + " mm" +"\n"
-                    Text += "/Scint/SetCenterPositionInY -250 mm" +"\n" # -34 for R5->R6, -234 for R1->R4.
-                    Text += "/Scint/SetCenterPositionInZ 1761.65 mm" +"\n"
+                    Text += "/Scint/SetCenterPositionInY 115.04 mm" +"\n"
+                    Text += "/Scint/SetCenterPositionInZ -391.14 mm" +"\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"
-                    Text += "/GEMScint1/QuartzSizeX 100 mm" + "\n"
-                    Text += "/GEMScint1/QuartzSizeY 200 mm" + "\n"
+                    Text += "/GEMScint1/QuartzSizeX 90 mm" + "\n"
+                    Text += "/GEMScint1/QuartzSizeY 180 mm" + "\n"
                     Text += "/GEMScint1/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/GEMScint1/SetCenterPositionInY -126 mm" + "\n"
-                    Text += "/GEMScint1/SetCenterPositionInZ 500 mm" + "\n"
+                    Text += "/GEMScint1/SetCenterPositionInY 0 mm" + "\n"
+                    Text += "/GEMScint1/SetCenterPositionInZ 1661.10 mm" + "\n"
                     Text += "#------------------#GEM Scintillator 2 commands ---------------#" + "\n\n"
                     Text += "/GEMScint2/QuartzSizeZ 0.1 mm" + "\n"
-                    Text += "/GEMScint2/QuartzSizeX 100 mm" + "\n"
-                    Text += "/GEMScint2/QuartzSizeY 200 mm" + "\n"
+                    Text += "/GEMScint2/QuartzSizeX 300 mm" + "\n"
+                    Text += "/GEMScint2/QuartzSizeY 300 mm" + "\n"
                     Text += "/GEMScint2/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/GEMScint2/SetCenterPositionInY -151 mm" + "\n"
-                    Text += "/GEMScint2/SetCenterPositionInZ 970 mm" + "\n"
+                    Text += "/GEMScint2/SetCenterPositionInY -250 mm" + "\n"
+                    Text += "/GEMScint2/SetCenterPositionInZ 1761.68 mm" + "\n"
                     Text += "#------------------#General commands --------------------#" + "\n\n"
                     Text += "/Det/QuartzRotX -3 deg" + "\n"
                     Text += "/Det/PolarRotation 6 deg" + "\n"

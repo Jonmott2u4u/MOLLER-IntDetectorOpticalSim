@@ -241,7 +241,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //When using, set sa to ~16 in macros
     y_base = Slim[4] + (Slim[5]-Slim[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
     //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but may work for other shapes)
-    y = y_base - 391.14*TMath::Sin(6*pi/180);
+    y = y_base - 380.08*TMath::Sin(6*pi/180);
     x = Slim[0] + (Slim[1]-Slim[0])*G4UniformRand();
   }
   else{

@@ -214,24 +214,24 @@
 
 /Scint/QuartzSizeZ 0.1 mm                      # Default: 0.1 mm
 /Scint/QuartzSizeX 300 mm                      # 600 mm
-/Scint/QuartzSizeY 300 mm                      # 600 mm
+/Scint/QuartzSizeY 600 mm                      # 600 mm
 /Scint/SetCenterPositionInX 0 mm               # 
-/Scint/SetCenterPositionInY -250 mm            # Positions for shifted 30x30 scints used in UMass lab.
-/Scint/SetCenterPositionInZ 1761.68 mm         # 1786.39 for trap, 1761.68 else
+/Scint/SetCenterPositionInY 115.04 mm          # Positions for 
+/Scint/SetCenterPositionInZ -391.14 mm         # 1786.39 for trap, 1761.68 else
 
 /GEMScint1/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
-/GEMScint1/QuartzSizeX 100 mm                  # 100 mm
-/GEMScint1/QuartzSizeY 200 mm                  # 200 mm
-/GEMScint1/SetCenterPositionInX 0 mm           # 
+/GEMScint1/QuartzSizeX 90 mm                  # 100 mm
+/GEMScint1/QuartzSizeY 180 mm                  # 200 mm
+/GEMScint1/SetCenterPositionInX 100 mm           # 
 /GEMScint1/SetCenterPositionInY 1000 mm        #
-/GEMScint1/SetCenterPositionInZ 500 mm         #
+/GEMScint1/SetCenterPositionInZ -391.14 mm     # Places the scintillator 1 cm after the beam spawn
 
 /GEMScint2/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
-/GEMScint2/QuartzSizeX 100 mm                  # 100 mm
-/GEMScint2/QuartzSizeY 200 mm                  # 100 mm
+/GEMScint2/QuartzSizeX 300 mm                  # 100 mm
+/GEMScint2/QuartzSizeY 300 mm                  # 100 mm
 /GEMScint2/SetCenterPositionInX 0 mm           # 
-/GEMScint2/SetCenterPositionInY 1000 mm        #
-/GEMScint2/SetCenterPositionInZ 900 mm         # 
+/GEMScint2/SetCenterPositionInY -250 mm        #
+/GEMScint2/SetCenterPositionInZ 1761.68 mm         # 
 
 #------------------#General commands --------------------#
 

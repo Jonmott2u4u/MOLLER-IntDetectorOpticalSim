@@ -1,7 +1,7 @@
 #include <iostream>
 #include <TString.h>
 
-void raw_pes()
+void scint_pes()
 {
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -12,38 +12,154 @@ void raw_pes()
         file = TFile::Open(line.data());
         for(int det=1; det<9; det++){
 
-            //Unedited PE spectrums
+            //PE spectrum of each detector with scintillator cuts (must hit the upstream and at least one downstream scintillator)
             tmp = (TH1D*)file->Get(Form("R%i_CathodeEventsDistrHist",det));
             hst = (TH1D*)tmp->Clone(Form("R%i_PEs",det));
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetXaxis()->SetTitle("Events");
+            hst->GetYaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_raw_spectrum.root",det));
+            hst->SaveAs(Form("plots/R%i_scintcut_pes.root",det));
 
-            //PE spectrum for beams that hit only one quartz tile
+            //PE spectrum for beams that hit only one quartz tile (ring cut) and passes scintillator cut
             tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
             hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetXaxis()->SetTitle("Events");
+            hst->GetYaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_quartz_cut.root",det));
+            hst->SaveAs(Form("plots/R%i_ringcut_pes.root",det));
 
-            /*TTree *tree = (TTree*)file->Get("MOLLEROptTree");
-            cout << tree << endl;
-            TCanvas *canvas = new TCanvas("canvas","canvas");
-            tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),Form("MOLLEROptData.MOLLERDetectorEvent.INSERT-VARIABLE-HERE CONDITION",det),"colz");
-            canvas->SaveAs(Form("R%i_quartz_hit_pos.root",det));*/
+            //Distribution of initial beam angles for scintillator cuts
+            tmp = (TH1D*)file->Get(Form("R%i_InitialBeamAngleHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_angle",det));
+            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
+            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_scintcut_angle.root",det));
+
+            //Distribution of initial beam angles for ring+scintillator cuts
+            tmp = (TH1D*)file->Get(Form("R%iOnly_InitialBeamAngleHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%iOnly_angle",det));
+            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
+            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_ringcut_angle.root",det));
         }
         file->Close("R");
     }
 }
 
-//This object performs cuts over the quartz in the x-direction in 1 cm increments. Goal is to see position dependence of PE yield, among other things
-void quartzcut(){
+void gem1_pes()
+{
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TFile *file;
+    TH1D *hst, *tmp;
+
+    while(std::getline(rfiles, line)){
+        file = TFile::Open(line.data());
+        for(int det=1; det<9; det++){
+
+            tmp = (TH1D*)file->Get(Form("R%i_GEM1_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_PEs",det));
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem1_scintcut_pes.root",det));
+
+            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM1_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem1_ringcut_pes.root",det));
+
+            tmp = (TH1D*)file->Get(Form("R%i_GEM1_InitialBeamAngleHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_angle",det));
+            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
+            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem1_scintcut_angle.root",det));
+
+            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM1_InitialBeamAngleHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%iOnly_angle",det));
+            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
+            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem1_ringcut_angle.root",det));
+        }
+        file->Close("R");
+    }
+}
+
+void gem2_pes()
+{
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TFile *file;
+    TH1D *hst, *tmp;
+
+    while(std::getline(rfiles, line)){
+        file = TFile::Open(line.data());
+        for(int det=1; det<9; det++){
+
+            tmp = (TH1D*)file->Get(Form("R%i_GEM2_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_PEs",det));
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem2_scintcut_pes.root",det));
+
+            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM2_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem2_ringcut_pes.root",det));
+
+            tmp = (TH1D*)file->Get(Form("R%i_GEM2_InitialBeamAngleHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%i_angle",det));
+            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
+            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem2_scintcut_angle.root",det));
+
+            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM2_InitialBeamAngleHist",det));
+            hst = (TH1D*)tmp->Clone(Form("R%iOnly_angle",det));
+            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
+            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_gem2_ringcut_angle.root",det));
+        }
+        file->Close("R");
+    }
+}
+
+//This object performs cuts over the quartz in the x-direction. Goal is to see position dependence of PE yield, among other things
+void quartz_pos(){
 
     std::ifstream rfiles("files.dat");
     std::string line;

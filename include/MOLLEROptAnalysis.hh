@@ -37,21 +37,13 @@ public:
   void AddToAverageQuartzOptPhotonDist(Float_t wvl, Float_t wgt){QuartzOptPhotonDistrHist->Fill(wvl,wgt);};
   void AddToAverageLightGuideOptPhotonDist(Float_t wvl, Float_t wgt){LightGuideOptPhotonDistrHist->Fill(wvl,wgt);};
 
-  void R1_AddPhotoElectronEvent(Double_t pe){ R1_PhotoElectronDistrHist->Fill(pe);};
   void R1_AddCathodeDetectionEvent(Int_t events) {R1_CathodeEventsDistrHist->Fill(events);};
-  void R2_AddPhotoElectronEvent(Double_t pe){ R2_PhotoElectronDistrHist->Fill(pe);};
   void R2_AddCathodeDetectionEvent(Int_t events) {R2_CathodeEventsDistrHist->Fill(events);};
-  void R3_AddPhotoElectronEvent(Double_t pe){ R3_PhotoElectronDistrHist->Fill(pe);};
   void R3_AddCathodeDetectionEvent(Int_t events) {R3_CathodeEventsDistrHist->Fill(events);};
-  void R4_AddPhotoElectronEvent(Double_t pe){ R4_PhotoElectronDistrHist->Fill(pe);};
   void R4_AddCathodeDetectionEvent(Int_t events) {R4_CathodeEventsDistrHist->Fill(events);};
-  void R5_AddPhotoElectronEvent(Double_t pe){ R5_PhotoElectronDistrHist->Fill(pe);};
   void R5_AddCathodeDetectionEvent(Int_t events) {R5_CathodeEventsDistrHist->Fill(events);};
-  void R6_AddPhotoElectronEvent(Double_t pe){ R6_PhotoElectronDistrHist->Fill(pe);};
   void R6_AddCathodeDetectionEvent(Int_t events) {R6_CathodeEventsDistrHist->Fill(events);};
-  void R7_AddPhotoElectronEvent(Double_t pe){ R7_PhotoElectronDistrHist->Fill(pe);};
   void R7_AddCathodeDetectionEvent(Int_t events) {R7_CathodeEventsDistrHist->Fill(events);};
-  void R8_AddPhotoElectronEvent(Double_t pe){ R8_PhotoElectronDistrHist->Fill(pe);};
   void R8_AddCathodeDetectionEvent(Int_t events) {R8_CathodeEventsDistrHist->Fill(events);};
 
   void R1Only_AddCathodeDetectionEvent(Int_t events) {R1Only_CathodeEventsDistrHist->Fill(events);};
@@ -62,14 +54,6 @@ public:
   void R6Only_AddCathodeDetectionEvent(Int_t events) {R6Only_CathodeEventsDistrHist->Fill(events);};
   void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
   void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
-  void R1Only_AddPhotoElectronEvent(Double_t pe){ R1Only_PhotoElectronDistrHist->Fill(pe);};
-  void R2Only_AddPhotoElectronEvent(Double_t pe){ R2Only_PhotoElectronDistrHist->Fill(pe);};
-  void R3Only_AddPhotoElectronEvent(Double_t pe){ R3Only_PhotoElectronDistrHist->Fill(pe);};
-  void R4Only_AddPhotoElectronEvent(Double_t pe){ R4Only_PhotoElectronDistrHist->Fill(pe);};
-  void R5Only_AddPhotoElectronEvent(Double_t pe){ R5Only_PhotoElectronDistrHist->Fill(pe);};
-  void R6Only_AddPhotoElectronEvent(Double_t pe){ R6Only_PhotoElectronDistrHist->Fill(pe);};
-  void R7Only_AddPhotoElectronEvent(Double_t pe){ R7Only_PhotoElectronDistrHist->Fill(pe);};
-  void R8Only_AddPhotoElectronEvent(Double_t pe){ R8Only_PhotoElectronDistrHist->Fill(pe);};
 
   void R1_AddInitialBeamAngleHist(Float_t aang){ R1_InitialBeamAngleHist->Fill(aang);};
   void R2_AddInitialBeamAngleHist(Float_t aang){ R2_InitialBeamAngleHist->Fill(aang);};
@@ -104,21 +88,13 @@ private:
   TProfile*    QuartzOptPhotonDistrHist;
   TProfile*    LightGuideOptPhotonDistrHist;
 
-  TH1D*    R1_PhotoElectronDistrHist;
   TH1D*    R1_CathodeEventsDistrHist;
-  TH1D*    R2_PhotoElectronDistrHist;
   TH1D*    R2_CathodeEventsDistrHist;
-  TH1D*    R3_PhotoElectronDistrHist;
   TH1D*    R3_CathodeEventsDistrHist;
-  TH1D*    R4_PhotoElectronDistrHist;
   TH1D*    R4_CathodeEventsDistrHist;
-  TH1D*    R5_PhotoElectronDistrHist;
   TH1D*    R5_CathodeEventsDistrHist;
-  TH1D*    R6_PhotoElectronDistrHist;
   TH1D*    R6_CathodeEventsDistrHist;
-  TH1D*    R7_PhotoElectronDistrHist;
   TH1D*    R7_CathodeEventsDistrHist;
-  TH1D*    R8_PhotoElectronDistrHist;
   TH1D*    R8_CathodeEventsDistrHist;
 
   TH1D*    R1Only_CathodeEventsDistrHist; //Unlike R#_CathodeEvents, only includes PEs from electrons that hit only that detector
@@ -129,14 +105,6 @@ private:
   TH1D*    R6Only_CathodeEventsDistrHist; //
   TH1D*    R7Only_CathodeEventsDistrHist; //
   TH1D*    R8Only_CathodeEventsDistrHist; //
-  TH1D*    R1Only_PhotoElectronDistrHist; //
-  TH1D*    R2Only_PhotoElectronDistrHist; //
-  TH1D*    R3Only_PhotoElectronDistrHist; //
-  TH1D*    R4Only_PhotoElectronDistrHist; //
-  TH1D*    R5Only_PhotoElectronDistrHist; //
-  TH1D*    R6Only_PhotoElectronDistrHist; //
-  TH1D*    R7Only_PhotoElectronDistrHist; //
-  TH1D*    R8Only_PhotoElectronDistrHist; //
 
   TH1F*    R1_InitialBeamAngleHist;
   TH1F*    R2_InitialBeamAngleHist;

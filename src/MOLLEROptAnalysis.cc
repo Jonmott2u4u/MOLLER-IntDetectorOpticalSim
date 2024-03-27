@@ -54,24 +54,6 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
 
     NoHit_InitialBeamAngleHist = new TH1F("NoHit_InitialBeamAngleHist","",100,0,25);
 
-    R1_PhotoElectronDistrHist = new TH1D("R1_PhotoElectronDistrHist","",100,0,100);
-    R2_PhotoElectronDistrHist = new TH1D("R2_PhotoElectronDistrHist","",100,0,100);
-    R3_PhotoElectronDistrHist = new TH1D("R3_PhotoElectronDistrHist","",100,0,100);
-    R4_PhotoElectronDistrHist = new TH1D("R4_PhotoElectronDistrHist","",100,0,100);
-    R5_PhotoElectronDistrHist = new TH1D("R5_PhotoElectronDistrHist","",100,0,100);
-    R6_PhotoElectronDistrHist = new TH1D("R6_PhotoElectronDistrHist","",100,0,100);
-    R7_PhotoElectronDistrHist = new TH1D("R7_PhotoElectronDistrHist","",100,0,100);
-    R8_PhotoElectronDistrHist = new TH1D("R8_PhotoElectronDistrHist","",100,0,100);
-    R1Only_PhotoElectronDistrHist = new TH1D("R1Only_PhotoElectronDistrHist","",100,0,100);
-    R2Only_PhotoElectronDistrHist = new TH1D("R2Only_PhotoElectronDistrHist","",100,0,100);
-    R3Only_PhotoElectronDistrHist = new TH1D("R3Only_PhotoElectronDistrHist","",100,0,100);
-    R4Only_PhotoElectronDistrHist = new TH1D("R4Only_PhotoElectronDistrHist","",100,0,100);
-    R5Only_PhotoElectronDistrHist = new TH1D("R5Only_PhotoElectronDistrHist","",100,0,100);
-    R6Only_PhotoElectronDistrHist = new TH1D("R6Only_PhotoElectronDistrHist","",100,0,100);
-    R7Only_PhotoElectronDistrHist = new TH1D("R7Only_PhotoElectronDistrHist","",100,0,100);
-    R8Only_PhotoElectronDistrHist = new TH1D("R8Only_PhotoElectronDistrHist","",100,0,100);
-
-
     
     EventCnt = 0;
 }
@@ -123,14 +105,14 @@ void MOLLEROptAnalysis::EndOfRun()
     R6_CathodeEventsDistrHist->Write();
     R7_CathodeEventsDistrHist->Write();
     R8_CathodeEventsDistrHist->Write();
-    R1_InitialBeamAngleHist->Write();
+    /*R1_InitialBeamAngleHist->Write();
     R2_InitialBeamAngleHist->Write();
     R3_InitialBeamAngleHist->Write();
     R4_InitialBeamAngleHist->Write();
     R5_InitialBeamAngleHist->Write();
     R6_InitialBeamAngleHist->Write();
     R7_InitialBeamAngleHist->Write();
-    R8_InitialBeamAngleHist->Write();
+    R8_InitialBeamAngleHist->Write();*/
 
     R1Only_CathodeEventsDistrHist->Write();
     R2Only_CathodeEventsDistrHist->Write();
@@ -140,33 +122,16 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_CathodeEventsDistrHist->Write();
     R7Only_CathodeEventsDistrHist->Write();
     R8Only_CathodeEventsDistrHist->Write();
-    R1Only_InitialBeamAngleHist->Write();
+    /*R1Only_InitialBeamAngleHist->Write();
     R2Only_InitialBeamAngleHist->Write();
     R3Only_InitialBeamAngleHist->Write();
     R4Only_InitialBeamAngleHist->Write();
     R5Only_InitialBeamAngleHist->Write();
     R6Only_InitialBeamAngleHist->Write();
     R7Only_InitialBeamAngleHist->Write();
-    R8Only_InitialBeamAngleHist->Write();
+    R8Only_InitialBeamAngleHist->Write();*/
 
-    /*R1_PhotoElectronDistrHist->Write();
-    R2_PhotoElectronDistrHist->Write();
-    R3_PhotoElectronDistrHist->Write();
-    R4_PhotoElectronDistrHist->Write();
-    R5_PhotoElectronDistrHist->Write();
-    R6_PhotoElectronDistrHist->Write();
-    R7_PhotoElectronDistrHist->Write();
-    R8_PhotoElectronDistrHist->Write();
-    R1Only_PhotoElectronDistrHist->Write();
-    R2Only_PhotoElectronDistrHist->Write();
-    R3Only_PhotoElectronDistrHist->Write();
-    R4Only_PhotoElectronDistrHist->Write();
-    R5Only_PhotoElectronDistrHist->Write();
-    R6Only_PhotoElectronDistrHist->Write();
-    R7Only_PhotoElectronDistrHist->Write();
-    R8Only_PhotoElectronDistrHist->Write();*/
-
-    NoHit_InitialBeamAngleHist->Write();
+    //NoHit_InitialBeamAngleHist->Write();
 
 
     TrackingReadout->WriteAbsProfiles();

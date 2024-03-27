@@ -8,24 +8,24 @@ sourceDir = "./"
 datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 11    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand
-hr_stop = 11
+hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand
+hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
-cut_stop = 1
+cut_stop = 550
 cut_step = 1
 
-sa_start = 14.0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 14.0
-sa_step = 5.0
+sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+sa_stop = 0
+sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 40
+ID_stop = 1
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 4
+det_stop = 1
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):

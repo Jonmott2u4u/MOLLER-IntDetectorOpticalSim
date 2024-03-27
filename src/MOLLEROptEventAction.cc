@@ -453,83 +453,67 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   //Stores PEs if Scint has been hit
   if(R1_Tracker == 1){
     analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-    analysis->R1_AddPhotoElectronEvent(R1_PMTPe);
     analysis->R1_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R2_Tracker == 1){
     analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-    analysis->R2_AddPhotoElectronEvent(R2_PMTPe);
     analysis->R2_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R3_Tracker == 1){
     analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-    analysis->R3_AddPhotoElectronEvent(R3_PMTPe);
     analysis->R3_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R4_Tracker == 1){
     analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-    analysis->R4_AddPhotoElectronEvent(R4_PMTPe);
     analysis->R4_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R5_Tracker == 1){
     analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-    analysis->R5_AddPhotoElectronEvent(R5_PMTPe);
     analysis->R5_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R6_Tracker == 1){
     analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-    analysis->R6_AddPhotoElectronEvent(R6_PMTPe);
     analysis->R6_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R7_Tracker == 1){
     analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-    analysis->R7_AddPhotoElectronEvent(R7_PMTPe);
     analysis->R7_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R8_Tracker == 1){
     analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-    analysis->R8_AddPhotoElectronEvent(R8_PMTPe);
     analysis->R8_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   //Stores PEs if Scint & one tile have been hit
   if(R1_SoloTracker == 1){
     analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
-    analysis->R1Only_AddPhotoElectronEvent(R1_PMTPe);
     analysis->R1Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R2_SoloTracker == 1){
     analysis->R2Only_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
-    analysis->R2Only_AddPhotoElectronEvent(R2_PMTPe);
     analysis->R2Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R3_SoloTracker == 1){
     analysis->R3Only_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
-    analysis->R3Only_AddPhotoElectronEvent(R3_PMTPe);
     analysis->R3Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R4_SoloTracker == 1){
     analysis->R4Only_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
-    analysis->R4Only_AddPhotoElectronEvent(R4_PMTPe);
     analysis->R4Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R5_SoloTracker == 1){
     analysis->R5Only_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
-    analysis->R5Only_AddPhotoElectronEvent(R5_PMTPe);
     analysis->R5Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R6_SoloTracker == 1){
     analysis->R6Only_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
-    analysis->R6Only_AddPhotoElectronEvent(R6_PMTPe);
     analysis->R6Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R7_SoloTracker == 1){
     analysis->R7Only_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
-    analysis->R7Only_AddPhotoElectronEvent(R7_PMTPe);
     analysis->R7Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(R8_SoloTracker == 1){
     analysis->R8Only_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
-    analysis->R8Only_AddPhotoElectronEvent(R8_PMTPe);
     analysis->R8Only_AddInitialBeamAngleHist(InitialBeamAngle);
   }
   if(Scint_Tracker == 0) analysis->NoHit_AddInitialBeamAngleHist(InitialBeamAngle);

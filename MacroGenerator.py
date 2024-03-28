@@ -202,7 +202,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Generator/PrimaryParticle " + str(Particle) + "\n"
                     Text += "/Generator/EventHitRegion " + str(hr) + "\n"
                     Text += "/Generator/EventShift " + str(shift) + " mm" + "\n"
-                    Text += "/Generator/SegmentHitRegion " + str(cut) + " cm" + "\n"
+                    Text += "/Generator/SegmentHitRegion " + str(cut) + " mm" + "\n"
                     Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
                     Text += "/Generator/BeamEnergyCut " + str(EnergyCut*cut) + "\n"
                     Text += "/Generator/BeamSolidAngle " + str(sa) + "\n"

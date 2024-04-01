@@ -50,7 +50,7 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
   SegmentHitRegionCmd->SetDefaultValue(1);
   SegmentHitRegionCmd->SetRange("SegmentHitRegion>=0");
-  SegmentHitRegionCmd->SetDefaultUnit("cm");
+  SegmentHitRegionCmd->SetDefaultUnit("mm");
   SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);

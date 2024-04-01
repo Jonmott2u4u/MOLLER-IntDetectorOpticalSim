@@ -6,10 +6,10 @@
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \ 
-#	       |	          |
-#	       |   Middle   |
-#	       |   Box      |
-#	       |	          |  ________ Lower Interface
+#	     |	          |
+#	     |   Middle   |
+#	     |   Box      |
+#	     |	          |  ________ Lower Interface
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -212,4 +212,4 @@
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457
-/run/beamOn 1
+/run/beamOn 1000

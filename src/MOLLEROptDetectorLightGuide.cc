@@ -8,11 +8,11 @@
 
      
              _____  PMT window _____   Upper Interface Plane
-	     	   /         \
+	     	           /         \
   upper cone      /           \
             ____ /             \____   Middle Interface Plane (To Be Implemented)
-    		|		|
-    		|		|
+    	        	|		            |
+    	        	|		            |
            _____|               |____   Lower Interface Plane
   lower cone     \    .        /
                   \   . .     /

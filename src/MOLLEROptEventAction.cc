@@ -336,14 +336,14 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     R6_pes = TrackingReadout->R6_GetCathodeDetections();
     R7_pes = TrackingReadout->R7_GetCathodeDetections();
     R8_pes = TrackingReadout->R8_GetCathodeDetections();
-    if((R2_pes >= 2.) || (R3_pes >= 2.) || (R4_pes >= 2.) || (R5_pes >= 2.) || (R6_pes >= 2.) || (R7_pes >= 2.) || (R8_pes >= 2.)) R1_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R3_pes >= 2.) || (R4_pes >= 2.) || (R5_pes >= 2.) || (R6_pes >= 2.) || (R7_pes >= 2.) || (R8_pes >= 2.)) R2_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R2_pes >= 2.) || (R4_pes >= 2.) || (R5_pes >= 2.) || (R6_pes >= 2.) || (R7_pes >= 2.) || (R8_pes >= 2.)) R3_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R2_pes >= 2.) || (R3_pes >= 2.) || (R5_pes >= 2.) || (R6_pes >= 2.) || (R7_pes >= 2.) || (R8_pes >= 2.)) R4_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R2_pes >= 2.) || (R3_pes >= 2.) || (R4_pes >= 2.) || (R6_pes >= 2.) || (R7_pes >= 2.) || (R8_pes >= 2.)) R5_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R2_pes >= 2.) || (R3_pes >= 2.) || (R4_pes >= 2.) || (R5_pes >= 2.) || (R7_pes >= 2.) || (R8_pes >= 2.)) R6_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R2_pes >= 2.) || (R3_pes >= 2.) || (R4_pes >= 2.) || (R5_pes >= 2.) || (R6_pes >= 2.) || (R8_pes >= 2.)) R7_SoloTracker == 0;
-    if((R1_pes >= 2.) || (R2_pes >= 2.) || (R3_pes >= 2.) || (R4_pes >= 2.) || (R5_pes >= 2.) || (R6_pes >= 2.) || (R7_pes >= 2.)) R8_SoloTracker == 0;
+    if((R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R1_SoloTracker = 0;
+    if((R1_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R2_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R3_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R4_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R5_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R6_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R8_pes >= 1)) R7_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1)) R8_SoloTracker = 0;
   
     //Stores data in root for specific detectors. Used to control amount of data that is saved for large simulations
     //This also stores PEs as variables at the end of the event (specifically during the last track to prevent overwrite)

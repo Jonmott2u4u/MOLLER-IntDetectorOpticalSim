@@ -34,6 +34,14 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_CathodeEventsDistrHist = new TH1D("R6Only_CathodeEventsDistrHist","",100,0,100);
     R7Only_CathodeEventsDistrHist = new TH1D("R7Only_CathodeEventsDistrHist","",100,0,100);
     R8Only_CathodeEventsDistrHist = new TH1D("R8Only_CathodeEventsDistrHist","",100,0,100);
+    R1Adjacent_CathodeEventsDistrHist = new TH1D("R1Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R2Adjacent_CathodeEventsDistrHist = new TH1D("R2Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R3Adjacent_CathodeEventsDistrHist = new TH1D("R3Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R4Adjacent_CathodeEventsDistrHist = new TH1D("R4Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R5Adjacent_CathodeEventsDistrHist = new TH1D("R5Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R6Adjacent_CathodeEventsDistrHist = new TH1D("R6Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R7Adjacent_CathodeEventsDistrHist = new TH1D("R7Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R8Adjacent_CathodeEventsDistrHist = new TH1D("R8Adjacent_CathodeEventsDistrHist","",100,0,100);
 
     R1_InitialBeamAngleHist = new TH1F("R1_InitialBeamAngleHist","",100,0,25);
     R2_InitialBeamAngleHist = new TH1F("R2_InitialBeamAngleHist","",100,0,25);
@@ -130,6 +138,15 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_InitialBeamAngleHist->Write();
     R7Only_InitialBeamAngleHist->Write();
     R8Only_InitialBeamAngleHist->Write();*/
+
+    R1Adjacent_CathodeEventsDistrHist->Write();
+    R2Adjacent_CathodeEventsDistrHist->Write();
+    R3Adjacent_CathodeEventsDistrHist->Write();
+    R4Adjacent_CathodeEventsDistrHist->Write();
+    R5Adjacent_CathodeEventsDistrHist->Write();
+    R6Adjacent_CathodeEventsDistrHist->Write();
+    R7Adjacent_CathodeEventsDistrHist->Write();
+    R8Adjacent_CathodeEventsDistrHist->Write();
 
     //NoHit_InitialBeamAngleHist->Write();
 

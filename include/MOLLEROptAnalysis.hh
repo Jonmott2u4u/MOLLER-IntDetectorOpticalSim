@@ -55,6 +55,15 @@ public:
   void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
   void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
 
+  void R1Adjacent_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R2Adjacent_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R3Adjacent_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R4Adjacent_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R5Adjacent_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R6Adjacent_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R7Adjacent_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R8Adjacent_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_CathodeEventsDistrHist->Fill(events);};
+
   void R1_AddInitialBeamAngleHist(Float_t aang){ R1_InitialBeamAngleHist->Fill(aang);};
   void R2_AddInitialBeamAngleHist(Float_t aang){ R2_InitialBeamAngleHist->Fill(aang);};
   void R3_AddInitialBeamAngleHist(Float_t aang){ R3_InitialBeamAngleHist->Fill(aang);};
@@ -105,6 +114,15 @@ private:
   TH1D*    R6Only_CathodeEventsDistrHist; //
   TH1D*    R7Only_CathodeEventsDistrHist; //
   TH1D*    R8Only_CathodeEventsDistrHist; //
+
+  TH1D*    R1Adjacent_CathodeEventsDistrHist; //PEs generated from events that do not hit adjacent detector tiles
+  TH1D*    R2Adjacent_CathodeEventsDistrHist; 
+  TH1D*    R3Adjacent_CathodeEventsDistrHist; 
+  TH1D*    R4Adjacent_CathodeEventsDistrHist; 
+  TH1D*    R5Adjacent_CathodeEventsDistrHist; 
+  TH1D*    R6Adjacent_CathodeEventsDistrHist; 
+  TH1D*    R7Adjacent_CathodeEventsDistrHist; 
+  TH1D*    R8Adjacent_CathodeEventsDistrHist; 
 
   TH1F*    R1_InitialBeamAngleHist;
   TH1F*    R2_InitialBeamAngleHist;

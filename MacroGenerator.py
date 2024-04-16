@@ -21,20 +21,20 @@ NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000] 
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 10   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
-hr_stop = 10
+hr_start = 11   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
+hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 550   #Currently repurposed to move scintillator around
+cut_start = 0  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_stop = 0   #Currently repurposed to move scintillator around
 cut_step = 1
 
-sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
-sa_stop = 0
+sa_start = 12    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+sa_stop = 12
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_stop = 100
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
@@ -174,27 +174,27 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "#------------------#Scintillator commands ---------------#" + "\n\n"
                     Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/Scint/QuartzSizeX 300 mm" + "\n"
-                    Text += "/Scint/QuartzSizeY 800 mm" + "\n"
-                    Text += "/Scint/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/Scint/QuartzSizeY 300 mm" + "\n"
+                    Text += "/Scint/SetCenterPositionInX -50 mm" + "\n"
                     Text += "/Scint/SetCenterPositionInY 0 mm" +"\n"
                     Text += "/Scint/SetCenterPositionInZ 1761.65 mm" +"\n"
                     Text += "#------------------#GEM Scintillator 1 commands ---------------#" + "\n\n"
                     Text += "/GEMScint1/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeX 100 mm" + "\n"
                     Text += "/GEMScint1/QuartzSizeY 200 mm" + "\n"
-                    Text += "/GEMScint1/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/GEMScint1/SetCenterPositionInX 1000 mm" + "\n"
                     Text += "/GEMScint1/SetCenterPositionInY -126 mm" + "\n"
                     Text += "/GEMScint1/SetCenterPositionInZ 500 mm" + "\n"
                     Text += "#------------------#GEM Scintillator 2 commands ---------------#" + "\n\n"
                     Text += "/GEMScint2/QuartzSizeZ 0.1 mm" + "\n"
                     Text += "/GEMScint2/QuartzSizeX 100 mm" + "\n"
                     Text += "/GEMScint2/QuartzSizeY 200 mm" + "\n"
-                    Text += "/GEMScint2/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/GEMScint2/SetCenterPositionInX 1000 mm" + "\n"
                     Text += "/GEMScint2/SetCenterPositionInY -151 mm" + "\n"
                     Text += "/GEMScint2/SetCenterPositionInZ 970 mm" + "\n"
                     Text += "#------------------#General commands --------------------#" + "\n\n"
                     Text += "/Det/QuartzRotX -3 deg" + "\n"
-                    Text += "/Det/PolarRotation 3 deg" + "\n"
+                    Text += "/Det/PolarRotation 6 deg" + "\n"
                     Text += "/Det/QuartzBevelSize 0.5 mm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningX 7.0 cm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"

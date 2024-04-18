@@ -117,12 +117,12 @@ public:
   void R8_AddR5QuartzHitPos(Float_t y,Float_t x) {R8_R5QuartzHitPos->Fill(y,x);};
   void R8_AddR8QuartzHitPos(Float_t y,Float_t x) {R8_R8QuartzHitPos->Fill(y,x);};
   //
-  void R1Only_AddR1QuartzHitPos(Float_t y,Float_t x) {R1Solo_R1QuartzHitPos->Fill(y,x);};
-  void R2Only_AddR2QuartzHitPos(Float_t y,Float_t x) {R2Solo_R2QuartzHitPos->Fill(y,x);};
-  void R3Only_AddR3QuartzHitPos(Float_t y,Float_t x) {R3Solo_R3QuartzHitPos->Fill(y,x);};
-  void R4Only_AddR4QuartzHitPos(Float_t y,Float_t x) {R4Solo_R4QuartzHitPos->Fill(y,x);};
-  void R5Only_AddR5QuartzHitPos(Float_t y,Float_t x) {R5Solo_R5QuartzHitPos->Fill(y,x);};
-  void R8Only_AddR8QuartzHitPos(Float_t y,Float_t x) {R8Solo_R8QuartzHitPos->Fill(y,x);};
+  void R1Only_AddR1QuartzHitPos(Float_t y,Float_t x) {R1Only_R1QuartzHitPos->Fill(y,x);};
+  void R2Only_AddR2QuartzHitPos(Float_t y,Float_t x) {R2Only_R2QuartzHitPos->Fill(y,x);};
+  void R3Only_AddR3QuartzHitPos(Float_t y,Float_t x) {R3Only_R3QuartzHitPos->Fill(y,x);};
+  void R4Only_AddR4QuartzHitPos(Float_t y,Float_t x) {R4Only_R4QuartzHitPos->Fill(y,x);};
+  void R5Only_AddR5QuartzHitPos(Float_t y,Float_t x) {R5Only_R5QuartzHitPos->Fill(y,x);};
+  void R8Only_AddR8QuartzHitPos(Float_t y,Float_t x) {R8Only_R8QuartzHitPos->Fill(y,x);};
   //
   void R1Adjacent_AddR1QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R1QuartzHitPos->Fill(y,x);};
   void R1Adjacent_AddR3QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R3QuartzHitPos->Fill(y,x);};
@@ -246,12 +246,12 @@ private:
   TH2F*    R8_R4QuartzHitPos;
   TH2F*    R8_R5QuartzHitPos;
   TH2F*    R8_R8QuartzHitPos;
-  TH2F*    R1Solo_R1QuartzHitPos;
-  TH2F*    R2Solo_R2QuartzHitPos;
-  TH2F*    R3Solo_R3QuartzHitPos;
-  TH2F*    R4Solo_R4QuartzHitPos;
-  TH2F*    R5Solo_R5QuartzHitPos;
-  TH2F*    R8Solo_R8QuartzHitPos;
+  TH2F*    R1Only_R1QuartzHitPos;
+  TH2F*    R2Only_R2QuartzHitPos;
+  TH2F*    R3Only_R3QuartzHitPos;
+  TH2F*    R4Only_R4QuartzHitPos;
+  TH2F*    R5Only_R5QuartzHitPos;
+  TH2F*    R8Only_R8QuartzHitPos;
   TH2F*    R1Adjacent_R1QuartzHitPos;
   TH2F*    R1Adjacent_R3QuartzHitPos;
   TH2F*    R1Adjacent_R4QuartzHitPos;

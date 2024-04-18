@@ -45,7 +45,6 @@ public:
   void R6_AddCathodeDetectionEvent(Int_t events) {R6_CathodeEventsDistrHist->Fill(events);};
   void R7_AddCathodeDetectionEvent(Int_t events) {R7_CathodeEventsDistrHist->Fill(events);};
   void R8_AddCathodeDetectionEvent(Int_t events) {R8_CathodeEventsDistrHist->Fill(events);};
-
   void R1Only_AddCathodeDetectionEvent(Int_t events) {R1Only_CathodeEventsDistrHist->Fill(events);};
   void R2Only_AddCathodeDetectionEvent(Int_t events) {R2Only_CathodeEventsDistrHist->Fill(events);};
   void R3Only_AddCathodeDetectionEvent(Int_t events) {R3Only_CathodeEventsDistrHist->Fill(events);};
@@ -54,7 +53,6 @@ public:
   void R6Only_AddCathodeDetectionEvent(Int_t events) {R6Only_CathodeEventsDistrHist->Fill(events);};
   void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
   void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
-
   void R1Adjacent_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_CathodeEventsDistrHist->Fill(events);};
   void R2Adjacent_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_CathodeEventsDistrHist->Fill(events);};
   void R3Adjacent_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_CathodeEventsDistrHist->Fill(events);};
@@ -82,6 +80,78 @@ public:
   void R8Only_AddInitialBeamAngleHist(Float_t aang){ R8Only_InitialBeamAngleHist->Fill(aang);};
   void NoHit_AddInitialBeamAngleHist(Float_t aang){ NoHit_InitialBeamAngleHist->Fill(aang);};
 
+  void R1_AddR1QuartzHitPos(Float_t y,Float_t x) {R1_R1QuartzHitPos->Fill(y,x);};
+  void R1_AddR2QuartzHitPos(Float_t y,Float_t x) {R1_R2QuartzHitPos->Fill(y,x);};
+  void R1_AddR3QuartzHitPos(Float_t y,Float_t x) {R1_R3QuartzHitPos->Fill(y,x);};
+  void R1_AddR4QuartzHitPos(Float_t y,Float_t x) {R1_R4QuartzHitPos->Fill(y,x);};
+  void R1_AddR5QuartzHitPos(Float_t y,Float_t x) {R1_R5QuartzHitPos->Fill(y,x);};
+  void R1_AddR8QuartzHitPos(Float_t y,Float_t x) {R1_R8QuartzHitPos->Fill(y,x);};
+  void R2_AddR1QuartzHitPos(Float_t y,Float_t x) {R2_R1QuartzHitPos->Fill(y,x);};
+  void R2_AddR2QuartzHitPos(Float_t y,Float_t x) {R2_R2QuartzHitPos->Fill(y,x);};
+  void R2_AddR3QuartzHitPos(Float_t y,Float_t x) {R2_R3QuartzHitPos->Fill(y,x);};
+  void R2_AddR4QuartzHitPos(Float_t y,Float_t x) {R2_R4QuartzHitPos->Fill(y,x);};
+  void R2_AddR5QuartzHitPos(Float_t y,Float_t x) {R2_R5QuartzHitPos->Fill(y,x);};
+  void R2_AddR8QuartzHitPos(Float_t y,Float_t x) {R2_R8QuartzHitPos->Fill(y,x);};
+  void R3_AddR1QuartzHitPos(Float_t y,Float_t x) {R3_R1QuartzHitPos->Fill(y,x);};
+  void R3_AddR2QuartzHitPos(Float_t y,Float_t x) {R3_R2QuartzHitPos->Fill(y,x);};
+  void R3_AddR3QuartzHitPos(Float_t y,Float_t x) {R3_R3QuartzHitPos->Fill(y,x);};
+  void R3_AddR4QuartzHitPos(Float_t y,Float_t x) {R3_R4QuartzHitPos->Fill(y,x);};
+  void R3_AddR5QuartzHitPos(Float_t y,Float_t x) {R3_R5QuartzHitPos->Fill(y,x);};
+  void R3_AddR8QuartzHitPos(Float_t y,Float_t x) {R3_R8QuartzHitPos->Fill(y,x);};
+  void R4_AddR1QuartzHitPos(Float_t y,Float_t x) {R4_R1QuartzHitPos->Fill(y,x);};
+  void R4_AddR2QuartzHitPos(Float_t y,Float_t x) {R4_R2QuartzHitPos->Fill(y,x);};
+  void R4_AddR3QuartzHitPos(Float_t y,Float_t x) {R4_R3QuartzHitPos->Fill(y,x);};
+  void R4_AddR4QuartzHitPos(Float_t y,Float_t x) {R4_R4QuartzHitPos->Fill(y,x);};
+  void R4_AddR5QuartzHitPos(Float_t y,Float_t x) {R4_R5QuartzHitPos->Fill(y,x);};
+  void R4_AddR8QuartzHitPos(Float_t y,Float_t x) {R4_R8QuartzHitPos->Fill(y,x);};
+  void R5_AddR1QuartzHitPos(Float_t y,Float_t x) {R5_R1QuartzHitPos->Fill(y,x);};
+  void R5_AddR2QuartzHitPos(Float_t y,Float_t x) {R5_R2QuartzHitPos->Fill(y,x);};
+  void R5_AddR3QuartzHitPos(Float_t y,Float_t x) {R5_R3QuartzHitPos->Fill(y,x);};
+  void R5_AddR4QuartzHitPos(Float_t y,Float_t x) {R5_R4QuartzHitPos->Fill(y,x);};
+  void R5_AddR5QuartzHitPos(Float_t y,Float_t x) {R5_R5QuartzHitPos->Fill(y,x);};
+  void R5_AddR8QuartzHitPos(Float_t y,Float_t x) {R5_R8QuartzHitPos->Fill(y,x);};
+  void R8_AddR1QuartzHitPos(Float_t y,Float_t x) {R8_R1QuartzHitPos->Fill(y,x);};
+  void R8_AddR2QuartzHitPos(Float_t y,Float_t x) {R8_R2QuartzHitPos->Fill(y,x);};
+  void R8_AddR3QuartzHitPos(Float_t y,Float_t x) {R8_R3QuartzHitPos->Fill(y,x);};
+  void R8_AddR4QuartzHitPos(Float_t y,Float_t x) {R8_R4QuartzHitPos->Fill(y,x);};
+  void R8_AddR5QuartzHitPos(Float_t y,Float_t x) {R8_R5QuartzHitPos->Fill(y,x);};
+  void R8_AddR8QuartzHitPos(Float_t y,Float_t x) {R8_R8QuartzHitPos->Fill(y,x);};
+  //
+  void R1Only_AddR1QuartzHitPos(Float_t y,Float_t x) {R1Solo_R1QuartzHitPos->Fill(y,x);};
+  void R2Only_AddR2QuartzHitPos(Float_t y,Float_t x) {R2Solo_R2QuartzHitPos->Fill(y,x);};
+  void R3Only_AddR3QuartzHitPos(Float_t y,Float_t x) {R3Solo_R3QuartzHitPos->Fill(y,x);};
+  void R4Only_AddR4QuartzHitPos(Float_t y,Float_t x) {R4Solo_R4QuartzHitPos->Fill(y,x);};
+  void R5Only_AddR5QuartzHitPos(Float_t y,Float_t x) {R5Solo_R5QuartzHitPos->Fill(y,x);};
+  void R8Only_AddR8QuartzHitPos(Float_t y,Float_t x) {R8Solo_R8QuartzHitPos->Fill(y,x);};
+  //
+  void R1Adjacent_AddR1QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R1QuartzHitPos->Fill(y,x);};
+  void R1Adjacent_AddR3QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R3QuartzHitPos->Fill(y,x);};
+  void R1Adjacent_AddR4QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R4QuartzHitPos->Fill(y,x);};
+  void R1Adjacent_AddR5QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R5QuartzHitPos->Fill(y,x);};
+  void R1Adjacent_AddR8QuartzHitPos(Float_t y,Float_t x) {R1Adjacent_R8QuartzHitPos->Fill(y,x);};
+  void R2Adjacent_AddR2QuartzHitPos(Float_t y,Float_t x) {R2Adjacent_R2QuartzHitPos->Fill(y,x);};
+  void R2Adjacent_AddR4QuartzHitPos(Float_t y,Float_t x) {R2Adjacent_R4QuartzHitPos->Fill(y,x);};
+  void R2Adjacent_AddR5QuartzHitPos(Float_t y,Float_t x) {R2Adjacent_R5QuartzHitPos->Fill(y,x);};
+  void R2Adjacent_AddR8QuartzHitPos(Float_t y,Float_t x) {R2Adjacent_R8QuartzHitPos->Fill(y,x);};
+  void R3Adjacent_AddR1QuartzHitPos(Float_t y,Float_t x) {R3Adjacent_R1QuartzHitPos->Fill(y,x);};
+  void R3Adjacent_AddR3QuartzHitPos(Float_t y,Float_t x) {R3Adjacent_R3QuartzHitPos->Fill(y,x);};
+  void R3Adjacent_AddR5QuartzHitPos(Float_t y,Float_t x) {R3Adjacent_R5QuartzHitPos->Fill(y,x);};
+  void R3Adjacent_AddR8QuartzHitPos(Float_t y,Float_t x) {R3Adjacent_R8QuartzHitPos->Fill(y,x);};
+  void R4Adjacent_AddR1QuartzHitPos(Float_t y,Float_t x) {R4Adjacent_R1QuartzHitPos->Fill(y,x);};
+  void R4Adjacent_AddR2QuartzHitPos(Float_t y,Float_t x) {R4Adjacent_R2QuartzHitPos->Fill(y,x);};
+  void R4Adjacent_AddR4QuartzHitPos(Float_t y,Float_t x) {R4Adjacent_R4QuartzHitPos->Fill(y,x);};
+  void R4Adjacent_AddR8QuartzHitPos(Float_t y,Float_t x) {R4Adjacent_R8QuartzHitPos->Fill(y,x);};
+  void R5Adjacent_AddR1QuartzHitPos(Float_t y,Float_t x) {R5Adjacent_R1QuartzHitPos->Fill(y,x);};
+  void R5Adjacent_AddR2QuartzHitPos(Float_t y,Float_t x) {R5Adjacent_R2QuartzHitPos->Fill(y,x);};
+  void R5Adjacent_AddR3QuartzHitPos(Float_t y,Float_t x) {R5Adjacent_R3QuartzHitPos->Fill(y,x);};
+  void R5Adjacent_AddR5QuartzHitPos(Float_t y,Float_t x) {R5Adjacent_R5QuartzHitPos->Fill(y,x);};
+  void R8Adjacent_AddR1QuartzHitPos(Float_t y,Float_t x) {R8Adjacent_R1QuartzHitPos->Fill(y,x);};
+  void R8Adjacent_AddR2QuartzHitPos(Float_t y,Float_t x) {R8Adjacent_R2QuartzHitPos->Fill(y,x);};
+  void R8Adjacent_AddR3QuartzHitPos(Float_t y,Float_t x) {R8Adjacent_R3QuartzHitPos->Fill(y,x);};
+  void R8Adjacent_AddR4QuartzHitPos(Float_t y,Float_t x) {R8Adjacent_R4QuartzHitPos->Fill(y,x);};
+  void R8Adjacent_AddR8QuartzHitPos(Float_t y,Float_t x) {R8Adjacent_R8QuartzHitPos->Fill(y,x);};
+
+
   MOLLEROptMainEvent* MOLLERMainEvent;
 
 private:
@@ -105,7 +175,6 @@ private:
   TH1D*    R6_CathodeEventsDistrHist;
   TH1D*    R7_CathodeEventsDistrHist;
   TH1D*    R8_CathodeEventsDistrHist;
-
   TH1D*    R1Only_CathodeEventsDistrHist; //Unlike R#_CathodeEvents, only includes PEs from electrons that hit only that detector
   TH1D*    R2Only_CathodeEventsDistrHist; //
   TH1D*    R3Only_CathodeEventsDistrHist; //
@@ -114,7 +183,6 @@ private:
   TH1D*    R6Only_CathodeEventsDistrHist; //
   TH1D*    R7Only_CathodeEventsDistrHist; //
   TH1D*    R8Only_CathodeEventsDistrHist; //
-
   TH1D*    R1Adjacent_CathodeEventsDistrHist; //PEs generated from events that do not hit adjacent detector tiles
   TH1D*    R2Adjacent_CathodeEventsDistrHist; 
   TH1D*    R3Adjacent_CathodeEventsDistrHist; 
@@ -141,6 +209,75 @@ private:
   TH1F*    R7Only_InitialBeamAngleHist;
   TH1F*    R8Only_InitialBeamAngleHist;
   TH1F*    NoHit_InitialBeamAngleHist;
+
+  TH2F*    R1_R1QuartzHitPos;
+  TH2F*    R1_R2QuartzHitPos;
+  TH2F*    R1_R3QuartzHitPos;
+  TH2F*    R1_R4QuartzHitPos;
+  TH2F*    R1_R5QuartzHitPos;
+  TH2F*    R1_R8QuartzHitPos;
+  TH2F*    R2_R1QuartzHitPos;
+  TH2F*    R2_R2QuartzHitPos;
+  TH2F*    R2_R3QuartzHitPos;
+  TH2F*    R2_R4QuartzHitPos;
+  TH2F*    R2_R5QuartzHitPos;
+  TH2F*    R2_R8QuartzHitPos;
+  TH2F*    R3_R1QuartzHitPos;
+  TH2F*    R3_R2QuartzHitPos;
+  TH2F*    R3_R3QuartzHitPos;
+  TH2F*    R3_R4QuartzHitPos;
+  TH2F*    R3_R5QuartzHitPos;
+  TH2F*    R3_R8QuartzHitPos;
+  TH2F*    R4_R1QuartzHitPos;
+  TH2F*    R4_R2QuartzHitPos;
+  TH2F*    R4_R3QuartzHitPos;
+  TH2F*    R4_R4QuartzHitPos;
+  TH2F*    R4_R5QuartzHitPos;
+  TH2F*    R4_R8QuartzHitPos;
+  TH2F*    R5_R1QuartzHitPos;
+  TH2F*    R5_R2QuartzHitPos;
+  TH2F*    R5_R3QuartzHitPos;
+  TH2F*    R5_R4QuartzHitPos;
+  TH2F*    R5_R5QuartzHitPos;
+  TH2F*    R5_R8QuartzHitPos;
+  TH2F*    R8_R1QuartzHitPos;
+  TH2F*    R8_R2QuartzHitPos;
+  TH2F*    R8_R3QuartzHitPos;
+  TH2F*    R8_R4QuartzHitPos;
+  TH2F*    R8_R5QuartzHitPos;
+  TH2F*    R8_R8QuartzHitPos;
+  TH2F*    R1Solo_R1QuartzHitPos;
+  TH2F*    R2Solo_R2QuartzHitPos;
+  TH2F*    R3Solo_R3QuartzHitPos;
+  TH2F*    R4Solo_R4QuartzHitPos;
+  TH2F*    R5Solo_R5QuartzHitPos;
+  TH2F*    R8Solo_R8QuartzHitPos;
+  TH2F*    R1Adjacent_R1QuartzHitPos;
+  TH2F*    R1Adjacent_R3QuartzHitPos;
+  TH2F*    R1Adjacent_R4QuartzHitPos;
+  TH2F*    R1Adjacent_R5QuartzHitPos;
+  TH2F*    R1Adjacent_R8QuartzHitPos;
+  TH2F*    R2Adjacent_R2QuartzHitPos;
+  TH2F*    R2Adjacent_R4QuartzHitPos;
+  TH2F*    R2Adjacent_R5QuartzHitPos;
+  TH2F*    R2Adjacent_R8QuartzHitPos;
+  TH2F*    R3Adjacent_R1QuartzHitPos;
+  TH2F*    R3Adjacent_R3QuartzHitPos;
+  TH2F*    R3Adjacent_R5QuartzHitPos;
+  TH2F*    R3Adjacent_R8QuartzHitPos;
+  TH2F*    R4Adjacent_R1QuartzHitPos;
+  TH2F*    R4Adjacent_R2QuartzHitPos;
+  TH2F*    R4Adjacent_R4QuartzHitPos;
+  TH2F*    R4Adjacent_R8QuartzHitPos;
+  TH2F*    R5Adjacent_R1QuartzHitPos;
+  TH2F*    R5Adjacent_R2QuartzHitPos;
+  TH2F*    R5Adjacent_R3QuartzHitPos;
+  TH2F*    R5Adjacent_R5QuartzHitPos;
+  TH2F*    R8Adjacent_R1QuartzHitPos;
+  TH2F*    R8Adjacent_R2QuartzHitPos;
+  TH2F*    R8Adjacent_R3QuartzHitPos;
+  TH2F*    R8Adjacent_R4QuartzHitPos;
+  TH2F*    R8Adjacent_R8QuartzHitPos;
   
   TVectorD *NumberOfPrimaries;
   Float_t OptPhotonDist[800];

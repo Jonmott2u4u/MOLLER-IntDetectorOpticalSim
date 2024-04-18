@@ -261,7 +261,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           if((R3Hit==0) & (R4Hit==1) & (R5Hit==0)) R4_AdjacentTracker = 1;
           if((R4Hit==0) & (R5Hit==1) & (R8Hit==0)) R5_AdjacentTracker = 1;
           if((R5Hit==0) & (R6Hit==1) & (R8Hit==0)) R6_AdjacentTracker = 1;
-          if((R5Hit==0) & (R7Hit==1) & (R8Hit==0)) R6_AdjacentTracker = 1;
+          if((R5Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_AdjacentTracker = 1;
           if((R5Hit==0) & (R8Hit==1)) R8_AdjacentTracker = 1;
         }
         for(int p = 0; p < track->StepNChPhotons.size(); p++){

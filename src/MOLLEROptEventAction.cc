@@ -92,8 +92,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4double R1pes = 0, R2pes = 0, R3pes = 0, R4pes = 0, R5pes = 0, R6pes = 0, R7pes = 0, R8pes = 0;
   G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt;
   G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, ScintHit, GEM1Hit, GEM2Hit; //Tracks whether a detector's quartz tile has been hit in a given event
-  G4float R1XHit = 0, R2XHit = 0, R3XHit = 0, R4XHit = 0, R5XHit = 0, R6XHit = 0, R7XHit = 0, R8XHit = 0; //Stores the X position of the beam when hitting the quartz tile
-  G4float R1YHit = 0, R2YHit = 0, R3YHit = 0, R4YHit = 0, R5YHit = 0, R6YHit = 0, R7YHit = 0, R8YHit = 0; //Same but Y position
+  G4float R1XHit = 999, R2XHit = 999, R3XHit = 999, R4XHit = 999, R5XHit = 999, R6XHit = 999, R7XHit = 999, R8XHit = 999; //Stores the X position of the beam when hitting the quartz tile
+  G4float R1YHit = 999, R2YHit = 999, R3YHit = 999, R4YHit = 999, R5YHit = 999, R6YHit = 999, R7YHit = 999, R8YHit = 999; //Same but Y position
   G4int NumSecPhotons = 0;
   G4int hitflag = 0;
   G4int R1_Tracker = 0;  //Stores whether the R1 tile (+ scint) has been hit this event  
@@ -497,52 +497,52 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R1_Tracker == 1){
     analysis->R1_AddCathodeDetectionEvent(R1pes);
     analysis->R1_AddInitialBeamAngleHist(InitialBeamAngle);
-    analysis->R1_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R1_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R1_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R1_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R1_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R1_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R1_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R1_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R1_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R1_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R1_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R1_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R2_Tracker == 1){
     analysis->R2_AddCathodeDetectionEvent(R2pes);
     analysis->R2_AddInitialBeamAngleHist(InitialBeamAngle);
-    analysis->R2_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R2_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R2_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R2_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R2_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R2_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R2_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R2_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R2_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R2_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R2_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R2_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R3_Tracker == 1){
     analysis->R3_AddCathodeDetectionEvent(R3pes);
     analysis->R3_AddInitialBeamAngleHist(InitialBeamAngle);
-    analysis->R3_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R3_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R3_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R3_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R3_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R3_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R3_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R3_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R3_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R3_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R3_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R3_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R4_Tracker == 1){
     analysis->R4_AddCathodeDetectionEvent(R4pes);
     analysis->R4_AddInitialBeamAngleHist(InitialBeamAngle);
-    analysis->R4_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R4_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R4_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R4_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R4_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R4_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R4_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R4_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R4_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R4_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R4_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R4_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R5_Tracker == 1){
     analysis->R5_AddCathodeDetectionEvent(R5pes);
     analysis->R5_AddInitialBeamAngleHist(InitialBeamAngle);
-    analysis->R5_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R5_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R5_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R5_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R5_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R5_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R5_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R5_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R5_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R5_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R5_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R5_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R6_Tracker == 1){
     analysis->R6_AddCathodeDetectionEvent(R6pes);
@@ -555,12 +555,12 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R8_Tracker == 1){
     analysis->R8_AddCathodeDetectionEvent(R8pes);
     analysis->R8_AddInitialBeamAngleHist(InitialBeamAngle);
-    analysis->R8_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R8_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R8_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R8_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R8_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R8_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R8_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R8_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R8_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R8_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R8_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R8_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   //Stores PEs if Scint & one tile have been hit
   if(R1_SoloTracker == 1){
@@ -604,32 +604,32 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   //Stores PEs if adjacent tiles have not been hit
   if(R1_AdjacentTracker == 1){
     analysis->R1Adjacent_AddCathodeDetectionEvent(R1pes);
-    analysis->R1Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R1Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R1Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R1Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R1Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R1Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R3XHit != 999) analysis->R1Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R1Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R1Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R1Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R2_AdjacentTracker == 1){
     analysis->R2Adjacent_AddCathodeDetectionEvent(R2pes);
-    analysis->R2Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R2Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R2Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R2Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R2XHit != 999) analysis->R2Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R4XHit != 999) analysis->R2Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R5XHit != 999) analysis->R2Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R2Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R3_AdjacentTracker == 1){
     analysis->R3Adjacent_AddCathodeDetectionEvent(R3pes);
-    analysis->R3Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R3Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R3Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
-    analysis->R3Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R3Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R3XHit != 999) analysis->R3Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R5XHit != 999) analysis->R3Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R8XHit != 999) analysis->R3Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R4_AdjacentTracker == 1){
     analysis->R4Adjacent_AddCathodeDetectionEvent(R4pes);
-    analysis->R4Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R4Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R4Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R4Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R4Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R4Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R4XHit != 999) analysis->R4Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R8XHit != 999) analysis->R4Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   if(R5_AdjacentTracker == 1){
     analysis->R5Adjacent_AddCathodeDetectionEvent(R5pes);
@@ -646,11 +646,11 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   }
   if(R8_AdjacentTracker == 1){
     analysis->R8Adjacent_AddCathodeDetectionEvent(R8pes);
-    analysis->R8Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R8Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R8Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R8Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
-    analysis->R8Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
+    if(R1XHit != 999) analysis->R8Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R8Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R8Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R4XHit != 999) analysis->R8Adjacent_AddR4QuartzHitPos(R4XHit,R4YHit);
+    if(R8XHit != 999) analysis->R8Adjacent_AddR8QuartzHitPos(R8XHit,R8YHit);
   }
   //
   if(Scint_Tracker == 0) analysis->NoHit_AddInitialBeamAngleHist(InitialBeamAngle);

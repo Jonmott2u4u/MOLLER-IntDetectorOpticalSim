@@ -633,10 +633,10 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   }
   if(R5_AdjacentTracker == 1){
     analysis->R5Adjacent_AddCathodeDetectionEvent(R5pes);
-    analysis->R5Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
-    analysis->R5Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
-    analysis->R5Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
-    analysis->R5Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
+    if(R1XHit != 999) analysis->R5Adjacent_AddR1QuartzHitPos(R1XHit,R1YHit);
+    if(R2XHit != 999) analysis->R5Adjacent_AddR2QuartzHitPos(R2XHit,R2YHit);
+    if(R3XHit != 999) analysis->R5Adjacent_AddR3QuartzHitPos(R3XHit,R3YHit);
+    if(R5XHit != 999) analysis->R5Adjacent_AddR5QuartzHitPos(R5XHit,R5YHit);
   }
   if(R6_AdjacentTracker == 1){
     analysis->R6Adjacent_AddCathodeDetectionEvent(R6pes);

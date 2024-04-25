@@ -159,10 +159,10 @@ void FillGuideReflectivity()
   ifstream iFile2("bogdanMylar_45.txt");
   ifstream iFile3("bogdanMylar_60.txt");
   ifstream iFile4("bogdanMylar.txt");*/
-  ifstream iFile("filtered_UVC32deg.txt");
-  ifstream iFile2("filtered_UVC45deg.txt");
-  ifstream iFile3("filtered_UVC62deg.txt");
-  ifstream iFile4("filtered_UVC90deg.txt");
+  ifstream iFile("uvs30.txt");
+  ifstream iFile2("uvs45.txt");
+  ifstream iFile3("uvs60.txt");
+  ifstream iFile4("uvs1.txt");
 
   Float_t x,y,e;
   Int_t n = 0, bin;

@@ -53,10 +53,10 @@
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \ 
-#	       |	          |
-#	       |   Middle   |
-#	       |   Box      |
-#	       |	          |  ________ Lower Interface
+#	     |	          |
+#	     |   Middle   |
+#	     |   Box      |
+#	     |	          |  ________ Lower Interface
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -210,29 +210,6 @@
 /R8/SetCenterPositionInY 330 mm
 /R8/SetCenterPositionInZ 1.78 mm
 
-#------------------#Scintillator commands ---------------# GEMScint1 is being used to define where particles spawn
-
-/Scint/QuartzSizeZ 0.1 mm                      # Default: 0.1 mm
-/Scint/QuartzSizeX 300 mm                      # 600 mm
-/Scint/QuartzSizeY 600 mm                      # 600 mm
-/Scint/SetCenterPositionInX 0 mm               # 
-/Scint/SetCenterPositionInY 112.88 mm          # Positions for 
-/Scint/SetCenterPositionInZ -380.08 mm         # 1786.39 for trap, 1761.68 else
-
-/GEMScint1/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
-/GEMScint1/QuartzSizeX 90 mm                   # 100 mm
-/GEMScint1/QuartzSizeY 180 mm                  # 200 mm
-/GEMScint1/SetCenterPositionInX 0 mm           # 
-/GEMScint1/SetCenterPositionInY 0 mm           #
-/GEMScint1/SetCenterPositionInZ 1661.10 mm     # Places the scintillator 1 cm after the beam spawn
-
-/GEMScint2/QuartzSizeZ 0.1 mm                  # Default: 0.1 mm
-/GEMScint2/QuartzSizeX 300 mm                  # 100 mm
-/GEMScint2/QuartzSizeY 300 mm                  # 100 mm
-/GEMScint2/SetCenterPositionInX 0 mm           # 
-/GEMScint2/SetCenterPositionInY -250 mm        #
-/GEMScint2/SetCenterPositionInZ 1761.68 mm         # 
-
 #------------------#General commands --------------------#
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
@@ -243,6 +220,38 @@
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damage factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radiation damage to 70 MRad (the other possibility is 170)
 
+#------------------#Scintillator commands ---------------#
+
+/Scint1/QuartzSizeZ 20 mm                  #
+/Scint1/QuartzSizeX 300 mm                  #
+/Scint1/QuartzSizeY 250 mm                  #
+/Scint1/SetCenterPositionInX 0 mm           # 
+/Scint1/SetCenterPositionInY -45 mm        #
+/Scint1/SetCenterPositionInZ -430 mm     #
+
+/Scint2/QuartzSizeZ 20 mm                  #
+/Scint2/QuartzSizeX 300 mm                   #
+/Scint2/QuartzSizeY 250 mm                  #
+/Scint2/SetCenterPositionInX 0 mm           # 
+/Scint2/SetCenterPositionInY 204 mm           #
+/Scint2/SetCenterPositionInZ -404 mm     #
+
+/Scint3/QuartzSizeZ 20 mm                  #
+/Scint3/QuartzSizeX 300 mm                  #
+/Scint3/QuartzSizeY 250 mm                  #
+/Scint3/SetCenterPositionInX 0 mm           # 
+/Scint3/SetCenterPositionInY -250 mm        #
+/Scint3/SetCenterPositionInZ 1560 mm     # 
+
+/Scint4/QuartzSizeZ 20 mm                  #
+/Scint4/QuartzSizeX 300 mm                  #
+/Scint4/QuartzSizeY 250 mm                  #
+/Scint4/SetCenterPositionInX 0 mm            # 
+/Scint4/SetCenterPositionInY -1 mm        #
+/Scint4/SetCenterPositionInZ 1586 mm     # 
+
+#------------------#Misc commands -----------------------#
+
 /Det/UpdateGeometry
 
 /Generator/PrimaryParticle 2                      #Sets the initial particle type. 1 for electrons, 2 for muons
@@ -251,7 +260,7 @@
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use
-/Generator/BeamSolidAngle 17                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
+/Generator/BeamSolidAngle 18                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for beam particles
 

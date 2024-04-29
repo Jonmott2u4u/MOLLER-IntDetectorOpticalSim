@@ -32,7 +32,7 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring","9Ring","10Ring","11Ring", Materials);
+  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring","9Ring","10Ring","11Ring","12Ring", Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
   
   fWorldLengthInX =  15.0*m;
@@ -173,20 +173,25 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetQuartzInterfaceOpeningX8(9.2*cm);
   Detector->SetQuartzToPMTOffsetInZ8(-0.3*cm);  
 
-  //Scintillator (After R1)
-  Detector->SetScintillatorSizeX(60.0*cm);
-  Detector->SetScintillatorSizeY(60.0*cm);
-  Detector->SetScintillatorSizeZ(0.01*cm);
+  //Scint1 
+  Detector->SetScint1SizeX(60.0*cm);
+  Detector->SetScint1SizeY(60.0*cm);
+  Detector->SetScint1SizeZ(0.01*cm);
 
-  //GEM Scint 1
-  Detector->SetGEMScint1SizeX(10.0*cm);
-  Detector->SetGEMScint1SizeY(10.0*cm);
-  Detector->SetGEMScint1SizeZ(0.01*cm);
+  //Scint2
+  Detector->SetScint2SizeX(10.0*cm);
+  Detector->SetScint2SizeY(10.0*cm);
+  Detector->SetScint2SizeZ(0.01*cm);
 
-  //GEM Scint 1
-  Detector->SetGEMScint2SizeX(10.0*cm);
-  Detector->SetGEMScint2SizeY(10.0*cm);
-  Detector->SetGEMScint2SizeZ(0.01*cm);
+  //Scint3
+  Detector->SetScint3SizeX(10.0*cm);
+  Detector->SetScint3SizeY(10.0*cm);
+  Detector->SetScint3SizeZ(0.01*cm);
+
+  //Scint4
+  Detector->SetScint4SizeX(10.0*cm);
+  Detector->SetScint4SizeY(10.0*cm);
+  Detector->SetScint4SizeZ(0.01*cm);
   
   //General objects
   Detector->SetPMTInterfaceOpeningZ(5.6*cm);
@@ -237,17 +242,21 @@ void MOLLEROptConstruction::GetQuartz8Limits(G4double *vals)
 {
   Detector->GetQuartz8Limits(vals);
 }
-void MOLLEROptConstruction::GetScintillatorLimits(G4double *vals)
+void MOLLEROptConstruction::GetScint1Limits(G4double *vals)
 {
-  Detector->GetScintillatorLimits(vals);
+  Detector->GetScint1Limits(vals);
 }
-void MOLLEROptConstruction::GetGEMScint1Limits(G4double *vals)
+void MOLLEROptConstruction::GetScint2Limits(G4double *vals)
 {
-  Detector->GetGEMScint1Limits(vals);
+  Detector->GetScint2Limits(vals);
 }
-void MOLLEROptConstruction::GetGEMScint2Limits(G4double *vals)
+void MOLLEROptConstruction::GetScint3Limits(G4double *vals)
 {
-  Detector->GetGEMScint2Limits(vals);
+  Detector->GetScint3Limits(vals);
+}
+void MOLLEROptConstruction::GetScint4Limits(G4double *vals)
+{
+  Detector->GetScint4Limits(vals);
 }
 
 void MOLLEROptConstruction::GetLightGuide1Limits(G4double *vals)

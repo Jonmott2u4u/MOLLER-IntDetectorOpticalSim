@@ -91,7 +91,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4double LGTrackLength, QuartzTrackLength, TotalTrackLength;
   G4double R1_pes = 0, R2_pes = 0, R3_pes = 0, R4_pes = 0, R5_pes = 0, R6_pes = 0, R7_pes = 0, R8_pes = 0;
   G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt;
-  G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, ScintHit, GEM1Hit, GEM2Hit; //Tracks whether a detector's quartz tile has been hit in a given event
+  G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, Scint1Hit, Scint2Hit, Scint3Hit, Scint4Hit; //Tracks whether a detector's quartz tile has been hit in a given event
   G4int NumSecPhotons = 0;
   G4int hitflag = 0;
   G4int R1_Tracker = 0;  //Stores whether the R1 tile (+ scint) has been hit this event  
@@ -110,9 +110,14 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4int R6_SoloTracker = 0;  //  
   G4int R7_SoloTracker = 0;  //  
   G4int R8_SoloTracker = 0;  //  
-  G4int Scint_Tracker = 0;   //Stores whether the spectrum defining scintillator has been hit
-  G4int GEM1_Tracker = 0;
-  G4int GEM2_Tracker = 0;
+  G4int Scint1_Tracker = 0;   //Stores whether the spectrum defining scintillator has been hit
+  G4int Scint2_Tracker = 0;
+  G4int Scint3_Tracker = 0;
+  G4int Scint4_Tracker = 0;
+  G4int Scint13_Tracker = 0;
+  G4int Scint14_Tracker = 0;
+  G4int Scint23_Tracker = 0;
+  G4int Scint24_Tracker = 0;
 
  
   Float_t  optPhEng, wvl, bwdt = QuartzSecOptPhotonCnt->GetBinWidth(2);
@@ -128,7 +133,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   TrackData *track;
   for(int t = 0; t < NumTracks; t++){
 
-    R1Hit = 0, R2Hit = 0, R3Hit = 0, R4Hit = 0, R5Hit = 0, R6Hit = 0, R7Hit = 0, R8Hit = 0, ScintHit = 0, GEM1Hit = 0, GEM2Hit = 0;
+    R1Hit = 0, R2Hit = 0, R3Hit = 0, R4Hit = 0, R5Hit = 0, R6Hit = 0, R7Hit = 0, R8Hit = 0, Scint1Hit = 0, Scint2Hit = 0, Scint3Hit = 0, Scint4Hit = 0;
     PMThit = 0; //Seems to not be used
     
     analysis->MOLLERMainEvent->MOLLERDetectorEvent.Initialize();  
@@ -208,29 +213,43 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionY((Float_t)track->R8QuartzHitY/cm);
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8QuartzHitPositionZ((Float_t)track->R8QuartzHitZ/cm);
         }
-        if(track->ScintHitFlag & (track->ID == 1) ){
-          ScintHit = 1;
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintTrackHit(1);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionX((Float_t)track->ScintHitX/cm);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionY((Float_t)track->ScintHitY/cm);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScintHitPositionZ((Float_t)track->ScintHitZ/cm);
+        if(track->Scint1HitFlag & (track->ID == 1) ){
+          Scint1Hit = 1;
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint1TrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint1HitPositionX((Float_t)track->Scint1HitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint1HitPositionY((Float_t)track->Scint1HitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint1HitPositionZ((Float_t)track->Scint1HitZ/cm);
         }
-        if(track->GEMScint1HitFlag & (track->ID == 1)){
-          GEM1Hit = 1;
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1TrackHit(1);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionX((Float_t)track->GEMScint1HitX/cm);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionY((Float_t)track->GEMScint1HitY/cm);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint1HitPositionZ((Float_t)track->GEMScint1HitZ/cm);
+        if(track->Scint2HitFlag & (track->ID == 1)){
+          Scint2Hit = 1;
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint2TrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint2HitPositionX((Float_t)track->Scint2HitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint2HitPositionY((Float_t)track->Scint2HitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint2HitPositionZ((Float_t)track->Scint2HitZ/cm);
         }
-        if(track->GEMScint2HitFlag & (track->ID == 1)){
-          GEM2Hit = 1;
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2TrackHit(1);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionX((Float_t)track->GEMScint2HitX/cm);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionY((Float_t)track->GEMScint2HitY/cm);
-          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddGEMScint2HitPositionZ((Float_t)track->GEMScint2HitZ/cm);
+        if(track->Scint3HitFlag & (track->ID == 1)){
+          Scint3Hit = 1;
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint3TrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint3HitPositionX((Float_t)track->Scint3HitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint3HitPositionY((Float_t)track->Scint3HitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint3HitPositionZ((Float_t)track->Scint3HitZ/cm);
         }
-        if(((ScintHit == 1) && (GEM1Hit == 1)) || ((ScintHit == 1) && (GEM2Hit == 1))){
-          Scint_Tracker = 1;
+        if(track->Scint4HitFlag & (track->ID == 1)){
+          Scint4Hit = 1;
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint4TrackHit(1);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint4HitPositionX((Float_t)track->Scint4HitX/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint4HitPositionY((Float_t)track->Scint4HitY/cm);
+          analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddScint4HitPositionZ((Float_t)track->Scint4HitZ/cm);
+        }
+        if(((Scint1Hit == 1) && ((Scint3Hit == 1) || (Scint4Hit == 1))) || ((Scint2Hit == 1) && ((Scint3Hit == 1) || (Scint4Hit == 1)))){
+          if(Scint1Hit==1) Scint1_Tracker = 1;
+          if(Scint2Hit==1) Scint2_Tracker = 1;
+          if(Scint3Hit==1) Scint3_Tracker = 1;
+          if(Scint4Hit==1) Scint4_Tracker = 1;
+          if((Scint1Hit==1) && (Scint3Hit==1)) Scint13_Tracker = 1;
+          if((Scint1Hit==1) && (Scint4Hit==1)) Scint14_Tracker = 1;
+          if((Scint2Hit==1) && (Scint3Hit==1)) Scint23_Tracker = 1;
+          if((Scint2Hit==1) && (Scint4Hit==1)) Scint24_Tracker = 1;
           if(R1Hit==1) R1_Tracker = 1;
           if(R2Hit==1) R2_Tracker = 1;
           if(R3Hit==1) R3_Tracker = 1;
@@ -239,8 +258,6 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           if(R6Hit==1) R6_Tracker = 1;
           if(R7Hit==1) R7_Tracker = 1;
           if(R8Hit==1) R8_Tracker = 1;
-          if(GEM1Hit==1) GEM1_Tracker = 1;
-          if(GEM2Hit==1) GEM2_Tracker = 1;
           if((R1Hit==1) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R1_SoloTracker = 1;
           if((R1Hit==0) & (R2Hit==1) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R2_SoloTracker = 1;
           if((R1Hit==0) & (R2Hit==0) & (R3Hit==1) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==0)) R3_SoloTracker = 1;
@@ -282,36 +299,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
           optPhEng = track->InitKinEnergy/eV;
           OptParam* op = TrackingReadout->GetOpticalParameters();
-          //The following is for PhotoElectronDistrHist, which is deprecated. R#_PMTPE variables will be reused for CathodeEvents method
-          /*for(int n = 0; n < op->npar-1; n++){
-            if(optPhEng >= op->EPhoton[n]/eV && optPhEng < op->EPhoton[n+1]/eV){
-              if(track->PMTHitZ/cm > 120){
-                R1_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(100 < track->PMTHitZ/cm && track->PMTHitZ/cm < 120){
-                R2_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(70 < track->PMTHitZ/cm && track->PMTHitZ/cm < 90){
-                R3_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(45 < track->PMTHitZ/cm && track->PMTHitZ/cm < 70){
-                R4_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(5 < track->PMTHitZ/cm && track->PMTHitZ/cm < 15){
-                R5_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(15 < track->PMTHitZ/cm && track->PMTHitZ/cm < 35 && track->PMTHitX/cm < 0){
-                R6_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(15 < track->PMTHitZ/cm && track->PMTHitZ/cm < 35 && track->PMTHitX/cm > 0){
-                R7_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-              if(track->PMTHitZ/cm < 5){
-                R8_PMTPe += gRandom->PoissonD(op->QEff[n]);
-              }
-            }
-          }*/
-        PMThit++;
+          PMThit++;
         }
           
         for(int s = 0; s < track->NSteps; s++){
@@ -425,7 +413,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       }
     }
     if(Det == 9){
-      if(Scint_Tracker == 1){
+      if(Scint13_Tracker == 1){
         if(track->ID == 1){
           if(R1_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(R1_pes);
           if(R2_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(R2_pes);
@@ -448,7 +436,53 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       }
     }
     if(Det == 10){
-      if((GEM1_Tracker == 1) || (GEM2_Tracker == 1)){
+      if(Scint14_Tracker == 1){
+        if(track->ID == 1){
+          if(R1_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(R1_pes);
+          if(R2_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(R2_pes);
+          if(R3_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3PEs(R3_pes);
+          if(R4_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4PEs(R4_pes);
+          if(R5_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5PEs(R5_pes);
+          if(R6_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6PEs(R6_pes);
+          if(R7_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7PEs(R7_pes);
+          if(R8_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8PEs(R8_pes);
+          if(R1_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1SoloPEs(R1_pes);
+          if(R2_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2SoloPEs(R2_pes);
+          if(R3_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3SoloPEs(R3_pes);
+          if(R4_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4SoloPEs(R4_pes);
+          if(R5_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5SoloPEs(R5_pes);
+          if(R6_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6SoloPEs(R6_pes);
+          if(R7_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7SoloPEs(R7_pes);
+          if(R8_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8SoloPEs(R8_pes);
+        }
+        analysis->FillRootNtuple();
+      }
+    }
+    if(Det == 11){
+      if(Scint23_Tracker == 1){
+        if(track->ID == 1){
+          if(R1_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(R1_pes);
+          if(R2_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(R2_pes);
+          if(R3_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3PEs(R3_pes);
+          if(R4_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4PEs(R4_pes);
+          if(R5_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5PEs(R5_pes);
+          if(R6_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6PEs(R6_pes);
+          if(R7_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7PEs(R7_pes);
+          if(R8_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8PEs(R8_pes);
+          if(R1_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1SoloPEs(R1_pes);
+          if(R2_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2SoloPEs(R2_pes);
+          if(R3_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR3SoloPEs(R3_pes);
+          if(R4_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR4SoloPEs(R4_pes);
+          if(R5_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR5SoloPEs(R5_pes);
+          if(R6_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR6SoloPEs(R6_pes);
+          if(R7_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR7SoloPEs(R7_pes);
+          if(R8_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR8SoloPEs(R8_pes);
+        }
+        analysis->FillRootNtuple();
+      }
+    }
+    if(Det == 12){
+      if(Scint24_Tracker == 1){
         if(track->ID == 1){
           if(R1_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR1PEs(R1_pes);
           if(R2_Tracker == 1) analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddR2PEs(R2_pes);
@@ -471,201 +505,329 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       }
     }
   }
-  //Stores PEs if Scint and one of the GEMs have been hit
+  //Stores PEs if scintillator cuts are passed
   if(R1_Tracker == 1){
       analysis->R1_AddCathodeDetectionEvent(R1_pes);
       analysis->R1_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R1_GEM1_AddCathodeDetectionEvent(R1_pes);
-      analysis->R1_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R1_Scint13_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R1_GEM2_AddCathodeDetectionEvent(R1_pes);
-      analysis->R1_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R1_Scint14_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R1_Scint23_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R1_Scint24_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R2_Tracker == 1){
     analysis->R2_AddCathodeDetectionEvent(R2_pes);
     analysis->R2_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R2_GEM1_AddCathodeDetectionEvent(R2_pes);
-      analysis->R2_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R2_Scint13_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R2_GEM2_AddCathodeDetectionEvent(R2_pes);
-      analysis->R2_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R2_Scint14_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R2_Scint23_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R2_Scint24_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R3_Tracker == 1){
     analysis->R3_AddCathodeDetectionEvent(R3_pes);
     analysis->R3_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R3_GEM1_AddCathodeDetectionEvent(R3_pes);
-      analysis->R3_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R3_Scint13_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R3_GEM2_AddCathodeDetectionEvent(R3_pes);
-      analysis->R3_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R3_Scint14_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R3_Scint23_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R3_Scint24_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R4_Tracker == 1){
     analysis->R4_AddCathodeDetectionEvent(R4_pes);
     analysis->R4_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R4_GEM1_AddCathodeDetectionEvent(R4_pes);
-      analysis->R4_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R4_Scint13_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R4_GEM2_AddCathodeDetectionEvent(R4_pes);
-      analysis->R4_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R4_Scint14_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R4_Scint23_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R4_Scint24_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R5_Tracker == 1){
     analysis->R5_AddCathodeDetectionEvent(R5_pes);
     analysis->R5_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R5_GEM1_AddCathodeDetectionEvent(R5_pes);
-      analysis->R5_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R5_Scint13_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R5_GEM2_AddCathodeDetectionEvent(R5_pes);
-      analysis->R5_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R5_Scint14_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R5_Scint23_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R5_Scint24_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R6_Tracker == 1){
     analysis->R6_AddCathodeDetectionEvent(R6_pes);
     analysis->R6_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R6_GEM1_AddCathodeDetectionEvent(R6_pes);
-      analysis->R6_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R6_Scint13_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R6_GEM2_AddCathodeDetectionEvent(R6_pes);
-      analysis->R6_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R6_Scint14_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R6_Scint23_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R6_Scint24_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R7_Tracker == 1){
     analysis->R7_AddCathodeDetectionEvent(R7_pes);
     analysis->R7_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R7_GEM1_AddCathodeDetectionEvent(R7_pes);
-      analysis->R7_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R7_Scint13_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R7_GEM2_AddCathodeDetectionEvent(R7_pes);
-      analysis->R7_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R7_Scint14_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R7_Scint23_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R7_Scint24_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R8_Tracker == 1){
     analysis->R8_AddCathodeDetectionEvent(R8_pes);
     analysis->R8_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R8_GEM1_AddCathodeDetectionEvent(R8_pes);
-      analysis->R8_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R8_Scint13_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R8_GEM2_AddCathodeDetectionEvent(R8_pes);
-      analysis->R8_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R8_Scint14_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R8_Scint23_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R8_Scint24_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
-  //Stores PEs if Scint, one of the GEMs, & only one tile have been hit
+  //Stores PEs if the scint cuts are passed and only one tile has been hit
   if(R1_SoloTracker == 1){
-    analysis->R1Only_AddCathodeDetectionEvent(R1_pes);
-    analysis->R1Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R1Only_GEM1_AddCathodeDetectionEvent(R1_pes);
-      analysis->R1Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+      analysis->R1Only_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1Only_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R1Only_Scint13_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R1Only_GEM2_AddCathodeDetectionEvent(R1_pes);
-      analysis->R1Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R1Only_Scint14_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R1Only_Scint23_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R1Only_Scint24_AddCathodeDetectionEvent(R1_pes);
+      analysis->R1Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R2_SoloTracker == 1){
     analysis->R2Only_AddCathodeDetectionEvent(R2_pes);
     analysis->R2Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R2Only_GEM1_AddCathodeDetectionEvent(R2_pes);
-      analysis->R2Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R2Only_Scint13_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R2Only_GEM2_AddCathodeDetectionEvent(R2_pes);
-      analysis->R2Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R2Only_Scint14_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R2Only_Scint23_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R2Only_Scint24_AddCathodeDetectionEvent(R2_pes);
+      analysis->R2Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R3_SoloTracker == 1){
     analysis->R3Only_AddCathodeDetectionEvent(R3_pes);
     analysis->R3Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R3Only_GEM1_AddCathodeDetectionEvent(R3_pes);
-      analysis->R3Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R3Only_Scint13_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R3Only_GEM2_AddCathodeDetectionEvent(R3_pes);
-      analysis->R3Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R3Only_Scint14_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R3Only_Scint23_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R3Only_Scint24_AddCathodeDetectionEvent(R3_pes);
+      analysis->R3Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R4_SoloTracker == 1){
     analysis->R4Only_AddCathodeDetectionEvent(R4_pes);
     analysis->R4Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R4Only_GEM1_AddCathodeDetectionEvent(R4_pes);
-      analysis->R4Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R4Only_Scint13_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R4Only_GEM2_AddCathodeDetectionEvent(R4_pes);
-      analysis->R4Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R4Only_Scint14_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R4Only_Scint23_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R4Only_Scint24_AddCathodeDetectionEvent(R4_pes);
+      analysis->R4Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R5_SoloTracker == 1){
     analysis->R5Only_AddCathodeDetectionEvent(R5_pes);
     analysis->R5Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R5Only_GEM1_AddCathodeDetectionEvent(R5_pes);
-      analysis->R5Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R5Only_Scint13_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R5Only_GEM2_AddCathodeDetectionEvent(R5_pes);
-      analysis->R5Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R5Only_Scint14_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R5Only_Scint23_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R5Only_Scint24_AddCathodeDetectionEvent(R5_pes);
+      analysis->R5Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R6_SoloTracker == 1){
     analysis->R6Only_AddCathodeDetectionEvent(R6_pes);
     analysis->R6Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R6Only_GEM1_AddCathodeDetectionEvent(R6_pes);
-      analysis->R6Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R6Only_Scint13_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R6Only_GEM2_AddCathodeDetectionEvent(R6_pes);
-      analysis->R6Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R6Only_Scint14_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R6Only_Scint23_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R6Only_Scint24_AddCathodeDetectionEvent(R6_pes);
+      analysis->R6Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R7_SoloTracker == 1){
     analysis->R7Only_AddCathodeDetectionEvent(R7_pes);
     analysis->R7Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R7Only_GEM1_AddCathodeDetectionEvent(R7_pes);
-      analysis->R7Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R7Only_Scint13_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R7Only_GEM2_AddCathodeDetectionEvent(R7_pes);
-      analysis->R7Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R7Only_Scint14_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R7Only_Scint23_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R7Only_Scint24_AddCathodeDetectionEvent(R7_pes);
+      analysis->R7Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
   if(R8_SoloTracker == 1){
     analysis->R8Only_AddCathodeDetectionEvent(R8_pes);
     analysis->R8Only_AddInitialBeamAngleHist(InitialBeamAngle);
-    if(GEM1_Tracker == 1){
-      analysis->R8Only_GEM1_AddCathodeDetectionEvent(R8_pes);
-      analysis->R8Only_GEM1_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint13_Tracker == 1){
+      analysis->R8Only_Scint13_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8Only_Scint13_AddInitialBeamAngleHist(InitialBeamAngle);
     }
-    if(GEM2_Tracker == 1){
-      analysis->R8Only_GEM2_AddCathodeDetectionEvent(R8_pes);
-      analysis->R8Only_GEM2_AddInitialBeamAngleHist(InitialBeamAngle);
+    if(Scint14_Tracker == 1){
+      analysis->R8Only_Scint14_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8Only_Scint14_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R8Only_Scint23_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8Only_Scint23_AddInitialBeamAngleHist(InitialBeamAngle);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R8Only_Scint24_AddCathodeDetectionEvent(R8_pes);
+      analysis->R8Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
-  if(Scint_Tracker == 0) analysis->NoHit_AddInitialBeamAngleHist(InitialBeamAngle);
+  if((Scint13_Tracker == 0) && (Scint14_Tracker == 0) && (Scint23_Tracker == 0)  && (Scint24_Tracker == 0)) analysis->NoHit_AddInitialBeamAngleHist(InitialBeamAngle);
   //Sorting complete
   
   

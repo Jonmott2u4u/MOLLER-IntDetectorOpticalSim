@@ -1,5 +1,5 @@
-#ifndef MOLLEROptDetectorGEMScint1_h
-#define MOLLEROptDetectorGEMScint1_h 
+#ifndef MOLLEROptDetectorScint3_h
+#define MOLLEROptDetectorScint3_h 
 
 #include "cpp_include.h"
 #include "Root_include.h"
@@ -11,11 +11,11 @@
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
 
-class MOLLEROptDetectorGEMScint1 
+class MOLLEROptDetectorScint3 
 {
 public:
-  MOLLEROptDetectorGEMScint1(MOLLEROptTrackingReadout*, G4String type10, MOLLEROptMaterial* mat);
-  ~MOLLEROptDetectorGEMScint1();
+  MOLLEROptDetectorScint3(MOLLEROptTrackingReadout*, G4String type11, MOLLEROptMaterial* mat);
+  ~MOLLEROptDetectorScint3();
 
   void Construct(G4VPhysicalVolume* Mother);
   void Initialize();
@@ -92,7 +92,7 @@ private:
   G4double PositionZ;
 
   G4SDManager* SDman;
-  G4VSensitiveDetector* GEMScint1SD;
+  G4VSensitiveDetector* Scint3SD;
 
   G4bool SegRadDamageFlag;
   

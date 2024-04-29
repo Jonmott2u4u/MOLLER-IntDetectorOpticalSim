@@ -16,9 +16,10 @@
 #include "MOLLEROptDetectorQuartz6.hh"
 #include "MOLLEROptDetectorQuartz7.hh"
 #include "MOLLEROptDetectorQuartz8.hh"
-#include "MOLLEROptDetectorScintillator.hh"
-#include "MOLLEROptDetectorGEMScint1.hh"
-#include "MOLLEROptDetectorGEMScint2.hh"
+#include "MOLLEROptDetectorScint1.hh"
+#include "MOLLEROptDetectorScint2.hh"
+#include "MOLLEROptDetectorScint3.hh"
+#include "MOLLEROptDetectorScint4.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
 
@@ -29,7 +30,7 @@ class MOLLEROptDetectorMessenger;
 class MOLLEROptDetector
 {
 public:
-  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, G4String type9, G4String type10, G4String type11, MOLLEROptMaterial* mat);
+  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type1, G4String type2, G4String type3, G4String type4, G4String type5, G4String type6, G4String type7, G4String type8, G4String type9, G4String type10, G4String type11, G4String type12, MOLLEROptMaterial* mat);
   ~MOLLEROptDetector();
 
   G4VPhysicalVolume* ConstructDetector(G4VPhysicalVolume* Mother);
@@ -179,29 +180,37 @@ public:
   void SetQuartzInterfaceOpeningX8(G4double size);
   void SetQuartzToPMTOffsetInZ8(G4double val);
 
-  //Scintillator objects
-  void SetCenterPositionInXscint(G4double xPos);
-  void SetCenterPositionInYscint(G4double yPos);
-  void SetCenterPositionInZscint(G4double zPos);
-  void SetScintillatorSizeX(G4double x); 
-  void SetScintillatorSizeY(G4double y); 
-  void SetScintillatorSizeZ(G4double z);
+  //Scint1 objects
+  void SetCenterPositionInXScint1(G4double xPos);
+  void SetCenterPositionInYScint1(G4double yPos);
+  void SetCenterPositionInZScint1(G4double zPos);
+  void SetScint1SizeX(G4double x); 
+  void SetScint1SizeY(G4double y); 
+  void SetScint1SizeZ(G4double z);
 
-  //GEM scintillator 1 objects
-  void SetCenterPositionInXGEMScint1(G4double xPos);
-  void SetCenterPositionInYGEMScint1(G4double yPos);
-  void SetCenterPositionInZGEMScint1(G4double zPos);
-  void SetGEMScint1SizeX(G4double x); 
-  void SetGEMScint1SizeY(G4double y); 
-  void SetGEMScint1SizeZ(G4double z);
+  //Scint2 objects
+  void SetCenterPositionInXScint2(G4double xPos);
+  void SetCenterPositionInYScint2(G4double yPos);
+  void SetCenterPositionInZScint2(G4double zPos);
+  void SetScint2SizeX(G4double x); 
+  void SetScint2SizeY(G4double y); 
+  void SetScint2SizeZ(G4double z);
 
-  //GEM scintillator 2 objects
-  void SetCenterPositionInXGEMScint2(G4double xPos);
-  void SetCenterPositionInYGEMScint2(G4double yPos);
-  void SetCenterPositionInZGEMScint2(G4double zPos);
-  void SetGEMScint2SizeX(G4double x); 
-  void SetGEMScint2SizeY(G4double y); 
-  void SetGEMScint2SizeZ(G4double z);
+  //Scint3 objects
+  void SetCenterPositionInXScint3(G4double xPos);
+  void SetCenterPositionInYScint3(G4double yPos);
+  void SetCenterPositionInZScint3(G4double zPos);
+  void SetScint3SizeX(G4double x); 
+  void SetScint3SizeY(G4double y); 
+  void SetScint3SizeZ(G4double z);
+
+  //Scint4 objects
+  void SetCenterPositionInXScint4(G4double xPos);
+  void SetCenterPositionInYScint4(G4double yPos);
+  void SetCenterPositionInZScint4(G4double zPos);
+  void SetScint4SizeX(G4double x); 
+  void SetScint4SizeY(G4double y); 
+  void SetScint4SizeZ(G4double z);
 
   //General objects
   void SetQuartzRotX(G4double r);
@@ -244,9 +253,10 @@ public:
   void GetLightGuide6Limits(G4double *vals);
   void GetLightGuide7Limits(G4double *vals);
   void GetLightGuide8Limits(G4double *vals);
-  void GetScintillatorLimits(G4double *vals);
-  void GetGEMScint1Limits(G4double *vals);
-  void GetGEMScint2Limits(G4double *vals);
+  void GetScint1Limits(G4double *vals);
+  void GetScint2Limits(G4double *vals);
+  void GetScint3Limits(G4double *vals);
+  void GetScint4Limits(G4double *vals);
 
 private:
 
@@ -268,6 +278,7 @@ private:
   G4String DetType9;
   G4String DetType10;
   G4String DetType11;
+  G4String DetType12;
 
   MOLLEROptDetectorMessenger*  detMessenger;
   MOLLEROptTrackingReadout *TrackingReadout;
@@ -296,9 +307,10 @@ private:
   MOLLEROptDetectorLightGuide* LightGuide8; 
   MOLLEROptDetectorQuartz8*     Quartz8;
   MOLLEROptDetectorPMT*        PMT8;
-  MOLLEROptDetectorScintillator*     Scintillator;
-  MOLLEROptDetectorGEMScint1*     GEMScint1;
-  MOLLEROptDetectorGEMScint2*     GEMScint2;
+  MOLLEROptDetectorScint1*     Scint1;
+  MOLLEROptDetectorScint2*     Scint2;
+  MOLLEROptDetectorScint3*     Scint3;
+  MOLLEROptDetectorScint4*     Scint4;
 
   G4VPhysicalVolume* MotherVolume;
 
@@ -332,15 +344,18 @@ private:
   G4double DetFullLengthX8;
   G4double DetFullLengthY8;
   G4double DetFullLengthZ8;
-  G4double DetFullLengthXscint;
-  G4double DetFullLengthYscint;
-  G4double DetFullLengthZscint;
-  G4double DetFullLengthXGEMScint1;
-  G4double DetFullLengthYGEMScint1;
-  G4double DetFullLengthZGEMScint1;
-  G4double DetFullLengthXGEMScint2;
-  G4double DetFullLengthYGEMScint2;
-  G4double DetFullLengthZGEMScint2;
+  G4double DetFullLengthXScint1;
+  G4double DetFullLengthYScint1;
+  G4double DetFullLengthZScint1;
+  G4double DetFullLengthXScint2;
+  G4double DetFullLengthYScint2;
+  G4double DetFullLengthZScint2;
+  G4double DetFullLengthXScint3;
+  G4double DetFullLengthYScint3;
+  G4double DetFullLengthZScint3;
+  G4double DetFullLengthXScint4;
+  G4double DetFullLengthYScint4;
+  G4double DetFullLengthZScint4;
 
   G4ThreeVector     PositionDet1;
   G4ThreeVector     PositionDet2;
@@ -377,15 +392,18 @@ private:
   G4double PositionDetX8;
   G4double PositionDetY8;
   G4double PositionDetZ8;
-  G4double PositionDetXscint;
-  G4double PositionDetYscint;
-  G4double PositionDetZscint;
-  G4double PositionDetXGEMScint1;
-  G4double PositionDetYGEMScint1;
-  G4double PositionDetZGEMScint1;
-  G4double PositionDetXGEMScint2;
-  G4double PositionDetYGEMScint2;
-  G4double PositionDetZGEMScint2;
+  G4double PositionDetXScint1;
+  G4double PositionDetYScint1;
+  G4double PositionDetZScint1;
+  G4double PositionDetXScint2;
+  G4double PositionDetYScint2;
+  G4double PositionDetZScint2;
+  G4double PositionDetXScint3;
+  G4double PositionDetYScint3;
+  G4double PositionDetZScint3;
+  G4double PositionDetXScint4;
+  G4double PositionDetYScint4;
+  G4double PositionDetZScint4;
 
   G4double AzimuAngle;
   G4double PolarAngle;

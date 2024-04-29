@@ -32,6 +32,7 @@ private:
   G4UIdirectory*             Dir9;
   G4UIdirectory*             Dir10;
   G4UIdirectory*             Dir11;
+  G4UIdirectory*             Dir12;
   G4UIcmdWithAString*        DetMatCmd;
   
   //Ring 1 objects
@@ -170,29 +171,37 @@ private:
   G4UIcmdWithADoubleAndUnit* QuartzSizeYCmd8;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeZCmd8;
 
-  //Scintillator commands
-  G4UIcmdWithADoubleAndUnit* DetXPositionCmdScint;
-  G4UIcmdWithADoubleAndUnit* DetYPositionCmdScint;
-  G4UIcmdWithADoubleAndUnit* DetZPositionCmdScint;
-  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint;       
-  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint;       
-  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint;
+  //Scint1 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdScint1;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdScint1;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdScint1;
+  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint1;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint1;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint1;
 
-  //GEM Scintillator 1 commands
-  G4UIcmdWithADoubleAndUnit* DetXPositionCmdGEMScint1;
-  G4UIcmdWithADoubleAndUnit* DetYPositionCmdGEMScint1;
-  G4UIcmdWithADoubleAndUnit* DetZPositionCmdGEMScint1;
-  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdGEMScint1;       
-  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdGEMScint1;       
-  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdGEMScint1;
+  //Scint2 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdScint2;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdScint2;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdScint2;
+  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint2;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint2;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint2;
 
-  //GEM Scintillator 2 commands
-  G4UIcmdWithADoubleAndUnit* DetXPositionCmdGEMScint2;
-  G4UIcmdWithADoubleAndUnit* DetYPositionCmdGEMScint2;
-  G4UIcmdWithADoubleAndUnit* DetZPositionCmdGEMScint2;
-  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdGEMScint2;       
-  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdGEMScint2;       
-  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdGEMScint2;
+  //Scint3 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdScint3;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdScint3;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdScint3;
+  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint3;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint3;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint3;
+
+  //Scint4 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdScint4;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdScint4;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdScint4;
+  G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint4;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint4;       
+  G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint4;
 
   //General commands
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;                       

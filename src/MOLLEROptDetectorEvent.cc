@@ -77,12 +77,14 @@ void MOLLEROptDetectorEvent::Initialize()
   R7QuartzTrackHit.resize(0);
   R8QuartzTrackHit.clear();  
   R8QuartzTrackHit.resize(0);
-  ScintTrackHit.clear();  
-  ScintTrackHit.resize(0);
-  GEMScint1TrackHit.clear();  
-  GEMScint1TrackHit.resize(0);
-  GEMScint2TrackHit.clear();  
-  GEMScint2TrackHit.resize(0);
+  Scint1TrackHit.clear();  
+  Scint1TrackHit.resize(0);
+  Scint2TrackHit.clear();  
+  Scint2TrackHit.resize(0);
+  Scint3TrackHit.clear();  
+  Scint3TrackHit.resize(0);
+  Scint4TrackHit.clear();  
+  Scint4TrackHit.resize(0);
 
   R1TileHitX.clear();  
   R1TileHitX.resize(0);
@@ -100,12 +102,14 @@ void MOLLEROptDetectorEvent::Initialize()
   R7TileHitX.resize(0);
   R8TileHitX.clear();  
   R8TileHitX.resize(0);
-  ScintillatorHitX.clear();  
-  ScintillatorHitX.resize(0);
-  GEMScintillator1HitX.clear();  
-  GEMScintillator1HitX.resize(0);
-  GEMScintillator2HitX.clear();  
-  GEMScintillator2HitX.resize(0);
+  Scint1HitX.clear();  
+  Scint1HitX.resize(0);
+  Scint2HitX.clear();  
+  Scint2HitX.resize(0);
+  Scint3HitX.clear();  
+  Scint3HitX.resize(0);
+  Scint4HitX.clear();  
+  Scint4HitX.resize(0);
 
   R1TileHitY.clear();  
   R1TileHitY.resize(0);
@@ -123,12 +127,14 @@ void MOLLEROptDetectorEvent::Initialize()
   R7TileHitY.resize(0);
   R8TileHitY.clear();  
   R8TileHitY.resize(0);
-  ScintillatorHitY.clear();  
-  ScintillatorHitY.resize(0);
-  GEMScintillator1HitY.clear();  
-  GEMScintillator1HitY.resize(0);
-  GEMScintillator2HitY.clear();  
-  GEMScintillator2HitY.resize(0);
+  Scint1HitY.clear();  
+  Scint1HitY.resize(0);
+  Scint2HitY.clear();  
+  Scint2HitY.resize(0);
+  Scint3HitY.clear();  
+  Scint3HitY.resize(0);
+  Scint4HitY.clear();  
+  Scint4HitY.resize(0);
 
   R1TileHitZ.clear();  
   R1TileHitZ.resize(0);
@@ -146,12 +152,14 @@ void MOLLEROptDetectorEvent::Initialize()
   R7TileHitZ.resize(0);
   R8TileHitZ.clear();  
   R8TileHitZ.resize(0);
-  ScintillatorHitZ.clear();  
-  ScintillatorHitZ.resize(0);
-  GEMScintillator1HitZ.clear();  
-  GEMScintillator1HitZ.resize(0);
-  GEMScintillator2HitZ.clear();  
-  GEMScintillator2HitZ.resize(0);
+  Scint1HitZ.clear();  
+  Scint1HitZ.resize(0);
+  Scint2HitZ.clear();  
+  Scint2HitZ.resize(0);
+  Scint3HitZ.clear();  
+  Scint3HitZ.resize(0);
+  Scint4HitZ.clear();  
+  Scint4HitZ.resize(0);
 
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);

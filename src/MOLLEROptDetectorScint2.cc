@@ -1,19 +1,19 @@
-#include "MOLLEROptDetectorScintillator.hh"
+#include "MOLLEROptDetectorScint2.hh"
 
-MOLLEROptDetectorScintillator::MOLLEROptDetectorScintillator(MOLLEROptTrackingReadout *TrRO, G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorScint2::MOLLEROptDetectorScint2(MOLLEROptTrackingReadout *TrRO, G4String name, MOLLEROptMaterial* mat)
 {
   Name = name+"_Quartz";
   
   TrackingReadout = TrRO;
   Materials = mat;
-  QuartzMaterial = Materials->GetMaterial("Air");  
+  QuartzMaterial = Materials->GetMaterial("Scintillator");  
 
   QuartzLogical  = NULL;
   QuartzPhysical = NULL;
   QuartzSolid = NULL;
 
   Rotation       = NULL;
-  ScintillatorSD       = NULL;
+  Scint2SD       = NULL;
 
   SegRadDamageFlag = false;
   OpticalParameters = Materials->GetOpticalParametersTable();
@@ -27,13 +27,13 @@ MOLLEROptDetectorScintillator::MOLLEROptDetectorScintillator(MOLLEROptTrackingRe
 
 }
 
-MOLLEROptDetectorScintillator::~MOLLEROptDetectorScintillator()
+MOLLEROptDetectorScint2::~MOLLEROptDetectorScint2()
 {
   
 }
 
 
-void MOLLEROptDetectorScintillator::Initialize()
+void MOLLEROptDetectorScint2::Initialize()
 {
   //Quartz backface at +FullLengthZ/2
   Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
@@ -43,8 +43,8 @@ void MOLLEROptDetectorScintillator::Initialize()
   
   //Quartz frontface at -FullLengthZ/2
   Vertices[4]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
-  Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2+FullLengthZ);
-  Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2+FullLengthZ);
+  Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2);
+  Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2);
   Vertices[7]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
 
 
@@ -101,9 +101,9 @@ void MOLLEROptDetectorScintillator::Initialize()
   new G4LogicalSkinSurface("QuartzSurface", QuartzLogical, QuartzSurface);
 
   SDman = G4SDManager::GetSDMpointer();
-  ScintillatorSD = new MOLLEROptQuartzSD("/Scintillator",TrackingReadout);
-  SDman->AddNewDetector(ScintillatorSD);  
-  QuartzLogical->SetSensitiveDetector(ScintillatorSD);
+  Scint2SD = new MOLLEROptQuartzSD("/Scint2",TrackingReadout);
+  SDman->AddNewDetector(Scint2SD);  
+  QuartzLogical->SetSensitiveDetector(Scint2SD);
 
   G4Colour  blue    ( 0/255., 0/255.,   255/255.);
   G4VisAttributes* VisAtt = new G4VisAttributes(blue);
@@ -113,7 +113,7 @@ void MOLLEROptDetectorScintillator::Initialize()
 
 }
 
-void MOLLEROptDetectorScintillator::Construct(G4VPhysicalVolume* Mother)
+void MOLLEROptDetectorScint2::Construct(G4VPhysicalVolume* Mother)
 {
 
   MotherVolume = Mother;
@@ -128,13 +128,13 @@ void MOLLEROptDetectorScintillator::Construct(G4VPhysicalVolume* Mother)
 				     2);
 } 
 
-void MOLLEROptDetectorScintillator::SetMaterial(G4String materialName)
+void MOLLEROptDetectorScint2::SetMaterial(G4String materialName)
 {
 
 }
 
 
-void MOLLEROptDetectorScintillator::SetQuartzRotX(G4double rot)
+void MOLLEROptDetectorScint2::SetQuartzRotX(G4double rot)
 {
 
   QRotationX = rot;
@@ -155,7 +155,7 @@ void MOLLEROptDetectorScintillator::SetQuartzRotX(G4double rot)
   // 					       PositionZ));
     
 }
-void MOLLEROptDetectorScintillator::SetQuartzRotZ(G4double rot)
+void MOLLEROptDetectorScint2::SetQuartzRotZ(G4double rot)
 {
 
   QRotationZ = rot;
@@ -163,7 +163,7 @@ void MOLLEROptDetectorScintillator::SetQuartzRotZ(G4double rot)
   QuartzPhysical->SetRotation(Rotation);
 }
 
-void MOLLEROptDetectorScintillator::SetCenterPositionInX(G4double xPos)
+void MOLLEROptDetectorScint2::SetCenterPositionInX(G4double xPos)
 {
     PositionX =xPos;	 
 
@@ -172,7 +172,7 @@ void MOLLEROptDetectorScintillator::SetCenterPositionInX(G4double xPos)
 						 PositionZ));
 }
 
-void MOLLEROptDetectorScintillator::SetCenterPositionInY(G4double yPos)
+void MOLLEROptDetectorScint2::SetCenterPositionInY(G4double yPos)
 {
     PositionY = yPos;
 
@@ -181,7 +181,7 @@ void MOLLEROptDetectorScintillator::SetCenterPositionInY(G4double yPos)
 					      PositionZ));
 }
 
-void MOLLEROptDetectorScintillator::SetCenterPositionInZ(G4double zPos)
+void MOLLEROptDetectorScint2::SetCenterPositionInZ(G4double zPos)
 {
     PositionZ = zPos;
 
@@ -191,16 +191,16 @@ void MOLLEROptDetectorScintillator::SetCenterPositionInZ(G4double zPos)
 }
 
 
-void MOLLEROptDetectorScintillator::ClearVolumes()
+void MOLLEROptDetectorScint2::ClearVolumes()
 {
   //SDman->Activate("/Detector",false);
-  if(ScintillatorSD) delete ScintillatorSD;
+  if(Scint2SD) delete Scint2SD;
   if(QuartzPhysical) delete QuartzPhysical;
   if(QuartzLogical) delete QuartzLogical;
 }
 
 
-void MOLLEROptDetectorScintillator::UpdateGeometry()
+void MOLLEROptDetectorScint2::UpdateGeometry()
 {
   // G4PhysicalVolumeStore::GetInstance()->DeRegister(QuartzPhysical);
   // G4LogicalVolumeStore::GetInstance()->DeRegister(QuartzLogical);
@@ -218,8 +218,8 @@ void MOLLEROptDetectorScintillator::UpdateGeometry()
   
   //Quartz frontface at -FullLengthZ/2
   Vertices[4]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
-  Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2+FullLengthZ);
-  Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2+FullLengthZ);
+  Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2);
+  Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2);
   Vertices[7]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
 
   G4GenericTrap *temp1Solid = new G4GenericTrap(Name+"_Solid_tmp1",FullLengthZ/2, Vertices);
@@ -288,7 +288,7 @@ void MOLLEROptDetectorScintillator::UpdateGeometry()
 }
 
 
-void MOLLEROptDetectorScintillator::GetQuartzLimits(G4double *vals)
+void MOLLEROptDetectorScint2::GetQuartzLimits(G4double *vals)
 {
 
   G4ThreeVector trans =  QuartzPhysical->GetTranslation();

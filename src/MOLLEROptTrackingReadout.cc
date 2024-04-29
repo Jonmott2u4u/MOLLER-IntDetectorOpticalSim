@@ -194,23 +194,29 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc,
     Tracks[tr]->R8QuartzHitY = loc.y();
     Tracks[tr]->R8QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->ScintHitFlag == 0) & (quartz ==  "ScintHitCollection")){ 
-    Tracks[tr]->ScintHitFlag = 1;
-    Tracks[tr]->ScintHitX = loc.x();
-    Tracks[tr]->ScintHitY = loc.y();
-    Tracks[tr]->ScintHitZ = loc.z();
+  if((Tracks[tr]->Scint1HitFlag == 0) & (quartz ==  "Scint1HitCollection")){ 
+    Tracks[tr]->Scint1HitFlag = 1;
+    Tracks[tr]->Scint1HitX = loc.x();
+    Tracks[tr]->Scint1HitY = loc.y();
+    Tracks[tr]->Scint1HitZ = loc.z();
   }
-  if((Tracks[tr]->GEMScint1HitFlag == 0) & (quartz == "GEMScint1HitCollection")){ 
-    Tracks[tr]->GEMScint1HitFlag = 1;
-    Tracks[tr]->GEMScint1HitX = loc.x();
-    Tracks[tr]->GEMScint1HitY = loc.y();
-    Tracks[tr]->GEMScint1HitZ = loc.z();
+  if((Tracks[tr]->Scint2HitFlag == 0) & (quartz == "Scint2HitCollection")){ 
+    Tracks[tr]->Scint2HitFlag = 1;
+    Tracks[tr]->Scint2HitX = loc.x();
+    Tracks[tr]->Scint2HitY = loc.y();
+    Tracks[tr]->Scint2HitZ = loc.z();
   }
-  if((Tracks[tr]->GEMScint2HitFlag == 0) & (quartz == "GEMScint2HitCollection")){ 
-    Tracks[tr]->GEMScint2HitFlag = 1;
-    Tracks[tr]->GEMScint2HitX = loc.x();
-    Tracks[tr]->GEMScint2HitY = loc.y();
-    Tracks[tr]->GEMScint2HitZ = loc.z();
+  if((Tracks[tr]->Scint3HitFlag == 0) & (quartz == "Scint3HitCollection")){ 
+    Tracks[tr]->Scint3HitFlag = 1;
+    Tracks[tr]->Scint3HitX = loc.x();
+    Tracks[tr]->Scint3HitY = loc.y();
+    Tracks[tr]->Scint3HitZ = loc.z();
+  }
+  if((Tracks[tr]->Scint4HitFlag == 0) & (quartz == "Scint4HitCollection")){ 
+    Tracks[tr]->Scint4HitFlag = 1;
+    Tracks[tr]->Scint4HitX = loc.x();
+    Tracks[tr]->Scint4HitY = loc.y();
+    Tracks[tr]->Scint4HitZ = loc.z();
   }
 }
 

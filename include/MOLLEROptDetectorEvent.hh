@@ -60,9 +60,10 @@ private:
   vector <Int_t> R6QuartzTrackHit;
   vector <Int_t> R7QuartzTrackHit;
   vector <Int_t> R8QuartzTrackHit;
-  vector <Int_t> ScintTrackHit;
-  vector <Int_t> GEMScint1TrackHit;
-  vector <Int_t> GEMScint2TrackHit;
+  vector <Int_t> Scint1TrackHit;
+  vector <Int_t> Scint2TrackHit;
+  vector <Int_t> Scint3TrackHit;
+  vector <Int_t> Scint4TrackHit;
 
   vector <Float_t> R1TileHitX;
   vector <Float_t> R2TileHitX;
@@ -72,9 +73,10 @@ private:
   vector <Float_t> R6TileHitX;
   vector <Float_t> R7TileHitX;
   vector <Float_t> R8TileHitX;
-  vector <Float_t> ScintillatorHitX;
-  vector <Float_t> GEMScintillator1HitX;
-  vector <Float_t> GEMScintillator2HitX;
+  vector <Float_t> Scint1HitX;
+  vector <Float_t> Scint2HitX;
+  vector <Float_t> Scint3HitX;
+  vector <Float_t> Scint4HitX;
   vector <Float_t> R1TileHitY;
   vector <Float_t> R2TileHitY;
   vector <Float_t> R3TileHitY;
@@ -83,9 +85,10 @@ private:
   vector <Float_t> R6TileHitY;
   vector <Float_t> R7TileHitY;
   vector <Float_t> R8TileHitY;
-  vector <Float_t> ScintillatorHitY;
-  vector <Float_t> GEMScintillator1HitY;
-  vector <Float_t> GEMScintillator2HitY;
+  vector <Float_t> Scint1HitY;
+  vector <Float_t> Scint2HitY;
+  vector <Float_t> Scint3HitY;
+  vector <Float_t> Scint4HitY;
   vector <Float_t> R1TileHitZ;
   vector <Float_t> R2TileHitZ;
   vector <Float_t> R3TileHitZ;
@@ -94,9 +97,10 @@ private:
   vector <Float_t> R6TileHitZ;
   vector <Float_t> R7TileHitZ;
   vector <Float_t> R8TileHitZ;
-  vector <Float_t> ScintillatorHitZ;
-  vector <Float_t> GEMScintillator1HitZ;
-  vector <Float_t> GEMScintillator2HitZ;
+  vector <Float_t> Scint1HitZ;
+  vector <Float_t> Scint2HitZ;
+  vector <Float_t> Scint3HitZ;
+  vector <Float_t> Scint4HitZ;
 
   vector <Int_t> R1PEs;
   vector <Int_t> R2PEs;
@@ -162,9 +166,10 @@ public:
   void AddR6QuartzTrackHit(Int_t tID){R6QuartzTrackHit.push_back(tID);};
   void AddR7QuartzTrackHit(Int_t tID){R7QuartzTrackHit.push_back(tID);};
   void AddR8QuartzTrackHit(Int_t tID){R8QuartzTrackHit.push_back(tID);};
-  void AddScintTrackHit(Int_t tID){ScintTrackHit.push_back(tID);};
-  void AddGEMScint1TrackHit(Int_t tID){GEMScint1TrackHit.push_back(tID);};
-  void AddGEMScint2TrackHit(Int_t tID){GEMScint2TrackHit.push_back(tID);};
+  void AddScint1TrackHit(Int_t tID){Scint1TrackHit.push_back(tID);};
+  void AddScint2TrackHit(Int_t tID){Scint2TrackHit.push_back(tID);};
+  void AddScint3TrackHit(Int_t tID){Scint3TrackHit.push_back(tID);};
+  void AddScint4TrackHit(Int_t tID){Scint4TrackHit.push_back(tID);};
 
   void AddR1QuartzHitPositionX(Float_t x) {R1TileHitX.push_back(x);};
   void AddR1QuartzHitPositionY(Float_t y) {R1TileHitY.push_back(y);};
@@ -190,15 +195,18 @@ public:
   void AddR8QuartzHitPositionX(Float_t x) {R8TileHitX.push_back(x);};
   void AddR8QuartzHitPositionY(Float_t y) {R8TileHitY.push_back(y);};
   void AddR8QuartzHitPositionZ(Float_t z) {R8TileHitZ.push_back(z);};
-  void AddScintHitPositionX(Float_t x) {ScintillatorHitX.push_back(x);};
-  void AddScintHitPositionY(Float_t y) {ScintillatorHitY.push_back(y);};
-  void AddScintHitPositionZ(Float_t z) {ScintillatorHitZ.push_back(z);};
-  void AddGEMScint1HitPositionX(Float_t x) {GEMScintillator1HitX.push_back(x);};
-  void AddGEMScint1HitPositionY(Float_t y) {GEMScintillator1HitY.push_back(y);};
-  void AddGEMScint1HitPositionZ(Float_t z) {GEMScintillator1HitZ.push_back(z);};
-  void AddGEMScint2HitPositionX(Float_t x) {GEMScintillator2HitX.push_back(x);};
-  void AddGEMScint2HitPositionY(Float_t y) {GEMScintillator2HitY.push_back(y);};
-  void AddGEMScint2HitPositionZ(Float_t z) {GEMScintillator2HitZ.push_back(z);};
+  void AddScint1HitPositionX(Float_t x) {Scint1HitX.push_back(x);};
+  void AddScint1HitPositionY(Float_t y) {Scint1HitY.push_back(y);};
+  void AddScint1HitPositionZ(Float_t z) {Scint1HitZ.push_back(z);};
+  void AddScint2HitPositionX(Float_t x) {Scint2HitX.push_back(x);};
+  void AddScint2HitPositionY(Float_t y) {Scint2HitY.push_back(y);};
+  void AddScint2HitPositionZ(Float_t z) {Scint2HitZ.push_back(z);};
+  void AddScint3HitPositionX(Float_t x) {Scint3HitX.push_back(x);};
+  void AddScint3HitPositionY(Float_t y) {Scint3HitY.push_back(y);};
+  void AddScint3HitPositionZ(Float_t z) {Scint3HitZ.push_back(z);};
+  void AddScint4HitPositionX(Float_t x) {Scint4HitX.push_back(x);};
+  void AddScint4HitPositionY(Float_t y) {Scint4HitY.push_back(y);};
+  void AddScint4HitPositionZ(Float_t z) {Scint4HitZ.push_back(z);};
 
   void AddR1PEs(Int_t pes) {R1PEs.push_back(pes);};
   void AddR2PEs(Int_t pes) {R2PEs.push_back(pes);};

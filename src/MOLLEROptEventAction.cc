@@ -118,6 +118,14 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4int Scint14_Tracker = 0;
   G4int Scint23_Tracker = 0;
   G4int Scint24_Tracker = 0;
+  G4int R1_AdjacentTracker = 0; //Stores hits on R1 that do not hit R2
+  G4int R2_AdjacentTracker = 0; //Stores hits on R2 that do not hit R1 or R3
+  G4int R3_AdjacentTracker = 0; //Do not hit R2 or R4
+  G4int R4_AdjacentTracker = 0; //Do not hit R3 or R5 FF ------}
+  G4int R5_AdjacentTracker = 0; //Do not hit R4 or R6          }
+  G4int R6_AdjacentTracker = 0; //Do not hit R5 FF or R6       }--- Subject to change (update as needed to include R5 BF)
+  G4int R7_AdjacentTracker = 0; //Do not hit R5 FF or R6       }
+  G4int R8_AdjacentTracker = 0; //Do not hit R5 FF       ------}
 
  
   Float_t  optPhEng, wvl, bwdt = QuartzSecOptPhotonCnt->GetBinWidth(2);
@@ -266,6 +274,14 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==1) & (R7Hit==0) & (R8Hit==0)) R6_SoloTracker = 1;
           if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_SoloTracker = 1;
           if((R1Hit==0) & (R2Hit==0) & (R3Hit==0) & (R4Hit==0) & (R5Hit==0) & (R6Hit==0) & (R7Hit==0) & (R8Hit==1)) R8_SoloTracker = 1;
+          if((R1Hit==1) & (R2Hit==0)) R1_AdjacentTracker = 1;
+          if((R1Hit==0) & (R2Hit==1) & (R3Hit==0)) R2_AdjacentTracker = 1;
+          if((R2Hit==0) & (R3Hit==1) & (R4Hit==0)) R3_AdjacentTracker = 1;
+          if((R3Hit==0) & (R4Hit==1) & (R5Hit==0)) R4_AdjacentTracker = 1;
+          if((R4Hit==0) & (R5Hit==1) & (R8Hit==0)) R5_AdjacentTracker = 1;
+          if((R5Hit==0) & (R6Hit==1) & (R8Hit==0)) R6_AdjacentTracker = 1;
+          if((R5Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_AdjacentTracker = 1;
+          if((R5Hit==0) & (R8Hit==1)) R8_AdjacentTracker = 1;
         }
         for(int p = 0; p < track->StepNChPhotons.size(); p++){
           // analysis->MOLLERMainEvent->MOLLERDetectorEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
@@ -666,7 +682,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       analysis->R8_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
-  //Stores PEs if the scint cuts are passed and only one tile has been hit
+  //Stores PEs if the scint cuts are passed and only one tile has been hit (Ring/Solo cuts)
   if(R1_SoloTracker == 1){
       analysis->R1Only_AddCathodeDetectionEvent(R1_pes);
       analysis->R1Only_AddInitialBeamAngleHist(InitialBeamAngle);
@@ -827,6 +843,128 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       analysis->R8Only_Scint24_AddInitialBeamAngleHist(InitialBeamAngle);
     }
   }
+  //Stores PEs if the scint cuts are passed and adjacent tiles are not hit (Adjacency cuts)
+  if(R1_AdjacentTracker == 1){
+    analysis->R1Adjacent_AddCathodeDetectionEvent(R1_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R1Adjacent_Scint13_AddCathodeDetectionEvent(R1_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R1Adjacent_Scint14_AddCathodeDetectionEvent(R1_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R1Adjacent_Scint23_AddCathodeDetectionEvent(R1_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R1Adjacent_Scint24_AddCathodeDetectionEvent(R1_pes);
+    }
+  }
+  if(R2_AdjacentTracker == 1){
+    analysis->R2Adjacent_AddCathodeDetectionEvent(R2_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R2Adjacent_Scint13_AddCathodeDetectionEvent(R2_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R2Adjacent_Scint14_AddCathodeDetectionEvent(R2_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R2Adjacent_Scint23_AddCathodeDetectionEvent(R2_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R2Adjacent_Scint24_AddCathodeDetectionEvent(R2_pes);
+    }
+  }
+  if(R3_AdjacentTracker == 1){
+    analysis->R3Adjacent_AddCathodeDetectionEvent(R3_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R3Adjacent_Scint13_AddCathodeDetectionEvent(R3_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R3Adjacent_Scint14_AddCathodeDetectionEvent(R3_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R3Adjacent_Scint23_AddCathodeDetectionEvent(R3_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R3Adjacent_Scint24_AddCathodeDetectionEvent(R3_pes);
+    }
+  }
+  if(R4_AdjacentTracker == 1){
+    analysis->R4Adjacent_AddCathodeDetectionEvent(R4_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R4Adjacent_Scint13_AddCathodeDetectionEvent(R4_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R4Adjacent_Scint14_AddCathodeDetectionEvent(R4_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R4Adjacent_Scint23_AddCathodeDetectionEvent(R4_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R4Adjacent_Scint24_AddCathodeDetectionEvent(R4_pes);
+    }
+  }
+  if(R5_AdjacentTracker == 1){
+    analysis->R5Adjacent_AddCathodeDetectionEvent(R5_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R5Adjacent_Scint13_AddCathodeDetectionEvent(R5_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R5Adjacent_Scint14_AddCathodeDetectionEvent(R5_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R5Adjacent_Scint23_AddCathodeDetectionEvent(R5_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R5Adjacent_Scint24_AddCathodeDetectionEvent(R5_pes);
+    }
+  }
+  if(R6_AdjacentTracker == 1){
+    analysis->R6Adjacent_AddCathodeDetectionEvent(R6_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R6Adjacent_Scint13_AddCathodeDetectionEvent(R6_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R6Adjacent_Scint14_AddCathodeDetectionEvent(R6_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R6Adjacent_Scint23_AddCathodeDetectionEvent(R6_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R6Adjacent_Scint24_AddCathodeDetectionEvent(R6_pes);
+    }
+  }
+  if(R7_AdjacentTracker == 1){
+    analysis->R7Adjacent_AddCathodeDetectionEvent(R7_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R7Adjacent_Scint13_AddCathodeDetectionEvent(R7_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R7Adjacent_Scint14_AddCathodeDetectionEvent(R7_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R7Adjacent_Scint23_AddCathodeDetectionEvent(R7_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R7Adjacent_Scint24_AddCathodeDetectionEvent(R7_pes);
+    }
+  }
+  if(R8_AdjacentTracker == 1){
+    analysis->R8Adjacent_AddCathodeDetectionEvent(R8_pes);
+    if(Scint13_Tracker == 1){
+      analysis->R8Adjacent_Scint13_AddCathodeDetectionEvent(R8_pes);
+    }
+    if(Scint14_Tracker == 1){
+      analysis->R8Adjacent_Scint14_AddCathodeDetectionEvent(R8_pes);
+    }
+    if(Scint23_Tracker == 1){
+      analysis->R8Adjacent_Scint23_AddCathodeDetectionEvent(R8_pes);
+    }
+    if(Scint24_Tracker == 1){
+      analysis->R8Adjacent_Scint24_AddCathodeDetectionEvent(R8_pes);
+    }
+  }
+
   if((Scint13_Tracker == 0) && (Scint14_Tracker == 0) && (Scint23_Tracker == 0)  && (Scint24_Tracker == 0)) analysis->NoHit_AddInitialBeamAngleHist(InitialBeamAngle);
   //Sorting complete
   

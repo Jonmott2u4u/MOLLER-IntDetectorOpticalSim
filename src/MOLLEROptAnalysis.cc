@@ -34,6 +34,14 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_CathodeEventsDistrHist = new TH1D("R6Only_CathodeEventsDistrHist","",100,0,100);
     R7Only_CathodeEventsDistrHist = new TH1D("R7Only_CathodeEventsDistrHist","",100,0,100);
     R8Only_CathodeEventsDistrHist = new TH1D("R8Only_CathodeEventsDistrHist","",100,0,100);
+    R1Adjacent_CathodeEventsDistrHist = new TH1D("R1Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R2Adjacent_CathodeEventsDistrHist = new TH1D("R2Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R3Adjacent_CathodeEventsDistrHist = new TH1D("R3Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R4Adjacent_CathodeEventsDistrHist = new TH1D("R4Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R5Adjacent_CathodeEventsDistrHist = new TH1D("R5Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R6Adjacent_CathodeEventsDistrHist = new TH1D("R6Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R7Adjacent_CathodeEventsDistrHist = new TH1D("R7Adjacent_CathodeEventsDistrHist","",100,0,100);
+    R8Adjacent_CathodeEventsDistrHist = new TH1D("R8Adjacent_CathodeEventsDistrHist","",100,0,100);
 
     //Adding histograms that are GEM specific. Beam must the upstream and one downstream scintillator to be plotted here
     R1_Scint13_CathodeEventsDistrHist = new TH1D("R1_Scint13_CathodeEventsDistrHist","",100,0,100);
@@ -52,6 +60,14 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_Scint13_CathodeEventsDistrHist = new TH1D("R6Only_Scint13_CathodeEventsDistrHist","",100,0,100);
     R7Only_Scint13_CathodeEventsDistrHist = new TH1D("R7Only_Scint13_CathodeEventsDistrHist","",100,0,100);
     R8Only_Scint13_CathodeEventsDistrHist = new TH1D("R8Only_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R1Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R1Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R2Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R2Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R3Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R3Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R4Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R4Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R5Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R5Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R6Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R6Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R7Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R7Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
+    R8Adjacent_Scint13_CathodeEventsDistrHist = new TH1D("R8Adjacent_Scint13_CathodeEventsDistrHist","",100,0,100);
 
     R1_Scint14_CathodeEventsDistrHist = new TH1D("R1_Scint14_CathodeEventsDistrHist","",100,0,100);
     R2_Scint14_CathodeEventsDistrHist = new TH1D("R2_Scint14_CathodeEventsDistrHist","",100,0,100);
@@ -69,6 +85,14 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_Scint14_CathodeEventsDistrHist = new TH1D("R6Only_Scint14_CathodeEventsDistrHist","",100,0,100);
     R7Only_Scint14_CathodeEventsDistrHist = new TH1D("R7Only_Scint14_CathodeEventsDistrHist","",100,0,100);
     R8Only_Scint14_CathodeEventsDistrHist = new TH1D("R8Only_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R1Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R1Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R2Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R2Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R3Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R3Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R4Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R4Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R5Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R5Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R6Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R6Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R7Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R7Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
+    R8Adjacent_Scint14_CathodeEventsDistrHist = new TH1D("R8Adjacent_Scint14_CathodeEventsDistrHist","",100,0,100);
 
     R1_Scint23_CathodeEventsDistrHist = new TH1D("R1_Scint23_CathodeEventsDistrHist","",100,0,100);
     R2_Scint23_CathodeEventsDistrHist = new TH1D("R2_Scint23_CathodeEventsDistrHist","",100,0,100);
@@ -86,6 +110,14 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_Scint23_CathodeEventsDistrHist = new TH1D("R6Only_Scint23_CathodeEventsDistrHist","",100,0,100);
     R7Only_Scint23_CathodeEventsDistrHist = new TH1D("R7Only_Scint23_CathodeEventsDistrHist","",100,0,100);
     R8Only_Scint23_CathodeEventsDistrHist = new TH1D("R8Only_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R1Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R1Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R2Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R2Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R3Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R3Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R4Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R4Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R5Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R5Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R6Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R6Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R7Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R7Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
+    R8Adjacent_Scint23_CathodeEventsDistrHist = new TH1D("R8Adjacent_Scint23_CathodeEventsDistrHist","",100,0,100);
 
     R1_Scint24_CathodeEventsDistrHist = new TH1D("R1_Scint24_CathodeEventsDistrHist","",100,0,100);
     R2_Scint24_CathodeEventsDistrHist = new TH1D("R2_Scint24_CathodeEventsDistrHist","",100,0,100);
@@ -103,6 +135,14 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R6Only_Scint24_CathodeEventsDistrHist = new TH1D("R6Only_Scint24_CathodeEventsDistrHist","",100,0,100);
     R7Only_Scint24_CathodeEventsDistrHist = new TH1D("R7Only_Scint24_CathodeEventsDistrHist","",100,0,100);
     R8Only_Scint24_CathodeEventsDistrHist = new TH1D("R8Only_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R1Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R1Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R2Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R2Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R3Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R3Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R4Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R4Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R5Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R5Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R6Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R6Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R7Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R7Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
+    R8Adjacent_Scint24_CathodeEventsDistrHist = new TH1D("R8Adjacent_Scint24_CathodeEventsDistrHist","",100,0,100);
 
     R1_InitialBeamAngleHist = new TH1F("R1_InitialBeamAngleHist","",100,0,25);
     R2_InitialBeamAngleHist = new TH1F("R2_InitialBeamAngleHist","",100,0,25);
@@ -250,6 +290,14 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_CathodeEventsDistrHist->Write();
     R7Only_CathodeEventsDistrHist->Write();
     R8Only_CathodeEventsDistrHist->Write();
+    R1Adjacent_CathodeEventsDistrHist->Write();
+    R2Adjacent_CathodeEventsDistrHist->Write();
+    R3Adjacent_CathodeEventsDistrHist->Write();
+    R4Adjacent_CathodeEventsDistrHist->Write();
+    R5Adjacent_CathodeEventsDistrHist->Write();
+    R6Adjacent_CathodeEventsDistrHist->Write();
+    R7Adjacent_CathodeEventsDistrHist->Write();
+    R8Adjacent_CathodeEventsDistrHist->Write();
 
     R1_Scint13_CathodeEventsDistrHist->Write();
     R2_Scint13_CathodeEventsDistrHist->Write();
@@ -267,6 +315,14 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_Scint13_CathodeEventsDistrHist->Write();
     R7Only_Scint13_CathodeEventsDistrHist->Write();
     R8Only_Scint13_CathodeEventsDistrHist->Write();
+    R1Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R2Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R3Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R4Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R5Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R6Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R7Adjacent_Scint13_CathodeEventsDistrHist->Write();
+    R8Adjacent_Scint13_CathodeEventsDistrHist->Write();
 
     R1_Scint14_CathodeEventsDistrHist->Write();
     R2_Scint14_CathodeEventsDistrHist->Write();
@@ -284,6 +340,14 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_Scint14_CathodeEventsDistrHist->Write();
     R7Only_Scint14_CathodeEventsDistrHist->Write();
     R8Only_Scint14_CathodeEventsDistrHist->Write();
+    R1Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R2Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R3Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R4Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R5Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R6Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R7Adjacent_Scint14_CathodeEventsDistrHist->Write();
+    R8Adjacent_Scint14_CathodeEventsDistrHist->Write();
 
     R1_Scint23_CathodeEventsDistrHist->Write();
     R2_Scint23_CathodeEventsDistrHist->Write();
@@ -301,6 +365,14 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_Scint23_CathodeEventsDistrHist->Write();
     R7Only_Scint23_CathodeEventsDistrHist->Write();
     R8Only_Scint23_CathodeEventsDistrHist->Write();
+    R1Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R2Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R3Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R4Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R5Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R6Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R7Adjacent_Scint23_CathodeEventsDistrHist->Write();
+    R8Adjacent_Scint23_CathodeEventsDistrHist->Write();
 
     R1_Scint24_CathodeEventsDistrHist->Write();
     R2_Scint24_CathodeEventsDistrHist->Write();
@@ -318,6 +390,14 @@ void MOLLEROptAnalysis::EndOfRun()
     R6Only_Scint24_CathodeEventsDistrHist->Write();
     R7Only_Scint24_CathodeEventsDistrHist->Write();
     R8Only_Scint24_CathodeEventsDistrHist->Write();
+    R1Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R2Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R3Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R4Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R5Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R6Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R7Adjacent_Scint24_CathodeEventsDistrHist->Write();
+    R8Adjacent_Scint24_CathodeEventsDistrHist->Write();
 
     /*R1_InitialBeamAngleHist->Write();
     R2_InitialBeamAngleHist->Write();

@@ -54,6 +54,14 @@ public:
   void R6Only_AddCathodeDetectionEvent(Int_t events) {R6Only_CathodeEventsDistrHist->Fill(events);};
   void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
   void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
+  void R1Adjacent_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R2Adjacent_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R3Adjacent_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R4Adjacent_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R5Adjacent_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R6Adjacent_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R7Adjacent_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void R8Adjacent_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_CathodeEventsDistrHist->Fill(events);};
 
   //These histograms are specific to each scintillator combination
   void R1_Scint13_AddCathodeDetectionEvent(Int_t events) {R1_Scint13_CathodeEventsDistrHist->Fill(events);};
@@ -72,6 +80,14 @@ public:
   void R6Only_Scint13_AddCathodeDetectionEvent(Int_t events) {R6Only_Scint13_CathodeEventsDistrHist->Fill(events);};
   void R7Only_Scint13_AddCathodeDetectionEvent(Int_t events) {R7Only_Scint13_CathodeEventsDistrHist->Fill(events);};
   void R8Only_Scint13_AddCathodeDetectionEvent(Int_t events) {R8Only_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R1Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R2Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R3Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R4Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R5Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R6Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R7Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
+  void R8Adjacent_Scint13_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_Scint13_CathodeEventsDistrHist->Fill(events);};
   
   void R1_Scint14_AddCathodeDetectionEvent(Int_t events) {R1_Scint14_CathodeEventsDistrHist->Fill(events);};
   void R2_Scint14_AddCathodeDetectionEvent(Int_t events) {R2_Scint14_CathodeEventsDistrHist->Fill(events);};
@@ -89,6 +105,14 @@ public:
   void R6Only_Scint14_AddCathodeDetectionEvent(Int_t events) {R6Only_Scint14_CathodeEventsDistrHist->Fill(events);};
   void R7Only_Scint14_AddCathodeDetectionEvent(Int_t events) {R7Only_Scint14_CathodeEventsDistrHist->Fill(events);};
   void R8Only_Scint14_AddCathodeDetectionEvent(Int_t events) {R8Only_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R1Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R2Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R3Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R4Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R5Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R6Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R7Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
+  void R8Adjacent_Scint14_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_Scint14_CathodeEventsDistrHist->Fill(events);};
 
   void R1_Scint23_AddCathodeDetectionEvent(Int_t events) {R1_Scint23_CathodeEventsDistrHist->Fill(events);};
   void R2_Scint23_AddCathodeDetectionEvent(Int_t events) {R2_Scint23_CathodeEventsDistrHist->Fill(events);};
@@ -106,6 +130,14 @@ public:
   void R6Only_Scint23_AddCathodeDetectionEvent(Int_t events) {R6Only_Scint23_CathodeEventsDistrHist->Fill(events);};
   void R7Only_Scint23_AddCathodeDetectionEvent(Int_t events) {R7Only_Scint23_CathodeEventsDistrHist->Fill(events);};
   void R8Only_Scint23_AddCathodeDetectionEvent(Int_t events) {R8Only_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R1Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R2Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R3Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R4Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R5Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R6Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R7Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
+  void R8Adjacent_Scint23_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_Scint23_CathodeEventsDistrHist->Fill(events);};
 
   void R1_Scint24_AddCathodeDetectionEvent(Int_t events) {R1_Scint24_CathodeEventsDistrHist->Fill(events);};
   void R2_Scint24_AddCathodeDetectionEvent(Int_t events) {R2_Scint24_CathodeEventsDistrHist->Fill(events);};
@@ -123,6 +155,14 @@ public:
   void R6Only_Scint24_AddCathodeDetectionEvent(Int_t events) {R6Only_Scint24_CathodeEventsDistrHist->Fill(events);};
   void R7Only_Scint24_AddCathodeDetectionEvent(Int_t events) {R7Only_Scint24_CathodeEventsDistrHist->Fill(events);};
   void R8Only_Scint24_AddCathodeDetectionEvent(Int_t events) {R8Only_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R1Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R2Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R3Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R4Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R5Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R6Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R7Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
+  void R8Adjacent_Scint24_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_Scint24_CathodeEventsDistrHist->Fill(events);};
 
   //These histograms store the initial angles of primary particles that hit each tile. Will eventually update to angle when striking tile
   void R1_AddInitialBeamAngleHist(Float_t aang){ R1_InitialBeamAngleHist->Fill(aang);};
@@ -245,6 +285,14 @@ private:
   TH1D*    R6Only_CathodeEventsDistrHist; //
   TH1D*    R7Only_CathodeEventsDistrHist; //
   TH1D*    R8Only_CathodeEventsDistrHist; //
+  TH1D*    R1Adjacent_CathodeEventsDistrHist; //Plots PEs for adjacency cuts (rejects events that hit both the desired detector and an adjacent one)
+  TH1D*    R2Adjacent_CathodeEventsDistrHist; //
+  TH1D*    R3Adjacent_CathodeEventsDistrHist; //
+  TH1D*    R4Adjacent_CathodeEventsDistrHist; //
+  TH1D*    R5Adjacent_CathodeEventsDistrHist; //
+  TH1D*    R6Adjacent_CathodeEventsDistrHist; //
+  TH1D*    R7Adjacent_CathodeEventsDistrHist; //
+  TH1D*    R8Adjacent_CathodeEventsDistrHist; //
 
   TH1D*    R1_Scint13_CathodeEventsDistrHist;
   TH1D*    R2_Scint13_CathodeEventsDistrHist;
@@ -262,6 +310,14 @@ private:
   TH1D*    R6Only_Scint13_CathodeEventsDistrHist; 
   TH1D*    R7Only_Scint13_CathodeEventsDistrHist; 
   TH1D*    R8Only_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R1Adjacent_Scint13_CathodeEventsDistrHist;
+  TH1D*    R2Adjacent_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R3Adjacent_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R4Adjacent_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R5Adjacent_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R6Adjacent_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R7Adjacent_Scint13_CathodeEventsDistrHist; 
+  TH1D*    R8Adjacent_Scint13_CathodeEventsDistrHist;
 
   TH1D*    R1_Scint14_CathodeEventsDistrHist;
   TH1D*    R2_Scint14_CathodeEventsDistrHist;
@@ -279,6 +335,14 @@ private:
   TH1D*    R6Only_Scint14_CathodeEventsDistrHist; 
   TH1D*    R7Only_Scint14_CathodeEventsDistrHist; 
   TH1D*    R8Only_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R1Adjacent_Scint14_CathodeEventsDistrHist;
+  TH1D*    R2Adjacent_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R3Adjacent_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R4Adjacent_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R5Adjacent_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R6Adjacent_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R7Adjacent_Scint14_CathodeEventsDistrHist; 
+  TH1D*    R8Adjacent_Scint14_CathodeEventsDistrHist;
 
   TH1D*    R1_Scint23_CathodeEventsDistrHist;
   TH1D*    R2_Scint23_CathodeEventsDistrHist;
@@ -296,6 +360,15 @@ private:
   TH1D*    R6Only_Scint23_CathodeEventsDistrHist; 
   TH1D*    R7Only_Scint23_CathodeEventsDistrHist; 
   TH1D*    R8Only_Scint23_CathodeEventsDistrHist;
+  TH1D*    R1Adjacent_Scint23_CathodeEventsDistrHist;
+  TH1D*    R2Adjacent_Scint23_CathodeEventsDistrHist; 
+  TH1D*    R3Adjacent_Scint23_CathodeEventsDistrHist; 
+  TH1D*    R4Adjacent_Scint23_CathodeEventsDistrHist; 
+  TH1D*    R5Adjacent_Scint23_CathodeEventsDistrHist; 
+  TH1D*    R6Adjacent_Scint23_CathodeEventsDistrHist; 
+  TH1D*    R7Adjacent_Scint23_CathodeEventsDistrHist; 
+  TH1D*    R8Adjacent_Scint23_CathodeEventsDistrHist;
+
 
   TH1D*    R1_Scint24_CathodeEventsDistrHist;
   TH1D*    R2_Scint24_CathodeEventsDistrHist;
@@ -313,6 +386,14 @@ private:
   TH1D*    R6Only_Scint24_CathodeEventsDistrHist; 
   TH1D*    R7Only_Scint24_CathodeEventsDistrHist; 
   TH1D*    R8Only_Scint24_CathodeEventsDistrHist;
+  TH1D*    R1Adjacent_Scint24_CathodeEventsDistrHist;
+  TH1D*    R2Adjacent_Scint24_CathodeEventsDistrHist; 
+  TH1D*    R3Adjacent_Scint24_CathodeEventsDistrHist; 
+  TH1D*    R4Adjacent_Scint24_CathodeEventsDistrHist; 
+  TH1D*    R5Adjacent_Scint24_CathodeEventsDistrHist; 
+  TH1D*    R6Adjacent_Scint24_CathodeEventsDistrHist; 
+  TH1D*    R7Adjacent_Scint24_CathodeEventsDistrHist; 
+  TH1D*    R8Adjacent_Scint24_CathodeEventsDistrHist;
 
   TH1F*    R1_InitialBeamAngleHist;
   TH1F*    R2_InitialBeamAngleHist;

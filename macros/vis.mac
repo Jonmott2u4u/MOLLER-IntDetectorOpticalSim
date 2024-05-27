@@ -79,13 +79,13 @@
 /R1/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /R1/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R1/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/R1/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
+/R1/LightGuideMiddleBox 410 mm			 #Height of box between upper and lower cones	
 /R1/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
 /R1/LightGuideQuartzInterfaceOpeningX 17.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
 /R1/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
 /R1/QuartzSizeZ 20 mm
 /R1/QuartzSizeX 169 mm
-/R1/QuartzSizeY 30 mm                          #Without the 45 degree cut
+/R1/QuartzSizeY 20 mm                          #Without the 45 degree cut
 /R1/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R1/SetCenterPositionInX 0 mm
 /R1/SetCenterPositionInY 13 mm

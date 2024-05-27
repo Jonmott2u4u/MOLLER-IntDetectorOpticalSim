@@ -22,7 +22,7 @@ void ExtractScanResults()
   //std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
   //ring_dat.open ("sim_R3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
 
-  std::ifstream rfiles("r6.dat");
+  std::ifstream rfiles("files.dat");
   std::string line;
   TFile *file;
 

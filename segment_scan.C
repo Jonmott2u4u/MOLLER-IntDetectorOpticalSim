@@ -21,33 +21,34 @@ infile_r3.open("r3.txt");
 infile_r2.open("r2.txt");
 infile_r1.open("r1.txt");
 
-
-for (int i=0; i<550; i++)
+// i_max = quartz radial length + bevel radial length + 20mm (10 above bevel, 10 below butt of tile)
+// for LG signals, set i_max = 550
+for (int i=0; i<140; i++)
 {
 infile_r6>>v_pos_r6[i]>>mean_r6[i]>>rms_r6[i]>>mp_langau_r6[i]>>gsigma_langau_r6[i]>>rms_mean_r6[i]>>res_langau_r6[i];
 //cout << " ring 6 " << v_pos_r6[i] << " pe " << pe_langau_r6[i] << endl;
 }
-for (int i=0; i<550; i++)
+for (int i=0; i<180; i++)
 {
 infile_r5ff>>v_pos_r5ff[i]>>mean_r5ff[i]>>rms_r5ff[i]>>mp_langau_r5ff[i]>>gsigma_langau_r5ff[i]>>rms_mean_r5ff[i]>>res_langau_r5ff[i];
 //cout << " ring 6 " << v_pos_r4[i] << " pe " << pe_langau_r4[i] << endl;
 }
-for (int i=0; i<550; i++)
+for (int i=0; i<160; i++)
 {
 infile_r4>>v_pos_r4[i]>>mean_r4[i]>>rms_r4[i]>>mp_langau_r4[i]>>gsigma_langau_r4[i]>>rms_mean_r4[i]>>res_langau_r4[i];
 //cout << " ring 6 " << v_pos_r4[i] << " pe " << pe_langau_r4[i] << endl;
 }
-for (int i=0; i<550; i++)
+for (int i=0; i<100; i++)
 {
 infile_r3>>v_pos_r3[i]>>mean_r3[i]>>rms_r3[i]>>mp_langau_r3[i]>>gsigma_langau_r3[i]>>rms_mean_r3[i]>>res_langau_r3[i];
 //cout << " ring 6 " << v_pos_r3[i] << " pe " << pe_langau_r3[i] << endl;
 }
-for (int i=0; i<550; i++)
+for (int i=0; i<100; i++)
 {
 infile_r2>>v_pos_r2[i]>>mean_r2[i]>>rms_r2[i]>>mp_langau_r2[i]>>gsigma_langau_r2[i]>>rms_mean_r2[i]>>res_langau_r2[i];
 //cout << " ring 6 " << v_pos_r2[i] << " pe " << pe_langau_r2[i] << endl;
 }
-for (int i=0; i<550; i++)
+for (int i=0; i<60; i++)
 {
 infile_r1>>v_pos_r1[i]>>mean_r1[i]>>rms_r1[i]>>mp_langau_r1[i]>>gsigma_langau_r1[i]>>rms_mean_r1[i]>>res_langau_r1[i];
 //cout << " ring 6 " << v_pos_r1[i] << " pe " << pe_langau_r1[i] << endl;

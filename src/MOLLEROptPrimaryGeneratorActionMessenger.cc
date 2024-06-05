@@ -49,7 +49,7 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
   SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
   SegmentHitRegionCmd->SetDefaultValue(1);
-  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=0");
+  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=-9");
   SegmentHitRegionCmd->SetDefaultUnit("mm");
   SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 

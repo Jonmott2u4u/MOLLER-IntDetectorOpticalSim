@@ -451,7 +451,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     }
   }
   //Stores PEs if Scint has been hit
-  if(R1_Tracker == 1){
+  /*if(R1_Tracker == 1){
     analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
     analysis->R1_AddInitialBeamAngleHist(InitialBeamAngle);
   }
@@ -482,7 +482,17 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   if(R8_Tracker == 1){
     analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
     analysis->R8_AddInitialBeamAngleHist(InitialBeamAngle);
-  }
+  }*/
+  //Commenting out if(Tracker) condition for PE histos so that LG pe yields are stored.
+  //This will be restored when proper LG+quartz tracking is ready
+  analysis->R1_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());
+  analysis->R2_AddCathodeDetectionEvent(TrackingReadout->R2_GetCathodeDetections());
+  analysis->R3_AddCathodeDetectionEvent(TrackingReadout->R3_GetCathodeDetections());
+  analysis->R4_AddCathodeDetectionEvent(TrackingReadout->R4_GetCathodeDetections());
+  analysis->R5_AddCathodeDetectionEvent(TrackingReadout->R5_GetCathodeDetections());
+  analysis->R6_AddCathodeDetectionEvent(TrackingReadout->R6_GetCathodeDetections());
+  analysis->R7_AddCathodeDetectionEvent(TrackingReadout->R7_GetCathodeDetections());
+  analysis->R8_AddCathodeDetectionEvent(TrackingReadout->R8_GetCathodeDetections());
   //Stores PEs if Scint & one tile have been hit
   if(R1_SoloTracker == 1){
     analysis->R1Only_AddCathodeDetectionEvent(TrackingReadout->R1_GetCathodeDetections());

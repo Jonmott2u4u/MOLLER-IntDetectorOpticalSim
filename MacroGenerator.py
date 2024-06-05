@@ -25,7 +25,7 @@ hr_start = 10   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 =
 hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_start = -9  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
 cut_stop = 550   #Currently repurposed to move scintillator around
 cut_step = 1
 

@@ -12,7 +12,7 @@ hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 
 hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
+cut_start = -9 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
 cut_stop = 550
 cut_step = 1
 

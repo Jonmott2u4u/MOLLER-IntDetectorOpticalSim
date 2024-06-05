@@ -4,7 +4,7 @@
 #do
 rm command100
 touch command100
-python2.7 MacroSubmitter.py >> command100
+python MacroSubmitter.py >> command100
 sh command100
 #sleep 20
 #done

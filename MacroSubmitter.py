@@ -16,8 +16,8 @@ cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical f
 cut_stop = 1
 cut_step = 1
 
-sa_start = 17    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 17
+sa_start = 18    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+sa_stop = 18
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
@@ -58,6 +58,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --account=halla\n")
                         jsubf.write("#SBATCH --partition=production\n")
                         jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                        jsubf.write("#SBATCH --constraint=el9\n")
                         jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
                         jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
                         jsubf.write("#SBATCH --time=24:00:00\n")

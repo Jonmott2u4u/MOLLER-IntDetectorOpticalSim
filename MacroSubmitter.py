@@ -16,12 +16,12 @@ cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical f
 cut_stop = 550
 cut_step = 1
 
-sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 0
-sa_step = 5
+#sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
+#sa_stop = 0
+#sa_step = 5
 
-ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_start = 4    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 4
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
@@ -29,12 +29,11 @@ det_stop = 1
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
-    for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for det in np.arange(det_start,det_stop+det_step,det_step):
                 for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                    FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)+"_ID"+str(id)
-                    rootfile = "_sa"+str(sa)+"_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)+".root"
+                    FileIDString = "_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)+"_ID"+str(id)
+                    rootfile = "_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)+".root"
                     jobs="jobs"
                     outDir = "rootfiles/"
                     if not os.path.exists(jobs):
@@ -58,6 +57,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --account=halla\n")
                         jsubf.write("#SBATCH --partition=production\n")
                         jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                        jsubf.write("#SBATCH --constraint=el9\n")
                         jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
                         jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
                         jsubf.write("#SBATCH --time=24:00:00\n")

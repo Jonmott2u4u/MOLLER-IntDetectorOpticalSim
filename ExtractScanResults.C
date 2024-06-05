@@ -19,14 +19,14 @@ void ExtractScanResults()
 {
   //gSystem->Load("libMOLLEROptDictionaries.so");
 
-  //std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
-  //ring_dat.open ("sim_R3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
+  std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
+  ring_dat.open ("r1.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
 
-  std::ifstream rfiles("r6.dat");
+  std::ifstream rfiles("files.dat");
   std::string line;
   TFile *file;
 
-  Double_t param=1.0;     //Change based on what is being scanned
+  Double_t param=0.0;     //Change based on what is being scanned
   Double_t param_step=1.0; //Increment for the horizontal axis
   Double_t fa=89; //Value doesn't seem to matter
   Int_t hr;
@@ -60,7 +60,7 @@ void ExtractScanResults()
     
     param_run = param + counter*param_step;
 
-    tmp = (TH1D*)file->Get("R8_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+    tmp = (TH1D*)file->Get("R1_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
     
     hst = (TH1D*)tmp->Clone(Form("CEH_%s",runID.Data()));
     hst->SetTitle("Photoelectron Distribution");
@@ -95,12 +95,25 @@ void ExtractScanResults()
 	
       }
     }
-    //ring_dat <<param_run<<" "<<fitP[1]<<" "<<fitE[1]<<" "<<fitP[3]<<" "<<fitE[3]<<" "<<hst->GetMean()<<" "<<hst->GetRMS()<<" "<<100.*fitP[3]/fitP[1]<<" "<<100.*(hst->GetRMS())/(hst->GetMean())<<"\n";
+    float mean = hst->GetMean();
+    float mp = fitP[1];
+    float rms_mean = 100.*(hst->GetRMS())/(hst->GetMean());
+    float res = 100.*fitP[3]/fitP[1];
+    if((mean == 0) || (hst->GetRMS() == 0)) rms_mean = 0;
+    if((mp < 0.5) || (fitP[3] < 0.5)) res = 0;
+    if(hst->GetEntries() <= 500){
+	mp = 0;
+	res = 0;
+	mean = 0;
+	rms_mean = 0;
+    }
+    ring_dat <<param_run<<" "<<mean<<" "<<hst->GetRMS()<<" "<<mp<<" "<<fitP[3]<<" "<<rms_mean<<" "<<res<<"\n";
+
     file->Close("R");    
     counter = counter + 1.0;
     counter_vec++;
   }
-  //ring_dat.close();
+  ring_dat.close();
   rfiles.close();
 }
 
@@ -125,8 +138,8 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr2->SetName(Form("Exnse_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
     gr2->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
-    gr2->GetXaxis()->SetTitle("Segment position [cm]"); //
+    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
+    gr2->GetXaxis()->SetTitle("Segment position [mm]"); //
     gr->GetYaxis()->SetTitle("Langau PEs");
     gr2->GetYaxis()->SetTitle("Resolution [GSigma/MP]");
     fA_PEmean.push_back(gr);
@@ -153,7 +166,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
     gr->SetTitle("Segment scan photoelectron yield");
-    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
+    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
     gr->GetYaxis()->SetTitle("Raw PE mean");
     fA_PEmean_hR2.push_back(gr);
     C_mp->cd(1);
@@ -174,7 +187,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     TGraphErrors* gr = new TGraphErrors();
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
+    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
     fA_PEmean_hR3.push_back(gr);
     return fA_PEmean_hR3.size()-1;
 

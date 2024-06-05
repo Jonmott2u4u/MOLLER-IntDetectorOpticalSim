@@ -16,8 +16,8 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  //G4ParticleDefinition* particle = G4Electron::Definition();
-  G4ParticleDefinition* particle = G4MuonMinus::Definition();
+  G4ParticleDefinition* particle = G4Electron::Definition();
+  //G4ParticleDefinition* particle = G4MuonMinus::Definition();
   /*if (PrimaryParticle == 1) particle = G4Electron::Definition();
   if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();*/
   particleGun->SetParticleDefinition(particle);
@@ -231,8 +231,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
   else if(EventRegion == 10){
     //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
-    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = Qlim1[2] + 1423.94*TMath::Sin(3*pi/180) + (cut-1*G4UniformRand()); //cut has units cm, whereas the rest has units mm
+    x = (Qlim1[1]+Qlim1[0])/2.0 - 0.3 + 0.6*G4UniformRand();
+    y = Qlim1[2] + 1423.94*TMath::Sin(3*pi/180) + (cut-1*G4UniformRand()) - 0.3 + 0.6*G4UniformRand(); //
   }
   else if(EventRegion == 11){
     //Cosmic distribution for new cosmic stand. Based on 2 large trapezoidal scintillator paddles. Approximating as 600x600 mm rectangle

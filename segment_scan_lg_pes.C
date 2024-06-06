@@ -1,16 +1,16 @@
 void segment_scan()
 {
-float v_pos_r6[140],mean_r6[140],rms_r6[140],mp_langau_r6[140],gsigma_langau_r6[140],rms_mean_r6[140],res_langau_r6[140];
+float v_pos_r6[150],mean_r6[150],rms_r6[150],mp_langau_r6[150],gsigma_langau_r6[150],rms_mean_r6[150],res_langau_r6[150];
 
-float v_pos_r5ff[180],mean_r5ff[180],rms_r5ff[180],mp_langau_r5ff[180],gsigma_langau_r5ff[180],rms_mean_r5ff[180],res_langau_r5ff[180];
+float v_pos_r5ff[290],mean_r5ff[290],rms_r5ff[290],mp_langau_r5ff[290],gsigma_langau_r5ff[290],rms_mean_r5ff[290],res_langau_r5ff[290];
 
-float v_pos_r4[160],mean_r4[160],rms_r4[160],mp_langau_r4[160],gsigma_langau_r4[160],rms_mean_r4[160],res_langau_r4[160];
+float v_pos_r4[410],mean_r4[410],rms_r4[410],mp_langau_r4[410],gsigma_langau_r4[410],rms_mean_r4[410],res_langau_r4[410];
 
-float v_pos_r3[100],mean_r3[100],rms_r3[100],mp_langau_r3[100],gsigma_langau_r3[100],rms_mean_r3[100],res_langau_r3[100];
+float v_pos_r3[470],mean_r3[470],rms_r3[470],mp_langau_r3[470],gsigma_langau_r3[470],rms_mean_r3[470],res_langau_r3[470];
 
-float v_pos_r2[100],mean_r2[100],rms_r2[100],mp_langau_r2[100],gsigma_langau_r2[100],rms_mean_r2[100],res_langau_r2[100];
+float v_pos_r2[530],mean_r2[530],rms_r2[530],mp_langau_r2[530],gsigma_langau_r2[530],rms_mean_r2[530],res_langau_r2[530];
 
-float v_pos_r1[60],mean_r1[60],rms_r1[60],mp_langau_r1[60],gsigma_langau_r1[60],rms_mean_r1[60],res_langau_r1[60];
+float v_pos_r1[550],mean_r1[550],rms_r1[550],mp_langau_r1[550],gsigma_langau_r1[550],rms_mean_r1[550],res_langau_r1[550];
 
 
 ifstream infile_r6, infile_r5ff, infile_r4, infile_r3, infile_r2, infile_r1;
@@ -23,32 +23,32 @@ infile_r1.open("r1.txt");
 
 // i_max = quartz radial length + bevel radial length + 20mm (10 above bevel, 10 below butt of tile)
 // for LG signals, set i_max = 550
-for (int i=0; i<140; i++)
+for (int i=0; i<150; i++)
 {
 infile_r6>>v_pos_r6[i]>>mean_r6[i]>>rms_r6[i]>>mp_langau_r6[i]>>gsigma_langau_r6[i]>>rms_mean_r6[i]>>res_langau_r6[i];
 //cout << " ring 6 " << v_pos_r6[i] << " pe " << pe_langau_r6[i] << endl;
 }
-for (int i=0; i<180; i++)
+for (int i=0; i<290; i++)
 {
 infile_r5ff>>v_pos_r5ff[i]>>mean_r5ff[i]>>rms_r5ff[i]>>mp_langau_r5ff[i]>>gsigma_langau_r5ff[i]>>rms_mean_r5ff[i]>>res_langau_r5ff[i];
 //cout << " ring 6 " << v_pos_r4[i] << " pe " << pe_langau_r4[i] << endl;
 }
-for (int i=0; i<160; i++)
+for (int i=0; i<410; i++)
 {
 infile_r4>>v_pos_r4[i]>>mean_r4[i]>>rms_r4[i]>>mp_langau_r4[i]>>gsigma_langau_r4[i]>>rms_mean_r4[i]>>res_langau_r4[i];
 //cout << " ring 6 " << v_pos_r4[i] << " pe " << pe_langau_r4[i] << endl;
 }
-for (int i=0; i<100; i++)
+for (int i=0; i<470; i++)
 {
 infile_r3>>v_pos_r3[i]>>mean_r3[i]>>rms_r3[i]>>mp_langau_r3[i]>>gsigma_langau_r3[i]>>rms_mean_r3[i]>>res_langau_r3[i];
 //cout << " ring 6 " << v_pos_r3[i] << " pe " << pe_langau_r3[i] << endl;
 }
-for (int i=0; i<100; i++)
+for (int i=0; i<530; i++)
 {
 infile_r2>>v_pos_r2[i]>>mean_r2[i]>>rms_r2[i]>>mp_langau_r2[i]>>gsigma_langau_r2[i]>>rms_mean_r2[i]>>res_langau_r2[i];
 //cout << " ring 6 " << v_pos_r2[i] << " pe " << pe_langau_r2[i] << endl;
 }
-for (int i=0; i<60; i++)
+for (int i=0; i<550; i++)
 {
 infile_r1>>v_pos_r1[i]>>mean_r1[i]>>rms_r1[i]>>mp_langau_r1[i]>>gsigma_langau_r1[i]>>rms_mean_r1[i]>>res_langau_r1[i];
 //cout << " ring 6 " << v_pos_r1[i] << " pe " << pe_langau_r1[i] << endl;
@@ -59,32 +59,32 @@ infile_r1>>v_pos_r1[i]>>mean_r1[i]>>rms_r1[i]>>mp_langau_r1[i]>>gsigma_langau_r1
 TCanvas *c1 = new TCanvas();
 TMultiGraph *mean_pes = new TMultiGraph();
 
-TGraph *mean_pes_r6 = new TGraph (140,v_pos_r6,mean_r6);
+TGraph *mean_pes_r6 = new TGraph (150,v_pos_r6,mean_r6);
 mean_pes_r6->SetMarkerStyle(8);
 mean_pes_r6->SetMarkerColor(kBlue);
 mean_pes_r6->SetMarkerSize(1.5);
 
-TGraph *mean_pes_r5ff = new TGraph (180,v_pos_r5ff,mean_r5ff);
+TGraph *mean_pes_r5ff = new TGraph (290,v_pos_r5ff,mean_r5ff);
 mean_pes_r5ff->SetMarkerStyle(8);
 mean_pes_r5ff->SetMarkerColor(kRed);
 mean_pes_r5ff->SetMarkerSize(1.5);
 
-TGraph *mean_pes_r4 = new TGraph (160,v_pos_r4,mean_r4);
+TGraph *mean_pes_r4 = new TGraph (410,v_pos_r4,mean_r4);
 mean_pes_r4->SetMarkerStyle(8);
 mean_pes_r4->SetMarkerColor(kGreen+3);
 mean_pes_r4->SetMarkerSize(1.5);
 
-TGraph *mean_pes_r3 = new TGraph (100,v_pos_r3,mean_r3);
+TGraph *mean_pes_r3 = new TGraph (470,v_pos_r3,mean_r3);
 mean_pes_r3->SetMarkerStyle(8);
 mean_pes_r3->SetMarkerColor(kOrange);
 mean_pes_r3->SetMarkerSize(1.5);
 
-TGraph *mean_pes_r2 = new TGraph (100,v_pos_r2,mean_r2);
+TGraph *mean_pes_r2 = new TGraph (530,v_pos_r2,mean_r2);
 mean_pes_r2->SetMarkerStyle(8);
 mean_pes_r2->SetMarkerColor(kMagenta);
 mean_pes_r2->SetMarkerSize(1.5);
 
-TGraph *mean_pes_r1 = new TGraph (60,v_pos_r1,mean_r1);
+TGraph *mean_pes_r1 = new TGraph (550,v_pos_r1,mean_r1);
 mean_pes_r1->SetMarkerStyle(8);
 mean_pes_r1->SetMarkerColor(kYellow);
 mean_pes_r1->SetMarkerSize(1.5);
@@ -108,32 +108,32 @@ c1->SetGridy();
 TCanvas *c2 = new TCanvas();
 TMultiGraph *langau_pes = new TMultiGraph();
 
-TGraph *langau_pes_r6 = new TGraph (140,v_pos_r6,mp_langau_r6);
+TGraph *langau_pes_r6 = new TGraph (150,v_pos_r6,mp_langau_r6);
 langau_pes_r6->SetMarkerStyle(8);
 langau_pes_r6->SetMarkerColor(kBlue);
 langau_pes_r6->SetMarkerSize(1.5);
 
-TGraph *langau_pes_r5ff = new TGraph (180,v_pos_r5ff,mp_langau_r5ff);
+TGraph *langau_pes_r5ff = new TGraph (290,v_pos_r5ff,mp_langau_r5ff);
 langau_pes_r5ff->SetMarkerStyle(8);
 langau_pes_r5ff->SetMarkerColor(kRed);
 langau_pes_r5ff->SetMarkerSize(1.5);
 
-TGraph *langau_pes_r4 = new TGraph (160,v_pos_r4,mp_langau_r4);
+TGraph *langau_pes_r4 = new TGraph (410,v_pos_r4,mp_langau_r4);
 langau_pes_r4->SetMarkerStyle(8);
 langau_pes_r4->SetMarkerColor(kGreen+3);
 langau_pes_r4->SetMarkerSize(1.5);
 
-TGraph *langau_pes_r3 = new TGraph (100,v_pos_r3,mp_langau_r3);
+TGraph *langau_pes_r3 = new TGraph (470,v_pos_r3,mp_langau_r3);
 langau_pes_r3->SetMarkerStyle(8);
 langau_pes_r3->SetMarkerColor(kOrange);
 langau_pes_r3->SetMarkerSize(1.5);
 
-TGraph *langau_pes_r2 = new TGraph (100,v_pos_r2,mp_langau_r2);
+TGraph *langau_pes_r2 = new TGraph (530,v_pos_r2,mp_langau_r2);
 langau_pes_r2->SetMarkerStyle(8);
 langau_pes_r2->SetMarkerColor(kMagenta);
 langau_pes_r2->SetMarkerSize(1.5);
 
-TGraph *langau_pes_r1 = new TGraph (60,v_pos_r1,mp_langau_r1);
+TGraph *langau_pes_r1 = new TGraph (550,v_pos_r1,mp_langau_r1);
 langau_pes_r1->SetMarkerStyle(8);
 langau_pes_r1->SetMarkerColor(kYellow);
 langau_pes_r1->SetMarkerSize(1.5);
@@ -157,32 +157,32 @@ c2->SetGridy();
 TCanvas *c3 = new TCanvas();
 TMultiGraph *RMS_mean = new TMultiGraph();
 
-TGraph *RMS_mean_r6 = new TGraph (140,v_pos_r6,rms_mean_r6);
+TGraph *RMS_mean_r6 = new TGraph (150,v_pos_r6,rms_mean_r6);
 RMS_mean_r6->SetMarkerStyle(8);
 RMS_mean_r6->SetMarkerColor(kBlue);
 RMS_mean_r6->SetMarkerSize(1.5);
 
-TGraph *RMS_mean_r5ff = new TGraph (180,v_pos_r5ff,rms_mean_r5ff);
+TGraph *RMS_mean_r5ff = new TGraph (290,v_pos_r5ff,rms_mean_r5ff);
 RMS_mean_r5ff->SetMarkerStyle(8);
 RMS_mean_r5ff->SetMarkerColor(kRed);
 RMS_mean_r5ff->SetMarkerSize(1.5);
 
-TGraph *RMS_mean_r4 = new TGraph (160,v_pos_r4,rms_mean_r4);
+TGraph *RMS_mean_r4 = new TGraph (410,v_pos_r4,rms_mean_r4);
 RMS_mean_r4->SetMarkerStyle(8);
 RMS_mean_r4->SetMarkerColor(kGreen+3);
 RMS_mean_r4->SetMarkerSize(1.5);
 
-TGraph *RMS_mean_r3 = new TGraph (100,v_pos_r3,rms_mean_r3);
+TGraph *RMS_mean_r3 = new TGraph (470,v_pos_r3,rms_mean_r3);
 RMS_mean_r3->SetMarkerStyle(8);
 RMS_mean_r3->SetMarkerColor(kOrange);
 RMS_mean_r3->SetMarkerSize(1.5);
 
-TGraph *RMS_mean_r2 = new TGraph (100,v_pos_r2,rms_mean_r2);
+TGraph *RMS_mean_r2 = new TGraph (530,v_pos_r2,rms_mean_r2);
 RMS_mean_r2->SetMarkerStyle(8);
 RMS_mean_r2->SetMarkerColor(kMagenta);
 RMS_mean_r2->SetMarkerSize(1.5);
 
-TGraph *RMS_mean_r1 = new TGraph (60,v_pos_r1,rms_mean_r1);
+TGraph *RMS_mean_r1 = new TGraph (550,v_pos_r1,rms_mean_r1);
 RMS_mean_r1->SetMarkerStyle(8);
 RMS_mean_r1->SetMarkerColor(kYellow);
 RMS_mean_r1->SetMarkerSize(1.5);
@@ -206,32 +206,32 @@ c3->SetGridy();
 TCanvas *c4 = new TCanvas();
 TMultiGraph *RES_langau = new TMultiGraph();
 
-TGraph *RES_langau_r6 = new TGraph (140,v_pos_r6,res_langau_r6);
+TGraph *RES_langau_r6 = new TGraph (150,v_pos_r6,res_langau_r6);
 RES_langau_r6->SetMarkerStyle(8);
 RES_langau_r6->SetMarkerColor(kBlue);
 RES_langau_r6->SetMarkerSize(1.5);
 
-TGraph *RES_langau_r5ff = new TGraph (180,v_pos_r5ff,res_langau_r5ff);
+TGraph *RES_langau_r5ff = new TGraph (290,v_pos_r5ff,res_langau_r5ff);
 RES_langau_r5ff->SetMarkerStyle(8);
 RES_langau_r5ff->SetMarkerColor(kRed);
 RES_langau_r5ff->SetMarkerSize(1.5);
 
-TGraph *RES_langau_r4 = new TGraph (160,v_pos_r4,res_langau_r4);
+TGraph *RES_langau_r4 = new TGraph (410,v_pos_r4,res_langau_r4);
 RES_langau_r4->SetMarkerStyle(8);
 RES_langau_r4->SetMarkerColor(kGreen+3);
 RES_langau_r4->SetMarkerSize(1.5);
 
-TGraph *RES_langau_r3 = new TGraph (100,v_pos_r3,res_langau_r3);
+TGraph *RES_langau_r3 = new TGraph (470,v_pos_r3,res_langau_r3);
 RES_langau_r3->SetMarkerStyle(8);
 RES_langau_r3->SetMarkerColor(kOrange);
 RES_langau_r3->SetMarkerSize(1.5);
 
-TGraph *RES_langau_r2 = new TGraph (100,v_pos_r2,res_langau_r2);
+TGraph *RES_langau_r2 = new TGraph (530,v_pos_r2,res_langau_r2);
 RES_langau_r2->SetMarkerStyle(8);
 RES_langau_r2->SetMarkerColor(kMagenta);
 RES_langau_r2->SetMarkerSize(1.5);
 
-TGraph *RES_langau_r1 = new TGraph (60,v_pos_r1,res_langau_r1);
+TGraph *RES_langau_r1 = new TGraph (550,v_pos_r1,res_langau_r1);
 RES_langau_r1->SetMarkerStyle(8);
 RES_langau_r1->SetMarkerColor(kYellow);
 RES_langau_r1->SetMarkerSize(1.5);

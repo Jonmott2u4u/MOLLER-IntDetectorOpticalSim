@@ -42,9 +42,9 @@ ua_start = 10   #Controls the angle of the US reflector plate for the lower cone
 ua_stop = 30
 ua_step = 0.5
 
-lg_start = 10   #Controls the height of the lower cone
-lg_stop = 30
-lg_step = 0.5
+lg_start = 50   #Controls the height of the lower cone
+lg_stop = 90
+lg_step = 1
 
 text_root = ""
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
@@ -172,8 +172,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         if det == 6:
                             Text += "#------------------#Ring 6 Geometry --------------------#" + "\n\n"
                             Text += "/Det/LightGuideLowerConeBackAngle 20 deg" + "\n"
-                            Text += "/Det/LightGuideLowerConeFrontAngle " + ua +" deg" + "\n"
-                            Text += "/Det/LightGuideLowerInterface " + lg + " mm" + "\n"
+                            Text += "/Det/LightGuideLowerConeFrontAngle " + str(ua) +" deg" + "\n"
+                            Text += "/Det/LightGuideLowerInterface " + str(lg) + " mm" + "\n"
                             Text += "/Det/LightGuideMiddleBox 90 mm" + "\n"
                             Text += "/Det/LightGuideUpperInterface 163 mm" + "\n"
                             Text += "/Det/LightGuideQuartzInterfaceOpeningX 26.8 cm" + "\n"

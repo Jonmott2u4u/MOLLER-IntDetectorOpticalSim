@@ -110,7 +110,9 @@ set(MOLLER_SCRIPTS
   rootfiles/placeholder.md
   plots/placeholder.md
   MacroGenerator.py
+  MacroGenerator2.py
   MacroSubmitter.py
+  MacroSubmitter2.py
   MacroSubmitter.sh
   ExtractScanResults.C
   PlotExtractor.C

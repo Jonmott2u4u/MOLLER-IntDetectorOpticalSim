@@ -34,7 +34,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
             for det in np.arange(det_start,det_stop+det_step,det_step):
                 for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
                     FileIDString = "_sa"+str(sa)+"_hR"+str(hr)+"_det"+str(det)+"_cut"+str(cut)+"_ID"+str(id)
-                    rootfile = FileIDString + ".root"
+                    rootfile = "_sa"+str(sa)+"_hR"+str(hr)+"_det"+str(det)+"_cut"+str(cut)+".root"
                     jobs="jobs"
                     if not os.path.exists(jobs):
                         os.system("mkdir "+jobs)
@@ -58,6 +58,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --account=halla\n")
                         jsubf.write("#SBATCH --partition=production\n")
                         jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                        jsubf.write("#SBATCH --constraint=el9\n")
                         jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
                         jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
                         jsubf.write("#SBATCH --time=24:00:00\n")

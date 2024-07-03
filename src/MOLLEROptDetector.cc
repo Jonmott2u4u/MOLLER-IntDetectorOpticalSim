@@ -1410,10 +1410,10 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   Scint4->SetQuartzRotX(-1.5*degree);*/
  
   //Counter-rotates Scint1illators to counteract rotation of cosmic stand -- Used for 6 degree setup
-  Scint1->SetQuartzRotX(-3*degree);
+  /*Scint1->SetQuartzRotX(-3*degree);
   Scint2->SetQuartzRotX(-3*degree); 
   Scint3->SetQuartzRotX(-3*degree);
-  Scint4->SetQuartzRotX(-3*degree);
+  Scint4->SetQuartzRotX(-3*degree);*/
 
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);

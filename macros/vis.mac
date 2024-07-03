@@ -87,7 +87,7 @@
 /R1/QuartzSizeX 169 mm
 /R1/QuartzSizeY 20 mm                          #Without the 45 degree cut
 /R1/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R1/SetCenterPositionInX 0 mm
+/R1/SetCenterPositionInX 1000 mm
 /R1/SetCenterPositionInY 13 mm
 /R1/SetCenterPositionInZ 1423.94 mm
 
@@ -104,7 +104,7 @@
 /R2/QuartzSizeX 179 mm
 /R2/QuartzSizeY 60 mm                          #Without the 45 degree cut
 /R2/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R2/SetCenterPositionInX 0 mm
+/R2/SetCenterPositionInX 1000 mm
 /R2/SetCenterPositionInY 49 mm
 /R2/SetCenterPositionInZ 1145.60 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
 
@@ -121,7 +121,7 @@
 /R3/QuartzSizeX 190 mm
 /R3/QuartzSizeY 60 mm                          #Without the 45 degree cut
 /R3/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R3/SetCenterPositionInX 0 mm
+/R3/SetCenterPositionInX 1000 mm
 /R3/SetCenterPositionInY 100 mm
 /R3/SetCenterPositionInZ 871.51 mm
 
@@ -138,7 +138,7 @@
 /R4/QuartzSizeX 213 mm
 /R4/QuartzSizeY 120 mm                          #Without the 45 degree cut
 /R4/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R4/SetCenterPositionInX 0 mm
+/R4/SetCenterPositionInX 1000 mm
 /R4/SetCenterPositionInY 151 mm
 /R4/SetCenterPositionInZ 592.08 mm
 
@@ -155,7 +155,7 @@
 /R5/QuartzSizeX 80 mm
 /R5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R5/SetCenterPositionInX 0 mm
+/R5/SetCenterPositionInX 1000 mm
 /R5/SetCenterPositionInY 240 mm                 # 
 /R5/SetCenterPositionInZ 151.64 mm
 
@@ -172,7 +172,7 @@
 /R6/QuartzSizeX 80 mm
 /R6/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R6/SetCenterPositionInX -86.7 mm
+/R6/SetCenterPositionInX 913.3 mm
 /R6/SetCenterPositionInY 233 mm
 /R6/SetCenterPositionInZ 302.47 mm
 
@@ -189,7 +189,7 @@
 /R7/QuartzSizeX 80 mm
 /R7/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /R7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R7/SetCenterPositionInX 86.7 mm
+/R7/SetCenterPositionInX 1086.7 mm
 /R7/SetCenterPositionInY 233 mm
 /R7/SetCenterPositionInZ 302.47 mm
 
@@ -206,14 +206,14 @@
 /R8/QuartzSizeX 260 mm
 /R8/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /R8/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R8/SetCenterPositionInX 0 mm
+/R8/SetCenterPositionInX 1000 mm
 /R8/SetCenterPositionInY 330 mm
 /R8/SetCenterPositionInZ 1.78 mm
 
 #------------------#General commands --------------------#
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
-/Det/PolarRotation 6 deg                         #counter rotate the detector as a whole
+/Det/PolarRotation 0 deg                         #counter rotate the detector as a whole
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
@@ -223,32 +223,32 @@
 #------------------#Scintillator commands ---------------#
 
 /Scint1/QuartzSizeZ 20 mm                  #
-/Scint1/QuartzSizeX 300 mm                  #
-/Scint1/QuartzSizeY 250 mm                  #
+/Scint1/QuartzSizeX 90 mm                  #
+/Scint1/QuartzSizeY 90 mm                  #
 /Scint1/SetCenterPositionInX 0 mm           # 
-/Scint1/SetCenterPositionInY -45 mm        #
-/Scint1/SetCenterPositionInZ -430 mm     #
+/Scint1/SetCenterPositionInY 0 mm        #
+/Scint1/SetCenterPositionInZ 0 mm     #
 
 /Scint2/QuartzSizeZ 20 mm                  #
-/Scint2/QuartzSizeX 300 mm                   #
-/Scint2/QuartzSizeY 250 mm                  #
-/Scint2/SetCenterPositionInX 0 mm           # 
-/Scint2/SetCenterPositionInY 204 mm           #
-/Scint2/SetCenterPositionInZ -404 mm     #
+/Scint2/QuartzSizeX 90 mm                   #
+/Scint2/QuartzSizeY 90 mm                  #
+/Scint2/SetCenterPositionInX -6 mm           # 
+/Scint2/SetCenterPositionInY -10 mm           #
+/Scint2/SetCenterPositionInZ 500 mm     #
 
-/Scint3/QuartzSizeZ 20 mm                  #
-/Scint3/QuartzSizeX 300 mm                  #
-/Scint3/QuartzSizeY 250 mm                  #
-/Scint3/SetCenterPositionInX 0 mm           # 
-/Scint3/SetCenterPositionInY -250 mm        #
-/Scint3/SetCenterPositionInZ 1560 mm     # 
+/Scint3/QuartzSizeZ 1.5 mm                  #
+/Scint3/QuartzSizeX 100 mm                  #
+/Scint3/QuartzSizeY 200 mm                  #
+/Scint3/SetCenterPositionInX -11 mm           # 
+/Scint3/SetCenterPositionInY -5 mm        #
+/Scint3/SetCenterPositionInZ 145 mm     # 
 
-/Scint4/QuartzSizeZ 20 mm                  #
-/Scint4/QuartzSizeX 300 mm                  #
-/Scint4/QuartzSizeY 250 mm                  #
-/Scint4/SetCenterPositionInX 0 mm            # 
-/Scint4/SetCenterPositionInY -1 mm        #
-/Scint4/SetCenterPositionInZ 1586 mm     # 
+/Scint4/QuartzSizeZ 1.5 mm                  #
+/Scint4/QuartzSizeX 100 mm                  #
+/Scint4/QuartzSizeY 100 mm                  #
+/Scint4/SetCenterPositionInX -7 mm            # 
+/Scint4/SetCenterPositionInY 15 mm        #
+/Scint4/SetCenterPositionInZ 310 mm     # 
 
 #------------------#Misc commands -----------------------#
 
@@ -260,11 +260,11 @@
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use
-/Generator/BeamSolidAngle 18                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
-/Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
+/Generator/BeamSolidAngle 15                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
+/Generator/BeamEnergy 850  	                     #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for beam particles
 
-/Storage/DetectorFocus 0                          #Sets which detector has its info stored in root files. Set to 0 for all detectors, 1 for R1, 2 for R2, etc
+/Storage/DetectorFocus 12                          #Sets which detector has its info stored in root files. Set to 0 for all detectors, 1 for R1, 2 for R2, etc
 
 #/RunAction/SetID 3
 #/random/setSeeds 346082 823457

@@ -189,3 +189,37 @@ void quartz_pos(){
         file->Close("R");
     }
 }
+
+void scint_tracker(){
+
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TFile *file;
+    TH1D *hst, *tmp;
+    int pos, file_open = 0;
+    char ext[] = "MOLLEROptData.MOLLERDetectorEvent.";
+
+    while(std::getline(rfiles, line)){
+        file = TFile::Open(line.data());
+        file_open++;
+        TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+
+        TCanvas *canvas_scint12 = new TCanvas("canvas_scint12","canvas_scint12");
+        tree->Draw(Form("%sScint1TrackHit",ext),Form("%sScint2TrackHit == 1",ext));
+        canvas_scint12->SaveAs("plots/scint12_gems.root");
+
+        TCanvas *canvas_scint123 = new TCanvas("canvas_scint123","canvas_scint123");
+        tree->Draw(Form("%sScint1TrackHit",ext),Form("(%sScint2TrackHit == 1) && (%sScint3TrackHit == 1)",ext,ext));
+        canvas_scint123->SaveAs("plots/scint123_gems.root");
+
+        TCanvas *canvas_scint124 = new TCanvas("canvas_scint124","canvas_scint124");
+        tree->Draw(Form("%sScint1TrackHit",ext),Form("(%sScint2TrackHit == 1) && (%sScint4TrackHit == 1)",ext,ext));
+        canvas_scint124->SaveAs("plots/scint124_gems.root");
+
+        TCanvas *canvas_scint1234 = new TCanvas("canvas_scint1234","canvas_scint1234");
+        tree->Draw(Form("%sScint1TrackHit",ext),Form("(%sScint2TrackHit == 1) && (%sScint3TrackHit == 1) && (%sScint4TrackHit == 1)",ext,ext,ext));
+        canvas_scint1234->SaveAs("plots/scint1234_gems.root");
+
+        file->Close("R");
+    }
+}

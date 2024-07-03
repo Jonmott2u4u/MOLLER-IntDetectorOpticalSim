@@ -269,12 +269,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
   else if(EventRegion == 11){
     //Cosmic distribution for cosmic stands. Update the numbers in the "y" expression as needed.
-    //Top scints are ~ 292 mm above center of R6 module (FF) and ~ 427 mm (BF)
-    //Bot scints are ~ 239 mm below center of R1 module (FF) and ~ 105 mm (BF)
     //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
-    y_base = Slim1[4] + (Slim2[5]-Slim1[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
+    y_base = Slim1[4] + (Slim1[5]-Slim1[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
     //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
-    y = y_base - 430*TMath::Sin(6*pi/180);
+    y = y_base;
     x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
   }
   else{
@@ -294,7 +292,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
   G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
 
-  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -440*mm));
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -11*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

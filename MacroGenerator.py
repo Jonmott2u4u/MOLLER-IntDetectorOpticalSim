@@ -8,7 +8,7 @@ import numpy as np
 #are connected to the beam's controls (angle of incidence, spread, hit region, etc)
 
 runscript = "#!/bin/bash\n\n"           
-datadir =  "R6ParamScan/"                   #Location where macros are stored after generation
+datadir =  "Macrofolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
 Particle = 1    #Sets the initial particle type. 1 for electrons, 2 for muons
@@ -32,10 +32,10 @@ cut_step = 1
 #sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
 #sa_stop = 0
 #sa_step = 5
-sa = 0.102 #Value of sa is hard set rather than looped over. Done so that it could be a double with units
+sa = 5 #Value of sa is hard set rather than looped over. Done so that it could be a double with units
 
-ID_start = 4    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 4
+ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 1
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
@@ -50,7 +50,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
                     RndSeed2 = random.randrange(600001, 900000) #
                     Text = ""
-                    FileIDString = "_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)
+                    FileIDString = "_hR"+str(hr)+"_cut"+str(round(cut,2))+"_det"+str(det)
                     Text += "#------------------#Ring 1 commands --------------------#" + "\n\n"
                     Text += "/R1/LightGuideLowerConeBackAngle 22 deg" + "\n"
                     Text += "/R1/LightGuideLowerConeFrontAngle 18 deg" + "\n"
@@ -79,7 +79,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R2/QuartzSizeY 60 mm" + "\n"                
                     Text += "/R2/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R2/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R2/SetCenterPositionInY 50 mm" + "\n"
+                    Text += "/R2/SetCenterPositionInY 50.24 mm" + "\n"
                     Text += "/R2/SetCenterPositionInZ 1145.60 mm" + "\n\n"
                     Text += "#------------------#Ring 3 commands --------------------#" + "\n\n"
                     Text += "/R3/LightGuideLowerConeBackAngle 22 deg" + "\n"
@@ -94,7 +94,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R3/QuartzSizeY 60 mm" + "\n"                
                     Text += "/R3/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R3/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R3/SetCenterPositionInY 101 mm" + "\n"
+                    Text += "/R3/SetCenterPositionInY 101.69 mm" + "\n"
                     Text += "/R3/SetCenterPositionInZ 871.51 mm" + "\n\n"
                     Text += "#------------------#Ring 4 commands --------------------#" + "\n\n"
                     Text += "/R4/LightGuideLowerConeBackAngle 22 deg" + "\n"
@@ -109,7 +109,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R4/QuartzSizeY 120 mm" + "\n"                
                     Text += "/R4/LightGuideQuartzToPMTOffset 3 mm" + "\n"
                     Text += "/R4/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R4/SetCenterPositionInY 152.5 mm" + "\n"
+                    Text += "/R4/SetCenterPositionInY 153.50 mm" + "\n"
                     Text += "/R4/SetCenterPositionInZ 592.08 mm" + "\n\n"
                     Text += "#------------------#Ring 5 FF commands --------------------#" + "\n\n"
                     Text += "/R5/LightGuideLowerConeBackAngle 19 deg" + "\n"
@@ -124,7 +124,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R5/QuartzSizeY 140 mm" + "\n"                
                     Text += "/R5/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R5/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R5/SetCenterPositionInY 246 mm" + "\n"
+                    Text += "/R5/SetCenterPositionInY 245.10 mm" + "\n"
                     Text += "/R5/SetCenterPositionInZ 151.64 mm" + "\n\n"
                     Text += "#------------------#Ring 5 BF1 commands --------------------#" + "\n\n"
                     Text += "/R6/LightGuideLowerConeBackAngle 19 deg" + "\n"
@@ -139,7 +139,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R6/QuartzSizeY 140 mm" + "\n"                
                     Text += "/R6/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R6/SetCenterPositionInX -86.7 mm" + "\n"
-                    Text += "/R6/SetCenterPositionInY 242 mm" + "\n"
+                    Text += "/R6/SetCenterPositionInY 237.21 mm" + "\n"
                     Text += "/R6/SetCenterPositionInZ 302.47 mm" + "\n\n"
                     Text += "#------------------#Ring 5 BF2 commands --------------------#" + "\n\n"
                     Text += "/R7/LightGuideLowerConeBackAngle 19 deg" + "\n"
@@ -154,7 +154,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R7/QuartzSizeY 140 mm" + "\n"                
                     Text += "/R7/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                     Text += "/R7/SetCenterPositionInX 86.7 mm" + "\n"
-                    Text += "/R7/SetCenterPositionInY 242 mm" + "\n"
+                    Text += "/R7/SetCenterPositionInY 237.21 mm" + "\n"
                     Text += "/R7/SetCenterPositionInZ 302.47 mm" + "\n\n"
                     Text += "#------------------#Ring 6 commands --------------------#" + "\n\n"
                     Text += "/R8/LightGuideLowerConeBackAngle 20 deg" + "\n"
@@ -169,7 +169,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/R8/QuartzSizeY 100 mm" + "\n"                
                     Text += "/R8/LightGuideQuartzToPMTOffset 0 mm" + "\n"
                     Text += "/R8/SetCenterPositionInX 0 mm" + "\n"
-                    Text += "/R8/SetCenterPositionInY 334 mm" + "\n"
+                    Text += "/R8/SetCenterPositionInY 334.77 mm" + "\n"
                     Text += "/R8/SetCenterPositionInZ 1.78 mm" + "\n\n"
                     Text += "#------------------#Scintillator commands ---------------#" + "\n\n"
                     Text += "/Scint/QuartzSizeZ 0.1 mm" + "\n"

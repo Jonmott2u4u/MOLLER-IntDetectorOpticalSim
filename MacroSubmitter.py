@@ -5,7 +5,7 @@ import time
 import numpy as np
 
 sourceDir = "./"
-datadir =  "R6ParamScan/"
+datadir =  "Macrofolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand
@@ -20,8 +20,8 @@ cut_step = 1
 #sa_stop = 0
 #sa_step = 5
 
-ID_start = 4    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 4
+ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 1
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
@@ -32,8 +32,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
         for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for det in np.arange(det_start,det_stop+det_step,det_step):
                 for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                    FileIDString = "_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)+"_ID"+str(id)
-                    rootfile = "_hR"+str(hr)+"_cut"+str(cut)+"_det"+str(det)+".root"
+                    FileIDString = "_hR"+str(hr)+"_cut"+str(round(cut,2))+"_det"+str(det)+"_ID"+str(id)
+                    rootfile = "_hR"+str(hr)+"_cut"+str(round(cut,2))+"_det"+str(det)+".root"
                     jobs="jobs"
                     outDir = "rootfiles/"
                     if not os.path.exists(jobs):
@@ -60,14 +60,13 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --constraint=el9\n")
                         jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
                         jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
-                        jsubf.write("#SBATCH --time=24:00:00\n")
+                        jsubf.write("#SBATCH --time=30:00:00\n")
                         jsubf.write("#SBATCH --nodes=1\n")
                         jsubf.write("#SBATCH --ntasks=1\n")
                         jsubf.write("#SBATCH --cpus-per-task=1\n")
-                        jsubf.write("#SBATCH --mem=80G\n")
+                        jsubf.write("#SBATCH --mem=16G\n")
                         #---General submission info---
                         jsubf.write("cd "+home+"\n")
                         jsubf.write("echo \"Current working directory is `pwd`\"\n")	
                         jsubf.write("./MOLLEROpt "+FileName+"\n")
-                        jsubf.write("mv "+rootfile+" "+outDir+rootfile+"\n")
                         print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")

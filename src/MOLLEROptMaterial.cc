@@ -1020,6 +1020,17 @@ void MOLLEROptMaterial::DefineMaterials()
    matAir->SetMaterialPropertiesTable(myMPT_Air);
 
    //====================================
+   //  Optical Properties of a Vacuum
+   //====================================
+   G4double  RefractiveIndex_Vacuum[nEntries];
+   for(int n = 0; n < nEntries; n++)
+     RefractiveIndex_Vacuum[n] = 1.0000;
+    
+   G4MaterialPropertiesTable* my_Vac = new G4MaterialPropertiesTable();
+   my_Vac->AddProperty("RINDEX", OptPar->EPhoton, RefractiveIndex_Vacuum, nEntries);
+   matVacuum->SetMaterialPropertiesTable(my_Vac);
+
+   //====================================
    //  Optical Properties of Fused Silica
    //====================================
    

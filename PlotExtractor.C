@@ -73,3 +73,31 @@ void quartzcut(){
         file->Close("R");
     }
 }
+
+void ring_hit_pos(){
+
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TFile *file;
+    TH1D *hst, *tmp;
+    int angle, file_open = 0;
+    int ring = 1;
+    char ext[] = "MOLLEROptData.MOLLERDetectorEvent.";
+
+    while(std::getline(rfiles, line)){
+        file = TFile::Open(line.data());
+        file_open++;
+        //energy = file_open*100;
+        angle = 05;
+        
+        TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+
+        TCanvas *canvas = new TCanvas("canvas","canvas");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",ext,ring,ext,ring),Form("%sR%iQuartzTrackHit == 1",ext,ring),"colz");
+        canvas->SaveAs(Form("plots/%i_deg_R%i.root",angle,ring));
+
+
+
+        file->Close("R");
+    }
+}

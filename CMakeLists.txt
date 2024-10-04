@@ -106,7 +106,7 @@ set(MOLLER_SCRIPTS
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
   data/cosmics.txt
-  R6ParamScan/placeholder.md
+  Macrofolder/placeholder.md
   rootfiles/placeholder.md
   plots/placeholder.md
   MacroGenerator.py
@@ -114,6 +114,7 @@ set(MOLLER_SCRIPTS
   MacroSubmitter.sh
   ExtractScanResults.C
   PlotExtractor.C
+  edge-finder.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

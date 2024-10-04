@@ -204,7 +204,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Generator/EventShift " + str(shift) + " mm" + "\n"
                     Text += "/Generator/SegmentHitRegion " + str(cut) + " mm" + "\n"
                     Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
-                    Text += "/Generator/BeamEnergyCut " + str(EnergyCut*cut) + "\n"
+                    #Text += "/Generator/BeamEnergyCut " + str(EnergyCut*cut) + "\n"
                     Text += "/Generator/BeamSolidAngle " + str(sa) + " degree" + "\n"
                     Text += "/Storage/DetectorFocus " + str(det) + "\n"
                     Text += "/RunAction/SetID " + str(id) + "\n"

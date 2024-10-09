@@ -304,6 +304,7 @@ void MOLLEROptMaterial::SetOpticalParameters()
   
 
   ifstream optPropFile("data/OpticalPropertiesInputData.txt");
+  ifstream optPropFile2("data/OpticalPropertiesInputData_Michael-Heraeus-UVS.txt");
   if(!optPropFile.is_open()){
     G4cout << "Cannot read optical input file named: OpticalPropertiesInputData.txt " << endl;
     G4cout << "The file must be located in the execution directory." << endl;
@@ -318,8 +319,10 @@ void MOLLEROptMaterial::SetOpticalParameters()
     G4cout << header << endl;
     
     int n = 0;
+    int n2 = 0;
 
     Double_t var[16];
+    Double_t var2[4];
 
     while(!optPropFile.eof()){
 
@@ -349,10 +352,10 @@ void MOLLEROptMaterial::SetOpticalParameters()
       OptPar->LGRefl45UVC[n] = var[4]; 
       OptPar->LGRefl60UVC[n] = var[5]; 
       OptPar->LGRefl90UVC[n] = var[6]; 
-      OptPar->LGRefl30UVS[n] = var[7]; 
-      OptPar->LGRefl45UVS[n] = var[8]; 
-      OptPar->LGRefl60UVS[n] = var[9]; 
-      OptPar->LGRefl90UVS[n] = var[10]; 
+      //OptPar->LGRefl30UVS[n] = var[7]; 
+      //OptPar->LGRefl45UVS[n] = var[8]; 
+      //OptPar->LGRefl60UVS[n] = var[9]; 
+      //OptPar->LGRefl90UVS[n] = var[10]; 
       OptPar->QAbs[n]     = var[11]*cm; 
       OptPar->QAbs70[n]   = var[12]*cm; 
       OptPar->QAbs170[n]  = var[13]*cm;
@@ -360,6 +363,39 @@ void MOLLEROptMaterial::SetOpticalParameters()
       OptPar->Cath_IIndR[n]  = var[15];
 
       n++;
+    }
+    //Because the UVS file is bugged, UVS data is loaded from a separate file
+    while(!optPropFile2.eof()){
+
+      optPropFile >> var[0]
+  		  >> var[1]
+  		  >> var[2]
+  		  >> var[3]
+  		  >> var[4]
+  		  >> var[5]
+  		  >> var[6]
+  		  >> var[7]
+  		  >> var[8] 
+  		  >> var[9] 
+  		  >> var[10] 
+  		  >> var[11];
+
+
+      //OptPar->EPhoton[n2]  = var[0]*eV;
+      //OptPar->QEff[n2]     = var[1]; 
+      //OptPar->QRefl[n2]    = var[2];
+      //OptPar->QTrans[n2]   = 1.0-var[2];
+      OptPar->LGRefl30UVS[n2] = var[3]; 
+      OptPar->LGRefl45UVS[n2] = var[4]; 
+      OptPar->LGRefl60UVS[n2] = var[5]; 
+      OptPar->LGRefl90UVS[n2] = var[6]; 
+      //OptPar->QAbs[n2]     = var[7]*cm; 
+      //OptPar->QAbs70[n2]   = var[8]*cm; 
+      //OptPar->QAbs170[n2]  = var[9]*cm;
+      //OptPar->Cath_RIndR[n2]  = var[10];
+      //OptPar->Cath_IIndR[n2]  = var[11];
+
+      n2++;
     }
   }
 

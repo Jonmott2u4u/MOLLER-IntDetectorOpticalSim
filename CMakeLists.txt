@@ -105,6 +105,7 @@ set(MOLLER_SCRIPTS
   macros/myRun.mac
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
+  data/OpticalPropertiesInputData_Michael-Heraeus-UVS.txt
   data/cosmics.txt
   Macrofolder/placeholder.md
   rootfiles/placeholder.md

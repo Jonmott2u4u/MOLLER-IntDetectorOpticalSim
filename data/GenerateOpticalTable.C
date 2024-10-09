@@ -12,15 +12,27 @@ TProfile *CathIndR = new TProfile("CathIndR","",100,1.38,6.21,0,4.0);
 TProfile *CathIndI = new TProfile("CathIndI","",100,1.38,6.21,0,4.0);
 
 //LG material reflectivity profiles
-TProfile *LG30Refl = new TProfile("LG30Refl","",100,1.38,6.21,0,1.0);
-TProfile *LG45Refl = new TProfile("LG45Refl","",100,1.38,6.21,0,1.0);
-TProfile *LG60Refl = new TProfile("LG60Refl","",100,1.38,6.21,0,1.0);
-TProfile *LG90Refl = new TProfile("LG90Refl","",100,1.38,6.21,0,1.0);
+//------UVC------//
+TProfile *LG30UVCRefl = new TProfile("LG30UVCRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG45UVCRefl = new TProfile("LG45UVCRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG60UVCRefl = new TProfile("LG60UVCRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG90UVCRefl = new TProfile("LG90UVCRefl","",100,1.38,6.21,0,1.0);
 
-TProfile *LG30Reflwv = new TProfile("LG30Reflwv","",750,150,900,0,1.0);
-TProfile *LG45Reflwv = new TProfile("LG45Reflwv","",750,150,900,0,1.0);
-TProfile *LG60Reflwv = new TProfile("LG60Reflwv","",750,150,900,0,1.0);
-TProfile *LG90Reflwv = new TProfile("LGReflwv","",750,150,900,0,1.0);
+TProfile *LG30UVCReflwv = new TProfile("LG30UVCReflwv","",750,150,900,0,1.0);
+TProfile *LG45UVCReflwv = new TProfile("LG45UVCReflwv","",750,150,900,0,1.0);
+TProfile *LG60UVCReflwv = new TProfile("LG60UVCReflwv","",750,150,900,0,1.0);
+TProfile *LG90UVCReflwv = new TProfile("LG90UVCReflwv","",750,150,900,0,1.0);
+
+//------UVS------//
+TProfile *LG30UVSRefl = new TProfile("LG30UVSRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG45UVSRefl = new TProfile("LG45UVSRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG60UVSRefl = new TProfile("LG60UVSRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG90UVSRefl = new TProfile("LG90UVSRefl","",100,1.38,6.21,0,1.0);
+
+TProfile *LG30UVSReflwv = new TProfile("LG30UVSReflwv","",750,150,900,0,1.0);
+TProfile *LG45UVSReflwv = new TProfile("LG45UVSReflwv","",750,150,900,0,1.0);
+TProfile *LG60UVSReflwv = new TProfile("LG60UVSReflwv","",750,150,900,0,1.0);
+TProfile *LG90UVSReflwv = new TProfile("LG90UVSReflwv","",750,150,900,0,1.0);
 
 //Quantum absorption profiles 
 TProfile *QAbsorption  = new TProfile("QAbsorption","",60,1.38,6.21,0,250.0);
@@ -29,10 +41,14 @@ TProfile *QAbsorption170  = new TProfile("QAbsorption170","",60,1.38,6.21,0,250.
 
 TGraph *PMTQEout = new TGraph(); 
 TGraph *QReflout = new TGraph(); 
-TGraph *LGR30out = new TGraph(); 
-TGraph *LGR45out = new TGraph(); 
-TGraph *LGR60out = new TGraph(); 
-TGraph *LGR90out = new TGraph(); 
+TGraph *LGR30UVCout = new TGraph(); 
+TGraph *LGR45UVCout = new TGraph(); 
+TGraph *LGR60UVCout = new TGraph(); 
+TGraph *LGR90UVCout = new TGraph(); 
+TGraph *LGR30UVSout = new TGraph(); 
+TGraph *LGR45UVSout = new TGraph(); 
+TGraph *LGR60UVSout = new TGraph(); 
+TGraph *LGR90UVSout = new TGraph();
 TGraph *Absout = new TGraph();   
 TGraph *Abs70out = new TGraph(); 
 TGraph *Abs170out = new TGraph();
@@ -159,74 +175,108 @@ void FillGuideReflectivity()
   ifstream iFile2("bogdanMylar_45.txt");
   ifstream iFile3("bogdanMylar_60.txt");
   ifstream iFile4("bogdanMylar.txt");*/
+  //UVC files
   ifstream iFile("filtered_UVC32deg.txt");
   ifstream iFile2("filtered_UVC45deg.txt");
   ifstream iFile3("filtered_UVC62deg.txt");
   ifstream iFile4("filtered_UVC90deg.txt");
+  ///UVS files
+  ifstream iFile5("uvs30.txt");
+  ifstream iFile6("uvs45.txt");
+  ifstream iFile7("uvs60.txt");
+  ifstream iFile8("uvs.txt");
 
   Float_t x,y,e;
   Int_t n = 0, bin;
-
   double wvl, eng, scale;
   
   while(!iFile.eof()){
-
     iFile >> x >> y >> e;
-
     wvl = x;
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG30Refl->Fill(eng,scale*y,1);
-    LG30Reflwv->Fill(x,scale*y,1);
-
+    LG30UVCRefl->Fill(eng,scale*y,1);
+    LG30UVCReflwv->Fill(x,scale*y,1);
   }
-
   iFile.close();
 
   while(!iFile2.eof()){
-
     iFile2 >> x >> y >> e;
-
     wvl = x;
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG45Refl->Fill(eng,scale*y,1);
-    LG45Reflwv->Fill(x,scale*y,1);
-
+    LG45UVCRefl->Fill(eng,scale*y,1);
+    LG45UVCReflwv->Fill(x,scale*y,1);
   }
-
   iFile2.close();
 
   while(!iFile3.eof()){
-    
     iFile3 >> x >> y >> e;
-    
     wvl = x;
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG60Refl->Fill(eng,scale*y,1);
-    LG60Reflwv->Fill(x,scale*y,1);
+    LG60UVCRefl->Fill(eng,scale*y,1);
+    LG60UVCReflwv->Fill(x,scale*y,1);
   }
-
   iFile3.close();
 
   while(!iFile4.eof()){
-    
     iFile4 >> x >> y >> e;
-    
     wvl = x;
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG90Refl->Fill(eng,scale*y,1);
-    LG90Reflwv->Fill(x,scale*y,1);
+    LG90UVCRefl->Fill(eng,scale*y,1);
+    LG90UVCReflwv->Fill(x,scale*y,1);
   }
-
   iFile4.close();
 
+  while(!iFile5.eof()){
+    iFile5 >> x >> y >> e;
+    wvl = x;
+    eng = 1242.0/wvl;
+    //scale = 0.95;
+    scale = 1.;
+    LG30UVSRefl->Fill(eng,scale*y,1);
+    LG30UVSReflwv->Fill(x,scale*y,1);
+  }
+  iFile5.close();
+
+  while(!iFile6.eof()){
+    iFile6 >> x >> y >> e;
+    wvl = x;
+    eng = 1242.0/wvl;
+    //scale = 0.95;
+    scale = 1.;
+    LG45UVSRefl->Fill(eng,scale*y,1);
+    LG45UVSReflwv->Fill(x,scale*y,1);
+  }
+  iFile6.close();
+
+  while(!iFile7.eof()){
+    iFile7 >> x >> y >> e;
+    wvl = x;
+    eng = 1242.0/wvl;
+    //scale = 0.95;
+    scale = 1.;
+    LG60UVSRefl->Fill(eng,scale*y,1);
+    LG60UVSReflwv->Fill(x,scale*y,1);
+  }
+  iFile7.close();
+
+  while(!iFile8.eof()){
+    iFile8 >> x >> y >> e;
+    wvl = x;
+    eng = 1242.0/wvl;
+    //scale = 0.95;
+    scale = 1.;
+    LG90UVSRefl->Fill(eng,scale*y,1);
+    LG90UVSReflwv->Fill(x,scale*y,1);
+  }
+  iFile8.close();
 }
 
 
@@ -352,20 +402,32 @@ void MakeTable()
 {
   PMTQEout->SetName("PMTQEout"); 
   QReflout->SetName("QReflout");  
-  LGR30out->SetName("LGR30out");  
-  LGR45out->SetName("LGR45out");  
-  LGR60out->SetName("LGR60out");  
-  LGR90out->SetName("LGR90out");  
+  LGR30UVCout->SetName("LGR30UVCout");  
+  LGR45UVCout->SetName("LGR45UVCout");  
+  LGR60UVCout->SetName("LGR60UVCout");  
+  LGR90UVCout->SetName("LGR90UVCout"); 
+  LGR30UVSout->SetName("LGR30UVSout");  
+  LGR45UVSout->SetName("LGR45UVSout");  
+  LGR60UVSout->SetName("LGR60UVSout");  
+  LGR90UVSout->SetName("LGR90UVSout"); 
   Absout->SetName("Absout");    
   Abs70out->SetName("Abs70out");  
   Abs170out->SetName("Abs170out");
 
-
+  TCanvas *c1 = new TCanvas("","",600,400);
+  c1->cd();
   FillGuideReflectivity();
-  LG90Refl->Draw();
-  LG60Refl->Draw("same");
-  LG45Refl->Draw("same");
-  LG30Refl->Draw("same");
+  LG90UVCRefl->Draw();
+  LG60UVCRefl->Draw("same");
+  LG45UVCRefl->Draw("same");
+  LG30UVCRefl->Draw("same");
+
+  TCanvas *c2 = new TCanvas("","",600,400);
+  c2->cd();
+  LG90UVSRefl->Draw();
+  LG60UVSRefl->Draw("same");
+  LG45UVSRefl->Draw("same");
+  LG30UVSRefl->Draw("same");
 
   FillPMTQE();
   PMTQE->Draw("same");
@@ -375,38 +437,51 @@ void MakeTable()
   
   FillQAbs();
   
-  TCanvas *c2 = new TCanvas("","",600,400);
-  c2->cd();
-  LG90Reflwv->Draw();
-  LG60Reflwv->Draw("same");
-  LG45Reflwv->Draw("same");
-  LG30Reflwv->Draw("same");
-
   TCanvas *c3 = new TCanvas("","",600,400);
   c3->cd();
+  LG90UVCReflwv->Draw();
+  LG60UVCReflwv->Draw("same");
+  LG45UVCReflwv->Draw("same");
+  LG30UVCReflwv->Draw("same");
+
+  TCanvas *c4 = new TCanvas("","",600,400);
+  c4->cd();
+  LG90UVSReflwv->Draw();
+  LG60UVSReflwv->Draw("same");
+  LG45UVSReflwv->Draw("same");
+  LG30UVSReflwv->Draw("same");
+
+  TCanvas *c5 = new TCanvas("","",600,400);
+  c5->cd();
   QAbsorption->Draw();
   QAbsorption70->Draw("same");
   QAbsorption170->Draw("same");  
 
   FillCathodeIndexOfRefraction();
-  TCanvas *c8 = new TCanvas("","",600,400);
-  c8->cd();
+  TCanvas *c6 = new TCanvas("","",600,400);
+  c6->cd();
   CathIndR->Draw();
   CathIndI->Draw("same");
   
   ofstream oFile("OpticalPropertiesInputData.txt");
 
-  oFile << "E_ph " << "QE " << "QRefl " << "LGRefl30 " << "LGRefl45 " << "LGRefl60 " << "LGRefl90 " << "QAbs " << "QAbs(70 MRad) " <<  "QAbs(170 MRad) " << "CathIndR " << "CathIndI " << '\n';
+  oFile << "E_ph " << "QE " << "QRefl " << "LGRefl30_UVC " << "LGRefl45_UVC " << "LGRefl60_UVC " << "LGRefl90_UVC " << "LGRefl30_UVS " << "LGRefl45_UVS " << "LGRefl60_UVS " << "LGRefl90_UVS " << "QAbs " << "QAbs(70 MRad) " <<  "QAbs(170 MRad) " << "CathIndR " << "CathIndI " << '\n';
 
   for(int n = 0; n < 58; n++){
 
 
     PMTQEout->SetPoint(n,PhotonEnergy[n],PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])));
     QReflout->SetPoint(n,PhotonEnergy[n],QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])));
-    LGR30out->SetPoint(n,PhotonEnergy[n],LG30Refl->GetBinContent(LG30Refl->FindBin(PhotonEnergy[n])));
-    LGR45out->SetPoint(n,PhotonEnergy[n],LG45Refl->GetBinContent(LG45Refl->FindBin(PhotonEnergy[n])));
-    LGR60out->SetPoint(n,PhotonEnergy[n],LG60Refl->GetBinContent(LG60Refl->FindBin(PhotonEnergy[n])));
-    LGR90out->SetPoint(n,PhotonEnergy[n],LG90Refl->GetBinContent(LG90Refl->FindBin(PhotonEnergy[n])));
+    //UVC reflectivity
+    LGR30UVCout->SetPoint(n,PhotonEnergy[n],LG30UVCRefl->GetBinContent(LG30UVCRefl->FindBin(PhotonEnergy[n])));
+    LGR45UVCout->SetPoint(n,PhotonEnergy[n],LG45UVCRefl->GetBinContent(LG45UVCRefl->FindBin(PhotonEnergy[n])));
+    LGR60UVCout->SetPoint(n,PhotonEnergy[n],LG60UVCRefl->GetBinContent(LG60UVCRefl->FindBin(PhotonEnergy[n])));
+    LGR90UVCout->SetPoint(n,PhotonEnergy[n],LG90UVCRefl->GetBinContent(LG90UVCRefl->FindBin(PhotonEnergy[n])));
+    //UVS reflectivity
+    LGR30UVSout->SetPoint(n,PhotonEnergy[n],LG30UVSRefl->GetBinContent(LG30UVSRefl->FindBin(PhotonEnergy[n])));
+    LGR45UVSout->SetPoint(n,PhotonEnergy[n],LG45UVSRefl->GetBinContent(LG45UVSRefl->FindBin(PhotonEnergy[n])));
+    LGR60UVSout->SetPoint(n,PhotonEnergy[n],LG60UVSRefl->GetBinContent(LG60UVSRefl->FindBin(PhotonEnergy[n])));
+    LGR90UVSout->SetPoint(n,PhotonEnergy[n],LG90UVSRefl->GetBinContent(LG90UVSRefl->FindBin(PhotonEnergy[n])));
     Absout->SetPoint(n,PhotonEnergy[n],QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])));
     Abs70out->SetPoint(n,PhotonEnergy[n],QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])));
     Abs170out->SetPoint(n,PhotonEnergy[n],QAbsorption170->GetBinContent(QAbsorption170->FindBin(PhotonEnergy[n])));
@@ -415,36 +490,49 @@ void MakeTable()
     oFile << PhotonEnergy[n] << ' '
 	  << PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])) << ' '
 	  << QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])) << ' '
-	  << LG30Refl->GetBinContent(LG30Refl->FindBin(PhotonEnergy[n])) << ' '    
-      	  << LG45Refl->GetBinContent(LG45Refl->FindBin(PhotonEnergy[n])) << ' '     
-	  << LG60Refl->GetBinContent(LG60Refl->FindBin(PhotonEnergy[n])) << ' '     
-	  << LG90Refl->GetBinContent(LG90Refl->FindBin(PhotonEnergy[n])) << ' '     
+    //UVC reflectivity
+	  << LG30UVCRefl->GetBinContent(LG30UVCRefl->FindBin(PhotonEnergy[n])) << ' '    
+    << LG45UVCRefl->GetBinContent(LG45UVCRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG60UVCRefl->GetBinContent(LG60UVCRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG90UVCRefl->GetBinContent(LG90UVCRefl->FindBin(PhotonEnergy[n])) << ' '   
+    ///UVS reflectivity  
+    << LG30UVSRefl->GetBinContent(LG30UVSRefl->FindBin(PhotonEnergy[n])) << ' '    
+    << LG45UVSRefl->GetBinContent(LG45UVSRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG60UVSRefl->GetBinContent(LG60UVSRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG90UVSRefl->GetBinContent(LG90UVSRefl->FindBin(PhotonEnergy[n])) << ' '     
 	  // << QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])) << ' '     
 	  << AbsLPre->Eval(PhotonEnergy[n]) << ' '
 	  << QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])) << ' ' 
-      	  << QAbsorption170->GetBinContent(QAbsorption170->FindBin(PhotonEnergy[n]))  << ' '
+    << QAbsorption170->GetBinContent(QAbsorption170->FindBin(PhotonEnergy[n]))  << ' '
 	  << CathIndR->GetBinContent(CathIndR->FindBin(PhotonEnergy[n])) << ' '
 	  << CathIndI->GetBinContent(CathIndI->FindBin(PhotonEnergy[n])) << '\n';
   }
   oFile.close();
 
-  TCanvas *c4 = new TCanvas("","",600,400);
-  c4->cd();
-  PMTQEout->Draw("ap");
-
-  TCanvas *c5 = new TCanvas("","",600,400);
-  c5->cd();
-  QReflout->Draw("ap");
-
-  TCanvas *c6 = new TCanvas("","",600,400);
-  c6->cd();
-  LGR30out->Draw("ap");
-  LGR45out->Draw("samep");
-  LGR60out->Draw("samep");
-  LGR90out->Draw("samep");
-
   TCanvas *c7 = new TCanvas("","",600,400);
   c7->cd();
+  PMTQEout->Draw("ap");
+
+  TCanvas *c8 = new TCanvas("","",600,400);
+  c8->cd();
+  QReflout->Draw("ap");
+
+  TCanvas *c9 = new TCanvas("","",600,400);
+  c9->cd();
+  LGR30UVCout->Draw("ap");
+  LGR45UVCout->Draw("samep");
+  LGR60UVCout->Draw("samep");
+  LGR90UVCout->Draw("AP");
+
+  TCanvas *c10 = new TCanvas("","",600,400);
+  c10->cd();
+  LGR30UVSout->Draw("ap");
+  LGR45UVSout->Draw("samep");
+  LGR60UVSout->Draw("samep");
+  LGR90UVSout->Draw("AP");
+
+  TCanvas *c11 = new TCanvas("","",600,400);
+  c11->cd();
   Absout->Draw("ap");
   Abs70out->Draw("samep");
   Abs170out->Draw("samep");  

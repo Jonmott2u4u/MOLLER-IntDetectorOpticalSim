@@ -15,7 +15,8 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   DetType9 = type10;
   DetType9 = type11;
   Materials = mat;
-  DetMaterial = Materials->GetMaterial("Vacuum");  
+  //DetMaterial = Materials->GetMaterial("Vacuum");  
+  DetMaterial = Materials->GetMaterial("Air");
 
   Quartz1 = new  MOLLEROptDetectorQuartz(TrackingReadout,type1,Materials);
   LightGuide1 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type1,Materials);

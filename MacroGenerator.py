@@ -25,8 +25,8 @@ shift = 0     #Shifts the particle spawn location by that much. What this affect
 #sa_step = 5
 sa = 0.0872665  #Value of sa is hard set rather than looped over. Done so that it could be a double with units
 
-tilt = 0.0        #Tilts the beam from the z-axis (units of degrees, rotation about y-axis))
-tilt_dir = 00.0    #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
+tilt = 2.0        #Tilts the beam from the z-axis (units of degrees, rotation about y-axis))
+tilt_dir = 90.0    #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 10   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand

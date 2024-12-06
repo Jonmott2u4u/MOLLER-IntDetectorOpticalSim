@@ -30,6 +30,8 @@ private:
   G4UIcmdWithAnInteger       *BeamThetaCmd;
   G4UIcmdWithAnInteger       *BeamPhiCmd;
   G4UIcmdWithADoubleAndUnit  *BeamSolidAngleCmd;
+  G4UIcmdWithADoubleAndUnit  *BeamTiltAngleCmd;
+  G4UIcmdWithADoubleAndUnit  *BeamTiltDirectionCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCutCmd;
   G4UIcmdWithADoubleAndUnit  *EventShiftCmd;

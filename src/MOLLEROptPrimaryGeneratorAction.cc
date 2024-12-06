@@ -252,19 +252,41 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1423.94*TMath::Sin(6*pi/180);
   }
 
-  G4double sa_rad = sa*pi/180.;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
+  //G4double tilt_rad = tilt*pi/180.;
+  //G4double tilt_dir_rad = tilt_dir*pi/180.;
+  G4double tilt_rad = tilt; //Global tilt applied to the beam. tilt is already converted to radians due to an internal Geant4 process
+  G4double tilt_dir_rad = tilt_dir; //Sets the direction of the beam tilt. tilt_dir is already converted to radians due to an internal Geant4 process
+  G4double cosTilt = TMath::Cos(tilt_rad);
+  G4double sinTilt = TMath::Sin(tilt_rad);
+  G4double cosTilt_dir = TMath::Cos(tilt_dir_rad); //Currently disabled
+  G4double sinTilt_dir = TMath::Sin(tilt_dir_rad); //
+
+  //G4double sa_rad = sa*pi/180.;
+  G4double sa_rad = sa;   //Angular acceptance of the beam in radians. sa is already converted to radians due to an internal Geant4 process
   G4double Phi = 2*pi*G4UniformRand();
   G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   G4double ThetaInc = G4UniformRand();
   while (ThetaInc > (cosTheta*cosTheta)){
     cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   }
-  //G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); 
+
   G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
-  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
+  G4double p_x = sinTheta*TMath::Cos(Phi); //Randomizes the angular spread of the beam within +- sa
+  G4double p_y = sinTheta*TMath::Sin(Phi);
+  G4double p_z = cosTheta;
+
+  //Rotating the beam about the x-axis
+  //G4double p_x_tilt = p_x;
+  //G4double p_y_tilt = p_y*cosTilt - p_z*sinTilt;
+  //G4double p_z_tilt = p_y*sinTilt + p_z*cosTilt;
+  //Rotates about y then z axis
+  G4double p_x_tilt = cosTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*sinTilt_dir;
+  G4double p_y_tilt = sinTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*cosTilt_dir;
+  G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
 
   particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -390*mm));
-  particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
+  //particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
+  particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************

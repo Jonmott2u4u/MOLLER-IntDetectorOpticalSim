@@ -30,6 +30,8 @@ public:
   void SetBeamTheta(G4int reg) {theta = reg;};
   void SetBeamPhi(G4int reg) {phi = reg;};
   void SetBeamSolidAngle(G4double reg) {sa = reg;};
+  void SetBeamTiltAngle(G4double reg) {tilt = reg;};
+  void SetBeamTiltDirection(G4double reg) {tilt_dir = reg;};
   void SetBeamEnergy(G4int reg) {Energy = reg;};
   void SetBeamEnergyCut(G4int reg) {EnergyCut = reg;};
     
@@ -42,6 +44,8 @@ private:
   G4int theta;
   G4int phi;
   G4double sa;
+  G4double tilt;
+  G4double tilt_dir;
   G4int Energy;
   G4int EnergyCut;
   G4double shift;

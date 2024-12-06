@@ -75,6 +75,22 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamSolidAngleCmd->SetDefaultUnit("degree");
   BeamSolidAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  BeamTiltAngleCmd = new G4UIcmdWithADoubleAndUnit("/Generator/BeamTiltAngle",this);
+  BeamTiltAngleCmd->SetGuidance("Set tilt of beam from z-axis in degrees. Maximum value of 90");
+  BeamTiltAngleCmd->SetParameterName("BeamTiltAngle",true);
+  BeamTiltAngleCmd->SetDefaultValue(0);
+  BeamTiltAngleCmd->SetRange("BeamTiltAngle<=900");
+  BeamTiltAngleCmd->SetDefaultUnit("degree");
+  BeamTiltAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  BeamTiltDirectionCmd = new G4UIcmdWithADoubleAndUnit("/Generator/BeamTiltDirection",this);
+  BeamTiltDirectionCmd->SetGuidance("Set direction of beam tilt around z-axis. 0 is along x-axis, 90 along y-axis");
+  BeamTiltDirectionCmd->SetParameterName("BeamTiltDir",true);
+  BeamTiltDirectionCmd->SetDefaultValue(0);
+  BeamTiltDirectionCmd->SetRange("BeamTiltDir<=360");
+  BeamTiltDirectionCmd->SetDefaultUnit("degree");
+  BeamTiltDirectionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   BeamEnergyCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergy",this);
   BeamEnergyCmd->SetGuidance("Set Energy of beam in units of MeV.");
   BeamEnergyCmd->SetParameterName("BeamEnergy",true);
@@ -127,6 +143,12 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
 
   if( command == BeamSolidAngleCmd )
     { pPrimaryGeneratorAction->SetBeamSolidAngle(BeamSolidAngleCmd->GetNewDoubleValue(newValue));}
+
+  if( command == BeamTiltAngleCmd )
+    { pPrimaryGeneratorAction->SetBeamTiltAngle(BeamTiltAngleCmd->GetNewDoubleValue(newValue));}
+
+  if( command == BeamTiltDirectionCmd )
+    { pPrimaryGeneratorAction->SetBeamTiltDirection(BeamTiltDirectionCmd->GetNewDoubleValue(newValue));}
 
   if( command == BeamEnergyCmd )
     { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue));}

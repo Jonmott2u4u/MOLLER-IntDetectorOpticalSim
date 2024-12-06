@@ -20,6 +20,14 @@ NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000] 
 #ScintZPos = [1911,1643,1376,1108,946,515]
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
+#sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
+#sa_stop = 0
+#sa_step = 5
+sa = 0.0872665  #Value of sa is hard set rather than looped over. Done so that it could be a double with units
+
+tilt = 0.0        #Tilts the beam from the z-axis (units of degrees, rotation about y-axis))
+tilt_dir = 00.0    #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
+
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 10   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = Spread, 10 = Segment Scan, 11 = Cosmic Stand
 hr_stop = 10
@@ -28,11 +36,6 @@ hr_step = 1     #Increments over each value of hr
 cut_start = -9  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
 cut_stop = 550   #Currently repurposed to move scintillator around
 cut_step = 1
-
-#sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator
-#sa_stop = 0
-#sa_step = 5
-sa = 5 #Value of sa is hard set rather than looped over. Done so that it could be a double with units
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 ID_stop = 1
@@ -206,6 +209,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
                     #Text += "/Generator/BeamEnergyCut " + str(EnergyCut*cut) + "\n"
                     Text += "/Generator/BeamSolidAngle " + str(sa) + " degree" + "\n"
+                    Text += "/Generator/BeamTiltAngle " + str(tilt) + " degree" + "\n"
+                    Text += "/Generator/BeamTiltDirection " + str(tilt_dir) + " degree" + "\n"
                     Text += "/Storage/DetectorFocus " + str(det) + "\n"
                     Text += "/RunAction/SetID " + str(id) + "\n"
                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"

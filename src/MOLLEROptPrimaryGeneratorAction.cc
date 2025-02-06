@@ -293,7 +293,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4int muon_energy;
   G4int pass = 0;
   FILE *fptr;
-  while(pass == 0){
+  while((pass == 0) && (PrimaryParticle == 2)){
     G4double rand_int = G4UniformRand()*342800; //342800 is from the length of the file cosmics.txt
     rand_int = rand_int/1;
     fptr = fopen("data/cosmics.txt", "r");

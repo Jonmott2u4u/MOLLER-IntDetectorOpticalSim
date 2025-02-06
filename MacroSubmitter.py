@@ -8,7 +8,7 @@ sourceDir = "./"
 datadir =  "Macrofolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-source /etc/skel/.bashrc
+#source /etc/skel/.bashrc
 
 hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand
 hr_stop = 10
@@ -71,12 +71,12 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                             jsubf.write("#SBATCH --nodes=1\n")
                             jsubf.write("#SBATCH --ntasks=1\n")
                             jsubf.write("#SBATCH --cpus-per-task=1\n")
-                            jsubf.write("#SBATCH --mem=16G\n")
+                            jsubf.write("#SBATCH --mem=2G\n") #Uses 16 for a 10k stat run. Set to 2G for testing purposes
                             #---General submission info---
                             jsubf.write("cd "+home+"\n")
                             jsubf.write("echo \"Current working directory is `pwd`\"\n")
-                            jsubf.write("module reset \n")
-                            jsubf.write("use /group/halla/modulefiles \n")
-                            jsubf.write("module load root/6.30.04 geant4/11.2.1 \n")
+                            #jsubf.write("module reset \n")
+                            #jsubf.write("module use /group/halla/modulefiles \n")
+                            #jsubf.write("module load root/6.30.04 geant4/11.2.1 \n")
                             jsubf.write("./MOLLEROpt "+FileName+"\n")
                             print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")

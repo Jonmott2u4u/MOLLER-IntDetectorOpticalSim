@@ -9,9 +9,16 @@ Do mkdir build, cd build, cmake .., and then make -j16 (-j# signifies the # of c
 To build and run jobs on the ifarm you should do the following instead:
 
 mkdir build; cd build
-exec bash;env -i bash;source /etc/skel/.bashrc;export TERM=xterm
-module reset;module use /group/halla/modulefiles;module load root/6.30.04 geant4/11.2.1;export G4LEDATA=$GEANT4_DATA_DIR/G4EMLOW8.5
-cmake ..;make -j20
+exec bash
+env -i bash
+source /etc/skel/.bashrc
+export TERM=xterm
+module reset
+module use /group/halla/modulefiles
+module load root/6.30.04 geant4/11.2.1
+export G4LEDATA=$GEANT4_DATA_DIR/G4EMLOW8.5
+cmake ..
+make -j20
 
 At this point you can exit bash to use the software
 

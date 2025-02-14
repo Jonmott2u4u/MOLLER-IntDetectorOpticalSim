@@ -15,7 +15,7 @@ Particle = 1    #Sets the initial particle type. 1 for electrons, 2 for muons
 Energy = 850   #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
-NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,100] #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,100,100] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 #ScintYPos = [-380,-320,-245,-140,30,150]
 #ScintZPos = [1911,1643,1376,1108,946,515]
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
@@ -219,6 +219,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/RunAction/SetID " + str(id) + "\n"
                         Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                         Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
+                        Text += "/vis/disable \n"
                         Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
                         text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
             

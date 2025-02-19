@@ -261,8 +261,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double cosTilt_dir = TMath::Cos(tilt_dir_rad); //Currently disabled
   G4double sinTilt_dir = TMath::Sin(tilt_dir_rad); //
 
-  //G4double sa_rad = sa*pi/180.;
-  G4double sa_rad = sa;   //Angular acceptance of the beam in radians. sa is already converted to radians due to an internal Geant4 process
+  //G4double sa_rad = sa*pi/180.; //converted from degrees to radians within the main branch of MOLLEROpt, but not here
+  G4double sa_rad = sa;           //Angular acceptance of the beam in radians. sa is already converted to radians due to an internal process
   G4double Phi = 2*pi*G4UniformRand();
   G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   G4double ThetaInc = G4UniformRand();
@@ -290,7 +290,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************
-  G4int muon_energy;
+  G4int muon_energy = 0;
   G4int pass = 0;
   FILE *fptr;
   while((pass == 0) && (PrimaryParticle == 2)){
@@ -324,6 +324,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   // myUserInfo->SetPrimaryEventNumber( (G4int) myEventCounter );
   
-  if(EventCounter%100 == 0)
+  if(EventCounter%100 == 0){
     G4cout << "Capture Event# " << EventCounter << G4endl;
+    //G4cout << "Solid angle# " << sa << G4endl;
+  }
 }

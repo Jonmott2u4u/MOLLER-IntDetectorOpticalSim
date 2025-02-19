@@ -8,7 +8,7 @@ import numpy as np
 #are connected to the beam's controls (angle of incidence, spread, hit region, etc)
 
 runscript = "#!/bin/bash\n\n"           
-datadir =  "R6ParamScan/"                   #Location where macros are stored after generation
+datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
 Particle = 2    #Sets the initial particle type. 1 for electrons, 2 for muons
@@ -37,6 +37,9 @@ ID_step = 1
 det_start = 9    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
 det_stop = 9
 det_step = 1
+
+#The below positions should be reviewed. It is possible they are off by up to a centimeter in z-pos and a few mm in y-pos
+#The impact from this is likely insignificant, but it is still worth checking
 
 text_root = ""
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
@@ -207,9 +210,10 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/RunAction/SetID " + str(id) + "\n"
                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
+
                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
                     text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
-        
+                    Text += "/vis/disable \n"
                     FileName = OutputFilePrefix + FileIDString + "_ID" + str(id) + ".mac"
                     fout = open(datadir+FileName, "w")
                     fout.write(Text)

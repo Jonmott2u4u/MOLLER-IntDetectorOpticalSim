@@ -5,7 +5,7 @@ import time
 import numpy as np
 
 sourceDir = "./"
-datadir =  "R6ParamScan/"
+datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 hr_start = 11    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand
@@ -64,10 +64,15 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --nodes=1\n")
                         jsubf.write("#SBATCH --ntasks=1\n")
                         jsubf.write("#SBATCH --cpus-per-task=1\n")
-                        jsubf.write("#SBATCH --mem=80G\n")
+                        jsubf.write("#SBATCH --mem=2G\n")
                         #---General submission info---
-                        jsubf.write("cd "+home+"\n")
                         jsubf.write("echo \"Current working directory is `pwd`\"\n")	
+                        jsubf.write("source /etc/skel/.bashrc \n")
+                        jsubf.write("module reset \n")
+                        jsubf.write("module use /group/halla/modulefiles \n")
+                        jsubf.write("module load root/6.30.04 geant4/11.2.1 \n")
+                        jsubf.write("export G4LEDATA=$GEANT4_DATA_DIR/G4EMLOW8.5 \n")
+                        jsubf.write("env \n")
+                        jsubf.write("ldd ./MOLLEROpt \n")
                         jsubf.write("./MOLLEROpt "+FileName+"\n")
-                        jsubf.write("mv "+rootfile+" "+outDir+rootfile+"\n")
                         print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")

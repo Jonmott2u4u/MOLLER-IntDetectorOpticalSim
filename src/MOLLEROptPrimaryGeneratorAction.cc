@@ -16,9 +16,10 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   Construction = Constr;
 
-  G4ParticleDefinition* particle = G4Electron::Definition();;
-  if (PrimaryParticle == 1) particle = G4Electron::Definition();
-  if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
+  //G4ParticleDefinition* particle = G4Electron::Definition();
+  G4ParticleDefinition* particle = G4MuonMinus::Definition();
+  /*if (PrimaryParticle == 1) particle = G4Electron::Definition();
+  if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();*/
   particleGun->SetParticleDefinition(particle);
 }
 
@@ -251,24 +252,26 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
   G4double Phi = 2*pi*G4UniformRand();
-  G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
+  G4double cosTheta = TMath::Cos(G4UniformRand()*sa_rad); //Makes the angle of the beam random within +- sa
   G4double ThetaInc = G4UniformRand();
   while (ThetaInc > (cosTheta*cosTheta)){
     cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   }
   //G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); 
   G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
-  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
+  G4double p_x = sinTheta*TMath::Cos(Phi);
+  G4double p_y = sinTheta*TMath::Sin(Phi);
+  G4double p_z = cosTheta;
 
   particleGun->SetParticlePosition(G4ThreeVector(x*mm, y*mm, -365*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************
-  G4int muon_energy;
+  G4int muon_energy = 0;
   G4int pass = 0;
   FILE *fptr;
-  while(pass == 0){
+  while((pass == 0) && (PrimaryParticle == 2)){
     G4double rand_int = G4UniformRand()*342800; //342800 is from the length of the file cosmics.txt
     rand_int = rand_int/1;
     fptr = fopen("data/cosmics.txt", "r");
@@ -299,6 +302,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   // myUserInfo->SetPrimaryEventNumber( (G4int) myEventCounter );
   
-  if(EventCounter%100 == 0)
+  if(EventCounter%100 == 0){
     G4cout << "Capture Event# " << EventCounter << G4endl;
+    //G4cout << "Solid angle# " << sa << G4endl;
+  }
 }

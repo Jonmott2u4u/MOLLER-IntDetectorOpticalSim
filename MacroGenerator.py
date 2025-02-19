@@ -188,6 +188,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/RunAction/SetID " + str(id) + "\n"
                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
+                    Text += "/vis/disable \n"
                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
                     text_root += "rootfiles/" + FileIDString + "_000" + str(id) + ".root" + "\n"
                     FileName = OutputFilePrefix + FileIDString + "_ID" + str(id) + ".mac"

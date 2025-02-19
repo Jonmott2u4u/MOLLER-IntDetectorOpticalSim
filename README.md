@@ -6,6 +6,22 @@ MOLLEROpt generates a root file after being fed a macro filled with geometry par
 
 Do mkdir build, cd build, cmake .., and then make -j16 (-j# signifies the # of cores you wish to use)
 
+To build and run jobs on the ifarm you should do the following instead:
+
+mkdir build; cd build
+exec bash
+env -i bash
+source /etc/skel/.bashrc
+export TERM=xterm
+module reset
+module use /group/halla/modulefiles
+module load root/6.30.04 geant4/11.2.1
+export G4LEDATA=$GEANT4_DATA_DIR/G4EMLOW8.5
+cmake ..
+make -j20
+
+At this point you can exit bash to use the software
+
 #TO RUN INDIVIDUAL MACROS
 
 In the build directory, do ./MOLLEROpt, then in the GUI type /control/execute macros/"macro-name". You can also do ./MOLLEROpt "path/macro-name" from the terminal
@@ -50,7 +66,7 @@ The following versions of ROOT and G4 are used:
 * ROOT 6.22/08 and beyond, with all required and recommended support programs
 
 The following versions of Geant4 are usable
-* Geant4 10.06.03 -> 11.00.02. Other Geant4 11 versions should work
+* Geant4 10.6.3 -> 11.2.1. Other Geant4 11 versions should work, but problems have been seen with 10.7 versions
 
 
 

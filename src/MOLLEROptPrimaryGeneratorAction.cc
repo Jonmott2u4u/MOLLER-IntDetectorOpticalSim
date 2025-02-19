@@ -103,45 +103,55 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   while (ThetaInc > (cosTheta*cosTheta)){
     cosTheta = TMath::Cos(G4UniformRand()*sa_rad);
   }
+
   G4double sinTheta = std::sqrt(1-cosTheta*cosTheta);
-  //G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
-  //G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
-  //G4double p_z = TMath::Cos(theta*pi/180);			     //Allows you to assign angles to the beam using macros. Replaced by sa
-  G4double p_x = sinTheta*TMath::Cos(Phi); G4double p_y = sinTheta*TMath::Sin(Phi); G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
+  G4double p_x = sinTheta*TMath::Cos(Phi);
+  G4double p_y = sinTheta*TMath::Sin(Phi);
+  G4double p_z = cosTheta; //Makes the angle of the beam random within +- sa
 
 
   particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //Following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
+  //Currently disabled until a better system is created
   //****************************************
-  G4double rand_int = G4UniformRand()*342800;
-  rand_int = rand_int/1;
+  /*G4int muon_energy;
+  G4int pass = 0;
+  G4int PrimaryParticle = 1; //Set to 2 if using muons
   FILE *fptr;
-  while (rand_int < 15457){//Applies an energy cutoff of 100 MeV & below @ 15457
-    rand_int = G4UniformRand()*342800;
-  }
-  fptr = fopen("data/cosmics.txt", "r");
-  G4int inc = 1;
-  G4int energy = getw(fptr);//Distinct from Energy variable
-  while (inc < rand_int){
-    energy = getw(fptr);
-    inc++;
-  }
+  while((pass == 0) && (PrimaryParticle == 2)){
+    G4double rand_int = G4UniformRand()*342800; //342800 is from the length of the file cosmics.txt
+    rand_int = rand_int/1;
+    fptr = fopen("data/cosmics.txt", "r");
+    muon_energy = getw(fptr);
+    G4int inc = 1;
+    pass = 1;
+    while (inc < rand_int){
+      muon_energy = getw(fptr);
+      inc++;
+    }
+    if (muon_energy <= EnergyCut){
+      pass = 0;
+    }
+    fclose(fptr);
+  }*/
+
   //G4cout << "Muon energy is: " << energy << " MeV \n" << G4endl;
   //G4cout << "Random integer was: " << rand_int << "\n" << G4endl;
   //G4cout << "\n Increment reached: " << inc << "\n" << G4endl;
-  fclose(fptr);
   //*****************************************
 
   particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
-  //particleGun->SetParticleEnergy(energy*MeV);// Uses energy following sea level cosmic muon distribution 
+  //particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution 
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;
 
   // myUserInfo->SetPrimaryEventNumber( (G4int) myEventCounter );
   
-  if(EventCounter%100 == 0)
+  if(EventCounter%100 == 0){
     G4cout << "Capture Event# " << EventCounter << G4endl;
+    //G4cout << "Solid angle# " << sa_rad << G4endl;
+  }
 }

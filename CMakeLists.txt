@@ -21,7 +21,7 @@ if(WITH_GEANT4_UIVIS)
 else()
   find_package(Geant4 REQUIRED)
 endif()
-set(CMAKE_CXX_FLAGS "-g -Wall -pg -Wno-shadow -Wno-pedantic -Wno-unused-parameter -Wno-overloaded-virtual -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -Wno-switch")
+set(CMAKE_CXX_FLAGS "-g -Wall -Wno-shadow -Wno-pedantic -Wno-unused-parameter -Wno-overloaded-virtual -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -Wno-switch")
 
 #----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
@@ -106,7 +106,7 @@ set(MOLLER_SCRIPTS
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
   data/cosmics.txt
-  R6ParamScan/placeholder.md
+  MacroFolder/placeholder.md
   rootfiles/placeholder.md
   plots/placeholder.md
   MacroGenerator.py

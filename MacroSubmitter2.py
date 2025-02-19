@@ -5,7 +5,7 @@ import time
 import numpy as np
 
 sourceDir = "./"
-datadir =  "R6ParamScan/"
+datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 hr_start = 5    #See macros for hr info

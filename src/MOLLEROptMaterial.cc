@@ -319,10 +319,7 @@ void MOLLEROptMaterial::SetOpticalParameters()
     G4cout << header << endl;
     
     int n = 0;
-    int n2 = 0;
-
     Double_t var[16];
-    Double_t var2[12];
 
     while(!optPropFile.eof()){
 
@@ -401,14 +398,12 @@ void MOLLEROptMaterial::SetOpticalParameters()
     LGRefl45UVS->SetBinContent(LGRefl45UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45UVS[k]);
     LGRefl60UVS->SetBinContent(LGRefl60UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60UVS[k]);
     LGRefl90UVS->SetBinContent(LGRefl90UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90UVS[k]);
-    
     CathIndR->SetBinContent(CathIndR->FindBin(OptPar->EPhoton[k]/eV),OptPar->Cath_RIndR[k]);
     CathIndI->SetBinContent(CathIndI->FindBin(OptPar->EPhoton[k]/eV),OptPar->Cath_IIndR[k]);
   }  										 
 										 
   TrackingReadout->StoreGuideOpticalPlots(LGRefl30UVC,LGRefl45UVC,LGRefl60UVC,LGRefl90UVC,LGRefl30UVS,LGRefl45UVS,LGRefl60UVS,LGRefl90UVS);
   TrackingReadout->StoreCathodeOpticalPlots(CathIndR, CathIndI);
-
   TrackingReadout->SetOpticalParameters(OptPar);
 }
 

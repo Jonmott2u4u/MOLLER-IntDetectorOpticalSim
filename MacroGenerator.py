@@ -8,7 +8,7 @@ import numpy as np
 #are connected to the beam's controls (angle of incidence, spread, hit region, etc)
 
 runscript = "#!/bin/bash\n\n"           
-datadir =  "R6ParamScan/"                   #Location where macros are stored after generation
+datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
 Particle = 2    #Sets the initial particle type. 1 for electrons, 2 for muons

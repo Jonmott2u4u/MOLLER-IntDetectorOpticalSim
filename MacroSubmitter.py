@@ -5,7 +5,7 @@ import time
 import numpy as np
 
 sourceDir = "./"
-datadir =  "R6ParamScan/"
+datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 hr_start = 11    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand

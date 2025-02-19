@@ -68,11 +68,11 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                             jsubf.write("#SBATCH --constraint=el9\n")
                             jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
                             jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
-                            jsubf.write("#SBATCH --time=1:00:00\n") #Normally 30 for 10k events
+                            jsubf.write("#SBATCH --time=24:00:00\n") #Normally 30 for 10k events
                             jsubf.write("#SBATCH --nodes=1\n")
                             jsubf.write("#SBATCH --ntasks=1\n")
                             jsubf.write("#SBATCH --cpus-per-task=1\n")
-                            jsubf.write("#SBATCH --mem=4G\n")
+                            jsubf.write("#SBATCH --mem=2G\n")
                             #---General submission info---
                             #jsubf.write("cd "+home+"\n")
                             jsubf.write("echo \"Current working directory is `pwd`\"\n")

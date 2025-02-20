@@ -315,7 +315,6 @@ void MOLLEROptTrackingReadout::WriteAbsProfiles()
   if(LGRefl60UVS){LGRefl60UVS->Write();};
   if(LGRefl90UVS){LGRefl90UVS->Write();};
   
-  
   if(CathIndR)  {CathIndR->Write();}
   if(CathIndI)  {CathIndI->Write();}
 

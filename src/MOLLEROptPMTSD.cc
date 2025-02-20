@@ -43,18 +43,7 @@ G4bool MOLLEROptPMTSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchab
   G4double incidentAngle = -180;
 
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()){
-      
-    // if(procName.compare("Transportation") == 0){
-      
-
-      if(status == fGeomBoundary){
-	
-	// MOLLEROptPMTHit* aHit = new MOLLEROptPMTHit();
-	
-	// if(aHit){
-	//   aHit->AddPhotonHit(localpos,aStep->GetTrack()->GetKineticEnergy());
-	//   aHit->StoreTrackID(aStep->GetTrack()->GetTrackID());
-	//   aHit->SetParticleType(10);
+    if(status == fGeomBoundary){
 
 	for (G4int i=0; i<MAXofPostStepLoops; ++i) {
 	  currentProcess = (*postStepDoItVector)[i];
@@ -74,13 +63,6 @@ G4bool MOLLEROptPMTSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchab
 	      
 	      incidentAngle = 90.0 - 180*0.5*(1 - TMath::ACos(imom.dot(fmom))/TMath::Pi());
 	      
-	      // aHit->StoreStepLength(aStep->GetStepLength());
-	      // aHit->StoreTrackID(aStep->GetTrack()->GetTrackID());
-	      // aHit->SetParticleType(10); //photon
-	      // aHit->StorePhotonEnergy(aStep->GetTrack()->GetKineticEnergy());
-	      // aHit->StoreIncidentPhotonAngle(incidentAngle);
-	      // aHit->StoreReflectionProcess(theStatus);
-	      // HitsCollection->insert(aHit);
 	      //TrackingReadout->SetPMTWindowReflection(incidentAngle);
 
 	    }	
@@ -94,9 +76,6 @@ G4bool MOLLEROptPMTSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchab
 					1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),0);
 	  
 	  TrackingReadout->SetPMTHitLocation(aStep->GetTrack()->GetTrackID(),localpos,incidentAngle);
-	  //HitsCollection->insert(aHit); 
-	// }
-      // }
 
     }
   }

@@ -204,35 +204,35 @@ G4bool MOLLEROptMaterial::GetPixellatedRelativeRate()
     for(int nx = 1; nx < NBinsX; nx++){
       for(int ny = 1; ny < NBinsY; ny++){
 	
-	if(hst->GetBinContent(nx,ny)){
-	    
-	  if(fabs(hst->GetXaxis()->GetBinLowEdge(nx)) > 920 && fabs(hst->GetXaxis()->GetBinUpEdge(nx)) < 1060
-	     && hst->GetYaxis()->GetBinLowEdge(ny) >= -40 && hst->GetYaxis()->GetBinUpEdge(ny) <= 40){
-	      
-	    xV = hst->GetXaxis()->GetBinCenter(nx);
-	    yV = hst->GetYaxis()->GetBinCenter(ny);
-	    
-	    hst2->Fill(xV,yV,hst->GetBinContent(nx,ny));
-	    
-	    if(!k) {
-	      
-	      minX = xV;
-	      maxX = xV;
-	      
-	      minY = yV;
-	      maxY = yV;		
-	      
-	    }
-	    else{
-	      
-	      if(xV > maxX) maxX = xV;
-	      if(yV > maxY) maxY = yV;
-	      if(xV < minX) minX = xV;
-	      if(yV < minY) minY = yV;
-	    }
-	    k++;
-	  }
-	}
+        if(hst->GetBinContent(nx,ny)){
+          
+          if(fabs(hst->GetXaxis()->GetBinLowEdge(nx)) > 920 && fabs(hst->GetXaxis()->GetBinUpEdge(nx)) < 1060
+            && hst->GetYaxis()->GetBinLowEdge(ny) >= -40 && hst->GetYaxis()->GetBinUpEdge(ny) <= 40){
+            
+            xV = hst->GetXaxis()->GetBinCenter(nx);
+            yV = hst->GetYaxis()->GetBinCenter(ny);
+          
+            hst2->Fill(xV,yV,hst->GetBinContent(nx,ny));
+          
+            if(!k) {
+            
+              minX = xV;
+              maxX = xV;
+            
+              minY = yV;
+              maxY = yV;		
+            
+            }
+            else{
+            
+              if(xV > maxX) maxX = xV;
+              if(yV > maxY) maxY = yV;
+              if(xV < minX) minX = xV;
+              if(yV < minY) minY = yV;
+            }
+            k++;
+          }
+        }
       }
     }
                   
@@ -255,23 +255,23 @@ G4bool MOLLEROptMaterial::GetPixellatedRelativeRate()
 		    
     for(int nx = 1; nx < NBinsX; nx++){
       for(int ny = 1; ny < NBinsY; ny++){
-	if(hst2->GetBinContent(nx,ny)){
-	  
-	  xV = hst2->GetXaxis()->GetBinCenter(nx-(cbinX-zbinX));
-	  yV = hst2->GetYaxis()->GetBinCenter(ny-(cbinY-zbinY));
-	  
-	  xVR = xV*TMath::Sin(angle2) - yV*TMath::Cos(angle2); 
-	  yVR = xV*TMath::Cos(angle2) + yV*TMath::Sin(angle2); 
-	  
-	  hst3->SetBinContent(hst3->GetXaxis()->FindBin(xVR),hst3->GetYaxis()->FindBin(yVR),hst2->GetBinContent(nx,ny));
-	  PixellatedRelativeRate->Fill(xVR,yVR,hst2->GetBinContent(nx,ny));	    
-	}
+        if(hst2->GetBinContent(nx,ny)){
+          
+          xV = hst2->GetXaxis()->GetBinCenter(nx-(cbinX-zbinX));
+          yV = hst2->GetYaxis()->GetBinCenter(ny-(cbinY-zbinY));
+          
+          xVR = xV*TMath::Sin(angle2) - yV*TMath::Cos(angle2); 
+          yVR = xV*TMath::Cos(angle2) + yV*TMath::Sin(angle2); 
+          
+          hst3->SetBinContent(hst3->GetXaxis()->FindBin(xVR),hst3->GetYaxis()->FindBin(yVR),hst2->GetBinContent(nx,ny));
+          PixellatedRelativeRate->Fill(xVR,yVR,hst2->GetBinContent(nx,ny));	    
+        }
       }
     }
 
     for(int bx = 1; bx <= 4; bx++){
       for(int by = 1; by <= 7; by++){
-	if(PixellatedRelativeRate->GetBinContent(bx,by) > maxVal) maxVal = PixellatedRelativeRate->GetBinContent(bx,by);
+	      if(PixellatedRelativeRate->GetBinContent(bx,by) > maxVal) maxVal = PixellatedRelativeRate->GetBinContent(bx,by);
       }    
     }
     PixellatedRelativeRate->Scale(1.0/maxVal);

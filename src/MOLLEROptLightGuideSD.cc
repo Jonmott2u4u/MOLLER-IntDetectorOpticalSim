@@ -35,7 +35,6 @@ G4bool MOLLEROptLightGuideSD::ProcessHits(G4Step* aStep, G4TouchableHistory* the
   G4ProcessVector* postStepDoItVector = OpManager->GetPostStepProcessVector(typeDoIt);
   G4VProcess* currentProcess;
   G4OpBoundaryProcessStatus theStatus = Undefined;
-  MOLLEROptLightGuideHit* aHit = new MOLLEROptLightGuideHit();
   G4double incidentAngle = -180;
 
   if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()){
@@ -44,46 +43,36 @@ G4bool MOLLEROptLightGuideSD::ProcessHits(G4Step* aStep, G4TouchableHistory* the
 
     
 
-      if(status == fGeomBoundary){
-	
-	// if(aHit){
+    if(status == fGeomBoundary){
 
-	  for (G4int i=0; i<MAXofPostStepLoops; ++i) {
-	    currentProcess = (*postStepDoItVector)[i];
-	    G4OpBoundaryProcess* opProc = dynamic_cast<G4OpBoundaryProcess*>(currentProcess);
-	    if (opProc) {
-	      theStatus = opProc->GetStatus();
-	      
-	      if(theStatus == FresnelReflection ||
-		 theStatus == TotalInternalReflection ||
-		 theStatus == LambertianReflection ||
-		 theStatus == LobeReflection ||
-		 theStatus == SpikeReflection){
+      for (G4int i=0; i<MAXofPostStepLoops; ++i) {
+        currentProcess = (*postStepDoItVector)[i];
+        G4OpBoundaryProcess* opProc = dynamic_cast<G4OpBoundaryProcess*>(currentProcess);
+        if (opProc) {
+          theStatus = opProc->GetStatus();
+          
+          if(theStatus == FresnelReflection ||
+          theStatus == TotalInternalReflection ||
+          theStatus == LambertianReflection ||
+          theStatus == LobeReflection ||
+          theStatus == SpikeReflection){
 
-		G4ThreeVector imom = preStep->GetMomentumDirection();
-		G4ThreeVector fmom = -1.0*postStep->GetMomentumDirection();
-		//G4double tmpA = TMath::ACos(imom.dot(fmom));
-		
-		incidentAngle = 90.0 - 180*0.5*(1 - TMath::ACos(imom.dot(fmom))/TMath::Pi());
+            G4ThreeVector imom = preStep->GetMomentumDirection();
+            G4ThreeVector fmom = -1.0*postStep->GetMomentumDirection();
+            //G4double tmpA = TMath::ACos(imom.dot(fmom));
+      
+            incidentAngle = 90.0 - 180*0.5*(1 - TMath::ACos(imom.dot(fmom))/TMath::Pi());
 
-		// aHit->StoreStepLength(aStep->GetStepLength());
-		// aHit->StoreTrackID(aStep->GetTrack()->GetTrackID());
-		// aHit->SetParticleType(10); //photon
-		// aHit->StorePhotonEnergy(aStep->GetTrack()->GetKineticEnergy());
-		// aHit->StoreIncidentPhotonAngle(incidentAngle);
-		// aHit->StoreReflectionProcess(theStatus);
-		// HitsCollection->insert(aHit);
-
-	      }	
-	    }
-	  }
-	  //}
+          }	
+        }
       }
-      TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
-				    aStep->GetStepLength(),-1,0,myLightGuide,0,
-				    aStep->GetTrack()->GetKineticEnergy(),
-				    1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
-				    incidentAngle);
+	  //}
+    }
+    TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
+          aStep->GetStepLength(),-1,0,myLightGuide,0,
+          aStep->GetTrack()->GetKineticEnergy(),
+          1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
+          incidentAngle);
       
       
       //}

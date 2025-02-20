@@ -17,7 +17,7 @@ public:
   MOLLEROptDetectorLightGuide(MOLLEROptTrackingReadout*, G4String name, MOLLEROptMaterial*);
   ~MOLLEROptDetectorLightGuide();
 
-  void Initialize();
+  void Initialize(string mat_flag);
   void Construct(G4VPhysicalVolume* MotherVolume);
   void SetMaterial(G4String materialName);
 
@@ -69,7 +69,7 @@ public:
 private:
 
   // void DefineOpticalProperties();
-  void CreateOpticalSurface(G4LogicalVolume *logV);
+  void CreateOpticalSurface(G4LogicalVolume *logV, string mat_flag);
   
   //void ConstructLightFace(LGFace face, double UL, double UR, double LR, double LL);
  

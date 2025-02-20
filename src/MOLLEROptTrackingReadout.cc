@@ -260,12 +260,16 @@ void MOLLEROptTrackingReadout::StoreQuartzOpticalPlots(TProfile* tr35, TProfile*
   if(Qeff )  {QEfficiency  = (TH1D*)Qeff->Clone(); }
 }
 
-void MOLLEROptTrackingReadout::StoreGuideOpticalPlots(TH1D* rl30,TH1D* rl45,TH1D* rl60,TH1D* rl90)
+void MOLLEROptTrackingReadout::StoreGuideOpticalPlots(TH1D* rl30uvc,TH1D* rl45uvc,TH1D* rl60uvc,TH1D* rl90uvc,TH1D* rl30uvs,TH1D* rl45uvs,TH1D* rl60uvs,TH1D* rl90uvs)
 {
-  if(rl30)  {LGRefl30 = (TH1D*)rl30->Clone(); }
-  if(rl45)  {LGRefl45 = (TH1D*)rl45->Clone(); }
-  if(rl60)  {LGRefl60 = (TH1D*)rl60->Clone();}
-  if(rl90)  {LGRefl90 = (TH1D*)rl90->Clone(); }
+  if(rl30uvc)  {LGRefl30UVC = (TH1D*)rl30uvc->Clone();}
+  if(rl45uvc)  {LGRefl45UVC = (TH1D*)rl45uvc->Clone();}
+  if(rl60uvc)  {LGRefl60UVC = (TH1D*)rl60uvc->Clone();}
+  if(rl90uvc)  {LGRefl90UVC = (TH1D*)rl90uvc->Clone();}
+  if(rl30uvs)  {LGRefl30UVS = (TH1D*)rl30uvs->Clone();}
+  if(rl45uvs)  {LGRefl45UVS = (TH1D*)rl45uvs->Clone();}
+  if(rl60uvs)  {LGRefl60UVS = (TH1D*)rl60uvs->Clone();}
+  if(rl90uvs)  {LGRefl90UVS = (TH1D*)rl90uvs->Clone();}
 }
 
 void MOLLEROptTrackingReadout::StoreCathodeOpticalPlots(TH1D* CIndR, TH1D* CIndI)
@@ -308,10 +312,14 @@ void MOLLEROptTrackingReadout::WriteAbsProfiles()
   if(Reflectivity)  {Reflectivity->Write();}
   if(QEfficiency )  {QEfficiency->Write();}
 
-  if(LGRefl30){LGRefl30->Write();};
-  if(LGRefl45){LGRefl45->Write();};
-  if(LGRefl60){LGRefl60->Write();};
-  if(LGRefl90){LGRefl90->Write();};
+  if(LGRefl30UVC){LGRefl30UVC->Write();};
+  if(LGRefl45UVC){LGRefl45UVC->Write();};
+  if(LGRefl60UVC){LGRefl60UVC->Write();};
+  if(LGRefl90UVC){LGRefl90UVC->Write();};
+  if(LGRefl30UVS){LGRefl30UVS->Write();};
+  if(LGRefl45UVS){LGRefl45UVS->Write();};
+  if(LGRefl60UVS){LGRefl60UVS->Write();};
+  if(LGRefl90UVS){LGRefl90UVS->Write();};
   
   if(CathIndR)  {CathIndR->Write();}
   if(CathIndI)  {CathIndI->Write();}

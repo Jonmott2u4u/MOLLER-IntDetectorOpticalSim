@@ -303,7 +303,8 @@ void MOLLEROptMaterial::SetOpticalParameters()
  
   
 
-  ifstream optPropFile("data/OpticalPropertiesInputData.txt");
+  //ifstream optPropFile("data/OpticalPropertiesInputData.txt");
+  ifstream optPropFile("data/OpticalPropertiesInputData-Michaels-uvs.txt"); //Loads UVC and UVS data, with UVS data provided by Michael Gericke
   if(!optPropFile.is_open()){
     G4cout << "Cannot read optical input file named: OpticalPropertiesInputData.txt " << endl;
     G4cout << "The file must be located in the execution directory." << endl;
@@ -318,8 +319,7 @@ void MOLLEROptMaterial::SetOpticalParameters()
     G4cout << header << endl;
     
     int n = 0;
-
-    Double_t var[12];
+    Double_t var[16];
 
     while(!optPropFile.eof()){
 
@@ -334,22 +334,30 @@ void MOLLEROptMaterial::SetOpticalParameters()
   		  >> var[8] 
   		  >> var[9] 
   		  >> var[10] 
-  		  >> var[11];
+  		  >> var[11]
+        >> var[12] 
+  		  >> var[13] 
+  		  >> var[14] 
+  		  >> var[15];
 
 
       OptPar->EPhoton[n]  = var[0]*eV;
       OptPar->QEff[n]     = var[1]; 
       OptPar->QRefl[n]    = var[2];
       OptPar->QTrans[n]   = 1.0-var[2];
-      OptPar->LGRefl30[n] = var[3]; 
-      OptPar->LGRefl45[n] = var[4]; 
-      OptPar->LGRefl60[n] = var[5]; 
-      OptPar->LGRefl90[n] = var[6]; 
-      OptPar->QAbs[n]     = var[7]*cm; 
-      OptPar->QAbs70[n]   = var[8]*cm; 
-      OptPar->QAbs170[n]  = var[9]*cm;
-      OptPar->Cath_RIndR[n]  = var[10];
-      OptPar->Cath_IIndR[n]  = var[11];
+      OptPar->LGRefl30UVS[n] = var[3]; 
+      OptPar->LGRefl45UVS[n] = var[4]; 
+      OptPar->LGRefl60UVS[n] = var[5]; 
+      OptPar->LGRefl90UVS[n] = var[6];
+      OptPar->LGRefl30UVS[n] = var[7]; 
+      OptPar->LGRefl45UVS[n] = var[8]; 
+      OptPar->LGRefl60UVS[n] = var[9]; 
+      OptPar->LGRefl90UVS[n] = var[10];
+      OptPar->QAbs[n]     = var[11]*cm; 
+      OptPar->QAbs70[n]   = var[12]*cm; 
+      OptPar->QAbs170[n]  = var[13]*cm;
+      OptPar->Cath_RIndR[n]  = var[14];
+      OptPar->Cath_IIndR[n]  = var[15];
 
       n++;
     }
@@ -369,26 +377,33 @@ void MOLLEROptMaterial::SetOpticalParameters()
   }
   
   QEffhst  = new TH1D("QEfficiency","",N,bins);
-  LGRefl30  = new TH1D("LGRefl30","",N,bins);
-  LGRefl45  = new TH1D("LGRefl45","",N,bins);
-  LGRefl60  = new TH1D("LGRefl60","",N,bins);
-  LGRefl90  = new TH1D("LGRefl90","",N,bins);
+  LGRefl30UVC  = new TH1D("LGRefl30UVC","",N,bins);
+  LGRefl45UVC  = new TH1D("LGRefl45UVC","",N,bins);
+  LGRefl60UVC  = new TH1D("LGRefl60UVC","",N,bins);
+  LGRefl90UVC  = new TH1D("LGRefl90UVC","",N,bins);
+  LGRefl30UVS  = new TH1D("LGRefl30UVS","",N,bins);
+  LGRefl45UVS  = new TH1D("LGRefl45UVS","",N,bins);
+  LGRefl60UVS  = new TH1D("LGRefl60UVS","",N,bins);
+  LGRefl90UVS  = new TH1D("LGRefl90UVS","",N,bins);
   CathIndR  = new TH1D("CathIndR","",N,bins);
   CathIndI  = new TH1D("CathIndI","",N,bins);
  
   for(int k = 0; k < N; k++){    
     QEffhst->SetBinContent(QEffhst->FindBin(OptPar->EPhoton[k]/eV),OptPar->QEff[k]);
-    LGRefl30->SetBinContent(LGRefl30->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30[k]);
-    LGRefl45->SetBinContent(LGRefl45->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45[k]);
-    LGRefl60->SetBinContent(LGRefl60->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60[k]);
-    LGRefl90->SetBinContent(LGRefl90->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90[k]);
+    LGRefl30UVC->SetBinContent(LGRefl30UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30UVC[k]);
+    LGRefl45UVC->SetBinContent(LGRefl45UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45UVC[k]);
+    LGRefl60UVC->SetBinContent(LGRefl60UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60UVC[k]);
+    LGRefl90UVC->SetBinContent(LGRefl90UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90UVC[k]);
+    LGRefl30UVS->SetBinContent(LGRefl30UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30UVS[k]);
+    LGRefl45UVS->SetBinContent(LGRefl45UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45UVS[k]);
+    LGRefl60UVS->SetBinContent(LGRefl60UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60UVS[k]);
+    LGRefl90UVS->SetBinContent(LGRefl90UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90UVS[k]);
     CathIndR->SetBinContent(CathIndR->FindBin(OptPar->EPhoton[k]/eV),OptPar->Cath_RIndR[k]);
     CathIndI->SetBinContent(CathIndI->FindBin(OptPar->EPhoton[k]/eV),OptPar->Cath_IIndR[k]);
   }  										 
 										 
-  TrackingReadout->StoreGuideOpticalPlots(LGRefl30,LGRefl45,LGRefl60,LGRefl90);
+  TrackingReadout->StoreGuideOpticalPlots(LGRefl30UVC,LGRefl45UVC,LGRefl60UVC,LGRefl90UVC,LGRefl30UVS,LGRefl45UVS,LGRefl60UVS,LGRefl90UVS);
   TrackingReadout->StoreCathodeOpticalPlots(CathIndR, CathIndI);
-
   TrackingReadout->SetOpticalParameters(OptPar);
 }
 
@@ -1018,6 +1033,17 @@ void MOLLEROptMaterial::DefineMaterials()
    myMPT_Air->AddProperty("RINDEX",    OptPar->EPhoton, RefractiveIndex_Air, nEntries);
    myMPT_Air->AddProperty("ABSLENGTH", OptPar->EPhoton, AbsorptionCoeff_Air, nEntries);   
    matAir->SetMaterialPropertiesTable(myMPT_Air);
+
+   //====================================
+   //  Optical Properties of a Vacuum
+   //====================================
+   G4double  RefractiveIndex_Vacuum[nEntries];
+   for(int n = 0; n < nEntries; n++)
+     RefractiveIndex_Vacuum[n] = 1.0000;
+    
+   G4MaterialPropertiesTable* my_Vac = new G4MaterialPropertiesTable();
+   my_Vac->AddProperty("RINDEX", OptPar->EPhoton, RefractiveIndex_Vacuum, nEntries);
+   matVacuum->SetMaterialPropertiesTable(my_Vac);
 
    //====================================
    //  Optical Properties of Fused Silica

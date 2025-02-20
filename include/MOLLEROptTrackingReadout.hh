@@ -139,10 +139,14 @@ private:
   TProfile* Transm170;
   TProfile* Reflectivity;
   
-  TH1D *LGRefl30;
-  TH1D *LGRefl45;
-  TH1D *LGRefl60;
-  TH1D *LGRefl90;
+  TH1D *LGRefl30UVC;
+  TH1D *LGRefl45UVC;
+  TH1D *LGRefl60UVC;
+  TH1D *LGRefl90UVC;
+  TH1D *LGRefl30UVS;
+  TH1D *LGRefl45UVS;
+  TH1D *LGRefl60UVS;
+  TH1D *LGRefl90UVS;
 
   TH1D* CathIndR;  
   TH1D* CathIndI;  
@@ -170,7 +174,7 @@ private:
   Int_t R7_GetCathodeDetections() {return R7_CathodeDetections;};
   Int_t R8_GetCathodeDetections() {return R8_CathodeDetections;};
   void SetPMTHitLocation(Int_t id, G4ThreeVector loc, Float_t angle);
-  void SetQuartzHitLocation(Int_t id, G4ThreeVector loc);
+  void SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz);
   Bool_t TrackExists(Int_t ID);
   Int_t GetNumTracks(){return Tracks.size();};
   Int_t GetNumPhotonTracks(){return PhotonTracks;};
@@ -179,7 +183,7 @@ private:
   Int_t GetStepInQuartz(Int_t TID);
   void SetRadiationDamageHistograms(TH2 *hst, TH2 *hst2, TH2 *hst3, TH2 *hst4);
   void StoreQuartzOpticalPlots(TProfile*,TProfile*,TProfile*,TProfile*,TH1D*);
-  void StoreGuideOpticalPlots(TH1D*,TH1D*,TH1D*,TH1D*);
+  void StoreGuideOpticalPlots(TH1D*,TH1D*,TH1D*,TH1D*,TH1D*,TH1D*,TH1D*,TH1D*);
   void StoreCathodeOpticalPlots(TH1D*, TH1D*);
   void SetNewQAbsorptionProfile(TProfile* abs);
   void WriteAbsProfiles();

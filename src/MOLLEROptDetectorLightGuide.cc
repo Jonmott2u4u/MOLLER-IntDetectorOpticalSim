@@ -130,37 +130,53 @@ void MOLLEROptDetectorLightGuide::Construct(G4VPhysicalVolume* MotherVolume)
   
 }
  
-void MOLLEROptDetectorLightGuide::CreateOpticalSurface(G4LogicalVolume *logV)
+void MOLLEROptDetectorLightGuide::CreateOpticalSurface(G4LogicalVolume *logV, string mat_flag)
 {
   OptParam* Optpar = Materials->GetOpticalParametersTable();
   
   GuideOptSurface = new G4OpticalSurface ( thisName+"_OpSurface",glisur, polished, dielectric_metal );
   //GuideOptSurface->SetPolish ( 0.99 ); //only works for "ground" surface
+  //string UVS = "UVS", UVC = "UVC";
   
   #if G4VERSION_NUMBER >= 1100
   G4MaterialPropertiesTable *GuideMatPropTable = new G4MaterialPropertiesTable();
+  if (mat_flag == "UVC") {
 
-  /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);*/
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar(), true);
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);
-  
+    /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar(), true);*/
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90UVC, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60UVC, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45UVC, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30UVC, Optpar->GetNPar(), true);
+  }
+  else if (mat_flag == "UVS") {
+
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90UVS, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60UVS, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45UVS, Optpar->GetNPar(), true);
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30UVS, Optpar->GetNPar(), true);
+  }
+
   #else
   G4MaterialPropertiesTable *GuideMatPropTable = new G4MaterialPropertiesTable();
-
-  /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());*/
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar());
-  GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());
-
+  if (mat_flag == UVC) {
+    /*GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE00", Optpar->EPhoton, Optpar->LGRefl90, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl60, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl30, Optpar->GetNPar());*/
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90UVC, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60UVC, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45UVC, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30UVC, Optpar->GetNPar());
+  }
+  else if (mat_flag == UVS) {
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE90", Optpar->EPhoton, Optpar->LGRefl90UVS, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE60", Optpar->EPhoton, Optpar->LGRefl60UVS, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE45", Optpar->EPhoton, Optpar->LGRefl45UVS, Optpar->GetNPar());
+    GuideMatPropTable->AddProperty ( "ANGLEREFLECTANCE30", Optpar->EPhoton, Optpar->LGRefl30UVS, Optpar->GetNPar());
+  }
   #endif
   
   GuideOptSurface->SetMaterialPropertiesTable ( GuideMatPropTable ); 
@@ -220,7 +236,7 @@ void MOLLEROptDetectorLightGuide::SetCenterPositionInZ(G4double zPos)
 
 
 
-void MOLLEROptDetectorLightGuide::Initialize()
+void MOLLEROptDetectorLightGuide::Initialize(string mat_flag)
 {
   DefineGeometry();
 
@@ -234,7 +250,7 @@ void MOLLEROptDetectorLightGuide::Initialize()
   GuideLogical = new G4LogicalVolume(GuideSolid,GuideMaterial,thisName+"_Logical");
   GuideCoreLogical = new G4LogicalVolume(InnerSolid,GuideCoreMaterial,thisName+"_Core_Logical");
   
-  CreateOpticalSurface(GuideLogical);
+  CreateOpticalSurface(GuideLogical, mat_flag);
 
   G4SDManager* SDman = G4SDManager::GetSDMpointer();
   LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide",TrackingReadout);
@@ -242,8 +258,16 @@ void MOLLEROptDetectorLightGuide::Initialize()
 
   GuideCoreLogical->SetSensitiveDetector(LightGuideSD);
   
-  G4Colour  magenta   ( 255/255.,   0/255., 255/255.);   
-  G4VisAttributes* LGVisAtt = new G4VisAttributes(magenta);
+  G4Colour  white   ( 255/255.,   255/255., 255/255.);
+  G4Colour  magenta   ( 255/255.,   0/255., 255/255.); 
+  G4Colour  off_magenta   ( 255/255.,   0/255., 150/255.);
+  G4VisAttributes* LGVisAtt = new G4VisAttributes(white);
+  if (mat_flag == "UVC"){
+    LGVisAtt = new G4VisAttributes(magenta);
+  }
+  else if (mat_flag == "UVS"){
+    LGVisAtt = new G4VisAttributes(off_magenta);
+  }
   LGVisAtt->SetVisibility(true);
   LGVisAtt->SetForceWireframe(true);
   GuideLogical->SetVisAttributes(LGVisAtt);
@@ -255,7 +279,7 @@ void MOLLEROptDetectorLightGuide::Initialize()
   GuideCoreLogical->SetVisAttributes(LGCoreVisAtt);
 
   GuideTopLogical = new G4LogicalVolume(GuideTopSolid,GuideMaterial,thisName+"_GuideTop_Logical");
-  G4Colour white    ( 255/255., 255/255., 255/255.);
+  //G4Colour white    ( 255/255., 255/255., 255/255.);
   G4VisAttributes* LGTopVisAtt = new G4VisAttributes(white);
   LGTopVisAtt->SetVisibility(false);
   // LGCoreVisAtt->SetForceWireframe(true);

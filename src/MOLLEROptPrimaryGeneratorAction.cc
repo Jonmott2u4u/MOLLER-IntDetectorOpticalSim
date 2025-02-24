@@ -15,6 +15,8 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
   particleGun = new G4ParticleGun(n_particle);
 
   Construction = Constr;
+  Cosmics = cos;
+  CosmicParams = Cosmics->GetCosmicParametersTable();
 
   G4ParticleDefinition* particle = G4Electron::Definition();
   //G4ParticleDefinition* particle = G4MuonMinus::Definition();
@@ -22,8 +24,6 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
   if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();*/
   particleGun->SetParticleDefinition(particle);
 
-  Cosmics = cos;
-  CosmicParams = Cosmics->GetCosmicParametersTable();
 }
 
 MOLLEROptPrimaryGeneratorAction::~MOLLEROptPrimaryGeneratorAction()
@@ -330,8 +330,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   muon_energy = muon_energy/1;
 
 
-  G4cout << "Muon energy is: " << muon_energy << " MeV \n" << G4endl;
-  G4cout << "Random integer was finally: " << rand_int << "\n" << G4endl;
+  //G4cout << "Muon energy is: " << muon_energy << " MeV \n" << G4endl;
+  //G4cout << "Random integer was finally: " << rand_int << "\n" << G4endl;
   //*****************************************
 
   if (PrimaryParticle == 1) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro

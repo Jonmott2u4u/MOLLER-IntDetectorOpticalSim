@@ -15,6 +15,7 @@
 #define myPMT 12
 
 class OptParam;
+class CosmicParam;
 
 class TrackData{
 
@@ -92,6 +93,7 @@ private:
   TH1D* CathIndI;  
 
   OptParam* OpticalParameters;
+  CosmicParam* CosmicParameters;
 
   vector <TProfile*> QAbsProf; 
 
@@ -121,6 +123,8 @@ private:
   void WriteAbsProfiles();
   void SetOpticalParameters(OptParam* op){ OpticalParameters = op;};
   OptParam* GetOpticalParameters(){ return OpticalParameters;};
+  void SetCosmicParameters(CosmicParam* cos){ CosmicParameters = cos;};
+  CosmicParam* GetCosmicParameters(){ return CosmicParameters;};
   
   
 };

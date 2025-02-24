@@ -222,4 +222,4 @@
 /RunAction/SetID 3
 /random/setSeeds 346082 823457
 /vis/disable
-/run/beamOn 1
+/run/beamOn 100

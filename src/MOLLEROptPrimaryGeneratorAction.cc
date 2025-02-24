@@ -313,7 +313,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   int z = 0;
   int low_bound = 0;
   int high_bound = CosmicParams->RateMuon[z];
-  while(pass == 0){
+  while((pass == 0) && (PrimaryParticle == 2)){
     if((rand_int <= high_bound) && (rand_int > low_bound)){
       muon_energy = CosmicParams->EMuon[z];
       pass = 1;

@@ -33,10 +33,6 @@ void MOLLEROptEventAction::BeginOfEventAction(const G4Event* evt)
 {
  
   G4SDManager * SDman = G4SDManager::GetSDMpointer();
-
-  CollID[0] = SDman->GetCollectionID("Quartz/QuartzHitCollection");
-  CollID[1] = SDman->GetCollectionID("LightGuide/LightGuideHitCollection");
-  CollID[2] = SDman->GetCollectionID("Cathode/PMTHitCollection");
   
   PMTSecOptPhotonCnt->Reset();
   QuartzSecOptPhotonCnt->Reset();

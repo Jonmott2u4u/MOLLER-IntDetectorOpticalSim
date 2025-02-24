@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction* Constr)
+MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction* Constr, MOLLEROptCosmics* cos)
 {
 
   Messenger = new MOLLEROptPrimaryGeneratorActionMessenger(this);
@@ -15,6 +15,8 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
   particleGun = new G4ParticleGun(n_particle);
 
   Construction = Constr;
+  Cosmics = cos;
+  CosmicParams = Cosmics->GetCosmicParametersTable();
 
   //G4ParticleDefinition* particle = G4Electron::Definition();
   G4ParticleDefinition* particle = G4MuonMinus::Definition();
@@ -270,28 +272,41 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //****************************************
   G4int muon_energy = 0;
   G4int pass = 0;
-  FILE *fptr;
-  while((pass == 0) && (PrimaryParticle == 2)){
-    G4double rand_int = G4UniformRand()*342800; //342800 is from the length of the file cosmics.txt
-    rand_int = rand_int/1;
-    fptr = fopen("data/cosmics.txt", "r");
-    muon_energy = getw(fptr);
-    G4int inc = 1;
-    pass = 1;
-    while (inc < rand_int){
-      muon_energy = getw(fptr);
-      inc++;
+  G4double rand = G4UniformRand()*CosmicParams->RateMuon[CosmicParams->GetNPar()-1];
+  int rand_int = rand/1;
+  //G4cout << "Random integer was initially: " << rand_int << "\n" << G4endl;
+
+  int z = 0;
+  int low_bound = 0;
+  int high_bound = CosmicParams->RateMuon[z];
+  while(pass == 0){
+    if((rand_int <= high_bound) && (rand_int > low_bound)){
+      muon_energy = CosmicParams->EMuon[z];
+      pass = 1;
     }
-    if (muon_energy <= EnergyCut){
+    else{
+      low_bound = high_bound;
+      high_bound = CosmicParams->RateMuon[z+1];
+      //G4cout << "Low Bound after failure: " << low_bound << "\n" << G4endl;
+      //G4cout << "High Bound after failure: " << high_bound << "\n" << G4endl;
+    }
+    z++;
+    if((muon_energy <= EnergyCut) && (pass == 1)){
+      //G4cout << "The random integer that failed was: " << rand_int << "\n" << G4endl;
+      z = 0;
       pass = 0;
+      low_bound = 0;
+      high_bound = CosmicParams->RateMuon[z];
+      rand = G4UniformRand()*CosmicParams->RateMuon[CosmicParams->GetNPar()-1];
+      rand_int = rand/1;
     }
-    fclose(fptr);
   }
 
-  //G4cout << "Muon energy is: " << energy << " MeV \n" << G4endl;
-  //G4cout << "Random integer was: " << rand_int << "\n" << G4endl;
-  //G4cout << "\n Increment reached: " << inc << "\n" << G4endl;
-  //fclose(fptr);
+  muon_energy = muon_energy/1;
+
+
+  //G4cout << "Muon energy is: " << muon_energy << " MeV \n" << G4endl;
+  //G4cout << "Random integer was finally: " << rand_int << "\n" << G4endl;
   //*****************************************
 
   if (PrimaryParticle == 1) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro

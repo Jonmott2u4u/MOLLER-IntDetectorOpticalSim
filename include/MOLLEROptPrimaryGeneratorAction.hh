@@ -5,6 +5,7 @@
 #include "Root_include.h"
 #include "Geant4_include.hh" 
 #include "MOLLEROptConstruction.hh"
+#include "MOLLEROptCosmics.hh"
 
 #include "MOLLEROptPrimaryGeneratorActionMessenger.hh"
 
@@ -14,8 +15,8 @@ class G4Event;
  
 class MOLLEROptPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
-public:
-   MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction*);    
+public: 
+   MOLLEROptPrimaryGeneratorAction(MOLLEROptConstruction*,MOLLEROptCosmics*);
   ~MOLLEROptPrimaryGeneratorAction();
   
 public:
@@ -48,6 +49,10 @@ private:
   G4ParticleGun* particleGun;
 
   MOLLEROptConstruction* Construction;
+
+  MOLLEROptCosmics* Cosmics;
+
+  CosmicParam* CosmicParams;
   
   MOLLEROptPrimaryGeneratorActionMessenger* Messenger;
 

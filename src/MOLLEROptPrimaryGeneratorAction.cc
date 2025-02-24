@@ -123,10 +123,17 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   int rand_int = rand/1;
   //G4cout << "Random integer was initially: " << rand_int << "\n" << G4endl;
 
+  //The following exist so that the loops run
+  //The loops use variables that do not exist in the main branch. Add at some point
+  //For now defining the missing variables and ensuring the loops are not entered
+  int EnergyCut = 0;
+  int PrimaryParticle = 0;
+  //End of hard definitions
+
   int z = 0;
   int low_bound = 0;
   int high_bound = CosmicParams->RateMuon[z];
-  while(pass == 0){
+  while((pass == 0) && (PrimaryParticle == 2)){
     if((rand_int <= high_bound) && (rand_int > low_bound)){
       muon_energy = CosmicParams->EMuon[z];
       pass = 1;

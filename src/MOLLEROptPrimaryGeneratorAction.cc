@@ -304,26 +304,28 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   int z = 0;
   int low_bound = 0;
   int high_bound = CosmicParams->RateMuon[z];
-  while((pass == 0) && (PrimaryParticle == 2)){
-    if((rand_int <= high_bound) && (rand_int > low_bound)){
-      muon_energy = CosmicParams->EMuon[z];
-      pass = 1;
-    }
-    else{
-      low_bound = high_bound;
-      high_bound = CosmicParams->RateMuon[z+1];
-      //G4cout << "Low Bound after failure: " << low_bound << "\n" << G4endl;
-      //G4cout << "High Bound after failure: " << high_bound << "\n" << G4endl;
-    }
-    z++;
-    if((muon_energy <= EnergyCut) && (pass == 1)){
-      //G4cout << "The random integer that failed was: " << rand_int << "\n" << G4endl;
-      z = 0;
-      pass = 0;
-      low_bound = 0;
-      high_bound = CosmicParams->RateMuon[z];
-      rand = G4UniformRand()*CosmicParams->RateMuon[CosmicParams->GetNPar()-1];
-      rand_int = rand/1;
+  if(PrimaryParticle == 2){
+    while((pass == 0)){
+      if((rand_int <= high_bound) && (rand_int > low_bound)){
+        muon_energy = CosmicParams->EMuon[z];
+        pass = 1;
+      }
+      else{
+        low_bound = high_bound;
+        high_bound = CosmicParams->RateMuon[z+1];
+        //G4cout << "Low Bound after failure: " << low_bound << "\n" << G4endl;
+        //G4cout << "High Bound after failure: " << high_bound << "\n" << G4endl;
+      }
+      z++;
+      if((muon_energy <= EnergyCut) && (pass == 1)){
+        //G4cout << "The random integer that failed was: " << rand_int << "\n" << G4endl;
+        z = 0;
+        pass = 0;
+        low_bound = 0;
+        high_bound = CosmicParams->RateMuon[z];
+        rand = G4UniformRand()*CosmicParams->RateMuon[CosmicParams->GetNPar()-1];
+        rand_int = rand/1;
+      }
     }
   }
 

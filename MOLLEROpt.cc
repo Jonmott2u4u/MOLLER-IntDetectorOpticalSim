@@ -20,6 +20,7 @@
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
+#include "MOLLEROptCosmics.hh"
 
 #if G4VERSION_NUMBER >= 1070
 #include "G4OpticalParameters.hh"
@@ -64,6 +65,7 @@ int main(int argc,char** argv) {
   // UserInitialization classes (mandatory)
   MOLLEROptTrackingReadout*       thisMOLLEROptTrackingReadout  = new MOLLEROptTrackingReadout();
   MOLLEROptMaterial *Materials = new MOLLEROptMaterial(thisMOLLEROptTrackingReadout);
+  MOLLEROptCosmics *Cosmics = new MOLLEROptCosmics(thisMOLLEROptTrackingReadout);
   Materials->DefineMaterials();
   MOLLEROptConstruction*          thisMOLLEROptExperiment       = new MOLLEROptConstruction(thisMOLLEROptTrackingReadout,Materials);
   MOLLEROptAnalysis*              thisMOLLEROptAnalysis         = new MOLLEROptAnalysis();
@@ -112,11 +114,11 @@ int main(int argc,char** argv) {
   // physlist->RegisterPhysics( new MOLLEROptPhysicsList() );
   // UserAction classes
   
-  runManager->SetUserAction( new MOLLEROptPrimaryGeneratorAction(thisMOLLEROptExperiment) );
-  runManager->SetUserAction( new MOLLEROptRunAction(thisMOLLEROptAnalysis, thisMOLLEROptTrackingReadout ) );  
-  runManager->SetUserAction( new MOLLEROptEventAction(thisMOLLEROptAnalysis, thisMOLLEROptTrackingReadout) );
-  runManager->SetUserAction( new MOLLEROptSteppingAction(thisMOLLEROptTrackingReadout) );
-  runManager->SetUserAction( new MOLLEROptTrackingAction(thisMOLLEROptTrackingReadout) );
+  runManager->SetUserAction(new MOLLEROptPrimaryGeneratorAction(thisMOLLEROptExperiment,Cosmics));
+  runManager->SetUserAction(new MOLLEROptRunAction(thisMOLLEROptAnalysis,thisMOLLEROptTrackingReadout));  
+  runManager->SetUserAction(new MOLLEROptEventAction(thisMOLLEROptAnalysis,thisMOLLEROptTrackingReadout));
+  runManager->SetUserAction(new MOLLEROptSteppingAction(thisMOLLEROptTrackingReadout));
+  runManager->SetUserAction(new MOLLEROptTrackingAction(thisMOLLEROptTrackingReadout));
 
   //Initialize G4 kernel
   runManager->Initialize();

@@ -11,7 +11,9 @@ runscript = "#!/bin/bash\n\n"
 datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
+Particle = 1  #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000 #Units of MeV. Normally disabled, but can be reenabled in MOLLEROptPrimaryGeneratorAction.cc
+EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
@@ -181,9 +183,11 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Det/LightGuidePMTInterfaceOpeningX 7.0 cm" + "\n"
                     Text += "/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm" + "\n"
                     Text += "/Det/UpdateGeometry" + "\n\n"
+                    Text += "/Generator/PrimaryParticle " + str(Particle) + "\n"
                     Text += "/Generator/EventHitRegion " + str(hr) + "\n"
                     Text += "/Generator/QuartzHitRegion " + str(cut) + "\n"
                     Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
+                    Text += "/Generator/BeamEnergyCut " + str(EnergyCut) + "\n"
                     Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
                     Text += "/RunAction/SetID " + str(id) + "\n"
                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"

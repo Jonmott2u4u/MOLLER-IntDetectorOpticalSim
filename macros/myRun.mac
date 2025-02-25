@@ -7,10 +7,10 @@
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \   
-#	 |	      |
-#	 |   Middle   |
-#	 |   Box      |
-#	 |	      |  ________ Lower Interface 
+#	     |	          |
+#	     |   Middle   |
+#	     |   Box      |
+#	     |	          |  ________ Lower Interface 
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -57,12 +57,14 @@
 
 /Det/UpdateGeometry
 
+/Generator/PrimaryParticle 2                     #Sets the primary particle type. 1 for electrons, 2 for muons.
 /Generator/EventHitRegion 5                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz with segment chosen below
 /Generator/QuartzHitRegion 0                     #From 0->9. Segment of the cut of the quartz you wish to scan over (Quartz is broken up into 10 segments on the x-axis). Value does not matter if EventHitRegion != 7
-/Generator/BeamTheta 0				 #Units of degrees  Not in use
-/Generator/BeamPhi 0				 #Units of degrees. Not in use
-/Generator/BeamSolidAngle 0                          #Units of degrees. Determines angular spread of the beam from the z-axis
-/Generator/BeamEnergy 8000 			 #Units of MeV
+/Generator/BeamTheta 0				             #Units of degrees  Not in use
+/Generator/BeamPhi 0				             #Units of degrees. Not in use
+/Generator/BeamSolidAngle 0                      #Units of degrees. Determines angular spread of the beam from the z-axis
+/Generator/BeamEnergy 8000 			             #Units of MeV
+/Generator/BeamEnergyCut 0                       #Units of MeV. Sets minimum energy of primary particle (less than or equal is rejected)
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457

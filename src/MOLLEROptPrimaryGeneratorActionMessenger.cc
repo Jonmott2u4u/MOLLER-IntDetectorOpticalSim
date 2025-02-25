@@ -24,6 +24,13 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   InitEventCounterCmd->SetRange("StartingEvent>=0");
   InitEventCounterCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  PrimaryParticleCmd = new G4UIcmdWithAnInteger("/Generator/PrimaryParticle",this);
+  PrimaryParticleCmd->SetGuidance("Set Primary (beam) particle.");
+  PrimaryParticleCmd->SetParameterName("PrimaryParticle",true);
+  PrimaryParticleCmd->SetDefaultValue(1);
+  PrimaryParticleCmd->SetRange("PrimaryParticle>=1");
+  PrimaryParticleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   EventHitRegionCmd = new G4UIcmdWithAnInteger("/Generator/EventHitRegion",this);
   EventHitRegionCmd->SetGuidance("Set region in which event hits.");
   EventHitRegionCmd->SetParameterName("EventHitRegion",true);
@@ -66,6 +73,13 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamEnergyCmd->SetRange("BeamEnergy > 0");
   BeamEnergyCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  BeamEnergyCutCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergyCut",this);
+  BeamEnergyCutCmd->SetGuidance("Set Energy cut of beam in units of MeV.");
+  BeamEnergyCutCmd->SetParameterName("BeamEnergyCut",true);
+  BeamEnergyCutCmd->SetDefaultValue(0);
+  BeamEnergyCutCmd->SetRange("BeamEnergyCut >= 0");
+  BeamEnergyCutCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
 
 }
 
@@ -84,6 +98,9 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
   if( command == InitEventCounterCmd )
     { pPrimaryGeneratorAction->SetNtupleEventCounter(InitEventCounterCmd->GetNewIntValue(newValue)); }
 
+  if( command == PrimaryParticleCmd )
+    { pPrimaryGeneratorAction->SetPrimaryParticle(PrimaryParticleCmd->GetNewIntValue(newValue));}
+
   if( command == EventHitRegionCmd )
     { pPrimaryGeneratorAction->SetEventHitRgion(EventHitRegionCmd->GetNewIntValue(newValue)); }
 
@@ -101,5 +118,8 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
  
   if( command == BeamEnergyCmd )
     { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue)); }
+
+  if( command == BeamEnergyCutCmd )
+    { pPrimaryGeneratorAction->SetBeamEnergyCut(BeamEnergyCutCmd->GetNewIntValue(newValue));}
 
 }

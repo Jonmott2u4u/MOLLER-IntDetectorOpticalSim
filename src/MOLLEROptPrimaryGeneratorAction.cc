@@ -18,8 +18,6 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
   Cosmics = cos;
   CosmicParams = Cosmics->GetCosmicParametersTable();
 
-  G4ParticleDefinition* particle = G4Electron::Definition();
-  particleGun->SetParticleDefinition(particle);
 }
 
 MOLLEROptPrimaryGeneratorAction::~MOLLEROptPrimaryGeneratorAction()
@@ -117,18 +115,16 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //Following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************
+  G4ParticleDefinition* particle = G4Electron::Definition();//Primary event particle defaults to electron
+  if (PrimaryParticle == 1) particle = G4Electron::Definition();
+  if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
+  particleGun->SetParticleDefinition(particle);
+
   G4int muon_energy = 0;
   G4int pass = 0;
   G4double rand = G4UniformRand()*CosmicParams->RateMuon[CosmicParams->GetNPar()-1];
   int rand_int = rand/1;
   //G4cout << "Random integer was initially: " << rand_int << "\n" << G4endl;
-
-  //The following exist so that the loops run
-  //The loops use variables that do not exist in the main branch. Add at some point
-  //For now defining the missing variables and ensuring the loops are not entered
-  int EnergyCut = 0;
-  int PrimaryParticle = 0;
-  //End of hard definitions
 
   int z = 0;
   int low_bound = 0;
@@ -165,8 +161,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //G4cout << "Random integer was finally: " << rand_int << "\n" << G4endl;
   //*****************************************
 
-  particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
-  //particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution 
+  if (PrimaryParticle == 1) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
+  if (PrimaryParticle == 2) particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

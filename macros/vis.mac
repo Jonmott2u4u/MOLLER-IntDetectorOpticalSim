@@ -54,10 +54,10 @@
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \ 
-#	 |	      |
-#	 |   Middle   |
-#	 |   Box      |
-#	 |	      |  ________ Lower Interface
+#	     |	          |
+#	     |   Middle   |
+#	     |   Box      |
+#	     |	          |  ________ Lower Interface
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -80,7 +80,7 @@
 /Det/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
 /Det/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/Det/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
+/Det/LightGuideMiddleBox 400 mm			         #Height of box between upper and lower cones	
 /Det/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
@@ -91,23 +91,25 @@
 
 /Det/QuartzSizeZ 20 mm
 /Det/QuartzSizeX 169 mm
-/Det/QuartzSizeY 30 mm                          #Without the 45 degree cut
+/Det/QuartzSizeY 30 mm                           #Without the 45 degree cut
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/Det/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
 /Det/UpdateGeometry
 
+/Generator/PrimaryParticle 2                     #Sets the initial particle type. 1 for electrons, 2 for muons
 /Generator/EventHitRegion 1                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz
 /Generator/QuartzHitRegion 0                     #Can be set from 0->9. Selects the cut of the quartz you wish to scan. Value does not matter if EventHitRegion != 7
-/Generator/BeamTheta 0				 #Units of degrees. Not in use
-/Generator/BeamPhi 0				 #Units of degrees. Not in use
-/Generator/BeamSolidAngle 0                       #Units of degrees. Determines angular spread of the beam from the z-axis
-/Generator/BeamEnergy 8000			 #Units of MeV
+/Generator/BeamTheta 0				             #Units of degrees. Not in use
+/Generator/BeamPhi 0				             #Units of degrees. Not in use
+/Generator/BeamSolidAngle 0                      #Units of degrees. Determines angular spread of the beam from the z-axis
+/Generator/BeamEnergy 8000			             #Units of MeV
+/Generator/BeamEnergyCut 0                       #Units of MeV. Sets minimum energy for beam particles
 
 #/run/beamOn 1000

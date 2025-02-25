@@ -15,13 +15,6 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
   particleGun = new G4ParticleGun(n_particle);
 
   Construction = Constr;
-
-  //G4ParticleDefinition* particle = G4Electron::Definition();
-  G4ParticleDefinition* particle = G4MuonMinus::Definition();
-  /*if (PrimaryParticle == 1) particle = G4Electron::Definition();
-  if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();*/
-  particleGun->SetParticleDefinition(particle);
-
   Cosmics = cos;
   CosmicParams = Cosmics->GetCosmicParametersTable();
 }
@@ -304,6 +297,11 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************
+  G4ParticleDefinition* particle = G4Electron::Definition();//Primary event particle defaults to electron
+  if (PrimaryParticle == 1) particle = G4Electron::Definition();
+  if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
+  particleGun->SetParticleDefinition(particle);
+
   G4int muon_energy = 0;
   G4int pass = 0;
   G4double rand = G4UniformRand()*CosmicParams->RateMuon[CosmicParams->GetNPar()-1];

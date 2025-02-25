@@ -11,7 +11,7 @@ runscript = "#!/bin/bash\n\n"
 datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
-Particle = 2    #Sets the initial particle type. 1 for electrons, 2 for muons
+Particle = 2    #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000   #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 100 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
@@ -23,7 +23,7 @@ hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 5   #The cut variable is rarely used, so it is often repurposed. Currently it is being used for energy cuts
+cut_stop = 5   #The cut variable is rarely used in this branch, so it has been repurposed for energy cuts
 cut_step = 1
 
 sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Depends on the geometry of the scintillator

@@ -246,14 +246,14 @@
 
 /Det/UpdateGeometry
 
-/Generator/PrimaryParticle 2                      #Sets the initial particle type. 1 for electrons, 2 for muons
+/Generator/PrimaryParticle 2                      #Sets the primary particle type. 1 for electrons, 2 for muons
 /Generator/EventHitRegion 11                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
 /Generator/SegmentHitRegion 0 cm                  #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use
 /Generator/BeamPhi 0			                  #Units of degrees. Not in use
 /Generator/BeamSolidAngle 11                      #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)
-/Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for beam particles
+/Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
 /Storage/DetectorFocus 0                          #Sets which detector has its info stored in root files. Set to 0 for all detectors, 1 for R1, 2 for R2, etc
 

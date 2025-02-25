@@ -66,26 +66,9 @@ void MOLLEROptSteppingAction::UserSteppingAction(const G4Step* theStep)
                       //is the photocathode because it is the only one with
                       //non-zero efficiency
         {
-	  //cout << "Detection in " << "postStep = " << postStep->GetPhysicalVolume()->GetName() << ", preStep = " << preStep->GetPhysicalVolume()->GetName() << endl;
 
 	  TrackingReadout->IncrementEventCathodeDetection(theStep->GetTrack()->GetTrackID());
-	  //theStep->GetTrack()->SetTrackStatus(fStopAndKill);
 
-	  // G4SDManager* SDman = G4SDManager::GetSDMpointer();
-          // G4String sdName="/MainDetectorPMTSD";
-          // MollerDetMainDetector_PMTSD* pmtSD = (MollerDetMainDetector_PMTSD*)SDman->FindSensitiveDetector(sdName);
-          // if(pmtSD)
-	  //   {
-	  //     if(USERVERBOSELEVEL>0)
-	  // 	G4cout << " A photon is detected!" << G4endl;
-	  //     //   pmtSD->ProcessHits(theStep,NULL);
-	      
-	  //     pmtSD->ProcessHits_constStep(theStep,NULL, 1); //last parameter is a flag to indicate that a photon is exactly detected.
-	  //   }
-          // //trackInformation->AddTrackStatusFlag(hitPMT);
-
-
-	  
 	}
 	break;
       case FresnelReflection:
@@ -187,56 +170,51 @@ void MOLLEROptSteppingAction::DrawHits(G4bool drawFlag, G4Track *theTrack)
 
 void MOLLEROptSteppingAction::DrawTracks(G4bool drawFlag, G4Track *theTrack)
 {
-  if(drawFlag)
-    {
+  if(drawFlag){
  
-      G4ParticleDefinition *particleType = theTrack->GetDefinition();
-      
-      G4Colour red      ( 255/255.,   0/255.,   0/255.);
-      G4Colour blue     (   0/255.,   0/255., 255/255.);
-      G4Colour green    (   0/255., 255/255.,   0/255.);
-      G4Colour yellow   ( 255/255., 255/255.,   0/255.);
-      
-      G4Colour white    ( 255/255., 255/255., 255/255.);
-      
-      G4Colour orange   ( 255/255., 127/255.,   0/255.);
-      G4Colour magenta  ( 237/255., 173/255., 255/255.);           
-      G4Colour magenta1 ( 104/255.,  49/255.,  94/255.);
-      
-      G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
-      
-      if (pVVisManager) {
-	const G4SteppingManager* pSM = fpSteppingManager;
-	G4Polyline polyline;
-        
-	G4Colour colour;        
+    G4ParticleDefinition *particleType = theTrack->GetDefinition();
+    
+    G4Colour red      ( 255/255.,   0/255.,   0/255.);
+    G4Colour blue     (   0/255.,   0/255., 255/255.);
+    G4Colour green    (   0/255., 255/255.,   0/255.);
+    G4Colour yellow   ( 255/255., 255/255.,   0/255.);
+    
+    G4Colour white    ( 255/255., 255/255., 255/255.);
+    
+    G4Colour orange   ( 255/255., 127/255.,   0/255.);
+    G4Colour magenta  ( 237/255., 173/255., 255/255.);           
+    G4Colour magenta1 ( 104/255.,  49/255.,  94/255.);
+    
+    G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
+    
+    if(pVVisManager){
+      const G4SteppingManager* pSM = fpSteppingManager;
+      G4Polyline polyline;
+            
+      G4Colour colour;        
 
-        if( particleType == G4Gamma::GammaDefinition()){
-          colour = yellow;
-         }
-        if( particleType == G4OpticalPhoton::OpticalPhotonDefinition())
-          { 
-	    colour = blue; }
-        if( particleType == G4Electron::ElectronDefinition() || particleType == G4MuonMinus::MuonMinusDefinition())
-          { 
-	    colour = red; 
-	  }
-        if( particleType == G4Positron  ::PositronDefinition())
-          { 
-	    colour = green; 
-	  }
+      if( particleType == G4Gamma::GammaDefinition()){
+        colour = yellow;}
+      if( particleType == G4OpticalPhoton::OpticalPhotonDefinition()){ 
+        colour = blue;}
+      if( particleType == G4Electron::ElectronDefinition()){ 
+        colour = red;}
+      if( particleType == G4MuonMinus::MuonMinusDefinition()){ 
+        colour = white;}
+      if( particleType == G4Positron::PositronDefinition()){ 
+        colour = green;}
 
 
-        
-	G4VisAttributes attribs(colour);
-        
-	polyline.SetVisAttributes(attribs);
-	polyline.push_back(pSM->GetStep()->GetPreStepPoint()->GetPosition());
-	polyline.push_back(pSM->GetStep()->GetPostStepPoint()->GetPosition());
-        
-	pVVisManager -> Draw(polyline);
-      }
+      
+      G4VisAttributes attribs(colour);
+            
+      polyline.SetVisAttributes(attribs);
+      polyline.push_back(pSM->GetStep()->GetPreStepPoint()->GetPosition());
+      polyline.push_back(pSM->GetStep()->GetPostStepPoint()->GetPosition());
+            
+      pVVisManager -> Draw(polyline);
     }
+  }
 }
 
 

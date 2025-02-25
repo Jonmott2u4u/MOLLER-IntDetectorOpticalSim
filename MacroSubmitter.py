@@ -13,7 +13,7 @@ hr_stop = 11
 hr_step = 1     #Increments over each value of hr
 
 cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
-cut_stop = 5
+cut_stop = 5  #The cut variable is rarely used in this branch, so it has been repurposed for energy cuts
 cut_step = 1
 
 sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand

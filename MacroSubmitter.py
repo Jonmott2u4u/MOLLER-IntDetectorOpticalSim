@@ -40,7 +40,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     if not os.path.exists(jobs):
                         os.system("mkdir "+jobs)
                     home = sourceDir
-                    FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
+                    FileName="./MacroFolder/"+OutputFilePrefix + FileIDString+".mac"
                     if os.path.exists(FileName):
                         jsubf=open(jobs+"/"+OutputFilePrefix + FileIDString+".sh", "w")
                         jsubf.write("#!/bin/bash\n")

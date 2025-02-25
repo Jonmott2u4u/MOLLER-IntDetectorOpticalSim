@@ -11,8 +11,8 @@ runscript = "#!/bin/bash\n\n"
 datadir =  "Macrofolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
-Particle = 1    #Sets the initial particle type. 1 for electrons, 2 for muons
-Energy = 850   #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
+Particle = 1  #Sets the primary particle type. 1 for electrons, 2 for muons
+Energy = 850  #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
 NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,100,100] #Number of events for each Hit Region (controlled by EventHitRegion variable)
@@ -211,7 +211,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/Generator/EventShift " + str(shift) + " mm" + "\n"
                         Text += "/Generator/SegmentHitRegion " + str(cut) + " mm" + "\n"
                         Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
-                        #Text += "/Generator/BeamEnergyCut " + str(EnergyCut*cut) + "\n"
+                        Text += "/Generator/BeamEnergyCut " + str(EnergyCut) + "\n" 
                         Text += "/Generator/BeamSolidAngle " + str(sa) + " degree" + "\n"
                         Text += "/Generator/BeamTiltAngle " + str(tilt) + " degree" + "\n"
                         Text += "/Generator/BeamTiltDirection " + str(tilt_dir) + " degree" + "\n"

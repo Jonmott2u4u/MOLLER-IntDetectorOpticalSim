@@ -170,56 +170,51 @@ void MOLLEROptSteppingAction::DrawHits(G4bool drawFlag, G4Track *theTrack)
 
 void MOLLEROptSteppingAction::DrawTracks(G4bool drawFlag, G4Track *theTrack)
 {
-  if(drawFlag)
-    {
+  if(drawFlag){
  
-      G4ParticleDefinition *particleType = theTrack->GetDefinition();
-      
-      G4Colour red      ( 255/255.,   0/255.,   0/255.);
-      G4Colour blue     (   0/255.,   0/255., 255/255.);
-      G4Colour green    (   0/255., 255/255.,   0/255.);
-      G4Colour yellow   ( 255/255., 255/255.,   0/255.);
-      
-      G4Colour white    ( 255/255., 255/255., 255/255.);
-      
-      G4Colour orange   ( 255/255., 127/255.,   0/255.);
-      G4Colour magenta  ( 237/255., 173/255., 255/255.);           
-      G4Colour magenta1 ( 104/255.,  49/255.,  94/255.);
-      
-      G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
-      
-      if (pVVisManager) {
-	const G4SteppingManager* pSM = fpSteppingManager;
-	G4Polyline polyline;
-        
-	G4Colour colour;        
+    G4ParticleDefinition *particleType = theTrack->GetDefinition();
+    
+    G4Colour red      ( 255/255.,   0/255.,   0/255.);
+    G4Colour blue     (   0/255.,   0/255., 255/255.);
+    G4Colour green    (   0/255., 255/255.,   0/255.);
+    G4Colour yellow   ( 255/255., 255/255.,   0/255.);
+    
+    G4Colour white    ( 255/255., 255/255., 255/255.);
+    
+    G4Colour orange   ( 255/255., 127/255.,   0/255.);
+    G4Colour magenta  ( 237/255., 173/255., 255/255.);           
+    G4Colour magenta1 ( 104/255.,  49/255.,  94/255.);
+    
+    G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
+    
+    if(pVVisManager){
+      const G4SteppingManager* pSM = fpSteppingManager;
+      G4Polyline polyline;
+            
+      G4Colour colour;        
 
-        if( particleType == G4Gamma::GammaDefinition()){
-          colour = yellow;
-         }
-        if( particleType == G4OpticalPhoton::OpticalPhotonDefinition())
-          { 
-	    colour = blue; }
-        if( particleType == G4Electron::ElectronDefinition() || particleType == G4MuonMinus::MuonMinusDefinition())
-          { 
-	    colour = red; 
-	  }
-        if( particleType == G4Positron  ::PositronDefinition())
-          { 
-	    colour = green; 
-	  }
+      if( particleType == G4Gamma::GammaDefinition()){
+        colour = yellow;}
+      if( particleType == G4OpticalPhoton::OpticalPhotonDefinition()){ 
+        colour = blue;}
+      if( particleType == G4Electron::ElectronDefinition()){ 
+        colour = red;}
+      if( particleType == G4MuonMinus::MuonMinusDefinition()){ 
+        colour = white;}
+      if( particleType == G4Positron::PositronDefinition()){ 
+        colour = green;}
 
 
-        
-	G4VisAttributes attribs(colour);
-        
-	polyline.SetVisAttributes(attribs);
-	polyline.push_back(pSM->GetStep()->GetPreStepPoint()->GetPosition());
-	polyline.push_back(pSM->GetStep()->GetPostStepPoint()->GetPosition());
-        
-	pVVisManager -> Draw(polyline);
-      }
+      
+      G4VisAttributes attribs(colour);
+            
+      polyline.SetVisAttributes(attribs);
+      polyline.push_back(pSM->GetStep()->GetPreStepPoint()->GetPosition());
+      polyline.push_back(pSM->GetStep()->GetPostStepPoint()->GetPosition());
+            
+      pVVisManager -> Draw(polyline);
     }
+  }
 }
 
 

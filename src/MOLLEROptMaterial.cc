@@ -345,10 +345,10 @@ void MOLLEROptMaterial::SetOpticalParameters()
       OptPar->QEff[n]     = var[1]; 
       OptPar->QRefl[n]    = var[2];
       OptPar->QTrans[n]   = 1.0-var[2];
-      OptPar->LGRefl30UVS[n] = var[3]; 
-      OptPar->LGRefl45UVS[n] = var[4]; 
-      OptPar->LGRefl60UVS[n] = var[5]; 
-      OptPar->LGRefl90UVS[n] = var[6];
+      OptPar->LGRefl30UVC[n] = var[3]; 
+      OptPar->LGRefl45UVC[n] = var[4]; 
+      OptPar->LGRefl60UVC[n] = var[5]; 
+      OptPar->LGRefl90UVC[n] = var[6];
       OptPar->LGRefl30UVS[n] = var[7]; 
       OptPar->LGRefl45UVS[n] = var[8]; 
       OptPar->LGRefl60UVS[n] = var[9]; 

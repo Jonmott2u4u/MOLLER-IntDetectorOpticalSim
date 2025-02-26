@@ -1,7 +1,8 @@
 #include <iostream>
 #include <TString.h>
+#include <math.h>
 
-void scint_pes()
+void willmary_pes()
 {
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -12,153 +13,172 @@ void scint_pes()
         file = TFile::Open(line.data());
         for(int det=1; det<9; det++){
 
-            //PE spectrum of each detector with scintillator cuts (must hit the upstream and at least one downstream scintillator)
+            //-------The following block is for muons striking any combination of scints---------//
+
+            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
             tmp = (TH1D*)file->Get(Form("R%i_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_PEs",det));
+            hst = (TH1D*)tmp->Clone("pes");
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
             hst->GetYaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_scintcut_pes.root",det));
+            hst->SaveAs(Form("plots/R%i_PEs.root",det));
 
-            //PE spectrum for beams that hit only one quartz tile (ring cut) and passes scintillator cut
+            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
+            tmp = (TH1D*)file->Get(Form("R%iAdjacent_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iAdjacent_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and hits only one detector
             tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
+            hst = (TH1D*)tmp->Clone("pes");
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
             hst->GetXaxis()->SetTitle("Photoelectrons");
             hst->GetYaxis()->SetTitle("Events");
             hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_ringcut_pes.root",det));
+            hst->SaveAs(Form("plots/R%iOnly_PEs.root",det));
 
-            //Distribution of initial beam angles for scintillator cuts
-            tmp = (TH1D*)file->Get(Form("R%i_InitialBeamAngleHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_angle",det));
-            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
-            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,20);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_scintcut_angle.root",det));
+            //-------The following block is for muons striking scints 1 & 3---------//
 
-            //Distribution of initial beam angles for ring+scintillator cuts
-            tmp = (TH1D*)file->Get(Form("R%iOnly_InitialBeamAngleHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%iOnly_angle",det));
-            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
-            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
+            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
+            tmp = (TH1D*)file->Get(Form("R%i_Scint13_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
             hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,20);
+            hst->GetXaxis()->SetRangeUser(0,100);
             hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_ringcut_angle.root",det));
+            hst->SaveAs(Form("plots/R%i_Scint13_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
+            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint13_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iAdjacent_Scint13_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and hits only one detector
+            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint13_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iOnly_Scint13_PEs.root",det));
+
+            //-------The following block is for muons striking scints 1 & 4---------//
+
+            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
+            tmp = (TH1D*)file->Get(Form("R%i_Scint14_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_Scint14_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
+            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint14_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iAdjacent_Scint14_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and hits only one detector
+            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint14_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iOnly_Scint14_PEs.root",det));
+
+            //-------The following block is for muons striking scints 2 & 3---------//
+
+            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
+            tmp = (TH1D*)file->Get(Form("R%i_Scint23_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_Scint23_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
+            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint23_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iAdjacent_Scint23_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and hits only one detector
+            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint23_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iOnly_Scint23_PEs.root",det));
+
+            //-------The following block is for muons striking scints 2 & 4---------//
+
+            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
+            tmp = (TH1D*)file->Get(Form("R%i_Scint24_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%i_Scint24_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
+            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint24_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iAdjacent_Scint24_PEs.root",det));
+
+            //PE spectrum of each detector that passes scint cut and hits only one detector
+            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint24_CathodeEventsDistrHist",det));
+            hst = (TH1D*)tmp->Clone("pes");
+            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
+            hst->GetXaxis()->SetTitle("Photoelectrons");
+            hst->GetYaxis()->SetTitle("Events");
+            hst->GetXaxis()->SetRangeUser(0,100);
+            hst->SetDirectory(0);
+            hst->SaveAs(Form("plots/R%iOnly_Scint24_PEs.root",det));
+
         }
         file->Close("R");
     }
 }
 
-void gem1_pes()
-{
-    std::ifstream rfiles("files.dat");
-    std::string line;
-    TFile *file;
-    TH1D *hst, *tmp;
-
-    while(std::getline(rfiles, line)){
-        file = TFile::Open(line.data());
-        for(int det=1; det<9; det++){
-
-            tmp = (TH1D*)file->Get(Form("R%i_GEM1_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_PEs",det));
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem1_scintcut_pes.root",det));
-
-            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM1_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem1_ringcut_pes.root",det));
-
-            tmp = (TH1D*)file->Get(Form("R%i_GEM1_InitialBeamAngleHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_angle",det));
-            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
-            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,20);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem1_scintcut_angle.root",det));
-
-            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM1_InitialBeamAngleHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%iOnly_angle",det));
-            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
-            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,20);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem1_ringcut_angle.root",det));
-        }
-        file->Close("R");
-    }
-}
-
-void gem2_pes()
-{
-    std::ifstream rfiles("files.dat");
-    std::string line;
-    TFile *file;
-    TH1D *hst, *tmp;
-
-    while(std::getline(rfiles, line)){
-        file = TFile::Open(line.data());
-        for(int det=1; det<9; det++){
-
-            tmp = (TH1D*)file->Get(Form("R%i_GEM2_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_PEs",det));
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem2_scintcut_pes.root",det));
-
-            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM2_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_Solo_PEs",det));
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem2_ringcut_pes.root",det));
-
-            tmp = (TH1D*)file->Get(Form("R%i_GEM2_InitialBeamAngleHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%i_angle",det));
-            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
-            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,20);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem2_scintcut_angle.root",det));
-
-            tmp = (TH1D*)file->Get(Form("R%iOnly_GEM2_InitialBeamAngleHist",det));
-            hst = (TH1D*)tmp->Clone(Form("R%iOnly_angle",det));
-            hst->SetTitle(Form("R%i Initial Beam Angle Distribution",det));
-            hst->GetXaxis()->SetTitle("Angle from Z-axis [deg]");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,20);
-            hst->SetDirectory(0);
-            hst->SaveAs(Form("plots/R%i_gem2_ringcut_angle.root",det));
-        }
-        file->Close("R");
-    }
-}
-
-//This object performs cuts over the quartz in the x-direction. Goal is to see position dependence of PE yield, among other things
+//This object performs cuts over the quartz in the x-direction
 void quartz_pos(){
 
     std::ifstream rfiles("files.dat");

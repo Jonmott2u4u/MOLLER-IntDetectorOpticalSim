@@ -17,6 +17,7 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   Dir10 = new G4UIdirectory("/Scint2/");
   Dir11 = new G4UIdirectory("/Scint3/");
   Dir12 = new G4UIdirectory("/Scint4/");
+  Dir13 = new G4UIdirectory("/AlPlate1/");
   Dir -> SetGuidance("General ring control.");
   Dir1 -> SetGuidance("R1 control.");
   Dir2 -> SetGuidance("R2 control.");
@@ -30,6 +31,7 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   Dir10 -> SetGuidance("Scint2 control.");
   Dir11 -> SetGuidance("Scint3 control.");
   Dir12 -> SetGuidance("Scint4 control.");
+  Dir13 -> SetGuidance("AlPlate1 control.");
   
   //Ring 1 commands
   DetZPositionCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/SetCenterPositionInZ",this);
@@ -930,6 +932,43 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   QuartzSizeXCmdScint4->SetParameterName("Size",true);
   QuartzSizeXCmdScint4->SetUnitCategory("Length");
   QuartzSizeXCmdScint4->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  //AlPlate1 objects
+  DetZPositionCmdAlPlate1 =  new G4UIcmdWithADoubleAndUnit("/AlPlate1/SetCenterPositionInZ",this);
+  DetZPositionCmdAlPlate1->SetGuidance("Set the Z position of the Plate"); 
+  DetZPositionCmdAlPlate1->SetParameterName("Size",true);
+  DetZPositionCmdAlPlate1->SetUnitCategory("Length");
+  DetZPositionCmdAlPlate1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetYPositionCmdAlPlate1 =  new G4UIcmdWithADoubleAndUnit("/AlPlate1/SetCenterPositionInY",this);
+  DetYPositionCmdAlPlate1->SetGuidance("Set the Y position of the Plate"); 
+  DetYPositionCmdAlPlate1->SetParameterName("Size",true);
+  DetYPositionCmdAlPlate1->SetUnitCategory("Length");
+  DetYPositionCmdAlPlate1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  DetXPositionCmdAlPlate1 =  new G4UIcmdWithADoubleAndUnit("/AlPlate1/SetCenterPositionInX",this);
+  DetXPositionCmdAlPlate1->SetGuidance("Set the X position of the Plate"); 
+  DetXPositionCmdAlPlate1->SetParameterName("Size",true);
+  DetXPositionCmdAlPlate1->SetUnitCategory("Length");
+  DetXPositionCmdAlPlate1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  PlateSizeZCmdAlPlate1 =  new G4UIcmdWithADoubleAndUnit("/AlPlate1/PlateSizeZ",this);
+  PlateSizeZCmdAlPlate1->SetGuidance("Set the size of the Plate in Z"); 
+  PlateSizeZCmdAlPlate1->SetParameterName("Size",true);
+  PlateSizeZCmdAlPlate1->SetUnitCategory("Length");
+  PlateSizeZCmdAlPlate1->AvailableForStates(G4State_PreInit,G4State_Idle);                  
+
+  PlateSizeYCmdAlPlate1 =  new G4UIcmdWithADoubleAndUnit("/AlPlate1/PlateSizeY",this);
+  PlateSizeYCmdAlPlate1->SetGuidance("Set the size of the Plate in Y"); 
+  PlateSizeYCmdAlPlate1->SetParameterName("Size",true);
+  PlateSizeYCmdAlPlate1->SetUnitCategory("Length");
+  PlateSizeYCmdAlPlate1->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  PlateSizeXCmdAlPlate1 =  new G4UIcmdWithADoubleAndUnit("/AlPlate1/PlateSizeX",this);
+  PlateSizeXCmdAlPlate1->SetGuidance("Set the size of the Plate in X"); 
+  PlateSizeXCmdAlPlate1->SetParameterName("Size",true);
+  PlateSizeXCmdAlPlate1->SetUnitCategory("Length");
+  PlateSizeXCmdAlPlate1->AvailableForStates(G4State_PreInit,G4State_Idle);
   
   //General objects
   LightGuidePMTInterfaceOpeningXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuidePMTInterfaceOpeningX",this); 
@@ -1167,6 +1206,14 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(QuartzSizeYCmdScint4                   ) delete QuartzSizeYCmdScint4;                       
   if(QuartzSizeZCmdScint4                   ) delete QuartzSizeZCmdScint4;
 
+  //AlPlate1 objects
+  if(DetXPositionCmdAlPlate1			             ) delete DetXPositionCmdAlPlate1;
+  if(DetYPositionCmdAlPlate1			             ) delete DetYPositionCmdAlPlate1;
+  if(DetZPositionCmdAlPlate1			             ) delete DetZPositionCmdAlPlate1;
+  if(PlateSizeXCmdAlPlate1                   ) delete PlateSizeXCmdAlPlate1;                       
+  if(PlateSizeYCmdAlPlate1                   ) delete PlateSizeYCmdAlPlate1;                       
+  if(PlateSizeZCmdAlPlate1                   ) delete PlateSizeZCmdAlPlate1;
+
   //General objects
   if(LightGuideOffsetXCmd                  ) delete LightGuideOffsetXCmd;                 
   if(LightGuideOffsetYCmd                  ) delete LightGuideOffsetYCmd;                 
@@ -1352,6 +1399,14 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == QuartzSizeXCmdScint4 )                      { Det->SetScint4SizeX(QuartzSizeXCmdScint4->GetNewDoubleValue(newValue));}
   if( command == QuartzSizeYCmdScint4 )                      { Det->SetScint4SizeY(QuartzSizeYCmdScint4->GetNewDoubleValue(newValue));}
   if( command == QuartzSizeZCmdScint4 )                      { Det->SetScint4SizeZ(QuartzSizeZCmdScint4->GetNewDoubleValue(newValue));}
+
+  //AlPlate1 objects
+  if( command == DetXPositionCmdAlPlate1 ) 			{ Det->SetCenterPositionInXAlPlate1(DetXPositionCmdAlPlate1->GetNewDoubleValue(newValue));}
+  if( command == DetYPositionCmdAlPlate1 ) 			{ Det->SetCenterPositionInYAlPlate1(DetYPositionCmdAlPlate1->GetNewDoubleValue(newValue));}
+  if( command == DetZPositionCmdAlPlate1 ) 			{ Det->SetCenterPositionInZAlPlate1(DetZPositionCmdAlPlate1->GetNewDoubleValue(newValue));}
+  if( command == PlateSizeXCmdAlPlate1 )                      { Det->SetAlPlate1SizeX(PlateSizeXCmdAlPlate1->GetNewDoubleValue(newValue));}
+  if( command == PlateSizeYCmdAlPlate1 )                      { Det->SetAlPlate1SizeY(PlateSizeYCmdAlPlate1->GetNewDoubleValue(newValue));}
+  if( command == PlateSizeZCmdAlPlate1 )                      { Det->SetAlPlate1SizeZ(PlateSizeZCmdAlPlate1->GetNewDoubleValue(newValue));}
 
   //General objects
   if( command == UpdateGeometryCmd )                    { Det->UpdateThisGeometry();}

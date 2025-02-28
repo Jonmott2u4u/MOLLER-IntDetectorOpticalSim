@@ -250,7 +250,16 @@
 /Scint4/SetCenterPositionInY -1 mm        #
 /Scint4/SetCenterPositionInZ 1586 mm     # 
 
-#------------------#Misc commands -----------------------#
+#------------------#Misc. Frame commands ---------------#
+
+/AlPlate1/PlateSizeZ 6.35 mm                  #
+/AlPlate1/PlateSizeX 800 mm                  #
+/AlPlate1/PlateSizeY 800 mm                  #
+/AlPlate1/SetCenterPositionInX 0 mm           # 
+/AlPlate1/SetCenterPositionInY 79.5 mm        #
+/AlPlate1/SetCenterPositionInZ -380 mm     #
+
+#------------------#Beam commands -----------------------#
 
 /Det/UpdateGeometry
 

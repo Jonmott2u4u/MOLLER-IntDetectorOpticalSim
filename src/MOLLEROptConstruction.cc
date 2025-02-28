@@ -11,8 +11,6 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   Materials       = mat;
 
   Detector        = NULL;
-  //LightGuide1      = NULL;
-  //Detector2        = NULL;
 
   fWorldLengthInX = 0.0; 
   fWorldLengthInY = 0.0;
@@ -32,8 +30,7 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring","9Ring","10Ring","11Ring","12Ring", Materials);
-  //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
+  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring","9Ring","10Ring","11Ring","12Ring","AlPlate1", Materials);
   
   fWorldLengthInX =  15.0*m;
   fWorldLengthInY =  15.0*m;
@@ -192,6 +189,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetScint4SizeX(10.0*cm);
   Detector->SetScint4SizeY(10.0*cm);
   Detector->SetScint4SizeZ(0.01*cm);
+
+  //AlPlate1
+  Detector->SetAlPlate1SizeX(80.0*cm);
+  Detector->SetAlPlate1SizeY(80.0*cm);
+  Detector->SetAlPlate1SizeZ(0.635*cm);
   
   //General objects
   Detector->SetPMTInterfaceOpeningZ(5.6*cm);

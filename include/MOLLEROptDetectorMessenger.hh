@@ -33,6 +33,7 @@ private:
   G4UIdirectory*             Dir10;
   G4UIdirectory*             Dir11;
   G4UIdirectory*             Dir12;
+  G4UIdirectory*             Dir13;
   G4UIcmdWithAString*        DetMatCmd;
   
   //Ring 1 objects
@@ -202,6 +203,14 @@ private:
   G4UIcmdWithADoubleAndUnit* QuartzSizeXCmdScint4;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint4;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint4;
+
+  //AlPlate1 commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdAlPlate1;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdAlPlate1;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdAlPlate1;
+  G4UIcmdWithADoubleAndUnit* PlateSizeXCmdAlPlate1;       
+  G4UIcmdWithADoubleAndUnit* PlateSizeYCmdAlPlate1;       
+  G4UIcmdWithADoubleAndUnit* PlateSizeZCmdAlPlate1;
 
   //General commands
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;                       

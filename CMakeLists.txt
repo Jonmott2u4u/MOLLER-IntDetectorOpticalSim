@@ -115,7 +115,7 @@ set(MOLLER_SCRIPTS
   MacroSubmitter.sh
   ExtractScanResults.C
   PlotExtractor.C
-  edge-finder.C
+  segment_scan.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

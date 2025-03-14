@@ -15,7 +15,7 @@ Particle = 1  #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 850  #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0 #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
-NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,100,100] #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000] #Number of events for each Hit Region (controlled by EventHitRegion variable)
 #ScintYPos = [-380,-320,-245,-140,30,150]
 #ScintZPos = [1911,1643,1376,1108,946,515]
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
@@ -36,16 +36,16 @@ hr_start = 10   #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 =
 hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 30  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
-cut_stop = 30   #Currently repurposed to move scintillator around
+cut_start = 30.0  #Used for hr = 10. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_stop = 30.0   #Currently repurposed to move scintillator around
 cut_step = 1.0
 
 ID_start = 2    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 ID_stop = 2
 ID_step = 1
 
-det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 1
+det_start = 12    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
+det_stop = 12     #For no detectors, set >= 12. Used to minimize data storage every 100 events to ~ 300 MB. Otherwise ~ 800 MB is required per save
 det_step = 1
 
 text_root = ""

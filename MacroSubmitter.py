@@ -14,8 +14,8 @@ hr_start = 10    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 
 hr_stop = 10
 hr_step = 1     #Increments over each value of hr
 
-cut_start = 30 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
-cut_stop = 30
+cut_start = 30.0 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
+cut_stop = 30.0
 cut_step = 1.0
 
 #sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
@@ -30,8 +30,8 @@ ID_start = 2    #Set this to distinguish identical runs (to prevent file overwri
 ID_stop = 2
 ID_step = 1
 
-det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 1
+det_start = 12    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
+det_stop = 12     #For no detectors, set >= 12. Used to minimize data storage every 100 events to ~ 300 MB. Otherwise ~ 800 MB is required per save
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
@@ -61,7 +61,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                             #jsubf.write("#SBATCH --cpus-per-task=1\n")
                             #jsubf.write("#SBATCH --mem=40G\n")
                             #---Submission info for IFarm---
-                            jsubf.write("#SBATCH --account=halla\n")
+                            #jsubf.write("#SBATCH --account=halla\n")
                             jsubf.write("#SBATCH --partition=production\n")
                             #jsubf.write("#SBATCH --partition=priority\n")
                             jsubf.write("#SBATCH --job-name=PMT_EP\n")
@@ -72,7 +72,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                             jsubf.write("#SBATCH --nodes=1\n")
                             jsubf.write("#SBATCH --ntasks=1\n")
                             jsubf.write("#SBATCH --cpus-per-task=1\n")
-                            jsubf.write("#SBATCH --mem=2G\n")
+                            jsubf.write("#SBATCH --mem=300M\n") #Use 800M if collecting all data for a single det, 300M for just PE histograms.
                             #---General submission info---
                             #jsubf.write("cd "+home+"\n")
                             jsubf.write("echo \"Current working directory is `pwd`\"\n")

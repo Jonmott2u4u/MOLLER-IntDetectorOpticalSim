@@ -101,23 +101,6 @@ void MOLLEROptSteppingAction::UserSteppingAction(const G4Step* theStep)
       }
     }
   }
-
-
-  
-  
-  // if(postStep && preStep){
-
-  //   G4VPhysicalVolume *vol = postStep->GetPhysicalVolume();
-  //   if(vol){
-  //     G4String name = vol->GetName();
-  //     G4cout << "Name = " << name << G4endl;
-  //     if(postStep->GetPhysicalVolume()->GetName().contains("LG_Physical") &&
-  // 	 preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")){
-	
-  // 	DrawHits(true,theTrack);
-  //     }
-  //   }
-  // }
      
   DrawTracks(true, theTrack);
 

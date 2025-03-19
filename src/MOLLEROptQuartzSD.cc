@@ -108,7 +108,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
     }
   }
   
-  if((aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()) || (aStep->GetTrack()->GetDefinition() == G4MuonMinus::MuonMinusDefinition())){
+  if((aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()) || (aStep->GetTrack()->GetDefinition() == G4MuonMinus::MuonMinusDefinition() || (aStep->GetTrack()->GetDefinition() == G4Gamma::GammaDefinition()))){
     G4ThreeVector primom = aStep->GetTrack()->GetMomentumDirection();  
     
     for(int n = 0; n < (*Secondaries).size(); n++){

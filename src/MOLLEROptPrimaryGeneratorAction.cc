@@ -336,8 +336,9 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //G4cout << "Random integer was finally: " << rand_int << "\n" << G4endl;
   //*****************************************
 
-  if (PrimaryParticle == 1 || PrimaryParticle == 3) particleGun->SetParticleEnergy(Energy*keV); //Uses energy set by macro
+  if (PrimaryParticle == 1) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
   if (PrimaryParticle == 2) particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution
+  if (PrimaryParticle == 3) particleGun->SetParticleEnergy(Energy*keV); //Uses energy set by macro, but in keV (update energy to accept double or float)
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

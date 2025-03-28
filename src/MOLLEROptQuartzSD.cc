@@ -6,7 +6,7 @@ MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* Tr
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
   if(SensitiveDetectorName == "Quartz1"){
-    theCollectionName = G4String("QuartzHitCollection");
+    theCollectionName = G4String("QuartzHitCollection1");
   }
   else if(SensitiveDetectorName == "Quartz2"){
     theCollectionName = G4String("QuartzHitCollection2");

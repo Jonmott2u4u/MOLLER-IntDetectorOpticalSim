@@ -146,7 +146,7 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc,
   //G4cout << loc.z() << G4endl;
   //G4cout << Tracks[tr]->ScintHitFlag << G4endl;
   if(tr == -1) return;
-  if((Tracks[tr]->R1QuartzHitFlag == 0) & (quartz == "QuartzHitCollection")){ 
+  if((Tracks[tr]->R1QuartzHitFlag == 0) & (quartz == "QuartzHitCollection1")){ 
     Tracks[tr]->R1QuartzHitFlag = 1;
     Tracks[tr]->R1QuartzHitX = loc.x();
     Tracks[tr]->R1QuartzHitY = loc.y();

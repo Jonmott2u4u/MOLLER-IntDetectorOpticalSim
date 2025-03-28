@@ -23,40 +23,40 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   LightGuide1 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type1,Materials);
   PMT1 = new  MOLLEROptDetectorPMT(TrackingReadout,type1,Materials,LightGuide1);
 
-  Quartz2 = new  MOLLEROptDetectorQuartz2(TrackingReadout,type2,Materials);
+  Quartz2 = new  MOLLEROptDetectorQuartz(TrackingReadout,type2,Materials);
   LightGuide2 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type2,Materials);
   PMT2 = new  MOLLEROptDetectorPMT(TrackingReadout,type2,Materials,LightGuide2);
 
-  Quartz3 = new  MOLLEROptDetectorQuartz3(TrackingReadout,type3,Materials);
+  Quartz3 = new  MOLLEROptDetectorQuartz(TrackingReadout,type3,Materials);
   LightGuide3 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type3,Materials);
   PMT3 = new  MOLLEROptDetectorPMT(TrackingReadout,type3,Materials,LightGuide3);
 
-  Quartz4 = new  MOLLEROptDetectorQuartz4(TrackingReadout,type4,Materials);
+  Quartz4 = new  MOLLEROptDetectorQuartz(TrackingReadout,type4,Materials);
   LightGuide4 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type4,Materials);
   PMT4 = new  MOLLEROptDetectorPMT(TrackingReadout,type4,Materials,LightGuide4);
 
-  Quartz5 = new  MOLLEROptDetectorQuartz5(TrackingReadout,type5,Materials);
+  Quartz5 = new  MOLLEROptDetectorQuartz(TrackingReadout,type5,Materials);
   LightGuide5 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type5,Materials);
   PMT5 = new  MOLLEROptDetectorPMT(TrackingReadout,type5,Materials,LightGuide5);
 
-  Quartz6 = new  MOLLEROptDetectorQuartz6(TrackingReadout,type6,Materials);
+  Quartz6 = new  MOLLEROptDetectorQuartz(TrackingReadout,type6,Materials);
   LightGuide6 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type6,Materials);
   PMT6 = new  MOLLEROptDetectorPMT(TrackingReadout,type6,Materials,LightGuide6);
 
-  Quartz7 = new  MOLLEROptDetectorQuartz7(TrackingReadout,type7,Materials);
+  Quartz7 = new  MOLLEROptDetectorQuartz(TrackingReadout,type7,Materials);
   LightGuide7 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type7,Materials);
   PMT7 = new  MOLLEROptDetectorPMT(TrackingReadout,type7,Materials,LightGuide7);
 
-  Quartz8 = new  MOLLEROptDetectorQuartz8(TrackingReadout,type8,Materials);
+  Quartz8 = new  MOLLEROptDetectorQuartz(TrackingReadout,type8,Materials);
   LightGuide8 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type8,Materials);
   PMT8 = new  MOLLEROptDetectorPMT(TrackingReadout,type8,Materials,LightGuide8);
 
-  Scint1 = new  MOLLEROptDetectorScint1(TrackingReadout,type9,Materials);
-  Scint2 = new  MOLLEROptDetectorScint2(TrackingReadout,type10,Materials);
-  Scint3 = new  MOLLEROptDetectorScint3(TrackingReadout,type11,Materials);
-  Scint4 = new  MOLLEROptDetectorScint4(TrackingReadout,type12,Materials);
+  Scint1 = new  MOLLEROptDetectorScint(TrackingReadout,type9,Materials);
+  Scint2 = new  MOLLEROptDetectorScint(TrackingReadout,type10,Materials);
+  Scint3 = new  MOLLEROptDetectorScint(TrackingReadout,type11,Materials);
+  Scint4 = new  MOLLEROptDetectorScint(TrackingReadout,type12,Materials);
 
-  AlPlate1 = new  MOLLEROptDetectorAlPlate1(type13,Materials);
+  AlPlate = new  MOLLEROptDetectorAlPlate(type13,Materials);
 
   detMessenger = NULL;
 
@@ -114,7 +114,7 @@ MOLLEROptDetector::~MOLLEROptDetector()
   delete Scint3;
   delete Scint4;
 
-  delete AlPlate1;
+  delete AlPlate;
 
 }
 
@@ -976,21 +976,21 @@ void MOLLEROptDetector::SetScint4SizeZ(G4double z)
     Scint4->SetQuartzSizeZ(z);
 }
 
-//AlPlate1 objects
-void MOLLEROptDetector::SetAlPlate1SizeX(G4double x)
+//AlPlate objects
+void MOLLEROptDetector::SetAlPlateSizeX(G4double x)
 {
-  if(AlPlate1)
-    AlPlate1->SetPlateSizeX(x);
+  if(AlPlate)
+    AlPlate->SetPlateSizeX(x);
 }
-void MOLLEROptDetector::SetAlPlate1SizeY(G4double y)
+void MOLLEROptDetector::SetAlPlateSizeY(G4double y)
 {
-  if(AlPlate1)
-    AlPlate1->SetPlateSizeY(y);
+  if(AlPlate)
+    AlPlate->SetPlateSizeY(y);
 }				       
-void MOLLEROptDetector::SetAlPlate1SizeZ(G4double z)
+void MOLLEROptDetector::SetAlPlateSizeZ(G4double z)
 {
-  if(AlPlate1)
-    AlPlate1->SetPlateSizeZ(z);
+  if(AlPlate)
+    AlPlate->SetPlateSizeZ(z);
 }
 
 //Updating Geometry (done when running macros)
@@ -1002,7 +1002,7 @@ void MOLLEROptDetector::UpdateThisGeometry()
   G4GeometryManager::GetInstance()->OpenGeometry();
   
   delete DetPhysical;
-  //RotationDet->rotateZ(6.43*degree);
+  RotationDet->rotateZ(-6.43*degree);
   RotationDet->rotateX(PolarAngle);
   PMT1->UpdateGeometry();
   Quartz1->UpdateGeometry();
@@ -1032,7 +1032,7 @@ void MOLLEROptDetector::UpdateThisGeometry()
   Scint2->UpdateGeometry();
   Scint3->UpdateGeometry();
   Scint4->UpdateGeometry();
-  AlPlate1->UpdateGeometry();
+  AlPlate->UpdateGeometry();
   CalculateDimensions();
   DetSolid = new G4Box(DetType1+"_Solid",
 		       10* DetFullLengthX1, 
@@ -1148,7 +1148,7 @@ void MOLLEROptDetector::CalculateDimensions()
   DetFullLengthYScint2 = Scint2->GetQuartzSizeY();
   DetFullLengthYScint3 = Scint3->GetQuartzSizeY();
   DetFullLengthYScint4 = Scint4->GetQuartzSizeY();
-  DetFullLengthYAlPlate1 = AlPlate1->GetPlateSizeY();
+  DetFullLengthYAlPlate = AlPlate->GetPlateSizeY();
 }
 
 void MOLLEROptDetector::ResetCenterLocation()
@@ -1204,7 +1204,7 @@ void MOLLEROptDetector::Initialize()
   Scint2->Initialize();
   Scint3->Initialize();
   Scint4->Initialize();
-  AlPlate1->Initialize();
+  AlPlate->Initialize();
 
 
   //Scint1->SetPolarRotationAngle(PolarAngle);
@@ -1278,8 +1278,8 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   G4double Scint4y = Scint4->GetQuartzSizeY();
   G4double Scint4z = Scint4->GetQuartzSizeZ();
 
-  G4double AlPlate1y = AlPlate1->GetPlateSizeY();
-  G4double AlPlate1z = AlPlate1->GetPlateSizeZ();
+  G4double AlPlatey = AlPlate->GetPlateSizeY();
+  G4double AlPlatez = AlPlate->GetPlateSizeZ();
 
   G4double Qrot = Quartz1->GetQuartzRotationX();
      
@@ -1444,11 +1444,11 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   Scint4->SetQuartzRotX(-3*degree);
 
   //Misc. Objects
-  AlPlate1->Construct(DetPhysical);
-  AlPlate1->SetCenterPositionInX(PositionDetXAlPlate1);
-  AlPlate1->SetCenterPositionInZ(0.5*AlPlate1y*(TMath::Sin(Qrot)) + PositionDetZAlPlate1);
-  AlPlate1->SetCenterPositionInY(-0.5*DetFullLengthYAlPlate1 + 0.5*AlPlate1y + 0.5*AlPlate1y*(1.0-TMath::Cos(Qrot)) + 0.5*AlPlate1z*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetYAlPlate1);
-  AlPlate1->SetPlateRotX(-3*degree);
+  AlPlate->Construct(DetPhysical);
+  AlPlate->SetCenterPositionInX(PositionDetXAlPlate);
+  AlPlate->SetCenterPositionInZ(0.5*AlPlatey*(TMath::Sin(Qrot)) + PositionDetZAlPlate);
+  AlPlate->SetCenterPositionInY(-0.5*DetFullLengthYAlPlate + 0.5*AlPlatey + 0.5*AlPlatey*(1.0-TMath::Cos(Qrot)) + 0.5*AlPlatez*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetYAlPlate);
+  AlPlate->SetPlateRotX(-3*degree);
 
   //-----------------------------------------------------//
 
@@ -1795,21 +1795,21 @@ void MOLLEROptDetector::SetCenterPositionInZScint4(G4double zPos)
 					      PositionDetZScint4));
 }
 
-//AlPlate1 objects
-void MOLLEROptDetector::SetCenterPositionInXAlPlate1(G4double xPos)
+//AlPlate objects
+void MOLLEROptDetector::SetCenterPositionInXAlPlate(G4double xPos)
 {
-    PositionDetXAlPlate1 = xPos;
-    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXAlPlate1,PositionDetYAlPlate1,PositionDetZAlPlate1));
+    PositionDetXAlPlate = xPos;
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXAlPlate,PositionDetYAlPlate,PositionDetZAlPlate));
 }
-void MOLLEROptDetector::SetCenterPositionInYAlPlate1(G4double yPos)
+void MOLLEROptDetector::SetCenterPositionInYAlPlate(G4double yPos)
 {
-    PositionDetYAlPlate1 = yPos;
-    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXAlPlate1,PositionDetYAlPlate1,PositionDetZAlPlate1));
+    PositionDetYAlPlate = yPos;
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXAlPlate,PositionDetYAlPlate,PositionDetZAlPlate));
 }
-void MOLLEROptDetector::SetCenterPositionInZAlPlate1(G4double zPos)
+void MOLLEROptDetector::SetCenterPositionInZAlPlate(G4double zPos)
 {
-    PositionDetZAlPlate1 = zPos;
-    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXAlPlate1,PositionDetYAlPlate1,PositionDetZAlPlate1));
+    PositionDetZAlPlate = zPos;
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetXAlPlate,PositionDetYAlPlate,PositionDetZAlPlate));
 }
 
 //General objects (with edits)

@@ -9,18 +9,8 @@
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorQuartz.hh"
-#include "MOLLEROptDetectorQuartz2.hh"
-#include "MOLLEROptDetectorQuartz3.hh"
-#include "MOLLEROptDetectorQuartz4.hh"
-#include "MOLLEROptDetectorQuartz5.hh"
-#include "MOLLEROptDetectorQuartz6.hh"
-#include "MOLLEROptDetectorQuartz7.hh"
-#include "MOLLEROptDetectorQuartz8.hh"
-#include "MOLLEROptDetectorScint1.hh"
-#include "MOLLEROptDetectorScint2.hh"
-#include "MOLLEROptDetectorScint3.hh"
-#include "MOLLEROptDetectorScint4.hh"
-#include "MOLLEROptDetectorAlPlate1.hh"
+#include "MOLLEROptDetectorScint.hh"
+#include "MOLLEROptDetectorAlPlate.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
 
@@ -212,13 +202,13 @@ public:
   void SetScint4SizeY(G4double y); 
   void SetScint4SizeZ(G4double z);
 
-  //AlPlate1 objects
-  void SetCenterPositionInXAlPlate1(G4double xPos);
-  void SetCenterPositionInYAlPlate1(G4double yPos);
-  void SetCenterPositionInZAlPlate1(G4double zPos);
-  void SetAlPlate1SizeX(G4double x); 
-  void SetAlPlate1SizeY(G4double y); 
-  void SetAlPlate1SizeZ(G4double z);
+  //AlPlate objects
+  void SetCenterPositionInXAlPlate(G4double xPos);
+  void SetCenterPositionInYAlPlate(G4double yPos);
+  void SetCenterPositionInZAlPlate(G4double zPos);
+  void SetAlPlateSizeX(G4double x); 
+  void SetAlPlateSizeY(G4double y); 
+  void SetAlPlateSizeZ(G4double z);
 
   //General objects
   void SetQuartzRotX(G4double r);
@@ -296,31 +286,31 @@ private:
   MOLLEROptDetectorQuartz*     Quartz1;
   MOLLEROptDetectorPMT*        PMT1;
   MOLLEROptDetectorLightGuide* LightGuide2; 
-  MOLLEROptDetectorQuartz2*    Quartz2;
+  MOLLEROptDetectorQuartz*     Quartz2;
   MOLLEROptDetectorPMT*        PMT2;
   MOLLEROptDetectorLightGuide* LightGuide3; 
-  MOLLEROptDetectorQuartz3*    Quartz3;
+  MOLLEROptDetectorQuartz*     Quartz3;
   MOLLEROptDetectorPMT*        PMT3;
   MOLLEROptDetectorLightGuide* LightGuide4; 
-  MOLLEROptDetectorQuartz4*    Quartz4;
+  MOLLEROptDetectorQuartz*     Quartz4;
   MOLLEROptDetectorPMT*        PMT4;
   MOLLEROptDetectorLightGuide* LightGuide5; 
-  MOLLEROptDetectorQuartz5*    Quartz5;
+  MOLLEROptDetectorQuartz*     Quartz5;
   MOLLEROptDetectorPMT*        PMT5;
   MOLLEROptDetectorLightGuide* LightGuide6; 
-  MOLLEROptDetectorQuartz6*    Quartz6;
+  MOLLEROptDetectorQuartz*     Quartz6;
   MOLLEROptDetectorPMT*        PMT6;
   MOLLEROptDetectorLightGuide* LightGuide7; 
-  MOLLEROptDetectorQuartz7*    Quartz7;
+  MOLLEROptDetectorQuartz*     Quartz7;
   MOLLEROptDetectorPMT*        PMT7;
   MOLLEROptDetectorLightGuide* LightGuide8; 
-  MOLLEROptDetectorQuartz8*    Quartz8;
+  MOLLEROptDetectorQuartz*     Quartz8;
   MOLLEROptDetectorPMT*        PMT8;
-  MOLLEROptDetectorScint1*     Scint1;
-  MOLLEROptDetectorScint2*     Scint2;
-  MOLLEROptDetectorScint3*     Scint3;
-  MOLLEROptDetectorScint4*     Scint4;
-  MOLLEROptDetectorAlPlate1*   AlPlate1;
+  MOLLEROptDetectorScint*      Scint1;
+  MOLLEROptDetectorScint*      Scint2;
+  MOLLEROptDetectorScint*      Scint3;
+  MOLLEROptDetectorScint*      Scint4;
+  MOLLEROptDetectorAlPlate*   AlPlate;
 
   G4VPhysicalVolume* MotherVolume;
 
@@ -366,9 +356,9 @@ private:
   G4double DetFullLengthXScint4;
   G4double DetFullLengthYScint4;
   G4double DetFullLengthZScint4;
-  G4double DetFullLengthXAlPlate1;
-  G4double DetFullLengthYAlPlate1;
-  G4double DetFullLengthZAlPlate1;
+  G4double DetFullLengthXAlPlate;
+  G4double DetFullLengthYAlPlate;
+  G4double DetFullLengthZAlPlate;
 
   G4ThreeVector     PositionDet1;
   G4ThreeVector     PositionDet2;
@@ -417,9 +407,9 @@ private:
   G4double PositionDetXScint4;
   G4double PositionDetYScint4;
   G4double PositionDetZScint4;
-  G4double PositionDetXAlPlate1;
-  G4double PositionDetYAlPlate1;
-  G4double PositionDetZAlPlate1;
+  G4double PositionDetXAlPlate;
+  G4double PositionDetYAlPlate;
+  G4double PositionDetZAlPlate;
 
   G4double AzimuAngle;
   G4double PolarAngle;

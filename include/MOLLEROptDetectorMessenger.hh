@@ -204,13 +204,13 @@ private:
   G4UIcmdWithADoubleAndUnit* QuartzSizeYCmdScint4;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeZCmdScint4;
 
-  //AlPlate1 commands
-  G4UIcmdWithADoubleAndUnit* DetXPositionCmdAlPlate1;
-  G4UIcmdWithADoubleAndUnit* DetYPositionCmdAlPlate1;
-  G4UIcmdWithADoubleAndUnit* DetZPositionCmdAlPlate1;
-  G4UIcmdWithADoubleAndUnit* PlateSizeXCmdAlPlate1;       
-  G4UIcmdWithADoubleAndUnit* PlateSizeYCmdAlPlate1;       
-  G4UIcmdWithADoubleAndUnit* PlateSizeZCmdAlPlate1;
+  //AlPlate commands
+  G4UIcmdWithADoubleAndUnit* DetXPositionCmdAlPlate;
+  G4UIcmdWithADoubleAndUnit* DetYPositionCmdAlPlate;
+  G4UIcmdWithADoubleAndUnit* DetZPositionCmdAlPlate;
+  G4UIcmdWithADoubleAndUnit* PlateSizeXCmdAlPlate;       
+  G4UIcmdWithADoubleAndUnit* PlateSizeYCmdAlPlate;       
+  G4UIcmdWithADoubleAndUnit* PlateSizeZCmdAlPlate;
 
   //General commands
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;                       

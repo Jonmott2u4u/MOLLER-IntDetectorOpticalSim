@@ -1,21 +1,20 @@
-#ifndef MOLLEROptDetectorScint2_h
-#define MOLLEROptDetectorScint2_h 
+#ifndef MOLLEROptDetectorScint_h
+#define MOLLEROptDetectorScint_h 
 
 #include "cpp_include.h"
 #include "Root_include.h"
 #include "Geant4_include.hh"
 #include "G4VisExtent.hh"
 
-
 #include "MOLLEROptQuartzSD.hh"
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
 
-class MOLLEROptDetectorScint2 
+class MOLLEROptDetectorScint 
 {
 public:
-  MOLLEROptDetectorScint2(MOLLEROptTrackingReadout*, G4String type10, MOLLEROptMaterial* mat);
-  ~MOLLEROptDetectorScint2();
+  MOLLEROptDetectorScint(MOLLEROptTrackingReadout*, G4String type9, MOLLEROptMaterial* mat);
+  ~MOLLEROptDetectorScint();
 
   void Construct(G4VPhysicalVolume* Mother);
   void Initialize();
@@ -92,7 +91,7 @@ private:
   G4double PositionZ;
 
   G4SDManager* SDman;
-  G4VSensitiveDetector* Scint2SD;
+  G4VSensitiveDetector* ScintSD;
 
   G4bool SegRadDamageFlag;
   

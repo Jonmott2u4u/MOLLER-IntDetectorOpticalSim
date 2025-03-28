@@ -252,12 +252,12 @@
 
 #------------------#Misc. Frame commands ---------------#
 
-/AlPlate1/PlateSizeZ 6.35 mm                  #
-/AlPlate1/PlateSizeX 800 mm                  #
-/AlPlate1/PlateSizeY 800 mm                  #
-/AlPlate1/SetCenterPositionInX 0 mm           # 
-/AlPlate1/SetCenterPositionInY 79.5 mm        #
-/AlPlate1/SetCenterPositionInZ -380 mm     #
+/AlPlate/PlateSizeZ 6.35 mm                  #
+/AlPlate/PlateSizeX 800 mm                  #
+/AlPlate/PlateSizeY 800 mm                  #
+/AlPlate/SetCenterPositionInX 0 mm           # 
+/AlPlate/SetCenterPositionInY 79.5 mm        #
+/AlPlate/SetCenterPositionInZ -380 mm     #
 
 #------------------#Beam commands -----------------------#
 

@@ -1,6 +1,6 @@
-#include "MOLLEROptDetectorAlPlate1.hh"
+#include "MOLLEROptDetectorAlPlate.hh"
 
-MOLLEROptDetectorAlPlate1::MOLLEROptDetectorAlPlate1(G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorAlPlate::MOLLEROptDetectorAlPlate(G4String name, MOLLEROptMaterial* mat)
 {
   Name = name+"_AlPlate";
   
@@ -22,13 +22,13 @@ MOLLEROptDetectorAlPlate1::MOLLEROptDetectorAlPlate1(G4String name, MOLLEROptMat
 
 }
 
-MOLLEROptDetectorAlPlate1::~MOLLEROptDetectorAlPlate1()
+MOLLEROptDetectorAlPlate::~MOLLEROptDetectorAlPlate()
 {
   
 }
 
 
-void MOLLEROptDetectorAlPlate1::Initialize()
+void MOLLEROptDetectorAlPlate::Initialize()
 {
   //Plate backface at +FullLengthZ/2
   Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
@@ -103,7 +103,7 @@ void MOLLEROptDetectorAlPlate1::Initialize()
 
 }
 
-void MOLLEROptDetectorAlPlate1::Construct(G4VPhysicalVolume* Mother)
+void MOLLEROptDetectorAlPlate::Construct(G4VPhysicalVolume* Mother)
 {
 
   MotherVolume = Mother;
@@ -118,13 +118,13 @@ void MOLLEROptDetectorAlPlate1::Construct(G4VPhysicalVolume* Mother)
 				     2);
 } 
 
-void MOLLEROptDetectorAlPlate1::SetMaterial(G4String materialName)
+void MOLLEROptDetectorAlPlate::SetMaterial(G4String materialName)
 {
 
 }
 
 
-void MOLLEROptDetectorAlPlate1::SetPlateRotX(G4double rot)
+void MOLLEROptDetectorAlPlate::SetPlateRotX(G4double rot)
 {
 
   RotationX = rot;
@@ -133,7 +133,7 @@ void MOLLEROptDetectorAlPlate1::SetPlateRotX(G4double rot)
   PlatePhysical->SetRotation(Rotation);
     
 }
-void MOLLEROptDetectorAlPlate1::SetPlateRotZ(G4double rot)
+void MOLLEROptDetectorAlPlate::SetPlateRotZ(G4double rot)
 {
 
   RotationZ = rot;
@@ -141,33 +141,33 @@ void MOLLEROptDetectorAlPlate1::SetPlateRotZ(G4double rot)
   PlatePhysical->SetRotation(Rotation);
 }
 
-void MOLLEROptDetectorAlPlate1::SetCenterPositionInX(G4double xPos)
+void MOLLEROptDetectorAlPlate::SetCenterPositionInX(G4double xPos)
 {
     PositionX =xPos;	 
     PlatePhysical->SetTranslation(G4ThreeVector(PositionX,PositionY,PositionZ));
 }
 
-void MOLLEROptDetectorAlPlate1::SetCenterPositionInY(G4double yPos)
+void MOLLEROptDetectorAlPlate::SetCenterPositionInY(G4double yPos)
 {
     PositionY = yPos;
     PlatePhysical->SetTranslation(G4ThreeVector(PositionX,PositionY,PositionZ));
 }
 
-void MOLLEROptDetectorAlPlate1::SetCenterPositionInZ(G4double zPos)
+void MOLLEROptDetectorAlPlate::SetCenterPositionInZ(G4double zPos)
 {
     PositionZ = zPos;
     PlatePhysical->SetTranslation(G4ThreeVector(PositionX,PositionY,PositionZ));
 }
 
 
-void MOLLEROptDetectorAlPlate1::ClearVolumes()
+void MOLLEROptDetectorAlPlate::ClearVolumes()
 {
   if(PlatePhysical) delete PlatePhysical;
   if(PlateLogical) delete PlateLogical;
 }
 
 
-void MOLLEROptDetectorAlPlate1::UpdateGeometry()
+void MOLLEROptDetectorAlPlate::UpdateGeometry()
 {
 
   G4SolidStore::GetInstance()->DeRegister(PlateSolid);
@@ -214,7 +214,7 @@ void MOLLEROptDetectorAlPlate1::UpdateGeometry()
 }
 
 
-void MOLLEROptDetectorAlPlate1::GetPlateLimits(G4double *vals)
+void MOLLEROptDetectorAlPlate::GetPlateLimits(G4double *vals)
 {
 
   G4ThreeVector trans =  PlatePhysical->GetTranslation();

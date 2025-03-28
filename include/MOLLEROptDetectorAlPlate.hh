@@ -1,5 +1,5 @@
-#ifndef MOLLEROptDetectorAlPlate1_h
-#define MOLLEROptDetectorAlPlate1_h 
+#ifndef MOLLEROptDetectorAlPlate_h
+#define MOLLEROptDetectorAlPlate_h 
 
 #include "cpp_include.h"
 #include "Root_include.h"
@@ -8,11 +8,11 @@
 
 #include "MOLLEROptMaterial.hh"
 
-class MOLLEROptDetectorAlPlate1 
+class MOLLEROptDetectorAlPlate 
 {
 public:
-  MOLLEROptDetectorAlPlate1(G4String type9, MOLLEROptMaterial* mat);
-  ~MOLLEROptDetectorAlPlate1();
+  MOLLEROptDetectorAlPlate(G4String type13, MOLLEROptMaterial* mat);
+  ~MOLLEROptDetectorAlPlate();
 
   void Construct(G4VPhysicalVolume* Mother);
   void Initialize();

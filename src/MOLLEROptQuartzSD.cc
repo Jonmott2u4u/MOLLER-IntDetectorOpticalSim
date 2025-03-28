@@ -5,7 +5,7 @@ MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* Tr
 {
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
-  if(SensitiveDetectorName == "Quartz"){
+  if(SensitiveDetectorName == "Quartz1"){
     theCollectionName = G4String("QuartzHitCollection");
   }
   else if(SensitiveDetectorName == "Quartz2"){
@@ -44,8 +44,8 @@ MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* Tr
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;
-  //G4cout << "\n\n" << SensitiveDetectorName<<" \n\n" << G4endl;  
-  //G4cout << "\n\n" << name<<" \n\n" << G4endl;  
+  //G4cout << "\n\n" << SensitiveDetectorName <<" \n\n" << G4endl;  
+  //G4cout << "\n\n" << name <<" \n\n" << G4endl;  
   
 }
 
@@ -85,13 +85,15 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
       G4VPhysicalVolume *vol = postStep->GetPhysicalVolume();
       if(vol){
         G4String name = vol->GetName();
-        if(postStep->GetPhysicalVolume()->GetName().contains("LG_Physical") &&
-        preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")){
+        if(postStep->GetPhysicalVolume()->GetName().contains("LG_Physical")&&(
+        preStep->GetPhysicalVolume()->GetName().contains("Quartz")&&
+        preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
           QEx = 1; 
 	      }
         if((postStep->GetPhysicalVolume()->GetName().contains("Ring_Physical") ||
-        postStep->GetPhysicalVolume()->GetName().contains("LG_Physical") )&&
-        preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")){
+        postStep->GetPhysicalVolume()->GetName().contains("LG_Physical"))&&(
+        preStep->GetPhysicalVolume()->GetName().contains("Quartz")&&
+        preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
           incidentAngle = 90.0 - 180*0.5*(1 - acos(imom.dot(fmom))/TMath::Pi());
         }  
 	    }
@@ -110,7 +112,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
         G4ThreeVector secmom = (*Secondaries)[n]->GetMomentumDirection();
         Float_t Angle = 180.0*TMath::ACos(secmom.dot(primom))/TMath::Pi();
         TrackingReadout->AddSecPhoton(aStep->GetTrack()->GetTrackID(),Angle,1239.842/((*Secondaries)[n]->GetTotalEnergy()/eV));
-	      if(preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")) nsec++;
+	      if(preStep->GetPhysicalVolume()->GetName().contains("Quartz") && preStep->GetPhysicalVolume()->GetName().contains("Physical")) nsec++;
       }
     }
     TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myBeam,

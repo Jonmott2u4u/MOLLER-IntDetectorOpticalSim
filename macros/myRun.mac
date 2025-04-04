@@ -170,8 +170,6 @@
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
-#/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damage factors
-#/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radiation damage to 70 MRad (the other possibility is 170)
 
 #------------------#Scintillator commands ---------------#
 

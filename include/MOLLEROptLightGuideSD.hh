@@ -25,7 +25,10 @@ private:
 
   MOLLEROptTrackingReadout* TrackingReadout;
   
-  MOLLEROptLightGuideHitsCollection*  HitsCollection;
+  MOLLEROptLightGuideHitsCollection*  HitsCollection1;
+  MOLLEROptLightGuideHitsCollection*  HitsCollection2;
+  MOLLEROptLightGuideHitsCollection*  HitsCollection3;
+  MOLLEROptLightGuideHitsCollection*  HitsCollection4;
   G4String theCollectionName;
   G4int theCollectionID;
 

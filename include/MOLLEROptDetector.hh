@@ -7,8 +7,8 @@
 
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
-#include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorQuartz.hh"
+#include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
 
@@ -19,7 +19,7 @@ class MOLLEROptDetectorMessenger;
 class MOLLEROptDetector
 {
 public:
-  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type,MOLLEROptMaterial* mat);
+  MOLLEROptDetector(MOLLEROptTrackingReadout*,G4String type,MOLLEROptMaterial* mat,G4String lgmat);
   ~MOLLEROptDetector();
 
   G4VPhysicalVolume* ConstructDetector(G4VPhysicalVolume* Mother);
@@ -36,6 +36,7 @@ public:
   void SetCenterPositionInX(G4double xPos);
   void SetCenterPositionInY(G4double yPos);
   void SetCenterPositionInZ(G4double zPos);
+  void SetQuartzRotX(G4double a); 
   void SetQuartzSizeX(G4double x); 
   void SetQuartzSizeY(G4double y); 
   void SetQuartzSizeZ(G4double z);
@@ -49,8 +50,6 @@ public:
   void SetQuartzInterfaceOpeningX(G4double size);
   void SetQuartzToPMTOffsetInZ(G4double val);
 
-  void SetQuartzRotX(G4double r);
-  void SetQuartzRotZ(G4double r);
   void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive y axis (up) in radians
   void SetPolarRotationAngle(G4double a); //w.r.t. to the positive z axis (downstream) in radians
 
@@ -60,7 +59,7 @@ public:
 
   void SetPMTInterfaceOpeningZ(G4double size);
   void SetPMTInterfaceOpeningX(G4double size);
-  void SetQuartzBevel(G4double bev) {Quartz1->SetBevelSize(bev); Quartz2->SetBevelSize(bev); Quartz3->SetBevelSize(bev); Quartz4->SetBevelSize(bev); Quartz5->SetBevelSize(bev); Quartz6->SetBevelSize(bev); Quartz7->SetBevelSize(bev); Quartz8->SetBevelSize(bev); }
+  void SetQuartzBevel(G4double bev) {Quartz->SetBevelSize(bev);}
 
   void SetPMTCathodeRadius(G4double size);
   void SetPMTCathodeThickness(G4double size);
@@ -68,16 +67,17 @@ public:
   void UpdateThisGeometry();
   void CalculateDimensions();
   void ResetCenterLocation();
-  void SetSegRadDamageFlag() {if(Quartz1) Quartz1->SetSegRadDamageFlag(); if(Quartz2) Quartz2->SetSegRadDamageFlag(); if(Quartz3) Quartz3->SetSegRadDamageFlag(); if(Quartz4) Quartz4->SetSegRadDamageFlag(); if(Quartz5) Quartz5->SetSegRadDamageFlag(); if(Quartz6) Quartz6->SetSegRadDamageFlag(); if(Quartz7) Quartz7->SetSegRadDamageFlag(); if(Quartz8) Quartz8->SetSegRadDamageFlag(); Materials->SetSegRadDamage();}
 
   G4LogicalVolume*   GetLogicalVolume()    {return DetLogical;}
   G4VPhysicalVolume* GetPhysicalVolume()   {return DetPhysical;}
 
-  void GetQuartz1Limits(G4double *vals);
+  void GetQuartzLimits(G4double *vals);
+  void GetLightGuideLimits(G4double *vals);
 
 private:
 
   G4String DetType;
+  G4String LightGuideMat;
 
   MOLLEROptDetectorMessenger*  detMessenger;
   MOLLEROptTrackingReadout*    TrackingReadout;
@@ -92,7 +92,7 @@ private:
   G4VPhysicalVolume* DetPhysical;
   G4Box*             DetSolid; 
 
-  G4Material*        DetMaterial;
+  G4Material*        VolMaterial;
 
   G4double DetFullLengthX;
   G4double DetFullLengthY;

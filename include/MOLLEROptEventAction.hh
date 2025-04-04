@@ -9,6 +9,7 @@
 #include "MOLLEROptQuartzHit.hh"
 #include "MOLLEROptLightGuideHit.hh"
 #include "MOLLEROptPMTHit.hh"
+#include "MOLLEROptScintHit.hh"
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptEventActionMessenger.hh"
 
@@ -42,14 +43,11 @@ private:
 
   void Initialize();
   Bool_t TrackHasBeenProcessed(G4int ID);
-  void AddQuartzTrackStep(G4int id, G4int step);
+  void AddTrackStep(G4int id, G4int step); //For quartz and scint
   char buffer[100];
-  //G4int CollID[3];
   G4int Det;
 
-  //vector <Int_t> ProcessedTrack;
   vector <lTrackData*> ProcessedTrack;
-
 
   MOLLEROptAnalysis*             analysis;
   MOLLEROptTrackingReadout*      TrackingReadout;
@@ -63,8 +61,6 @@ private:
   TH1D *PMTSecOptPhotonCnt;
   TH1D *QuartzSecOptPhotonCnt;
   TH1D *LightGuideSecOptPhotonCnt;
-
-  ofstream oFile;
 
   MOLLEROptEventActionMessenger* EventMessenger;
 };

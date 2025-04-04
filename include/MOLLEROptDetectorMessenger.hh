@@ -25,7 +25,6 @@ private:
 
   G4UIcmdWithAString*        DetMatCmd;
   
-  //Ring 1 objects
   G4UIcmdWithADoubleAndUnit* DetXPositionCmd;
   G4UIcmdWithADoubleAndUnit* DetYPositionCmd;
   G4UIcmdWithADoubleAndUnit* DetZPositionCmd;
@@ -42,10 +41,10 @@ private:
   G4UIcmdWithADoubleAndUnit* QuartzSizeYCmd;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeZCmd;
 
-  //General commands
-  G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;                       
+  G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;    
   G4UIcmdWithADoubleAndUnit* QuartzRotXCmd;
   G4UIcmdWithADoubleAndUnit* PolarRotationCmd;
+  G4UIcmdWithADoubleAndUnit* AzimuthalRotationCmd;
   G4UIcmdWithADoubleAndUnit* LightGuidePMTInterfaceOpeningXCmd;
   G4UIcmdWithADoubleAndUnit* LightGuidePMTInterfaceOpeningZCmd;
   G4UIcmdWithADoubleAndUnit* LightGuideOffsetXCmd;
@@ -53,7 +52,6 @@ private:
   G4UIcmdWithADoubleAndUnit* LightGuideOffsetZCmd;
 
   G4UIcmdWithoutParameter*   UpdateGeometryCmd;
-  G4UIcmdWithoutParameter*   SegRadDamageCmd;
 
 };
 

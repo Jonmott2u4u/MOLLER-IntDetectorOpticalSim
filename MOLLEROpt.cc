@@ -19,7 +19,6 @@
 #include "MOLLEROptTrackingAction.hh"
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptMaterial.hh"
-#include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptCosmics.hh"
 
 #if G4VERSION_NUMBER >= 1070
@@ -33,7 +32,6 @@
 #include <G4UImanager.hh>
 #include <G4UIExecutive.hh>
 #include <G4UIterminal.hh>
-//#include <UVA_VisAction.hh>
 #include "G4VisExecutive.hh"
 
 
@@ -56,7 +54,6 @@
 
 int main(int argc,char** argv) {
 
-
   CLHEP::HepRandom::setTheEngine(new CLHEP::RanecuEngine());
   
   // Run manager
@@ -76,7 +73,6 @@ int main(int argc,char** argv) {
 
   G4VModularPhysicsList* physicsList = new FTFP_BERT;
   physicsList->ReplacePhysics(new G4EmStandardPhysics_option4());
-
   /*
   G4OpticalPhysics* opticalPhysics = new G4OpticalPhysics();
 
@@ -115,13 +111,13 @@ int main(int argc,char** argv) {
   // UserAction classes
   
   runManager->SetUserAction(new MOLLEROptPrimaryGeneratorAction(thisMOLLEROptExperiment,Cosmics));
-  runManager->SetUserAction( new MOLLEROptRunAction(thisMOLLEROptAnalysis,thisMOLLEROptTrackingReadout));  
-  runManager->SetUserAction( new MOLLEROptEventAction(thisMOLLEROptAnalysis,thisMOLLEROptTrackingReadout));
-  runManager->SetUserAction( new MOLLEROptSteppingAction(thisMOLLEROptTrackingReadout));
-  runManager->SetUserAction( new MOLLEROptTrackingAction(thisMOLLEROptTrackingReadout));
+  runManager->SetUserAction(new MOLLEROptRunAction(thisMOLLEROptAnalysis,thisMOLLEROptTrackingReadout));  
+  runManager->SetUserAction(new MOLLEROptEventAction(thisMOLLEROptAnalysis,thisMOLLEROptTrackingReadout));
+  runManager->SetUserAction(new MOLLEROptSteppingAction(thisMOLLEROptTrackingReadout));
+  runManager->SetUserAction(new MOLLEROptTrackingAction(thisMOLLEROptTrackingReadout));
 
   //Initialize G4 kernel
-  runManager->Initialize();
+  runManager->Initialize(); //Currently crashing at this line
 
   G4UIExecutive* ui = 0;
   if ( argc == 1 ) {
@@ -149,7 +145,7 @@ int main(int argc,char** argv) {
 
   delete visManager;
   delete runManager;
-  
+
   return 0;
 }
 

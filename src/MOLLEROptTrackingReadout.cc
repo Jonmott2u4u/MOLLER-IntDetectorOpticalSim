@@ -30,15 +30,16 @@ void MOLLEROptTrackingReadout::AddTrackData(Int_t id, Int_t type, Int_t StepL, I
     Tracks[tr]->LGSteps++;
     Tracks[tr]->LGHitFlag = 1;
   }
+  if(Volume == myScint){
+
+  }
 
   Tracks[tr]->Length += StepL;  
   
   Tracks[tr]->NSteps++;
-  if(Tracks[tr]->QExitFlag == 0)
-    Tracks[tr]->QExitFlag = QEFlag;
+  if(Tracks[tr]->QExitFlag == 0) Tracks[tr]->QExitFlag = QEFlag;
   
-  if(Tracks[tr]->PMTHitFlag == 0)
-    Tracks[tr]->PMTHitFlag = PMTHit;
+  if(Tracks[tr]->PMTHitFlag == 0) Tracks[tr]->PMTHitFlag = PMTHit;
 
   Tracks[tr]->StepLength.push_back(StepL);
   Tracks[tr]->StepAngle.push_back(Ang);
@@ -96,8 +97,6 @@ void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
         Tracks[n]->R8_Detected = 1;
       }
     }
-  
-  //CathodeDetections++;
 };
 
 
@@ -130,22 +129,16 @@ void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, Fl
   Tracks[tr]->PMTHitY = loc.y();
   Tracks[tr]->PMTHitZ = loc.z();
 
-  Tracks[tr]->PMTWinRefl = angle;
-
-  
+  Tracks[tr]->PMTWinRefl = angle; 
 }
 
 void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz)
 {
-  /*G4cout << "Setting Quartz Hit Location" << G4endl;*/
   Int_t tr = -1;
   
-  for(int n = 0; n < Tracks.size(); n++)
-    if(Tracks[n]->ID == id) tr = n;
-  //G4cout << "Track:" << tr << G4endl;
-  //G4cout << loc.z() << G4endl;
-  //G4cout << Tracks[tr]->ScintHitFlag << G4endl;
+  for(int n = 0; n < Tracks.size(); n++) if(Tracks[n]->ID == id) tr = n;
   if(tr == -1) return;
+
   if((Tracks[tr]->R1QuartzHitFlag == 0) & (quartz == "QuartzHitCollection1")){ 
     Tracks[tr]->R1QuartzHitFlag = 1;
     Tracks[tr]->R1QuartzHitX = loc.x();
@@ -194,25 +187,34 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc,
     Tracks[tr]->R8QuartzHitY = loc.y();
     Tracks[tr]->R8QuartzHitZ = loc.z();
   }
-  if((Tracks[tr]->Scint1HitFlag == 0) & (quartz ==  "Scint1HitCollection")){ 
+}
+
+void MOLLEROptTrackingReadout::SetScintHitLocation(Int_t id, G4ThreeVector loc, G4String scint)
+{
+  Int_t tr = -1;
+  
+  for(int n = 0; n < Tracks.size(); n++) if(Tracks[n]->ID == id) tr = n;
+  if(tr == -1) return;
+
+  if((Tracks[tr]->Scint1HitFlag == 0) & (scint ==  "Scint1HitCollection")){ 
     Tracks[tr]->Scint1HitFlag = 1;
     Tracks[tr]->Scint1HitX = loc.x();
     Tracks[tr]->Scint1HitY = loc.y();
     Tracks[tr]->Scint1HitZ = loc.z();
   }
-  if((Tracks[tr]->Scint2HitFlag == 0) & (quartz == "Scint2HitCollection")){ 
+  if((Tracks[tr]->Scint2HitFlag == 0) & (scint == "Scint2HitCollection")){ 
     Tracks[tr]->Scint2HitFlag = 1;
     Tracks[tr]->Scint2HitX = loc.x();
     Tracks[tr]->Scint2HitY = loc.y();
     Tracks[tr]->Scint2HitZ = loc.z();
   }
-  if((Tracks[tr]->Scint3HitFlag == 0) & (quartz == "Scint3HitCollection")){ 
+  if((Tracks[tr]->Scint3HitFlag == 0) & (scint == "Scint3HitCollection")){ 
     Tracks[tr]->Scint3HitFlag = 1;
     Tracks[tr]->Scint3HitX = loc.x();
     Tracks[tr]->Scint3HitY = loc.y();
     Tracks[tr]->Scint3HitZ = loc.z();
   }
-  if((Tracks[tr]->Scint4HitFlag == 0) & (quartz == "Scint4HitCollection")){ 
+  if((Tracks[tr]->Scint4HitFlag == 0) & (scint == "Scint4HitCollection")){ 
     Tracks[tr]->Scint4HitFlag = 1;
     Tracks[tr]->Scint4HitX = loc.x();
     Tracks[tr]->Scint4HitY = loc.y();
@@ -353,11 +355,9 @@ void MOLLEROptTrackingReadout::Initialize()
   }
   Tracks.clear();
   Tracks.resize(0);
-
   
   ElectronTracks = 0;
   PhotonTracks = 0;
-  //CathodeDetections = 0;
   R1_CathodeDetections = 0;
   R2_CathodeDetections = 0;
   R3_CathodeDetections = 0;
@@ -367,12 +367,3 @@ void MOLLEROptTrackingReadout::Initialize()
   R7_CathodeDetections = 0;
   R8_CathodeDetections = 0;
 }
-
- 
-
-
-
-
- 
-
-

@@ -100,14 +100,14 @@ void MOLLEROptDetectorQuartz::Initialize()
   new G4LogicalSkinSurface("QuartzSurface", QuartzLogical, QuartzSurface);
 
   SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("1Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz1",TrackingReadout);
-  else if (Name.contains("2Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz2",TrackingReadout);
-  else if (Name.contains("3Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz3",TrackingReadout);
-  else if (Name.contains("4Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz4",TrackingReadout);
-  else if (Name.contains("5Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz5",TrackingReadout);
-  else if (Name.contains("6Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz6",TrackingReadout);
-  else if (Name.contains("7Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz7",TrackingReadout);
-  else if (Name.contains("8Ring")) QuartzSD = new MOLLEROptQuartzSD("/Quartz8",TrackingReadout);
+  if (Name.contains("Ring1")) QuartzSD = new MOLLEROptQuartzSD("/Quartz1",TrackingReadout);
+  else if (Name.contains("Ring2")) QuartzSD = new MOLLEROptQuartzSD("/Quartz2",TrackingReadout);
+  else if (Name.contains("Ring3")) QuartzSD = new MOLLEROptQuartzSD("/Quartz3",TrackingReadout);
+  else if (Name.contains("Ring4")) QuartzSD = new MOLLEROptQuartzSD("/Quartz4",TrackingReadout);
+  else if (Name.contains("Ring5")) QuartzSD = new MOLLEROptQuartzSD("/Quartz5",TrackingReadout);
+  else if (Name.contains("Ring6")) QuartzSD = new MOLLEROptQuartzSD("/Quartz6",TrackingReadout);
+  else if (Name.contains("Ring7")) QuartzSD = new MOLLEROptQuartzSD("/Quartz7",TrackingReadout);
+  else if (Name.contains("Ring8")) QuartzSD = new MOLLEROptQuartzSD("/Quartz8",TrackingReadout);
   else QuartzSD = new MOLLEROptQuartzSD("/Quartz1",TrackingReadout);
   SDman->AddNewDetector(QuartzSD);  
   QuartzLogical->SetSensitiveDetector(QuartzSD);

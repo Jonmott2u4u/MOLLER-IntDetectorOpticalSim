@@ -68,7 +68,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include
 		    ${CMAKE_CURRENT_BINARY_DIR}/include)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
-file(GLOB libsources ${PROJECT_SOURCE_DIR}/src/MOLLEROptPrimaryEvent.cc ${PROJECT_SOURCE_DIR}/src/MOLLEROptDetectorEvent.cc ${PROJECT_SOURCE_DIR}/src/MOLLEROptMainEvent.cc)
+file(GLOB libsources ${PROJECT_SOURCE_DIR}/src/MOLLEROptPrimaryEvent.cc ${PROJECT_SOURCE_DIR}/src/MOLLEROptGeneralEvent.cc ${PROJECT_SOURCE_DIR}/src/MOLLEROptMainEvent.cc)
 file(GLOB libheaders ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 #----------------------------------------------------------------------------
@@ -79,7 +79,7 @@ ROOT_GENERATE_DICTIONARY(MOLLEROptDict ${PROJECT_SOURCE_DIR}/include/MOLLEROptDi
 
 add_executable(MOLLEROpt MOLLEROpt.cc ${sources} ${headers} MOLLEROptDict.cxx)
 
-#add_library(MOLLEROptDictionaries SHARED ${libsources} ${libheaders} MOLLEROptMainEventDict.cxx MOLLEROptDetectorEventDict.cxx MOLLEROptPrimaryEventDict.cxx)
+#add_library(MOLLEROptDictionaries SHARED ${libsources} ${libheaders} MOLLEROptMainEventDict.cxx MOLLEROptGeneralEventDict.cxx MOLLEROptPrimaryEventDict.cxx)
 
 
 add_library(MOLLEROptDictionaries SHARED ${sources} MOLLEROptDict.cxx)

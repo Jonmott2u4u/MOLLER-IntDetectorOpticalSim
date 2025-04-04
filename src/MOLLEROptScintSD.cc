@@ -1,33 +1,21 @@
-#include "MOLLEROptQuartzSD.hh"
+#include "MOLLEROptScintSD.hh"
 
-MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* TrRO)
+MOLLEROptScintSD::MOLLEROptScintSD(G4String name, MOLLEROptTrackingReadout* TrRO)
   :G4VSensitiveDetector(name)
 {
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
-  if(SensitiveDetectorName == "Quartz1"){
-    theCollectionName = G4String("QuartzHitCollection1");
+  if(SensitiveDetectorName == "Scint1"){
+    theCollectionName = G4String("Scint1HitCollection");
   }
-  else if(SensitiveDetectorName == "Quartz2"){
-    theCollectionName = G4String("QuartzHitCollection2");
+  else if(SensitiveDetectorName == "Scint2"){
+    theCollectionName = G4String("Scint2HitCollection");
   }
-  else if(SensitiveDetectorName == "Quartz3"){
-    theCollectionName = G4String("QuartzHitCollection3");
+  else if(SensitiveDetectorName == "Scint3"){
+    theCollectionName = G4String("Scint3HitCollection");
   }
-  else if(SensitiveDetectorName == "Quartz4"){
-    theCollectionName = G4String("QuartzHitCollection4");
-  }
-  else if(SensitiveDetectorName == "Quartz5"){
-    theCollectionName = G4String("QuartzHitCollection5");
-  }
-  else if(SensitiveDetectorName == "Quartz6"){
-    theCollectionName = G4String("QuartzHitCollection6");
-  }
-  else if(SensitiveDetectorName == "Quartz7"){
-    theCollectionName = G4String("QuartzHitCollection7");
-  }
-  else if(SensitiveDetectorName == "Quartz8"){
-    theCollectionName = G4String("QuartzHitCollection8");
+  else if(SensitiveDetectorName == "Scint4"){
+    theCollectionName = G4String("Scint4HitCollection");
   }
 
   collectionName.insert(theCollectionName); 
@@ -37,17 +25,17 @@ MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* Tr
   
 }
 
-MOLLEROptQuartzSD::~MOLLEROptQuartzSD()
+MOLLEROptScintSD::~MOLLEROptScintSD()
 {
 
 }
 
-void MOLLEROptQuartzSD::Initialize(G4HCofThisEvent* HCE)
+void MOLLEROptScintSD::Initialize(G4HCofThisEvent* HCE)
 {
   
 }
 
-G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchable)
+G4bool MOLLEROptScintSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchable)
 {
   G4int QEx = 0;
   G4int nsec = 0;
@@ -63,8 +51,8 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
   G4StepStatus status = postStep->GetStepStatus();   
   G4ThreeVector stepPos = preStep->GetPosition();
   Secondaries = aStep->GetSecondaryInCurrentStep();  
-
-  if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()){
+  
+  /*if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()){
     if(procName.compare("Transportation") == 0){
       G4ThreeVector imom = preStep->GetMomentumDirection();
       G4ThreeVector fmom = postStep->GetMomentumDirection();
@@ -74,25 +62,24 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
       if(vol){
         G4String name = vol->GetName();
         if(postStep->GetPhysicalVolume()->GetName().contains("LG_Physical")&&(
-        preStep->GetPhysicalVolume()->GetName().contains("Quartz")&&
+        preStep->GetPhysicalVolume()->GetName().contains("Scint")&&
         preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
           QEx = 1; 
 	      }
-        if(((postStep->GetPhysicalVolume()->GetName().contains("Ring") && postStep->GetPhysicalVolume()->GetName().contains("Physical")) ||
+        if((postStep->GetPhysicalVolume()->GetName().contains("Ring_Physical") ||
         postStep->GetPhysicalVolume()->GetName().contains("LG_Physical"))&&(
-        preStep->GetPhysicalVolume()->GetName().contains("Quartz")&&
+        preStep->GetPhysicalVolume()->GetName().contains("Scint")&&
         preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
           incidentAngle = 90.0 - 180*0.5*(1 - acos(imom.dot(fmom))/TMath::Pi());
         }  
-	    }
-	
+      }
       TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
                   aStep->GetStepLength(),QEx,0,myQuartz,0,
                   aStep->GetTrack()->GetKineticEnergy(),
                   1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
                   incidentAngle);
     }
-  }  
+  }*/
   if((aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()) || (aStep->GetTrack()->GetDefinition() == G4MuonMinus::MuonMinusDefinition())){
     G4ThreeVector primom = aStep->GetTrack()->GetMomentumDirection();         
     for(int n = 0; n < (*Secondaries).size(); n++){
@@ -100,19 +87,19 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
         G4ThreeVector secmom = (*Secondaries)[n]->GetMomentumDirection();
         Float_t Angle = 180.0*TMath::ACos(secmom.dot(primom))/TMath::Pi();
         TrackingReadout->AddSecPhoton(aStep->GetTrack()->GetTrackID(),Angle,1239.842/((*Secondaries)[n]->GetTotalEnergy()/eV));
-	      if(preStep->GetPhysicalVolume()->GetName().contains("Quartz") && preStep->GetPhysicalVolume()->GetName().contains("Physical")) nsec++;
+	      if(preStep->GetPhysicalVolume()->GetName().contains("Scint") && preStep->GetPhysicalVolume()->GetName().contains("Physical")) nsec++;
       }
     }
     TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myBeam,
-				  aStep->GetStepLength(),0,0,myQuartz,0,
+				  aStep->GetStepLength(),0,0,myScint,0,
 				  aStep->GetTrack()->GetKineticEnergy(),0,0);
     TrackingReadout->AddStepNCherenkovs(aStep->GetTrack()->GetTrackID(),nsec);
-    TrackingReadout->SetQuartzHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,theCollectionName);
+    TrackingReadout->SetScintHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,theCollectionName);
   }
   return true;
 }
 
-void MOLLEROptQuartzSD::EndOfEvent(G4HCofThisEvent* )
+void MOLLEROptScintSD::EndOfEvent(G4HCofThisEvent* )
 {
 
 }

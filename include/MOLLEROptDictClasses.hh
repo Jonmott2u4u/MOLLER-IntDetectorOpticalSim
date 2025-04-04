@@ -1,3 +1,3 @@
 #include "MOLLEROptMainEvent.hh"
-#include "MOLLEROptDetectorEvent.hh"
+#include "MOLLEROptGeneralEvent.hh"
 #include "MOLLEROptPrimaryEvent.hh"

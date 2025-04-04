@@ -75,23 +75,23 @@ void MOLLEROptDetectorPMT::Initialize()
   PMTCathodeSolid = new G4Tubs(Name+"_Cathode_Solid",0,CathodeRadius,CathodeThickness/2,0,2.0*TMath::Pi());  
   PMTCathodeLogical = new G4LogicalVolume(PMTCathodeSolid,PMTCathodeMaterial,Name+"_Cathode_Logical");
   CreateOpticalSurface(PMTCathodeLogical);
-  //G4UserLimits *limits = new G4UserLimits();
-  //limits->SetMaxAllowedStep(0.05*cm);
-  //PMTCathodeLogical->SetUserLimits(limits);
+
   G4Colour  orange    ( 255/255., 127/255.,   0/255.);
   G4VisAttributes* VisAtt2 = new G4VisAttributes(orange);
   VisAtt2->SetVisibility(true);
   VisAtt2->SetForceWireframe(true);
   PMTCathodeLogical->SetVisAttributes(VisAtt2);
+  
   SDman = G4SDManager::GetSDMpointer();
-  if(Name == "1Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
-  if(Name == "2Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode2",TrackingReadout);
-  if(Name == "3Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode3",TrackingReadout);
-  if(Name == "4Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode4",TrackingReadout);
-  if(Name == "5Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode5",TrackingReadout);
-  if(Name == "6Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode6",TrackingReadout);
-  if(Name == "7Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode7",TrackingReadout);
-  if(Name == "8Ring_PMT") CathSD = new MOLLEROptPMTSD("/Cathode8",TrackingReadout);
+  if (Name.contains("Ring1")) CathSD = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
+  else if (Name.contains("Ring2")) CathSD = new MOLLEROptPMTSD("/Cathode2",TrackingReadout);
+  else if (Name.contains("Ring3")) CathSD = new MOLLEROptPMTSD("/Cathode3",TrackingReadout);
+  else if (Name.contains("Ring4")) CathSD = new MOLLEROptPMTSD("/Cathode4",TrackingReadout);
+  else if (Name.contains("Ring5")) CathSD = new MOLLEROptPMTSD("/Cathode5",TrackingReadout);
+  else if (Name.contains("Ring6")) CathSD = new MOLLEROptPMTSD("/Cathode6",TrackingReadout);
+  else if (Name.contains("Ring7")) CathSD = new MOLLEROptPMTSD("/Cathode7",TrackingReadout);
+  else if (Name.contains("Ring8")) CathSD = new MOLLEROptPMTSD("/Cathode8",TrackingReadout);
+  else CathSD = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
   SDman->AddNewDetector(CathSD);  
   PMTWindowLogical->SetSensitiveDetector(CathSD);
 

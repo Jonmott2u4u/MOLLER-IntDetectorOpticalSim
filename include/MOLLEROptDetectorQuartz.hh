@@ -67,18 +67,16 @@ private:
 
   G4VPhysicalVolume* MotherVolume;
 
-  G4LogicalVolume*   QuartzLogical; 
-  G4VPhysicalVolume* QuartzPhysical; 
-  G4Material*        QuartzMaterial;
+  G4LogicalVolume*    QuartzLogical; 
+  G4VPhysicalVolume*  QuartzPhysical; 
+  G4Material*         QuartzMaterial;
   G4SubtractionSolid* QuartzSolid;
-  //G4GenericTrap*     QuartzSolid;
 
   G4double FullLengthX;
   G4double FullLengthY;
   G4double FullLengthZ;
 
   std::vector<G4TwoVector> Vertices;
-
   
   G4ThreeVector     Position;
   G4RotationMatrix* Rotation;

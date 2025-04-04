@@ -6,10 +6,10 @@
 
 // user includes
 #include "MOLLEROptPrimaryEvent.hh"
-#include "MOLLEROptDetectorEvent.hh"    
+#include "MOLLEROptGeneralEvent.hh"   
 
 class MOLLEROptPrimaryEvent;   
-class MOLLEROptDetectorEvent;    
+class MOLLEROptGeneralEvent;  
 
 class MOLLEROptMainEvent : public TObject
 {
@@ -19,7 +19,7 @@ private:
 public:
     
   MOLLEROptPrimaryEvent          MOLLERPrimEvent;
-  MOLLEROptDetectorEvent         MOLLERDetectorEvent;
+  MOLLEROptGeneralEvent          MOLLERGeneralEvent;
 
 public:
 

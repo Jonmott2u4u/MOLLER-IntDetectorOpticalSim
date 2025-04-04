@@ -1,17 +1,15 @@
-#ifndef MOLLEROptDetectorEvent_h
-#define MOLLEROptDetectorEvent_h
+#ifndef MOLLEROptGeneralEvent_h
+#define MOLLEROptGeneralEvent_h
 
 #include "cpp_include.h"
 #include "Root_include.h"
 
-class MOLLEROptDetectorEvent : public TObject
+class MOLLEROptGeneralEvent : public TObject
 {
 
 private:
 
   vector <Int_t> PType;
-  // vector <Int_t> ElectronTrackID;
-  // vector <Int_t> PhotonTrackID;
   Int_t ElectronTrackID;
   Int_t PhotonTrackID;
   Int_t ParentID;
@@ -60,6 +58,7 @@ private:
   vector <Int_t> R6QuartzTrackHit;
   vector <Int_t> R7QuartzTrackHit;
   vector <Int_t> R8QuartzTrackHit;
+
   vector <Int_t> Scint1TrackHit;
   vector <Int_t> Scint2TrackHit;
   vector <Int_t> Scint3TrackHit;
@@ -73,10 +72,6 @@ private:
   vector <Float_t> R6TileHitX;
   vector <Float_t> R7TileHitX;
   vector <Float_t> R8TileHitX;
-  vector <Float_t> Scint1HitX;
-  vector <Float_t> Scint2HitX;
-  vector <Float_t> Scint3HitX;
-  vector <Float_t> Scint4HitX;
   vector <Float_t> R1TileHitY;
   vector <Float_t> R2TileHitY;
   vector <Float_t> R3TileHitY;
@@ -85,10 +80,6 @@ private:
   vector <Float_t> R6TileHitY;
   vector <Float_t> R7TileHitY;
   vector <Float_t> R8TileHitY;
-  vector <Float_t> Scint1HitY;
-  vector <Float_t> Scint2HitY;
-  vector <Float_t> Scint3HitY;
-  vector <Float_t> Scint4HitY;
   vector <Float_t> R1TileHitZ;
   vector <Float_t> R2TileHitZ;
   vector <Float_t> R3TileHitZ;
@@ -97,6 +88,15 @@ private:
   vector <Float_t> R6TileHitZ;
   vector <Float_t> R7TileHitZ;
   vector <Float_t> R8TileHitZ;
+
+  vector <Float_t> Scint1HitX;
+  vector <Float_t> Scint2HitX;
+  vector <Float_t> Scint3HitX;
+  vector <Float_t> Scint4HitX;
+  vector <Float_t> Scint1HitY;
+  vector <Float_t> Scint2HitY;
+  vector <Float_t> Scint3HitY;
+  vector <Float_t> Scint4HitY;
   vector <Float_t> Scint1HitZ;
   vector <Float_t> Scint2HitZ;
   vector <Float_t> Scint3HitZ;
@@ -124,8 +124,8 @@ private:
 public:
 
 
-  MOLLEROptDetectorEvent();
-  virtual ~MOLLEROptDetectorEvent();
+  MOLLEROptGeneralEvent();
+  virtual ~MOLLEROptGeneralEvent();
 
   void Initialize();
 
@@ -166,6 +166,7 @@ public:
   void AddR6QuartzTrackHit(Int_t tID){R6QuartzTrackHit.push_back(tID);};
   void AddR7QuartzTrackHit(Int_t tID){R7QuartzTrackHit.push_back(tID);};
   void AddR8QuartzTrackHit(Int_t tID){R8QuartzTrackHit.push_back(tID);};
+
   void AddScint1TrackHit(Int_t tID){Scint1TrackHit.push_back(tID);};
   void AddScint2TrackHit(Int_t tID){Scint2TrackHit.push_back(tID);};
   void AddScint3TrackHit(Int_t tID){Scint3TrackHit.push_back(tID);};
@@ -195,6 +196,7 @@ public:
   void AddR8QuartzHitPositionX(Float_t x) {R8TileHitX.push_back(x);};
   void AddR8QuartzHitPositionY(Float_t y) {R8TileHitY.push_back(y);};
   void AddR8QuartzHitPositionZ(Float_t z) {R8TileHitZ.push_back(z);};
+
   void AddScint1HitPositionX(Float_t x) {Scint1HitX.push_back(x);};
   void AddScint1HitPositionY(Float_t y) {Scint1HitY.push_back(y);};
   void AddScint1HitPositionZ(Float_t z) {Scint1HitZ.push_back(z);};
@@ -233,7 +235,7 @@ public:
   void SetTrackParentID(Int_t ID) {ParentID = ID;};
   void SetEventID(Int_t ID) {EventID = ID;};
   
-  ClassDef(MOLLEROptDetectorEvent,1)
+  ClassDef(MOLLEROptGeneralEvent,1)
 
 };
 

@@ -14,6 +14,7 @@
 #define myQuartz 10
 #define myLightGuide 11
 #define myPMT 12
+#define myScint 13
 
 class OptParam;
 class CosmicParam;
@@ -26,11 +27,14 @@ public:
   Int_t Particle;
   Int_t Length;
   Int_t QLength;
+  Int_t SLength;
   Int_t LGLength;
   Int_t NSteps;
   Int_t QSteps;
+  Int_t SSteps;
   Int_t LGSteps;
   Int_t QExitFlag;
+  Int_t SExitFlag;
   Int_t PMTHitFlag;
   Int_t R1QuartzHitFlag = 0;
   Int_t R2QuartzHitFlag = 0;
@@ -181,6 +185,7 @@ private:
   Int_t R8_GetCathodeDetections() {return R8_CathodeDetections;};
   void SetPMTHitLocation(Int_t id, G4ThreeVector loc, Float_t angle);
   void SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz);
+  void SetScintHitLocation(Int_t id, G4ThreeVector loc, G4String scint);
   Bool_t TrackExists(Int_t ID);
   Int_t GetNumTracks(){return Tracks.size();};
   Int_t GetNumPhotonTracks(){return PhotonTracks;};

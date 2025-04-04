@@ -1,4 +1,4 @@
-#include "MOLLEROptDetectorEvent.hh"
+#include "MOLLEROptGeneralEvent.hh"
 
 
 //These are defined in "TrackInformation"
@@ -13,17 +13,17 @@
 // #define myNucleus  9
 
 
-MOLLEROptDetectorEvent::MOLLEROptDetectorEvent() 
+MOLLEROptGeneralEvent::MOLLEROptGeneralEvent() 
 {
   Initialize();
 } 
 
-MOLLEROptDetectorEvent::~MOLLEROptDetectorEvent()
+MOLLEROptGeneralEvent::~MOLLEROptGeneralEvent()
 { 
 
 }
 
-void MOLLEROptDetectorEvent::Initialize()
+void MOLLEROptGeneralEvent::Initialize()
 {
   LightGuideStepLength.clear();  
   LightGuideStepLength.resize(0);
@@ -77,6 +77,7 @@ void MOLLEROptDetectorEvent::Initialize()
   R7QuartzTrackHit.resize(0);
   R8QuartzTrackHit.clear();  
   R8QuartzTrackHit.resize(0);
+
   Scint1TrackHit.clear();  
   Scint1TrackHit.resize(0);
   Scint2TrackHit.clear();  
@@ -102,6 +103,7 @@ void MOLLEROptDetectorEvent::Initialize()
   R7TileHitX.resize(0);
   R8TileHitX.clear();  
   R8TileHitX.resize(0);
+
   Scint1HitX.clear();  
   Scint1HitX.resize(0);
   Scint2HitX.clear();  
@@ -127,6 +129,7 @@ void MOLLEROptDetectorEvent::Initialize()
   R7TileHitY.resize(0);
   R8TileHitY.clear();  
   R8TileHitY.resize(0);
+
   Scint1HitY.clear();  
   Scint1HitY.resize(0);
   Scint2HitY.clear();  
@@ -152,6 +155,7 @@ void MOLLEROptDetectorEvent::Initialize()
   R7TileHitZ.resize(0);
   R8TileHitZ.clear();  
   R8TileHitZ.resize(0);
+
   Scint1HitZ.clear();  
   Scint1HitZ.resize(0);
   Scint2HitZ.clear();  
@@ -234,15 +238,13 @@ void MOLLEROptDetectorEvent::Initialize()
 }	
 
 
-void MOLLEROptDetectorEvent::AddQuartzTrackData(Float_t QTrackL, Int_t QSteps)
+void MOLLEROptGeneralEvent::AddQuartzTrackData(Float_t QTrackL, Int_t QSteps)
 {
   QuartzTrackLength = QTrackL;  
   QuartzSteps = QSteps;  
-  // QuartzTrackLength.push_back(QTrackL);  
-  // QuartzSteps.push_back(QSteps);  
 }
 
-void MOLLEROptDetectorEvent::AddLightGuideTrackData(Float_t LGTrackL, Int_t LGSteps)
+void MOLLEROptGeneralEvent::AddLightGuideTrackData(Float_t LGTrackL, Int_t LGSteps)
 {
   LightGuideTrackLength.push_back(LGTrackL);
   LightGuideSteps.push_back(LGSteps);  

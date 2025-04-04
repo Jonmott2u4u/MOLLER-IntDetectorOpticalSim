@@ -1,15 +1,16 @@
 #include "MOLLEROptDetector.hh"
 
-MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String name, MOLLEROptMaterial* mat, G4String lgmat)
 {	    	    
   TrackingReadout = TrRO;
   DetType = name; // name should be set in construction.cc to distinguish SD's in the individual parts files (quartz, pmt, etc)
   Materials = mat;
-  DetMaterial = Materials->GetMaterial("Air");  
+  LightGuideMat = lgmat;
+  VolMaterial = Materials->GetMaterial("Air");  
 
-  Quartz = new  MOLLEROptDetectorQuartz(TrackingReadout,name,Materials);
-  LightGuide = new  MOLLEROptDetectorLightGuide(TrackingReadout,name,Materials);
-  PMT = new  MOLLEROptDetectorPMT(TrackingReadout,name,Materials,LightGuide);
+  Quartz = new MOLLEROptDetectorQuartz(TrackingReadout,name,Materials);
+  LightGuide = new MOLLEROptDetectorLightGuide(TrackingReadout,name,Materials);
+  PMT = new MOLLEROptDetectorPMT(TrackingReadout,name,Materials,LightGuide);
 
   detMessenger = NULL;
 
@@ -120,17 +121,17 @@ void MOLLEROptDetector::UpdateThisGeometry()
   G4GeometryManager::GetInstance()->OpenGeometry();
   
   delete DetPhysical;
-  RotationStand->rotateZ(-6.43*degree);
-  RotationStand->rotateX(PolarAngle);
+  RotationDet->rotateZ(AzimuAngle);
+  RotationDet->rotateX(PolarAngle);
   PMT->UpdateGeometry();
   Quartz->UpdateGeometry();
   LightGuide->UpdateGeometry();
   CalculateDimensions();
   DetSolid = new G4Box(DetType+"_Solid",
-		       2* DetFullLengthX, 
-		       2* DetFullLengthY,
-		       2* DetFullLengthZ);
-  DetLogical = new G4LogicalVolume( DetSolid, DetMaterial, DetType+"_Logical");
+		        DetFullLengthX, 
+		        DetFullLengthY,
+		        DetFullLengthZ);
+  DetLogical = new G4LogicalVolume(DetSolid, VolMaterial, DetType+"_Logical");
   DetLogical->SetSolid(DetSolid);
   ResetCenterLocation();
   ConstructDetector(MotherVolume);
@@ -156,9 +157,9 @@ void MOLLEROptDetector::CalculateDimensions()
 void MOLLEROptDetector::ResetCenterLocation()
 {
 
-  //PositionStand.setX(0.0*cm);
-  //PositionStand.setY(0.0*cm);
-  //PositionStand.setZ(0.0*cm);
+  /*PositionDet.setX(0.0*cm);
+  PositionDet.setY(0.0*cm);
+  PositionDet.setZ(0.0*cm);*/
 
 }
 
@@ -169,11 +170,8 @@ void MOLLEROptDetector::Initialize()
   AzimuAngle = 0; 
   PolarAngle = 0;
   Quartz->Initialize();
-  LightGuide->Initialize("UVC"); //Switch UVC, UVS setting to construction, or maybe add flag at detector call in construction.cc
+  LightGuide->Initialize(LightGuideMat);
   PMT->Initialize();
-
-
-  //Scint1->SetPolarRotationAngle(PolarAngle);
   
   CalculateDimensions();
   ResetCenterLocation();
@@ -184,7 +182,7 @@ void MOLLEROptDetector::Initialize()
 		        DetFullLengthX, 
 		        DetFullLengthY,
 		        DetFullLengthZ);
-  DetLogical = new G4LogicalVolume( DetSolid, DetMaterial, DetType+"_Logical");
+  DetLogical = new G4LogicalVolume(DetSolid, VolMaterial, DetType+"_Logical");
 }
 
 G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mother)
@@ -212,28 +210,28 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   Quartz->Construct(DetPhysical);
   Quartz->SetCenterPositionInX(PositionDetX);
   Quartz->SetCenterPositionInZ(0.5*quartzY*(TMath::Sin(Qrot)) + PositionDetZ);
-  Quartz->SetCenterPositionInY(-0.5*DetFullLengthY + 0.5*quartzY + 0.5*quartzY*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY);
+  Quartz->SetCenterPositionInY(-0.5*DetFullLengthY + 0.5*quartzY + 0.5*quartzY*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ*fabs(TMath::Sin(Qrot)) + PositionDetY);
   LightGuide->Construct(DetPhysical);
   LightGuide->SetCenterPositionInX(PositionDetX);
   LightGuide->SetCenterPositionInZ(PositionDetZ);  
-  LightGuide->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY + 5*mm + PositionDetY);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
+  LightGuide->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY + PositionDetY);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
   PMT->SetCenterPositionInX(PositionDetX);
   PMT->SetCenterPositionInZ(PositionDetZ+Offset);    
-  PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/2.0 + 5.0*mm + LightGuide->GetCurrentMiddleBoxHeight() + PositionDetY);
+  PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/2.0 + LightGuide->GetCurrentMiddleBoxHeight() + PositionDetY);
 
   //-----------------------------------------------------//
 
-
   G4Colour  grey      ( 127/255., 127/255., 127/255.);
   G4VisAttributes *att = new G4VisAttributes(grey);
-  att->SetVisibility(true);
+  att->SetVisibility(false);
   att->SetForceWireframe(true);
   DetLogical->SetVisAttributes(att);
 
   if(!detMessenger)
-    detMessenger = new MOLLEROptDetectorMessenger(this,DetType);  
+    detMessenger = new MOLLEROptDetectorMessenger(this,DetType); 
+  //G4cout << "A detector messenger has been made" << G4endl;
 
 
   return DetPhysical;
@@ -317,6 +315,6 @@ void MOLLEROptDetector::GetLightGuideLimits(G4double *vals)
 
 void MOLLEROptDetector::SetMaterial(G4String materialName)
 {
-  DetMaterial = Materials->GetMaterial(materialName);
+  VolMaterial = Materials->GetMaterial(materialName);
 }
 

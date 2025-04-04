@@ -73,7 +73,7 @@ private:
   
   //void ConstructLightFace(LGFace face, double UL, double UR, double LR, double LL);
  
-  G4String thisName;
+  G4String Name;
 
   MOLLEROptTrackingReadout *TrackingReadout;
 

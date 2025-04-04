@@ -43,7 +43,7 @@
 
 MOLLEROptDetectorLightGuide::MOLLEROptDetectorLightGuide(MOLLEROptTrackingReadout *TrRO, G4String name, MOLLEROptMaterial* mat)
 {
-  thisName = name+"_LG";
+  Name = name+"_LG";
 
   LowerInterfacePlane     = 5.6*cm;
   MiddleBoxHeight         = 9.0*cm;
@@ -99,7 +99,7 @@ void MOLLEROptDetectorLightGuide::Construct(G4VPhysicalVolume* MotherVolume)
   
   GuidePhysical   = new G4PVPlacement(RotationLG,  
 				      PositionLG, 
-				      thisName+"_Physical", 
+				      Name+"_Physical", 
 				      GuideLogical,
 				      Mother, 
 				      false, 
@@ -107,7 +107,7 @@ void MOLLEROptDetectorLightGuide::Construct(G4VPhysicalVolume* MotherVolume)
   
   GuideCorePhysical   = new G4PVPlacement(RotationLG,  
 					  PositionLG, 
-					  thisName+"_Core_Physical", 
+					  Name+"_Core_Physical", 
 					  GuideCoreLogical,
 					  Mother, 
 					  false, 
@@ -119,7 +119,7 @@ void MOLLEROptDetectorLightGuide::Construct(G4VPhysicalVolume* MotherVolume)
   
   GuideTopPhysical = new G4PVPlacement(RotationLG,  
   				       PositionTP, 
-  				       thisName+"_GuideTop_Physical", 
+  				       Name+"_GuideTop_Physical", 
   				       GuideTopLogical,
   				       Mother, 
   				       false, 
@@ -134,7 +134,7 @@ void MOLLEROptDetectorLightGuide::CreateOpticalSurface(G4LogicalVolume *logV, st
 {
   OptParam* Optpar = Materials->GetOpticalParametersTable();
   
-  GuideOptSurface = new G4OpticalSurface ( thisName+"_OpSurface",glisur, polished, dielectric_metal );
+  GuideOptSurface = new G4OpticalSurface ( Name+"_OpSurface",glisur, polished, dielectric_metal );
   //GuideOptSurface->SetPolish ( 0.99 ); //only works for "ground" surface
   
   #if G4VERSION_NUMBER >= 1100
@@ -176,7 +176,7 @@ void MOLLEROptDetectorLightGuide::CreateOpticalSurface(G4LogicalVolume *logV, st
   #endif
   
   GuideOptSurface->SetMaterialPropertiesTable ( GuideMatPropTable ); 
-  GuideLogicalSkinSurface = new G4LogicalSkinSurface(thisName+"_SkinSurface",logV,GuideOptSurface);
+  GuideLogicalSkinSurface = new G4LogicalSkinSurface(Name+"_SkinSurface",logV,GuideOptSurface);
   
 }
 
@@ -243,13 +243,21 @@ void MOLLEROptDetectorLightGuide::Initialize(string mat_flag)
   RotationLG = new G4RotationMatrix;
   RotationLG->rotateX(TMath::Pi()*rad/2.0);
 
-  GuideLogical = new G4LogicalVolume(GuideSolid,GuideMaterial,thisName+"_Logical");
-  GuideCoreLogical = new G4LogicalVolume(InnerSolid,GuideCoreMaterial,thisName+"_Core_Logical");
+  GuideLogical = new G4LogicalVolume(GuideSolid,GuideMaterial,Name+"_Logical");
+  GuideCoreLogical = new G4LogicalVolume(InnerSolid,GuideCoreMaterial,Name+"_Core_Logical");
   
   CreateOpticalSurface(GuideLogical, mat_flag);
 
   G4SDManager* SDman = G4SDManager::GetSDMpointer();
-  LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide",TrackingReadout);
+  if (Name.contains("Ring1")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
+  else if (Name.contains("Ring2")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide2",TrackingReadout);
+  else if (Name.contains("Ring3")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide3",TrackingReadout);
+  else if (Name.contains("Ring4")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide4",TrackingReadout);
+  else if (Name.contains("Ring5")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide5",TrackingReadout);
+  else if (Name.contains("Ring6")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide6",TrackingReadout);
+  else if (Name.contains("Ring7")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide7",TrackingReadout);
+  else if (Name.contains("Ring8")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide8",TrackingReadout);
+  else LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
   SDman->AddNewDetector(LightGuideSD);  
 
   GuideCoreLogical->SetSensitiveDetector(LightGuideSD);
@@ -274,7 +282,7 @@ void MOLLEROptDetectorLightGuide::Initialize(string mat_flag)
   LGCoreVisAtt->SetForceWireframe(true);
   GuideCoreLogical->SetVisAttributes(LGCoreVisAtt);
 
-  GuideTopLogical = new G4LogicalVolume(GuideTopSolid,GuideMaterial,thisName+"_GuideTop_Logical");
+  GuideTopLogical = new G4LogicalVolume(GuideTopSolid,GuideMaterial,Name+"_GuideTop_Logical");
   G4VisAttributes* LGTopVisAtt = new G4VisAttributes(white);
   LGTopVisAtt->SetVisibility(false);
   // LGCoreVisAtt->SetForceWireframe(true);
@@ -312,7 +320,7 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   UpperConeVertices[6] = G4TwoVector(-PMTInterfaceOpeningX/2,PMTInterfaceOpeningZ/2-QuartzToPMTOffsetInZ);
   UpperConeVertices[7] = G4TwoVector(PMTInterfaceOpeningX/2,PMTInterfaceOpeningZ/2-QuartzToPMTOffsetInZ);  
   
-  G4Box *GuideMiddleBoxSolid = new G4Box(thisName+"_InnerSolid",LowerIP_x,(LowerIP_pz-LowerIP_nz)/2,MiddleBoxHeight/2);
+  G4Box *GuideMiddleBoxSolid = new G4Box(Name+"_InnerSolid",LowerIP_x,(LowerIP_pz-LowerIP_nz)/2,MiddleBoxHeight/2);
   
   //now do the outer surface ******************************************************************************************************
 
@@ -340,7 +348,7 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   UpperConeVertices_out[6] = G4TwoVector(-(PMTInterfaceOpeningX+2.0*mm)/2,(PMTInterfaceOpeningZ+2.0*mm)/2-QuartzToPMTOffsetInZ);
   UpperConeVertices_out[7] = G4TwoVector((PMTInterfaceOpeningX+2.0*mm)/2,(PMTInterfaceOpeningZ+2.0*mm)/2-QuartzToPMTOffsetInZ);
 
-  G4Box *GuideMiddleBoxSolid_out = new G4Box(thisName+"_OuterSolid",LowerIP_x,(LowerIP_pz-LowerIP_nz)/2,MiddleBoxHeight/2);
+  G4Box *GuideMiddleBoxSolid_out = new G4Box(Name+"_OuterSolid",LowerIP_x,(LowerIP_pz-LowerIP_nz)/2,MiddleBoxHeight/2);
 
   //******************************************************************************************************************************
 
@@ -348,11 +356,11 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   GuideTotalWidth = 2*LowerIP_x;
   GuideTotalDepth = LowerIP_pz-LowerIP_nz;
   
-  LowerCone = new G4GenericTrap(thisName+"_LowerConeSolid",LowerInterfacePlane/2,LowerConeVertices);
-  UpperCone = new G4GenericTrap(thisName+"_UpperConeSolid",(UpperInterfacePlane-LowerInterfacePlane)/2,UpperConeVertices);
+  LowerCone = new G4GenericTrap(Name+"_LowerConeSolid",LowerInterfacePlane/2,LowerConeVertices);
+  UpperCone = new G4GenericTrap(Name+"_UpperConeSolid",(UpperInterfacePlane-LowerInterfacePlane)/2,UpperConeVertices);
   
-  LowerCone_out = new G4GenericTrap(thisName+"_LowerConeSolid_out",LowerInterfacePlane/2,LowerConeVertices_out);
-  UpperCone_out = new G4GenericTrap(thisName+"_UpperConeSolid_out",(UpperInterfacePlane-LowerInterfacePlane)/2,UpperConeVertices_out);
+  LowerCone_out = new G4GenericTrap(Name+"_LowerConeSolid_out",LowerInterfacePlane/2,LowerConeVertices_out);
+  UpperCone_out = new G4GenericTrap(Name+"_UpperConeSolid_out",(UpperInterfacePlane-LowerInterfacePlane)/2,UpperConeVertices_out);
   
   
   G4RotationMatrix *rot = new G4RotationMatrix;
@@ -361,38 +369,38 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   
   G4ThreeVector  trans = G4ThreeVector(0,LowerInterfacePlane*(TMath::Tan(LowerConeFrontFaceAngle) - TMath::Tan(LowerConeBackFaceAngle))/2,(LowerInterfacePlane+MiddleBoxHeight)/2);
   
-  IntermediateInnerSolid = new G4UnionSolid(thisName+"_InnerSolid",LowerCone,GuideMiddleBoxSolid,rot,trans);
-  IntermediateOuterSolid = new G4UnionSolid(thisName+"_OuterSolid",LowerCone_out,GuideMiddleBoxSolid_out,rot,trans);
+  IntermediateInnerSolid = new G4UnionSolid(Name+"_InnerSolid",LowerCone,GuideMiddleBoxSolid,rot,trans);
+  IntermediateOuterSolid = new G4UnionSolid(Name+"_OuterSolid",LowerCone_out,GuideMiddleBoxSolid_out,rot,trans);
   
   trans = G4ThreeVector(0,0,UpperInterfacePlane/2 + MiddleBoxHeight); //MOVES UPPER CONE UP BY MiddleBoxHeight
   
   //********************* Define the shell that is the guide **********************************************************
   
-  InnerSolid = new G4UnionSolid(thisName+"_InnerSolid",IntermediateInnerSolid,UpperCone,rot,trans);
-  OuterSolid = new G4UnionSolid(thisName+"_OuterSolid",IntermediateOuterSolid,UpperCone_out,rot,trans);
+  InnerSolid = new G4UnionSolid(Name+"_InnerSolid",IntermediateInnerSolid,UpperCone,rot,trans);
+  OuterSolid = new G4UnionSolid(Name+"_OuterSolid",IntermediateOuterSolid,UpperCone_out,rot,trans);
 
-  G4SubtractionSolid *tempSolid = new G4SubtractionSolid(thisName+"_Temp_Solid",OuterSolid,InnerSolid);
+  G4SubtractionSolid *tempSolid = new G4SubtractionSolid(Name+"_Temp_Solid",OuterSolid,InnerSolid);
   
-  // G4Box *LowerConeSideCutout = new G4Box(thisName+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,QuartzInterfaceOpeningZ/2.0,
+  // G4Box *LowerConeSideCutout = new G4Box(Name+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,QuartzInterfaceOpeningZ/2.0,
   // 					 QuartzInterfaceOpeningZ/2.0);
   trans = G4ThreeVector(0,0,-(LowerInterfacePlane/2.0-(QuartzInterfaceOpeningZ-4.0*mm)/2.0)-2.0*mm);
-  G4Box *LowerConeSideCutout = new G4Box(thisName+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0);
+  G4Box *LowerConeSideCutout = new G4Box(Name+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0);
   
-  // GuideSolid = new G4SubtractionSolid(thisName+"_Solid",OuterSolid,InnerSolid);
-  GuideSolid = new G4SubtractionSolid(thisName+"_Solid",tempSolid,LowerConeSideCutout,rot,trans);
+  // GuideSolid = new G4SubtractionSolid(Name+"_Solid",OuterSolid,InnerSolid);
+  GuideSolid = new G4SubtractionSolid(Name+"_Solid",tempSolid,LowerConeSideCutout,rot,trans);
 
   //*******************************************************************************************************************
 
-  GuideTopCutoutSolid = new G4Tubs(thisName+"_GuideTop_Solid_CO",0,PMTOpeningRadius,0.15*cm,0,2.0*TMath::Pi());
-  GuideTopBoxSolid = new G4Box(thisName+"_GuideTop_Solid_BX",(PMTInterfaceOpeningX+2.0*mm)/2.0,(PMTInterfaceOpeningZ+2.0*mm)/2.0,0.1*cm);
-  GuideTopSolid = new G4SubtractionSolid(thisName+"_GuideTop_Solid",GuideTopBoxSolid,GuideTopCutoutSolid);
+  GuideTopCutoutSolid = new G4Tubs(Name+"_GuideTop_Solid_CO",0,PMTOpeningRadius,0.15*cm,0,2.0*TMath::Pi());
+  GuideTopBoxSolid = new G4Box(Name+"_GuideTop_Solid_BX",(PMTInterfaceOpeningX+2.0*mm)/2.0,(PMTInterfaceOpeningZ+2.0*mm)/2.0,0.1*cm);
+  GuideTopSolid = new G4SubtractionSolid(Name+"_GuideTop_Solid",GuideTopBoxSolid,GuideTopCutoutSolid);
 
   trans = G4ThreeVector(0,0,-(LowerInterfacePlane/2.0-1.0*cm));
-  GuideCoreBottomCutoutSolid = new G4Box(thisName+"_GuideBottom_Solid_Cut",(QuartzInterfaceOpeningX-4.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0,1.0*cm);
-  GuideCoreSolid = new G4SubtractionSolid(thisName+"_GuideCore_Solid",InnerSolid,GuideCoreBottomCutoutSolid,rot,trans);
+  GuideCoreBottomCutoutSolid = new G4Box(Name+"_GuideBottom_Solid_Cut",(QuartzInterfaceOpeningX-4.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0,1.0*cm);
+  GuideCoreSolid = new G4SubtractionSolid(Name+"_GuideCore_Solid",InnerSolid,GuideCoreBottomCutoutSolid,rot,trans);
 
   
-  // GuideSolid = new G4UnionSolid(thisName+"_InnerSolid",LowerCone,UpperCone,rot,trans);
+  // GuideSolid = new G4UnionSolid(Name+"_InnerSolid",LowerCone,UpperCone,rot,trans);
   ExportGeometrySTL();
 }
 
@@ -492,7 +500,7 @@ void MOLLEROptDetectorLightGuide::ExportGeometrySTL()
 
   STLFile.open("LightGuideGeom.stl");
   STLFile << std::scientific;
-  STLFile << "solid " << thisName+"_OuterSolid" << '\n'  << '\n';
+  STLFile << "solid " << Name+"_OuterSolid" << '\n'  << '\n';
 
   WriteSTLFacet(LowerConeBottom);
   WriteSTLFacet(&LowerConeBottom[2]);
@@ -523,7 +531,7 @@ void MOLLEROptDetectorLightGuide::ExportGeometrySTL()
   WriteSTLFacet(UpperConeTop);
   WriteSTLFacet(&UpperConeTop[2]);
 
-  STLFile << "endsolid " << thisName+"_OuterSolid" << '\n';
+  STLFile << "endsolid " << Name+"_OuterSolid" << '\n';
   STLFile.close();
 }
 

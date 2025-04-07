@@ -99,6 +99,7 @@ private:
   G4double DetFullLengthZ;
 
   G4ThreeVector     PositionDet;
+  G4ThreeVector     QuartzPos;
 
   G4RotationMatrix* RotationDet;   
 

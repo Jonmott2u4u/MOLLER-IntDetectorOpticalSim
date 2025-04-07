@@ -47,7 +47,7 @@ public:
 
   G4double GetQuartzRotationX(){return QRotationX;};
 
-  void GetQuartzLimits(G4double *vals);
+  void GetQuartzLimits(G4double *vals,G4ThreeVector pos);
 
   void UpdateGeometry();
   void ClearVolumes();

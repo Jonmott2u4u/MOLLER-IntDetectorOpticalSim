@@ -212,25 +212,25 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(EventRegion == 1){
     //4x4 mm^2 spot on R1 quartz center
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1423.94*TMath::Sin(6*pi/180);
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1923.94*TMath::Sin(6*pi/180);
     //y = Qlim1[3] - 1;
   }
   else if(EventRegion == 2){
     //4x4 mm^2 spot on R2 quartz center
     x = (Qlim2[1]+Qlim2[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand() + 1145.60*TMath::Sin(6*pi/180);
+    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand() + 1645.60*TMath::Sin(6*pi/180);
     //y = Qlim2[3] - 1;
   }
   else if(EventRegion == 3){
     //4x4 mm^2 spot on R3 quartz center
     x = (Qlim3[1]+Qlim3[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand() + 871.51*TMath::Sin(6*pi/180);
+    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand() + 1371.51*TMath::Sin(6*pi/180);
     //y = Qlim3[3] - 1;
   }
   else if(EventRegion == 4){
     //4x4 mm^2 spot on R4 quartz center
     x = (Qlim4[1]+Qlim4[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand() + 592.08*TMath::Sin(6*pi/180);
+    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand() + 1092.08*TMath::Sin(6*pi/180);
     //y = Qlim4[3] - 1;
   }
   else if(EventRegion == 5){
@@ -241,17 +241,17 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   else if(EventRegion == 6){
     //4x4 mm^2 spot on R5 BF 1 quartz center
     x = (Qlim6[1]+Qlim6[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand() + 302.47*TMath::Sin(6*pi/180);
+    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand() + 802.47*TMath::Sin(6*pi/180);
   }
   else if(EventRegion == 7){
     //4x4 mm^2 spot on R5 BF 2 quartz center
     x = (Qlim7[1]+Qlim7[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand() + 302.47*TMath::Sin(6*pi/180);
+    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand() + 802.47*TMath::Sin(6*pi/180);
   }
   else if(EventRegion == 8){
     //4x4 mm^2 spot on R6 quartz center
     x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand() + 1.78*TMath::Sin(6*pi/180);
+    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand() + 501.78*TMath::Sin(6*pi/180);
   }
   else if(EventRegion == 9){
     //Hits a random location from the top of R6 quartz to the bottom of R1 quartz (may hit empty space on sides of quartz)
@@ -260,17 +260,18 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
   else if(EventRegion == 10){
     //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
-    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = Qlim1[2] + 1423.94*TMath::Sin(6*pi/180) + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
+    x = (Qlim1[1]+Qlim1[0])/2.0; //- 0.3 + 0.6*G4UniformRand();
+    y = Qlim1[2] + cut;
+    //y = Qlim1[2] + 3*TMath::Sin(6*pi/180) + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
   }
   else if(EventRegion == 11){
     //Cosmic distribution for cosmic stands. Update the numbers in the "y" expression as needed.
     //Top scints are ~ 292 mm above center of R6 module (FF) and ~ 427 mm (BF)
     //Bot scints are ~ 239 mm below center of R1 module (FF) and ~ 105 mm (BF)
     //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
-    y_base = Slim1[4] + (Slim2[5]-Slim1[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
+    y = Slim1[4] + (Slim2[5]-Slim1[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
     //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
-    y = y_base - 430*TMath::Sin(6*pi/180);
+    //y = y_base - 430*TMath::Sin(6*pi/180); No longer used in new detector positioning setup
     x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
   }
   else{

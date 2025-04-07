@@ -4,7 +4,7 @@ MOLLEROptInsensitive::MOLLEROptInsensitive(G4String name, MOLLEROptMaterial* mat
 {	    	    
   InsType = name; // name should be set in construction.cc to distinguish SD's
   Materials = mat;
-  VolMaterial = Materials->GetMaterial("Air");  
+  VolMaterial = Materials->GetMaterial("Vacuum");  
 
   AlPlate = new MOLLEROptInsensitiveAlPlate(name,Materials);
 
@@ -82,9 +82,9 @@ void MOLLEROptInsensitive::CalculateDimensions()
 void MOLLEROptInsensitive::ResetCenterLocation()
 {
 
-  /*PositionIns.setX(PositionInsX);
+  PositionIns.setX(PositionInsX);
   PositionIns.setY(PositionInsY);
-  PositionIns.setZ(PositionInsZ);*/
+  PositionIns.setZ(PositionInsZ);
 
 }
 
@@ -127,9 +127,9 @@ G4VPhysicalVolume* MOLLEROptInsensitive::ConstructInsensitive(G4VPhysicalVolume*
   /*AlPlate->SetCenterPositionInX(PositionInsX);
   AlPlate->SetCenterPositionInZ(0.5*InsFullLengthX*(TMath::Sin(AlPlateRot)) + PositionInsZ);
   AlPlate->SetCenterPositionInY(0.5*InsFullLengthY*(1.0-TMath::Cos(AlPlateRot)) + 0.5*InsFullLengthZ*fabs(TMath::Sin(AlPlateRot)) + 5*mm + PositionInsY);*/
-  AlPlate->SetCenterPositionInX(PositionInsX);
-  AlPlate->SetCenterPositionInY(PositionInsY);
-  AlPlate->SetCenterPositionInZ(PositionInsZ);
+  AlPlate->SetCenterPositionInX(0);
+  AlPlate->SetCenterPositionInY(0);
+  AlPlate->SetCenterPositionInZ(0);
   
   //-----------------------------------------------------//
 

@@ -5,7 +5,7 @@ MOLLEROptAuxilary::MOLLEROptAuxilary(MOLLEROptTrackingReadout *TrRO, G4String na
   TrackingReadout = TrRO;
   AuxType = name; // name should be set in construction.cc to distinguish SD's
   Materials = mat;
-  VolMaterial = Materials->GetMaterial("Air");  
+  VolMaterial = Materials->GetMaterial("Vacuum");  
 
   Scint = new MOLLEROptAuxilaryScint(TrackingReadout,name,Materials);
 
@@ -82,9 +82,9 @@ void MOLLEROptAuxilary::CalculateDimensions()
 void MOLLEROptAuxilary::ResetCenterLocation()
 {
 
-  /*PositionAux.setX(PositionAuxX);
+  PositionAux.setX(PositionAuxX);
   PositionAux.setY(PositionAuxY);
-  PositionAux.setZ(PositionAuxZ);*/
+  PositionAux.setZ(PositionAuxZ);
 
 }
 
@@ -127,9 +127,9 @@ G4VPhysicalVolume* MOLLEROptAuxilary::ConstructAuxilary(G4VPhysicalVolume* Mothe
   /*Scint->SetCenterPositionInX(PositionAuxX);
   Scint->SetCenterPositionInZ(0.5*AuxFullLengthX*(TMath::Sin(ScintRot)) + PositionAuxZ);
   Scint->SetCenterPositionInY(0.5*AuxFullLengthY*(1.0-TMath::Cos(ScintRot)) + 0.5*AuxFullLengthZ*fabs(TMath::Sin(ScintRot)) + 5*mm + PositionAuxY);*/
-  Scint->SetCenterPositionInX(PositionAuxX);
-  Scint->SetCenterPositionInY(PositionAuxY);
-  Scint->SetCenterPositionInZ(PositionAuxZ);
+  Scint->SetCenterPositionInX(0);
+  Scint->SetCenterPositionInY(0);
+  Scint->SetCenterPositionInZ(0);
   
   //-----------------------------------------------------//
 

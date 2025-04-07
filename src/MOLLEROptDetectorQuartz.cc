@@ -288,10 +288,11 @@ void MOLLEROptDetectorQuartz::UpdateGeometry()
 }
 
 
-void MOLLEROptDetectorQuartz::GetQuartzLimits(G4double *vals)
+void MOLLEROptDetectorQuartz::GetQuartzLimits(G4double *vals, G4ThreeVector pos)
 {
 
-  G4ThreeVector trans =  QuartzPhysical->GetTranslation();
+  //G4ThreeVector trans =  QuartzPhysical->GetTranslation();
+  G4ThreeVector trans = pos;
 
   vals[0] = -FullLengthX/2+trans.x();
   vals[1] = FullLengthX/2+trans.x(); 

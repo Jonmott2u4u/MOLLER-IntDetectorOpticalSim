@@ -82,7 +82,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   fWorldLengthInY =  15.0*m;
   fWorldLengthInZ =  30.0*m;
   
-  World_Material = Materials->GetMaterial("Air");
+  World_Material = Materials->GetMaterial("Vacuum");
   
   World_Solid = new G4Box("World_Solid",
 			  0.5* fWorldLengthInX , 

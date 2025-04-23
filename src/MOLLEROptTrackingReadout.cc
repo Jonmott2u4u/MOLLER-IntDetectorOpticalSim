@@ -12,7 +12,7 @@ MOLLEROptTrackingReadout::~MOLLEROptTrackingReadout()
   
 }
 
-void MOLLEROptTrackingReadout::AddTrackData(Int_t id, Int_t type, Int_t StepL, Int_t QEFlag, Int_t PMTHit, Int_t Volume, Int_t Proc, Float_t eng, Float_t wvl, Float_t Ang)
+void MOLLEROptTrackingReadout::AddTrackData(Int_t id, Int_t type, Int_t StepL, Int_t EFlag, Int_t PMTHit, G4String name, Int_t Volume, Int_t Proc, Float_t eng, Float_t wvl, Float_t Ang)
 {
   Int_t tr = -1;
   
@@ -31,15 +31,18 @@ void MOLLEROptTrackingReadout::AddTrackData(Int_t id, Int_t type, Int_t StepL, I
     Tracks[tr]->LGHitFlag = 1;
   }
   if(Volume == myScint){
-
+    Tracks[tr]->SLength += StepL;  
+    Tracks[tr]->SSteps++;
+  }
+  if(Volume == myPMT){
+  
   }
 
   Tracks[tr]->Length += StepL;  
   
   Tracks[tr]->NSteps++;
-  if(Tracks[tr]->QExitFlag == 0) Tracks[tr]->QExitFlag = QEFlag;
-  
-  if(Tracks[tr]->PMTHitFlag == 0) Tracks[tr]->PMTHitFlag = PMTHit;
+  if(Tracks[tr]->QExitFlag == 0) Tracks[tr]->QExitFlag = EFlag;
+  //if(Tracks[tr]->SExitFlag == 0) Tracks[tr]->SExitFlag = EFlag;
 
   Tracks[tr]->StepLength.push_back(StepL);
   Tracks[tr]->StepAngle.push_back(Ang);
@@ -59,44 +62,43 @@ void MOLLEROptTrackingReadout::AddStepNCherenkovs(Int_t id, Int_t nsec)
 
 void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
 {
-  //int ticker = 1;
   for(int n = 0; n < Tracks.size(); n++)
     if(Tracks[n]->ID == id){
-      //Tracks[n]->Detected = 1;
-      if(Tracks[n]->PMTHitZ/cm > 120 /*&& ticker == 1*/){
+      //G4cout << Tracks[n]->R2PMTHitFlag << G4endl;
+      if(Tracks[n]->R1PMTHitFlag == 1){
         R1_CathodeDetections++;
         Tracks[n]->R1_Detected = 1;
-        //ticker++;
       }
-      if(100 < Tracks[n]->PMTHitZ/cm && 120 > Tracks[n]->PMTHitZ/cm){
+      if(Tracks[n]->R2PMTHitFlag == 1){
         R2_CathodeDetections++;
         Tracks[n]->R2_Detected = 1;
       }
-      if(70 < Tracks[n]->PMTHitZ/cm && 90 > Tracks[n]->PMTHitZ/cm){
+      if(Tracks[n]->R3PMTHitFlag == 1){
         R3_CathodeDetections++;
         Tracks[n]->R3_Detected = 1;
       }
-      if(45 < Tracks[n]->PMTHitZ/cm && 70 > Tracks[n]->PMTHitZ/cm){
+      if(Tracks[n]->R4PMTHitFlag == 1){
         R4_CathodeDetections++;
         Tracks[n]->R4_Detected = 1;
       }
-      if(5 < Tracks[n]->PMTHitZ/cm && 15> Tracks[n]->PMTHitZ/cm){
+      if(Tracks[n]->R5PMTHitFlag == 1){
         R5_CathodeDetections++;
         Tracks[n]->R5_Detected = 1;
       }
-      if((15 < Tracks[n]->PMTHitZ/cm) && (35 > Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm < 0)){
+      if(Tracks[n]->R6PMTHitFlag == 1){
         R6_CathodeDetections++;
         Tracks[n]->R6_Detected = 1;
       }
-      if((15 < Tracks[n]->PMTHitZ/cm) && (35 > Tracks[n]->PMTHitZ/cm) && (Tracks[n]->PMTHitX/cm > 0)){
+      if(Tracks[n]->R7PMTHitFlag == 1){
         R7_CathodeDetections++;
         Tracks[n]->R7_Detected = 1;
       }
-      if(Tracks[n]->PMTHitZ/cm < 5){
+      if(Tracks[n]->R8PMTHitFlag == 1){
         R8_CathodeDetections++;
         Tracks[n]->R8_Detected = 1;
       }
     }
+  //G4cout << R1_CathodeDetections << G4endl;
 };
 
 
@@ -105,25 +107,33 @@ void MOLLEROptTrackingReadout::AddSecPhoton(Int_t id, Float_t ang, Float_t wvl)
 
   Int_t tr = -1;
   
-  for(int n = 0; n < Tracks.size(); n++)
+  for(int n = 0; n < Tracks.size(); n++) {
     if(Tracks[n]->ID == id) tr = n;
-
+  }
   if(tr == -1) return;
 
   Tracks[tr]->SecPhotonAngle.push_back(ang);
   Tracks[tr]->SecPhotonWavelength.push_back(wvl);
 }
 
-void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, Float_t angle)
+void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, G4String pmt, Float_t angle)
 {
 
   Int_t tr = -1;
   
-  for(int n = 0; n < Tracks.size(); n++)
+  for(int n = 0; n < Tracks.size(); n++) {
     if(Tracks[n]->ID == id) tr = n;
-
+  }
   if(tr == -1) return;
   if(!Tracks[tr]->PMTHitFlag) Tracks[tr]->PMTHitFlag = 1;
+  if((!Tracks[tr]->R1PMTHitFlag) & (pmt == "PMTHitCollection1")) Tracks[tr]->R1PMTHitFlag = 1;
+  if((!Tracks[tr]->R2PMTHitFlag) & (pmt == "PMTHitCollection2")) Tracks[tr]->R2PMTHitFlag = 1;
+  if((!Tracks[tr]->R3PMTHitFlag) & (pmt == "PMTHitCollection3")) Tracks[tr]->R3PMTHitFlag = 1;
+  if((!Tracks[tr]->R4PMTHitFlag) & (pmt == "PMTHitCollection4")) Tracks[tr]->R4PMTHitFlag = 1;
+  if((!Tracks[tr]->R5PMTHitFlag) & (pmt == "PMTHitCollection5")) Tracks[tr]->R5PMTHitFlag = 1;
+  if((!Tracks[tr]->R6PMTHitFlag) & (pmt == "PMTHitCollection6")) Tracks[tr]->R6PMTHitFlag = 1;
+  if((!Tracks[tr]->R7PMTHitFlag) & (pmt == "PMTHitCollection7")) Tracks[tr]->R7PMTHitFlag = 1;
+  if((!Tracks[tr]->R8PMTHitFlag) & (pmt == "PMTHitCollection8")) Tracks[tr]->R8PMTHitFlag = 1;
   
   Tracks[tr]->PMTHitX = loc.x();
   Tracks[tr]->PMTHitY = loc.y();
@@ -139,6 +149,7 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc,
   for(int n = 0; n < Tracks.size(); n++) if(Tracks[n]->ID == id) tr = n;
   if(tr == -1) return;
 
+  //G4cout << quartz << G4endl;
   if((Tracks[tr]->R1QuartzHitFlag == 0) & (quartz == "QuartzHitCollection1")){ 
     Tracks[tr]->R1QuartzHitFlag = 1;
     Tracks[tr]->R1QuartzHitX = loc.x();
@@ -192,29 +203,29 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc,
 void MOLLEROptTrackingReadout::SetScintHitLocation(Int_t id, G4ThreeVector loc, G4String scint)
 {
   Int_t tr = -1;
-  
+  //G4cout << "Setting Scint Location" << G4endl;
   for(int n = 0; n < Tracks.size(); n++) if(Tracks[n]->ID == id) tr = n;
   if(tr == -1) return;
 
-  if((Tracks[tr]->Scint1HitFlag == 0) & (scint ==  "Scint1HitCollection")){ 
+  if((Tracks[tr]->Scint1HitFlag == 0) & (scint ==  "ScintHitCollection1")){ 
     Tracks[tr]->Scint1HitFlag = 1;
     Tracks[tr]->Scint1HitX = loc.x();
     Tracks[tr]->Scint1HitY = loc.y();
     Tracks[tr]->Scint1HitZ = loc.z();
   }
-  if((Tracks[tr]->Scint2HitFlag == 0) & (scint == "Scint2HitCollection")){ 
+  if((Tracks[tr]->Scint2HitFlag == 0) & (scint == "ScintHitCollection2")){ 
     Tracks[tr]->Scint2HitFlag = 1;
     Tracks[tr]->Scint2HitX = loc.x();
     Tracks[tr]->Scint2HitY = loc.y();
     Tracks[tr]->Scint2HitZ = loc.z();
   }
-  if((Tracks[tr]->Scint3HitFlag == 0) & (scint == "Scint3HitCollection")){ 
+  if((Tracks[tr]->Scint3HitFlag == 0) & (scint == "ScintHitCollection3")){ 
     Tracks[tr]->Scint3HitFlag = 1;
     Tracks[tr]->Scint3HitX = loc.x();
     Tracks[tr]->Scint3HitY = loc.y();
     Tracks[tr]->Scint3HitZ = loc.z();
   }
-  if((Tracks[tr]->Scint4HitFlag == 0) & (scint == "Scint4HitCollection")){ 
+  if((Tracks[tr]->Scint4HitFlag == 0) & (scint == "ScintHitCollection4")){ 
     Tracks[tr]->Scint4HitFlag = 1;
     Tracks[tr]->Scint4HitX = loc.x();
     Tracks[tr]->Scint4HitY = loc.y();

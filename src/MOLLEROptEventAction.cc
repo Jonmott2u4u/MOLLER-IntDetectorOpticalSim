@@ -230,6 +230,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         }
         if(track->Scint3HitFlag & (track->ID == 1)){
           Scint3Hit = 1;
+          G4cout << "Scint 3 was hit!" << G4endl;
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3TrackHit(1);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionX((Float_t)track->Scint3HitX/cm);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionY((Float_t)track->Scint3HitY/cm);
@@ -288,6 +289,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPhotonTrackID(track->ID);	
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddElectronTrackID(0);
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackData(track->QLength/cm, track->QSteps);
+        //analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScintTrackData(track->SLength/cm, track->SSteps);
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzPhotonAtExitFlag(track->QExitFlag);
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);

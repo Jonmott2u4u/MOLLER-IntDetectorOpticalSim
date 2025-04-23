@@ -67,22 +67,20 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring7 = new MOLLEROptDetector(TrackingReadout,"Ring7",Materials,"UVS");
   Ring8 = new MOLLEROptDetector(TrackingReadout,"Ring8",Materials,"UVC");
 
-  //Build a new file MOLLEROptAuxilary.cc that connects to MOLLEROptAuxilaryScint.cc, Hit.cc and SD.cc
-  //Should stop reusing Quartz.cc files
+  //Auxilary detectors (for now just scintillators) used to track particle positions
   Scint1 = new MOLLEROptAuxilary(TrackingReadout,"Scint1",Materials);
   Scint2 = new MOLLEROptAuxilary(TrackingReadout,"Scint2",Materials);
   Scint3 = new MOLLEROptAuxilary(TrackingReadout,"Scint3",Materials);
   Scint4 = new MOLLEROptAuxilary(TrackingReadout,"Scint4",Materials);
 
-  //Do the same for the Aluminum Plate. Make a MOLLEROptInsensitives.cc file to contain optically insensitive materials
-  //These should be objects that we do not store info for, such as the Al Plate, and are not SD's
+  //Insensitive objects (for now just an aluminum plate) that do not store hit info
   AlPlate = new MOLLEROptInsensitive("AlPlate",Materials);
   
   fWorldLengthInX =  15.0*m;
   fWorldLengthInY =  15.0*m;
   fWorldLengthInZ =  30.0*m;
   
-  World_Material = Materials->GetMaterial("Vacuum");
+  World_Material = Materials->GetMaterial("Air");
   
   World_Solid = new G4Box("World_Solid",
 			  0.5* fWorldLengthInX , 
@@ -100,268 +98,273 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 				     0,false,0);             
   
   //Ring 1
-  Ring1->SetQuartzSizeX(8.4*cm);
-  Ring1->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring1->SetQuartzSizeZ(1.5*cm);
-  Ring1->SetLowerInterfacePlane(5.6*cm);
-  Ring1->SetMiddleBoxHeight(9.0*cm);
-  Ring1->SetUpperInterfacePlane(25*cm);
-  Ring1->SetLowerConeFrontFaceAngle(28*degree);
+  Ring1->SetQuartzSizeX(16.9*cm);
+  Ring1->SetQuartzSizeY(2.0*cm);  //without the 45 degree cut region
+  Ring1->SetQuartzSizeZ(2.0*cm);
+  Ring1->SetLowerInterfacePlane(7.5*cm);
+  Ring1->SetMiddleBoxHeight(41.0*cm);
+  Ring1->SetUpperInterfacePlane(25.1*cm);
+  Ring1->SetLowerConeFrontFaceAngle(18*degree);
   Ring1->SetLowerConeBackFaceAngle(22*degree);
   Ring1->SetLowerConeSideFaceAngle(0*degree);
-  Ring1->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring1->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring1->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring1->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring1->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring1->SetQuartzInterfaceOpeningZ(2.7*cm);
+  Ring1->SetQuartzInterfaceOpeningX(17.7*cm);
+  Ring1->SetQuartzToPMTOffsetInZ(-0.2*cm);  
+  Ring1->SetPMTInterfaceOpeningZ(7.0*cm);
+  Ring1->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring1->SetPMTCathodeRadius(3.5*cm);
   Ring1->SetPMTCathodeThickness(0.1*cm);
-  Ring1->SetAzimuthalRotationAngle(0);
-  Ring1->SetPolarRotationAngle(0);
+  Ring1->SetAzimuthalRotationAngle(0*degree);
+  Ring1->SetPolarRotationAngle(6*degree);
   Ring1->Initialize();
   Ring1->ConstructDetector(World_Physical);
-  Ring1->SetCenterPositionInX(0);           //Positions must be set after placing the detector in the world
-  Ring1->SetCenterPositionInY(0);
-  Ring1->SetCenterPositionInZ(80*cm);
+  Ring1->SetCenterPositionInX(0*mm);           //Positions must be set after placing the detector in the world
+  Ring1->SetCenterPositionInY(263*mm);
+  Ring1->SetCenterPositionInZ(1923.94*mm);
 
   //Ring 2
-  Ring2->SetQuartzSizeX(8.4*cm);
-  Ring2->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring2->SetQuartzSizeZ(1.5*cm);
-  Ring2->SetLowerInterfacePlane(5.6*cm);
-  Ring2->SetMiddleBoxHeight(9.0*cm);
-  Ring2->SetUpperInterfacePlane(25*cm);
-  Ring2->SetLowerConeFrontFaceAngle(28*degree);
+  Ring2->SetQuartzSizeX(17.9*cm);
+  Ring2->SetQuartzSizeY(6.0*cm);  //without the 45 degree cut region
+  Ring2->SetQuartzSizeZ(2.0*cm);
+  Ring2->SetLowerInterfacePlane(7.5*cm);
+  Ring2->SetMiddleBoxHeight(40.0*cm);
+  Ring2->SetUpperInterfacePlane(20.5*cm);
+  Ring2->SetLowerConeFrontFaceAngle(18*degree);
   Ring2->SetLowerConeBackFaceAngle(22*degree);
   Ring2->SetLowerConeSideFaceAngle(0*degree);
-  Ring2->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring2->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring2->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring2->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring2->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring2->SetQuartzInterfaceOpeningZ(2.7*cm);
+  Ring2->SetQuartzInterfaceOpeningX(18.7*cm);
+  Ring2->SetQuartzToPMTOffsetInZ(-0.2*cm);  
+  Ring2->SetPMTInterfaceOpeningZ(7.0*cm);
+  Ring2->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring2->SetPMTCathodeRadius(3.5*cm);
   Ring2->SetPMTCathodeThickness(0.1*cm);
   Ring2->SetAzimuthalRotationAngle(0);
-  Ring2->SetPolarRotationAngle(0);
+  Ring2->SetPolarRotationAngle(6);
   Ring2->Initialize();
   Ring2->ConstructDetector(World_Physical);
-  Ring2->SetCenterPositionInX(0);
-  Ring2->SetCenterPositionInY(0);
-  Ring2->SetCenterPositionInZ(70*cm);
+  Ring2->SetCenterPositionInX(0*mm);
+  Ring2->SetCenterPositionInY(285.0*mm);
+  Ring2->SetCenterPositionInZ(1645.6*mm);
 
   //Ring 3
-  Ring3->SetQuartzSizeX(8.4*cm);
-  Ring3->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring3->SetQuartzSizeZ(1.5*cm);
-  Ring3->SetLowerInterfacePlane(5.6*cm);
-  Ring3->SetMiddleBoxHeight(9.0*cm);
-  Ring3->SetUpperInterfacePlane(25*cm);
-  Ring3->SetLowerConeFrontFaceAngle(28*degree);
+  Ring3->SetQuartzSizeX(19.0*cm);
+  Ring3->SetQuartzSizeY(6.0*cm);  //without the 45 degree cut region
+  Ring3->SetQuartzSizeZ(2.0*cm);
+  Ring3->SetLowerInterfacePlane(7.5*cm);
+  Ring3->SetMiddleBoxHeight(30.0*cm);
+  Ring3->SetUpperInterfacePlane(20.5*cm);
+  Ring3->SetLowerConeFrontFaceAngle(18*degree);
   Ring3->SetLowerConeBackFaceAngle(22*degree);
   Ring3->SetLowerConeSideFaceAngle(0*degree);
-  Ring3->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring3->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring3->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring3->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring3->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring3->SetQuartzInterfaceOpeningZ(2.7*cm);
+  Ring3->SetQuartzInterfaceOpeningX(19.8*cm);
+  Ring3->SetQuartzToPMTOffsetInZ(-0.2*cm);  
+  Ring3->SetPMTInterfaceOpeningZ(7.0*cm);
+  Ring3->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring3->SetPMTCathodeRadius(3.5*cm);
   Ring3->SetPMTCathodeThickness(0.1*cm);
   Ring3->SetAzimuthalRotationAngle(0);
-  Ring3->SetPolarRotationAngle(0);
+  Ring3->SetPolarRotationAngle(6*degree);
   Ring3->Initialize();
   Ring3->ConstructDetector(World_Physical);
-  Ring3->SetCenterPositionInX(0);
-  Ring3->SetCenterPositionInY(0);
-  Ring3->SetCenterPositionInZ(60*cm);
+  Ring3->SetCenterPositionInX(0*mm);
+  Ring3->SetCenterPositionInY(322.1*mm);
+  Ring3->SetCenterPositionInZ(1371.51*mm);
   
   //Ring 4
-  Ring4->SetQuartzSizeX(8.4*cm);
-  Ring4->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring4->SetQuartzSizeZ(1.5*cm);
-  Ring4->SetLowerInterfacePlane(5.6*cm);
-  Ring4->SetMiddleBoxHeight(9.0*cm);
-  Ring4->SetUpperInterfacePlane(25*cm);
-  Ring4->SetLowerConeFrontFaceAngle(28*degree);
+  Ring4->SetQuartzSizeX(21.3*cm);
+  Ring4->SetQuartzSizeY(12*cm);  //without the 45 degree cut region
+  Ring4->SetQuartzSizeZ(2*cm);
+  Ring4->SetLowerInterfacePlane(7.5*cm);
+  Ring4->SetMiddleBoxHeight(20*cm);
+  Ring4->SetUpperInterfacePlane(25.3*cm);
+  Ring4->SetLowerConeFrontFaceAngle(17*degree);
   Ring4->SetLowerConeBackFaceAngle(22*degree);
   Ring4->SetLowerConeSideFaceAngle(0*degree);
-  Ring4->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring4->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring4->SetQuartzToPMTOffsetInZ(-0.3*cm); 
-  Ring4->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring4->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring4->SetQuartzInterfaceOpeningZ(2.7*cm);
+  Ring4->SetQuartzInterfaceOpeningX(22.1*cm);
+  Ring4->SetQuartzToPMTOffsetInZ(0.3*cm); 
+  Ring4->SetPMTInterfaceOpeningZ(7*cm);
+  Ring4->SetPMTInterfaceOpeningX(7*cm);  
   Ring4->SetPMTCathodeRadius(3.5*cm);
   Ring4->SetPMTCathodeThickness(0.1*cm);
   Ring4->SetAzimuthalRotationAngle(0);
-  Ring4->SetPolarRotationAngle(0);
+  Ring4->SetPolarRotationAngle(6);
   Ring4->Initialize();
   Ring4->ConstructDetector(World_Physical);
-  Ring4->SetCenterPositionInX(0);
-  Ring4->SetCenterPositionInY(0);
-  Ring4->SetCenterPositionInZ(50*cm);
+  Ring4->SetCenterPositionInX(0*mm);
+  Ring4->SetCenterPositionInY(359.3*mm);
+  Ring4->SetCenterPositionInZ(1092.08*mm);
   
   //Ring 5
-  Ring5->SetQuartzSizeX(8.4*cm);
-  Ring5->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring5->SetQuartzSizeZ(1.5*cm);
-  Ring5->SetLowerInterfacePlane(5.6*cm);
-  Ring5->SetMiddleBoxHeight(9.0*cm);
-  Ring5->SetUpperInterfacePlane(25*cm);
-  Ring5->SetLowerConeFrontFaceAngle(28*degree);
-  Ring5->SetLowerConeBackFaceAngle(22*degree);
+  Ring5->SetQuartzSizeX(8.0*cm);
+  Ring5->SetQuartzSizeY(14*cm);  //without the 45 degree cut region
+  Ring5->SetQuartzSizeZ(1.7*cm);
+  Ring5->SetLowerInterfacePlane(9*cm);
+  Ring5->SetMiddleBoxHeight(0.001*mm);
+  Ring5->SetUpperInterfacePlane(32.95*cm);
+  Ring5->SetLowerConeFrontFaceAngle(18*degree);
+  Ring5->SetLowerConeBackFaceAngle(19*degree);
   Ring5->SetLowerConeSideFaceAngle(0*degree);
-  Ring5->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring5->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring5->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring5->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring5->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring5->SetQuartzInterfaceOpeningZ(2.4*cm);
+  Ring5->SetQuartzInterfaceOpeningX(8.8*cm);
+  Ring5->SetQuartzToPMTOffsetInZ(-0.2*cm);  
+  Ring5->SetPMTInterfaceOpeningZ(7*cm);
+  Ring5->SetPMTInterfaceOpeningX(7*cm);  
   Ring5->SetPMTCathodeRadius(3.5*cm);
   Ring5->SetPMTCathodeThickness(0.1*cm);
   Ring5->SetAzimuthalRotationAngle(0);
-  Ring5->SetPolarRotationAngle(0);
+  Ring5->SetPolarRotationAngle(6);
   Ring5->Initialize();
   Ring5->ConstructDetector(World_Physical);
-  Ring5->SetCenterPositionInX(0);
-  Ring5->SetCenterPositionInY(0);
-  Ring5->SetCenterPositionInZ(40*cm);
+  Ring5->SetCenterPositionInX(0*mm);
+  Ring5->SetCenterPositionInY(427.7*mm);
+  Ring5->SetCenterPositionInZ(651.64*mm);
  
   //Ring 6 (R5 backflush 1)
-  Ring6->SetQuartzSizeX(8.4*cm);
-  Ring6->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring6->SetQuartzSizeZ(1.5*cm);
-  Ring6->SetLowerInterfacePlane(5.6*cm);
-  Ring6->SetMiddleBoxHeight(9.0*cm);
-  Ring6->SetUpperInterfacePlane(25*cm);
-  Ring6->SetLowerConeFrontFaceAngle(28*degree);
-  Ring6->SetLowerConeBackFaceAngle(22*degree);
+  Ring6->SetQuartzSizeX(8.0*cm);
+  Ring6->SetQuartzSizeY(14*cm);  //without the 45 degree cut region
+  Ring6->SetQuartzSizeZ(1.7*cm);
+  Ring6->SetLowerInterfacePlane(9*cm);
+  Ring6->SetMiddleBoxHeight(0.001*mm);
+  Ring6->SetUpperInterfacePlane(32.95*cm);
+  Ring6->SetLowerConeFrontFaceAngle(18*degree);
+  Ring6->SetLowerConeBackFaceAngle(19*degree);
   Ring6->SetLowerConeSideFaceAngle(0*degree);
-  Ring6->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring6->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring6->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring6->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring6->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring6->SetQuartzInterfaceOpeningZ(2.4*cm);
+  Ring6->SetQuartzInterfaceOpeningX(8.8*cm);
+  Ring6->SetQuartzToPMTOffsetInZ(-0.2*cm);  
+  Ring6->SetPMTInterfaceOpeningZ(7*cm);
+  Ring6->SetPMTInterfaceOpeningX(7*cm);  
   Ring6->SetPMTCathodeRadius(3.5*cm);
   Ring6->SetPMTCathodeThickness(0.1*cm);
   Ring6->SetAzimuthalRotationAngle(0);
-  Ring6->SetPolarRotationAngle(0);
+  Ring6->SetPolarRotationAngle(6);
   Ring6->Initialize();
   Ring6->ConstructDetector(World_Physical);
-  Ring6->SetCenterPositionInX(-8.67*cm);
-  Ring6->SetCenterPositionInY(0);
-  Ring6->SetCenterPositionInZ(30*cm);
+  Ring6->SetCenterPositionInX(-86.7*mm);
+  Ring6->SetCenterPositionInY(427.7*mm);
+  Ring6->SetCenterPositionInZ(802.47*mm);
   
   //Ring 7 (R5 backflush 2)
-  Ring7->SetQuartzSizeX(8.4*cm);
-  Ring7->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring7->SetQuartzSizeZ(1.5*cm);
-  Ring7->SetLowerInterfacePlane(5.6*cm);
-  Ring7->SetMiddleBoxHeight(9.0*cm);
-  Ring7->SetUpperInterfacePlane(25*cm);
-  Ring7->SetLowerConeFrontFaceAngle(28*degree);
-  Ring7->SetLowerConeBackFaceAngle(22*degree);
+  Ring7->SetQuartzSizeX(8.0*cm);
+  Ring7->SetQuartzSizeY(14*cm);  //without the 45 degree cut region
+  Ring7->SetQuartzSizeZ(1.7*cm);
+  Ring7->SetLowerInterfacePlane(9*cm);
+  Ring7->SetMiddleBoxHeight(0.001*mm);
+  Ring7->SetUpperInterfacePlane(32.95*cm);
+  Ring7->SetLowerConeFrontFaceAngle(18*degree);
+  Ring7->SetLowerConeBackFaceAngle(19*degree);
   Ring7->SetLowerConeSideFaceAngle(0*degree);
-  Ring7->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring7->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring7->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring7->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring7->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring7->SetQuartzInterfaceOpeningZ(2.4*cm);
+  Ring7->SetQuartzInterfaceOpeningX(8.8*cm);
+  Ring7->SetQuartzToPMTOffsetInZ(-0.2*cm);  
+  Ring7->SetPMTInterfaceOpeningZ(7*cm);
+  Ring7->SetPMTInterfaceOpeningX(7*cm);  
   Ring7->SetPMTCathodeRadius(3.5*cm);
   Ring7->SetPMTCathodeThickness(0.1*cm);
   Ring7->SetAzimuthalRotationAngle(0);
-  Ring7->SetPolarRotationAngle(0);
+  Ring7->SetPolarRotationAngle(6);
   Ring7->Initialize();
   Ring7->ConstructDetector(World_Physical);
-  Ring7->SetCenterPositionInX(8.67*cm);
-  Ring7->SetCenterPositionInY(0);
-  Ring7->SetCenterPositionInZ(30*cm);
+  Ring7->SetCenterPositionInX(86.7*mm);
+  Ring7->SetCenterPositionInY(427.7*mm);
+  Ring7->SetCenterPositionInZ(802.47*mm);
   
   //Ring 8 (R6)
-  Ring8->SetQuartzSizeX(8.4*cm);
-  Ring8->SetQuartzSizeY(15*cm);  //without the 45 degree cut region
-  Ring8->SetQuartzSizeZ(1.5*cm);
-  Ring8->SetLowerInterfacePlane(5.6*cm);
+  Ring8->SetQuartzSizeX(26*cm);
+  Ring8->SetQuartzSizeY(10*cm);  //without the 45 degree cut region
+  Ring8->SetQuartzSizeZ(2*cm);
+  Ring8->SetLowerInterfacePlane(8.3*cm);
   Ring8->SetMiddleBoxHeight(9.0*cm);
-  Ring8->SetUpperInterfacePlane(25*cm);
-  Ring8->SetLowerConeFrontFaceAngle(28*degree);
-  Ring8->SetLowerConeBackFaceAngle(22*degree);
+  Ring8->SetUpperInterfacePlane(16.3*cm);
+  Ring8->SetLowerConeFrontFaceAngle(17*degree);
+  Ring8->SetLowerConeBackFaceAngle(20*degree);
   Ring8->SetLowerConeSideFaceAngle(0*degree);
-  Ring8->SetQuartzInterfaceOpeningZ(1.8*cm);
-  Ring8->SetQuartzInterfaceOpeningX(9.2*cm);
-  Ring8->SetQuartzToPMTOffsetInZ(-0.3*cm);  
-  Ring8->SetPMTInterfaceOpeningZ(5.6*cm);
-  Ring8->SetPMTInterfaceOpeningX(5.6*cm);  
+  Ring8->SetQuartzInterfaceOpeningZ(2.7*cm);
+  Ring8->SetQuartzInterfaceOpeningX(26.8*cm);
+  Ring8->SetQuartzToPMTOffsetInZ(0*cm);  
+  Ring8->SetPMTInterfaceOpeningZ(7*cm);
+  Ring8->SetPMTInterfaceOpeningX(7*cm);  
   Ring8->SetPMTCathodeRadius(3.5*cm);
   Ring8->SetPMTCathodeThickness(0.1*cm);
   Ring8->SetAzimuthalRotationAngle(0);
   Ring8->SetPolarRotationAngle(0);
   Ring8->Initialize();
   Ring8->ConstructDetector(World_Physical);
-  Ring8->SetCenterPositionInX(0);
-  Ring8->SetCenterPositionInY(0);
-  Ring8->SetCenterPositionInZ(20*cm);
+  Ring8->SetCenterPositionInX(0*mm);
+  Ring8->SetCenterPositionInY(509.3*mm);
+  Ring8->SetCenterPositionInZ(501.78*mm);
 
   //Scint1 
-  Scint1->SetSizeX(60.0*cm);
-  Scint1->SetSizeY(60.0*cm);
-  Scint1->SetSizeZ(0.01*cm);
+  Scint1->SetSizeX(30*cm);
+  Scint1->SetSizeY(25*cm);
+  Scint1->SetSizeZ(2*cm);
   Scint1->SetAzimuthalRotationAngle(0);
   Scint1->SetPolarRotationAngle(0);
   Scint1->Initialize();
   Scint1->ConstructAuxilary(World_Physical);
-  Scint1->SetCenterPositionInX(0);
-  Scint1->SetCenterPositionInY(-15*cm);
-  Scint1->SetCenterPositionInZ(0);
+  Scint1->SetCenterPositionInX(0*mm);
+  Scint1->SetCenterPositionInY(0*mm);
+  Scint1->SetCenterPositionInZ(70*mm);
 
   //Scint2
-  Scint2->SetSizeX(10.0*cm);
-  Scint2->SetSizeY(10.0*cm);
-  Scint2->SetSizeZ(0.01*cm);
+  Scint2->SetSizeX(30*cm);
+  Scint2->SetSizeY(25*cm);
+  Scint2->SetSizeZ(2*cm);
   Scint2->SetAzimuthalRotationAngle(0);
   Scint2->SetPolarRotationAngle(0);
   Scint2->Initialize();
   Scint2->ConstructAuxilary(World_Physical);
-  Scint2->SetCenterPositionInX(0);
-  Scint2->SetCenterPositionInY(15*cm);
-  Scint2->SetCenterPositionInZ(0);
+  Scint2->SetCenterPositionInX(0*mm);
+  Scint2->SetCenterPositionInY(250*mm);
+  Scint2->SetCenterPositionInZ(70*mm);
 
   //Scint3
-  Scint3->SetSizeX(10.0*cm);
-  Scint3->SetSizeY(10.0*cm);
-  Scint3->SetSizeZ(0.01*cm);
+  Scint3->SetSizeX(30*cm);
+  Scint3->SetSizeY(25*cm);
+  Scint3->SetSizeZ(2*cm);
   Scint3->SetAzimuthalRotationAngle(0);
   Scint3->SetPolarRotationAngle(0);
   Scint3->Initialize();
   Scint3->ConstructAuxilary(World_Physical);
-  Scint3->SetCenterPositionInX(0);
-  Scint3->SetCenterPositionInY(-15*cm);
-  Scint3->SetCenterPositionInZ(120*cm);
+  Scint3->SetCenterPositionInX(0*mm);
+  Scint3->SetCenterPositionInY(0*mm);
+  Scint3->SetCenterPositionInZ(2060*mm);
 
   //Scint4
-  Scint4->SetSizeX(10.0*cm);
-  Scint4->SetSizeY(10.0*cm);
-  Scint4->SetSizeZ(0.01*cm);
+  Scint4->SetSizeX(30*cm);
+  Scint4->SetSizeY(25*cm);
+  Scint4->SetSizeZ(2*cm);
   Scint4->SetAzimuthalRotationAngle(0);
   Scint4->SetPolarRotationAngle(0);
   Scint4->Initialize();
   Scint4->ConstructAuxilary(World_Physical);
-  Scint4->SetCenterPositionInX(0);
-  Scint4->SetCenterPositionInY(15*cm);
-  Scint4->SetCenterPositionInZ(120*cm);
+  Scint4->SetCenterPositionInX(0*mm);
+  Scint4->SetCenterPositionInY(250*mm);
+  Scint4->SetCenterPositionInZ(2060*mm);
 
   //AlPlate
-  AlPlate->SetSizeX(80.0*cm);
-  AlPlate->SetSizeY(80.0*cm);
+  AlPlate->SetSizeX(0.1*cm);
+  AlPlate->SetSizeY(0.1*cm);
   AlPlate->SetSizeZ(0.635*cm);
   AlPlate->SetAzimuthalRotationAngle(0);
   AlPlate->SetPolarRotationAngle(0);
   AlPlate->Initialize();
   AlPlate->ConstructInsensitive(World_Physical);
-  AlPlate->SetCenterPositionInX(0);
-  AlPlate->SetCenterPositionInY(0);
-  AlPlate->SetCenterPositionInZ(150*cm);
+  AlPlate->SetCenterPositionInX(700*mm);
+  AlPlate->SetCenterPositionInY(700*mm);
+  AlPlate->SetCenterPositionInZ(100*mm);
   
   //End of object parameter setting
 
-  World_Logical->SetVisAttributes (G4VisAttributes::GetInvisible);
+  G4Colour  grey      ( 127/255., 127/255., 127/255.);
+  G4VisAttributes *att = new G4VisAttributes(grey);
+  att->SetVisibility(false);
+  att->SetForceWireframe(true);
+  World_Logical->SetVisAttributes(att);
+  //World_Logical->SetVisAttributes (G4VisAttributes::GetInvisible);
   
   DumpGeometricalTree(World_Physical);
   

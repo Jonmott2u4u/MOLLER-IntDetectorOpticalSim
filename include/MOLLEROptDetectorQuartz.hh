@@ -35,7 +35,6 @@ public:
   //Dimensions below assume a detector that is located at the origin with the 45 degreee
   //exit face at the upper y end and the width of the detector along +-x.
 
-  //Ring 1 objects
   void SetQuartzSizeX(G4double x){FullLengthX = x;}; 
   void SetQuartzSizeY(G4double y){FullLengthY = y;}; 
   void SetQuartzSizeZ(G4double z){FullLengthZ = z;};
@@ -62,8 +61,6 @@ private:
   
   MOLLEROptTrackingReadout *TrackingReadout;
   MOLLEROptMaterial* Materials;
-  
-  // MOLLEROptDetectorMessenger* DetMessenger;
 
   G4VPhysicalVolume* MotherVolume;
 

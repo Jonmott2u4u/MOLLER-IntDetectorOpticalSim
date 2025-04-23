@@ -32,7 +32,6 @@ public:
   //Dimensions below assume a detector that is located at the origin with the 45 degreee
   //exit face at the upper y end and the width of the detector along +-x.
   
-  //Ring objects
   void SetCenterPositionInX(G4double xPos);
   void SetCenterPositionInY(G4double yPos);
   void SetCenterPositionInZ(G4double zPos);

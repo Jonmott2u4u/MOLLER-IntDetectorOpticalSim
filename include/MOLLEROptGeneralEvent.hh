@@ -145,6 +145,8 @@ public:
   void AddQuartzPhotonAtExitFlag(Int_t flag){QuartzPhotonAtExit = flag;};
   void AddQuartzTrackSecPhotonAngle(Float_t angle) {QuartzSecondaryPhotonAngle.push_back(angle);}
 
+  //void AddScintTrackData(Float_t STrackL, Int_t SSteps);
+
   void AddElectronTrackID(Int_t tID){ElectronTrackID = tID;};
   void AddPhotonTrackID(Int_t tID){PhotonTrackID = tID;};
 

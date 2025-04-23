@@ -24,15 +24,6 @@ public:
 private:
 
   MOLLEROptTrackingReadout* TrackingReadout;
-  
-  MOLLEROptPMTHitsCollection*  HitsCollection1;
-  MOLLEROptPMTHitsCollection*  HitsCollection2;
-  MOLLEROptPMTHitsCollection*  HitsCollection3;
-  MOLLEROptPMTHitsCollection*  HitsCollection4;
-  MOLLEROptPMTHitsCollection*  HitsCollection5;
-  MOLLEROptPMTHitsCollection*  HitsCollection6;
-  MOLLEROptPMTHitsCollection*  HitsCollection7;
-  MOLLEROptPMTHitsCollection*  HitsCollection8;
 
   G4String theCollectionName;
   G4int theCollectionID;

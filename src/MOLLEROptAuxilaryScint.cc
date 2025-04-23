@@ -7,6 +7,7 @@ MOLLEROptAuxilaryScint::MOLLEROptAuxilaryScint(MOLLEROptTrackingReadout *TrRO, G
   TrackingReadout = TrRO;
   Materials = mat;
   ScintMaterial = Materials->GetMaterial("Scintillator");  
+  //ScintMaterial = Materials->GetMaterial("Quartz"); 
 
   ScintLogical  = NULL;
   ScintPhysical = NULL;
@@ -190,19 +191,14 @@ void MOLLEROptAuxilaryScint::UpdateGeometry()
 }
 
 
-void MOLLEROptAuxilaryScint::GetScintLimits(G4double *vals)
+void MOLLEROptAuxilaryScint::GetScintLimits(G4double *vals, G4ThreeVector pos)
 {
 
-  G4ThreeVector trans =  ScintPhysical->GetTranslation();
+  G4ThreeVector trans =  pos;
 
   vals[0] = -FullLengthX/2+trans.x();
   vals[1] = FullLengthX/2+trans.x(); 
-  vals[2] = FullLengthX/2+trans.x();
-  vals[3] = -FullLengthX/2+trans.x(); 
-  vals[4] = -FullLengthY/2+trans.y();
-  vals[5] = FullLengthY/2+trans.y(); 
-  vals[6] = FullLengthY/2+trans.y();
-  vals[7] = -FullLengthY/2+trans.y();
-
+  vals[2] = -FullLengthY/2+trans.y();
+  vals[3] = FullLengthY/2+trans.y(); 
  
 }

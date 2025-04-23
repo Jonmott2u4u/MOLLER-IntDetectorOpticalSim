@@ -42,7 +42,7 @@ public:
   G4double GetRotationX(){return RotationX;};
   G4double GetRotationZ(){return RotationZ;};
 
-  void GetPlateLimits(G4double *vals);
+  void GetPlateLimits(G4double *vals, G4ThreeVector pos);
 
   void UpdateGeometry();
   void ClearVolumes();

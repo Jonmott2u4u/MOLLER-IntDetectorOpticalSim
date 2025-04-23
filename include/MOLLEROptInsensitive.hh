@@ -69,6 +69,7 @@ private:
   G4double InsFullLengthZ;
 
   G4ThreeVector     PositionIns;
+  G4ThreeVector     PlatePos;
 
   G4RotationMatrix* RotationIns;   
 

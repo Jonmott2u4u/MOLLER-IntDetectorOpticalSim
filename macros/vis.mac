@@ -91,13 +91,13 @@
 /Ring1/QuartzSizeY 20 mm                           #Without the 45 degree cut
 #/Ring1/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring1/SetCenterPositionInX 0 mm
+/Ring1/SetCenterPositionInX -153 mm
 /Ring1/SetCenterPositionInY 263 mm
 /Ring1/SetCenterPositionInZ 1923.94 mm
 
 /Ring1/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide, normally -3
 /Ring1/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring1/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring1/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring1/UpdateGeometry
 
 #------------------#Ring 2 commands --------------------#
@@ -117,13 +117,13 @@
 /Ring2/QuartzSizeY 60 mm                           #Without the 45 degree cut
 #/Ring2/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring2/SetCenterPositionInX 0 mm
+/Ring2/SetCenterPositionInX -153 mm
 /Ring2/SetCenterPositionInY 285.0 mm
 /Ring2/SetCenterPositionInZ 1645.60 mm
 
 /Ring2/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring2/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring2/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring2/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring2/UpdateGeometry
 
 #------------------#Ring 3 commands --------------------#
@@ -143,13 +143,13 @@
 /Ring3/QuartzSizeY 60 mm                           #Without the 45 degree cut
 #/Ring3/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring3/SetCenterPositionInX 0 mm
+/Ring3/SetCenterPositionInX -153 mm
 /Ring3/SetCenterPositionInY 322.1 mm
 /Ring3/SetCenterPositionInZ 1371.51 mm
 
 /Ring3/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring3/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring3/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring3/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring3/UpdateGeometry
 
 #------------------#Ring 4 commands --------------------#
@@ -169,13 +169,13 @@
 /Ring4/QuartzSizeY 120 mm                          #Without the 45 degree cut
 #/Ring4/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring4/SetCenterPositionInX 0 mm
+/Ring4/SetCenterPositionInX -153 mm
 /Ring4/SetCenterPositionInY 359.3 mm
 /Ring4/SetCenterPositionInZ 1092.08 mm
 
 /Ring4/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring4/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring4/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring4/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring4/UpdateGeometry
 
 #------------------#Ring 5 FF commands (identical to BF. Verified w/ CAD)--------------------# 
@@ -195,13 +195,13 @@
 /Ring5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 #/Ring5/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring5/SetCenterPositionInX 0 mm
+/Ring5/SetCenterPositionInX -153 mm
 /Ring5/SetCenterPositionInY 427.7 mm
 /Ring5/SetCenterPositionInZ 651.64 mm
 
 /Ring5/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring5/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring5/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring5/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring5/UpdateGeometry
 
 #------------------#Ring 5 BF1 commands--------------------#
@@ -221,13 +221,13 @@
 /Ring6/QuartzSizeY 140 mm                          #Without the 45 degree cut
 #/Ring6/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring6/SetCenterPositionInX -86.7 mm
+/Ring6/SetCenterPositionInX -239.7 mm              #-86.7 when about the origin, -239.7 in the BF segment (shifted by -153 mm)
 /Ring6/SetCenterPositionInY 427.7 mm
 /Ring6/SetCenterPositionInZ 802.47 mm
 
 /Ring6/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring6/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring6/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring6/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring6/UpdateGeometry
 
 #------------------#Ring 5 BF2 commands--------------------#
@@ -247,13 +247,13 @@
 /Ring7/QuartzSizeY 140 mm                          #Without the 45 degree cut
 #/Ring7/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring7/SetCenterPositionInX 86.7 mm
+/Ring7/SetCenterPositionInX -66.3 mm               #86.7 when about the origin, -66.3 in the BF segment (shifted by -153 mm)
 /Ring7/SetCenterPositionInY 427.7 mm
 /Ring7/SetCenterPositionInZ 802.47 mm
 
 /Ring7/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring7/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring7/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring7/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring7/UpdateGeometry
 
 #------------------#Ring 6 commands --------------------#
@@ -273,13 +273,13 @@
 /Ring8/QuartzSizeY 100 mm                          #Without the 45 degree cut
 #/Ring8/QuartzBevelSize 0.5 mm                     #Should not normally have a bevel. So the normal condition is 0 mm
 
-/Ring8/SetCenterPositionInX 0 mm
+/Ring8/SetCenterPositionInX -153 mm
 /Ring8/SetCenterPositionInY 509.3 mm
 /Ring8/SetCenterPositionInZ 501.78 mm
 
 /Ring8/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Ring8/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring8/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/Ring8/AzimuthalRotation -6.43 deg                     #Rotates the detector about the z-axis
 /Ring8/UpdateGeometry
 
 #------------------#General commands --------------------#
@@ -291,9 +291,9 @@
 /Scint1/SizeZ 20 mm                  
 /Scint1/SizeX 300 mm                  
 /Scint1/SizeY 250 mm                 
-/Scint1/SetCenterPositionInX 0 mm            
-/Scint1/SetCenterPositionInY 125 mm        
-/Scint1/SetCenterPositionInZ 70 mm     
+/Scint1/SetCenterPositionInX -153 mm            
+/Scint1/SetCenterPositionInY 0 mm        
+/Scint1/SetCenterPositionInZ 70 mm            #Flipped with the Scint1 ZPos - fix at some point
 /Scint1/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint1/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
 /Scint1/UpdateGeometry
@@ -301,8 +301,8 @@
 /Scint2/SizeZ 20 mm                  
 /Scint2/SizeX 300 mm                   
 /Scint2/SizeY 250 mm                  
-/Scint2/SetCenterPositionInX 0 mm            
-/Scint2/SetCenterPositionInY 375 mm           
+/Scint2/SetCenterPositionInX -153 mm            
+/Scint2/SetCenterPositionInY 250 mm           
 /Scint2/SetCenterPositionInZ 70 mm    
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint2/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
@@ -311,9 +311,9 @@
 /Scint3/SizeZ 20 mm                  
 /Scint3/SizeX 300 mm                  
 /Scint3/SizeY 250 mm                  
-/Scint3/SetCenterPositionInX 0 mm            
-/Scint3/SetCenterPositionInY 125 mm        
-/Scint3/SetCenterPositionInZ 2060 mm    
+/Scint3/SetCenterPositionInX -153 mm            
+/Scint3/SetCenterPositionInY 0 mm        
+/Scint3/SetCenterPositionInZ 2060 mm            #Normally 1990
 /Scint3/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint3/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
 /Scint3/UpdateGeometry
@@ -321,8 +321,8 @@
 /Scint4/SizeZ 20 mm                  
 /Scint4/SizeX 300 mm                  
 /Scint4/SizeY 250 mm                  
-/Scint4/SetCenterPositionInX 0 mm            
-/Scint4/SetCenterPositionInY 375 mm        
+/Scint4/SetCenterPositionInX -153 mm            
+/Scint4/SetCenterPositionInY 250 mm        
 /Scint4/SetCenterPositionInZ 2060 mm 
 /Scint4/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint4/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
@@ -343,8 +343,8 @@
 
 #------------------#Beam commands -----------------------#
 
-/Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 10                      #1 = Ring1, 2 = Ring2, 3 = Ring3, 4 = Ring4, 5 = Ring5 BF, 6 & 7 = Ring5 FF, 8 = Ring6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
+/Generator/PrimaryParticle 2                      #Sets the primary particle type. 1 for electrons, 2 for muons
+/Generator/EventHitRegion 11                      #1 = Ring1, 2 = Ring2, 3 = Ring3, 4 = Ring4, 5 = Ring5 BF, 6 & 7 = Ring5 FF, 8 = Ring6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc. Common value is -112 mm
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamTheta 0				              #Units of degrees. Not in use

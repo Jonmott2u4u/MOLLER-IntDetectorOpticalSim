@@ -45,6 +45,8 @@ void MOLLEROptGeneralEvent::Initialize()
 
   QuartzTrackLength = 0;
 
+  //ScintTrackLength = 0;
+
   LightGuideTrackLength.clear();  
   LightGuideTrackLength.resize(0);
   
@@ -52,6 +54,8 @@ void MOLLEROptGeneralEvent::Initialize()
   TotalSteps.resize(0);
 
   QuartzSteps = 0;
+
+  //ScintStept = 0;
 
   LightGuideSteps.clear();  
   LightGuideSteps.resize(0);
@@ -243,6 +247,12 @@ void MOLLEROptGeneralEvent::AddQuartzTrackData(Float_t QTrackL, Int_t QSteps)
   QuartzTrackLength = QTrackL;  
   QuartzSteps = QSteps;  
 }
+
+/*void MOLLEROptGeneralEvent::AddScintTrackData(Float_t STrackL, Int_t SSteps)
+{
+  ScintTrackLength = STrackL;  
+  ScintSteps = SSteps;  
+}*/
 
 void MOLLEROptGeneralEvent::AddLightGuideTrackData(Float_t LGTrackL, Int_t LGSteps)
 {

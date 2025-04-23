@@ -13,7 +13,7 @@
 class MOLLEROptAuxilaryScint 
 {
 public:
-  MOLLEROptAuxilaryScint(MOLLEROptTrackingReadout*, G4String type9, MOLLEROptMaterial* mat);
+  MOLLEROptAuxilaryScint(MOLLEROptTrackingReadout*, G4String type, MOLLEROptMaterial* mat);
   ~MOLLEROptAuxilaryScint();
 
   void Construct(G4VPhysicalVolume* Mother);
@@ -44,7 +44,7 @@ public:
   G4double GetRotationX(){return RotationX;};
   G4double GetRotationZ(){return RotationZ;};
 
-  void GetScintLimits(G4double *vals);
+  void GetScintLimits(G4double *vals, G4ThreeVector pos);
 
   void UpdateGeometry();
   void ClearVolumes();

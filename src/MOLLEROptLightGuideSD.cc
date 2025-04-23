@@ -81,7 +81,7 @@ G4bool MOLLEROptLightGuideSD::ProcessHits(G4Step* aStep, G4TouchableHistory* the
       }
     }
     TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
-          aStep->GetStepLength(),-1,0,myLightGuide,0,
+          aStep->GetStepLength(),-1,0,theCollectionName,myLightGuide,0,
           aStep->GetTrack()->GetKineticEnergy(),
           1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
           incidentAngle);

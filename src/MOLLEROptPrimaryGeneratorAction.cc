@@ -48,10 +48,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double LGlim6[8];
   G4double LGlim7[8];
   G4double LGlim8[8];
-  G4double Slim1[8];
-  G4double Slim2[8];
-  G4double Slim3[8];
-  G4double Slim4[8];
+  G4double Slim1[4];
+  G4double Slim2[4];
+  G4double Slim3[4];
+  G4double Slim4[4];
   Construction->GetQuartz1Limits(Qlim1);//Ring 1
   Construction->GetQuartz2Limits(Qlim2);//Ring 2
   Construction->GetQuartz3Limits(Qlim3);//Ring 3
@@ -118,37 +118,21 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(Slim1[1]<=0) Slim1[1] += 1; else Slim1[1] -= 1; 
   if(Slim1[2]<=0) Slim1[2] += 1; else Slim1[2] -= 1; 
   if(Slim1[3]<=0) Slim1[3] += 1; else Slim1[3] -= 1;
-  if(Slim1[4]<=0) Slim1[4] += 1; else Slim1[4] -= 1; 
-  if(Slim1[5]<=0) Slim1[5] += 1; else Slim1[5] -= 1; 
-  if(Slim1[6]<=0) Slim1[6] += 1; else Slim1[6] -= 1; 
-  if(Slim1[7]<=0) Slim1[7] += 1; else Slim1[7] -= 1;
 
   if(Slim2[0]<=0) Slim2[0] += 1; else Slim2[0] -= 1; 
   if(Slim2[1]<=0) Slim2[1] += 1; else Slim2[1] -= 1; 
   if(Slim2[2]<=0) Slim2[2] += 1; else Slim2[2] -= 1; 
   if(Slim2[3]<=0) Slim2[3] += 1; else Slim2[3] -= 1;
-  if(Slim2[4]<=0) Slim2[4] += 1; else Slim2[4] -= 1; 
-  if(Slim2[5]<=0) Slim2[5] += 1; else Slim2[5] -= 1; 
-  if(Slim2[6]<=0) Slim2[6] += 1; else Slim2[6] -= 1; 
-  if(Slim2[7]<=0) Slim2[7] += 1; else Slim2[7] -= 1;
 
   if(Slim3[0]<=0) Slim3[0] += 1; else Slim3[0] -= 1; 
   if(Slim3[1]<=0) Slim3[1] += 1; else Slim3[1] -= 1; 
   if(Slim3[2]<=0) Slim3[2] += 1; else Slim3[2] -= 1; 
   if(Slim3[3]<=0) Slim3[3] += 1; else Slim3[3] -= 1;
-  if(Slim3[4]<=0) Slim3[4] += 1; else Slim3[4] -= 1; 
-  if(Slim3[5]<=0) Slim3[5] += 1; else Slim3[5] -= 1; 
-  if(Slim3[6]<=0) Slim3[6] += 1; else Slim3[6] -= 1; 
-  if(Slim3[7]<=0) Slim3[7] += 1; else Slim3[7] -= 1;
 
   if(Slim4[0]<=0) Slim4[0] += 1; else Slim4[0] -= 1; 
   if(Slim4[1]<=0) Slim4[1] += 1; else Slim4[1] -= 1; 
   if(Slim4[2]<=0) Slim4[2] += 1; else Slim4[2] -= 1; 
   if(Slim4[3]<=0) Slim4[3] += 1; else Slim4[3] -= 1;
-  if(Slim4[4]<=0) Slim4[4] += 1; else Slim4[4] -= 1; 
-  if(Slim4[5]<=0) Slim4[5] += 1; else Slim4[5] -= 1; 
-  if(Slim4[6]<=0) Slim4[6] += 1; else Slim4[6] -= 1; 
-  if(Slim4[7]<=0) Slim4[7] += 1; else Slim4[7] -= 1;
 
   if(LGlim1[0]<=0) LGlim1[0] += 1; else LGlim1[0] -= 1; 
   if(LGlim1[1]<=0) LGlim1[1] += 1; else LGlim1[1] -= 1; 
@@ -212,51 +196,51 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(EventRegion == 1){
     //4x4 mm^2 spot on R1 quartz center
     x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1923.94*TMath::Sin(6*pi/180);
+    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand();
     //y = Qlim1[3] - 1;
   }
   else if(EventRegion == 2){
     //4x4 mm^2 spot on R2 quartz center
     x = (Qlim2[1]+Qlim2[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand() + 1645.60*TMath::Sin(6*pi/180);
+    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand();
     //y = Qlim2[3] - 1;
   }
   else if(EventRegion == 3){
     //4x4 mm^2 spot on R3 quartz center
     x = (Qlim3[1]+Qlim3[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand() + 1371.51*TMath::Sin(6*pi/180);
+    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand();
     //y = Qlim3[3] - 1;
   }
   else if(EventRegion == 4){
     //4x4 mm^2 spot on R4 quartz center
     x = (Qlim4[1]+Qlim4[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand() + 1092.08*TMath::Sin(6*pi/180);
+    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand();
     //y = Qlim4[3] - 1;
   }
   else if(EventRegion == 5){
     //4x4 mm^2 spot on R5 FF quartz center
     x = (Qlim5[1]+Qlim5[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand() + 151.64*TMath::Sin(6*pi/180);
+    y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand();
   }
   else if(EventRegion == 6){
     //4x4 mm^2 spot on R5 BF 1 quartz center
     x = (Qlim6[1]+Qlim6[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand() + 802.47*TMath::Sin(6*pi/180);
+    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand();
   }
   else if(EventRegion == 7){
     //4x4 mm^2 spot on R5 BF 2 quartz center
     x = (Qlim7[1]+Qlim7[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand() + 802.47*TMath::Sin(6*pi/180);
+    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand();
   }
   else if(EventRegion == 8){
     //4x4 mm^2 spot on R6 quartz center
     x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand() + 501.78*TMath::Sin(6*pi/180);
+    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand();
   }
   else if(EventRegion == 9){
     //Hits a random location from the top of R6 quartz to the bottom of R1 quartz (may hit empty space on sides of quartz)
     x = Qlim1[0] + (Qlim1[1]-Qlim1[0])*G4UniformRand();
-    y = (Qlim1[2] + 1423.94*TMath::Sin(6*pi/180)) + (Qlim8[3]-Qlim1[2]-1560*TMath::Sin(6*pi/180))*G4UniformRand();
+    y = Qlim1[2] + (Qlim8[3]-Qlim1[2])*G4UniformRand();
   }
   else if(EventRegion == 10){
     //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
@@ -269,7 +253,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //Top scints are ~ 292 mm above center of R6 module (FF) and ~ 427 mm (BF)
     //Bot scints are ~ 239 mm below center of R1 module (FF) and ~ 105 mm (BF)
     //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
-    y = Slim1[4] + (Slim2[5]-Slim1[4])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
+    y = Slim1[2] + (Slim2[3]-Slim1[2])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
     //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
     //y = y_base - 430*TMath::Sin(6*pi/180); No longer used in new detector positioning setup
     x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
@@ -293,7 +277,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_y = sinTheta*TMath::Sin(Phi);
   G4double p_z = cosTheta;
 
-  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -440*mm));
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 59*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

@@ -25,15 +25,6 @@ private:
 
   MOLLEROptTrackingReadout* TrackingReadout; 
   
-  MOLLEROptQuartzHitsCollection*  HitsCollection1;
-  MOLLEROptQuartzHitsCollection*  HitsCollection2;
-  MOLLEROptQuartzHitsCollection*  HitsCollection3;
-  MOLLEROptQuartzHitsCollection*  HitsCollection4;
-  MOLLEROptQuartzHitsCollection*  HitsCollection5;
-  MOLLEROptQuartzHitsCollection*  HitsCollection6;
-  MOLLEROptQuartzHitsCollection*  HitsCollection7;
-  MOLLEROptQuartzHitsCollection*  HitsCollection8;
-  
   G4String theCollectionName; 
   G4int theCollectionID; 
   const std::vector<const G4Track*>* Secondaries;

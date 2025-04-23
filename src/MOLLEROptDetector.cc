@@ -6,7 +6,7 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String na
   DetType = name; // name should be set in construction.cc to distinguish SD's in the individual parts files (quartz, pmt, etc)
   Materials = mat;
   LightGuideMat = lgmat;
-  VolMaterial = Materials->GetMaterial("Vacuum");  
+  VolMaterial = Materials->GetMaterial("Air");  
 
   Quartz = new MOLLEROptDetectorQuartz(TrackingReadout,name,Materials);
   LightGuide = new MOLLEROptDetectorLightGuide(TrackingReadout,name,Materials);
@@ -142,14 +142,14 @@ void MOLLEROptDetector::UpdateThisGeometry()
 void MOLLEROptDetector::CalculateDimensions()
 {
   if(LightGuide->GetLightGuideWidth() > 2*PMT->GetRadius())
-    DetFullLengthX = LightGuide->GetLightGuideWidth() + 1.0*cm;
+    DetFullLengthX = LightGuide->GetLightGuideWidth() - 4*cm;
   else
-    DetFullLengthX = 2*PMT->GetRadius() +1.0*cm;
+    DetFullLengthX = 2*PMT->GetRadius() - 4.0*cm;
   
   if(LightGuide->GetLightGuideDepth() > 2*PMT->GetRadius())
-    DetFullLengthZ = LightGuide->GetLightGuideDepth() + 2*PMTToQuartzOffset + 4.0*cm;
+    DetFullLengthZ = LightGuide->GetLightGuideDepth() + 2*PMTToQuartzOffset - 1.0*cm;
   else
-    DetFullLengthZ = 2*PMT->GetRadius() + 2*PMTToQuartzOffset + 4.0*cm;
+    DetFullLengthZ = 2*PMT->GetRadius() + 2*PMTToQuartzOffset - 1.0*cm;
   
   DetFullLengthY = Quartz->GetQuartzSizeY()+LightGuide->GetLightGuideLength()+PMT->GetPMTLength()+1.0*cm+LightGuide->GetCurrentMiddleBoxHeight();
 }
@@ -225,7 +225,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);
   G4VisAttributes *att = new G4VisAttributes(grey);
-  att->SetVisibility(true);
+  att->SetVisibility(false);
   att->SetForceWireframe(true);
   DetLogical->SetVisAttributes(att);
 

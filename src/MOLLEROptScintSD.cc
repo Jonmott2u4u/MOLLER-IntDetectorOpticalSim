@@ -6,22 +6,20 @@ MOLLEROptScintSD::MOLLEROptScintSD(G4String name, MOLLEROptTrackingReadout* TrRO
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
   if(SensitiveDetectorName == "Scint1"){
-    theCollectionName = G4String("Scint1HitCollection");
+    theCollectionName = G4String("ScintHitCollection1");
   }
   else if(SensitiveDetectorName == "Scint2"){
-    theCollectionName = G4String("Scint2HitCollection");
+    theCollectionName = G4String("ScintHitCollection2");
   }
   else if(SensitiveDetectorName == "Scint3"){
-    theCollectionName = G4String("Scint3HitCollection");
+    theCollectionName = G4String("ScintHitCollection3");
   }
   else if(SensitiveDetectorName == "Scint4"){
-    theCollectionName = G4String("Scint4HitCollection");
+    theCollectionName = G4String("ScintHitCollection4");
   }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;
-  //G4cout << "\n\n" << SensitiveDetectorName <<" \n\n" << G4endl;  
-  //G4cout << "\n\n" << name <<" \n\n" << G4endl;  
   
 }
 
@@ -74,7 +72,7 @@ G4bool MOLLEROptScintSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouch
         }  
       }
       TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
-                  aStep->GetStepLength(),QEx,0,myQuartz,0,
+                  aStep->GetStepLength(),QEx,0,theCollectionName,myScint,0,
                   aStep->GetTrack()->GetKineticEnergy(),
                   1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
                   incidentAngle);
@@ -91,9 +89,9 @@ G4bool MOLLEROptScintSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouch
       }
     }
     TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myBeam,
-				  aStep->GetStepLength(),0,0,myScint,0,
+				  aStep->GetStepLength(),0,0,theCollectionName,myScint,0,
 				  aStep->GetTrack()->GetKineticEnergy(),0,0);
-    TrackingReadout->AddStepNCherenkovs(aStep->GetTrack()->GetTrackID(),nsec);
+    //TrackingReadout->AddStepNCherenkovs(aStep->GetTrack()->GetTrackID(),nsec);
     TrackingReadout->SetScintHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,theCollectionName);
   }
   return true;

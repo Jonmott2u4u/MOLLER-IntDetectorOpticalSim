@@ -5,7 +5,7 @@ MOLLEROptAuxilary::MOLLEROptAuxilary(MOLLEROptTrackingReadout *TrRO, G4String na
   TrackingReadout = TrRO;
   AuxType = name; // name should be set in construction.cc to distinguish SD's
   Materials = mat;
-  VolMaterial = Materials->GetMaterial("Vacuum");  
+  VolMaterial = Materials->GetMaterial("Air");  
 
   Scint = new MOLLEROptAuxilaryScint(TrackingReadout,name,Materials);
 
@@ -178,7 +178,10 @@ void MOLLEROptAuxilary::SetCenterPositionInZ(G4double zPos)
 
 void MOLLEROptAuxilary::GetScintLimits(G4double *vals)
 {
-  Scint->GetScintLimits(vals);
+  ScintPos.setX(PositionAuxX);
+  ScintPos.setY(PositionAuxY);
+  ScintPos.setZ(PositionAuxZ);
+  Scint->GetScintLimits(vals,ScintPos);
 }
 
 void MOLLEROptAuxilary::SetMaterial(G4String materialName)

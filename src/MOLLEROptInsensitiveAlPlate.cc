@@ -166,10 +166,10 @@ void MOLLEROptInsensitiveAlPlate::UpdateGeometry()
 }
 
 
-void MOLLEROptInsensitiveAlPlate::GetPlateLimits(G4double *vals)
+void MOLLEROptInsensitiveAlPlate::GetPlateLimits(G4double *vals, G4ThreeVector pos)
 {
 
-  G4ThreeVector trans =  PlatePhysical->GetTranslation();
+  G4ThreeVector trans = pos;
 
   vals[0] = -FullLengthX/2+trans.x();
   vals[1] = FullLengthX/2+trans.x(); 

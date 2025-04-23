@@ -4,7 +4,7 @@ MOLLEROptInsensitive::MOLLEROptInsensitive(G4String name, MOLLEROptMaterial* mat
 {	    	    
   InsType = name; // name should be set in construction.cc to distinguish SD's
   Materials = mat;
-  VolMaterial = Materials->GetMaterial("Vacuum");  
+  VolMaterial = Materials->GetMaterial("Air");  
 
   AlPlate = new MOLLEROptInsensitiveAlPlate(name,Materials);
 
@@ -178,7 +178,10 @@ void MOLLEROptInsensitive::SetCenterPositionInZ(G4double zPos)
 
 void MOLLEROptInsensitive::GetPlateLimits(G4double *vals)
 {
-  AlPlate->GetPlateLimits(vals);
+  PlatePos.setX(PositionInsX);
+  PlatePos.setY(PositionInsY);
+  PlatePos.setZ(PositionInsZ);
+  AlPlate->GetPlateLimits(vals,PlatePos);
 }
 
 void MOLLEROptInsensitive::SetMaterial(G4String materialName)

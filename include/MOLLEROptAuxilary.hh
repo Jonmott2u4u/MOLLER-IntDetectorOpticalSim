@@ -69,6 +69,7 @@ private:
   G4double AuxFullLengthZ;
 
   G4ThreeVector     PositionAux;
+  G4ThreeVector     ScintPos;
 
   G4RotationMatrix* RotationAux;   
 

@@ -5,28 +5,28 @@ MOLLEROptPMTSD::MOLLEROptPMTSD(G4String name, MOLLEROptTrackingReadout* TrRO)
 {
   TrackingReadout = TrRO;
   if(SensitiveDetectorName == "Cathode1"){
-    theCollectionName = G4String("CathodeHitCollection1");
+    theCollectionName = G4String("PMTHitCollection1");
   }
   else if(SensitiveDetectorName == "Cathode2"){
-    theCollectionName = G4String("CathodeHitCollection2");
+    theCollectionName = G4String("PMTHitCollection2");
   }
   else if(SensitiveDetectorName == "Cathode3"){
-    theCollectionName = G4String("CathodeHitCollection3");
+    theCollectionName = G4String("PMTHitCollection3");
   }
   else if(SensitiveDetectorName == "Cathode4"){
-    theCollectionName = G4String("CathodeHitCollection4");
+    theCollectionName = G4String("PMTHitCollection4");
   }
   else if(SensitiveDetectorName == "Cathode5"){
-    theCollectionName = G4String("CathodeHitCollection5");
+    theCollectionName = G4String("PMTHitCollection5");
   }
   else if(SensitiveDetectorName == "Cathode6"){
-    theCollectionName = G4String("CathodeHitCollection6");
+    theCollectionName = G4String("PMTHitCollection6");
   }
   else if(SensitiveDetectorName == "Cathode7"){
-    theCollectionName = G4String("CathodeHitCollection7");
+    theCollectionName = G4String("PMTHitCollection7");
   }
   else if(SensitiveDetectorName == "Cathode8"){
-    theCollectionName = G4String("CathodeHitCollection8");
+    theCollectionName = G4String("PMTHitCollection8");
   }
 
   collectionName.insert(theCollectionName); 
@@ -82,10 +82,10 @@ G4bool MOLLEROptPMTSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchab
         }
       }
       TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
-            aStep->GetStepLength(),-1,1,myPMT,0,
+            aStep->GetStepLength(),-1,1,theCollectionName,myPMT,0,
             aStep->GetTrack()->GetKineticEnergy(),
             1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),0);
-	    TrackingReadout->SetPMTHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,incidentAngle);
+	    TrackingReadout->SetPMTHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,theCollectionName,incidentAngle);
     }
   }
   return true;

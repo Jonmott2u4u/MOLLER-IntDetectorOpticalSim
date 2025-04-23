@@ -34,8 +34,16 @@ public:
   Int_t SSteps;
   Int_t LGSteps;
   Int_t QExitFlag;
-  Int_t SExitFlag;
+  //Int_t SExitFlag;
   Int_t PMTHitFlag;
+  Int_t R1PMTHitFlag;
+  Int_t R2PMTHitFlag;
+  Int_t R3PMTHitFlag;
+  Int_t R4PMTHitFlag;
+  Int_t R5PMTHitFlag;
+  Int_t R6PMTHitFlag;
+  Int_t R7PMTHitFlag;
+  Int_t R8PMTHitFlag;
   Int_t R1QuartzHitFlag = 0;
   Int_t R2QuartzHitFlag = 0;
   Int_t R3QuartzHitFlag = 0;
@@ -170,7 +178,7 @@ private:
 
   void Initialize();
   void AddNewTrack(TrackData *track);
-  void AddTrackData(Int_t id, Int_t type, Int_t StepL, Int_t QEFlag, Int_t PMTHit, Int_t Volume, Int_t Proc, Float_t eng, Float_t wvl, Float_t Ang);
+  void AddTrackData(Int_t id, Int_t type, Int_t StepL, Int_t EFlag, Int_t PMTHit, G4String name, Int_t Volume, Int_t Proc, Float_t eng, Float_t wvl, Float_t Ang);
   void AddSecPhoton(Int_t id, Float_t ang, Float_t wvl);
   void AddStepNCherenkovs(Int_t n, Int_t nsec);
   void IncrementEventCathodeDetection(Int_t ID);
@@ -183,7 +191,7 @@ private:
   Int_t R6_GetCathodeDetections() {return R6_CathodeDetections;};
   Int_t R7_GetCathodeDetections() {return R7_CathodeDetections;};
   Int_t R8_GetCathodeDetections() {return R8_CathodeDetections;};
-  void SetPMTHitLocation(Int_t id, G4ThreeVector loc, Float_t angle);
+  void SetPMTHitLocation(Int_t id, G4ThreeVector loc, G4String pmt, Float_t angle);
   void SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz);
   void SetScintHitLocation(Int_t id, G4ThreeVector loc, G4String scint);
   Bool_t TrackExists(Int_t ID);

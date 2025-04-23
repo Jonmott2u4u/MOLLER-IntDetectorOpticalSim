@@ -87,7 +87,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 	    }
 	
       TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
-                  aStep->GetStepLength(),QEx,0,myQuartz,0,
+                  aStep->GetStepLength(),QEx,0,theCollectionName,myQuartz,0,
                   aStep->GetTrack()->GetKineticEnergy(),
                   1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
                   incidentAngle);
@@ -104,7 +104,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
       }
     }
     TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myBeam,
-				  aStep->GetStepLength(),0,0,myQuartz,0,
+				  aStep->GetStepLength(),0,0,theCollectionName,myQuartz,0,
 				  aStep->GetTrack()->GetKineticEnergy(),0,0);
     TrackingReadout->AddStepNCherenkovs(aStep->GetTrack()->GetTrackID(),nsec);
     TrackingReadout->SetQuartzHitLocation(aStep->GetTrack()->GetTrackID(),worldpos,theCollectionName);

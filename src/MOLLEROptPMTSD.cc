@@ -28,6 +28,30 @@ MOLLEROptPMTSD::MOLLEROptPMTSD(G4String name, MOLLEROptTrackingReadout* TrRO)
   else if(SensitiveDetectorName == "Cathode8"){
     theCollectionName = G4String("PMTHitCollection8");
   }
+  else if(SensitiveDetectorName == "Cathode9"){
+    theCollectionName = G4String("PMTHitCollection9");
+  }
+  else if(SensitiveDetectorName == "Cathode10"){
+    theCollectionName = G4String("PMTHitCollection10");
+  }
+  else if(SensitiveDetectorName == "Cathode11"){
+    theCollectionName = G4String("PMTHitCollection11");
+  }
+  else if(SensitiveDetectorName == "Cathode12"){
+    theCollectionName = G4String("PMTHitCollection12");
+  }
+  else if(SensitiveDetectorName == "Cathode13"){
+    theCollectionName = G4String("PMTHitCollection13");
+  }
+  else if(SensitiveDetectorName == "Cathode14"){
+    theCollectionName = G4String("PMTHitCollection14");
+  }
+  else if(SensitiveDetectorName == "Cathode15"){
+    theCollectionName = G4String("PMTHitCollection15");
+  }
+  else if(SensitiveDetectorName == "Cathode16"){
+    theCollectionName = G4String("PMTHitCollection16");
+  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;

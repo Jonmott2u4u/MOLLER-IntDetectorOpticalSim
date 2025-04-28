@@ -29,6 +29,30 @@ MOLLEROptLightGuideSD::MOLLEROptLightGuideSD(G4String name, MOLLEROptTrackingRea
   else if(SensitiveDetectorName == "LightGuide8"){
     theCollectionName = G4String("LightGuideHitCollection8");
   }
+  else if(SensitiveDetectorName == "LightGuide9"){
+    theCollectionName = G4String("LightGuideHitCollection9");
+  }
+  else if(SensitiveDetectorName == "LightGuide10"){
+    theCollectionName = G4String("LightGuideHitCollection10");
+  }
+  else if(SensitiveDetectorName == "LightGuide11"){
+    theCollectionName = G4String("LightGuideHitCollection11");
+  }
+  else if(SensitiveDetectorName == "LightGuide12"){
+    theCollectionName = G4String("LightGuideHitCollection12");
+  }
+  else if(SensitiveDetectorName == "LightGuide13"){
+    theCollectionName = G4String("LightGuideHitCollection13");
+  }
+  else if(SensitiveDetectorName == "LightGuide14"){
+    theCollectionName = G4String("LightGuideHitCollection14");
+  }
+  else if(SensitiveDetectorName == "LightGuide15"){
+    theCollectionName = G4String("LightGuideHitCollection15");
+  }
+  else if(SensitiveDetectorName == "LightGuide16"){
+    theCollectionName = G4String("LightGuideHitCollection16");
+  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;

@@ -59,9 +59,9 @@ void MOLLEROptInsensitive::UpdateThisGeometry()
   AlPlate->UpdateGeometry();
   CalculateDimensions();
   InsSolid = new G4Box(InsType+"_Solid",
-		        InsFullLengthX, 
-		        InsFullLengthY,
-		        InsFullLengthZ);
+		        InsFullLengthX/2, 
+		        InsFullLengthY/2,
+		        InsFullLengthZ/2);
   InsLogical = new G4LogicalVolume(InsSolid, VolMaterial, InsType+"_Logical");
   InsLogical->SetSolid(InsSolid);
   ResetCenterLocation();
@@ -101,9 +101,9 @@ void MOLLEROptInsensitive::Initialize()
   RotationIns = new G4RotationMatrix;
 
   InsSolid = new G4Box(InsType+"_Solid",
-		        InsFullLengthX, 
-		        InsFullLengthY,
-		        InsFullLengthZ);
+		        InsFullLengthX/2, 
+		        InsFullLengthY/2,
+		        InsFullLengthZ/2);
   InsLogical = new G4LogicalVolume( InsSolid, VolMaterial, InsType+"_Logical");
 }
 

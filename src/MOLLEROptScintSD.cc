@@ -17,6 +17,18 @@ MOLLEROptScintSD::MOLLEROptScintSD(G4String name, MOLLEROptTrackingReadout* TrRO
   else if(SensitiveDetectorName == "Scint4"){
     theCollectionName = G4String("ScintHitCollection4");
   }
+  else if(SensitiveDetectorName == "Scint5"){
+    theCollectionName = G4String("ScintHitCollection5");
+  }
+  else if(SensitiveDetectorName == "Scint6"){
+    theCollectionName = G4String("ScintHitCollection6");
+  }
+  else if(SensitiveDetectorName == "Scint7"){
+    theCollectionName = G4String("ScintHitCollection7");
+  }
+  else if(SensitiveDetectorName == "Scint8"){
+    theCollectionName = G4String("ScintHitCollection8");
+  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;
@@ -50,34 +62,6 @@ G4bool MOLLEROptScintSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouch
   G4ThreeVector stepPos = preStep->GetPosition();
   Secondaries = aStep->GetSecondaryInCurrentStep();  
   
-  /*if(aStep->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()){
-    if(procName.compare("Transportation") == 0){
-      G4ThreeVector imom = preStep->GetMomentumDirection();
-      G4ThreeVector fmom = postStep->GetMomentumDirection();
-      // G4cout << "Quartz step volumes: " << preStep->GetPhysicalVolume()->GetName()<< " " << postStep->GetPhysicalVolume()->GetName() << G4endl;
-      G4double incidentAngle = 360;
-      G4VPhysicalVolume *vol = postStep->GetPhysicalVolume();
-      if(vol){
-        G4String name = vol->GetName();
-        if(postStep->GetPhysicalVolume()->GetName().contains("LG_Physical")&&(
-        preStep->GetPhysicalVolume()->GetName().contains("Scint")&&
-        preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
-          QEx = 1; 
-	      }
-        if((postStep->GetPhysicalVolume()->GetName().contains("Ring_Physical") ||
-        postStep->GetPhysicalVolume()->GetName().contains("LG_Physical"))&&(
-        preStep->GetPhysicalVolume()->GetName().contains("Scint")&&
-        preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
-          incidentAngle = 90.0 - 180*0.5*(1 - acos(imom.dot(fmom))/TMath::Pi());
-        }  
-      }
-      TrackingReadout->AddTrackData(aStep->GetTrack()->GetTrackID(),myPhoton,
-                  aStep->GetStepLength(),QEx,0,theCollectionName,myScint,0,
-                  aStep->GetTrack()->GetKineticEnergy(),
-                  1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
-                  incidentAngle);
-    }
-  }*/
   if((aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()) || (aStep->GetTrack()->GetDefinition() == G4MuonMinus::MuonMinusDefinition())){
     G4ThreeVector primom = aStep->GetTrack()->GetMomentumDirection();         
     for(int n = 0; n < (*Secondaries).size(); n++){

@@ -59,9 +59,9 @@ void MOLLEROptAuxilary::UpdateThisGeometry()
   Scint->UpdateGeometry();
   CalculateDimensions();
   AuxSolid = new G4Box(AuxType+"_Solid",
-		        AuxFullLengthX, 
-		        AuxFullLengthY,
-		        AuxFullLengthZ);
+		        AuxFullLengthX/2, 
+		        AuxFullLengthY/2,
+		        AuxFullLengthZ/2);
   AuxLogical = new G4LogicalVolume(AuxSolid, VolMaterial, AuxType+"_Logical");
   AuxLogical->SetSolid(AuxSolid);
   ResetCenterLocation();
@@ -101,9 +101,9 @@ void MOLLEROptAuxilary::Initialize()
   RotationAux = new G4RotationMatrix;
 
   AuxSolid = new G4Box(AuxType+"_Solid",
-		        AuxFullLengthX, 
-		        AuxFullLengthY,
-		        AuxFullLengthZ);
+		        AuxFullLengthX/2, 
+		        AuxFullLengthY/2,
+		        AuxFullLengthZ/2);
   AuxLogical = new G4LogicalVolume( AuxSolid, VolMaterial, AuxType+"_Logical");
 }
 

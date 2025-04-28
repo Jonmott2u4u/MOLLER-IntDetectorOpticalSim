@@ -249,14 +249,22 @@ void MOLLEROptDetectorLightGuide::Initialize(string mat_flag)
   CreateOpticalSurface(GuideLogical, mat_flag);
 
   G4SDManager* SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("Ring1")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
-  else if (Name.contains("Ring2")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide2",TrackingReadout);
-  else if (Name.contains("Ring3")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide3",TrackingReadout);
-  else if (Name.contains("Ring4")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide4",TrackingReadout);
-  else if (Name.contains("Ring5")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide5",TrackingReadout);
-  else if (Name.contains("Ring6")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide6",TrackingReadout);
-  else if (Name.contains("Ring7")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide7",TrackingReadout);
-  else if (Name.contains("Ring8")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide8",TrackingReadout);
+  if (Name.contains("Ring1_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
+  else if (Name.contains("Ring2_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide2",TrackingReadout);
+  else if (Name.contains("Ring3_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide3",TrackingReadout);
+  else if (Name.contains("Ring4_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide4",TrackingReadout);
+  else if (Name.contains("Ring5_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide5",TrackingReadout);
+  else if (Name.contains("Ring6_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide6",TrackingReadout);
+  else if (Name.contains("Ring7_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide7",TrackingReadout);
+  else if (Name.contains("Ring8_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide8",TrackingReadout);
+  else if (Name.contains("Ring9_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide9",TrackingReadout);
+  else if (Name.contains("Ring10_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide10",TrackingReadout);
+  else if (Name.contains("Ring11_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide11",TrackingReadout);
+  else if (Name.contains("Ring12_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide12",TrackingReadout);
+  else if (Name.contains("Ring13_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide13",TrackingReadout);
+  else if (Name.contains("Ring14_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide14",TrackingReadout);
+  else if (Name.contains("Ring15_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide15",TrackingReadout);
+  else if (Name.contains("Ring16_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide16",TrackingReadout);
   else LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
   SDman->AddNewDetector(LightGuideSD);  
 

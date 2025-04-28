@@ -29,6 +29,30 @@ MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* Tr
   else if(SensitiveDetectorName == "Quartz8"){
     theCollectionName = G4String("QuartzHitCollection8");
   }
+  else if(SensitiveDetectorName == "Quartz9"){
+    theCollectionName = G4String("QuartzHitCollection9");
+  }
+  else if(SensitiveDetectorName == "Quartz10"){
+    theCollectionName = G4String("QuartzHitCollection10");
+  }
+  else if(SensitiveDetectorName == "Quartz11"){
+    theCollectionName = G4String("QuartzHitCollection11");
+  }
+  else if(SensitiveDetectorName == "Quartz12"){
+    theCollectionName = G4String("QuartzHitCollection12");
+  }
+  else if(SensitiveDetectorName == "Quartz13"){
+    theCollectionName = G4String("QuartzHitCollection13");
+  }
+  else if(SensitiveDetectorName == "Quartz14"){
+    theCollectionName = G4String("QuartzHitCollection14");
+  }
+  else if(SensitiveDetectorName == "Quartz15"){
+    theCollectionName = G4String("QuartzHitCollection15");
+  }
+  else if(SensitiveDetectorName == "Quartz16"){
+    theCollectionName = G4String("QuartzHitCollection16");
+  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;

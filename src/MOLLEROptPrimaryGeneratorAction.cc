@@ -40,6 +40,14 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double Qlim6[4];
   G4double Qlim7[4];
   G4double Qlim8[4];
+  G4double Qlim9[4];
+  G4double Qlim10[4];
+  G4double Qlim11[4];
+  G4double Qlim12[4];
+  G4double Qlim13[4];
+  G4double Qlim14[4];
+  G4double Qlim15[4];
+  G4double Qlim16[4];
   G4double LGlim1[8];
   G4double LGlim2[8];
   G4double LGlim3[8];
@@ -48,33 +56,66 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double LGlim6[8];
   G4double LGlim7[8];
   G4double LGlim8[8];
+  G4double LGlim9[8];
+  G4double LGlim10[8];
+  G4double LGlim11[8];
+  G4double LGlim12[8];
+  G4double LGlim13[8];
+  G4double LGlim14[8];
+  G4double LGlim15[8];
+  G4double LGlim16[8];
   G4double Slim1[4];
   G4double Slim2[4];
   G4double Slim3[4];
   G4double Slim4[4];
-  Construction->GetQuartz1Limits(Qlim1);//Ring 1
-  Construction->GetQuartz2Limits(Qlim2);//Ring 2
-  Construction->GetQuartz3Limits(Qlim3);//Ring 3
-  Construction->GetQuartz4Limits(Qlim4);//Ring 4
-  Construction->GetQuartz5Limits(Qlim5);//Ring 5
-  Construction->GetQuartz6Limits(Qlim6);//Ring 6
-  Construction->GetQuartz7Limits(Qlim7);//Ring 7
-  Construction->GetQuartz8Limits(Qlim8);//Ring 8
+  G4double Slim5[4];
+  G4double Slim6[4];
+  G4double Slim7[4];
+  G4double Slim8[4];
+  Construction->GetQuartz1Limits(Qlim1);//Ring 1 bf
+  Construction->GetQuartz2Limits(Qlim2);//Ring 2 bf
+  Construction->GetQuartz3Limits(Qlim3);//Ring 3 bf
+  Construction->GetQuartz4Limits(Qlim4);//Ring 4 bf
+  Construction->GetQuartz5Limits(Qlim5);//Ring 5 ff
+  Construction->GetQuartz6Limits(Qlim6);//Ring 5 bf1
+  Construction->GetQuartz7Limits(Qlim7);//Ring 5 bf2
+  Construction->GetQuartz8Limits(Qlim8);//Ring 6 bf
+  Construction->GetQuartz9Limits(Qlim9);//Ring 1 ff
+  Construction->GetQuartz10Limits(Qlim10);//Ring 2 ff
+  Construction->GetQuartz11Limits(Qlim11);//Ring 3 ff
+  Construction->GetQuartz12Limits(Qlim12);//Ring 4 ff
+  Construction->GetQuartz13Limits(Qlim13);//Ring 5 bf
+  Construction->GetQuartz14Limits(Qlim14);//Ring 5 ff1
+  Construction->GetQuartz15Limits(Qlim15);//Ring 5 ff2
+  Construction->GetQuartz16Limits(Qlim16);//Ring 6
   Construction->GetLightGuide1Limits(LGlim1);//Currently R6. Overwritten each time a detector is generated. Can easily be changed
-  Construction->GetLightGuide2Limits(LGlim2);
+  Construction->GetLightGuide2Limits(LGlim2);//This may not be true anymore. Verify
   Construction->GetLightGuide3Limits(LGlim3);
   Construction->GetLightGuide4Limits(LGlim4);
   Construction->GetLightGuide5Limits(LGlim5);
   Construction->GetLightGuide6Limits(LGlim6);
   Construction->GetLightGuide7Limits(LGlim7);
   Construction->GetLightGuide8Limits(LGlim8);
+  Construction->GetLightGuide9Limits(LGlim9);
+  Construction->GetLightGuide10Limits(LGlim10);
+  Construction->GetLightGuide11Limits(LGlim11);
+  Construction->GetLightGuide12Limits(LGlim12);
+  Construction->GetLightGuide13Limits(LGlim13);
+  Construction->GetLightGuide14Limits(LGlim14);
+  Construction->GetLightGuide15Limits(LGlim15);
+  Construction->GetLightGuide16Limits(LGlim16);
   Construction->GetScint1Limits(Slim1);
   Construction->GetScint2Limits(Slim2);
   Construction->GetScint3Limits(Slim3);
   Construction->GetScint4Limits(Slim4);
+  Construction->GetScint5Limits(Slim5);
+  Construction->GetScint6Limits(Slim6);
+  Construction->GetScint7Limits(Slim7);
+  Construction->GetScint8Limits(Slim8);
 
 //~~~~~~~~Commenting this out does not effect anything, but leaving as is for now~~~~~~~~~~~~~~~~~
-  if(Qlim1[0]<=0) Qlim1[0] += 1; else Qlim1[0] -= 1; 
+
+  /*if(Qlim1[0]<=0) Qlim1[0] += 1; else Qlim1[0] -= 1; 
   if(Qlim1[1]<=0) Qlim1[1] += 1; else Qlim1[1] -= 1; 
   if(Qlim1[2]<=0) Qlim1[2] += 1; else Qlim1[2] -= 1; 
   if(Qlim1[3]<=0) Qlim1[3] += 1; else Qlim1[3] -= 1;
@@ -141,127 +182,127 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(LGlim1[4]<=0) LGlim1[4] += 1; else LGlim1[4] -= 1; 
   if(LGlim1[5]<=0) LGlim1[5] += 1; else LGlim1[5] -= 1; 
   if(LGlim1[6]<=0) LGlim1[6] += 1; else LGlim1[6] -= 1; 
-  if(LGlim1[7]<=0) LGlim1[7] += 1; else LGlim1[7] -= 1; 
+  if(LGlim1[7]<=0) LGlim1[7] += 1; else LGlim1[7] -= 1;*/
 
   //Other LGlimits (2->8) will be added when needed
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-/*~~~~~~~Previously used for just 1 detector. Replaced by next section~~~~~~~~~~~~~~~~~~~~~
-  if(EventRegion == 2){
-  //On Lower Light Guide cone
-    x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
-    y = LGlim[2] + (LGlim[3]-LGlim[2])*G4UniformRand();
-  }
-  else if(EventRegion == 3){
-    //On box between LG cones
-    x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
-    y = LGlim[6] + (90*mm)*G4UniformRand(); //hard-coded to the box height. Update at some point 
-  }
-  else if(EventRegion == 4){
-    //On Upper Light Guide cone
-    x = LGlim[4] + (LGlim[5]-LGlim[4])*G4UniformRand();
-    y = LGlim[6]+90*mm + (LGlim[7]-LGlim[6]-10*mm)*G4UniformRand(); //Also hard-coded
-  }
-  else if(EventRegion == 5){
-    //2x2 mm^2 spot on quartz center
-    x = (Qlim[1]+Qlim[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim[3]+Qlim[2])/2.0 -2 +4*G4UniformRand();
-  }
-  else if(EventRegion == 6){
-    //4x4 mm^2 spot on lower guide cone
-    x = (LGlim[1]+LGlim[0])/2.0 -2 +4*G4UniformRand();
-    y = (LGlim[3]+LGlim[2])/2.0 -2 +4*G4UniformRand();
-  }  
-  else if(EventRegion == 7){
-    //4x4 mm^2 spot on upper guide cone
-    x = (LGlim[5]+LGlim[4])/2.0 -2 +4*G4UniformRand();
-    y = (LGlim[7]+LGlim[6])/2.0 -2 +4*G4UniformRand();
-  }  
-  else if(EventRegion == 8){
-    //Vertical cut on the quartz (currently 10 implemented, can be changed here)
-    x = Qlim[0] + ((Qlim[1]-Qlim[0])/10)*cut + ((Qlim[1]-Qlim[0])/10)*G4UniformRand();
-    y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
-   }
-  else if(EventRegion == 9){
-    //Horizontal cut on the quartz (currently 10 implemented, can be changed here)
-    x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
-    y = Qlim[2] + ((Qlim[3]-Qlim[2])/10)*cut + ((Qlim[3]-Qlim[2])/10)*G4UniformRand();
-  }
-  else{ 
-    //On Quartz
-    x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
-    y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
-  }
-*/
   if(EventRegion == 1){
     //4x4 mm^2 spot on R1 quartz center
-    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim1[1]+Qlim1[0])/2.0;
+    y = (Qlim1[3]+Qlim1[2])/2.0;
     //y = Qlim1[3] - 1;
   }
   else if(EventRegion == 2){
     //4x4 mm^2 spot on R2 quartz center
-    x = (Qlim2[1]+Qlim2[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim2[3]+Qlim2[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim2[1]+Qlim2[0])/2.0;
+    y = (Qlim2[3]+Qlim2[2])/2.0;
     //y = Qlim2[3] - 1;
   }
   else if(EventRegion == 3){
     //4x4 mm^2 spot on R3 quartz center
-    x = (Qlim3[1]+Qlim3[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim3[3]+Qlim3[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim3[1]+Qlim3[0])/2.0;
+    y = (Qlim3[3]+Qlim3[2])/2.0;
     //y = Qlim3[3] - 1;
   }
   else if(EventRegion == 4){
     //4x4 mm^2 spot on R4 quartz center
-    x = (Qlim4[1]+Qlim4[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim4[3]+Qlim4[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim4[1]+Qlim4[0])/2.0;
+    y = (Qlim4[3]+Qlim4[2])/2.0;
     //y = Qlim4[3] - 1;
   }
   else if(EventRegion == 5){
     //4x4 mm^2 spot on R5 FF quartz center
-    x = (Qlim5[1]+Qlim5[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim5[3]+Qlim5[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim5[1]+Qlim5[0])/2.0;
+    y = (Qlim5[3]+Qlim5[2])/2.0;
   }
   else if(EventRegion == 6){
     //4x4 mm^2 spot on R5 BF 1 quartz center
-    x = (Qlim6[1]+Qlim6[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim6[3]+Qlim6[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim6[1]+Qlim6[0])/2.0;
+    y = (Qlim6[3]+Qlim6[2])/2.0;
   }
   else if(EventRegion == 7){
     //4x4 mm^2 spot on R5 BF 2 quartz center
-    x = (Qlim7[1]+Qlim7[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim7[3]+Qlim7[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim7[1]+Qlim7[0])/2.0;
+    y = (Qlim7[3]+Qlim7[2])/2.0;
   }
   else if(EventRegion == 8){
     //4x4 mm^2 spot on R6 quartz center
-    x = (Qlim8[1]+Qlim8[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim8[3]+Qlim8[2])/2.0 -2 +4*G4UniformRand();
+    x = (Qlim8[1]+Qlim8[0])/2.0;
+    y = (Qlim8[3]+Qlim8[2])/2.0;
   }
   else if(EventRegion == 9){
-    //Hits a random location from the top of R6 quartz to the bottom of R1 quartz (may hit empty space on sides of quartz)
-    x = Qlim1[0] + (Qlim1[1]-Qlim1[0])*G4UniformRand();
-    y = Qlim1[2] + (Qlim8[3]-Qlim1[2])*G4UniformRand();
+    //4x4 mm^2 spot on R1 quartz center
+    x = (Qlim9[1]+Qlim9[0])/2.0;
+    y = (Qlim9[3]+Qlim9[2])/2.0;
+    //y = Qlim1[3] - 1;
   }
   else if(EventRegion == 10){
-    //Used for performing segment scans along the y-axis. The x-axis is focused on the center of the segment (quartz tiles for all but R5 FF) in a 4x4 mm^2 spot
-    x = (Qlim1[1]+Qlim1[0])/2.0; //- 0.3 + 0.6*G4UniformRand();
-    y = Qlim1[2] + cut;
-    //y = Qlim1[2] + 3*TMath::Sin(6*pi/180) + (cut-5*G4UniformRand()); //cut has units cm, whereas the rest has units mm
+    //4x4 mm^2 spot on R2 quartz center
+    x = (Qlim10[1]+Qlim10[0])/2.0;
+    y = (Qlim10[3]+Qlim10[2])/2.0;
+    //y = Qlim2[3] - 1;
   }
   else if(EventRegion == 11){
-    //Cosmic distribution for cosmic stands. Update the numbers in the "y" expression as needed.
-    //Top scints are ~ 292 mm above center of R6 module (FF) and ~ 427 mm (BF)
-    //Bot scints are ~ 239 mm below center of R1 module (FF) and ~ 105 mm (BF)
+    //4x4 mm^2 spot on R3 quartz center
+    x = (Qlim11[1]+Qlim11[0])/2.0;
+    y = (Qlim11[3]+Qlim11[2])/2.0;
+    //y = Qlim3[3] - 1;
+  }
+  else if(EventRegion == 12){
+    //4x4 mm^2 spot on R4 quartz center
+    x = (Qlim12[1]+Qlim12[0])/2.0;
+    y = (Qlim12[3]+Qlim12[2])/2.0;
+    //y = Qlim4[3] - 1;
+  }
+  else if(EventRegion == 13){
+    //4x4 mm^2 spot on R5 FF quartz center
+    x = (Qlim13[1]+Qlim13[0])/2.0;
+    y = (Qlim13[3]+Qlim13[2])/2.0;
+  }
+  else if(EventRegion == 14){
+    //4x4 mm^2 spot on R5 BF 1 quartz center
+    x = (Qlim14[1]+Qlim14[0])/2.0;
+    y = (Qlim14[3]+Qlim14[2])/2.0;
+  }
+  else if(EventRegion == 15){
+    //4x4 mm^2 spot on R5 BF 2 quartz center
+    x = (Qlim15[1]+Qlim15[0])/2.0;
+    y = (Qlim15[3]+Qlim15[2])/2.0;
+  }
+  else if(EventRegion == 16){
+    //4x4 mm^2 spot on R6 quartz center
+    x = (Qlim16[1]+Qlim16[0])/2.0;
+    y = (Qlim16[3]+Qlim16[2])/2.0;
+  }
+  else if(EventRegion == 17){
+    //Used for the BF segment scan
+    x = (Qlim1[1]+Qlim1[0])/2.0; //- 0.3 + 0.6*G4UniformRand();
+    y = Qlim1[2] + cut;
+  }
+  else if(EventRegion == 18){
+    //Used for the FF segment scan
+    x = (Qlim9[1]+Qlim9[0])/2.0; //- 0.3 + 0.6*G4UniformRand();
+    y = Qlim9[2] + cut;
+  }
+  else if(EventRegion == 19){
+    //W&M College cosmic stand setup. Uses the BF segment
     //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
     y = Slim1[2] + (Slim2[3]-Slim1[2])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
     //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
-    //y = y_base - 430*TMath::Sin(6*pi/180); No longer used in new detector positioning setup
     x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
+  }
+  else if(EventRegion == 20){
+    //W&M College cosmic stand setup. Uses the FF segment
+    //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
+    y = Slim5[2] + (Slim6[3]-Slim5[2])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
+    //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
+    x = Slim5[0] + (Slim6[1]-Slim5[0])*G4UniformRand();
   }
   else{
     //Defaults to Ring 1
-    x = (Qlim1[1]+Qlim1[0])/2.0 -2 +4*G4UniformRand();
-    y = (Qlim1[3]+Qlim1[2])/2.0 -2 +4*G4UniformRand() + 1423.94*TMath::Sin(6*pi/180);
+    x = (Qlim1[1]+Qlim1[0])/2.0;
+    y = (Qlim1[3]+Qlim1[2])/2.0;
   }
 
   G4double sa_rad = sa*pi/180.;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
@@ -338,6 +379,6 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   
   if(EventCounter%100 == 0){
     G4cout << "Capture Event# " << EventCounter << G4endl;
-    G4cout << "Solid angle# " << sa << G4endl;
+    //G4cout << "Solid angle# " << sa << G4endl;
   }
 }

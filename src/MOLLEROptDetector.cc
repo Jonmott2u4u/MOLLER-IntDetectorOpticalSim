@@ -309,16 +309,15 @@ void MOLLEROptDetector::GetQuartzLimits(G4double *vals)
   G4double quartzY = Quartz->GetQuartzSizeY();
   G4double quartzZ = Quartz->GetQuartzSizeZ();
   G4double Qrot = Quartz->GetQuartzRotationX();
-  //G4double QPol = PolarAngle;
+  G4double QPol = PolarAngle;
   //G4double QAzi = AzimuAngle;
 
+  //Factor is from the rotation of the quartz about the x-axis independent of the detector
   G4double yRotFactor = 0.5*quartzY*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ*fabs(TMath::Sin(Qrot));
 
-  //The current positions are wrong, but still hit the tile. Need to properly add polar and aziumthal rotation of entire detector
-  //Currently only considers the rotation of the quartz tile relative to the detector about the x-axis
   QuartzPos.setX(PositionDetX);
-  QuartzPos.setY((PositionDetY - 0.5*DetFullLengthY + 0.5*quartzY) + yRotFactor);
-  QuartzPos.setZ(PositionDetZ + 0.5*quartzY*(TMath::Sin(Qrot)));
+  QuartzPos.setY(PositionDetY + (-0.5*DetFullLengthY + 0.5*quartzY + yRotFactor)*TMath::Cos(QPol) - 0.5*quartzZ*fabs(TMath::Sin(QPol)));
+  QuartzPos.setZ(PositionDetZ + 0.5*quartzY*(TMath::Sin(Qrot)));//This is missing factors, but is not currently used
   Quartz->GetQuartzLimits(vals,QuartzPos);
 }
 

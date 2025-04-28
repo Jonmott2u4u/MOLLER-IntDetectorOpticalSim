@@ -47,11 +47,11 @@
 /Ring1/QuartzSizeY 20 mm                           #Without the 45 degree cut
 /Ring1/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring1/SetCenterPositionInX -153 mm
+/Ring1/SetCenterPositionInX -250 mm
 /Ring1/SetCenterPositionInY 263 mm
 /Ring1/SetCenterPositionInZ 1923.94 mm
 /Ring1/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring1/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring1/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring1/UpdateGeometry
 
@@ -73,11 +73,11 @@
 /Ring2/QuartzSizeY 60 mm                           #Without the 45 degree cut
 /Ring2/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring2/SetCenterPositionInX -153 mm
+/Ring2/SetCenterPositionInX -250 mm
 /Ring2/SetCenterPositionInY 285.0 mm
 /Ring2/SetCenterPositionInZ 1645.60 mm
 /Ring2/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring2/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring2/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring2/UpdateGeometry
 
@@ -99,11 +99,11 @@
 /Ring3/QuartzSizeY 60 mm                           #Without the 45 degree cut
 /Ring3/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring3/SetCenterPositionInX -153 mm
+/Ring3/SetCenterPositionInX -250 mm
 /Ring3/SetCenterPositionInY 322.1 mm
 /Ring3/SetCenterPositionInZ 1371.51 mm
 /Ring3/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring3/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring3/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring3/UpdateGeometry
 
@@ -125,11 +125,11 @@
 /Ring4/QuartzSizeY 120 mm                          #Without the 45 degree cut
 /Ring4/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring4/SetCenterPositionInX -153 mm
+/Ring4/SetCenterPositionInX -250 mm
 /Ring4/SetCenterPositionInY 359.3 mm
 /Ring4/SetCenterPositionInZ 1092.08 mm
 /Ring4/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring4/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring4/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring4/UpdateGeometry
 
@@ -151,11 +151,11 @@
 /Ring5/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /Ring5/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring5/SetCenterPositionInX -153 mm
+/Ring5/SetCenterPositionInX -250 mm
 /Ring5/SetCenterPositionInY 427.7 mm
 /Ring5/SetCenterPositionInZ 651.64 mm
 /Ring5/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring5/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring5/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring5/UpdateGeometry
 
@@ -177,11 +177,11 @@
 /Ring6/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /Ring6/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring6/SetCenterPositionInX -239.7 mm              #-86.7 when about the origin, -239.7 in the BF segment (shifted by -153 mm)
+/Ring6/SetCenterPositionInX -336.7 mm              #-86.7 when about the origin, -239.7 in the BF segment (shifted by -250 mm)
 /Ring6/SetCenterPositionInY 427.7 mm
 /Ring6/SetCenterPositionInZ 802.47 mm
 /Ring6/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring6/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring6/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring6/UpdateGeometry
 
@@ -203,11 +203,11 @@
 /Ring7/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /Ring7/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring7/SetCenterPositionInX -66.3 mm               #86.7 when about the origin, -66.3 in the BF segment (shifted by -153 mm)
+/Ring7/SetCenterPositionInX -163.3 mm               #86.7 when about the origin, -66.3 in the BF segment (shifted by -250 mm)
 /Ring7/SetCenterPositionInY 427.7 mm
 /Ring7/SetCenterPositionInZ 802.47 mm
 /Ring7/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring7/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring7/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring7/UpdateGeometry
 
@@ -229,11 +229,11 @@
 /Ring8/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /Ring8/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring8/SetCenterPositionInX -153 mm
+/Ring8/SetCenterPositionInX -250 mm
 /Ring8/SetCenterPositionInY 509.3 mm
 /Ring8/SetCenterPositionInZ 501.78 mm
 /Ring8/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring8/AzimuthalRotation -6.43 deg                 #Rotates the detector about the z-axis
+/Ring8/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /Ring8/UpdateGeometry
 
@@ -257,11 +257,11 @@
 /Ring9/QuartzSizeY 20 mm                           #Without the 45 degree cut
 /Ring9/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring9/SetCenterPositionInX 153 mm
+/Ring9/SetCenterPositionInX 250 mm
 /Ring9/SetCenterPositionInY 263 mm
 /Ring9/SetCenterPositionInZ 1773.11 mm
 /Ring9/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring9/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring9/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring9/UpdateGeometry
 
@@ -283,11 +283,11 @@
 /Ring10/QuartzSizeY 60 mm                           #Without the 45 degree cut
 /Ring10/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring10/SetCenterPositionInX 153 mm
+/Ring10/SetCenterPositionInX 250 mm
 /Ring10/SetCenterPositionInY 285.0 mm
 /Ring10/SetCenterPositionInZ 1494.77 mm
 /Ring10/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring10/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring10/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring10/UpdateGeometry
 
@@ -309,11 +309,11 @@
 /Ring11/QuartzSizeY 60 mm                           #Without the 45 degree cut
 /Ring11/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring11/SetCenterPositionInX 153 mm
+/Ring11/SetCenterPositionInX 250 mm
 /Ring11/SetCenterPositionInY 322.1 mm
 /Ring11/SetCenterPositionInZ 1220.68 mm
 /Ring11/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring11/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring11/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring11/UpdateGeometry
 
@@ -335,11 +335,11 @@
 /Ring12/QuartzSizeY 120 mm                          #Without the 45 degree cut
 /Ring12/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring12/SetCenterPositionInX 153 mm
+/Ring12/SetCenterPositionInX 250 mm
 /Ring12/SetCenterPositionInY 359.3 mm
 /Ring12/SetCenterPositionInZ 941.25 mm
 /Ring12/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring12/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring12/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring12/UpdateGeometry
 
@@ -361,11 +361,11 @@
 /Ring13/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /Ring13/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring13/SetCenterPositionInX 153 mm
+/Ring13/SetCenterPositionInX 250 mm
 /Ring13/SetCenterPositionInY 427.7 mm
 /Ring13/SetCenterPositionInZ 802.47 mm
 /Ring13/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring13/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring13/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring13/UpdateGeometry
 
@@ -387,11 +387,11 @@
 /Ring14/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /Ring14/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring14/SetCenterPositionInX 66.3 mm                 #-86.7 when about the origin, 66.3 in the FF segment (shifted by +153 mm)
+/Ring14/SetCenterPositionInX 163.3 mm                 #-86.7 when about the origin, 66.3 in the FF segment (shifted by +250 mm)
 /Ring14/SetCenterPositionInY 427.7 mm
 /Ring14/SetCenterPositionInZ 651.64 mm
 /Ring14/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring14/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring14/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring14/UpdateGeometry
 
@@ -413,11 +413,11 @@
 /Ring15/QuartzSizeY 140 mm                          #Without the 45 degree cut
 /Ring15/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring15/SetCenterPositionInX 239.7 mm               #86.7 when about the origin, 239.7 in the FF segment (shifted by +153 mm)
+/Ring15/SetCenterPositionInX 336.7 mm               #86.7 when about the origin, 239.7 in the FF segment (shifted by +250 mm)
 /Ring15/SetCenterPositionInY 427.7 mm
 /Ring15/SetCenterPositionInZ 651.64 mm
 /Ring15/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring15/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring15/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring15/UpdateGeometry
 
@@ -439,11 +439,11 @@
 /Ring16/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /Ring16/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring16/SetCenterPositionInX 153 mm
+/Ring16/SetCenterPositionInX 250 mm
 /Ring16/SetCenterPositionInY 509.3 mm
 /Ring16/SetCenterPositionInZ 350.95 mm
 /Ring16/PolarRotation 6 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring16/AzimuthalRotation 6.43 deg                  #Rotates the detector about the z-axis
+/Ring16/AzimuthalRotation 0 deg                  #Rotates the detector about the z-axis
 
 /Ring16/UpdateGeometry
 
@@ -452,7 +452,7 @@
 /Scint1/SizeZ 20 mm                  
 /Scint1/SizeX 300 mm                  
 /Scint1/SizeY 250 mm                 
-/Scint1/SetCenterPositionInX -153 mm            
+/Scint1/SetCenterPositionInX -250 mm            
 /Scint1/SetCenterPositionInY 0 mm        
 /Scint1/SetCenterPositionInZ 70 mm            
 /Scint1/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -462,7 +462,7 @@
 /Scint2/SizeZ 20 mm                  
 /Scint2/SizeX 300 mm                   
 /Scint2/SizeY 250 mm                  
-/Scint2/SetCenterPositionInX -153 mm            
+/Scint2/SetCenterPositionInX -250 mm            
 /Scint2/SetCenterPositionInY 250 mm           
 /Scint2/SetCenterPositionInZ 70 mm    
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -472,7 +472,7 @@
 /Scint3/SizeZ 20 mm                  
 /Scint3/SizeX 300 mm                  
 /Scint3/SizeY 250 mm                  
-/Scint3/SetCenterPositionInX -153 mm            
+/Scint3/SetCenterPositionInX -250 mm            
 /Scint3/SetCenterPositionInY 0 mm        
 /Scint3/SetCenterPositionInZ 2060 mm            
 /Scint3/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -482,7 +482,7 @@
 /Scint4/SizeZ 20 mm                  
 /Scint4/SizeX 300 mm                  
 /Scint4/SizeY 250 mm                  
-/Scint4/SetCenterPositionInX -153 mm            
+/Scint4/SetCenterPositionInX -250 mm            
 /Scint4/SetCenterPositionInY 250 mm        
 /Scint4/SetCenterPositionInZ 2060 mm 
 /Scint4/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -492,7 +492,7 @@
 /Scint5/SizeZ 20 mm                  
 /Scint5/SizeX 300 mm                  
 /Scint5/SizeY 250 mm                 
-/Scint5/SetCenterPositionInX 153 mm            
+/Scint5/SetCenterPositionInX 250 mm            
 /Scint5/SetCenterPositionInY 0 mm        
 /Scint5/SetCenterPositionInZ 70 mm            
 /Scint5/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -502,7 +502,7 @@
 /Scint6/SizeZ 20 mm                  
 /Scint6/SizeX 300 mm                   
 /Scint6/SizeY 250 mm                  
-/Scint6/SetCenterPositionInX 153 mm            
+/Scint6/SetCenterPositionInX 250 mm            
 /Scint6/SetCenterPositionInY 250 mm           
 /Scint6/SetCenterPositionInZ 70 mm    
 /Scint6/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -512,7 +512,7 @@
 /Scint7/SizeZ 20 mm                  
 /Scint7/SizeX 300 mm                  
 /Scint7/SizeY 250 mm                  
-/Scint7/SetCenterPositionInX 153 mm            
+/Scint7/SetCenterPositionInX 250 mm            
 /Scint7/SetCenterPositionInY 0 mm        
 /Scint7/SetCenterPositionInZ 2060 mm            
 /Scint7/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -522,7 +522,7 @@
 /Scint8/SizeZ 20 mm                  
 /Scint8/SizeX 300 mm                  
 /Scint8/SizeY 250 mm                  
-/Scint8/SetCenterPositionInX 153 mm            
+/Scint8/SetCenterPositionInX 250 mm            
 /Scint8/SetCenterPositionInY 250 mm        
 /Scint8/SetCenterPositionInZ 2060 mm 
 /Scint8/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
@@ -545,16 +545,16 @@
 #------------------#Beam commands -----------------------#
 
 /Generator/PrimaryParticle 2                      #Sets the primary particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 20                      #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
+/Generator/EventHitRegion 19                      #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamSolidAngle 18                      #Units of degrees. Determines the angular spread of the beam from the z-axis. 18 for W&M setup
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
+/Storage/DetectorFocus 0                        #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457
 /vis/disable
-/run/beamOn 2000
+/run/beamOn 1000

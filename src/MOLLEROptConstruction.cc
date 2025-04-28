@@ -162,11 +162,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring1->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring1->SetPMTCathodeRadius(3.5*cm);
   Ring1->SetPMTCathodeThickness(0.1*cm);
-  Ring1->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring1->SetAzimuthalRotationAngle(0*degree);
   Ring1->SetPolarRotationAngle(6*degree);
   Ring1->Initialize();
   Ring1->ConstructDetector(World_Physical);
-  Ring1->SetCenterPositionInX(-153*mm);           //Positions must be set after placing the detector in the world
+  Ring1->SetCenterPositionInX(-250*mm);           //Positions must be set after placing the detector in the world
   Ring1->SetCenterPositionInY(263*mm);
   Ring1->SetCenterPositionInZ(1923.94*mm);
 
@@ -187,11 +187,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring2->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring2->SetPMTCathodeRadius(3.5*cm);
   Ring2->SetPMTCathodeThickness(0.1*cm);
-  Ring2->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring2->SetAzimuthalRotationAngle(0*degree);
   Ring2->SetPolarRotationAngle(6*degree);
   Ring2->Initialize();
   Ring2->ConstructDetector(World_Physical);
-  Ring2->SetCenterPositionInX(-153*mm);
+  Ring2->SetCenterPositionInX(-250*mm);
   Ring2->SetCenterPositionInY(285.0*mm);
   Ring2->SetCenterPositionInZ(1645.6*mm);
 
@@ -212,11 +212,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring3->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring3->SetPMTCathodeRadius(3.5*cm);
   Ring3->SetPMTCathodeThickness(0.1*cm);
-  Ring3->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring3->SetAzimuthalRotationAngle(0*degree);
   Ring3->SetPolarRotationAngle(6*degree);
   Ring3->Initialize();
   Ring3->ConstructDetector(World_Physical);
-  Ring3->SetCenterPositionInX(-153*mm);
+  Ring3->SetCenterPositionInX(-250*mm);
   Ring3->SetCenterPositionInY(322.1*mm);
   Ring3->SetCenterPositionInZ(1371.51*mm);
   
@@ -237,11 +237,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring4->SetPMTInterfaceOpeningX(7*cm);  
   Ring4->SetPMTCathodeRadius(3.5*cm);
   Ring4->SetPMTCathodeThickness(0.1*cm);
-  Ring4->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring4->SetAzimuthalRotationAngle(0*degree);
   Ring4->SetPolarRotationAngle(6*degree);
   Ring4->Initialize();
   Ring4->ConstructDetector(World_Physical);
-  Ring4->SetCenterPositionInX(-153*mm);
+  Ring4->SetCenterPositionInX(-250*mm);
   Ring4->SetCenterPositionInY(359.3*mm);
   Ring4->SetCenterPositionInZ(1092.08*mm);
   
@@ -262,11 +262,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring5->SetPMTInterfaceOpeningX(7*cm);  
   Ring5->SetPMTCathodeRadius(3.5*cm);
   Ring5->SetPMTCathodeThickness(0.1*cm);
-  Ring5->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring5->SetAzimuthalRotationAngle(0*degree);
   Ring5->SetPolarRotationAngle(6*degree);
   Ring5->Initialize();
   Ring5->ConstructDetector(World_Physical);
-  Ring5->SetCenterPositionInX(-153*mm);
+  Ring5->SetCenterPositionInX(-250*mm);
   Ring5->SetCenterPositionInY(427.7*mm);
   Ring5->SetCenterPositionInZ(651.64*mm);
  
@@ -287,11 +287,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring6->SetPMTInterfaceOpeningX(7*cm);  
   Ring6->SetPMTCathodeRadius(3.5*cm);
   Ring6->SetPMTCathodeThickness(0.1*cm);
-  Ring6->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring6->SetAzimuthalRotationAngle(0*degree);
   Ring6->SetPolarRotationAngle(6*degree);
   Ring6->Initialize();
   Ring6->ConstructDetector(World_Physical);
-  Ring6->SetCenterPositionInX(-239.7*mm);
+  Ring6->SetCenterPositionInX(-336.7*mm);
   Ring6->SetCenterPositionInY(427.7*mm);
   Ring6->SetCenterPositionInZ(802.47*mm);
   
@@ -312,11 +312,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring7->SetPMTInterfaceOpeningX(7*cm);  
   Ring7->SetPMTCathodeRadius(3.5*cm);
   Ring7->SetPMTCathodeThickness(0.1*cm);
-  Ring7->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring7->SetAzimuthalRotationAngle(0*degree);
   Ring7->SetPolarRotationAngle(6*degree);
   Ring7->Initialize();
   Ring7->ConstructDetector(World_Physical);
-  Ring7->SetCenterPositionInX(-66.3*mm);
+  Ring7->SetCenterPositionInX(-163.3*mm);
   Ring7->SetCenterPositionInY(427.7*mm);
   Ring7->SetCenterPositionInZ(802.47*mm);
   
@@ -337,11 +337,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring8->SetPMTInterfaceOpeningX(7*cm);  
   Ring8->SetPMTCathodeRadius(3.5*cm);
   Ring8->SetPMTCathodeThickness(0.1*cm);
-  Ring8->SetAzimuthalRotationAngle(-6.43*degree);
+  Ring8->SetAzimuthalRotationAngle(0*degree);
   Ring8->SetPolarRotationAngle(6*degree);
   Ring8->Initialize();
   Ring8->ConstructDetector(World_Physical);
-  Ring8->SetCenterPositionInX(-153*mm);
+  Ring8->SetCenterPositionInX(-250*mm);
   Ring8->SetCenterPositionInY(509.3*mm);
   Ring8->SetCenterPositionInZ(501.78*mm);
 
@@ -353,7 +353,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint1->SetPolarRotationAngle(0);
   Scint1->Initialize();
   Scint1->ConstructAuxilary(World_Physical);
-  Scint1->SetCenterPositionInX(-153*mm);
+  Scint1->SetCenterPositionInX(-250*mm);
   Scint1->SetCenterPositionInY(0*mm);
   Scint1->SetCenterPositionInZ(70*mm);
 
@@ -365,7 +365,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint2->SetPolarRotationAngle(0);
   Scint2->Initialize();
   Scint2->ConstructAuxilary(World_Physical);
-  Scint2->SetCenterPositionInX(-153*mm);
+  Scint2->SetCenterPositionInX(-250*mm);
   Scint2->SetCenterPositionInY(250*mm);
   Scint2->SetCenterPositionInZ(70*mm);
 
@@ -377,7 +377,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint3->SetPolarRotationAngle(0);
   Scint3->Initialize();
   Scint3->ConstructAuxilary(World_Physical);
-  Scint3->SetCenterPositionInX(-153*mm);
+  Scint3->SetCenterPositionInX(-250*mm);
   Scint3->SetCenterPositionInY(0*mm);
   Scint3->SetCenterPositionInZ(2060*mm);
 
@@ -389,7 +389,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint4->SetPolarRotationAngle(0);
   Scint4->Initialize();
   Scint4->ConstructAuxilary(World_Physical);
-  Scint4->SetCenterPositionInX(-153*mm);
+  Scint4->SetCenterPositionInX(-250*mm);
   Scint4->SetCenterPositionInY(250*mm);
   Scint4->SetCenterPositionInZ(2060*mm);
 
@@ -411,11 +411,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring9->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring9->SetPMTCathodeRadius(3.5*cm);
   Ring9->SetPMTCathodeThickness(0.1*cm);
-  Ring9->SetAzimuthalRotationAngle(6.43*degree);
+  Ring9->SetAzimuthalRotationAngle(0*degree);
   Ring9->SetPolarRotationAngle(6*degree);
   Ring9->Initialize();
   Ring9->ConstructDetector(World_Physical);
-  Ring9->SetCenterPositionInX(153*mm);           //Positions must be set after placing the detector in the world
+  Ring9->SetCenterPositionInX(250*mm);           //Positions must be set after placing the detector in the world
   Ring9->SetCenterPositionInY(263*mm);
   Ring9->SetCenterPositionInZ(1773.11*mm);
 
@@ -436,11 +436,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring10->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring10->SetPMTCathodeRadius(3.5*cm);
   Ring10->SetPMTCathodeThickness(0.1*cm);
-  Ring10->SetAzimuthalRotationAngle(6.43*degree);
+  Ring10->SetAzimuthalRotationAngle(0*degree);
   Ring10->SetPolarRotationAngle(6*degree);
   Ring10->Initialize();
   Ring10->ConstructDetector(World_Physical);
-  Ring10->SetCenterPositionInX(153*mm);
+  Ring10->SetCenterPositionInX(250*mm);
   Ring10->SetCenterPositionInY(285.0*mm);
   Ring10->SetCenterPositionInZ(1494.77*mm);
 
@@ -461,11 +461,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring11->SetPMTInterfaceOpeningX(7.0*cm);  
   Ring11->SetPMTCathodeRadius(3.5*cm);
   Ring11->SetPMTCathodeThickness(0.1*cm);
-  Ring11->SetAzimuthalRotationAngle(6.43*degree);
+  Ring11->SetAzimuthalRotationAngle(0*degree);
   Ring11->SetPolarRotationAngle(6*degree);
   Ring11->Initialize();
   Ring11->ConstructDetector(World_Physical);
-  Ring11->SetCenterPositionInX(153*mm);
+  Ring11->SetCenterPositionInX(250*mm);
   Ring11->SetCenterPositionInY(322.1*mm);
   Ring11->SetCenterPositionInZ(1220.68*mm);
   
@@ -486,11 +486,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring12->SetPMTInterfaceOpeningX(7*cm);  
   Ring12->SetPMTCathodeRadius(3.5*cm);
   Ring12->SetPMTCathodeThickness(0.1*cm);
-  Ring12->SetAzimuthalRotationAngle(6.43*degree);
+  Ring12->SetAzimuthalRotationAngle(0*degree);
   Ring12->SetPolarRotationAngle(6*degree);
   Ring12->Initialize();
   Ring12->ConstructDetector(World_Physical);
-  Ring12->SetCenterPositionInX(153*mm);
+  Ring12->SetCenterPositionInX(250*mm);
   Ring12->SetCenterPositionInY(359.3*mm);
   Ring12->SetCenterPositionInZ(941.25*mm);
   
@@ -511,11 +511,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring13->SetPMTInterfaceOpeningX(7*cm);  
   Ring13->SetPMTCathodeRadius(3.5*cm);
   Ring13->SetPMTCathodeThickness(0.1*cm);
-  Ring13->SetAzimuthalRotationAngle(6.43*degree);
+  Ring13->SetAzimuthalRotationAngle(0*degree);
   Ring13->SetPolarRotationAngle(6*degree);
   Ring13->Initialize();
   Ring13->ConstructDetector(World_Physical);
-  Ring13->SetCenterPositionInX(153*mm);
+  Ring13->SetCenterPositionInX(250*mm);
   Ring13->SetCenterPositionInY(427.7*mm);
   Ring13->SetCenterPositionInZ(802.47*mm);
  
@@ -536,11 +536,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring14->SetPMTInterfaceOpeningX(7*cm);  
   Ring14->SetPMTCathodeRadius(3.5*cm);
   Ring14->SetPMTCathodeThickness(0.1*cm);
-  Ring14->SetAzimuthalRotationAngle(6.43*degree);
+  Ring14->SetAzimuthalRotationAngle(0*degree);
   Ring14->SetPolarRotationAngle(6*degree);
   Ring14->Initialize();
   Ring14->ConstructDetector(World_Physical);
-  Ring14->SetCenterPositionInX(66.3*mm);
+  Ring14->SetCenterPositionInX(163.3*mm);
   Ring14->SetCenterPositionInY(427.7*mm);
   Ring14->SetCenterPositionInZ(651.64*mm);
   
@@ -561,11 +561,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring15->SetPMTInterfaceOpeningX(7*cm);  
   Ring15->SetPMTCathodeRadius(3.5*cm);
   Ring15->SetPMTCathodeThickness(0.1*cm);
-  Ring15->SetAzimuthalRotationAngle(6.43*degree);
+  Ring15->SetAzimuthalRotationAngle(0*degree);
   Ring15->SetPolarRotationAngle(6*degree);
   Ring15->Initialize();
   Ring15->ConstructDetector(World_Physical);
-  Ring15->SetCenterPositionInX(239.7*mm);
+  Ring15->SetCenterPositionInX(336.7*mm);
   Ring15->SetCenterPositionInY(427.7*mm);
   Ring15->SetCenterPositionInZ(651.64*mm);
   
@@ -586,11 +586,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Ring16->SetPMTInterfaceOpeningX(7*cm);  
   Ring16->SetPMTCathodeRadius(3.5*cm);
   Ring16->SetPMTCathodeThickness(0.1*cm);
-  Ring16->SetAzimuthalRotationAngle(6.43*degree);
+  Ring16->SetAzimuthalRotationAngle(0*degree);
   Ring16->SetPolarRotationAngle(6*degree);
   Ring16->Initialize();
   Ring16->ConstructDetector(World_Physical);
-  Ring16->SetCenterPositionInX(153*mm);
+  Ring16->SetCenterPositionInX(250*mm);
   Ring16->SetCenterPositionInY(509.3*mm);
   Ring16->SetCenterPositionInZ(350.95*mm);
 
@@ -602,7 +602,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint5->SetPolarRotationAngle(0);
   Scint5->Initialize();
   Scint5->ConstructAuxilary(World_Physical);
-  Scint5->SetCenterPositionInX(153*mm);
+  Scint5->SetCenterPositionInX(250*mm);
   Scint5->SetCenterPositionInY(0*mm);
   Scint5->SetCenterPositionInZ(70*mm);
 
@@ -614,7 +614,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint6->SetPolarRotationAngle(0);
   Scint6->Initialize();
   Scint6->ConstructAuxilary(World_Physical);
-  Scint6->SetCenterPositionInX(153*mm);
+  Scint6->SetCenterPositionInX(250*mm);
   Scint6->SetCenterPositionInY(250*mm);
   Scint6->SetCenterPositionInZ(70*mm);
 
@@ -626,7 +626,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint7->SetPolarRotationAngle(0);
   Scint7->Initialize();
   Scint7->ConstructAuxilary(World_Physical);
-  Scint7->SetCenterPositionInX(153*mm);
+  Scint7->SetCenterPositionInX(250*mm);
   Scint7->SetCenterPositionInY(0*mm);
   Scint7->SetCenterPositionInZ(2060*mm);
 
@@ -638,7 +638,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint8->SetPolarRotationAngle(0);
   Scint8->Initialize();
   Scint8->ConstructAuxilary(World_Physical);
-  Scint8->SetCenterPositionInX(153*mm);
+  Scint8->SetCenterPositionInX(250*mm);
   Scint8->SetCenterPositionInY(250*mm);
   Scint8->SetCenterPositionInZ(2060*mm);
 

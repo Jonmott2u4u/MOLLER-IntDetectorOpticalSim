@@ -8,11 +8,11 @@ sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 11    #Hit region. 1 = Ring 1, 2 = Ring 2, 3 = Ring 3, 4 = Ring 4, 5 = Ring 5 FF, 6 & 7 = Ring 5 BF, 8 = Ring 6, 9 = spread, 10 = segment scan, 11 = Cosmic Stand
-hr_stop = 11
-hr_step = 1     #Increments over each value of hr
+hr_start = 19    #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
+hr_stop = 19
+hr_step = 1     
 
-cut_start = 1 #Keep start = stop unless hr = 10. Otherwise, multiple identical files will be created.
+cut_start = 1    #Used for hr = 17,18. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
 cut_stop = 1
 cut_step = 1
 
@@ -20,12 +20,12 @@ sa_start = 18    #Controls the angular spread of the beam from the Z-axis (in +-
 sa_stop = 18
 sa_step = 5
 
-ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_start = 1     #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 ID_stop = 100
 ID_step = 1
 
-det_start = 1    #Sets which detector will have its info stored in the root file. For storing all detectors, set 0
-det_stop = 1
+det_start = 999    #Sets which detector will have its info stored in the root file
+det_stop = 999     #0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves only pe histograms
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
@@ -55,7 +55,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         #jsubf.write("#SBATCH --cpus-per-task=1\n")
                         #jsubf.write("#SBATCH --mem=40G\n")
                         #---Submission info for IFarm---
-                        jsubf.write("#SBATCH --account=halla\n")
+                        #jsubf.write("#SBATCH --account=halla\n")
+                        #jsubf.write("#SBATCH --partition=priority\n")
                         jsubf.write("#SBATCH --partition=production\n")
                         jsubf.write("#SBATCH --job-name=PMT_EP\n")
                         jsubf.write("#SBATCH --constraint=el9\n")
@@ -65,7 +66,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --nodes=1\n")
                         jsubf.write("#SBATCH --ntasks=1\n")
                         jsubf.write("#SBATCH --cpus-per-task=1\n")
-                        jsubf.write("#SBATCH --mem=2G\n")
+                        jsubf.write("#SBATCH --mem=300M\n")
                         #---General submission info---
                         jsubf.write("echo \"Current working directory is `pwd`\"\n")	
                         jsubf.write("source /etc/skel/.bashrc \n")

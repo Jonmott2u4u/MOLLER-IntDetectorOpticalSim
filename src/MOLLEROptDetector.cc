@@ -319,6 +319,7 @@ void MOLLEROptDetector::GetQuartzLimits(G4double *vals)
   QuartzPos.setY(PositionDetY + (-0.5*DetFullLengthY + 0.5*quartzY + yRotFactor)*TMath::Cos(QPol) - 0.5*quartzZ*fabs(TMath::Sin(QPol)));
   QuartzPos.setZ(PositionDetZ + 0.5*quartzY*(TMath::Sin(Qrot)));//This is missing factors, but is not currently used
   Quartz->GetQuartzLimits(vals,QuartzPos);
+  //G4cout << QuartzPos << G4endl;
 }
 
 void MOLLEROptDetector::GetLightGuideLimits(G4double *vals)

@@ -64,7 +64,6 @@ void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
 {
   for(int n = 0; n < Tracks.size(); n++)
     if(Tracks[n]->ID == id){
-      //G4cout << Tracks[n]->R2PMTHitFlag << G4endl;
       if(Tracks[n]->R1PMTHitFlag == 1){
         R1_CathodeDetections++;
         Tracks[n]->R1_Detected = 1;
@@ -152,7 +151,7 @@ void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, G4
 {
 
   Int_t tr = -1;
-  
+
   for(int n = 0; n < Tracks.size(); n++) {
     if(Tracks[n]->ID == id) tr = n;
   }
@@ -488,6 +487,7 @@ void MOLLEROptTrackingReadout::Initialize()
   R5_CathodeDetections = 0;
   R6_CathodeDetections = 0;
   R7_CathodeDetections = 0;
+  R8_CathodeDetections = 0;
   R9_CathodeDetections = 0;
   R10_CathodeDetections = 0;
   R11_CathodeDetections = 0;

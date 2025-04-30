@@ -3,12 +3,12 @@
 MOLLEROptPMTHit::MOLLEROptPMTHit()
 {
   TrackID = -1;
-  // PhotonEnergy.clear();
-  // PhotonEnergy.resize(0);
-  // HitX.clear();
-  // HitX.resize(0);
-  // HitY.clear();
-  // HitY.resize(0);
+  //PhotonEnergy.clear();
+  //PhotonEnergy.resize(0);
+  //HitX.clear();
+  //HitX.resize(0);
+  //HitY.clear();
+  //HitY.resize(0);
 
 }
 

@@ -591,14 +591,14 @@
 #------------------#Beam commands -----------------------#
 
 /Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 17                       #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
+/Generator/EventHitRegion 10                       #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitRegion 1                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis. 18 for W&M setup
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 0                          #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
+/Storage/DetectorFocus 999                          #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
 
 #/RunAction/SetID 3
 #/random/setSeeds 346082 823457

@@ -305,8 +305,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             if((R2Hit==0) & (R3Hit==1) & (R4Hit==0)) R3_AdjacentTracker = 1;
             if((R3Hit==0) & (R4Hit==1) & (R5Hit==0)) R4_AdjacentTracker = 1;
             if((R4Hit==0) & (R5Hit==1) & (R8Hit==0)) R5_AdjacentTracker = 1;
-            if((R5Hit==0) & (R6Hit==1) & (R8Hit==0)) R6_AdjacentTracker = 1;
-            if((R5Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_AdjacentTracker = 1;
+            if((R4Hit==0) & (R6Hit==1) & (R8Hit==0)) R6_AdjacentTracker = 1;
+            if((R4Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_AdjacentTracker = 1;
             if((R5Hit==0) & (R8Hit==1)) R8_AdjacentTracker = 1;
           }
         }
@@ -426,8 +426,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             if((R10Hit==0) & (R11Hit==1) & (R12Hit==0)) R11_AdjacentTracker = 1;
             if((R11Hit==0) & (R12Hit==1) & (R13Hit==0)) R12_AdjacentTracker = 1;
             if((R12Hit==0) & (R13Hit==1) & (R16Hit==0)) R13_AdjacentTracker = 1;
-            if((R13Hit==0) & (R14Hit==1) & (R16Hit==0)) R14_AdjacentTracker = 1;
-            if((R13Hit==0) & (R15Hit==1) & (R16Hit==0)) R15_AdjacentTracker = 1;
+            if((R12Hit==0) & (R14Hit==1) & (R16Hit==0)) R14_AdjacentTracker = 1;
+            if((R12Hit==0) & (R15Hit==1) & (R16Hit==0)) R15_AdjacentTracker = 1;
             if((R13Hit==0) & (R16Hit==1)) R16_AdjacentTracker = 1;
           }
         }

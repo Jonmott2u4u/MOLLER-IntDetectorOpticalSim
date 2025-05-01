@@ -496,7 +496,10 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     R14_pes = TrackingReadout->R14_GetCathodeDetections();
     R15_pes = TrackingReadout->R15_GetCathodeDetections();
     R16_pes = TrackingReadout->R16_GetCathodeDetections();
-    if((R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R1_SoloTracker = 0;
+    //For now disabling this block of code
+    //It considers background events from LG's and secondary events
+    //Operating under the assumption that these signals are not detected in the W&M setup
+    /*if((R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R1_SoloTracker = 0;
     if((R1_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R2_SoloTracker = 0;
     if((R1_pes >= 1) || (R2_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R3_SoloTracker = 0;
     if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R4_SoloTracker = 0;
@@ -511,7 +514,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     if((R9_pes >= 1) || (R10_pes >= 1) || (R11_pes >= 1) || (R12_pes >= 1) || (R14_pes >= 1) || (R15_pes >= 1) || (R16_pes >= 1)) R13_SoloTracker = 0;
     if((R9_pes >= 1) || (R10_pes >= 1) || (R11_pes >= 1) || (R12_pes >= 1) || (R13_pes >= 1) || (R15_pes >= 1) || (R16_pes >= 1)) R14_SoloTracker = 0;
     if((R9_pes >= 1) || (R10_pes >= 1) || (R11_pes >= 1) || (R12_pes >= 1) || (R13_pes >= 1) || (R14_pes >= 1) || (R16_pes >= 1)) R15_SoloTracker = 0;
-    if((R9_pes >= 1) || (R10_pes >= 1) || (R11_pes >= 1) || (R12_pes >= 1) || (R13_pes >= 1) || (R14_pes >= 1) || (R15_pes >= 1)) R16_SoloTracker = 0;
+    if((R9_pes >= 1) || (R10_pes >= 1) || (R11_pes >= 1) || (R12_pes >= 1) || (R13_pes >= 1) || (R14_pes >= 1) || (R15_pes >= 1)) R16_SoloTracker = 0;*/
     
     //Stores data in root for specific detectors. Used to control amount of data that is saved for large simulations
     //This also stores PEs as variables at the end of the event (specifically during the last track to prevent overwrite)

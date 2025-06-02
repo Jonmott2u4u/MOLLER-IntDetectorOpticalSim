@@ -9,7 +9,7 @@ datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 hr_start = 19    #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
-hr_stop = 19
+hr_stop = 20
 hr_step = 1     
 
 cut_start = 1    #Used for hr = 17,18. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.

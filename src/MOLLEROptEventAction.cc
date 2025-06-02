@@ -190,7 +190,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddInitialBeamAngle(InitialBeamAngle);
         }
         //--------BF Segment tracking--------//
-        //if((track->Scint1HitFlag || track->Scint2HitFlag) & (track->ID == 1)){
+        if((track->Scint1HitFlag || track->Scint2HitFlag) & (track->ID == 1)){
           if(track->R1QuartzHitFlag & (track->ID == 1)){
             R1Hit = 1;
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1QuartzTrackHit(1);
@@ -309,9 +309,9 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             if((R4Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_AdjacentTracker = 1;
             if((R5Hit==0) & (R8Hit==1)) R8_AdjacentTracker = 1;
           }
-        //}
+        }
         //--------FF Segment Tracking--------//
-        //if((track->Scint5HitFlag || track->Scint6HitFlag) & (track->ID == 1)){
+        if((track->Scint5HitFlag || track->Scint6HitFlag) & (track->ID == 1)){
           if(track->R9QuartzHitFlag & (track->ID == 1)){
             R9Hit = 1;
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR9QuartzTrackHit(1);
@@ -430,7 +430,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             if((R12Hit==0) & (R15Hit==1) & (R16Hit==0)) R15_AdjacentTracker = 1;
             if((R13Hit==0) & (R16Hit==1)) R16_AdjacentTracker = 1;
           }
-        //}
+        }
         for(int p = 0; p < track->StepNChPhotons.size(); p++){
           // analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzStepNPhotons(track->StepNChPhotons[p]);
@@ -496,9 +496,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     R14_pes = TrackingReadout->R14_GetCathodeDetections();
     R15_pes = TrackingReadout->R15_GetCathodeDetections();
     R16_pes = TrackingReadout->R16_GetCathodeDetections();
-    //For now disabling this block of code
-    //It considers background events from LG's and secondary events
-    //Operating under the assumption that these signals are not detected in the W&M setup
+    //This block removes background events from LG's and secondary events
+    //Remove if operating under the assumption that these signals are not detected in the W&M setup
     if((R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R1_SoloTracker = 0;
     if((R1_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R2_SoloTracker = 0;
     if((R1_pes >= 1) || (R2_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R3_SoloTracker = 0;

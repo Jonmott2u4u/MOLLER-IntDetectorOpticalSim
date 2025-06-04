@@ -53,10 +53,10 @@
 #          / Upper  \        
 #         /  Guide   \      
 #        /   Cone     \ 
-#	       |	          |
-#	       |   Middle   |
-#	       |   Box      |
-#	       |	          |  ________ Lower Interface
+#	    |	           |
+#	    |   Middle     |
+#	    |   Box        |
+#	    |	           |  ________ Lower Interface
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -79,16 +79,16 @@
 /R1/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /R1/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /R1/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/R1/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
+/R1/LightGuideMiddleBox 410 mm			 #Height of box between upper and lower cones	
 /R1/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
 /R1/LightGuideQuartzInterfaceOpeningX 17.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
 /R1/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
 /R1/QuartzSizeZ 20 mm
 /R1/QuartzSizeX 169 mm
-/R1/QuartzSizeY 30 mm                          #Without the 45 degree cut
+/R1/QuartzSizeY 20 mm                          #Without the 45 degree cut
 /R1/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R1/SetCenterPositionInX 0 mm
-/R1/SetCenterPositionInY 13 mm
+/R1/SetCenterPositionInY 13.5 mm
 /R1/SetCenterPositionInZ 1423.94 mm
 
 #------------------#Ring 2 commands --------------------#
@@ -246,12 +246,11 @@
 /Det/UpdateGeometry
 
 /Generator/PrimaryParticle 1                      #Sets the initial particle type. 1 for electrons, 2 for muons, 3 for gammas
-/Generator/EventHitRegion 10                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = segment scan (see SegmentHitRegion), 11 = Cosmic Stand (scint padddles are 60x60 cm squares)
+/Generator/EventHitRegion 10                      #1 = R1, 2 = R2, 3 = R3, 4 = R4, 5 = R5 BF, 6 & 7 = R5 FF, 8 = R6 (1->8 hit quartz centers), 9 = spread over segment, 10 = Updated BF segment scan (not Mainz geometry or beam params), 11 = cosmics
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc. Common value is -112 mm
-/Generator/SegmentHitRegion 700                   #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/BeamTheta 0				              #Units of degrees. Not in use
-/Generator/BeamPhi 0			                  #Units of degrees. Not in use
-/Generator/BeamSolidAngle 0.0872665               #Units of degrees. Determines the angular spread of the beam from the z-axis. Depends on the geometry of the scintillator
+/Generator/SegmentHitPosX 0 mm                    #Select a section of the segment to fire the beam at. Use with EventHitRegion = 10
+/Generator/SegmentHitPosY 0 mm                    #Same as above, but with y (radial) positions
+/Generator/BeamSolidAngle 0.0 #0.0872665               #Units of radians. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0.0                      #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if muon_energy is enabled (see src/MOLLEROptPrimaryGeneratorAction.cc)

@@ -35,7 +35,9 @@ private:
   G4UIcmdWithAnInteger       *BeamEnergyCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCutCmd;
   G4UIcmdWithADoubleAndUnit  *EventShiftCmd;
-  G4UIcmdWithADoubleAndUnit  *SegmentHitRegionCmd;
+  G4UIcmdWithADoubleAndUnit  *SegmentHitPosXCmd;
+  G4UIcmdWithADoubleAndUnit  *SegmentHitPosYCmd;
+
 
 };
 

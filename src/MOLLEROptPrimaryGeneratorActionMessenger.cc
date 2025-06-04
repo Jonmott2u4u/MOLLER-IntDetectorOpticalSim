@@ -45,13 +45,21 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   EventShiftCmd->SetRange("EventShift>=-10000");
   EventShiftCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  SegmentHitRegionCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitRegion",this);
-  SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
-  SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
-  SegmentHitRegionCmd->SetDefaultValue(1);
-  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=-9");
-  SegmentHitRegionCmd->SetDefaultUnit("mm");
-  SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  SegmentHitPosXCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitPosX",this);
+  SegmentHitPosXCmd->SetGuidance("Set x position of segment to look at.");
+  SegmentHitPosXCmd->SetParameterName("SegmentHitRegion",true);
+  SegmentHitPosXCmd->SetDefaultValue(0);
+  SegmentHitPosXCmd->SetRange("SegmentHitRegion>=-200");
+  SegmentHitPosXCmd->SetDefaultUnit("mm");
+  SegmentHitPosXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  SegmentHitPosYCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitPosY",this);
+  SegmentHitPosYCmd->SetGuidance("Set y position of segment to look at.");
+  SegmentHitPosYCmd->SetParameterName("SegmentHitRegion",true);
+  SegmentHitPosYCmd->SetDefaultValue(0);
+  SegmentHitPosYCmd->SetRange("SegmentHitRegion>=-30");
+  SegmentHitPosYCmd->SetDefaultUnit("mm");
+  SegmentHitPosYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);
   BeamThetaCmd->SetGuidance("Set angle of beam in y direction from z axis.");
@@ -132,9 +140,12 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
   if( command == EventShiftCmd )
     { pPrimaryGeneratorAction->SetEventShift(EventShiftCmd->GetNewDoubleValue(newValue));}
 
-  if( command == SegmentHitRegionCmd )
-    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewDoubleValue(newValue));}
+  if( command == SegmentHitPosXCmd )
+    { pPrimaryGeneratorAction->SetSegmentHitPosX(SegmentHitPosXCmd->GetNewDoubleValue(newValue));}
 
+  if( command == SegmentHitPosYCmd )
+    { pPrimaryGeneratorAction->SetSegmentHitPosY(SegmentHitPosYCmd->GetNewDoubleValue(newValue));}
+    
   if( command == BeamThetaCmd )
     { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue));}
 

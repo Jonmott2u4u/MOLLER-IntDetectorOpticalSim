@@ -41,7 +41,7 @@
 /R1/QuartzSizeY 20 mm                          #Without the 45 degree cut
 /R1/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R1/SetCenterPositionInX 0 mm
-/R1/SetCenterPositionInY 13 mm
+/R1/SetCenterPositionInY 13.5 mm
 /R1/SetCenterPositionInZ 1423.94 mm
 
 #------------------#Ring 2 commands --------------------#

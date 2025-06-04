@@ -76,7 +76,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                             Text += "/R1/QuartzSizeY 20 mm" + "\n"                
                             Text += "/R1/LightGuideQuartzToPMTOffset -2 mm" + "\n"
                             Text += "/R1/SetCenterPositionInX 0 mm" + "\n"
-                            Text += "/R1/SetCenterPositionInY 13 mm" + "\n"
+                            Text += "/R1/SetCenterPositionInY 13.5 mm" + "\n"
                             Text += "/R1/SetCenterPositionInZ 1423.94 mm" + "\n\n"
                             Text += "#------------------#Ring 2 commands --------------------#" + "\n\n"
                             Text += "/R2/LightGuideLowerConeBackAngle 22 deg" + "\n"

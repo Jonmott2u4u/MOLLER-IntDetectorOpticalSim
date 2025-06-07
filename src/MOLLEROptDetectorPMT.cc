@@ -91,14 +91,6 @@ void MOLLEROptDetectorPMT::Initialize()
   else if (Name.contains("Ring6_")) CathSD = new MOLLEROptPMTSD("/Cathode6",TrackingReadout);
   else if (Name.contains("Ring7_")) CathSD = new MOLLEROptPMTSD("/Cathode7",TrackingReadout);
   else if (Name.contains("Ring8_")) CathSD = new MOLLEROptPMTSD("/Cathode8",TrackingReadout);
-  else if (Name.contains("Ring9_")) CathSD = new MOLLEROptPMTSD("/Cathode9",TrackingReadout);
-  else if (Name.contains("Ring10_")) CathSD = new MOLLEROptPMTSD("/Cathode10",TrackingReadout);
-  else if (Name.contains("Ring11_")) CathSD = new MOLLEROptPMTSD("/Cathode11",TrackingReadout);
-  else if (Name.contains("Ring12_")) CathSD = new MOLLEROptPMTSD("/Cathode12",TrackingReadout);
-  else if (Name.contains("Ring13_")) CathSD = new MOLLEROptPMTSD("/Cathode13",TrackingReadout);
-  else if (Name.contains("Ring14_")) CathSD = new MOLLEROptPMTSD("/Cathode14",TrackingReadout);
-  else if (Name.contains("Ring15_")) CathSD = new MOLLEROptPMTSD("/Cathode15",TrackingReadout);
-  else if (Name.contains("Ring16_")) CathSD = new MOLLEROptPMTSD("/Cathode16",TrackingReadout);
   else CathSD = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
   SDman->AddNewDetector(CathSD);  
   PMTWindowLogical->SetSensitiveDetector(CathSD);

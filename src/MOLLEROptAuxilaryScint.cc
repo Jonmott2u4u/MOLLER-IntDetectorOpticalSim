@@ -71,6 +71,7 @@ void MOLLEROptAuxilaryScint::Initialize()
   
   new G4LogicalSkinSurface("ScintSurface", ScintLogical, ScintSurface);
 
+  //The below options were for the 16Det William & Mary stand. Update to whatever scintillators are needed
   SDman = G4SDManager::GetSDMpointer();
   if (Name.contains("Scint1_")) ScintSD = new MOLLEROptScintSD("/Scint1",TrackingReadout);
   else if (Name.contains("Scint2_")) ScintSD = new MOLLEROptScintSD("/Scint2",TrackingReadout);

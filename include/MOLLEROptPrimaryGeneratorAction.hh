@@ -27,10 +27,13 @@ public:
   void SetPrimaryParticle(G4int reg) {PrimaryParticle = reg;};
   void SetEventHitRegion(G4int reg) {EventRegion = reg;};
   void SetEventShift(G4double reg) {shift = reg;};
-  void SetSegmentHitRegion(G4double reg) {cut = reg;};
+  void SetSegmentHitPosX(G4double reg) {cutx = reg;};
+  void SetSegmentHitPosY(G4double reg) {cuty = reg;};
   void SetBeamTheta(G4int reg) {theta = reg;};
   void SetBeamPhi(G4int reg) {phi = reg;};
   void SetBeamSolidAngle(G4int reg) {sa = reg;};
+  void SetBeamTiltAngle(G4double reg) {tilt = reg;};
+  void SetBeamTiltDirection(G4double reg) {tilt_dir = reg;};
   void SetBeamEnergy(G4int reg) {Energy = reg;};
   void SetBeamEnergyCut(G4int reg) {EnergyCut = reg;};
     
@@ -43,10 +46,13 @@ private:
   G4int theta;
   G4int phi;
   G4int sa;
+  G4double tilt;
+  G4double tilt_dir;
   G4int Energy;
   G4int EnergyCut;
   G4double shift;
-  G4double cut;
+  G4double cutx;
+  G4double cuty;
   
   G4ParticleGun* particleGun;
 

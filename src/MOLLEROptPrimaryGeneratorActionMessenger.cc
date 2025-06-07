@@ -45,13 +45,21 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   EventShiftCmd->SetRange("EventShift>=-10000");
   EventShiftCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  SegmentHitRegionCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitRegion",this);
-  SegmentHitRegionCmd->SetGuidance("Set cut of segment to look at.");
-  SegmentHitRegionCmd->SetParameterName("SegmentHitRegion",true);
-  SegmentHitRegionCmd->SetDefaultValue(1);
-  SegmentHitRegionCmd->SetRange("SegmentHitRegion>=-10");
-  SegmentHitRegionCmd->SetDefaultUnit("mm");
-  SegmentHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  SegmentHitPosXCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitPosX",this);
+  SegmentHitPosXCmd->SetGuidance("Set cut of segment to look at.");
+  SegmentHitPosXCmd->SetParameterName("SegmentHitPosX",true);
+  SegmentHitPosXCmd->SetDefaultValue(1);
+  SegmentHitPosXCmd->SetRange("SegmentHitPosX>=-200");
+  SegmentHitPosXCmd->SetDefaultUnit("mm");
+  SegmentHitPosXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  SegmentHitPosYCmd = new G4UIcmdWithADoubleAndUnit("/Generator/SegmentHitPosY",this);
+  SegmentHitPosYCmd->SetGuidance("Set cut of segment to look at.");
+  SegmentHitPosYCmd->SetParameterName("SegmentHitPosY",true);
+  SegmentHitPosYCmd->SetDefaultValue(1);
+  SegmentHitPosYCmd->SetRange("SegmentHitPosY>=-100");
+  SegmentHitPosYCmd->SetDefaultUnit("mm");
+  SegmentHitPosYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);
   BeamThetaCmd->SetGuidance("Set angle of beam in y direction from z axis.");
@@ -73,6 +81,22 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamSolidAngleCmd->SetDefaultValue(0);
   BeamSolidAngleCmd->SetRange("BeamSolidAngle<=360");
   BeamSolidAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  BeamTiltAngleCmd = new G4UIcmdWithADoubleAndUnit("/Generator/BeamTiltAngle",this);
+  BeamTiltAngleCmd->SetGuidance("Set tilt of beam from z-axis in degrees. Maximum value of 90");
+  BeamTiltAngleCmd->SetParameterName("BeamTiltAngle",true);
+  BeamTiltAngleCmd->SetDefaultValue(0);
+  BeamTiltAngleCmd->SetRange("BeamTiltAngle<=900");
+  BeamTiltAngleCmd->SetDefaultUnit("degree");
+  BeamTiltAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  BeamTiltDirectionCmd = new G4UIcmdWithADoubleAndUnit("/Generator/BeamTiltDirection",this);
+  BeamTiltDirectionCmd->SetGuidance("Set direction of beam tilt around z-axis. 0 is along x-axis, 90 along y-axis");
+  BeamTiltDirectionCmd->SetParameterName("BeamTiltDir",true);
+  BeamTiltDirectionCmd->SetDefaultValue(0);
+  BeamTiltDirectionCmd->SetRange("BeamTiltDir<=360");
+  BeamTiltDirectionCmd->SetDefaultUnit("degree");
+  BeamTiltDirectionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamEnergyCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergy",this);
   BeamEnergyCmd->SetGuidance("Set Energy of beam in units of MeV.");
@@ -115,8 +139,11 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
   if( command == EventShiftCmd )
     { pPrimaryGeneratorAction->SetEventShift(EventShiftCmd->GetNewDoubleValue(newValue));}
 
-  if( command == SegmentHitRegionCmd )
-    { pPrimaryGeneratorAction->SetSegmentHitRegion(SegmentHitRegionCmd->GetNewDoubleValue(newValue));}
+  if( command == SegmentHitPosXCmd )
+    { pPrimaryGeneratorAction->SetSegmentHitPosX(SegmentHitPosXCmd->GetNewDoubleValue(newValue));}
+
+  if( command == SegmentHitPosYCmd )
+    { pPrimaryGeneratorAction->SetSegmentHitPosY(SegmentHitPosYCmd->GetNewDoubleValue(newValue));}
 
   if( command == BeamThetaCmd )
     { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue));}
@@ -126,6 +153,12 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
 
   if( command == BeamSolidAngleCmd )
     { pPrimaryGeneratorAction->SetBeamSolidAngle(BeamSolidAngleCmd->GetNewIntValue(newValue));}
+
+  if( command == BeamTiltAngleCmd )
+    { pPrimaryGeneratorAction->SetBeamTiltAngle(BeamTiltAngleCmd->GetNewDoubleValue(newValue));}
+
+  if( command == BeamTiltDirectionCmd )
+    { pPrimaryGeneratorAction->SetBeamTiltDirection(BeamTiltDirectionCmd->GetNewDoubleValue(newValue));}
 
   if( command == BeamEnergyCmd )
     { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue));}

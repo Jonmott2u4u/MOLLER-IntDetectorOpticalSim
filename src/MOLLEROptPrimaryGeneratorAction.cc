@@ -40,14 +40,6 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double Qlim6[4];
   G4double Qlim7[4];
   G4double Qlim8[4];
-  G4double Qlim9[4];
-  G4double Qlim10[4];
-  G4double Qlim11[4];
-  G4double Qlim12[4];
-  G4double Qlim13[4];
-  G4double Qlim14[4];
-  G4double Qlim15[4];
-  G4double Qlim16[4];
   G4double LGlim1[8];
   G4double LGlim2[8];
   G4double LGlim3[8];
@@ -56,22 +48,6 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double LGlim6[8];
   G4double LGlim7[8];
   G4double LGlim8[8];
-  G4double LGlim9[8];
-  G4double LGlim10[8];
-  G4double LGlim11[8];
-  G4double LGlim12[8];
-  G4double LGlim13[8];
-  G4double LGlim14[8];
-  G4double LGlim15[8];
-  G4double LGlim16[8];
-  G4double Slim1[4];
-  G4double Slim2[4];
-  G4double Slim3[4];
-  G4double Slim4[4];
-  G4double Slim5[4];
-  G4double Slim6[4];
-  G4double Slim7[4];
-  G4double Slim8[4];
   Construction->GetQuartz1Limits(Qlim1);//Ring 1 bf
   Construction->GetQuartz2Limits(Qlim2);//Ring 2 bf
   Construction->GetQuartz3Limits(Qlim3);//Ring 3 bf
@@ -80,14 +56,6 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   Construction->GetQuartz6Limits(Qlim6);//Ring 5 bf1
   Construction->GetQuartz7Limits(Qlim7);//Ring 5 bf2
   Construction->GetQuartz8Limits(Qlim8);//Ring 6 bf
-  Construction->GetQuartz9Limits(Qlim9);//Ring 1 ff
-  Construction->GetQuartz10Limits(Qlim10);//Ring 2 ff
-  Construction->GetQuartz11Limits(Qlim11);//Ring 3 ff
-  Construction->GetQuartz12Limits(Qlim12);//Ring 4 ff
-  Construction->GetQuartz13Limits(Qlim13);//Ring 5 bf
-  Construction->GetQuartz14Limits(Qlim14);//Ring 5 ff1
-  Construction->GetQuartz15Limits(Qlim15);//Ring 5 ff2
-  Construction->GetQuartz16Limits(Qlim16);//Ring 6
   Construction->GetLightGuide1Limits(LGlim1);//Currently R6. Overwritten each time a detector is generated. Can easily be changed
   Construction->GetLightGuide2Limits(LGlim2);//This may not be true anymore. Verify
   Construction->GetLightGuide3Limits(LGlim3);
@@ -96,22 +64,6 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   Construction->GetLightGuide6Limits(LGlim6);
   Construction->GetLightGuide7Limits(LGlim7);
   Construction->GetLightGuide8Limits(LGlim8);
-  Construction->GetLightGuide9Limits(LGlim9);
-  Construction->GetLightGuide10Limits(LGlim10);
-  Construction->GetLightGuide11Limits(LGlim11);
-  Construction->GetLightGuide12Limits(LGlim12);
-  Construction->GetLightGuide13Limits(LGlim13);
-  Construction->GetLightGuide14Limits(LGlim14);
-  Construction->GetLightGuide15Limits(LGlim15);
-  Construction->GetLightGuide16Limits(LGlim16);
-  Construction->GetScint1Limits(Slim1);
-  Construction->GetScint2Limits(Slim2);
-  Construction->GetScint3Limits(Slim3);
-  Construction->GetScint4Limits(Slim4);
-  Construction->GetScint5Limits(Slim5);
-  Construction->GetScint6Limits(Slim6);
-  Construction->GetScint7Limits(Slim7);
-  Construction->GetScint8Limits(Slim8);
 
 //~~~~~~~~Commenting this out does not effect anything, but leaving as is for now~~~~~~~~~~~~~~~~~
 
@@ -232,78 +184,25 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = (Qlim8[3]+Qlim8[2])/2.0;
   }
   else if(EventRegion == 9){
-    //4x4 mm^2 spot on R1 quartz center
-    x = (Qlim9[1]+Qlim9[0])/2.0;
-    y = (Qlim9[3]+Qlim9[2])/2.0;
-    //y = Qlim1[3] - 1;
-  }
-  else if(EventRegion == 10){
-    //4x4 mm^2 spot on R2 quartz center
-    x = (Qlim10[1]+Qlim10[0])/2.0;
-    y = (Qlim10[3]+Qlim10[2])/2.0;
-    //y = Qlim2[3] - 1;
-  }
-  else if(EventRegion == 11){
-    //4x4 mm^2 spot on R3 quartz center
-    x = (Qlim11[1]+Qlim11[0])/2.0;
-    y = (Qlim11[3]+Qlim11[2])/2.0;
-    //y = Qlim3[3] - 1;
-  }
-  else if(EventRegion == 12){
-    //4x4 mm^2 spot on R4 quartz center
-    x = (Qlim12[1]+Qlim12[0])/2.0;
-    y = (Qlim12[3]+Qlim12[2])/2.0;
-    //y = Qlim4[3] - 1;
-  }
-  else if(EventRegion == 13){
-    //4x4 mm^2 spot on R5 FF quartz center
-    x = (Qlim13[1]+Qlim13[0])/2.0;
-    y = (Qlim13[3]+Qlim13[2])/2.0;
-  }
-  else if(EventRegion == 14){
-    //4x4 mm^2 spot on R5 BF 1 quartz center
-    x = (Qlim14[1]+Qlim14[0])/2.0;
-    y = (Qlim14[3]+Qlim14[2])/2.0;
-  }
-  else if(EventRegion == 15){
-    //4x4 mm^2 spot on R5 BF 2 quartz center
-    x = (Qlim15[1]+Qlim15[0])/2.0;
-    y = (Qlim15[3]+Qlim15[2])/2.0;
-  }
-  else if(EventRegion == 16){
-    //4x4 mm^2 spot on R6 quartz center
-    x = (Qlim16[1]+Qlim16[0])/2.0;
-    y = (Qlim16[3]+Qlim16[2])/2.0;
-  }
-  else if(EventRegion == 17){
     //Used for the BF segment scan
-    x = (Qlim1[1]+Qlim1[0])/2.0; //- 0.3 + 0.6*G4UniformRand();
-    y = Qlim1[2] + cut;
-  }
-  else if(EventRegion == 18){
-    //Used for the FF segment scan
-    x = (Qlim9[1]+Qlim9[0])/2.0; //- 0.3 + 0.6*G4UniformRand();
-    y = Qlim9[2] + cut;
-  }
-  else if(EventRegion == 19){
-    //W&M College cosmic stand setup. Uses the BF segment
-    //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
-    y = Slim1[2] + (Slim2[3]-Slim1[2])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
-    //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
-    x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
-  }
-  else if(EventRegion == 20){
-    //W&M College cosmic stand setup. Uses the FF segment
-    //When using, set sa to the maximum accepted angle in the macros (currently calculated by hand)
-    y = Slim5[2] + (Slim6[3]-Slim5[2])*G4UniformRand(); //Value of y before applying vertical shift (shift is needed due to improper implementation of polar angle for multiple detectors)
-    //x_shift = (Slim[3]-Slim[0])*(y_base-Slim[4])/(Slim[5]-Slim[4]); //Shift used for making x positions y-dependent. Designed to convert a rectangular to a trapezoidal shift, but is not used currently
-    x = Slim5[0] + (Slim6[1]-Slim5[0])*G4UniformRand();
+    x = (Qlim1[1]+Qlim1[0])/2.0 + cutx; //- 0.3 + 0.6*G4UniformRand();
+    y = Qlim1[2] + cuty;
   }
   else{
     //Defaults to Ring 1
     x = (Qlim1[1]+Qlim1[0])/2.0;
     y = (Qlim1[3]+Qlim1[2])/2.0;
   }
+
+  G4double tilt_rad = tilt*pi/180.;
+  G4double tilt_dir_rad = tilt_dir*pi/180.;
+  //G4double tilt_rad = tilt; //Global tilt applied to the beam. tilt is already converted to radians due to an internal Geant4 process
+  //G4double tilt_dir_rad = tilt_dir; //Sets the direction of the beam tilt. tilt_dir is already converted to radians due to an internal Geant4 process
+  //G4cout << tilt_rad << G4endl;
+  G4double cosTilt = TMath::Cos(tilt_rad);
+  G4double sinTilt = TMath::Sin(tilt_rad);
+  G4double cosTilt_dir = TMath::Cos(tilt_dir_rad); //Currently disabled
+  G4double sinTilt_dir = TMath::Sin(tilt_dir_rad); //
 
   G4double sa_rad = sa*pi/180.;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
   G4double Phi = 2*pi*G4UniformRand();
@@ -318,8 +217,12 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_y = sinTheta*TMath::Sin(Phi);
   G4double p_z = cosTheta;
 
+  G4double p_x_tilt = cosTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*sinTilt_dir;
+  G4double p_y_tilt = sinTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*cosTilt_dir;
+  G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
+
   particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 59*mm));
-  particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
+  particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************

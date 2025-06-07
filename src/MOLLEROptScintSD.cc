@@ -5,6 +5,7 @@ MOLLEROptScintSD::MOLLEROptScintSD(G4String name, MOLLEROptTrackingReadout* TrRO
 {
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
+  //If you need to use scintillators in your setup, change the options here. No scintillators currently exist, so this is unused
   if(SensitiveDetectorName == "Scint1"){
     theCollectionName = G4String("ScintHitCollection1");
   }

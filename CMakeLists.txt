@@ -102,7 +102,7 @@ target_link_libraries(MOLLEROpt PRIVATE MOLLEROptDictionaries PUBLIC ${Geant4_LI
 set(MOLLER_SCRIPTS
   macros/gui.mac
   macros/Qt.mac
-  macros/myRun.mac
+  macros/run.mac
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
   data/OpticalPropertiesInputData-Michaels-uvs.txt

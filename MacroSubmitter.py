@@ -22,7 +22,7 @@ cuty_step = 0.1
 
 tilt_start = 0.0
 tilt_stop = 0.0
-tilt_step = 0.0
+tilt_step = 0.1
 
 sa_start = 0    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
 sa_stop = 0

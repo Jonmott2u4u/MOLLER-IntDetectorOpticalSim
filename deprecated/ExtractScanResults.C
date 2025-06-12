@@ -19,20 +19,22 @@ void ExtractScanResults()
 {
   //gSystem->Load("libMOLLEROptDictionaries.so");
 
-  //std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
-  //ring_dat.open ("sim_R3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
+  std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
+  std::ofstream ring_dat_weighted;
+  ring_dat.open ("r2.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
+  ring_dat_weighted.open ("r2_w.txt");
 
   std::ifstream rfiles("files.dat");
   std::string line;
   TFile *file;
 
-  Double_t param=1.0;     //Change based on what is being scanned
+  Double_t param=-9.0;     //Change based on what is being scanned
   Double_t param_step=1.0; //Increment for the horizontal axis
   Double_t fa=89; //Value doesn't seem to matter
   Int_t hr;
   Int_t hitR[3]={1,2,3};
   
-  TH1D *hst, *tmp;
+  TH1D *hst, *tmp, *hst2, *tmp2;
   TSpectrum *s = new TSpectrum(1);
   Int_t m;
   Double_t param_run, counter;
@@ -41,10 +43,15 @@ void ExtractScanResults()
   Double_t fitP[4], fitE[4];
   TGraphErrors *gr, *gr2;
 
-  Int_t counter_vec;
+  float mean, mp, rms, rms_mean, res;
+  float w_mean, w_mp, w_rms, w_rms_mean, w_res;
+  float weight, weight2, kk_scale, mean2;
+  int no_run; //Falg for forcing the scaling plot to be zero.
+
+  //Int_t counter_vec;
  
   counter=0; 
-  counter_vec=0;
+  //counter_vec=0;
   while(std::getline(rfiles, line)){
 
     from = 0;
@@ -60,12 +67,12 @@ void ExtractScanResults()
     
     param_run = param + counter*param_step;
 
-    tmp = (TH1D*)file->Get("R8_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+    tmp = (TH1D*)file->Get("R2_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
     
     hst = (TH1D*)tmp->Clone(Form("CEH_%s",runID.Data()));
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");
-    hst->GetXaxis()->SetRangeUser(0,100);
+    hst->GetXaxis()->SetRangeUser(1,100);
     hst->SetDirectory(0);
 
     m = FindGraph(fa,hr);
@@ -95,12 +102,77 @@ void ExtractScanResults()
 	
       }
     }
-    //ring_dat <<param_run<<" "<<fitP[1]<<" "<<fitE[1]<<" "<<fitP[3]<<" "<<fitE[3]<<" "<<hst->GetMean()<<" "<<hst->GetRMS()<<" "<<100.*fitP[3]/fitP[1]<<" "<<100.*(hst->GetRMS())/(hst->GetMean())<<"\n";
+    //Histogram parameters
+    mean = hst->GetMean();
+    rms = hst->GetRMS();
+    mp = fitP[1];
+    rms_mean = 100.*rms/mean;
+    res = 100.*fitP[3]/fitP[1];
+    //Conditions and misc. parameters
+    weight = (hst->GetEffectiveEntries())/(hst->GetEntries());
+    if((mean == 0) || (hst->GetRMS() == 0)) rms_mean = 0;
+    if((mp < 0.5) || (fitP[3] < 0.5)) res = 0;
+    //Event weighted variables
+    w_mean = mean*weight;
+    w_rms = rms*weight;
+    w_rms_mean = rms_mean*weight;
+    w_mp = mp*weight;
+    w_res = res*weight;
+    //Alternate scaling suggested by KK - Takes the ratio of one ring's signal to that of the ring directly US
+    tmp2 = (TH1D*)file->Get("R3_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+    hst2 = (TH1D*)tmp2->Clone(Form("CEH_%s",runID.Data()));
+    hst2->GetXaxis()->SetRangeUser(1,100);
+    mean2 = hst2->GetMean();
+    weight2 = (hst2->GetEffectiveEntries())/(hst2->GetEntries());
+    no_run = 1;
+    //if(weight > 0.5) kk_scale = weight2/weight;
+    //if(weight <= 0.5 || no_run == 1) kk_scale = 0.;
+    if(mean2 > 1. & w_mean > 1.) kk_scale = weight2/weight;
+    else kk_scale = 0;
+    if(no_run == 1) kk_scale = 0.;
+
+
+
+    /*if(hst->GetEntries() <= 500){
+	    mp = 0;
+    	res = 0;
+	    mean = 0;
+	    rms_mean = 0;
+    }*/
+    //rms and gsigma are not weighted, but rms/mean and res are
+    ring_dat <<param_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<fitP[3]<<" "<<rms_mean<<" "<<res<<" "<<1.0<<" "<<kk_scale<<"\n";
+    ring_dat_weighted <<param_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<fitP[3]*weight<<" "<<w_rms_mean<<" "<<w_res<<" "<<weight<<" "<<kk_scale<<"\n";
+
+
     file->Close("R");    
-    counter = counter + 1.0;
-    counter_vec++;
+    counter = counter + 1.0; // to find file do counter - 9
+    //sa = 0 cuts
+    /*if(counter == 43.0) counter = 45.0;
+    if(counter == 50.0) counter = 51.0;
+    if(counter == 53.0) counter = 54.0;
+    if(counter == 55.0) counter = 56.0;*/
+    //sa = 5 cuts
+    /*if(counter == 40.0) counter = 41.0;
+    if(counter == 43.0) counter = 44.0;
+    if(counter == 49.0) counter = 50.0;
+    if(counter == 56.0) counter = 57.0;*/
+    //sa = 6 cuts
+    /*if(counter == 43.0) counter = 45.0;
+    if(counter == 48.0) counter = 49.0;
+    if(counter == 54.0) counter = 55.0;
+    if(counter == 56.0) counter = 57.0;*/
+    //sa = 8 cuts
+    //if(counter == 52.0) counter = 53.0;
+    //if(counter == 54.0) counter = 55.0;
+    //sa = 10 cuts
+    //if(counter == 40.0) counter = 41.0;
+    //if(counter == 50.0) counter = 51.0;
+    //if(counter == 53.0) counter = 56.0;
+    //if(counter == 5.0) counter = 54.0;
+    //counter_vec++;
   }
-  //ring_dat.close();
+  ring_dat.close();
+  ring_dat_weighted.close();
   rfiles.close();
 }
 
@@ -125,8 +197,8 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr2->SetName(Form("Exnse_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
     gr2->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
-    gr2->GetXaxis()->SetTitle("Segment position [cm]"); //
+    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
+    gr2->GetXaxis()->SetTitle("Segment position [mm]"); //
     gr->GetYaxis()->SetTitle("Langau PEs");
     gr2->GetYaxis()->SetTitle("Resolution [GSigma/MP]");
     fA_PEmean.push_back(gr);
@@ -153,7 +225,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
     gr->SetTitle("Segment scan photoelectron yield");
-    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
+    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
     gr->GetYaxis()->SetTitle("Raw PE mean");
     fA_PEmean_hR2.push_back(gr);
     C_mp->cd(1);
@@ -174,7 +246,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     TGraphErrors* gr = new TGraphErrors();
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Segment position [cm]"); //Change based on what is being scanned
+    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
     fA_PEmean_hR3.push_back(gr);
     return fA_PEmean_hR3.size()-1;
 
@@ -277,7 +349,7 @@ Double_t langaufun(Double_t *x, Double_t *par) {
       Double_t mpshift  = -0.22278298;       // Landau maximum location
  
       // Control constants
-      Double_t np = 10000.0;      // number of convolution steps
+      Double_t np = 1000.0;      // number of convolution steps
       Double_t sc =   5.0;      // convolution extends to +-sc Gaussian sigmas
  
       // Variables

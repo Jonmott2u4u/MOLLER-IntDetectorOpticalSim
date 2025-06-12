@@ -6,16 +6,10 @@ Double_t langaufun(Double_t *x, Double_t *par);
 TF1 *langaufit(TH1D *his, Double_t *fitrange, Double_t *startvalues, Double_t *parlimitslo, Double_t *parlimitshi, Double_t *fitparams, Double_t *fiterrors, Double_t *ChiSqr, Int_t *NDF);
 Int_t langaupro(Double_t *params, Double_t &maxx, Double_t &FWHM);
 void DoFit(TH1D *hst, Double_t *fitP, Double_t *fitE);
-Int_t FindGraph(Int_t fA, Int_t hR);
 
-std::vector <TGraphErrors*> fA_PEmean;
-std::vector <TGraphErrors*> fA_PEmean_hR2;
-std::vector <TGraphErrors*> fA_PEmean_hR3;
-
-std::vector <TGraphErrors*> fA_Exnse;
 TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
-void ExtractScanResults()
+void LangauFitExtract()
 {
   //gSystem->Load("libMOLLEROptDictionaries.so");
 
@@ -28,80 +22,44 @@ void ExtractScanResults()
   std::string line;
   TFile *file;
 
-  Double_t param=-9.0;     //Change based on what is being scanned
-  Double_t param_step=1.0; //Increment for the horizontal axis
-  Double_t fa=89; //Value doesn't seem to matter
-  Int_t hr;
-  Int_t hitR[3]={1,2,3};
+  Double_t paramx_start=0.0, paramy_start=0.0;     //Change based on what is being scanned
+  Double_t paramx_step=5.0, paramy_step=1.0; //Increment for the horizontal axis
+  Double_t limity=600.0;
+  Int_t events=10000; //Total events per file
   
   TH1D *hst, *tmp, *hst2, *tmp2;
   TSpectrum *s = new TSpectrum(1);
-  Int_t m;
-  Double_t param_run, counter;
-  TString runID, tmpStr, tok;
-  Ssiz_t from = 0;
+  Double_t paramx_run, paramy_run, counterx, countery;
+  Double_t y_clock;
+  TString tmpStr;
   Double_t fitP[4], fitE[4];
-  TGraphErrors *gr, *gr2;
 
   float mean, mp, rms, rms_mean, res;
   float w_mean, w_mp, w_rms, w_rms_mean, w_res;
   float weight, weight2, kk_scale, mean2;
-  int no_run; //Falg for forcing the scaling plot to be zero.
+  int no_run; //Flag for forcing the scaling plot to be zero.
 
-  //Int_t counter_vec;
- 
-  counter=0; 
-  //counter_vec=0;
+  counterx=0, countery=0; 
+  paramx_run = paramx_start;
   while(std::getline(rfiles, line)){
 
-    from = 0;
-    file = TFile::Open(line.data());
-
-    hr=hitR[0];
-    //hr=hitR[1];
-      
+    file = TFile::Open(line.data()); 
     cout << line.data() << endl;
-    tmpStr = line.data();
-    tmpStr = tmpStr.ReplaceAll("MOLLEROpt_","");
-    runID = 0003;      
+    //tmpStr = line.data();
+    //tmpStr = tmpStr.ReplaceAll("MOLLEROpt_","");    
     
-    param_run = param + counter*param_step;
+    paramy_run = paramy_start + countery*paramy_step;
+    countery = countery + 1.0;
 
     tmp = (TH1D*)file->Get("R1_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
-    
-    hst = (TH1D*)tmp->Clone(Form("CEH_%s",runID.Data()));
+    hst = (TH1D*)tmp->Clone("PEs");
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");
     hst->GetXaxis()->SetRangeUser(1,100);
     hst->SetDirectory(0);
+    DoFit(hst,fitP,fitE);
 
-    m = FindGraph(fa,hr);
- 
-    if(m >= 0){
-      if(hr == 1){
-      
-        DoFit(hst,fitP,fitE);
         
-        fA_PEmean[m]->SetPoint(fA_PEmean[m]->GetN(),param_run,fitP[1]);
-        fA_PEmean[m]->SetPointError(fA_PEmean[m]->GetN()-1,0,fitE[1]);
-        
-        fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,fitP[3]/fitP[1]);
-        fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,(fitP[3]/fitP[1])*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
-
-      }
-      else if(hr == 2){
-        
-        fA_PEmean_hR2[m]->SetPoint(fA_PEmean_hR2[m]->GetN(),param_run,hst->GetMean());
-        fA_PEmean_hR2[m]->SetPointError(fA_PEmean_hR2[m]->GetN()-1,0,hst->GetMeanError());
-        
-      }    
-      else if(hr == 3){
-        
-        fA_PEmean_hR3[m]->SetPoint(fA_PEmean_hR3[m]->GetN(),param_run,hst->GetMean());
-        fA_PEmean_hR3[m]->SetPointError(fA_PEmean_hR3[m]->GetN()-1,0,hst->GetMeanError());
-	
-      }
-    }
     //Histogram parameters
     mean = hst->GetMean();
     rms = hst->GetRMS();
@@ -109,7 +67,8 @@ void ExtractScanResults()
     rms_mean = 100.*rms/mean;
     res = 100.*fitP[3]/fitP[1];
     //Conditions and misc. parameters
-    weight = (hst->GetEffectiveEntries())/(hst->GetEntries());
+    //weight = (hst->GetEffectiveEntries())/(hst->GetEntries()); //Use w/ original version of MOLLEROpt
+    weight = (hst->GetEntries())/(events); //Use w/ independent detector version of MOLLEROpt
     if((mean == 0) || (hst->GetRMS() == 0)) rms_mean = 0;
     if((mp < 0.5) || (fitP[3] < 0.5)) res = 0;
     //Event weighted variables
@@ -119,11 +78,12 @@ void ExtractScanResults()
     w_mp = mp*weight;
     w_res = res*weight;
     //Alternate scaling suggested by KK - Takes the ratio of one ring's signal to that of the ring directly US
-    tmp2 = (TH1D*)file->Get("R8_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
-    hst2 = (TH1D*)tmp2->Clone(Form("CEH_%s",runID.Data()));
+    tmp2 = (TH1D*)file->Get("R2_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+    hst2 = (TH1D*)tmp2->Clone("PEs_2");
     hst2->GetXaxis()->SetRangeUser(1,100);
     mean2 = hst2->GetMean();
-    weight2 = (hst2->GetEffectiveEntries())/(hst2->GetEntries());
+    //weight2 = (hst2->GetEffectiveEntries())/(hst2->GetEntries());
+    weight2 = (hst2->GetEntries())/(events);
     no_run = 0;
     //if(weight > 0.5) kk_scale = weight2/weight;
     //if(weight <= 0.5 || no_run == 1) kk_scale = 0.;
@@ -131,130 +91,25 @@ void ExtractScanResults()
     else kk_scale = 0;
     if(no_run == 1) kk_scale = 0.;
 
-
-
-    /*if(hst->GetEntries() <= 500){
-	    mp = 0;
-    	res = 0;
-	    mean = 0;
-	    rms_mean = 0;
-    }*/
     //rms and gsigma are not weighted, but rms/mean and res are
-    ring_dat <<param_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<fitP[3]<<" "<<rms_mean<<" "<<res<<" "<<1.0<<" "<<kk_scale<<"\n";
-    ring_dat_weighted <<param_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<fitP[3]*weight<<" "<<w_rms_mean<<" "<<w_res<<" "<<weight<<" "<<kk_scale<<"\n";
+    ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<fitP[3]<<" "<<rms_mean<<" "<<res<<" "<<1.0<<" "<<kk_scale<<"\n";
+    ring_dat_weighted<<paramx_run<<" "<<paramy_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<fitP[3]*weight<<" "<<w_rms_mean<<" "<<w_res<<" "<<weight<<" "<<kk_scale<<"\n";
 
 
     file->Close("R");    
-    counter = counter + 1.0; // to find file do counter - 9
-    //sa = 0 cuts
-    /*if(counter == 43.0) counter = 45.0;
-    if(counter == 50.0) counter = 51.0;
-    if(counter == 53.0) counter = 54.0;
-    if(counter == 55.0) counter = 56.0;*/
-    //sa = 5 cuts
-    /*if(counter == 40.0) counter = 41.0;
-    if(counter == 43.0) counter = 44.0;
-    if(counter == 49.0) counter = 50.0;
-    if(counter == 56.0) counter = 57.0;*/
-    //sa = 6 cuts
-    /*if(counter == 43.0) counter = 45.0;
-    if(counter == 48.0) counter = 49.0;
-    if(counter == 54.0) counter = 55.0;
-    if(counter == 56.0) counter = 57.0;*/
-    //sa = 8 cuts
-    //if(counter == 52.0) counter = 53.0;
-    //if(counter == 54.0) counter = 55.0;
-    //sa = 10 cuts
-    //if(counter == 40.0) counter = 41.0;
-    //if(counter == 50.0) counter = 51.0;
-    //if(counter == 53.0) counter = 56.0;
-    //if(counter == 5.0) counter = 54.0;
-    //counter_vec++;
+
+    if (paramy_run == limity){
+      paramx_run = paramx_start + counterx*paramx_step;
+      counterx = counterx + 1.0;
+      countery = 0.0;
+    }
+
   }
   ring_dat.close();
   ring_dat_weighted.close();
   rfiles.close();
 }
 
-
-
-Int_t FindGraph(Int_t fA, Int_t hR)
-{
-  TString name;
-
-  if(hR == 1){
-    for(int k = 0; k < fA_PEmean.size(); k++){
-      if(fA_PEmean[k]){
-	name = fA_PEmean[k]->GetName();
-	if(name.Contains(Form("fA%d",fA)) && name.Contains(Form("hR%d",hR))){
-	  return k;
-	}
-      }
-    }
-    TGraphErrors* gr = new TGraphErrors();
-    TGraphErrors* gr2 = new TGraphErrors();
-    gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
-    gr2->SetName(Form("Exnse_fA%d_hR%d",fA,hR));
-    gr->SetMarkerStyle(21);
-    gr2->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
-    gr2->GetXaxis()->SetTitle("Segment position [mm]"); //
-    gr->GetYaxis()->SetTitle("Langau PEs");
-    gr2->GetYaxis()->SetTitle("Resolution [GSigma/MP]");
-    fA_PEmean.push_back(gr);
-    fA_Exnse.push_back(gr2);
-    C_mp->cd(1);
-    C_mp->Divide(2);
-    C_mp->cd(1);
-    gr->Draw("AP");
-    C_mp->cd(2);
-    gr2->Draw("AP");
-    return fA_PEmean.size()-1;
-  }
-  else if(hR == 2){
-
-    for(int k = 0; k < fA_PEmean_hR2.size(); k++){
-      if(fA_PEmean_hR2[k]){
-	name = fA_PEmean_hR2[k]->GetName();
-	if(name.Contains(Form("fA%d",fA)) && name.Contains(Form("hR%d",hR))){
-	  return k;
-	}
-      }
-    }
-    TGraphErrors* gr = new TGraphErrors();
-    gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
-    gr->SetMarkerStyle(21);
-    gr->SetTitle("Segment scan photoelectron yield");
-    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
-    gr->GetYaxis()->SetTitle("Raw PE mean");
-    fA_PEmean_hR2.push_back(gr);
-    C_mp->cd(1);
-    gr->Draw("AP");
-    return fA_PEmean_hR2.size()-1;
-
-  }
-  else if(hR == 3){
-
-    for(int k = 0; k < fA_PEmean_hR3.size(); k++){
-      if(fA_PEmean_hR3[k]){
-	name = fA_PEmean_hR3[k]->GetName();
-	if(name.Contains(Form("fA%d",fA)) && name.Contains(Form("hR%d",hR))){
-	  return k;
-	}
-      }
-    }
-    TGraphErrors* gr = new TGraphErrors();
-    gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
-    gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Segment position [mm]"); //Change based on what is being scanned
-    fA_PEmean_hR3.push_back(gr);
-    return fA_PEmean_hR3.size()-1;
-
-  }
-
-  return -1;
-  
-}
 
 void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
 {

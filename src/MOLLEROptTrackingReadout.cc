@@ -97,7 +97,10 @@ void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
         Tracks[n]->R8_Detected = 1;
       }
     }
-  //G4cout << R1_CathodeDetections << G4endl;
+  /*if(R2_CathodeDetections == 1){
+    G4cout << "New electron" << G4endl;
+  }*/
+  //G4cout << R2_CathodeDetections << G4endl;
 };
 
 

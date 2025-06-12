@@ -144,8 +144,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           InitialBeamAngle = asin(sqrt(pow(track->InitMomDirX,2) + pow(track->InitMomDirY,2)))*180./TMath::Pi();
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddInitialBeamAngle(InitialBeamAngle);
         }
-        //--------BF Segment tracking--------//
-        if(track->ID == 1){
+        //--------Segment tracking--------//
+        if(track->ID == 1){//Prevents secondaries from being stored
           if(track->R1QuartzHitFlag){
             R1Hit = 1;
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1QuartzTrackHit(1);
@@ -227,13 +227,34 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           if((R4Hit==0) & (R7Hit==1) & (R8Hit==0)) R7_AdjacentTracker = 1;
           if((R5Hit==0) & (R8Hit==1)) R8_AdjacentTracker = 1;
         }
+        //Storing the pes generates in each cathode. SoloTracker is reset to 0 if it fails the pe yield cuts
+        R1_pes = TrackingReadout->R1_GetCathodeDetections();
+        R2_pes = TrackingReadout->R2_GetCathodeDetections();
+        R3_pes = TrackingReadout->R3_GetCathodeDetections();
+        R4_pes = TrackingReadout->R4_GetCathodeDetections();
+        R5_pes = TrackingReadout->R5_GetCathodeDetections();
+        R6_pes = TrackingReadout->R6_GetCathodeDetections();
+        R7_pes = TrackingReadout->R7_GetCathodeDetections();
+        R8_pes = TrackingReadout->R8_GetCathodeDetections();
+        //This block can remove background events from LG's and secondary events
+        //Remove if operating under the assumption that these signals are not detected
+        if((R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R1_SoloTracker = 0;
+        if((R1_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R2_SoloTracker = 0;
+        if((R1_pes >= 1) || (R2_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R3_SoloTracker = 0;
+        if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R4_SoloTracker = 0;
+        if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R5_SoloTracker = 0;
+        if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R6_SoloTracker = 0;
+        if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R8_pes >= 1)) R7_SoloTracker = 0;
+        if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1)) R8_SoloTracker = 0;
+
         for(int p = 0; p < track->StepNChPhotons.size(); p++){
           // analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzStepNPhotons(track->StepNChPhotons[p]);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzElectronStepLength(track->StepLength[p]/cm);
         }
-        for(int p = 0; p < track->SecPhotonAngle.size(); p++)
+        for(int p = 0; p < track->SecPhotonAngle.size(); p++){
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+        }
       }
       if(track->Particle == myPhoton){
         analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPhotonTrackID(track->ID);	
@@ -274,8 +295,9 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       }
     }
     //Storing the pes generates in each cathode. SoloTracker is reset to 0 if it fails the pe yield cuts
+    //These 2 blocks of pe code should have a myBeam requirement. No need to set for every photon...
     //--------BF & FF Segment Tracking--------//
-    R1_pes = TrackingReadout->R1_GetCathodeDetections();
+    /*R1_pes = TrackingReadout->R1_GetCathodeDetections();
     R2_pes = TrackingReadout->R2_GetCathodeDetections();
     R3_pes = TrackingReadout->R3_GetCathodeDetections();
     R4_pes = TrackingReadout->R4_GetCathodeDetections();
@@ -292,7 +314,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R5_SoloTracker = 0;
     if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R7_pes >= 1) || (R8_pes >= 1)) R6_SoloTracker = 0;
     if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R8_pes >= 1)) R7_SoloTracker = 0;
-    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1)) R8_SoloTracker = 0;
+    if((R1_pes >= 1) || (R2_pes >= 1) || (R3_pes >= 1) || (R4_pes >= 1) || (R5_pes >= 1) || (R6_pes >= 1) || (R7_pes >= 1)) R8_SoloTracker = 0;*/
    
     //Stores data in root for specific detectors. Used to control amount of data that is saved for large simulations
     //This also stores PEs as variables at the end of the event (specifically during the last track to prevent overwrite)
@@ -300,6 +322,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       //The Ntuple is not filled if Det == 999. Use when file size is a serious constraint
       //PE yield histograms will still be written, but not accessible as leaves in the root file
     }
+    //The following Det values (and pe leaves) require that track->ID==1 for data storage. Change below if needed
     else if(Det == 0){
       //Everything is stored
       if(track->ID == 1){
@@ -382,9 +405,9 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       }
     }
   }
-  //Stores PEs if scintillator cuts are passed
-  //The following sorting system is bulky, but it works. I will make this more space efficient at some point
-  //--------BF Segment Histogram Filling--------//
+  //Stores PEs if scint cuts are passed (all events pass if no scints exist)
+  //Found when opening the root file and are normally used for analysis. They currently require track->ID==1
+  //--------Segment Histogram Filling--------//
   if(R1_Tracker == 1){
       analysis->R1_AddCathodeDetectionEvent(R1_pes);
   }

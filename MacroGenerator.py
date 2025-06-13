@@ -239,7 +239,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                             Text += "/Generator/SegmentHitPosY " + str(cuty) + " mm" + "\n"
                             Text += "/Generator/BeamEnergy " + str(Energy) + "\n"
                             Text += "/Generator/BeamEnergyCut " + str(EnergyCut) + "\n"
-                            Text += "/Generator/BeamSolidAngle " + str(sa) + "\n"
+                            Text += "/Generator/BeamSolidAngle " + str(sa) + " degree" + "\n"
                             Text += "/Generator/BeamTiltAngle " + str(tilt) + " degree" + "\n"
                             Text += "/Generator/BeamTiltDirection " + str(tilt_dir) + " degree" + "\n"
                             Text += "/Storage/DetectorFocus " + str(det) + "\n"

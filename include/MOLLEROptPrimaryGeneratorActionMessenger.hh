@@ -29,7 +29,7 @@ private:
   G4UIcmdWithAnInteger       *EventHitRegionCmd;
   G4UIcmdWithAnInteger       *BeamThetaCmd;
   G4UIcmdWithAnInteger       *BeamPhiCmd;
-  G4UIcmdWithAnInteger       *BeamSolidAngleCmd;
+  G4UIcmdWithADoubleAndUnit  *BeamSolidAngleCmd;
   G4UIcmdWithADoubleAndUnit  *BeamTiltAngleCmd;
   G4UIcmdWithADoubleAndUnit  *BeamTiltDirectionCmd;
   G4UIcmdWithAnInteger       *BeamEnergyCmd;

@@ -80,7 +80,7 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamSolidAngleCmd->SetParameterName("BeamSolidAngle",true);
   BeamSolidAngleCmd->SetDefaultValue(0);
   BeamSolidAngleCmd->SetRange("BeamSolidAngle<=360");
-  SegmentHitPosYCmd->SetDefaultUnit("degree");
+  BeamSolidAngleCmd->SetDefaultUnit("degree");
   BeamSolidAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   BeamTiltAngleCmd = new G4UIcmdWithADoubleAndUnit("/Generator/BeamTiltAngle",this);

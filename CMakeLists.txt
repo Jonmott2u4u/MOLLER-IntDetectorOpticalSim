@@ -113,7 +113,7 @@ set(MOLLER_SCRIPTS
   MacroGenerator.py
   MacroSubmitter.py
   MacroSubmitter.sh
-  Langau_fitter.C
+  LangauFitExtract.C
   PlotExtractor.C
 )
 

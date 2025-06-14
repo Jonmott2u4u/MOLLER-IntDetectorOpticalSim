@@ -252,7 +252,7 @@
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/SegmentHitPosY 60.5
-/Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis. 18 for W&M setup
+/Generator/BeamSolidAngle 0.0872665               #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0.0                      #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1

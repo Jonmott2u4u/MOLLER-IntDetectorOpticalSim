@@ -22,7 +22,7 @@ shift = 0         #Shifts the particle spawn location by that much. What this af
 tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 9      #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
+hr_start = 9      #1->8 = BF det centers 1-8, 9->10 are segment scans
 hr_stop = 9
 hr_step = 1     
 

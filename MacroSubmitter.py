@@ -8,7 +8,7 @@ sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 9    #1->8 = BF det centers 1-8, 9 = segment scan
+hr_start = 9    #1->8 = BF det centers 1-8, 9->10 are segment scans
 hr_stop = 9
 hr_step = 1     
 

@@ -185,8 +185,13 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
   else if(EventRegion == 9){
     //Used for the BF segment scan
-    x = (Qlim1[1]+Qlim1[0])/2.0 + cutx; //- 0.3 + 0.6*G4UniformRand();
+    x = (Qlim1[1]+Qlim1[0])/2.0 + cutx;
     y = Qlim1[2] + cuty;
+  }
+  else if(EventRegion == 10){
+    //Used for the BF segment scan
+    x = (Qlim1[1]+Qlim1[0])/2.0 - 0.3 + 0.6*G4UniformRand() + cutx;
+    y = Qlim1[2] - 0.3 + 0.6*G4UniformRand() + cuty;
   }
   else{
     //Defaults to Ring 1

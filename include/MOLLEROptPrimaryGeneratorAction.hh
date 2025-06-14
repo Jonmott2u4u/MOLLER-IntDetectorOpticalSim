@@ -31,7 +31,7 @@ public:
   void SetSegmentHitPosY(G4double reg) {cuty = reg;};
   void SetBeamTheta(G4int reg) {theta = reg;};
   void SetBeamPhi(G4int reg) {phi = reg;};
-  void SetBeamSolidAngle(G4int reg) {sa = reg;};
+  void SetBeamSolidAngle(G4double reg) {sa = reg;};
   void SetBeamTiltAngle(G4double reg) {tilt = reg;};
   void SetBeamTiltDirection(G4double reg) {tilt_dir = reg;};
   void SetBeamEnergy(G4int reg) {Energy = reg;};
@@ -45,7 +45,7 @@ private:
   G4int EventCounter;
   G4int theta;
   G4int phi;
-  G4int sa;
+  G4double sa;
   G4double tilt;
   G4double tilt_dir;
   G4int Energy;

@@ -102,14 +102,14 @@ target_link_libraries(MOLLEROpt PRIVATE MOLLEROptDictionaries PUBLIC ${Geant4_LI
 set(MOLLER_SCRIPTS
   macros/gui.mac
   macros/Qt.mac
-  macros/runun.mac
+  macros/run.mac
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
   data/OpticalPropertiesInputData-Michaels-uvs.txt
   data/cosmics.txt
   MacroFolder/placeholder.md
   rootfiles/placeholder.md
-  plots/placeholders.md
+  plots/placeholder.md
   MacroGenerator.py
   MacroSubmitter.py
   MacroSubmitter.sh

@@ -44,32 +44,6 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     R7Adjacent_CathodeEventsDistrHist = new TH1D("R7Adjacent_CathodeEventsDistrHist","",100,0,100);
     R8Adjacent_CathodeEventsDistrHist = new TH1D("R8Adjacent_CathodeEventsDistrHist","",100,0,100);
 
-    //These histograms are specific to each scintillator combination
-    R1_Scint12_CathodeEventsDistrHist = new TH1D("R1_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R2_Scint12_CathodeEventsDistrHist = new TH1D("R2_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R3_Scint12_CathodeEventsDistrHist = new TH1D("R3_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R4_Scint12_CathodeEventsDistrHist = new TH1D("R4_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R5_Scint12_CathodeEventsDistrHist = new TH1D("R5_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R6_Scint12_CathodeEventsDistrHist = new TH1D("R6_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R7_Scint12_CathodeEventsDistrHist = new TH1D("R7_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R8_Scint12_CathodeEventsDistrHist = new TH1D("R8_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R1Only_Scint12_CathodeEventsDistrHist = new TH1D("R1Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R2Only_Scint12_CathodeEventsDistrHist = new TH1D("R2Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R3Only_Scint12_CathodeEventsDistrHist = new TH1D("R3Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R4Only_Scint12_CathodeEventsDistrHist = new TH1D("R4Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R5Only_Scint12_CathodeEventsDistrHist = new TH1D("R5Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R6Only_Scint12_CathodeEventsDistrHist = new TH1D("R6Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R7Only_Scint12_CathodeEventsDistrHist = new TH1D("R7Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R8Only_Scint12_CathodeEventsDistrHist = new TH1D("R8Only_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R1Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R1Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R2Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R2Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R3Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R3Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R4Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R4Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R5Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R5Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R6Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R6Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R7Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R7Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-    R8Adjacent_Scint12_CathodeEventsDistrHist = new TH1D("R8Adjacent_Scint12_CathodeEventsDistrHist","",100,0,100);
-
     EventCnt = 0;
 }
 

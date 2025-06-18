@@ -81,7 +81,7 @@ private:
   G4LogicalVolume*   World_Logical;   
   G4VPhysicalVolume* World_Physical;  
   G4Material*        World_Material; 
-s
+
   G4double fWorldLength;    
   G4double fWorldLengthInX; 
   G4double fWorldLengthInY; 

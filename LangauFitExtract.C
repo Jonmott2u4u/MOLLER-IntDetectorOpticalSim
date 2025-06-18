@@ -34,8 +34,8 @@ void LangauFitExtract()
   TString tmpStr;
   Double_t fitP[4], fitE[4];
 
-  float mean, mp, rms, rms_mean, res;
-  float w_mean, w_mp, w_rms, w_rms_mean, w_res;
+  float mean, mp, rms, rms_mean, res, gsigma;
+  float w_mean, w_mp, w_rms, w_rms_mean, w_res, w_gsigma;
   float weight, weight2, kk_scale, mean2;
   int no_run; //Flag for forcing the scaling plot to be zero.
 
@@ -64,6 +64,7 @@ void LangauFitExtract()
     mean = hst->GetMean();
     rms = hst->GetRMS();
     mp = fitP[1];
+    gsigma = fitP[3];
     rms_mean = 100.*rms/mean;
     res = 100.*fitP[3]/fitP[1];
     //Conditions and misc. parameters
@@ -77,6 +78,7 @@ void LangauFitExtract()
     w_rms_mean = rms_mean*weight;
     w_mp = mp*weight;
     w_res = res*weight;
+    w_gsigma = gsigma*weight;
     //Alternate scaling suggested by KK - Takes the ratio of one ring's signal to that of the ring directly US
     tmp2 = (TH1D*)file->Get("R2_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
     hst2 = (TH1D*)tmp2->Clone("PEs_2");
@@ -91,9 +93,18 @@ void LangauFitExtract()
     else kk_scale = 0;
     if(no_run == 1) kk_scale = 0.;
 
+    if(hst->GetEntries() < 100){
+      mean = 0.1;
+      rms = 0.1;
+      mp = 0.1;
+      rms_mean = 0.1;
+      res = 0.1;
+      gsigma = 0.1;
+    }
+
     //rms and gsigma are not weighted, but rms/mean and res are
-    ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<fitP[3]<<" "<<rms_mean<<" "<<res<<" "<<1.0<<" "<<kk_scale<<"\n";
-    ring_dat_weighted<<paramx_run<<" "<<paramy_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<fitP[3]*weight<<" "<<w_rms_mean<<" "<<w_res<<" "<<weight<<" "<<kk_scale<<"\n";
+    ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<" "<<kk_scale<<"\n";
+    ring_dat_weighted<<paramx_run<<" "<<paramy_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<w_gsigma<<" "<<w_rms_mean<<" "<<w_res<<" "<<weight<<" "<<kk_scale<<"\n";
 
 
     file->Close("R");    

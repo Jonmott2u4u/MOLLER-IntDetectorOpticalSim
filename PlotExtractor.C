@@ -213,7 +213,7 @@ void willmary_pes()
 }
 
 //This object performs cuts over the quartz in the x-direction
-void quartz_pos(){
+void quartz_divider(){
 
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -241,5 +241,26 @@ void quartz_pos(){
             }
         }
         file->Close("R");
+    }
+}
+
+void quartz_hit_pos(){
+
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TFile *file;
+    TH1D *hst, *tmp;
+
+    while(std::getline(rfiles, line)){
+        file = TFile::Open(line.data());
+        for(int det=1; det<9; det++){
+            
+            TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+            //cout << tree << endl;
+            TCanvas *canvas = new TCanvas("canvas","canvas");
+            tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),"","colz");
+            canvas->SaveAs(Form("plots/R%i_quartz_hit_pos.root",det));
+
+        }
     }
 }

@@ -8,16 +8,16 @@ sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 19    #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
-hr_stop = 20
+hr_start = 9    #1->8 = det centers, 9 = cosmics
+hr_stop = 9
 hr_step = 1     
 
-cut_start = 1    #Used for hr = 17,18. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
+cut_start = 1    #Not used in this branch
 cut_stop = 1
 cut_step = 1
 
-sa_start = 18    #Controls the angular spread of the beam from the Z-axis (in +- degrees). Set to ~16 for new Cosmic Stand
-sa_stop = 18
+sa_start = 11    #Controls the angular spread of the beam from the Z-axis (in +- degrees).
+sa_stop = 11
 sa_step = 5
 
 ID_start = 1     #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)

@@ -43,14 +43,6 @@ public:
   void       GetQuartz6Limits(G4double *vals);
   void       GetQuartz7Limits(G4double *vals);
   void       GetQuartz8Limits(G4double *vals);
-  void       GetQuartz9Limits(G4double *vals);
-  void       GetQuartz10Limits(G4double *vals);
-  void       GetQuartz11Limits(G4double *vals);
-  void       GetQuartz12Limits(G4double *vals);
-  void       GetQuartz13Limits(G4double *vals);
-  void       GetQuartz14Limits(G4double *vals);
-  void       GetQuartz15Limits(G4double *vals);
-  void       GetQuartz16Limits(G4double *vals);
   void       GetLightGuide1Limits(G4double *vals);
   void       GetLightGuide2Limits(G4double *vals);
   void       GetLightGuide3Limits(G4double *vals);
@@ -59,22 +51,8 @@ public:
   void       GetLightGuide6Limits(G4double *vals);
   void       GetLightGuide7Limits(G4double *vals);
   void       GetLightGuide8Limits(G4double *vals);
-  void       GetLightGuide9Limits(G4double *vals);
-  void       GetLightGuide10Limits(G4double *vals);
-  void       GetLightGuide11Limits(G4double *vals);
-  void       GetLightGuide12Limits(G4double *vals);
-  void       GetLightGuide13Limits(G4double *vals);
-  void       GetLightGuide14Limits(G4double *vals);
-  void       GetLightGuide15Limits(G4double *vals);
-  void       GetLightGuide16Limits(G4double *vals);
   void       GetScint1Limits(G4double *vals);
   void       GetScint2Limits(G4double *vals);
-  void       GetScint3Limits(G4double *vals);
-  void       GetScint4Limits(G4double *vals);
-  void       GetScint5Limits(G4double *vals);
-  void       GetScint6Limits(G4double *vals);
-  void       GetScint7Limits(G4double *vals);
-  void       GetScint8Limits(G4double *vals);
 
 private:
   
@@ -91,23 +69,8 @@ private:
   MOLLEROptDetector*     Ring6;
   MOLLEROptDetector*     Ring7;
   MOLLEROptDetector*     Ring8;
-  MOLLEROptDetector*     Ring9;
-  MOLLEROptDetector*     Ring10;
-  MOLLEROptDetector*     Ring11;
-  MOLLEROptDetector*     Ring12;
-  MOLLEROptDetector*     Ring13;
-  MOLLEROptDetector*     Ring14;
-  MOLLEROptDetector*     Ring15;
-  MOLLEROptDetector*     Ring16;
-
   MOLLEROptAuxilary*     Scint1;
   MOLLEROptAuxilary*     Scint2;
-  MOLLEROptAuxilary*     Scint3;
-  MOLLEROptAuxilary*     Scint4;
-  MOLLEROptAuxilary*     Scint5;
-  MOLLEROptAuxilary*     Scint6;
-  MOLLEROptAuxilary*     Scint7;
-  MOLLEROptAuxilary*     Scint8;
 
   MOLLEROptInsensitive*  AlPlate;
 
@@ -118,7 +81,7 @@ private:
   G4LogicalVolume*   World_Logical;   
   G4VPhysicalVolume* World_Physical;  
   G4Material*        World_Material; 
-
+s
   G4double fWorldLength;    
   G4double fWorldLengthInX; 
   G4double fWorldLengthInY; 

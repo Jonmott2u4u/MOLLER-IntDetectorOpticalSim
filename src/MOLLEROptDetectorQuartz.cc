@@ -108,14 +108,6 @@ void MOLLEROptDetectorQuartz::Initialize()
   else if (Name.contains("Ring6_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz6",TrackingReadout);
   else if (Name.contains("Ring7_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz7",TrackingReadout);
   else if (Name.contains("Ring8_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz8",TrackingReadout);
-  else if (Name.contains("Ring9_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz9",TrackingReadout);
-  else if (Name.contains("Ring10_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz10",TrackingReadout);
-  else if (Name.contains("Ring11_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz11",TrackingReadout);
-  else if (Name.contains("Ring12_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz12",TrackingReadout);
-  else if (Name.contains("Ring13_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz13",TrackingReadout);
-  else if (Name.contains("Ring14_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz14",TrackingReadout);
-  else if (Name.contains("Ring15_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz15",TrackingReadout);
-  else if (Name.contains("Ring16_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz16",TrackingReadout);
   else QuartzSD = new MOLLEROptQuartzSD("/Quartz1",TrackingReadout);
   SDman->AddNewDetector(QuartzSD);  
   QuartzLogical->SetSensitiveDetector(QuartzSD);

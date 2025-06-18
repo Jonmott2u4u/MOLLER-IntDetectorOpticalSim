@@ -11,24 +11,6 @@ MOLLEROptScintSD::MOLLEROptScintSD(G4String name, MOLLEROptTrackingReadout* TrRO
   else if(SensitiveDetectorName == "Scint2"){
     theCollectionName = G4String("ScintHitCollection2");
   }
-  else if(SensitiveDetectorName == "Scint3"){
-    theCollectionName = G4String("ScintHitCollection3");
-  }
-  else if(SensitiveDetectorName == "Scint4"){
-    theCollectionName = G4String("ScintHitCollection4");
-  }
-  else if(SensitiveDetectorName == "Scint5"){
-    theCollectionName = G4String("ScintHitCollection5");
-  }
-  else if(SensitiveDetectorName == "Scint6"){
-    theCollectionName = G4String("ScintHitCollection6");
-  }
-  else if(SensitiveDetectorName == "Scint7"){
-    theCollectionName = G4String("ScintHitCollection7");
-  }
-  else if(SensitiveDetectorName == "Scint8"){
-    theCollectionName = G4String("ScintHitCollection8");
-  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;

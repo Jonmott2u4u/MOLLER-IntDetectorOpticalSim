@@ -289,9 +289,9 @@
 /Scint1/SizeZ 20 mm                  
 /Scint1/SizeX 300 mm                  
 /Scint1/SizeY 300 mm                 
-/Scint1/SetCenterPositionInX -250 mm            
-/Scint1/SetCenterPositionInY 95 mm        
-/Scint1/SetCenterPositionInZ 70 mm            
+/Scint1/SetCenterPositionInX 0 mm            
+/Scint1/SetCenterPositionInY 208 mm               #8 for config 1, 208 for configf 2
+/Scint1/SetCenterPositionInZ 97 mm            
 /Scint1/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint1/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
 /Scint1/UpdateGeometry
@@ -299,9 +299,9 @@
 /Scint2/SizeZ 20 mm                  
 /Scint2/SizeX 300 mm                   
 /Scint2/SizeY 300 mm                  
-/Scint2/SetCenterPositionInX -250 mm            
-/Scint2/SetCenterPositionInY 345 mm           
-/Scint2/SetCenterPositionInZ 70 mm    
+/Scint2/SetCenterPositionInX 0 mm            
+/Scint2/SetCenterPositionInY 320 mm             #120 for config 1, 320 for config 2
+/Scint2/SetCenterPositionInZ 2247 mm    
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint2/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
 /Scint2/UpdateGeometry
@@ -312,7 +312,7 @@
 /Generator/EventHitRegion 9                      #1->8 = BF det centers 1-8, 9 = cosmics
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitRegion 0                     #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis. 18 for W&M setup
+/Generator/BeamSolidAngle 11                       #Units of degrees. Determines the angular spread of the beam from the z-axis. 18 for W&M setup
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 

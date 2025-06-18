@@ -17,6 +17,9 @@ EnergyCut = 0   #Sets a minimum energy for primary particles to be accepted in u
 
 NumEvents = 100000 #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
+config = [8,120]    #Configuration 1 for the UMass cosmic stand
+#config = [208,320] #Configuration 2 for the UMass cosmic stand
+
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
 #Scannable parameters (those that can be easily adjusted for each run)
@@ -223,9 +226,9 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Scint1/SizeZ 20 mm" + "\n"
                     Text += "/Scint1/SizeX 300 mm" + "\n"
                     Text += "/Scint1/SizeY 300 mm" + "\n"
-                    Text += "/Scint1/SetCenterPositionInX -250 mm" + "\n"
-                    Text += "/Scint1/SetCenterPositionInY 95 mm" +"\n"
-                    Text += "/Scint1/SetCenterPositionInZ 70 mm" +"\n"
+                    Text += "/Scint1/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/Scint1/SetCenterPositionInY " + str(config[0]) + " mm" + "\n"
+                    Text += "/Scint1/SetCenterPositionInZ 97 mm" +"\n"
                     Text += "/Scint1/PolarRotation 0 deg" + "\n"
                     Text += "/Scint1/AzimuthalRotation 0 deg" + "\n"
                     Text += "/Scint1/UpdateGeometry" + "\n"
@@ -233,9 +236,9 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Scint2/SizeZ 20 mm" + "\n"
                     Text += "/Scint2/SizeX 300 mm" + "\n"
                     Text += "/Scint2/SizeY 300 mm" + "\n"
-                    Text += "/Scint2/SetCenterPositionInX -250 mm" + "\n"
-                    Text += "/Scint2/SetCenterPositionInY 345 mm" + "\n"
-                    Text += "/Scint2/SetCenterPositionInZ 70 mm" + "\n"
+                    Text += "/Scint2/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/Scint2/SetCenterPositionInY " + str(config[1]) + " mm" + "\n"
+                    Text += "/Scint2/SetCenterPositionInZ 2247 mm" + "\n"
                     Text += "/Scint2/PolarRotation 0 deg" + "\n"
                     Text += "/Scint2/AzimuthalRotation 0 deg" + "\n"
                     Text += "/Scint2/UpdateGeometry" + "\n"

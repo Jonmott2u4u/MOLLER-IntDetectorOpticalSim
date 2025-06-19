@@ -213,7 +213,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_y = sinTheta*TMath::Sin(Phi);
   G4double p_z = cosTheta;
 
-  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 59*mm));
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 86*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

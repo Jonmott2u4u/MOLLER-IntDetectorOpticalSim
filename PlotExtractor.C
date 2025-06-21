@@ -248,17 +248,18 @@ void quartz_hit_pos(){
 
     std::ifstream rfiles("files.dat");
     std::string line;
+    string location = "MOLLEROptData.MOLLERGeneralEvent.";
     TFile *file;
     TH1D *hst, *tmp;
 
     while(std::getline(rfiles, line)){
         file = TFile::Open(line.data());
-        for(int det=1; det<9; det++){
+        for(int det=5; det<6; det++){
             
             TTree *tree = (TTree*)file->Get("MOLLEROptTree");
             //cout << tree << endl;
             TCanvas *canvas = new TCanvas("canvas","canvas");
-            tree->Draw(Form("MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY:MOLLEROptData.MOLLERGeneralEvent.R%iTileHitX",det,det),"","colz");
+            tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",location.data(),det,location.data(),det),Form("%sScint2TrackHit==1 && %sScint4TrackHit==1",location.data(),location.data()),"colz");
             canvas->SaveAs(Form("plots/R%i_quartz_hit_pos.root",det));
 
         }

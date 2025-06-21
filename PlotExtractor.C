@@ -79,11 +79,11 @@ void quartz_divider(){
 		        pos++;
                 TTree *tree = (TTree*)file->Get("MOLLEROptTree");
                 TCanvas *canvas_pes = new TCanvas("canvas_pes","canvas_pes");
-                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iSoloPEs",det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY > %i-2)",det,pos,det,pos));
+                tree->Draw(Form("MOLLEROptData.MOLLERGeneralEvent.R%iSoloPEs",det),Form("(MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY <= %i) && (MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY > %i-2)",det,pos,det,pos));
                 canvas_pes->SaveAs(Form("plots/nofit/r%i/file%i_pes_pos_%i.root",det,file_open,pos));
 
                 /*TCanvas *canvas_pos = new TCanvas("canvas_pos","canvas_pos");
-                tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),Form("(MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY <= %i) && (MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY > %i-2)",det,pos,det,pos),"colz");
+                tree->Draw(Form("MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY:MOLLEROptData.MOLLERGeneralEvent.R%iTileHitX",det,det),Form("(MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY <= %i) && (MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY > %i-2)",det,pos,det,pos),"colz");
                 canvas_pos->SaveAs(Form("plots/nofit/r%i/file%i_quartz_pos_%i.root",det,file_open,pos));*/
 
             }
@@ -106,7 +106,7 @@ void quartz_hit_pos(){
             TTree *tree = (TTree*)file->Get("MOLLEROptTree");
             //cout << tree << endl;
             TCanvas *canvas = new TCanvas("canvas","canvas");
-            tree->Draw(Form("MOLLEROptData.MOLLERDetectorEvent.R%iTileHitY:MOLLEROptData.MOLLERDetectorEvent.R%iTileHitX",det,det),"","colz");
+            tree->Draw(Form("MOLLEROptData.MOLLERGeneralEvent.R%iTileHitY:MOLLEROptData.MOLLERGeneralEvent.R%iTileHitX",det,det),"","colz");
             canvas->SaveAs(Form("plots/R%i_quartz_hit_pos.root",det));
 
         }

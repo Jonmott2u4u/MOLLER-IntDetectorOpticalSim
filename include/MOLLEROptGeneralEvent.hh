@@ -67,6 +67,40 @@ private:
   vector <Int_t> R15QuartzTrackHit;
   vector <Int_t> R16QuartzTrackHit;
 
+  vector <Int_t> R1AdjacentCutQuartzTrackHit;
+  vector <Int_t> R2AdjacentCutQuartzTrackHit;
+  vector <Int_t> R3AdjacentCutQuartzTrackHit;
+  vector <Int_t> R4AdjacentCutQuartzTrackHit;
+  vector <Int_t> R5AdjacentCutQuartzTrackHit;
+  vector <Int_t> R6AdjacentCutQuartzTrackHit;
+  vector <Int_t> R7AdjacentCutQuartzTrackHit;
+  vector <Int_t> R8AdjacentCutQuartzTrackHit;
+  vector <Int_t> R9AdjacentCutQuartzTrackHit;
+  vector <Int_t> R10AdjacentCutQuartzTrackHit;
+  vector <Int_t> R11AdjacentCutQuartzTrackHit;
+  vector <Int_t> R12AdjacentCutQuartzTrackHit;
+  vector <Int_t> R13AdjacentCutQuartzTrackHit;
+  vector <Int_t> R14AdjacentCutQuartzTrackHit;
+  vector <Int_t> R15AdjacentCutQuartzTrackHit;
+  vector <Int_t> R16AdjacentCutQuartzTrackHit;
+
+  vector <Int_t> R1SoloCutQuartzTrackHit;
+  vector <Int_t> R2SoloCutQuartzTrackHit;
+  vector <Int_t> R3SoloCutQuartzTrackHit;
+  vector <Int_t> R4SoloCutQuartzTrackHit;
+  vector <Int_t> R5SoloCutQuartzTrackHit;
+  vector <Int_t> R6SoloCutQuartzTrackHit;
+  vector <Int_t> R7SoloCutQuartzTrackHit;
+  vector <Int_t> R8SoloCutQuartzTrackHit;
+  vector <Int_t> R9SoloCutQuartzTrackHit;
+  vector <Int_t> R10SoloCutQuartzTrackHit;
+  vector <Int_t> R11SoloCutQuartzTrackHit;
+  vector <Int_t> R12SoloCutQuartzTrackHit;
+  vector <Int_t> R13SoloCutQuartzTrackHit;
+  vector <Int_t> R14SoloCutQuartzTrackHit;
+  vector <Int_t> R15SoloCutQuartzTrackHit;
+  vector <Int_t> R16SoloCutQuartzTrackHit;
+
   vector <Int_t> Scint1TrackHit;
   vector <Int_t> Scint2TrackHit;
   vector <Int_t> Scint3TrackHit;
@@ -241,6 +275,40 @@ public:
   void AddR15QuartzTrackHit(Int_t tID){R15QuartzTrackHit.push_back(tID);};
   void AddR16QuartzTrackHit(Int_t tID){R16QuartzTrackHit.push_back(tID);};
 
+  void AddR1AdjacentCutQuartzTrackHit(Int_t tID){R1AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR2AdjacentCutQuartzTrackHit(Int_t tID){R2AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR3AdjacentCutQuartzTrackHit(Int_t tID){R3AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR4AdjacentCutQuartzTrackHit(Int_t tID){R4AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR5AdjacentCutQuartzTrackHit(Int_t tID){R5AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR6AdjacentCutQuartzTrackHit(Int_t tID){R6AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR7AdjacentCutQuartzTrackHit(Int_t tID){R7AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR8AdjacentCutQuartzTrackHit(Int_t tID){R8AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR9AdjacentCutQuartzTrackHit(Int_t tID){R9AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR10AdjacentCutQuartzTrackHit(Int_t tID){R10AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR11AdjacentCutQuartzTrackHit(Int_t tID){R11AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR12AdjacentCutQuartzTrackHit(Int_t tID){R12AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR13AdjacentCutQuartzTrackHit(Int_t tID){R13AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR14AdjacentCutQuartzTrackHit(Int_t tID){R14AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR15AdjacentCutQuartzTrackHit(Int_t tID){R15AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR16AdjacentCutQuartzTrackHit(Int_t tID){R16AdjacentCutQuartzTrackHit.push_back(tID);};
+
+  void AddR1SoloCutQuartzTrackHit(Int_t tID){R1SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR2SoloCutQuartzTrackHit(Int_t tID){R2SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR3SoloCutQuartzTrackHit(Int_t tID){R3SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR4SoloCutQuartzTrackHit(Int_t tID){R4SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR5SoloCutQuartzTrackHit(Int_t tID){R5SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR6SoloCutQuartzTrackHit(Int_t tID){R6SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR7SoloCutQuartzTrackHit(Int_t tID){R7SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR8SoloCutQuartzTrackHit(Int_t tID){R8SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR9SoloCutQuartzTrackHit(Int_t tID){R9SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR10SoloCutQuartzTrackHit(Int_t tID){R10SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR11SoloCutQuartzTrackHit(Int_t tID){R11SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR12SoloCutQuartzTrackHit(Int_t tID){R12SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR13SoloCutQuartzTrackHit(Int_t tID){R13SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR14SoloCutQuartzTrackHit(Int_t tID){R14SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR15SoloCutQuartzTrackHit(Int_t tID){R15SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR16SoloCutQuartzTrackHit(Int_t tID){R16SoloCutQuartzTrackHit.push_back(tID);};
+
   void AddScint1TrackHit(Int_t tID){Scint1TrackHit.push_back(tID);};
   void AddScint2TrackHit(Int_t tID){Scint2TrackHit.push_back(tID);};
   void AddScint3TrackHit(Int_t tID){Scint3TrackHit.push_back(tID);};
@@ -340,22 +408,6 @@ public:
   void AddR14PEs(Int_t pes) {R14PEs.push_back(pes);};
   void AddR15PEs(Int_t pes) {R15PEs.push_back(pes);};
   void AddR16PEs(Int_t pes) {R16PEs.push_back(pes);};
-  void AddR1SoloPEs(Int_t pes) {R1SoloPEs.push_back(pes);};
-  void AddR2SoloPEs(Int_t pes) {R2SoloPEs.push_back(pes);};
-  void AddR3SoloPEs(Int_t pes) {R3SoloPEs.push_back(pes);};
-  void AddR4SoloPEs(Int_t pes) {R4SoloPEs.push_back(pes);};
-  void AddR5SoloPEs(Int_t pes) {R5SoloPEs.push_back(pes);};
-  void AddR6SoloPEs(Int_t pes) {R6SoloPEs.push_back(pes);};
-  void AddR7SoloPEs(Int_t pes) {R7SoloPEs.push_back(pes);};
-  void AddR8SoloPEs(Int_t pes) {R8SoloPEs.push_back(pes);};
-  void AddR9SoloPEs(Int_t pes) {R9SoloPEs.push_back(pes);};
-  void AddR10SoloPEs(Int_t pes) {R11SoloPEs.push_back(pes);};
-  void AddR11SoloPEs(Int_t pes) {R12SoloPEs.push_back(pes);};
-  void AddR12SoloPEs(Int_t pes) {R13SoloPEs.push_back(pes);};
-  void AddR13SoloPEs(Int_t pes) {R14SoloPEs.push_back(pes);};
-  void AddR14SoloPEs(Int_t pes) {R15SoloPEs.push_back(pes);};
-  void AddR15SoloPEs(Int_t pes) {R16SoloPEs.push_back(pes);};
-  void AddR16SoloPEs(Int_t pes) {R16SoloPEs.push_back(pes);};
 
   void AddTrackInitMomDirection(Float_t x, Float_t y, Float_t z) {
     InitialTrackMomDirectionX = x;

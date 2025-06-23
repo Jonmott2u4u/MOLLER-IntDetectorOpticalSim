@@ -9,7 +9,7 @@ datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 hr_start = 19    #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
-hr_stop = 20
+hr_stop = 19
 hr_step = 1     
 
 cut_start = 1    #Used for hr = 17,18. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
@@ -21,7 +21,7 @@ sa_stop = 18
 sa_step = 5
 
 ID_start = 1     #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 100
+ID_stop = 1000
 ID_step = 1
 
 det_start = 999    #Sets which detector will have its info stored in the root file
@@ -66,7 +66,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --nodes=1\n")
                         jsubf.write("#SBATCH --ntasks=1\n")
                         jsubf.write("#SBATCH --cpus-per-task=1\n")
-                        jsubf.write("#SBATCH --mem=300M\n")
+                        jsubf.write("#SBATCH --mem=400M\n")
                         #---General submission info---
                         jsubf.write("echo \"Current working directory is `pwd`\"\n")	
                         jsubf.write("source /etc/skel/.bashrc \n")

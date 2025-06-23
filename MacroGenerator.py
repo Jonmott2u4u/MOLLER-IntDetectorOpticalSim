@@ -15,13 +15,13 @@ Particle = 2    #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000   #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0   #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
-NumEvents = 100000 #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = 1000 #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
 #Scannable parameters (those that can be easily adjusted for each run)
 hr_start = 19   #1->8 = BF det centers 1-8, 9->16 FF det centers. 17->18 segment scans, 19->20 cosmics
-hr_stop = 20
+hr_stop = 19
 hr_step = 1     
 
 cut_start = 1  #Used for hr = 17,18. Selects a section of the full segment to scan over (bounds will be determined later) in 10 mm increments (can be adjusted). 0 is the first 10 mm of R1.
@@ -33,7 +33,7 @@ sa_stop = 18
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 100
+ID_stop = 1000
 ID_step = 1
 
 det_start = 999    #Sets which detector will have its info stored in the root file

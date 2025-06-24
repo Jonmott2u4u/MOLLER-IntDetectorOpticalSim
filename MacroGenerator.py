@@ -15,7 +15,7 @@ Particle = 2    #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000   #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0   #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
-NumEvents = 100000 #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = 1000 #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 config = [8,120]    #Configuration 1 for the UMass cosmic stand
 #config = [208,320] #Configuration 2 for the UMass cosmic stand
@@ -36,7 +36,7 @@ sa_stop = 11
 sa_step = 5
 
 ID_start = 1    #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 100
+ID_stop = 1
 ID_step = 1
 
 det_start = 999    #Sets which detector will have its info stored in the root file
@@ -69,7 +69,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring1/QuartzSizeX 169 mm" + "\n"
                     Text += "/Ring1/QuartzSizeY 30 mm" + "\n"  
                     Text += "/Ring1/QuartzRotX -3 deg" + "\n"              
-                    Text += "/Ring1/SetCenterPositionInX -250 mm" + "\n"
+                    Text += "/Ring1/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Ring1/SetCenterPositionInY 344.79 mm" + "\n"
                     Text += "/Ring1/SetCenterPositionInZ 1909.10 mm" + "\n"
                     Text += "/Ring1/PolarRotation 6 deg" + "\n"
@@ -90,7 +90,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring2/QuartzSizeX 179 mm" + "\n"
                     Text += "/Ring2/QuartzSizeY 60 mm" + "\n"   
                     Text += "/Ring2/QuartzRotX -3 deg" + "\n"
-                    Text += "/Ring2/SetCenterPositionInX -250 mm" + "\n"
+                    Text += "/Ring2/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Ring2/SetCenterPositionInY 352.26 mm" + "\n"
                     Text += "/Ring2/SetCenterPositionInZ 1632.29 mm" + "\n"
                     Text += "/Ring2/PolarRotation 6 deg" + "\n"
@@ -111,7 +111,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring3/QuartzSizeX 190 mm" + "\n"
                     Text += "/Ring3/QuartzSizeY 60 mm" + "\n"   
                     Text += "/Ring3/QuartzRotX -3 deg" + "\n"
-                    Text += "/Ring3/SetCenterPositionInX -250 mm" + "\n"
+                    Text += "/Ring3/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Ring3/SetCenterPositionInY 375.06 mm" + "\n"
                     Text += "/Ring3/SetCenterPositionInZ 1360.52 mm" + "\n"
                     Text += "/Ring3/PolarRotation 6 deg" + "\n"
@@ -132,7 +132,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring4/QuartzSizeX 213 mm" + "\n"
                     Text += "/Ring4/QuartzSizeY 120 mm" + "\n"  
                     Text += "/Ring4/QuartzRotX -3 deg" + "\n"      
-                    Text += "/Ring4/SetCenterPositionInX -250 mm" + "\n"
+                    Text += "/Ring4/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Ring4/SetCenterPositionInY 397.67 mm" + "\n"
                     Text += "/Ring4/SetCenterPositionInZ 1083.42 mm" + "\n"
                     Text += "/Ring4/PolarRotation 6 deg" + "\n"
@@ -153,7 +153,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring5/QuartzSizeX 80 mm" + "\n"
                     Text += "/Ring5/QuartzSizeY 140 mm" + "\n" 
                     Text += "/Ring5/QuartzRotX -3 deg" + "\n"
-                    Text += "/Ring5/SetCenterPositionInX -250 mm" + "\n"
+                    Text += "/Ring5/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Ring5/SetCenterPositionInY 443.13 mm" + "\n"
                     Text += "/Ring5/SetCenterPositionInZ 647.16 mm" + "\n"
                     Text += "/Ring5/PolarRotation 6 deg" + "\n"
@@ -174,7 +174,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring6/QuartzSizeX 80 mm" + "\n"
                     Text += "/Ring6/QuartzSizeY 140 mm" + "\n" 
                     Text += "/Ring6/QuartzRotX -3 deg" + "\n"
-                    Text += "/Ring6/SetCenterPositionInX -336.7 mm" + "\n"
+                    Text += "/Ring6/SetCenterPositionInX -86.7 mm" + "\n"
                     Text += "/Ring6/SetCenterPositionInY 451.02 mm" + "\n"
                     Text += "/Ring6/SetCenterPositionInZ 797.79 mm" + "\n"
                     Text += "/Ring6/PolarRotation 6 deg" + "\n"
@@ -195,7 +195,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring7/QuartzSizeX 80 mm" + "\n"
                     Text += "/Ring7/QuartzSizeY 140 mm" + "\n" 
                     Text += "/Ring7/QuartzRotX -3 deg" + "\n"
-                    Text += "/Ring7/SetCenterPositionInX -163.3 mm" + "\n"
+                    Text += "/Ring7/SetCenterPositionInX 86.7 mm" + "\n"
                     Text += "/Ring7/SetCenterPositionInY 451.02 mm" + "\n"
                     Text += "/Ring7/SetCenterPositionInZ 797.79 mm" + "\n"
                     Text += "/Ring7/PolarRotation 6 deg" + "\n"
@@ -216,7 +216,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Ring8/QuartzSizeX 260 mm" + "\n"
                     Text += "/Ring8/QuartzSizeY 100 mm" + "\n"  
                     Text += "/Ring8/QuartzRotX -3 deg" + "\n"             
-                    Text += "/Ring8/SetCenterPositionInX -250 mm" + "\n"
+                    Text += "/Ring8/SetCenterPositionInX 0 mm" + "\n"
                     Text += "/Ring8/SetCenterPositionInY 517 mm" + "\n"
                     Text += "/Ring8/SetCenterPositionInZ 501.78 mm" + "\n"
                     Text += "/Ring8/PolarRotation 6 deg" + "\n"

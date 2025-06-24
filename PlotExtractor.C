@@ -265,7 +265,7 @@ void quartz_hit_pos(){
         canvas1->SaveAs(Form("plots/R%i_hit_pos.root",det));
 
         TCanvas *canvas2 = new TCanvas("canvas2","canvas2");
-        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",location.data(),det,location.data(),det),Form("%sScint2TrackHit==1 && %sScint4TrackHit==1 && %sR%iQuartzTrackHit==0",location.data(),location.data(),location.data(),det),"colz");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",location.data(),det,location.data(),det),Form("%sScint2TrackHit==1 && %sScint4TrackHit==1 && %sR%iAdjacentCutQuartzTrackHit==1",location.data(),location.data(),location.data(),det),"colz");
         canvas2->SaveAs(Form("plots/R%i_adjacency_quartz_hit_pos.root",det));
 
         TCanvas *canvas3 = new TCanvas("canvas3","canvas3");

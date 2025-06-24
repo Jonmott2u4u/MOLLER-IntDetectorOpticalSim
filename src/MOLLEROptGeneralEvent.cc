@@ -82,6 +82,40 @@ void MOLLEROptGeneralEvent::Initialize()
   R8QuartzTrackHit.clear();  
   R8QuartzTrackHit.resize(0);
 
+  R1AdjacentCutQuartzTrackHit.clear();  
+  R1AdjacentCutQuartzTrackHit.resize(0);
+  R2AdjacentCutQuartzTrackHit.clear();  
+  R2AdjacentCutQuartzTrackHit.resize(0);
+  R3AdjacentCutQuartzTrackHit.clear();  
+  R3AdjacentCutQuartzTrackHit.resize(0);
+  R4AdjacentCutQuartzTrackHit.clear();  
+  R4AdjacentCutQuartzTrackHit.resize(0);
+  R5AdjacentCutQuartzTrackHit.clear();  
+  R5AdjacentCutQuartzTrackHit.resize(0);
+  R6AdjacentCutQuartzTrackHit.clear();  
+  R6AdjacentCutQuartzTrackHit.resize(0);
+  R7AdjacentCutQuartzTrackHit.clear();  
+  R7AdjacentCutQuartzTrackHit.resize(0);
+  R8AdjacentCutQuartzTrackHit.clear();  
+  R8AdjacentCutQuartzTrackHit.resize(0);
+
+  R1SoloCutQuartzTrackHit.clear();  
+  R1SoloCutQuartzTrackHit.resize(0);
+  R2SoloCutQuartzTrackHit.clear();  
+  R2SoloCutQuartzTrackHit.resize(0);
+  R3SoloCutQuartzTrackHit.clear();  
+  R3SoloCutQuartzTrackHit.resize(0);
+  R4SoloCutQuartzTrackHit.clear();  
+  R4SoloCutQuartzTrackHit.resize(0);
+  R5SoloCutQuartzTrackHit.clear();  
+  R5SoloCutQuartzTrackHit.resize(0);
+  R6SoloCutQuartzTrackHit.clear();  
+  R6SoloCutQuartzTrackHit.resize(0);
+  R7SoloCutQuartzTrackHit.clear();  
+  R7SoloCutQuartzTrackHit.resize(0);
+  R8SoloCutQuartzTrackHit.clear();  
+  R8SoloCutQuartzTrackHit.resize(0);
+
   Scint1TrackHit.clear();  
   Scint1TrackHit.resize(0);
   Scint2TrackHit.clear();  
@@ -205,23 +239,6 @@ void MOLLEROptGeneralEvent::Initialize()
   R7PEs.resize(0);
   R8PEs.clear();
   R8PEs.resize(0);
-
-  R1SoloPEs.clear();
-  R1SoloPEs.resize(0);
-  R2SoloPEs.clear();
-  R2SoloPEs.resize(0);
-  R3SoloPEs.clear();
-  R3SoloPEs.resize(0);
-  R4SoloPEs.clear();
-  R4SoloPEs.resize(0);
-  R5SoloPEs.clear();
-  R5SoloPEs.resize(0);
-  R6SoloPEs.clear();
-  R6SoloPEs.resize(0);
-  R7SoloPEs.clear();
-  R7SoloPEs.resize(0);
-  R8SoloPEs.clear();
-  R8SoloPEs.resize(0);
 
 }	
 

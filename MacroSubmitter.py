@@ -16,7 +16,7 @@ cutx_start = 0.0  #Used for hr = 9. Used to move the beam across the segment in 
 cutx_stop = 0.0   #X moves across the width of the tiles (the long sides of R1->R4, R6), and 0 is the center
 cutx_step = 5.0   
 
-cuty_start = 0.0  #Y moves the beam in the radial direction, and R1 starts at -0.5 mm, R2 at 29.5, etc
+cuty_start = 0.0  #Y moves the beam in the radial direction, and R1 starts at 0.5 mm, R2 at 30.5, etc
 cuty_stop = 0.0
 cuty_step = 0.1
 

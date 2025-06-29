@@ -243,7 +243,7 @@
 /Scint1/SizeX 300 mm                  
 /Scint1/SizeY 300 mm                 
 /Scint1/SetCenterPositionInX 0 mm            
-/Scint1/SetCenterPositionInY 8 mm               #8 for config 1, 208 for configf 2
+/Scint1/SetCenterPositionInY 80 mm               #8 for config 1, 208 for configf 2 (for non-tilted scints use 80 & 280)
 /Scint1/SetCenterPositionInZ 97 mm            
 /Scint1/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint1/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
@@ -253,7 +253,7 @@
 /Scint2/SizeX 300 mm                   
 /Scint2/SizeY 300 mm                  
 /Scint2/SetCenterPositionInX 0 mm            
-/Scint2/SetCenterPositionInY 120 mm             #120 for config 1, 320 for config 2
+/Scint2/SetCenterPositionInY 80 mm             #120 for config 1, 320 for config 2 (for non-tilted scints use 80 & 280)
 /Scint2/SetCenterPositionInZ 2247 mm    
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint2/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
@@ -269,9 +269,9 @@
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 999                          #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
+/Storage/DetectorFocus 0                          #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
 
 /RunAction/SetID 2
 /random/setSeeds 346082 823457
 /vis/disable
-/run/beamOn 1
+/run/beamOn 100

@@ -290,7 +290,7 @@
 /Scint1/SizeX 300 mm                  
 /Scint1/SizeY 300 mm                 
 /Scint1/SetCenterPositionInX 0 mm            
-/Scint1/SetCenterPositionInY 208 mm               #8 for config 1, 208 for configf 2
+/Scint1/SetCenterPositionInY 80 mm               #8 for config 1, 208 for configf 2 (for non-tilted scints use 80 & 280)
 /Scint1/SetCenterPositionInZ 97 mm            
 /Scint1/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint1/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
@@ -300,7 +300,7 @@
 /Scint2/SizeX 300 mm                   
 /Scint2/SizeY 300 mm                  
 /Scint2/SetCenterPositionInX 0 mm            
-/Scint2/SetCenterPositionInY 320 mm             #120 for config 1, 320 for config 2
+/Scint2/SetCenterPositionInY 80 mm             #120 for config 1, 320 for config 2 (for non-tilted scints use 80 & 280)
 /Scint2/SetCenterPositionInZ 2247 mm    
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint2/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis

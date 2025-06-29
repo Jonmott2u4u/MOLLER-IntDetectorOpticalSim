@@ -17,8 +17,11 @@ EnergyCut = 0   #Sets a minimum energy for primary particles to be accepted in u
 
 NumEvents = 1000 #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
-config = [8,120]    #Configuration 1 for the UMass cosmic stand
-#config = [208,320] #Configuration 2 for the UMass cosmic stand
+config = [8,120]    #Configuration 1 for the UMass cosmic stand w/ 3deg pos-shifted scints
+#config = [208,320] #Configuration 2 for the UMass cosmic stand w/ 3deg pos-shifted scints
+
+#config = [80,80]   #Configuration 1 for the UMass cosmic stand w/o shift
+#config = [280,280] #Configuration 2 for the UMass cosmic stand w/o shift
 
 shift = 0     #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 

@@ -272,7 +272,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             if((R5Hit==0) & (R8Hit==1)) R8_AdjacentTracker = 1;
           }
         }
-        if(Det == 0){
+        if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddElectronTrackID(track->ID);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPhotonTrackID(0);

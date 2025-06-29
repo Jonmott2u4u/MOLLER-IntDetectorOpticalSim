@@ -9,7 +9,7 @@ void DoFit(TH1D *hst, Double_t *fitP, Double_t *fitE);
 
 TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
-void Langau_WillMary()
+void Langau_fitter()
 {
 
   std::ifstream rfiles("analyzed_files.dat");

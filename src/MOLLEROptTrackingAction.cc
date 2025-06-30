@@ -57,6 +57,7 @@ void MOLLEROptTrackingAction::PreUserTrackingAction(const G4Track* aTrack)
   nTrack->R5PMTHitFlag = 0;
   nTrack->R6PMTHitFlag = 0;
   nTrack->R7PMTHitFlag = 0;
+  nTrack->R8PMTHitFlag = 0;
   nTrack->LGHitFlag = 0;
   nTrack->PMTHitX = 6666;
   nTrack->PMTHitY = 6666;

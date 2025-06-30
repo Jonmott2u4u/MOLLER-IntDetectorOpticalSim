@@ -90,7 +90,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
   //--------BF segment Variables--------//
   G4double R1_pes = 0, R2_pes = 0, R3_pes = 0, R4_pes = 0, R5_pes = 0, R6_pes = 0, R7_pes = 0, R8_pes = 0;
-  G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, Scint1Hit, Scint2Hit, Scint3Hit, Scint4Hit;
+  G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, Scint1Hit, Scint2Hit;
   G4int R1_Tracker = 0;  //Stores whether the R1 tile (+ scint) has been hit this event  
   G4int R2_Tracker = 0;  //
   G4int R3_Tracker = 0;  //  
@@ -129,7 +129,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   for(int t = 0; t < NumTracks; t++){
 
     PMThit = 0;
-    R1Hit = 0, R2Hit = 0, R3Hit = 0, R4Hit = 0, R5Hit = 0, R6Hit = 0, R7Hit = 0, R8Hit = 0, Scint1Hit = 0, Scint2Hit = 0, Scint3Hit = 0, Scint4Hit = 0;
+    R1Hit = 0, R2Hit = 0, R3Hit = 0, R4Hit = 0, R5Hit = 0, R6Hit = 0, R7Hit = 0, R8Hit = 0, Scint1Hit = 0, Scint2Hit = 0;
     analysis->MOLLERMainEvent->MOLLERGeneralEvent.Initialize();  
     track  = TrackingReadout->GetTrackData(t);
     if(track){    

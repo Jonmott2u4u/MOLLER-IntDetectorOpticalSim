@@ -274,3 +274,34 @@ void quartz_hit_pos(){
 
     }
 }
+
+void pes_at_quartz_hit_pos(){
+
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TString tmpStr;
+    string location = "MOLLEROptData.MOLLERGeneralEvent.";
+    TFile *file;
+    TH1D *hst, *tmp;
+    int det = 5;
+
+    while(std::getline(rfiles, line)){
+        /*tmpStr = line.data();
+        tmpStr = tmpStr.ReplaceAll(".root",""); */
+        file = TFile::Open(line.data());
+        TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+
+        TCanvas *canvas1 = new TCanvas("canvas1","canvas1");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX:%sR%iPEs",location.data(),det,location.data(),det,location.data(),det),Form("%sScint2TrackHit==1 && %sScint4TrackHit==1",location.data(),location.data()),"colz");
+        canvas1->SaveAs(Form("plots/R%i_hit_pos.root",det));
+
+        TCanvas *canvas2 = new TCanvas("canvas2","canvas2");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX:%sR%iPEs",location.data(),det,location.data(),det,location.data(),det),Form("%sScint2TrackHit==1 && %sScint4TrackHit==1 && %sR%iAdjacentCutQuartzTrackHit==1",location.data(),location.data(),location.data(),det),"colz");
+        canvas2->SaveAs(Form("plots/R%i_adjacency_quartz_hit_pos.root",det));
+
+        TCanvas *canvas3 = new TCanvas("canvas3","canvas3");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX:%sR%iPEs",location.data(),det,location.data(),det,location.data(),det),Form("%sScint2TrackHit==1 && %sScint4TrackHit==1 && %sR%iSoloCutQuartzTrackHit==1",location.data(),location.data(),location.data(),det),"colz");
+        canvas3->SaveAs(Form("plots/R%i_solo_quartz_hit_pos.root",det));
+
+    }
+}

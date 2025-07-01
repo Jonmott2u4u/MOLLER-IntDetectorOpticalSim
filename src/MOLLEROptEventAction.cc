@@ -500,7 +500,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             if((R13Hit==0) & (R16Hit==1)) R16_AdjacentTracker = 1;
           }
         }
-        if(Det == 0){
+        if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddElectronTrackID(track->ID);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPhotonTrackID(0);
@@ -545,7 +545,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
             //optPhEng = track->InitKinEnergy/eV;
             //OptParam* op = TrackingReadout->GetOpticalParameters();
-            //PMThit++;
+            PMThit++;
           }     
           for(int s = 0; s < track->NSteps; s++){
             if(track->StepVolume[s] == myQuartz){

@@ -237,6 +237,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4ParticleDefinition* particle = G4Electron::Definition();//Primary event particle defaults to electron
   if (PrimaryParticle == 1) particle = G4Electron::Definition();
   if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
+  if (PrimaryParticle == 3) particle = G4Positron::Definition();
   particleGun->SetParticleDefinition(particle);
 
   G4int muon_energy = 0;

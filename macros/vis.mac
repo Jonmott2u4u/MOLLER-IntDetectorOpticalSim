@@ -294,7 +294,7 @@
 
 #------------------#Beam commands -----------------------#
 
-/Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons
+/Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons, 3 for positrons
 /Generator/EventHitRegion 9                       #1->8 = BF det centers 1-8, 9 = segment scan
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10

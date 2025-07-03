@@ -88,7 +88,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
   G4int R0_Tracker = 0, R999_Tracker = 0;
 
-  //--------BF segment Variables--------//
+  //--------Segment Variables--------//
   G4double R1_pes = 0, R2_pes = 0, R3_pes = 0, R4_pes = 0, R5_pes = 0, R6_pes = 0, R7_pes = 0, R8_pes = 0;
   G4int R1Hit, R2Hit, R3Hit, R4Hit, R5Hit, R6Hit, R7Hit, R8Hit, Scint1Hit, Scint2Hit;
   G4int R1_Tracker = 0;  //Stores whether the R1 tile (+ scint) has been hit this event  

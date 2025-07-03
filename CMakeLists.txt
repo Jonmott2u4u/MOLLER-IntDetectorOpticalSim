@@ -115,6 +115,7 @@ set(MOLLER_SCRIPTS
   MacroSubmitter.sh
   Langau_fitter.C
   PlotExtractor.C
+  TreeReader.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

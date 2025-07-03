@@ -117,6 +117,7 @@ set(MOLLER_SCRIPTS
   hitpos_tracker.C
   PlotExtractor.C
   segment_scan.C
+  TreeReader.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

@@ -354,53 +354,85 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       //cout << R5_Tracker << endl;
       if(Det == 0){
         if(R1_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1AdjacentCutQuartzTrackHit(0);
         if(R2_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2AdjacentCutQuartzTrackHit(0);
         if(R3_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3AdjacentCutQuartzTrackHit(0);
         if(R4_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4AdjacentCutQuartzTrackHit(0);
         if(R5_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5AdjacentCutQuartzTrackHit(0);
         if(R6_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6AdjacentCutQuartzTrackHit(0);
         if(R7_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7AdjacentCutQuartzTrackHit(0);
         if(R8_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8AdjacentCutQuartzTrackHit(0);
         if(R1_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1SoloCutQuartzTrackHit(0);
         if(R2_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2SoloCutQuartzTrackHit(0);
         if(R3_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3SoloCutQuartzTrackHit(0);
         if(R4_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4SoloCutQuartzTrackHit(0);
         if(R5_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5SoloCutQuartzTrackHit(0);
         if(R6_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6SoloCutQuartzTrackHit(0);
         if(R7_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7SoloCutQuartzTrackHit(0);
         if(R8_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8SoloCutQuartzTrackHit(0);
       }
       else if(Det == 1){
         if(R1_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1AdjacentCutQuartzTrackHit(0);
         if(R1_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1SoloCutQuartzTrackHit(0);
       }
       else if(Det == 2){
         if(R2_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2AdjacentCutQuartzTrackHit(0);
         if(R2_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR2SoloCutQuartzTrackHit(0);
       }
       else if(Det == 3){
         if(R3_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3AdjacentCutQuartzTrackHit(0);
         if(R3_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR3SoloCutQuartzTrackHit(0);
       }
       else if(Det == 4){
         if(R4_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4AdjacentCutQuartzTrackHit(0);
         if(R4_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR4SoloCutQuartzTrackHit(0);
       }
       else if(Det == 5){
         if(R5_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5AdjacentCutQuartzTrackHit(0);
         if(R5_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR5SoloCutQuartzTrackHit(0);
       }
       else if(Det == 6){
         if(R6_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6AdjacentCutQuartzTrackHit(0);
         if(R6_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR6SoloCutQuartzTrackHit(0);
       }
       else if(Det == 7){
         if(R7_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7AdjacentCutQuartzTrackHit(0);
         if(R7_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR7SoloCutQuartzTrackHit(0);
       }
       else if(Det == 8){
         if(R8_AdjacentTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8AdjacentCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8AdjacentCutQuartzTrackHit(0);
         if(R8_SoloTracker == 1) analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8SoloCutQuartzTrackHit(1);
+        else analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR8SoloCutQuartzTrackHit(0);
       }
     }  
 

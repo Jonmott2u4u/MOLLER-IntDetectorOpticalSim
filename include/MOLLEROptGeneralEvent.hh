@@ -59,6 +59,24 @@ private:
   vector <Int_t> R7QuartzTrackHit;
   vector <Int_t> R8QuartzTrackHit;
 
+  vector <Int_t> R1AdjacentCutQuartzTrackHit;
+  vector <Int_t> R2AdjacentCutQuartzTrackHit;
+  vector <Int_t> R3AdjacentCutQuartzTrackHit;
+  vector <Int_t> R4AdjacentCutQuartzTrackHit;
+  vector <Int_t> R5AdjacentCutQuartzTrackHit;
+  vector <Int_t> R6AdjacentCutQuartzTrackHit;
+  vector <Int_t> R7AdjacentCutQuartzTrackHit;
+  vector <Int_t> R8AdjacentCutQuartzTrackHit;
+
+  vector <Int_t> R1SoloCutQuartzTrackHit;
+  vector <Int_t> R2SoloCutQuartzTrackHit;
+  vector <Int_t> R3SoloCutQuartzTrackHit;
+  vector <Int_t> R4SoloCutQuartzTrackHit;
+  vector <Int_t> R5SoloCutQuartzTrackHit;
+  vector <Int_t> R6SoloCutQuartzTrackHit;
+  vector <Int_t> R7SoloCutQuartzTrackHit;
+  vector <Int_t> R8SoloCutQuartzTrackHit;
+
   vector <Float_t> R1TileHitX;
   vector <Float_t> R2TileHitX;
   vector <Float_t> R3TileHitX;
@@ -150,6 +168,24 @@ public:
   void AddR6QuartzTrackHit(Int_t tID){R6QuartzTrackHit.push_back(tID);};
   void AddR7QuartzTrackHit(Int_t tID){R7QuartzTrackHit.push_back(tID);};
   void AddR8QuartzTrackHit(Int_t tID){R8QuartzTrackHit.push_back(tID);};
+
+  void AddR1AdjacentCutQuartzTrackHit(Int_t tID){R1AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR2AdjacentCutQuartzTrackHit(Int_t tID){R2AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR3AdjacentCutQuartzTrackHit(Int_t tID){R3AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR4AdjacentCutQuartzTrackHit(Int_t tID){R4AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR5AdjacentCutQuartzTrackHit(Int_t tID){R5AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR6AdjacentCutQuartzTrackHit(Int_t tID){R6AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR7AdjacentCutQuartzTrackHit(Int_t tID){R7AdjacentCutQuartzTrackHit.push_back(tID);};
+  void AddR8AdjacentCutQuartzTrackHit(Int_t tID){R8AdjacentCutQuartzTrackHit.push_back(tID);};
+
+  void AddR1SoloCutQuartzTrackHit(Int_t tID){R1SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR2SoloCutQuartzTrackHit(Int_t tID){R2SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR3SoloCutQuartzTrackHit(Int_t tID){R3SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR4SoloCutQuartzTrackHit(Int_t tID){R4SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR5SoloCutQuartzTrackHit(Int_t tID){R5SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR6SoloCutQuartzTrackHit(Int_t tID){R6SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR7SoloCutQuartzTrackHit(Int_t tID){R7SoloCutQuartzTrackHit.push_back(tID);};
+  void AddR8SoloCutQuartzTrackHit(Int_t tID){R8SoloCutQuartzTrackHit.push_back(tID);};
 
   void AddR1QuartzHitPositionX(Float_t x) {R1TileHitX.push_back(x);};
   void AddR1QuartzHitPositionY(Float_t y) {R1TileHitY.push_back(y);};

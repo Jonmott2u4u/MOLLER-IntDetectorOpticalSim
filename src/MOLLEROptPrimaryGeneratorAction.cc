@@ -229,7 +229,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_y_tilt = sinTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*cosTilt_dir;
   G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
 
-  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 110*mm));
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 59*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
@@ -237,6 +237,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4ParticleDefinition* particle = G4Electron::Definition();//Primary event particle defaults to electron
   if (PrimaryParticle == 1) particle = G4Electron::Definition();
   if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
+  if (PrimaryParticle == 3) particle = G4Positron::Definition();
   particleGun->SetParticleDefinition(particle);
 
   G4int muon_energy = 0;

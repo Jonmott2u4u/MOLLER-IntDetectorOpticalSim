@@ -110,8 +110,8 @@ void LangauFitExtract()
     file->Close("R");    
 
     if (paramy_run == limity){
-      paramx_run = paramx_start + counterx*paramx_step;
       counterx = counterx + 1.0;
+      paramx_run = paramx_start + counterx*paramx_step;
       countery = 0.0;
     }
 

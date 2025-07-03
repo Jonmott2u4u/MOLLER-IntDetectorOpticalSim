@@ -114,7 +114,9 @@ set(MOLLER_SCRIPTS
   MacroSubmitter.py
   MacroSubmitter.sh
   LangauFitExtract.C
+  hitpos_tracker.C
   PlotExtractor.C
+  segment_scan.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

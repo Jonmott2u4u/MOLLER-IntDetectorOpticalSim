@@ -14,7 +14,7 @@ using namespace std;
 
 void plot_r5_pes_vs_pos() {
     // Open ROOT file
-    TFile *f = TFile::Open("rootfiles/cosmics.root");
+    TFile *f = TFile::Open("MOLLEROpt_0002.root");
     if (!f || f->IsZombie()) {
         cerr << "Error: Cannot open ROOT file!" << endl;
         return;
@@ -48,23 +48,23 @@ void plot_r5_pes_vs_pos() {
 
     // Prepare 2D histograms //
     //The "entry" plots store the number of hits per bin
-    TH2F *h_entries = new TH2F("h_entries", "Entries per tile hit position",
+    TH2F *h_entries = new TH2F("h_entries", "Entries per tile hit position [cm];X position [cm];Y position [cm]",
                         8, -4, 4,  // X-axis binning
                         16, 18, 34);   // Y-axis binning
-    TH2F *h_entries_adj = new TH2F("h_entries", "Entries per tile hit position",
+    TH2F *h_entries_adj = new TH2F("h_entries", "Entries per tile hit position [cm];X position [cm];Y position [cm]",
                         8, -4, 4,  // X-axis binning
                         16, 18, 34);   // Y-axis binning
-    TH2F *h_entries_solo = new TH2F("h_entries", "Entries per tile hit position",
+    TH2F *h_entries_solo = new TH2F("h_entries", "Entries per tile hit position [cm];X position [cm];Y position [cm]",
                         8, -4, 4,  // X-axis binning
                         16, 18, 34);   // Y-axis binning
     //The "xy" plots store the average pe yield per bin
-    TH2F *h_xy = new TH2F("h_xy", "R5TileHitY vs R5TileHitX w/ scint cut;X position;Y position",
+    TH2F *h_xy = new TH2F("h_xy", "R5TileHitY vs R5TileHitX w/ scint cut;X position [cm];Y position [cm]",
                         8, -4, 4,  // X-axis binning
                         16, 18, 34);   // Y-axis binning
-    TH2F *h_xy_adj = new TH2F("h_xy_adj", "R5TileHitY vs R5TileHitX w/ adjacency cut;X position;Y position",
+    TH2F *h_xy_adj = new TH2F("h_xy_adj", "R5TileHitY vs R5TileHitX w/ adjacency cut;X position [cm];Y position [cm]",
                         8, -4, 4,  // X-axis binning
                         16, 18, 34);   // Y-axis binning
-    TH2F *h_xy_solo = new TH2F("h_xy_solo", "R5TileHitY vs R5TileHitX w/ solocut;X position;Y position",
+    TH2F *h_xy_solo = new TH2F("h_xy_solo", "R5TileHitY vs R5TileHitX w/ solocut;X position [cm];Y position [cm]",
                         8, -4, 4,  // X-axis binning
                         16, 18, 34);   // Y-axis binning
 

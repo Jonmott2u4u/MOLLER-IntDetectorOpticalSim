@@ -38,30 +38,7 @@ public:
   void AddToAverageLightGuideOptPhotonDist(Float_t wvl, Float_t wgt){LightGuideOptPhotonDistrHist->Fill(wvl,wgt);};
 
   //--------BF segment histograms--------//
-  void R1_AddCathodeDetectionEvent(Int_t events) {R1_CathodeEventsDistrHist->Fill(events);};
-  void R2_AddCathodeDetectionEvent(Int_t events) {R2_CathodeEventsDistrHist->Fill(events);};
-  void R3_AddCathodeDetectionEvent(Int_t events) {R3_CathodeEventsDistrHist->Fill(events);};
-  void R4_AddCathodeDetectionEvent(Int_t events) {R4_CathodeEventsDistrHist->Fill(events);};
-  void R5_AddCathodeDetectionEvent(Int_t events) {R5_CathodeEventsDistrHist->Fill(events);};
-  void R6_AddCathodeDetectionEvent(Int_t events) {R6_CathodeEventsDistrHist->Fill(events);};
-  void R7_AddCathodeDetectionEvent(Int_t events) {R7_CathodeEventsDistrHist->Fill(events);};
-  void R8_AddCathodeDetectionEvent(Int_t events) {R8_CathodeEventsDistrHist->Fill(events);};
-  void R1Only_AddCathodeDetectionEvent(Int_t events) {R1Only_CathodeEventsDistrHist->Fill(events);};
-  void R2Only_AddCathodeDetectionEvent(Int_t events) {R2Only_CathodeEventsDistrHist->Fill(events);};
-  void R3Only_AddCathodeDetectionEvent(Int_t events) {R3Only_CathodeEventsDistrHist->Fill(events);};
-  void R4Only_AddCathodeDetectionEvent(Int_t events) {R4Only_CathodeEventsDistrHist->Fill(events);};
-  void R5Only_AddCathodeDetectionEvent(Int_t events) {R5Only_CathodeEventsDistrHist->Fill(events);};
-  void R6Only_AddCathodeDetectionEvent(Int_t events) {R6Only_CathodeEventsDistrHist->Fill(events);};
-  void R7Only_AddCathodeDetectionEvent(Int_t events) {R7Only_CathodeEventsDistrHist->Fill(events);};
-  void R8Only_AddCathodeDetectionEvent(Int_t events) {R8Only_CathodeEventsDistrHist->Fill(events);};
-  void R1Adjacent_AddCathodeDetectionEvent(Int_t events) {R1Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R2Adjacent_AddCathodeDetectionEvent(Int_t events) {R2Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R3Adjacent_AddCathodeDetectionEvent(Int_t events) {R3Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R4Adjacent_AddCathodeDetectionEvent(Int_t events) {R4Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R5Adjacent_AddCathodeDetectionEvent(Int_t events) {R5Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R6Adjacent_AddCathodeDetectionEvent(Int_t events) {R6Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R7Adjacent_AddCathodeDetectionEvent(Int_t events) {R7Adjacent_CathodeEventsDistrHist->Fill(events);};
-  void R8Adjacent_AddCathodeDetectionEvent(Int_t events) {R8Adjacent_CathodeEventsDistrHist->Fill(events);};
+  void Ring_AddCathodeDetectionEvent(Int_t events) {Ring_CathodeEventsDistrHist->Fill(events);};
 
   MOLLEROptMainEvent* MOLLERMainEvent;
 
@@ -79,30 +56,7 @@ private:
   TProfile*    LightGuideOptPhotonDistrHist;
 
   //--------BF segment histograms--------//
-  TH1D*    R1_CathodeEventsDistrHist;
-  TH1D*    R2_CathodeEventsDistrHist;
-  TH1D*    R3_CathodeEventsDistrHist;
-  TH1D*    R4_CathodeEventsDistrHist;
-  TH1D*    R5_CathodeEventsDistrHist;
-  TH1D*    R6_CathodeEventsDistrHist;
-  TH1D*    R7_CathodeEventsDistrHist;
-  TH1D*    R8_CathodeEventsDistrHist;
-  TH1D*    R1Only_CathodeEventsDistrHist; //Unlike R#_CathodeEvents, only includes PEs from electrons that hit only that detector
-  TH1D*    R2Only_CathodeEventsDistrHist; //
-  TH1D*    R3Only_CathodeEventsDistrHist; //
-  TH1D*    R4Only_CathodeEventsDistrHist; //
-  TH1D*    R5Only_CathodeEventsDistrHist; //
-  TH1D*    R6Only_CathodeEventsDistrHist; //
-  TH1D*    R7Only_CathodeEventsDistrHist; //
-  TH1D*    R8Only_CathodeEventsDistrHist; //
-  TH1D*    R1Adjacent_CathodeEventsDistrHist; //Plots PEs for adjacency cuts (rejects events that hit both the desired detector and an adjacent one)
-  TH1D*    R2Adjacent_CathodeEventsDistrHist; //
-  TH1D*    R3Adjacent_CathodeEventsDistrHist; //
-  TH1D*    R4Adjacent_CathodeEventsDistrHist; //
-  TH1D*    R5Adjacent_CathodeEventsDistrHist; //
-  TH1D*    R6Adjacent_CathodeEventsDistrHist; //
-  TH1D*    R7Adjacent_CathodeEventsDistrHist; //
-  TH1D*    R8Adjacent_CathodeEventsDistrHist; //
+  TH1D*    Ring_CathodeEventsDistrHist;
   
   TVectorD *NumberOfPrimaries;
   Float_t OptPhotonDist[800];

@@ -64,37 +64,9 @@ void MOLLEROptTrackingReadout::IncrementEventCathodeDetection(Int_t id)
 {
   for(int n = 0; n < Tracks.size(); n++)
     if(Tracks[n]->ID == id){
-      if(Tracks[n]->R1PMTHitFlag == 1){
-        R1_CathodeDetections++;
-        Tracks[n]->R1_Detected = 1;
-      }
-      if(Tracks[n]->R2PMTHitFlag == 1){
-        R2_CathodeDetections++;
-        Tracks[n]->R2_Detected = 1;
-      }
-      if(Tracks[n]->R3PMTHitFlag == 1){
-        R3_CathodeDetections++;
-        Tracks[n]->R3_Detected = 1;
-      }
-      if(Tracks[n]->R4PMTHitFlag == 1){
-        R4_CathodeDetections++;
-        Tracks[n]->R4_Detected = 1;
-      }
-      if(Tracks[n]->R5PMTHitFlag == 1){
-        R5_CathodeDetections++;
-        Tracks[n]->R5_Detected = 1;
-      }
-      if(Tracks[n]->R6PMTHitFlag == 1){
-        R6_CathodeDetections++;
-        Tracks[n]->R6_Detected = 1;
-      }
-      if(Tracks[n]->R7PMTHitFlag == 1){
-        R7_CathodeDetections++;
-        Tracks[n]->R7_Detected = 1;
-      }
-      if(Tracks[n]->R8PMTHitFlag == 1){
-        R8_CathodeDetections++;
-        Tracks[n]->R8_Detected = 1;
+      if(Tracks[n]->RingPMTHitFlag == 1){
+        Ring_CathodeDetections++;
+        Tracks[n]->Ring_Detected = 1;
       }
     }
   /*if(R2_CathodeDetections == 1){
@@ -128,14 +100,7 @@ void MOLLEROptTrackingReadout::SetPMTHitLocation(Int_t id, G4ThreeVector loc, G4
   }
   if(tr == -1) return;
   if(!Tracks[tr]->PMTHitFlag) Tracks[tr]->PMTHitFlag = 1;
-  if((!Tracks[tr]->R1PMTHitFlag) & (pmt == "PMTHitCollection1")) Tracks[tr]->R1PMTHitFlag = 1;
-  if((!Tracks[tr]->R2PMTHitFlag) & (pmt == "PMTHitCollection2")) Tracks[tr]->R2PMTHitFlag = 1;
-  if((!Tracks[tr]->R3PMTHitFlag) & (pmt == "PMTHitCollection3")) Tracks[tr]->R3PMTHitFlag = 1;
-  if((!Tracks[tr]->R4PMTHitFlag) & (pmt == "PMTHitCollection4")) Tracks[tr]->R4PMTHitFlag = 1;
-  if((!Tracks[tr]->R5PMTHitFlag) & (pmt == "PMTHitCollection5")) Tracks[tr]->R5PMTHitFlag = 1;
-  if((!Tracks[tr]->R6PMTHitFlag) & (pmt == "PMTHitCollection6")) Tracks[tr]->R6PMTHitFlag = 1;
-  if((!Tracks[tr]->R7PMTHitFlag) & (pmt == "PMTHitCollection7")) Tracks[tr]->R7PMTHitFlag = 1;
-  if((!Tracks[tr]->R8PMTHitFlag) & (pmt == "PMTHitCollection8")) Tracks[tr]->R8PMTHitFlag = 1;
+  if((!Tracks[tr]->RingPMTHitFlag) & (pmt == "PMTHitCollection")) Tracks[tr]->RingPMTHitFlag = 1;
   
   Tracks[tr]->PMTHitX = loc.x();
   Tracks[tr]->PMTHitY = loc.y();
@@ -152,53 +117,11 @@ void MOLLEROptTrackingReadout::SetQuartzHitLocation(Int_t id, G4ThreeVector loc,
   if(tr == -1) return;
 
   //G4cout << quartz << G4endl;
-  if((Tracks[tr]->R1QuartzHitFlag == 0) & (quartz == "QuartzHitCollection1")){ 
-    Tracks[tr]->R1QuartzHitFlag = 1;
-    Tracks[tr]->R1QuartzHitX = loc.x();
-    Tracks[tr]->R1QuartzHitY = loc.y();
-    Tracks[tr]->R1QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R2QuartzHitFlag == 0) & (quartz == "QuartzHitCollection2")){ 
-    Tracks[tr]->R2QuartzHitFlag = 1;
-    Tracks[tr]->R2QuartzHitX = loc.x();
-    Tracks[tr]->R2QuartzHitY = loc.y();
-    Tracks[tr]->R2QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R3QuartzHitFlag == 0) & (quartz == "QuartzHitCollection3")){ 
-    Tracks[tr]->R3QuartzHitFlag = 1;
-    Tracks[tr]->R3QuartzHitX = loc.x();
-    Tracks[tr]->R3QuartzHitY = loc.y();
-    Tracks[tr]->R3QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R4QuartzHitFlag == 0) & (quartz == "QuartzHitCollection4")){ 
-    Tracks[tr]->R4QuartzHitFlag = 1;
-    Tracks[tr]->R4QuartzHitX = loc.x();
-    Tracks[tr]->R4QuartzHitY = loc.y();
-    Tracks[tr]->R4QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R5QuartzHitFlag == 0) & (quartz == "QuartzHitCollection5")){ 
-    Tracks[tr]->R5QuartzHitFlag = 1;
-    Tracks[tr]->R5QuartzHitX = loc.x();
-    Tracks[tr]->R5QuartzHitY = loc.y();
-    Tracks[tr]->R5QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R6QuartzHitFlag == 0) & (quartz == "QuartzHitCollection6")){
-    Tracks[tr]->R6QuartzHitFlag = 1;
-    Tracks[tr]->R6QuartzHitX = loc.x();
-    Tracks[tr]->R6QuartzHitY = loc.y();
-    Tracks[tr]->R6QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R7QuartzHitFlag == 0) & (quartz == "QuartzHitCollection7")){
-    Tracks[tr]->R7QuartzHitFlag = 1;
-    Tracks[tr]->R7QuartzHitX = loc.x();
-    Tracks[tr]->R7QuartzHitY = loc.y();
-    Tracks[tr]->R7QuartzHitZ = loc.z();
-  }
-  if((Tracks[tr]->R8QuartzHitFlag == 0) & (quartz == "QuartzHitCollection8")){ 
-    Tracks[tr]->R8QuartzHitFlag = 1;
-    Tracks[tr]->R8QuartzHitX = loc.x();
-    Tracks[tr]->R8QuartzHitY = loc.y();
-    Tracks[tr]->R8QuartzHitZ = loc.z();
+  if((Tracks[tr]->RingQuartzHitFlag == 0) & (quartz == "QuartzHitCollection")){ 
+    Tracks[tr]->RingQuartzHitFlag = 1;
+    Tracks[tr]->RingQuartzHitX = loc.x();
+    Tracks[tr]->RingQuartzHitY = loc.y();
+    Tracks[tr]->RingQuartzHitZ = loc.z();
   }
 }
 
@@ -347,12 +270,5 @@ void MOLLEROptTrackingReadout::Initialize()
   
   ElectronTracks = 0;
   PhotonTracks = 0;
-  R1_CathodeDetections = 0;
-  R2_CathodeDetections = 0;
-  R3_CathodeDetections = 0;
-  R4_CathodeDetections = 0;
-  R5_CathodeDetections = 0;
-  R6_CathodeDetections = 0;
-  R7_CathodeDetections = 0;
-  R8_CathodeDetections = 0;
+  Ring_CathodeDetections = 0;
 }

@@ -5,29 +5,8 @@ MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* Tr
 {
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
-  if(SensitiveDetectorName == "Quartz1"){
-    theCollectionName = G4String("QuartzHitCollection1");
-  }
-  else if(SensitiveDetectorName == "Quartz2"){
-    theCollectionName = G4String("QuartzHitCollection2");
-  }
-  else if(SensitiveDetectorName == "Quartz3"){
-    theCollectionName = G4String("QuartzHitCollection3");
-  }
-  else if(SensitiveDetectorName == "Quartz4"){
-    theCollectionName = G4String("QuartzHitCollection4");
-  }
-  else if(SensitiveDetectorName == "Quartz5"){
-    theCollectionName = G4String("QuartzHitCollection5");
-  }
-  else if(SensitiveDetectorName == "Quartz6"){
-    theCollectionName = G4String("QuartzHitCollection6");
-  }
-  else if(SensitiveDetectorName == "Quartz7"){
-    theCollectionName = G4String("QuartzHitCollection7");
-  }
-  else if(SensitiveDetectorName == "Quartz8"){
-    theCollectionName = G4String("QuartzHitCollection8");
+  if(SensitiveDetectorName == "Quartz"){
+    theCollectionName = G4String("QuartzHitCollection");
   }
 
   collectionName.insert(theCollectionName); 
@@ -78,7 +57,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
         preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
           QEx = 1; 
 	      }
-        if(((postStep->GetPhysicalVolume()->GetName().contains("Ring") && postStep->GetPhysicalVolume()->GetName().contains("Physical")) ||
+        if(((postStep->GetPhysicalVolume()->GetName().contains("MainDet") && postStep->GetPhysicalVolume()->GetName().contains("Physical")) ||
         postStep->GetPhysicalVolume()->GetName().contains("LG_Physical"))&&(
         preStep->GetPhysicalVolume()->GetName().contains("Quartz")&&
         preStep->GetPhysicalVolume()->GetName().contains("Physical"))){

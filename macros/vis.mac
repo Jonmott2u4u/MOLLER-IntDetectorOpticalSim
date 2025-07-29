@@ -72,240 +72,254 @@
 #               |
 #  (x) into screen
 
-#  The below parameters are for the front flush segment
+int Detector = 5;
 
-#------------------#BF Segment commands --------------------#
+#------------------#Ring 1--------------------#
+if (Detector == 1){
 
-#------------------#Ring 1 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 410 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 17.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm       #
 
-/Ring1/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring1/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring1/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring1/LightGuideMiddleBox 410 mm			       #Height of box between upper and lower cones	
-/Ring1/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
-/Ring1/LightGuideQuartzInterfaceOpeningX 17.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring1/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring1/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring1/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring1/LightGuidePMTInterfaceOpeningZ 7.0 cm       #
+    /MainDet/QuartzSizeZ 20 mm
+    /MainDet/QuartzSizeX 169 mm
+    /MainDet/QuartzSizeY 20 mm                           #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring1/QuartzSizeZ 20 mm
-/Ring1/QuartzSizeX 169 mm
-/Ring1/QuartzSizeY 20 mm                           #Without the 45 degree cut
-/Ring1/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 0 mm
+    /MainDet/SetCenterPositionInY 270.7 mm              #When placing modules, the change in position due to PolarRotation != 0 must be done by hand
+    /MainDet/SetCenterPositionInZ 1923.4 mm             #Annoying, but can be done. Use rotation matrix about X-axis
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring1/SetCenterPositionInX 0 mm
-/Ring1/SetCenterPositionInY 270.7 mm              #When placing modules, the change in position due to PolarRotation != 0 must be done by hand
-/Ring1/SetCenterPositionInZ 1923.4 mm             #Annoying, but can be done. Use rotation matrix about X-axis
-/Ring1/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring1/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring1/UpdateGeometry
+}
+#------------------#Ring 2--------------------#
+if (Detector == 2){
 
-#------------------#Ring 2 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 400 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 205 mm             #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 18.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring2/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring2/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring2/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring2/LightGuideMiddleBox 400 mm			       #Height of box between upper and lower cones	
-/Ring2/LightGuideUpperInterface 205 mm             #Distance between upper and lower interface planes
-/Ring2/LightGuideQuartzInterfaceOpeningX 18.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring2/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring2/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring2/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring2/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 20 mm
+    /MainDet/QuartzSizeX 179 mm
+    /MainDet/QuartzSizeY 60 mm                           #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring2/QuartzSizeZ 20 mm
-/Ring2/QuartzSizeX 179 mm
-/Ring2/QuartzSizeY 60 mm                           #Without the 45 degree cut
-/Ring2/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 0 mm
+    /MainDet/SetCenterPositionInY 292.8 mm
+    /MainDet/SetCenterPositionInZ 1645.60 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring2/SetCenterPositionInX 0 mm
-/Ring2/SetCenterPositionInY 292.8 mm
-/Ring2/SetCenterPositionInZ 1645.60 mm
-/Ring2/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring2/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring2/UpdateGeometry
+}
+#------------------#Ring 3--------------------#
+if (Detector == 3){
 
-#------------------#Ring 3 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 300 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 259 mm             #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 19.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring3/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring3/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring3/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring3/LightGuideMiddleBox 300 mm			       #Height of box between upper and lower cones	
-/Ring3/LightGuideUpperInterface 259 mm             #Distance between upper and lower interface planes
-/Ring3/LightGuideQuartzInterfaceOpeningX 19.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring3/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring3/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring3/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring3/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 20 mm
+    /MainDet/QuartzSizeX 190 mm
+    /MainDet/QuartzSizeY 60 mm                           #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring3/QuartzSizeZ 20 mm
-/Ring3/QuartzSizeX 190 mm
-/Ring3/QuartzSizeY 60 mm                           #Without the 45 degree cut
-/Ring3/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 0 mm
+    /MainDet/SetCenterPositionInY 329.8 mm
+    /MainDet/SetCenterPositionInZ 1371.51 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring3/SetCenterPositionInX 0 mm
-/Ring3/SetCenterPositionInY 329.8 mm
-/Ring3/SetCenterPositionInZ 1371.51 mm
-/Ring3/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring3/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring3/UpdateGeometry
+}
+#------------------#Ring 4--------------------#
+if (Detector == 4){
 
-#------------------#Ring 4 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 200 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 253 mm             #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 22.1 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring4/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring4/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring4/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring4/LightGuideMiddleBox 200 mm			       #Height of box between upper and lower cones	
-/Ring4/LightGuideUpperInterface 253 mm             #Distance between upper and lower interface planes
-/Ring4/LightGuideQuartzInterfaceOpeningX 22.1 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring4/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring4/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring4/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring4/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 20 mm
+    /MainDet/QuartzSizeX 213 mm
+    /MainDet/QuartzSizeY 120 mm                          #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring4/QuartzSizeZ 20 mm
-/Ring4/QuartzSizeX 213 mm
-/Ring4/QuartzSizeY 120 mm                          #Without the 45 degree cut
-/Ring4/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 0 mm
+    /MainDet/SetCenterPositionInY 366.9 mm
+    /MainDet/SetCenterPositionInZ 1092.08 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring4/SetCenterPositionInX 0 mm
-/Ring4/SetCenterPositionInY 366.9 mm
-/Ring4/SetCenterPositionInZ 1092.08 mm
-/Ring4/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring4/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring4/UpdateGeometry
+}
+#------------------#Ring 5 FF--------------------# 
+if (Detector == 5){
 
-#------------------#Ring 5 FF commands --------------------# 
+    /MainDet/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring5/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring5/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring5/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring5/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
-/Ring5/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
-/Ring5/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring5/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring5/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring5/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring5/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 17 mm
+    /MainDet/QuartzSizeX 80 mm
+    /MainDet/QuartzSizeY 140 mm                          #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring5/QuartzSizeZ 17 mm
-/Ring5/QuartzSizeX 80 mm
-/Ring5/QuartzSizeY 140 mm                          #Without the 45 degree cut
-/Ring5/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 0 mm
+    /MainDet/SetCenterPositionInY 435.3 mm
+    /MainDet/SetCenterPositionInZ 651.64 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring5/SetCenterPositionInX 0 mm
-/Ring5/SetCenterPositionInY 435.3 mm
-/Ring5/SetCenterPositionInZ 651.64 mm
-/Ring5/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring5/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring5/UpdateGeometry
+}
+#------------------#Ring 5 BF1--------------------#
+if (Detector == 6){
 
-#------------------#Ring 5 BF1 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring6/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring6/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring6/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring6/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
-/Ring6/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
-/Ring6/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring6/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring6/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring6/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring6/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 17 mm
+    /MainDet/QuartzSizeX 80 mm
+    /MainDet/QuartzSizeY 140 mm                          #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring6/QuartzSizeZ 17 mm
-/Ring6/QuartzSizeX 80 mm
-/Ring6/QuartzSizeY 140 mm                          #Without the 45 degree cut
-/Ring6/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX -86.7 mm              #-86.7 when about the origin, -239.7 in the BF segment (shifted by -250 mm)
+    /MainDet/SetCenterPositionInY 427.4 mm
+    /MainDet/SetCenterPositionInZ 802.47 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring6/SetCenterPositionInX -86.7 mm              #-86.7 when about the origin, -239.7 in the BF segment (shifted by -250 mm)
-/Ring6/SetCenterPositionInY 427.4 mm
-/Ring6/SetCenterPositionInZ 802.47 mm
-/Ring6/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring6/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring6/UpdateGeometry
+}
+#------------------#Ring 5 BF2--------------------#
+if (Detector == 7){
 
-#------------------#Ring 5 BF2 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring7/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring7/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring7/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring7/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
-/Ring7/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
-/Ring7/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring7/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring7/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring7/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring7/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 17 mm
+    /MainDet/QuartzSizeX 80 mm
+    /MainDet/QuartzSizeY 140 mm                          #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring7/QuartzSizeZ 17 mm
-/Ring7/QuartzSizeX 80 mm
-/Ring7/QuartzSizeY 140 mm                          #Without the 45 degree cut
-/Ring7/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 86.7 mm               #86.7 when about the origin, -66.3 in the BF segment (shifted by -250 mm)
+    /MainDet/SetCenterPositionInY 427.4 mm
+    /MainDet/SetCenterPositionInZ 802.47 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring7/SetCenterPositionInX 86.7 mm               #86.7 when about the origin, -66.3 in the BF segment (shifted by -250 mm)
-/Ring7/SetCenterPositionInY 427.4 mm
-/Ring7/SetCenterPositionInZ 802.47 mm
-/Ring7/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring7/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring7/UpdateGeometry
+}
+#------------------#Ring 6--------------------#
+if (run == 8){
 
-#------------------#Ring 6 commands --------------------#
+    /MainDet/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+    /MainDet/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+    /MainDet/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
+    /MainDet/LightGuideMiddleBox 90 mm			       #Height of box between upper and lower cones	
+    /MainDet/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
+    /MainDet/LightGuideQuartzInterfaceOpeningX 26.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+    /MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model (1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+    /MainDet/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+    /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+    /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Ring8/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/Ring8/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/Ring8/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
-/Ring8/LightGuideMiddleBox 90 mm			       #Height of box between upper and lower cones	
-/Ring8/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
-/Ring8/LightGuideQuartzInterfaceOpeningX 26.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/Ring8/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model (1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/Ring8/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/Ring8/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/Ring8/LightGuidePMTInterfaceOpeningZ 7.0 cm
+    /MainDet/QuartzSizeZ 20 mm
+    /MainDet/QuartzSizeX 260 mm
+    /MainDet/QuartzSizeY 100 mm                          #Without the 45 degree cut
+    /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
-/Ring8/QuartzSizeZ 20 mm
-/Ring8/QuartzSizeX 260 mm
-/Ring8/QuartzSizeY 100 mm                          #Without the 45 degree cut
-/Ring8/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
+    /MainDet/SetCenterPositionInX 0 mm
+    /MainDet/SetCenterPositionInY 517 mm
+    /MainDet/SetCenterPositionInZ 501.78 mm
+    /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
+    /MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
-/Ring8/SetCenterPositionInX 0 mm
-/Ring8/SetCenterPositionInY 517 mm
-/Ring8/SetCenterPositionInZ 501.78 mm
-/Ring8/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/Ring8/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+    /MainDet/UpdateGeometry
 
-/Ring8/UpdateGeometry
-
-#------------------#Scintillator commands ---------------#
+}
+#------------------#Scintillator---------------#
 
 #None exist for this setup. If you need a scintillator, add it here
 
-#------------------#Misc. Frame commands ---------------#
+#------------------#Misc. Frame---------------#
 
 #None exist for this setup. If you want to add like shielding or a plate, add it here
 
 #------------------#Beam commands -----------------------#
 
-/Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 9                       #1->8 = BF det centers 1-8, 9 = segment scan
+/Generator/PrimaryParticle 3                      #Sets the primary particle type. 1 for electrons, 2 for muons
+/Generator/EventHitRegion 1                       #1->8 = BF det centers 1-8, 9 = segment scan
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/SegmentHitPosY 0                       #R1 starts at 0.5
-/Generator/BeamSolidAngle 0.0872665               #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
-/Generator/BeamTiltAngle 0.2                      #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
+/Generator/SegmentHitPosY 0
+/Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
+/Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
-/Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
+/Generator/BeamEnergy 5000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves nothing
+/Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the MainDet, 999 saves nothing, etc.
 
 #/RunAction/SetID 3
 #/random/setSeeds 346082 823457

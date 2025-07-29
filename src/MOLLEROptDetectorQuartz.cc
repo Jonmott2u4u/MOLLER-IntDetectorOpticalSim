@@ -100,15 +100,7 @@ void MOLLEROptDetectorQuartz::Initialize()
   new G4LogicalSkinSurface("QuartzSurface", QuartzLogical, QuartzSurface);
 
   SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("Ring1_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz1",TrackingReadout);
-  else if (Name.contains("Ring2_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz2",TrackingReadout);
-  else if (Name.contains("Ring3_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz3",TrackingReadout);
-  else if (Name.contains("Ring4_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz4",TrackingReadout);
-  else if (Name.contains("Ring5_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz5",TrackingReadout);
-  else if (Name.contains("Ring6_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz6",TrackingReadout);
-  else if (Name.contains("Ring7_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz7",TrackingReadout);
-  else if (Name.contains("Ring8_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz8",TrackingReadout);
-  else QuartzSD = new MOLLEROptQuartzSD("/Quartz1",TrackingReadout);
+  if (Name.contains("MainDet_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz",TrackingReadout);
   SDman->AddNewDetector(QuartzSD);  
   QuartzLogical->SetSensitiveDetector(QuartzSD);
 

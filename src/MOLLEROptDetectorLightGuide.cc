@@ -249,15 +249,7 @@ void MOLLEROptDetectorLightGuide::Initialize(string mat_flag)
   CreateOpticalSurface(GuideLogical, mat_flag);
 
   G4SDManager* SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("Ring1_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
-  else if (Name.contains("Ring2_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide2",TrackingReadout);
-  else if (Name.contains("Ring3_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide3",TrackingReadout);
-  else if (Name.contains("Ring4_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide4",TrackingReadout);
-  else if (Name.contains("Ring5_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide5",TrackingReadout);
-  else if (Name.contains("Ring6_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide6",TrackingReadout);
-  else if (Name.contains("Ring7_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide7",TrackingReadout);
-  else if (Name.contains("Ring8_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide8",TrackingReadout);
-  else LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide1",TrackingReadout);
+  if (Name.contains("MainDet_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide",TrackingReadout);
   SDman->AddNewDetector(LightGuideSD);  
 
   GuideCoreLogical->SetSensitiveDetector(LightGuideSD);

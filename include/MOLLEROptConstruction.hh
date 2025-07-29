@@ -35,22 +35,9 @@ public:
   G4double   GetWorldFullLengthInZ()    {return fWorldLengthInZ;}
   void       SetRadDamageLevel(Int_t dam) {Materials->SetRadDamageLevel(dam);};
   
-  void       GetQuartz1Limits(G4double *vals);
-  void       GetQuartz2Limits(G4double *vals);
-  void       GetQuartz3Limits(G4double *vals);
-  void       GetQuartz4Limits(G4double *vals);
-  void       GetQuartz5Limits(G4double *vals);
-  void       GetQuartz6Limits(G4double *vals);
-  void       GetQuartz7Limits(G4double *vals);
-  void       GetQuartz8Limits(G4double *vals);
-  void       GetLightGuide1Limits(G4double *vals);
-  void       GetLightGuide2Limits(G4double *vals);
-  void       GetLightGuide3Limits(G4double *vals);
-  void       GetLightGuide4Limits(G4double *vals);
-  void       GetLightGuide5Limits(G4double *vals);
-  void       GetLightGuide6Limits(G4double *vals);
-  void       GetLightGuide7Limits(G4double *vals);
-  void       GetLightGuide8Limits(G4double *vals);
+  void       GetQuartzLimits(G4double *vals);
+  void       GetLightGuideLimits(G4double *vals);
+
 
 private:
   
@@ -59,14 +46,8 @@ private:
   
   void DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int depth=0);
   
-  MOLLEROptDetector*     Ring1;
-  MOLLEROptDetector*     Ring2;
-  MOLLEROptDetector*     Ring3;
-  MOLLEROptDetector*     Ring4;
-  MOLLEROptDetector*     Ring5;
-  MOLLEROptDetector*     Ring6;
-  MOLLEROptDetector*     Ring7;
-  MOLLEROptDetector*     Ring8;
+  MOLLEROptDetector*     MainDet;
+
 
   MOLLEROptInsensitive*  AlPlate;
 

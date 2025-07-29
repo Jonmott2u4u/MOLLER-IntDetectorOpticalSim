@@ -19,30 +19,7 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     LightGuideOptPhotonDistrHist = new TProfile("LightGuideOptPhotonDistrHist","",800,100,900);
 
     //--------BF segment histograms--------//
-    R1_CathodeEventsDistrHist = new TH1D("R1_CathodeEventsDistrHist","",100,0,100);
-    R2_CathodeEventsDistrHist = new TH1D("R2_CathodeEventsDistrHist","",100,0,100);
-    R3_CathodeEventsDistrHist = new TH1D("R3_CathodeEventsDistrHist","",100,0,100);
-    R4_CathodeEventsDistrHist = new TH1D("R4_CathodeEventsDistrHist","",100,0,100);
-    R5_CathodeEventsDistrHist = new TH1D("R5_CathodeEventsDistrHist","",100,0,100);
-    R6_CathodeEventsDistrHist = new TH1D("R6_CathodeEventsDistrHist","",100,0,100);
-    R7_CathodeEventsDistrHist = new TH1D("R7_CathodeEventsDistrHist","",100,0,100);
-    R8_CathodeEventsDistrHist = new TH1D("R8_CathodeEventsDistrHist","",100,0,100);
-    R1Only_CathodeEventsDistrHist = new TH1D("R1Only_CathodeEventsDistrHist","",100,0,100);
-    R2Only_CathodeEventsDistrHist = new TH1D("R2Only_CathodeEventsDistrHist","",100,0,100);
-    R3Only_CathodeEventsDistrHist = new TH1D("R3Only_CathodeEventsDistrHist","",100,0,100);
-    R4Only_CathodeEventsDistrHist = new TH1D("R4Only_CathodeEventsDistrHist","",100,0,100);
-    R5Only_CathodeEventsDistrHist = new TH1D("R5Only_CathodeEventsDistrHist","",100,0,100);
-    R6Only_CathodeEventsDistrHist = new TH1D("R6Only_CathodeEventsDistrHist","",100,0,100);
-    R7Only_CathodeEventsDistrHist = new TH1D("R7Only_CathodeEventsDistrHist","",100,0,100);
-    R8Only_CathodeEventsDistrHist = new TH1D("R8Only_CathodeEventsDistrHist","",100,0,100);
-    R1Adjacent_CathodeEventsDistrHist = new TH1D("R1Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R2Adjacent_CathodeEventsDistrHist = new TH1D("R2Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R3Adjacent_CathodeEventsDistrHist = new TH1D("R3Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R4Adjacent_CathodeEventsDistrHist = new TH1D("R4Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R5Adjacent_CathodeEventsDistrHist = new TH1D("R5Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R6Adjacent_CathodeEventsDistrHist = new TH1D("R6Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R7Adjacent_CathodeEventsDistrHist = new TH1D("R7Adjacent_CathodeEventsDistrHist","",100,0,100);
-    R8Adjacent_CathodeEventsDistrHist = new TH1D("R8Adjacent_CathodeEventsDistrHist","",100,0,100);
+    Ring_CathodeEventsDistrHist = new TH1D("Ring_CathodeEventsDistrHist","",100,0,100);
 
     EventCnt = 0;
 }
@@ -87,30 +64,8 @@ void MOLLEROptAnalysis::EndOfRun()
     LightGuideOptPhotonDistrHist->Write();
 
     //--------BF segment histograms--------//
-    R1_CathodeEventsDistrHist->Write();
-    R2_CathodeEventsDistrHist->Write();
-    R3_CathodeEventsDistrHist->Write();
-    R4_CathodeEventsDistrHist->Write();
-    R5_CathodeEventsDistrHist->Write();
-    R6_CathodeEventsDistrHist->Write();
-    R7_CathodeEventsDistrHist->Write();
-    R8_CathodeEventsDistrHist->Write();
-    R1Only_CathodeEventsDistrHist->Write();
-    R2Only_CathodeEventsDistrHist->Write();
-    R3Only_CathodeEventsDistrHist->Write();
-    R4Only_CathodeEventsDistrHist->Write();
-    R5Only_CathodeEventsDistrHist->Write();
-    R6Only_CathodeEventsDistrHist->Write();
-    R7Only_CathodeEventsDistrHist->Write();
-    R8Only_CathodeEventsDistrHist->Write();
-    R1Adjacent_CathodeEventsDistrHist->Write();
-    R2Adjacent_CathodeEventsDistrHist->Write();
-    R3Adjacent_CathodeEventsDistrHist->Write();
-    R4Adjacent_CathodeEventsDistrHist->Write();
-    R5Adjacent_CathodeEventsDistrHist->Write();
-    R6Adjacent_CathodeEventsDistrHist->Write();
-    R7Adjacent_CathodeEventsDistrHist->Write();
-    R8Adjacent_CathodeEventsDistrHist->Write();
+    Ring_CathodeEventsDistrHist->Write();
+
    
     TrackingReadout->WriteAbsProfiles();
     MOLLEROptFile->Write("",TObject::kOverwrite); // Writing the data to the ROOT file

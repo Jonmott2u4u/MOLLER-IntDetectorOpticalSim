@@ -83,15 +83,7 @@ void MOLLEROptDetectorPMT::Initialize()
   PMTCathodeLogical->SetVisAttributes(VisAtt2);
   
   SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("Ring1_")) CathSD = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
-  else if (Name.contains("Ring2_")) CathSD = new MOLLEROptPMTSD("/Cathode2",TrackingReadout);
-  else if (Name.contains("Ring3_")) CathSD = new MOLLEROptPMTSD("/Cathode3",TrackingReadout);
-  else if (Name.contains("Ring4_")) CathSD = new MOLLEROptPMTSD("/Cathode4",TrackingReadout);
-  else if (Name.contains("Ring5_")) CathSD = new MOLLEROptPMTSD("/Cathode5",TrackingReadout);
-  else if (Name.contains("Ring6_")) CathSD = new MOLLEROptPMTSD("/Cathode6",TrackingReadout);
-  else if (Name.contains("Ring7_")) CathSD = new MOLLEROptPMTSD("/Cathode7",TrackingReadout);
-  else if (Name.contains("Ring8_")) CathSD = new MOLLEROptPMTSD("/Cathode8",TrackingReadout);
-  else CathSD = new MOLLEROptPMTSD("/Cathode1",TrackingReadout);
+  if (Name.contains("MainDet_")) CathSD = new MOLLEROptPMTSD("/Cathode",TrackingReadout);
   SDman->AddNewDetector(CathSD);  
   PMTWindowLogical->SetSensitiveDetector(CathSD);
 

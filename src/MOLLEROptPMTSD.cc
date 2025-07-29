@@ -4,29 +4,8 @@ MOLLEROptPMTSD::MOLLEROptPMTSD(G4String name, MOLLEROptTrackingReadout* TrRO)
   :G4VSensitiveDetector(name)
 {
   TrackingReadout = TrRO;
-  if(SensitiveDetectorName == "Cathode1"){
-    theCollectionName = G4String("PMTHitCollection1");
-  }
-  else if(SensitiveDetectorName == "Cathode2"){
-    theCollectionName = G4String("PMTHitCollection2");
-  }
-  else if(SensitiveDetectorName == "Cathode3"){
-    theCollectionName = G4String("PMTHitCollection3");
-  }
-  else if(SensitiveDetectorName == "Cathode4"){
-    theCollectionName = G4String("PMTHitCollection4");
-  }
-  else if(SensitiveDetectorName == "Cathode5"){
-    theCollectionName = G4String("PMTHitCollection5");
-  }
-  else if(SensitiveDetectorName == "Cathode6"){
-    theCollectionName = G4String("PMTHitCollection6");
-  }
-  else if(SensitiveDetectorName == "Cathode7"){
-    theCollectionName = G4String("PMTHitCollection7");
-  }
-  else if(SensitiveDetectorName == "Cathode8"){
-    theCollectionName = G4String("PMTHitCollection8");
+  if(SensitiveDetectorName == "Cathode"){
+    theCollectionName = G4String("PMTHitCollection");
   }
 
   collectionName.insert(theCollectionName); 

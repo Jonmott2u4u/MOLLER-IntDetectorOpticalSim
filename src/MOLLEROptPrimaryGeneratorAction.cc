@@ -53,8 +53,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = (Qlim[1]+Qlim[0])/2.0 - 0.3 + 0.6*G4UniformRand() + cutx;
     y = Qlim[2] - 0.3 + 0.6*G4UniformRand() + cuty;
   }
-  else if(EventRegion == 51){
-    //Horizontal band across R5 solo tile
+  else if(EventRegion == 4){
+    //Horizontal band across tile
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
     y = (Qlim[3]+Qlim[2])/2.0 - 2.5 + 5*G4UniformRand();
   }

@@ -118,7 +118,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
       if(track->Particle == myBeam){
         //--------Segment tracking--------//
         if(track->ID == 1){//Prevents secondaries from being stored
-          if(track->R1QuartzHitFlag){
+          if(track->RingQuartzHitFlag){
             RingHit = 1;
             Ring_pes = TrackingReadout->Ring_GetCathodeDetections();
             if((Det == 0) || (Det == 1)){
@@ -126,7 +126,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionX((Float_t)track->RingQuartzHitX/cm);
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionY((Float_t)track->RingQuartzHitY/cm);
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionZ((Float_t)track->RingQuartzHitZ/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddR1PEs(Ring_pes);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingPEs(Ring_pes);
             }
           }
           if(RingHit==1) Ring_Tracker = 1;

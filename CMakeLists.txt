@@ -100,10 +100,18 @@ target_link_libraries(MOLLEROpt PRIVATE MOLLEROptDictionaries PUBLIC ${Geant4_LI
 # relies on these scripts being in the current working directory.
 #
 set(MOLLER_SCRIPTS
-  macros/gui.mac
-  macros/Qt.mac
-  macros/run.mac
-  macros/vis.mac
+  macros/run/r1.mac
+  macros/run/r2.mac
+  macros/run/r3.mac
+  macros/run/r4.mac
+  macros/run/r5.mac
+  macros/run/r6.mac
+  macros/vis/r1.mac
+  macros/vis/r2.mac
+  macros/vis/r3.mac
+  macros/vis/r4.mac
+  macros/vis/r5.mac
+  macros/vis/r6.mac
   data/OpticalPropertiesInputData.txt
   data/OpticalPropertiesInputData-Michaels-uvs.txt
   data/cosmics.txt

@@ -11,7 +11,7 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   Materials       = mat;
 
   //Modules
-  Ring        = NULL;
+  MainDet        = NULL;
 
   fWorldLengthInX = 0.0; 
   fWorldLengthInY = 0.0;
@@ -25,7 +25,7 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
 MOLLEROptConstruction::~MOLLEROptConstruction()
 {
   //BF segment objects
-  if (Ring)          delete Ring;
+  if (MainDet)          delete MainDet;
 
   if (MOLLERMessenger)    delete MOLLERMessenger;             
 }
@@ -104,12 +104,12 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   return World_Physical;
 }
 
-void MOLLEROptConstruction::GetQuartz1Limits(G4double *vals)
+void MOLLEROptConstruction::GetQuartzLimits(G4double *vals)
 {
   MainDet->GetQuartzLimits(vals);
 }
 
-void MOLLEROptConstruction::GetLightGuide1Limits(G4double *vals)
+void MOLLEROptConstruction::GetLightGuideLimits(G4double *vals)
 {
   MainDet->GetLightGuideLimits(vals);
 }

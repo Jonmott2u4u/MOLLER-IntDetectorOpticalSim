@@ -2,7 +2,7 @@
 #include <TString.h>
 #include <math.h>
 
-void willmary_pes()
+void segment_pes()
 {
     std::ofstream analysis;
     analysis.open ("analyzed_files.dat");
@@ -15,9 +15,9 @@ void willmary_pes()
         file = TFile::Open(line.data());
         for(int det=1; det<9; det++){
 
-            //-------The following block is for muons striking any combination of scints---------//
+            //-------Extracts pe histograms from the Segment---------//
 
-            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
+            //PE spectrum of each detector
             tmp = (TH1D*)file->Get(Form("R%i_CathodeEventsDistrHist",det));
             hst = (TH1D*)tmp->Clone("pes");
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
@@ -29,7 +29,7 @@ void willmary_pes()
             hst->SaveAs(str.data());
             analysis << str << "\n"; 
 
-            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
+            //PE spectrum of each detector for events that do not hit adjacent detectors
             tmp = (TH1D*)file->Get(Form("R%iAdjacent_CathodeEventsDistrHist",det));
             hst = (TH1D*)tmp->Clone("pes");
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
@@ -41,7 +41,7 @@ void willmary_pes()
             hst->SaveAs(str.data());
             analysis << str << "\n";
 
-            //PE spectrum of each detector that passes scint cut and hits only one detector
+            //PE spectrum of each detector for events passing through only one detector
             tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
             hst = (TH1D*)tmp->Clone("pes");
             hst->SetTitle(Form("R%i Photoelectron Distribution",det));
@@ -53,158 +53,6 @@ void willmary_pes()
             hst->SaveAs(str.data());
             analysis << str << "\n";
 
-            //-------The following block is for muons striking scints 1 & 3---------//
-
-            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
-            tmp = (TH1D*)file->Get(Form("R%i_Scint13_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%i_Scint13_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
-            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint13_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iAdjacent_Scint13_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and hits only one detector
-            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint13_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iOnly_Scint13_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //-------The following block is for muons striking scints 1 & 4---------//
-
-            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
-            tmp = (TH1D*)file->Get(Form("R%i_Scint14_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%i_Scint14_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
-            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint14_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iAdjacent_Scint14_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and hits only one detector
-            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint14_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iOnly_Scint14_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //-------The following block is for muons striking scints 2 & 3---------//
-
-            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
-            tmp = (TH1D*)file->Get(Form("R%i_Scint23_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%i_Scint23_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
-            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint23_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iAdjacent_Scint23_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and hits only one detector
-            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint23_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iOnly_Scint23_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //-------The following block is for muons striking scints 2 & 4---------//
-
-            //PE spectrum of each detector with scintillator cuts (must hit one upstream and downstream scintillator)
-            tmp = (TH1D*)file->Get(Form("R%i_Scint24_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%i_Scint24_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and does not hit adjacent detectors
-            tmp = (TH1D*)file->Get(Form("R%iAdjacent_Scint24_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iAdjacent_Scint24_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector that passes scint cut and hits only one detector
-            tmp = (TH1D*)file->Get(Form("R%iOnly_Scint24_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iOnly_Scint24_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
         }
         file->Close("R");
     }
@@ -213,7 +61,7 @@ void willmary_pes()
 }
 
 //This object performs cuts over the quartz in the x-direction
-void quartz_pos_cut(){
+void quartz_divider(){
 
     std::ifstream rfiles("files.dat");
     std::string line;
@@ -241,5 +89,36 @@ void quartz_pos_cut(){
             }
         }
         file->Close("R");
+    }
+}
+
+void quartz_hit_pos(){
+
+    std::ifstream rfiles("files.dat");
+    std::string line;
+    TString tmpStr;
+    string location = "MOLLEROptData.MOLLERGeneralEvent.";
+    TFile *file;
+    TH1D *hst, *tmp;
+    int det = 5;
+
+    while(std::getline(rfiles, line)){
+        /*tmpStr = line.data();
+        tmpStr = tmpStr.ReplaceAll(".root",""); */
+        file = TFile::Open(line.data());
+        TTree *tree = (TTree*)file->Get("MOLLEROptTree");
+
+        TCanvas *canvas1 = new TCanvas("canvas1","canvas1");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",location.data(),det,location.data(),det),Form("%sScint1TrackHit==1 && %sScint2TrackHit==1",location.data(),location.data()),"colz");
+        canvas1->SaveAs(Form("plots/R%i_quartz_hit_pos.root",det));
+
+        TCanvas *canvas2 = new TCanvas("canvas2","canvas2");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",location.data(),det,location.data(),det),Form("%sScint1TrackHit==1 && %sScint2TrackHit==1 && %sR%iAdjacentCutQuartzTrackHit==1",location.data(),location.data(),location.data(),det),"colz");
+        canvas2->SaveAs(Form("plots/R%i_adjacency_quartz_hit_pos.root",det));
+
+        TCanvas *canvas3 = new TCanvas("canvas3","canvas3");
+        tree->Draw(Form("%sR%iTileHitY:%sR%iTileHitX",location.data(),det,location.data(),det),Form("%sScint1TrackHit==1 && %sScint2TrackHit==1 && %sR%iSoloCutQuartzTrackHit==1",location.data(),location.data(),location.data(),det),"colz");
+        canvas3->SaveAs(Form("plots/R%i_solo_quartz_hit_pos.root",det));
+
     }
 }

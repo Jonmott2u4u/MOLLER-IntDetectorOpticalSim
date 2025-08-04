@@ -100,6 +100,8 @@ target_link_libraries(MOLLEROpt PRIVATE MOLLEROptDictionaries PUBLIC ${Geant4_LI
 # relies on these scripts being in the current working directory.
 #
 set(MOLLER_SCRIPTS
+  macros/Qt.mac
+  macros/gui.mac
   macros/run/r1.mac
   macros/run/r2.mac
   macros/run/r3.mac

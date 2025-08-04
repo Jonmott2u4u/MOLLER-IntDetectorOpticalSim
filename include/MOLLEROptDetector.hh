@@ -49,8 +49,9 @@ public:
   void SetQuartzInterfaceOpeningX(G4double size);
   void SetQuartzToPMTOffsetInZ(G4double val);
 
-  void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive y axis (up) in radians
-  void SetPolarRotationAngle(G4double a); //w.r.t. to the positive z axis (downstream) in radians
+  void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive x axis (up) in degrees
+  void SetPolarRotationAngle(G4double a); //w.r.t. to the positive z axis (downstream) in degrees
+  void SetYawRotationAngle(G4double a); //w.r.t. to the positive y axis (downstream) in radians
 
   void SetLightGuideOffsetInX(G4double x);
   void SetLightGuideOffsetInY(G4double y);
@@ -108,6 +109,7 @@ private:
 
   G4double AzimuAngle;
   G4double PolarAngle;
+  G4double YawAngle;
 
   G4double PMTToQuartzOffset;
 

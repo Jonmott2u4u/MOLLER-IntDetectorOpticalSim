@@ -2,61 +2,28 @@
 #include <TString.h>
 #include <math.h>
 
-void segment_pes()
+void pes()
 {
     std::ofstream analysis;
     analysis.open ("analyzed_files.dat");
-    std::ifstream rfiles("files.dat");
-    std::string line, str;
+    std::string str;
     TFile *file;
+    file = TFile::Open("MOLLEROpt_0002.root");
     TH1D *hst, *tmp;
 
-    while(std::getline(rfiles, line)){
-        file = TFile::Open(line.data());
-        for(int det=1; det<9; det++){
+    //PE spectrum of the detector
+    tmp = (TH1D*)file->Get("Ring_CathodeEventsDistrHist");
+    hst = (TH1D*)tmp->Clone("pes");
+    hst->SetTitle("Photoelectron Distribution");
+    hst->GetXaxis()->SetTitle("Photoelectrons");
+    hst->GetYaxis()->SetTitle("Events");
+    hst->GetXaxis()->SetRangeUser(0,100);
+    hst->SetDirectory(0);
+    str = "plots/nofit_PEs.root";
+    hst->SaveAs(str.data());
+    analysis << str << "\n"; 
+    file->Close("R");
 
-            //-------Extracts pe histograms from the Segment---------//
-
-            //PE spectrum of each detector
-            tmp = (TH1D*)file->Get(Form("R%i_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%i_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n"; 
-
-            //PE spectrum of each detector for events that do not hit adjacent detectors
-            tmp = (TH1D*)file->Get(Form("R%iAdjacent_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iAdjacent_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-            //PE spectrum of each detector for events passing through only one detector
-            tmp = (TH1D*)file->Get(Form("R%iOnly_CathodeEventsDistrHist",det));
-            hst = (TH1D*)tmp->Clone("pes");
-            hst->SetTitle(Form("R%i Photoelectron Distribution",det));
-            hst->GetXaxis()->SetTitle("Photoelectrons");
-            hst->GetYaxis()->SetTitle("Events");
-            hst->GetXaxis()->SetRangeUser(0,100);
-            hst->SetDirectory(0);
-            str = Form("plots/nofit/R%iOnly_PEs.root",det);
-            hst->SaveAs(str.data());
-            analysis << str << "\n";
-
-        }
-        file->Close("R");
-    }
-    rfiles.close();
     analysis.close();
 }
 

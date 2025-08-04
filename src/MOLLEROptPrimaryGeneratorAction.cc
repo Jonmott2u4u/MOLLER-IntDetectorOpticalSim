@@ -31,6 +31,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double x_shift = 0;
   G4double y_base = 0;
   G4double pi = TMath::Pi();
+
+  G4int random_tilt = 1;
     
   G4double Qlim[4];
   G4double LGlim[8];
@@ -58,22 +60,30 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
     y = (Qlim[3]+Qlim[2])/2.0 - 2.5 + 5*G4UniformRand();
   }
+  else if(EventRegion == 5){
+    random_tilt = 1; //Sets the 
+    x = (Qlim[1]+Qlim[0])/2;
+    y = (Qlim[3]+Qlim[2])/2.0 - 2.5 + 5*G4UniformRand();
+  }
   else{
     //Defaults to EventRegion == 1
     x = (Qlim[1]+Qlim[0])/2.0;
     y = (Qlim[3]+Qlim[2])/2.0;
   }
 
-  //G4double tilt_rad = tilt*pi/180.;
-  //G4double tilt_dir_rad = tilt_dir*pi/180.;
-  G4double tilt_rad = tilt; //Global tilt applied to the beam. tilt is already converted to radians due to an internal Geant4 process
-  G4double tilt_dir_rad = tilt_dir; //Sets the direction of the beam tilt. tilt_dir is already converted to radians due to an internal Geant4 process
-  //G4cout << tilt << G4endl;
-  //G4cout << tilt_dir << G4endl;
-  //G4cout << sa << G4endl;
-  G4double cosTilt = TMath::Cos(tilt_rad);
-  G4double sinTilt = TMath::Sin(tilt_rad);
-  G4double cosTilt_dir = TMath::Cos(tilt_dir_rad); //Currently disabled
+  G4double cosTilt;
+  G4double sinTilt;
+  G4double tilt_rad = tilt; //Global tilt applied to the beam. In radians due to internal G4 process
+  G4double tilt_dir_rad = tilt_dir; //Sets the direction of the beam tilt. In radians due to internal G4 process
+  if (random_tilt == 1) {
+    cosTilt = TMath::Cos(G4UniformRand()*tilt_rad); //Uses a randomized tilt angle between the set value and 0
+    sinTilt = TMath::Sin(G4UniformRand()*tilt_rad); //
+  }
+  else {
+    cosTilt = TMath::Cos(tilt_rad); //Uses a fixed tilt angle
+    sinTilt = TMath::Sin(tilt_rad);
+  }
+  G4double cosTilt_dir = TMath::Cos(tilt_dir_rad); //
   G4double sinTilt_dir = TMath::Sin(tilt_dir_rad); //
 
   //G4double sa_rad = sa*pi/180.;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
@@ -94,7 +104,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_y_tilt = sinTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*cosTilt_dir;
   G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
 
-  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, 59*mm));
+  //-650 mm is ~ the right distance for a 3.5 deg tilted beam to hit the edge of the R5 tile. Used for 2025 HallD beam test
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -650*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

@@ -43,6 +43,7 @@ private:
 
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;    
   G4UIcmdWithADoubleAndUnit* QuartzRotXCmd;
+  G4UIcmdWithADoubleAndUnit* YawRotationCmd;
   G4UIcmdWithADoubleAndUnit* PolarRotationCmd;
   G4UIcmdWithADoubleAndUnit* AzimuthalRotationCmd;
   G4UIcmdWithADoubleAndUnit* LightGuidePMTInterfaceOpeningXCmd;

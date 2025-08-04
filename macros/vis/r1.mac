@@ -89,10 +89,11 @@
 /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
 /MainDet/SetCenterPositionInX 0 mm
-/MainDet/SetCenterPositionInY 0 mm              #When placing modules, the change in position due to PolarRotation != 0 must be done by hand
-/MainDet/SetCenterPositionInZ 0 mm             #Annoying, but can be done. Use rotation matrix about X-axis
+/MainDet/SetCenterPositionInY 0 mm             
+/MainDet/SetCenterPositionInZ 0 mm             
+/MainDet/YawRotation 7 deg                           #Rotates the detector about the y-axis
 /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+/MainDet/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
 
 /MainDet/UpdateGeometry
 

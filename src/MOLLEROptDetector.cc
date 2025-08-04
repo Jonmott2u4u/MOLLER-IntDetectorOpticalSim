@@ -39,6 +39,10 @@ void MOLLEROptDetector::SetPolarRotationAngle(G4double val)
 {
   PolarAngle = val;
 }
+void MOLLEROptDetector::SetYawRotationAngle(G4double val)
+{
+  YawAngle = val;
+}
 void MOLLEROptDetector::SetPMTCathodeThickness(G4double val)
 {
   if(PMT) PMT->SetCathodeThickness(val);
@@ -123,6 +127,7 @@ void MOLLEROptDetector::UpdateThisGeometry()
   delete DetPhysical;
   RotationDet->rotateZ(AzimuAngle);
   RotationDet->rotateX(PolarAngle);
+  RotationDet->rotateY(YawAngle);
   PMT->UpdateGeometry();
   Quartz->UpdateGeometry();
   LightGuide->UpdateGeometry();
@@ -169,6 +174,7 @@ void MOLLEROptDetector::Initialize()
   PMTToQuartzOffset = 0;
   AzimuAngle = 0; 
   PolarAngle = 0;
+  YawAngle = 0;
   Quartz->Initialize();
   LightGuide->Initialize(LightGuideMat);
   PMT->Initialize();
@@ -310,6 +316,7 @@ void MOLLEROptDetector::GetQuartzLimits(G4double *vals)
   G4double quartzZ = Quartz->GetQuartzSizeZ();
   G4double Qrot = Quartz->GetQuartzRotationX();
   G4double QPol = PolarAngle;
+  //G4double QYaw = YawAngle; //Not accounted for in QuartzPos.setX or setZ. Should be, but not important currently
   //G4double QAzi = AzimuAngle;
 
   //Factor is from the rotation of the quartz about the x-axis independent of the detector

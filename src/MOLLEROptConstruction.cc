@@ -39,9 +39,9 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   //Insensitive objects (for now just an aluminum plate) that do not store hit info
 
   
-  fWorldLengthInX =  15.0*m;
-  fWorldLengthInY =  15.0*m;
-  fWorldLengthInZ =  30.0*m;
+  fWorldLengthInX =  2.0*m;
+  fWorldLengthInY =  2.0*m;
+  fWorldLengthInZ =  2.0*m;
   
   World_Material = Materials->GetMaterial("Air");
   //World_Material = Materials->GetMaterial("Vacuum");
@@ -81,6 +81,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   MainDet->SetPMTCathodeThickness(0.1*cm);
   MainDet->SetAzimuthalRotationAngle(0*degree);
   MainDet->SetPolarRotationAngle(3*degree);
+  MainDet->SetYawRotationAngle(0*degree);
   MainDet->Initialize();
   MainDet->ConstructDetector(World_Physical);
   MainDet->SetCenterPositionInX(0*mm);           //Positions must be set after placing the detector in the world

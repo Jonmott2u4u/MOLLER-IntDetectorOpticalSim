@@ -44,8 +44,9 @@
 /MainDet/SetCenterPositionInX 0 mm
 /MainDet/SetCenterPositionInY 0 mm
 /MainDet/SetCenterPositionInZ 0 mm
+/MainDet/YawRotation 7 deg                           #Rotates the detector about the y-axis
 /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+/MainDet/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
 
 /MainDet/UpdateGeometry
 
@@ -60,19 +61,19 @@
 #------------------#Beam commands -----------------------#
 
 /Generator/PrimaryParticle 3                      #Sets the primary particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 1                       #1->8 = BF det centers 1-8, 9 = segment scan
+/Generator/EventHitRegion 5                       #1->8 = BF det centers 1-8, 9 = segment scan
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/SegmentHitPosY 0
 /Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
-/Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
-/Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
-/Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
+/Generator/BeamTiltAngle 3.5                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
+/Generator/BeamTiltDirection 180.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
+/Generator/BeamEnergy 5000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
 /Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the MainDet, 999 saves nothing, etc.
 
-/RunAction/SetID 2
+/RunAction/SetID 3
 /random/setSeeds 346082 823457
 /vis/disable
-/run/beamOn 100
+/run/beamOn 10000

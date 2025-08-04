@@ -155,6 +155,13 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   AzimuthalRotationCmd->SetDefaultUnit("deg");
   AzimuthalRotationCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  YawRotationCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/YawRotation",name.data()),this);
+  YawRotationCmd->SetGuidance("Set the rotation angle of the detector around Y"); 
+  YawRotationCmd->SetParameterName("Angle",true);
+  YawRotationCmd->SetRange("Angle>=-90. && Angle<=90.");
+  YawRotationCmd->SetDefaultUnit("deg");
+  YawRotationCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   UpdateGeometryCmd = new G4UIcmdWithoutParameter(Form("/%s/UpdateGeometry",name.data()),this);
   UpdateGeometryCmd->SetGuidance("Update the geometry");
   UpdateGeometryCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
@@ -199,6 +206,7 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(QuartzBevelCmd                       ) delete QuartzBevelCmd;                                           
   if(PolarRotationCmd                     ) delete PolarRotationCmd; 
   if(AzimuthalRotationCmd                 ) delete AzimuthalRotationCmd; 
+  if(YawRotationCmd                       ) delete YawRotationCmd; 
   
   if(UpdateGeometryCmd                    ) delete UpdateGeometryCmd;
   if(DetMatCmd                            ) delete DetMatCmd;
@@ -232,6 +240,7 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == LightGuideOffsetZCmd )                { Det->SetLightGuideOffsetInZ(LightGuideOffsetZCmd->GetNewDoubleValue(newValue));}
   if( command == DetMatCmd ) 			                     { Det->SetMaterial(newValue);}
   if( command == QuartzBevelCmd )                      { Det->SetQuartzBevel(QuartzBevelCmd->GetNewDoubleValue(newValue));}
+  if( command == YawRotationCmd )                      { Det->SetYawRotationAngle(YawRotationCmd->GetNewDoubleValue(newValue));}
   if( command == PolarRotationCmd )                    { Det->SetPolarRotationAngle(PolarRotationCmd->GetNewDoubleValue(newValue));}
   if( command == AzimuthalRotationCmd )                { Det->SetAzimuthalRotationAngle(AzimuthalRotationCmd->GetNewDoubleValue(newValue));}
 

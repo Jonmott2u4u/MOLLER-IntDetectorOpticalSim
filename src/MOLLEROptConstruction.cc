@@ -32,7 +32,7 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  MainDet = new MOLLEROptDetector(TrackingReadout,"MainDet",Materials,"UVS");
+  MainDet = new MOLLEROptDetector(TrackingReadout,"MainDet",Materials,"UVS"); //"UVS" & "UVC" are the available options. Must be changed here in the single-det branch
 
   //Auxilary detectors (for now just scintillators) used to track particle positions
 

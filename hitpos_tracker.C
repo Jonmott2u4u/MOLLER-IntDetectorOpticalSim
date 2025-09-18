@@ -20,8 +20,8 @@ infile>>h_pos[i]>>v_pos[i]>>mean[i]>>rms[i]>>mp_langau[i]>>gsigma_langau[i]>>rms
 //cout << h_pos[i] << endl;
 }
 float x_step = 5.0, y_step = 5.0;
-float x_start = h_pos[0], x_stop = h_pos[entries-1], x_bins = (x_stop - x_start)/x_step + 1;
-float y_start = v_pos[0], y_stop = v_pos[entries-1], y_bins = (y_stop - y_start)/y_step + 1;
+float x_start = h_pos[0], x_stop = h_pos[entries-1], x_bins = (x_stop - x_start)/x_step;
+float y_start = v_pos[0], y_stop = v_pos[entries-1], y_bins = (y_stop - y_start)/y_step;
 
 
 

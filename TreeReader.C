@@ -1,5 +1,5 @@
 // This script uses a TTreeReader to access data within MOLLEROptical's tree
-// Thanks to Sudip Bhattarai for showing me how to use TTreeReaders. So easy
+// Does not work yet for this branch. Will edit this script when needed
 
 #include "TFile.h"
 #include "TH2.h"
@@ -14,7 +14,7 @@ using namespace std;
 
 void plot_r5_pes_vs_pos() {
     // Open ROOT file
-    TFile *f = TFile::Open("rootfiles/cosmics.root");
+    TFile *f = TFile::Open("rootfiles/file.root");
     if (!f || f->IsZombie()) {
         cerr << "Error: Cannot open ROOT file!" << endl;
         return;

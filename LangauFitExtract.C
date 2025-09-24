@@ -1,4 +1,3 @@
-//#include <fstream>
 #include <iostream>
 #include <TString.h>
 
@@ -7,7 +6,7 @@ TF1 *langaufit(TH1D *his, Double_t *fitrange, Double_t *startvalues, Double_t *p
 Int_t langaupro(Double_t *params, Double_t &maxx, Double_t &FWHM);
 void DoFit(TH1D *hst, Double_t *fitP, Double_t *fitE);
 
-TCanvas *C_mp = new TCanvas("C_mp","C_mp");
+//TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
 void LangauFitExtract()
 {
@@ -15,19 +14,19 @@ void LangauFitExtract()
 
   std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
   std::ofstream ring_dat_weighted;
-  ring_dat.open ("r1.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
-  ring_dat_weighted.open ("r1_w.txt");
+  ring_dat.open ("r3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
+  ring_dat_weighted.open ("r3_w.txt");
 
-  std::ifstream rfiles("files.dat");
+  std::ifstream rfiles("r3files.dat");
   std::string line;
   TFile *file;
 
-  Double_t paramx_start=0.0, paramy_start=0.0;     //Change based on what is being scanned
-  Double_t paramx_step=5.0, paramy_step=1.0; //Increment for the horizontal axis
-  Double_t limity=600.0;
+  Double_t paramx_start=-95.0, paramy_start=95; //Start positions of tile
+  Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
+  Double_t limity=110.5;
   Int_t events=10000; //Total events per file
   
-  TH1D *hst, *tmp, *hst2, *tmp2;
+  TH1D *hst, *tmp;
   TSpectrum *s = new TSpectrum(1);
   Double_t paramx_run, paramy_run, counterx, countery;
   Double_t y_clock;
@@ -36,8 +35,7 @@ void LangauFitExtract()
 
   float mean, mp, rms, rms_mean, res, gsigma;
   float w_mean, w_mp, w_rms, w_rms_mean, w_res, w_gsigma;
-  float weight, weight2, kk_scale, mean2;
-  int no_run; //Flag for forcing the scaling plot to be zero.
+  float weight;
 
   counterx=0, countery=0; 
   paramx_run = paramx_start;
@@ -51,11 +49,11 @@ void LangauFitExtract()
     paramy_run = paramy_start + countery*paramy_step;
     countery = countery + 1.0;
 
-    tmp = (TH1D*)file->Get("R1_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+    tmp = (TH1D*)file->Get("R3_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
     hst = (TH1D*)tmp->Clone("PEs");
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");
-    hst->GetXaxis()->SetRangeUser(1,100);
+    hst->GetXaxis()->SetRangeUser(0,100);
     hst->SetDirectory(0);
     DoFit(hst,fitP,fitE);
 
@@ -79,19 +77,6 @@ void LangauFitExtract()
     w_mp = mp*weight;
     w_res = res*weight;
     w_gsigma = gsigma*weight;
-    //Alternate scaling suggested by KK - Takes the ratio of one ring's signal to that of the ring directly US
-    tmp2 = (TH1D*)file->Get("R2_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
-    hst2 = (TH1D*)tmp2->Clone("PEs_2");
-    hst2->GetXaxis()->SetRangeUser(1,100);
-    mean2 = hst2->GetMean();
-    //weight2 = (hst2->GetEffectiveEntries())/(hst2->GetEntries());
-    weight2 = (hst2->GetEntries())/(events);
-    no_run = 0;
-    //if(weight > 0.5) kk_scale = weight2/weight;
-    //if(weight <= 0.5 || no_run == 1) kk_scale = 0.;
-    if(mean2 > 1. & w_mean > 1.) kk_scale = weight2/weight;
-    else kk_scale = 0;
-    if(no_run == 1) kk_scale = 0.;
 
     if(hst->GetEntries() < 100){
       mean = 0.1;
@@ -101,10 +86,16 @@ void LangauFitExtract()
       res = 0.1;
       gsigma = 0.1;
     }
+    if(mp >= mean*2){
+      mp = mean;
+      res = rms;
+      w_mp = w_mean;
+      w_res = w_rms;
+    }
 
     //rms and gsigma are not weighted, but rms/mean and res are
-    ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<" "<<kk_scale<<"\n";
-    ring_dat_weighted<<paramx_run<<" "<<paramy_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<w_gsigma<<" "<<w_rms_mean<<" "<<w_res<<" "<<weight<<" "<<kk_scale<<"\n";
+    ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
+    ring_dat_weighted<<paramx_run<<" "<<paramy_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<w_gsigma<<" "<<w_rms_mean<<" "<<w_res<<"\n";
 
 
     file->Close("R");    
@@ -126,9 +117,9 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
 {
 
   //cout << "mean pe = " <<  s->GetPositionX()[0] << endl;
-  TCanvas *cnv = new TCanvas();
-  cnv->cd();
-  hst->Draw();
+  //TCanvas *cnv = new TCanvas();
+  //cnv->cd();
+  //hst->Draw("goff");
  
   //Find peaks:
   int npeaks = 1;
@@ -139,7 +130,7 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
   peaks_m[0] =  s->GetPositionX()[0];
   peaks_h[0] =  s->GetPositionY()[0];
   cout << "Event peak located at " << peaks_m[0] << " height = " << peaks_h[0] << endl;    
-  cnv->Update();
+  //cnv->Update();
 
   printf("Fitting...\n");
  
@@ -184,14 +175,14 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
   }
  
   // Global style settings
-  gStyle->SetOptStat(1111);
-  gStyle->SetOptFit(111);
-  gStyle->SetLabelSize(0.03,"x");
-  gStyle->SetLabelSize(0.03,"y");
+  //gStyle->SetOptStat(1111);
+  //gStyle->SetOptFit(111);
+  //gStyle->SetLabelSize(0.03,"x");
+  //gStyle->SetLabelSize(0.03,"y");
   
   //hst->GetXaxis()->SetRange(1,100);
-  hst->Draw();
-  fitsnr->Draw("lsame");
+  //hst->Draw("goff");
+  //fitsnr->Draw("goff");
   
 
 }

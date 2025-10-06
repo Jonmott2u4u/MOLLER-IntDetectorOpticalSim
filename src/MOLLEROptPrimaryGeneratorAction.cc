@@ -106,7 +106,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //-650 mm is ~ the right distance for a 3.5 deg tilted beam to hit the edge of the R5 tile. Used for 2025 HallD beam test
   //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -650*mm));
-  particleGun->SetParticlePosition(G4ThreeVector((x-650*p_x_tilt)*mm, (y+shift-650*p_y_tilt)*mm, -650*p_z_tilt*mm));
+  particleGun->SetParticlePosition(G4ThreeVector((x-650*p_x_tilt)*mm, (y+shift-650*p_y_tilt)*mm, -650*p_z_tilt*mm)); //Adjusted beam positioning. Ensures angled primaries hit specific spots on the tile at specific angles/orientations on the xy-plane
+  //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -650*p_z_tilt*mm)); //Normal beam positioning
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

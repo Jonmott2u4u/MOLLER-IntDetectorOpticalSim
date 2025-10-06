@@ -11,9 +11,9 @@ runscript = "#!/bin/bash\n\n"
 datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
-Detector = 5      #Sets the detector to use
+Detector = 1      #Sets the detector to use
 
-Particle = 1      #Sets the primary particle type. 1 for electrons, 2 for muons
+Particle = 1      #Sets the primary particle type. 1 for electrons, 2 for muons, 3 for positrons
 Energy = 8000     #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0     #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
@@ -21,24 +21,24 @@ NumEvents = 10000 #Number of events for each Hit Region (controlled by EventHitR
 
 shift = 0         #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
-tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
-
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 9      #1->8 = BF det centers 1-8, 9->10 are segment scans
-hr_stop = 9
+hr_start = 2      #1 = center, 2 = controlled position, 3 = Mainz, 4-5 = HallD?
+hr_stop = 2
 hr_step = 1     
 
-cutx_start = 0.0  #Used for hr = 9. Used to move the beam across the segment in mm increments
-cutx_stop = 0.0   #X moves across the width of the tiles (the long sides of R1->R4, R6), and 0 is the center
+cutx_start = -85.0  #Used for hr = 9. Used to move the beam across the segment in mm increments
+cutx_stop = 85.0   #X moves across the width of the tiles (the long sides of R1->R4, R6), and 0 is the center
 cutx_step = 5.0   
 
-cuty_start = 0.0  #Y moves the beam in the radial direction, and R1 starts at 0.5 mm, R2 at 30.5, etc
-cuty_stop = 0.0
-cuty_step = 0.1
+cuty_start = 0.5  #Y moves the beam in the radial direction, starting at ~0.5 mm
+cuty_stop = 40.5
+cuty_step = 5.0
 
 sa = 0            #Controls the angular spread of the beam from the Z-axis (in +- degrees)
 
-tilt = 00          #Controls the tilt of the beam from the z-axis in degrees
+tilt = 1.0        #Controls the tilt of the beam from the z-axis in degrees
+
+tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 ID_start = 1      #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 ID_stop = 1
@@ -57,7 +57,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     RndSeed1 = random.randrange(300000, 600000) #Random seeds for simulation
                     RndSeed2 = random.randrange(600001, 900000) #
                     Text = ""
-                    FileIDString = "_hR"+str(hr)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_det"+str(det)
+                    FileIDString = "_hR"+str(hr)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_det"+str(det)
                     if Detector == 1:
                         Text += "#------------------#Ring 1 commands --------------------#" + "\n\n"
                         Text += "/MainDet/LightGuideLowerConeBackAngle 22 deg" + "\n"

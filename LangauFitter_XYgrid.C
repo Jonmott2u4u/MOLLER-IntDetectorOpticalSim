@@ -8,22 +8,22 @@ void DoFit(TH1D *hst, Double_t *fitP, Double_t *fitE);
 
 //TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 
-void LangauFitExtract()
+void LangauFitter_XYgrid()
 {
   //gSystem->Load("libMOLLEROptDictionaries.so");
 
   std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
   std::ofstream ring_dat_weighted;
-  ring_dat.open ("r3.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
-  ring_dat_weighted.open ("r3_w.txt");
+  ring_dat.open ("r1.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
+  ring_dat_weighted.open ("r1_w.txt");
 
-  std::ifstream rfiles("r3files.dat");
+  std::ifstream rfiles("r1files.dat");
   std::string line;
   TFile *file;
 
-  Double_t paramx_start=-95.0, paramy_start=95; //Start positions of tile
+  Double_t paramx_start=-85.0, paramy_start=0.5; //Start positions of tile
   Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
-  Double_t limity=110.5;
+  Double_t limity=40.5;
   Int_t events=10000; //Total events per file
   
   TH1D *hst, *tmp;
@@ -49,7 +49,7 @@ void LangauFitExtract()
     paramy_run = paramy_start + countery*paramy_step;
     countery = countery + 1.0;
 
-    tmp = (TH1D*)file->Get("R3_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+    tmp = (TH1D*)file->Get("Ring_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
     hst = (TH1D*)tmp->Clone("PEs");
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");

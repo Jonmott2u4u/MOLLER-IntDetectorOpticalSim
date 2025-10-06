@@ -123,7 +123,8 @@ set(MOLLER_SCRIPTS
   MacroGenerator.py
   MacroSubmitter.py
   MacroSubmitter.sh
-  LangauFitExtract.C
+  LangauFitter.C
+  LangauFitter_XYgrid.C
   hitpos_tracker.C
   PlotExtractor.C
   segment_scan.C

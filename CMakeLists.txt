@@ -114,6 +114,8 @@ set(MOLLER_SCRIPTS
   macros/vis/r4.mac
   macros/vis/r5.mac
   macros/vis/r6.mac
+  macros/run/r5stand.mac
+  macros/vis/r5stand.mac
   data/OpticalPropertiesInputData.txt
   data/OpticalPropertiesInputData-Michaels-uvs.txt
   data/cosmics.txt

@@ -37,6 +37,9 @@ public:
   
   void       GetQuartzLimits(G4double *vals);
   void       GetLightGuideLimits(G4double *vals);
+  void       GetGem1Limits(G4double *vals);
+  void       GetGem2Limits(G4double *vals);
+  void       GetGem3Limits(G4double *vals);
 
 
 private:
@@ -48,8 +51,9 @@ private:
   
   MOLLEROptDetector*     MainDet;
 
-
-  MOLLEROptInsensitive*  AlPlate;
+  MOLLEROptAuxilary*     Gem1;
+  MOLLEROptAuxilary*     Gem2;
+  MOLLEROptAuxilary*     Gem3;
 
   MOLLEROptMessenger*  MOLLERMessenger;
 

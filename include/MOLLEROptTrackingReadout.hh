@@ -37,6 +37,9 @@ public:
   Int_t PMTHitFlag;
   Int_t RingPMTHitFlag;
   Int_t RingQuartzHitFlag = 0;
+  Int_t Gem1HitFlag = 0;
+  Int_t Gem2HitFlag = 0;
+  Int_t Gem3HitFlag = 0;
   Int_t LGHitFlag=0;
   Int_t Ring_Detected;
   Float_t InitEnergy;
@@ -52,6 +55,15 @@ public:
   Float_t RingQuartzHitX=0;
   Float_t RingQuartzHitY=0;
   Float_t RingQuartzHitZ=0;
+  Float_t Gem1HitX=0;
+  Float_t Gem1HitY=0;
+  Float_t Gem1HitZ=0;
+  Float_t Gem2HitX=0;
+  Float_t Gem2HitY=0;
+  Float_t Gem2HitZ=0;
+  Float_t Gem3HitX=0;
+  Float_t Gem3HitY=0;
+  Float_t Gem3HitZ=0;
   vector <Float_t> StepLength;
   vector <Float_t> StepAngle;  
   vector <Float_t> SecPhotonAngle;  
@@ -117,7 +129,7 @@ private:
   void IncrementEventCathodeDetection(Int_t ID);
   //Int_t GetCathodeDetections() {return CathodeDetections;};
   Int_t Ring_GetCathodeDetections() {return Ring_CathodeDetections;};
-   void SetPMTHitLocation(Int_t id, G4ThreeVector loc, G4String pmt, Float_t angle);
+  void SetPMTHitLocation(Int_t id, G4ThreeVector loc, G4String pmt, Float_t angle);
   void SetQuartzHitLocation(Int_t id, G4ThreeVector loc, G4String quartz);
   void SetScintHitLocation(Int_t id, G4ThreeVector loc, G4String scint);
   Bool_t TrackExists(Int_t ID);

@@ -6,29 +6,14 @@ MOLLEROptScintSD::MOLLEROptScintSD(G4String name, MOLLEROptTrackingReadout* TrRO
   //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
   //If you need to use scintillators in your setup, change the options here. No scintillators currently exist, so this is unused
-  if(SensitiveDetectorName == "Scint1"){
-    theCollectionName = G4String("ScintHitCollection1");
+  if(SensitiveDetectorName == "Gem1"){
+    theCollectionName = G4String("GemHitCollection1");
   }
-  else if(SensitiveDetectorName == "Scint2"){
-    theCollectionName = G4String("ScintHitCollection2");
+  else if(SensitiveDetectorName == "Gem2"){
+    theCollectionName = G4String("GemHitCollection2");
   }
-  else if(SensitiveDetectorName == "Scint3"){
-    theCollectionName = G4String("ScintHitCollection3");
-  }
-  else if(SensitiveDetectorName == "Scint4"){
-    theCollectionName = G4String("ScintHitCollection4");
-  }
-  else if(SensitiveDetectorName == "Scint5"){
-    theCollectionName = G4String("ScintHitCollection5");
-  }
-  else if(SensitiveDetectorName == "Scint6"){
-    theCollectionName = G4String("ScintHitCollection6");
-  }
-  else if(SensitiveDetectorName == "Scint7"){
-    theCollectionName = G4String("ScintHitCollection7");
-  }
-  else if(SensitiveDetectorName == "Scint8"){
-    theCollectionName = G4String("ScintHitCollection8");
+  else if(SensitiveDetectorName == "Gem3"){
+    theCollectionName = G4String("GemHitCollection3");
   }
 
   collectionName.insert(theCollectionName); 

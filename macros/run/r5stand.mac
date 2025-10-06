@@ -43,7 +43,7 @@
 
 /MainDet/SetCenterPositionInX 0 mm
 /MainDet/SetCenterPositionInY 0 mm
-/MainDet/SetCenterPositionInZ 0 mm
+/MainDet/SetCenterPositionInZ 276.5 mm
 /MainDet/YawRotation 0 deg                           #Rotates the detector about the y-axis
 /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
 /MainDet/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
@@ -52,7 +52,35 @@
 
 #------------------#Scintillator---------------#
 
-#None exist for this setup. If you need a scintillator, add it here
+/Gem1/SizeZ 3 mm                  
+/Gem1/SizeX 100 mm                  
+/Gem1/SizeY 200 mm                 
+/Gem1/SetCenterPositionInX 0 mm            
+/Gem1/SetCenterPositionInY -160 mm               
+/Gem1/SetCenterPositionInZ 0 mm            
+/Gem1/PolarRotation 0 deg                     #Rotates the Gemillator about the x-axis
+/Gem1/AzimuthalRotation 0 deg                 #Rotates the Gemillator about the z-axis
+/Gem1/UpdateGeometry
+
+/Gem2/SizeZ 3 mm                  
+/Gem2/SizeX 100 mm                  
+/Gem2/SizeY 200 mm                 
+/Gem2/SetCenterPositionInX 0 mm            
+/Gem2/SetCenterPositionInY -160 mm               
+/Gem2/SetCenterPositionInZ 180 mm            
+/Gem2/PolarRotation 0 deg                     #Rotates the Gemillator about the x-axis
+/Gem2/AzimuthalRotation 0 deg                 #Rotates the Gemillator about the z-axis
+/Gem2/UpdateGeometry
+
+/Gem3/SizeZ 3 mm                  
+/Gem3/SizeX 100 mm                  
+/Gem3/SizeY 200 mm                 
+/Gem3/SetCenterPositionInX 0 mm            
+/Gem3/SetCenterPositionInY -160 mm               
+/Gem3/SetCenterPositionInZ 690 mm            
+/Gem3/PolarRotation 0 deg                     #Rotates the Gemillator about the x-axis
+/Gem3/AzimuthalRotation 0 deg                 #Rotates the Gemillator about the z-axis
+/Gem3/UpdateGeometry
 
 #------------------#Misc. Frame---------------#
 
@@ -60,20 +88,20 @@
 
 #------------------#Beam commands -----------------------#
 
-/Generator/PrimaryParticle 3                      #Sets the primary particle type. 1 for electrons, 2 for muons
-/Generator/EventHitRegion 2                       #1->8 = BF det centers 1-8, 9 = segment scan
+/Generator/PrimaryParticle 2                      #Sets the primary particle type. 1 for electrons, 2 for muons
+/Generator/EventHitRegion 6                       #1->8 = BF det centers 1-8, 9 = segment scan
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/SegmentHitPosY 70
+/Generator/SegmentHitPosY 0
 /Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the MainDet, 999 saves nothing, etc.
+/Storage/DetectorFocus 1                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the MainDet, 999 saves nothing, etc.
 
 /RunAction/SetID 2
 /random/setSeeds 346082 823457
 /vis/disable
-/run/beamOn 100
+/run/beamOn 1000

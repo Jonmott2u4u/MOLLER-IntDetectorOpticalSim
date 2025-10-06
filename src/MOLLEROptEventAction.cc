@@ -90,9 +90,11 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
   //--------Segment Variables--------//
   G4double Ring_pes = 0;
-  G4int RingHit;
+  G4int RingHit, Gem1Hit, Gem2Hit, Gem3Hit;
   G4int Ring_Tracker = 0;  //Stores whether the tile has been hit this event  
-
+  G4int Gem1_Tracker = 0;
+  G4int Gem2_Tracker = 0;
+  G4int Gem3_Tracker = 0;
 
   ctrackID = -1;
   TrackData *track;
@@ -105,15 +107,10 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   for(int t = 0; t < NumTracks; t++){
 
     PMThit = 0;
-    RingHit = 0;
+    RingHit = 0, Gem1Hit = 0, Gem2Hit = 0, Gem3Hit = 0;
     analysis->MOLLERMainEvent->MOLLERGeneralEvent.Initialize();  
     track  = TrackingReadout->GetTrackData(t);
     if(track){
-
-      analysis->MOLLERMainEvent->MOLLERGeneralEvent.SetEventID(evt->GetEventID());
-      analysis->MOLLERMainEvent->MOLLERGeneralEvent.SetTrackParentID(track->ParentID);      
-      analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);      
-
       
       if(track->Particle == myBeam){
         //--------Segment tracking--------//
@@ -121,7 +118,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           if(track->RingQuartzHitFlag){
             RingHit = 1;
             Ring_pes = TrackingReadout->Ring_GetCathodeDetections();
-            if((Det == 0) || (Det == 1)){
+            if(Det != 999){
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzTrackHit(1);
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionX((Float_t)track->RingQuartzHitX/cm);
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionY((Float_t)track->RingQuartzHitY/cm);
@@ -129,7 +126,38 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingPEs(Ring_pes);
             }
           }
+          if(track->Gem1HitFlag){
+            Gem1Hit = 1;
+            if(Det != 999){
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem1TrackHit(1);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem1HitPositionX((Float_t)track->Gem1HitX/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem1HitPositionY((Float_t)track->Gem1HitY/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem1HitPositionZ((Float_t)track->Gem1HitZ/cm);
+              //cout << "Gem1 HIT" << endl;
+            }
+          }
+          if(track->Gem2HitFlag){
+            Gem2Hit = 1;
+            if(Det != 999){
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem2TrackHit(1);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem2HitPositionX((Float_t)track->Gem2HitX/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem2HitPositionY((Float_t)track->Gem2HitY/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem2HitPositionZ((Float_t)track->Gem2HitZ/cm);
+            }
+          }
+          if(track->Gem3HitFlag){
+            Gem3Hit = 1;
+            if(Det != 999){
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem3TrackHit(1);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem3HitPositionX((Float_t)track->Gem3HitX/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem3HitPositionY((Float_t)track->Gem3HitY/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem3HitPositionZ((Float_t)track->Gem3HitZ/cm);
+            }
+          }
           if(RingHit==1) Ring_Tracker = 1;
+          if(Gem1Hit==1) Gem1_Tracker = 1;
+          if(Gem2Hit==1) Gem2_Tracker = 1;
+          if(Gem3Hit==1) Gem3_Tracker = 1;
         }
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1

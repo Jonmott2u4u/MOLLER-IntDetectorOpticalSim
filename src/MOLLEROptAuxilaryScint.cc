@@ -73,15 +73,10 @@ void MOLLEROptAuxilaryScint::Initialize()
 
   //The below options were for the 16Det William & Mary stand. Update to whatever scintillators are needed
   SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("Scint1_")) ScintSD = new MOLLEROptScintSD("/Scint1",TrackingReadout);
-  else if (Name.contains("Scint2_")) ScintSD = new MOLLEROptScintSD("/Scint2",TrackingReadout);
-  else if (Name.contains("Scint3_")) ScintSD = new MOLLEROptScintSD("/Scint3",TrackingReadout);
-  else if (Name.contains("Scint4_")) ScintSD = new MOLLEROptScintSD("/Scint4",TrackingReadout);
-  else if (Name.contains("Scint5_")) ScintSD = new MOLLEROptScintSD("/Scint5",TrackingReadout);
-  else if (Name.contains("Scint6_")) ScintSD = new MOLLEROptScintSD("/Scint6",TrackingReadout);
-  else if (Name.contains("Scint7_")) ScintSD = new MOLLEROptScintSD("/Scint7",TrackingReadout);
-  else if (Name.contains("Scint8_")) ScintSD = new MOLLEROptScintSD("/Scint8",TrackingReadout);
-  else ScintSD = new MOLLEROptScintSD("/Scint1",TrackingReadout);
+  if (Name.contains("Gem1_")) ScintSD = new MOLLEROptScintSD("/Gem1",TrackingReadout);
+  else if (Name.contains("Gem2_")) ScintSD = new MOLLEROptScintSD("/Gem2",TrackingReadout);
+  else if (Name.contains("Gem3_")) ScintSD = new MOLLEROptScintSD("/Gem3",TrackingReadout);
+  else ScintSD = new MOLLEROptScintSD("/Gem1",TrackingReadout);
   SDman->AddNewDetector(ScintSD);  
   ScintLogical->SetSensitiveDetector(ScintSD);
 

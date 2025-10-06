@@ -36,8 +36,14 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     
   G4double Qlim[4];
   G4double LGlim[8];
+  G4double Slim1[4];
+  G4double Slim2[4];
+  G4double Slim3[4];
   Construction->GetQuartzLimits(Qlim);
   Construction->GetLightGuideLimits(LGlim);
+  Construction->GetGem1Limits(Slim1);
+  Construction->GetGem2Limits(Slim2);
+  Construction->GetGem3Limits(Slim3);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -64,6 +70,11 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     random_tilt = 1;
     x = (Qlim[1]+Qlim[0])/2;
     y = (Qlim[3]+Qlim[2])/2.0 - 2.5 + 5*G4UniformRand();
+  }
+  else if(EventRegion == 6){
+    //Anywhere within Gem1 (the US scintillator)
+    x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
+    y = Slim1[2] + (Slim1[3]-Slim1[2])*G4UniformRand();
   }
   else{
     //Defaults to EventRegion == 1
@@ -105,8 +116,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
 
   //-650 mm is ~ the right distance for a 3.5 deg tilted beam to hit the edge of the R5 tile. Used for 2025 HallD beam test
-  //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -650*mm));
-  particleGun->SetParticlePosition(G4ThreeVector((x-650*p_x_tilt)*mm, (y+shift-650*p_y_tilt)*mm, -650*p_z_tilt*mm));
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -2*mm));
+  //particleGun->SetParticlePosition(G4ThreeVector((x-2*p_x_tilt)*mm, (y+shift-2*p_y_tilt)*mm, -2*p_z_tilt*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions

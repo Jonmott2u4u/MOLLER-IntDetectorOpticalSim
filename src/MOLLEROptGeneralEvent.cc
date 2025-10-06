@@ -43,7 +43,9 @@ void MOLLEROptGeneralEvent::Initialize()
   TotalTrackLength.clear();  
   TotalTrackLength.resize(0);
 
-  QuartzTrackLength = 0;
+  //QuartzTrackLength = 0;
+  QuartzTrackLength.clear();
+  QuartzTrackLength.resize(0);
 
   //ScintTrackLength = 0;
 
@@ -53,14 +55,18 @@ void MOLLEROptGeneralEvent::Initialize()
   TotalSteps.clear();  
   TotalSteps.resize(0);
 
-  QuartzSteps = 0;
+  //QuartzSteps = 0;
+  QuartzSteps.clear();
+  QuartzSteps.resize(0);
 
   //ScintStept = 0;
 
   LightGuideSteps.clear();  
   LightGuideSteps.resize(0);
 
-  PMTTrackHit = 0;
+  //PMTTrackHit = 0;
+  PMTTrackHit.clear();
+  PMTTrackHit.resize(0);
 
   LightGuideTrackHit.clear();  
   LightGuideTrackHit.resize(0);
@@ -68,14 +74,40 @@ void MOLLEROptGeneralEvent::Initialize()
   RingQuartzTrackHit.clear();  
   RingQuartzTrackHit.resize(0);
 
+  Gem1TrackHit.clear();  
+  Gem1TrackHit.resize(0);
+  Gem2TrackHit.clear();  
+  Gem2TrackHit.resize(0);
+  Gem3TrackHit.clear();  
+  Gem3TrackHit.resize(0);
+
   RingTileHitX.clear();  
   RingTileHitX.resize(0);
-
   RingTileHitY.clear();  
   RingTileHitY.resize(0);
-
   RingTileHitZ.clear();  
   RingTileHitZ.resize(0);
+
+  Gem1HitX.clear();  
+  Gem1HitX.resize(0);
+  Gem1HitY.clear();  
+  Gem1HitY.resize(0);
+  Gem1HitZ.clear();  
+  Gem1HitZ.resize(0);
+
+  Gem2HitX.clear();  
+  Gem2HitX.resize(0);
+  Gem2HitY.clear();  
+  Gem2HitY.resize(0);
+  Gem2HitZ.clear();  
+  Gem2HitZ.resize(0);
+
+  Gem3HitX.clear();  
+  Gem3HitX.resize(0);
+  Gem3HitY.clear();  
+  Gem3HitY.resize(0);
+  Gem3HitZ.clear();  
+  Gem3HitZ.resize(0);
 
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);
@@ -86,7 +118,9 @@ void MOLLEROptGeneralEvent::Initialize()
   InitialBeamAngle.clear();
   InitialBeamAngle.resize(0);
 
-  QuartzPhotonEnergy = 0;
+  //QuartzPhotonEnergy = 0;
+  QuartzPhotonEnergy.clear();
+  QuartzPhotonEnergy.resize(0);
 
   QuartzStepNPhotons.clear();
   QuartzStepNPhotons.resize(0);
@@ -97,8 +131,12 @@ void MOLLEROptGeneralEvent::Initialize()
   QuartzElectronStepLength.clear();
   QuartzElectronStepLength.resize(0);
 
-  ElectronTrackID = 0;
-  PhotonTrackID = 0;
+  //ElectronTrackID = 0;
+  ElectronTrackID.clear();
+  ElectronTrackID.resize(0);
+  //PhotonTrackID = 0;
+  PhotonTrackID.clear();
+  PhotonTrackID.resize(0);
   
   PType.clear();  
   PType.resize(0);
@@ -121,8 +159,8 @@ void MOLLEROptGeneralEvent::Initialize()
 
 void MOLLEROptGeneralEvent::AddQuartzTrackData(Float_t QTrackL, Int_t QSteps)
 {
-  QuartzTrackLength = QTrackL;  
-  QuartzSteps = QSteps;  
+  QuartzTrackLength.push_back(QTrackL);  
+  QuartzSteps.push_back(QSteps);  
 }
 
 /*void MOLLEROptGeneralEvent::AddScintTrackData(Float_t STrackL, Int_t SSteps)

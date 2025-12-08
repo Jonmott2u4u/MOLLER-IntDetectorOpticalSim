@@ -13,7 +13,7 @@ OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output f
 
 Detector = 5      #Sets the detector to use
 
-Particle = 1      #Sets the primary particle type. 1 for electrons, 2 for muons
+Particle = 2      #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000     #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0     #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
@@ -24,8 +24,8 @@ shift = 0         #Shifts the particle spawn location by that much. What this af
 tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 9      #1->8 = BF det centers 1-8, 9->10 are segment scans
-hr_stop = 9
+hr_start = 6      #1->8 = BF det centers 1-8, 9->10 are segment scans (not accurate this branch - update)
+hr_stop = 6
 hr_step = 1     
 
 cutx_start = 0.0  #Used for hr = 9. Used to move the beam across the segment in mm increments
@@ -36,7 +36,7 @@ cuty_start = 0.0  #Y moves the beam in the radial direction, and R1 starts at 0.
 cuty_stop = 0.0
 cuty_step = 0.1
 
-sa = 0            #Controls the angular spread of the beam from the Z-axis (in +- degrees)
+sa = 18            #Controls the angular spread of the beam from the Z-axis (in +- degrees)
 
 tilt = 00          #Controls the tilt of the beam from the z-axis in degrees
 
@@ -44,8 +44,8 @@ ID_start = 1      #Set this to distinguish identical runs (to prevent file overw
 ID_stop = 1
 ID_step = 1
 
-det_start = 999    #Sets which detector will have its info stored in the root file
-det_stop = 999     #0 for all detectors, 999 for no detectors, 1 for events hitting the main detector, etc
+det_start = 1    #Sets which detector will have its info stored in the root file
+det_stop = 1     #0 for all detectors, 999 for no detectors, 1 for events hitting the main detector, etc
 det_step = 1
 
 text_root = ""
@@ -163,8 +163,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/QuartzSizeY 140 mm" + "\n" 
                         Text += "/MainDet/QuartzRotX -3 deg" + "\n"
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInY 435.3 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInZ 651.64 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
@@ -234,6 +234,34 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
+                    Text += "#------------------#Scintillator commands --------------------#" + "\n\n"
+                    Text += "/Gem1/SizeZ 3 mm" + "\n"
+                    Text += "/Gem1/SizeX 100 mm" + "\n"
+                    Text += "/Gem1/SizeY 200 mm" + "\n"
+                    Text += "/Gem1/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/Gem1/SetCenterPositionInY -160 mm" + "\n"
+                    Text += "/Gem1/SetCenterPositionInZ 0 mm" + "\n"
+                    Text += "/Gem1/PolarRotation 0 deg" + "\n"
+                    Text += "/Gem1/AzimuthalRotation 0 deg" + "\n"
+                    Text += "/Gem1/UpdateGeometry" + "\n"
+                    Text += "/Gem2/SizeZ 3 mm" + "\n"
+                    Text += "/Gem2/SizeX 100 mm" + "\n"
+                    Text += "/Gem2/SizeY 200 mm" + "\n"
+                    Text += "/Gem2/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/Gem2/SetCenterPositionInY -160 mm" + "\n"
+                    Text += "/Gem2/SetCenterPositionInZ 180 mm" + "\n"
+                    Text += "/Gem2/PolarRotation 0 deg" + "\n"
+                    Text += "/Gem2/AzimuthalRotation 0 deg" + "\n"
+                    Text += "/Gem2/UpdateGeometry" + "\n"
+                    Text += "/Gem3/SizeZ 3 mm" + "\n"
+                    Text += "/Gem3/SizeX 100 mm" + "\n"
+                    Text += "/Gem3/SizeY 200 mm" + "\n"
+                    Text += "/Gem3/SetCenterPositionInX 0 mm" + "\n"
+                    Text += "/Gem3/SetCenterPositionInY -160 mm" + "\n"
+                    Text += "/Gem3/SetCenterPositionInZ 690 mm" + "\n"
+                    Text += "/Gem3/PolarRotation 0 deg" + "\n"
+                    Text += "/Gem3/AzimuthalRotation 0 deg" + "\n"
+                    Text += "/Gem3/UpdateGeometry" + "\n"
                     Text += "#------------------#General commands --------------------#" + "\n\n"
                     Text += "/Generator/PrimaryParticle " + str(Particle) + "\n"
                     Text += "/Generator/EventHitRegion " + str(hr) + "\n"

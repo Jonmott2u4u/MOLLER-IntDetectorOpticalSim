@@ -8,8 +8,8 @@ sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 9    #1->8 = BF det centers 1-8, 9->10 are segment scans
-hr_stop = 9
+hr_start = 6    #1->8 = BF det centers 1-8, 9->10 are segment scans
+hr_stop = 6
 hr_step = 1     
 
 cutx_start = 0.0  #Used for hr = 9. Used to move the beam across the segment in mm increments
@@ -24,8 +24,8 @@ ID_start = 1     #Set this to distinguish identical runs (to prevent file overwr
 ID_stop = 1
 ID_step = 1
 
-det_start = 999    #Sets which detector will have its info stored in the root file
-det_stop = 999     #0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves only pe histograms
+det_start = 1    #Sets which detector will have its info stored in the root file
+det_stop = 1     #0 for all detectors, 1 for Ring1, 2 for Ring2, etc. 999 saves only pe histograms
 det_step = 1
 
 for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):

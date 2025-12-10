@@ -154,10 +154,12 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddGem3HitPositionZ((Float_t)track->Gem3HitZ/cm);
             }
           }
-          if(RingHit==1) Ring_Tracker = 1;
-          if(Gem1Hit==1) Gem1_Tracker = 1;
-          if(Gem2Hit==1) Gem2_Tracker = 1;
-          if(Gem3Hit==1) Gem3_Tracker = 1;
+          if((Gem1Hit == 1) && (Gem2Hit == 1) && (Gem3Hit == 1)){
+            if(RingHit==1) Ring_Tracker = 1;
+            Gem1_Tracker = 1;
+            Gem2_Tracker = 1;
+            Gem3_Tracker = 1;
+          }
         }
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1

@@ -21,7 +21,7 @@ cuty_stop = 0.0
 cuty_step = 0.1
 
 ID_start = 1     #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1
+ID_stop = 1000
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file
@@ -66,7 +66,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         jsubf.write("#SBATCH --nodes=1\n")
                         jsubf.write("#SBATCH --ntasks=1\n")
                         jsubf.write("#SBATCH --cpus-per-task=1\n")
-                        jsubf.write("#SBATCH --mem=400M\n")
+                        jsubf.write("#SBATCH --mem=600M\n")
                         #---General submission info---
                         jsubf.write("echo \"Current working directory is `pwd`\"\n")	
                         jsubf.write("source /etc/skel/.bashrc \n")

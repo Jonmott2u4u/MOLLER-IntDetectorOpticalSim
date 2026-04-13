@@ -40,8 +40,8 @@ sa = 18            #Controls the angular spread of the beam from the Z-axis (in 
 
 tilt = 00          #Controls the tilt of the beam from the z-axis in degrees
 
-ID_start = 1001      #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 2000
+ID_start = 1      #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_stop = 1000
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file

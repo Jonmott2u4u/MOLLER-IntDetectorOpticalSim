@@ -160,7 +160,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTTrackHit(track->PMTHitFlag);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackHit(track->LGHitFlag);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
+          //analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
           QuartzSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
           if(track->QExitFlag)
@@ -173,6 +173,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
             analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
+            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonWavelength(track->InitWavelength);
             optPhEng = track->InitKinEnergy/eV;
             OptParam* op = TrackingReadout->GetOpticalParameters();
             PMThit++;

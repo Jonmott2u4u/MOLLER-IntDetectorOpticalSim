@@ -80,6 +80,9 @@ void MOLLEROptGeneralEvent::Initialize()
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);
 
+  PMTPhotonWavelength.clear();  
+  PMTPhotonWavelength.resize(0);
+
   InitialBeamEnergy.clear();
   InitialBeamEnergy.resize(0);
 

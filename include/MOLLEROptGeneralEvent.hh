@@ -24,6 +24,7 @@ private:
 
   Int_t PMTTrackHit;
   vector <Float_t> PMTPhotonEnergy;
+  vector <Float_t> PMTPhotonWavelength;
   vector <Float_t> PMTCathodeHitX;
   vector <Float_t> PMTCathodeHitY;
   vector <Float_t> PMTCathodeHitZ;
@@ -91,6 +92,7 @@ public:
   void AddInitialBeamAngle(Float_t aang) {InitialBeamAngle.push_back(aang);};
 
   void AddPMTPhotonEnergy(Float_t eng) {PMTPhotonEnergy.push_back(eng);};
+  void AddPMTPhotonWavelength(Float_t wvl) {PMTPhotonWavelength.push_back(wvl);};
   void AddPMTTrackHit(Int_t tID){PMTTrackHit = tID;};
   void AddPMTHitPositionX(Float_t x) {PMTCathodeHitX.push_back(x);};
   void AddPMTHitPositionY(Float_t y) {PMTCathodeHitY.push_back(y);};

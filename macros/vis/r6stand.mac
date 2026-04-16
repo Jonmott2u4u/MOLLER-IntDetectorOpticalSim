@@ -72,20 +72,20 @@
 #               |
 #  (x) into screen
 
-/MainDet/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
-/MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/MainDet/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
-/MainDet/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
-/MainDet/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
-/MainDet/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/MainDet/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
-/MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+/MainDet/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/MainDet/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+/MainDet/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
+/MainDet/LightGuideMiddleBox 90 mm			       #Height of box between upper and lower cones	
+/MainDet/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
+/MainDet/LightGuideQuartzInterfaceOpeningX 26.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model (1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+/MainDet/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/MainDet/QuartzSizeZ 17 mm
-/MainDet/QuartzSizeX 80 mm
-/MainDet/QuartzSizeY 140 mm                          #Without the 45 degree cut
+/MainDet/QuartzSizeZ 20 mm
+/MainDet/QuartzSizeX 260 mm
+/MainDet/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
 /MainDet/SetCenterPositionInX 0 mm
@@ -93,7 +93,7 @@
 /MainDet/SetCenterPositionInZ 276.5 mm
 /MainDet/YawRotation 0 deg                           #Rotates the detector about the y-axis
 /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
-/MainDet/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
+/MainDet/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
 
 /MainDet/UpdateGeometry
 
@@ -106,7 +106,7 @@
 /Gem1/SetCenterPositionInY -160 mm               
 /Gem1/SetCenterPositionInZ 0 mm            
 /Gem1/PolarRotation 0 deg                     #Rotates the Gemillator about the x-axis
-/Gem1/AzimuthalRotation 0 deg                 #Rotates the Gemillator about the z-axis
+/Gem1/AzimuthalRotation 90 deg                 #Rotates the Gemillator about the z-axis
 /Gem1/UpdateGeometry
 
 /Gem2/SizeZ 3 mm                  
@@ -114,9 +114,9 @@
 /Gem2/SizeY 200 mm                 
 /Gem2/SetCenterPositionInX 0 mm            
 /Gem2/SetCenterPositionInY -160 mm               
-/Gem2/SetCenterPositionInZ 180 mm            
+/Gem2/SetCenterPositionInZ 159 mm            
 /Gem2/PolarRotation 0 deg                     #Rotates the Gemillator about the x-axis
-/Gem2/AzimuthalRotation 0 deg                 #Rotates the Gemillator about the z-axis
+/Gem2/AzimuthalRotation 90 deg                 #Rotates the Gemillator about the z-axis
 /Gem2/UpdateGeometry
 
 /Gem3/SizeZ 3 mm                  
@@ -124,9 +124,9 @@
 /Gem3/SizeY 200 mm                 
 /Gem3/SetCenterPositionInX 0 mm            
 /Gem3/SetCenterPositionInY -160 mm               
-/Gem3/SetCenterPositionInZ 690 mm            
+/Gem3/SetCenterPositionInZ 519 mm            
 /Gem3/PolarRotation 0 deg                     #Rotates the Gemillator about the x-axis
-/Gem3/AzimuthalRotation 0 deg                 #Rotates the Gemillator about the z-axis
+/Gem3/AzimuthalRotation 90 deg                 #Rotates the Gemillator about the z-axis
 /Gem3/UpdateGeometry
 
 #------------------#Misc. Frame---------------#
@@ -139,8 +139,8 @@
 /Generator/EventHitRegion 6                       #Use hr=6 for this branch. Spawns particles at GEM1
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/SegmentHitPosY 0                       #The tile starts at 0.2
-/Generator/BeamSolidAngle 18                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
+/Generator/SegmentHitPosY 0
+/Generator/BeamSolidAngle 24                      #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
 /Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1

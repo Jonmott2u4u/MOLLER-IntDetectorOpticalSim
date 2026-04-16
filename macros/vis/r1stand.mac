@@ -72,25 +72,25 @@
 #               |
 #  (x) into screen
 
-/MainDet/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/MainDet/LightGuideLowerConeBackAngle 22 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
-/MainDet/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
-/MainDet/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
-/MainDet/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
-/MainDet/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
-/MainDet/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+/MainDet/LightGuideLowerInterface 75 mm              #Distance between quartz-LG interface and lower interface plane
+/MainDet/LightGuideMiddleBox 410 mm			       #Height of box between upper and lower cones	
+/MainDet/LightGuideUpperInterface 251 mm             #Distance between upper and lower interface planes
+/MainDet/LightGuideQuartzInterfaceOpeningX 17.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/MainDet/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
 /MainDet/LightGuideQuartzToPMTOffset -2 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
 /MainDet/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
-/MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm
+/MainDet/LightGuidePMTInterfaceOpeningZ 7.0 cm       #
 
-/MainDet/QuartzSizeZ 17 mm
-/MainDet/QuartzSizeX 80 mm
-/MainDet/QuartzSizeY 140 mm                          #Without the 45 degree cut
+/MainDet/QuartzSizeZ 20 mm
+/MainDet/QuartzSizeX 169 mm
+/MainDet/QuartzSizeY 20 mm                           #Without the 45 degree cut
 /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
 /MainDet/SetCenterPositionInX 0 mm
-/MainDet/SetCenterPositionInY 0 mm
-/MainDet/SetCenterPositionInZ 276.5 mm
+/MainDet/SetCenterPositionInY 0 mm             
+/MainDet/SetCenterPositionInZ 0 mm             
 /MainDet/YawRotation 0 deg                           #Rotates the detector about the y-axis
 /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
 /MainDet/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis
@@ -139,7 +139,7 @@
 /Generator/EventHitRegion 6                       #Use hr=6 for this branch. Spawns particles at GEM1
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/SegmentHitPosY 0                       #The tile starts at 0.2
+/Generator/SegmentHitPosY 0
 /Generator/BeamSolidAngle 18                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)

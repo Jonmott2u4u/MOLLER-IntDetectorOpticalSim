@@ -190,11 +190,13 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTTrackHit(track->PMTHitFlag);
           analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackHit(track->LGHitFlag);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
           QuartzSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
-          if(track->QExitFlag)
+          if(track->QExitFlag){
             LightGuideSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
+          }
+          if(track->LGHitFlag){
+            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
+          }
           if(track->PMTHitFlag){
             //G4cout << "PHOTON" << G4endl;
             PMTSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));

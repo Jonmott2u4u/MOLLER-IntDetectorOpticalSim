@@ -11,7 +11,7 @@ runscript = "#!/bin/bash\n\n"
 datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
-Detector = 8      #Sets the detector to use
+Detector = 4      #Sets the detector to use
 
 Particle = 2      #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000     #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
@@ -24,7 +24,7 @@ shift = 0         #Shifts the particle spawn location by that much. What this af
 tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 6      #1->8 = BF det centers 1-8, 9->10 are segment scans (not accurate this branch - update)
+hr_start = 6      #hr = 6 for this branch. This spawns particles at the US scint (scint1)
 hr_stop = 6
 hr_step = 1     
 
@@ -75,8 +75,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/QuartzSizeY 20 mm" + "\n"  
                         Text += "/MainDet/QuartzRotX -3 deg" + "\n"              
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInY 270.7 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInZ 1923.94 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
@@ -97,8 +97,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/QuartzSizeY 60 mm" + "\n"   
                         Text += "/MainDet/QuartzRotX -3 deg" + "\n"
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInY 292.8 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInZ 1645.6 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
@@ -119,8 +119,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/QuartzSizeY 60 mm" + "\n"   
                         Text += "/MainDet/QuartzRotX -3 deg" + "\n"
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInY 329.8 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInZ 1371.51 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
@@ -141,8 +141,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/QuartzSizeY 120 mm" + "\n"  
                         Text += "/MainDet/QuartzRotX -3 deg" + "\n"      
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInY 366.9 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInZ 1092.08 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInY 100 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"

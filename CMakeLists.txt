@@ -102,12 +102,9 @@ target_link_libraries(MOLLEROpt PRIVATE MOLLEROptDictionaries PUBLIC ${Geant4_LI
 set(MOLLER_SCRIPTS
   macros/Qt.mac
   macros/gui.mac
-  macros/run/r1.mac
-  macros/run/r2.mac
-  macros/run/r3.mac
-  macros/run/r4.mac
-  macros/run/r5.mac
-  macros/run/r6.mac
+  macros/run/r4stand.mac
+  macros/run/r5stand.mac
+  macros/run/r6stand.mac
   macros/vis/r1stand.mac
   macros/vis/r2stand.mac
   macros/vis/r3stand.mac

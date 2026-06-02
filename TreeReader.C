@@ -150,7 +150,7 @@ void plot_r5_pes_vs_pos() {
 void pes_vs_angle() {
 
     // Open ROOT file
-    TFile *f = TFile::Open("rootfiles/cosmics.root");
+    TFile *f = TFile::Open("rootfiles/r6_cosmics.root");
     if (!f || f->IsZombie()) {
         cerr << "Error: Cannot open ROOT file!" << endl;
         return;
@@ -178,12 +178,17 @@ void pes_vs_angle() {
     TTreeReaderArray<float> Gem3HitZ(reader_main, "MOLLERGeneralEvent.Gem3HitZ");
 
     //Defining angle for cuts
-    double angle = 5.0; //Cuts are +- 0.1 about this value
+    double angle = 10.0; //Cuts are +- 0.1 about this value ----- or 1.0 degrees for Sayaks binning
 
     //Creating histograms for storing PE yield with cuts
-    //TH1D *normal_pes = new TH1D("normal_pes", "R5 PE yield for normal incidence muons (+- 1 degree); PEs", 101, 0, 100);
-    TH1D *ThetaX_pes = new TH1D("ThetaX_pes", Form("R5 PE yield for ThetaX normal & ThetaY %.1f (+- 0.1 degree), E_muon > 300 MeV; PEs",angle), 101, 0, 100);
-    TH1D *ThetaY_pes = new TH1D("ThetaY_pes", Form("R5 PE yield for ThetaY normal & ThetaX %.1f (+- 0.1 degree), E_muon > 300 MeV; PEs",angle), 101, 0, 100);
+    //TH1D *normal_pes = new TH1D("normal_pes", "R6 PE yield for normal incidence muons (+- 1 degree); PEs", 101, 0, 100);
+    //TH1D *ThetaX_pes = new TH1D("ThetaX_pes", Form("R6 PE yield for ThetaX normal & ThetaY %.1f (+- 0.1 degree), E_muon > 300 MeV; PEs",angle), 101, 0, 100);
+    //TH1D *ThetaY_pes = new TH1D("ThetaY_pes", Form("R6 PE yield for ThetaY normal & ThetaX %.1f (+- 0.1 degree), E_muon > 300 MeV; PEs",angle), 101, 0, 100);
+    //TH1D *ThetaX_pes = new TH1D("ThetaX_pes", Form("R6 PE yield for ThetaX unrestrained & ThetaY %.1f (+- 0.1 degree), E_muon > 300 MeV; PEs",angle), 101, 0, 100);
+    //TH1D *ThetaY_pes = new TH1D("ThetaY_pes", Form("R6 PE yield for ThetaY unrestrained & ThetaX %.1f (+- 0.1 degree), E_muon > 300 MeV; PEs",angle), 101, 0, 100);
+    TH1D *ThetaX_pes = new TH1D("ThetaX_pes", Form("PE yield for ThetaX unrestrained & ThetaY %.1f (+- 1.0 degree), E_muon > 300 MeV; PEs",angle), 100, 0, 100);
+    TH1D *ThetaY_pes = new TH1D("ThetaY_pes", Form("PE yield for ThetaY unrestrained & ThetaX %.1f (+- 1.0 degree), E_muon > 300 MeV; PEs",angle), 100, 0, 100);
+
 
     //Defining constants
     float pi = 3.14159265358979323846;
@@ -191,40 +196,52 @@ void pes_vs_angle() {
     while (reader_main.Next()) {
         //Loops over all entries that hit the final gem
         for (size_t i = 0; i < RingPEs.GetSize(); ++i) {
-	    int PE = RingPEs[i];
-	    float InitEnergy = InitialBeamEnergy[i];
+            int PE = RingPEs[i];
+            float InitEnergy = InitialBeamEnergy[i];
             float AngleOfInc = InitialBeamAngle[i];
-	    float ThetaX = atan(abs(Gem3HitX[i] - Gem1HitX[i])/abs(Gem3HitZ[i] - Gem1HitZ[i]))*(180.0/pi);
-	    float ThetaY = atan(abs(Gem3HitY[i] - Gem1HitY[i])/abs(Gem3HitZ[i] - Gem1HitZ[i]))*(180.0/pi);
-	    //I do not remember why this is here. Did we want this?
-            /*if (AngleOfInc <= 1) {
-                normal_pes->AddBinContent(PE);
-            }*/
-	    //These 2 statements require thetaX/Y compenents be normal (one at a time)
-	    if ((ThetaX <= 1) && ((angle-0.1) <= ThetaY) && ((angle+0.1) >= ThetaY) && (InitEnergy > 0.3)) {
-		ThetaX_pes->AddBinContent(PE);
-	    }
-	    if ((ThetaY <= 1) && ((angle-0.1) <= ThetaX) && ((angle+0.1) >= ThetaX) && (InitEnergy > 0.3)) {
-                ThetaY_pes->AddBinContent(PE);
+            float ThetaX = atan(abs(Gem3HitX[i] - Gem1HitX[i])/abs(Gem3HitZ[i] - Gem1HitZ[i]))*(180.0/pi);
+            float ThetaY = atan(abs(Gem3HitY[i] - Gem1HitY[i])/abs(Gem3HitZ[i] - Gem1HitZ[i]))*(180.0/pi);
+            //I do not remember why this is here. Did we want this?
+                /*if (AngleOfInc <= 1) {
+                    normal_pes->AddBinContent(PE);
+                }*/
+            //These 2 statements require thetaX/Y compenents be normal (one at a time)
+            /*if ((ThetaX <= 1) && ((angle-0.1) <= ThetaY) && ((angle+0.1) >= ThetaY) && (InitEnergy > 0.3)) {
+            ThetaX_pes->AddBinContent(PE);
             }
-	    //These 2 statements do not require thetaX/Y compenents be normal
-	    /*if (((angle-0.1) <= ThetaY) && ((angle+0.1) >= ThetaY) && (InitEnergy > 0.3)) {
-                ThetaX_pes->AddBinContent(PE);
+            if ((ThetaY <= 1) && ((angle-0.1) <= ThetaX) && ((angle+0.1) >= ThetaX) && (InitEnergy > 0.3)) {
+                    ThetaY_pes->AddBinContent(PE);
+                }*/
+            //These 2 statements do not require thetaX/Y compenents be normal
+            /*if (((angle-0.1) <= ThetaY) && ((angle+0.1) >= ThetaY) && (InitEnergy > 0.3)) {
+                    ThetaX_pes->AddBinContent(PE);
             }
             if (((angle-0.1) <= ThetaX) && ((angle+0.1) >= ThetaX) && (InitEnergy > 0.3)) {
                 ThetaY_pes->AddBinContent(PE);
             }*/
+           //The following statements use Sayak's +-1 angle binning (and are unrestrained as well)
+            if (((angle-1.0) <= ThetaY) && ((angle+1.0) >= ThetaY) && (InitEnergy > 0.3)) {
+                    ThetaX_pes->AddBinContent(PE);
+            }
+            if (((angle-1.0) <= ThetaX) && ((angle+1.0) >= ThetaX) && (InitEnergy > 0.3)) {
+                ThetaY_pes->AddBinContent(PE);
+            }
         }
     }
     
     // Draw and save histograms
-    //normal_pes->SaveAs(Form("plots/R5_normal_%.1f_deg.root",angle));
-    ThetaX_pes->SaveAs(Form("plots/300MeV_Greater_cut/R5_ThetaX_normal_ThetaY_%.1f_deg.root",angle));
-    ThetaY_pes->SaveAs(Form("plots/300MeV_Greater_cut/R5_ThetaY_normal_ThetaX_%.1f_deg.root",angle));
-    //ThetaX_pes->SaveAs(Form("plots/300MeV_Greater_cut/R5_ThetaX_unrestrained_ThetaY_%.1f_deg.root",angle));
-    //ThetaY_pes->SaveAs(Form("plots/300MeV_Greater_cut/R5_ThetaY_unrestrained_ThetaX_%.1f_deg.root",angle));
+    //normal_pes->SaveAs(Form("plots/R6_normal_%.1f_deg.root",angle));
+    //ThetaX_pes->SaveAs(Form("plots/300MeV_Greater_cut/R6_ThetaX_normal_ThetaY_%.1f_deg.root",angle)); //ThetaX plot has ThetaX held normal
+    //ThetaY_pes->SaveAs(Form("plots/300MeV_Greater_cut/R6_ThetaY_normal_ThetaX_%.1f_deg.root",angle)); //ThetaY plot has ThetaY held normal
+    ThetaX_pes->SaveAs(Form("plots/300MeV_Greater_cut/Sayaks_R6_ThetaX_unrestrained_ThetaY_%.1f_deg.root",angle));
+    ThetaY_pes->SaveAs(Form("plots/300MeV_Greater_cut/Sayaks_R6_ThetaY_unrestrained_ThetaX_%.1f_deg.root",angle));
 
-    TCanvas *c1 = new TCanvas("c1", "The ThetaX Plot", 900, 700);
-    ThetaX_pes->Draw(); //Why just thetaX?
+    TCanvas *c1 = new TCanvas("c1","Plots", 900, 700);
+    c1->Divide(2);
+    c1->cd(1);
+    ThetaX_pes->Draw();
+    c1->cd(2);
+    ThetaY_pes->Draw();
+    
 
 }

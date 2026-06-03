@@ -119,7 +119,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/QuartzSizeY 60 mm" + "\n"   
                         Text += "/MainDet/QuartzRotX -3 deg" + "\n"
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
-                        Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
+                        Text += "/MainDet/SetCenterPositionInY 145 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
                         Text += "/MainDet/PolarRotation 3 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"

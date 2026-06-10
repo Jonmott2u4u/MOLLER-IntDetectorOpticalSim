@@ -1,4 +1,7 @@
 build/
+MacroFolder/
+StartRuns
+*.dat
 *~
 *#
 *#~

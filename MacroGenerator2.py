@@ -39,11 +39,11 @@ det_stop = 6
 det_step = 1
 
 ua_start = 10   #Controls the angle of the US reflector plate for the lower cone
-ua_stop = 30
+ua_stop = 10
 ua_step = 0.5
 
 lg_start = 50   #Controls the height of the lower cone
-lg_stop = 90
+lg_stop = 50
 lg_step = 1
 
 text_root = ""

@@ -9,6 +9,8 @@ jobs_dir = Path("jobs")
 
 tilt = 1.0
 # Controls the tilt of the beam from the z-axis in degrees
+data = 999
+# Sets what data is stored in the rootfile
 
 hr_start, hr_stop, hr_step = 2, 2, 1 
 # 1 = tile center, 2 enables cutx & cuty, 3 is the Mainz BF segment scan (maybe defunct), 4 is a strip across the tile, 5 randomizes the beam tilt
@@ -20,12 +22,12 @@ cutx_start, cutx_stop, cutx_step = 85.0, 85.0, 5.0
 cuty_start, cuty_stop, cuty_step = 0.5, 0.5, 5.0
 # Y moves the beam in the radial direction, starting at ~0.5 mm
 
-ID_start, ID_stop, ID_step = 1, 1, 1
+ID_start, ID_stop, ID_step = 1, 2, 1
 # Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
 
-det_start, det_stop, det_step = 999, 999, 1
-# Sets which detector will have its info stored in the root file
-# 0 for all detectors, 999 for no detectors, 1 for events hitting the main detector, etc
+det_start, det_stop, det_step = 1, 1, 1
+# Sets which detector is being used
+
 
 jobs_dir.mkdir(parents=True, exist_ok=True)
 
@@ -61,7 +63,7 @@ for hr in range(hr_start, hr_stop + hr_step, hr_step):
                     file_id = (
                         f"_hR{hr}_cutx{round(cutx, 2)}"
                         f"_cuty{round(cuty, 2)}_tilt{round(tilt, 2)}"
-                        f"_det{det}_ID{run_id}"
+                        f"_det{det}_data{data}_ID{run_id}"
                     )
                     macro_path = macro_dir / f"{output_prefix}{file_id}.mac"
                     if not macro_path.exists():

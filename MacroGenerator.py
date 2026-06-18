@@ -10,6 +10,7 @@ runscript = "#!/bin/bash\n\n"
 datadir = "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 Detector = 1
+data = 999 #Sets what data is stored in the rootfile. Can be 999, 0 or 1
 
 beam_controls = {
     "Particle": 1,
@@ -29,7 +30,7 @@ cutx_start, cutx_stop, cutx_step = 85.0, 85.0, 5.0
 
 cuty_start, cuty_stop, cuty_step = 0.5, 0.5, 5.0
 
-ID_start, ID_stop, ID_step = 1, 1, 1
+ID_start, ID_stop, ID_step = 1, 2, 1
 #End of looped parameters
 
 common_geometric_commands = [
@@ -213,7 +214,7 @@ for hr in np.arange(hr_start, hr_stop + hr_step, hr_step):
             for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
                 RndSeed1 = random.randrange(300000, 600000)
                 RndSeed2 = random.randrange(600001, 900000)
-                FileIDString = f"_hR{hr}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}"
+                FileIDString = f"_hR{hr}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
                 lines = [
                     f"#------------------#{label} commands --------------------#",
                     "",
@@ -235,7 +236,7 @@ for hr in np.arange(hr_start, hr_stop + hr_step, hr_step):
                     "",
                     "#------------------#General commands --------------------#",
                     "",
-                    f"/Storage/DetectorFocus {Detector}",
+                    f"/Storage/DetectorFocus {data}",
                     f"/RunAction/SetID {id}",
                     f"/RunAction/SetOutputName {FileIDString}",
                     f"/random/setSeeds {RndSeed1} {RndSeed2}",

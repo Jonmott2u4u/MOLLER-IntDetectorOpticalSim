@@ -9,7 +9,7 @@ import numpy as np
 runscript = "#!/bin/bash\n\n"
 datadir = "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
-Detector = 1
+Detector = 5
 data = 999 #Sets what data is stored in the rootfile. Can be 999, 0 or 1
 
 beam_controls = {
@@ -26,11 +26,11 @@ beam_controls = {
 #Looped parameters
 hr_start, hr_stop, hr_step = 2, 2, 1
 
-cutx_start, cutx_stop, cutx_step = 85.0, 85.0, 5.0
+cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
 
-cuty_start, cuty_stop, cuty_step = 0.5, 0.5, 5.0
+cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
 
-ID_start, ID_stop, ID_step = 1, 2, 1
+ID_start, ID_stop, ID_step = 3, 3, 1
 #End of looped parameters
 
 common_geometric_commands = [

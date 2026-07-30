@@ -42,8 +42,8 @@
 /MainDet/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 
 /MainDet/SetCenterPositionInX 0 mm
-/MainDet/SetCenterPositionInY 0 mm             
-/MainDet/SetCenterPositionInZ 0 mm             
+/MainDet/SetCenterPositionInY 200 mm             
+/MainDet/SetCenterPositionInZ 276.5 mm             
 /MainDet/YawRotation 0 deg                           #Rotates the detector about the y-axis
 /MainDet/PolarRotation 3 deg                         #counter rotate the detector as a whole about the x-axis
 /MainDet/AzimuthalRotation 0 deg                     #Rotates the detector about the z-axis

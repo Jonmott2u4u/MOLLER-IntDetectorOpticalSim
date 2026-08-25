@@ -15,7 +15,7 @@ Particle = 2      #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 1000     #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
 EnergyCut = 0     #Sets a minimum energy for primary particles to be accepted in units of MeV. Only works for muons
 
-NumEvents = 100 #Number of events for each Hit Region (controlled by EventHitRegion variable)
+NumEvents = 100  #Number of events for each Hit Region (controlled by EventHitRegion variable)
 
 shift = 0         #Shifts the particle spawn location by that much. What this affects is set in PrimaryGeneratorAction.cc. -125 for SayakStand
 
@@ -39,7 +39,7 @@ sa = 0            #Controls the angular spread of the beam from the Z-axis (in +
 tilt = 00          #Controls the tilt of the beam from the z-axis in degrees
 
 ID_start = 1      #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1000
+ID_stop = 10
 ID_step = 1
 
 det = 999       #Sets the memory storage in the NTuple. 999 for nothing, 1 for events hitting ShowerMax, 0 for everything

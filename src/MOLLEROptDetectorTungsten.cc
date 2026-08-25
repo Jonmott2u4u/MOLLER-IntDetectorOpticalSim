@@ -1,11 +1,11 @@
-#include "MOLLEROptInsensitiveAlPlate.hh"
+#include "MOLLEROptDetectorTungsten.hh"
 
-MOLLEROptInsensitiveAlPlate::MOLLEROptInsensitiveAlPlate(G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorTungsten::MOLLEROptDetectorTungsten(G4String name, MOLLEROptMaterial* mat)
 {
-  Name = name+"_AlPlate";
+  Name = name+"_Tungsten";
   
   Materials = mat;
-  PlateMaterial = Materials->GetMaterial("Aluminum");  
+  PlateMaterial = Materials->GetMaterial("Tungsten");  
 
   PlateLogical  = NULL;
   PlatePhysical = NULL;
@@ -22,13 +22,13 @@ MOLLEROptInsensitiveAlPlate::MOLLEROptInsensitiveAlPlate(G4String name, MOLLEROp
 
 }
 
-MOLLEROptInsensitiveAlPlate::~MOLLEROptInsensitiveAlPlate()
+MOLLEROptDetectorTungsten::~MOLLEROptDetectorTungsten()
 {
   
 }
 
 
-void MOLLEROptInsensitiveAlPlate::Initialize()
+void MOLLEROptDetectorTungsten::Initialize()
 {
   //Plate backface at +FullLengthZ/2
   Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
@@ -68,15 +68,15 @@ void MOLLEROptInsensitiveAlPlate::Initialize()
   
   new G4LogicalSkinSurface("PlateSurface", PlateLogical, PlateSurface);
 
-  G4Colour  green    ( 0/255., 255/255.,   0/255.);
-  G4VisAttributes* VisAtt = new G4VisAttributes(green);
+  G4Colour  gray    ( 0.5, 0.5, 0.5);
+  G4VisAttributes* VisAtt = new G4VisAttributes(gray);
   VisAtt->SetVisibility(true);
   VisAtt->SetForceWireframe(true);
   PlateLogical->SetVisAttributes(VisAtt);
 
 }
 
-void MOLLEROptInsensitiveAlPlate::Construct(G4VPhysicalVolume* Mother)
+void MOLLEROptDetectorTungsten::Construct(G4VPhysicalVolume* Mother)
 {
 
   MotherVolume = Mother;
@@ -91,13 +91,13 @@ void MOLLEROptInsensitiveAlPlate::Construct(G4VPhysicalVolume* Mother)
 				     2);
 } 
 
-void MOLLEROptInsensitiveAlPlate::SetMaterial(G4String materialName)
+void MOLLEROptDetectorTungsten::SetMaterial(G4String materialName)
 {
 
 }
 
 
-void MOLLEROptInsensitiveAlPlate::SetRotX(G4double rot)
+void MOLLEROptDetectorTungsten::SetRotX(G4double rot)
 {
 
   RotationX = rot;
@@ -106,7 +106,7 @@ void MOLLEROptInsensitiveAlPlate::SetRotX(G4double rot)
   PlatePhysical->SetRotation(Rotation);
     
 }
-void MOLLEROptInsensitiveAlPlate::SetRotZ(G4double rot)
+void MOLLEROptDetectorTungsten::SetRotZ(G4double rot)
 {
 
   RotationZ = rot;
@@ -114,33 +114,33 @@ void MOLLEROptInsensitiveAlPlate::SetRotZ(G4double rot)
   PlatePhysical->SetRotation(Rotation);
 }
 
-void MOLLEROptInsensitiveAlPlate::SetCenterPositionInX(G4double xPos)
+void MOLLEROptDetectorTungsten::SetCenterPositionInX(G4double xPos)
 {
     PositionX =xPos;	 
     PlatePhysical->SetTranslation(G4ThreeVector(PositionX,PositionY,PositionZ));
 }
 
-void MOLLEROptInsensitiveAlPlate::SetCenterPositionInY(G4double yPos)
+void MOLLEROptDetectorTungsten::SetCenterPositionInY(G4double yPos)
 {
     PositionY = yPos;
     PlatePhysical->SetTranslation(G4ThreeVector(PositionX,PositionY,PositionZ));
 }
 
-void MOLLEROptInsensitiveAlPlate::SetCenterPositionInZ(G4double zPos)
+void MOLLEROptDetectorTungsten::SetCenterPositionInZ(G4double zPos)
 {
     PositionZ = zPos;
     PlatePhysical->SetTranslation(G4ThreeVector(PositionX,PositionY,PositionZ));
 }
 
 
-void MOLLEROptInsensitiveAlPlate::ClearVolumes()
+void MOLLEROptDetectorTungsten::ClearVolumes()
 {
   if(PlatePhysical) delete PlatePhysical;
   if(PlateLogical) delete PlateLogical;
 }
 
 
-void MOLLEROptInsensitiveAlPlate::UpdateGeometry()
+void MOLLEROptDetectorTungsten::UpdateGeometry()
 {
 
   G4SolidStore::GetInstance()->DeRegister(PlateSolid);
@@ -166,7 +166,7 @@ void MOLLEROptInsensitiveAlPlate::UpdateGeometry()
 }
 
 
-void MOLLEROptInsensitiveAlPlate::GetPlateLimits(G4double *vals, G4ThreeVector pos)
+void MOLLEROptDetectorTungsten::GetPlateLimits(G4double *vals, G4ThreeVector pos)
 {
 
   G4ThreeVector trans = pos;

@@ -1,0 +1,80 @@
+#  Geometry help:
+#
+#            | PMT|  
+#            ------      ________ Upper Interface
+#           /      \        
+#          / Upper  \        
+#         /  Guide   \      
+#        /   Cone     \ 
+#	     |	          |
+#	     |   Middle   |
+#	     |   Box      |
+#	     |	          |  ________ Lower Interface
+#        \            /
+#         \  Lower   /		
+#          \ Guide  /			
+#           \Cone  /     ________ Quartz-LG interface plane
+#            |    |
+#            |    | Quartz
+#            |    |
+#    --->    |    |
+#   Beam (Z) |_ __|
+#
+#               ^
+#              / \  (y)
+#               |
+#  (x) into screen
+
+/ShowerMax/LightGuideLowerConeBackAngle 12.9 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
+/ShowerMax/LightGuideLowerConeFrontAngle 12.9 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
+/ShowerMax/LightGuideLowerInterface 67.462 mm              #Distance between quartz-LG interface and lower interface plane
+/ShowerMax/LightGuideMiddleBox 0.01 mm			     #Height of box between upper and lower cones. Remove for showermax
+/ShowerMax/LightGuideUpperInterface 250.52 mm             #Distance between upper and lower interface planes (Det height - MiddleBox)
+/ShowerMax/LightGuideQuartzInterfaceOpeningX 26.6 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
+/ShowerMax/LightGuideQuartzInterfaceOpeningZ 5.496 cm    #But larger, according to the CAD model (1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
+/ShowerMax/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/ShowerMax/LightGuidePMTInterfaceOpeningX 26.6 cm       #These should stay fixed - set by the PMT size 
+/ShowerMax/LightGuidePMTInterfaceOpeningZ 7.0 cm
+
+/ShowerMax/QuartzSizeZ 6 mm
+/ShowerMax/QuartzSizeX 265 mm
+/ShowerMax/QuartzSizeY 160 mm                          #Without the 45 degree cut
+
+/ShowerMax/TungstenSizeX 265 mm
+/ShowerMax/TungstenSizeY 160 mm
+/ShowerMax/TungstenSizeZ 8 mm
+
+/ShowerMax/QuartzRotX 0 deg                           #rotate the quartz & tungsten w.r.t. the light guide. Not working in this branch atm
+
+/ShowerMax/SetCenterPositionInX 0 mm
+/ShowerMax/SetCenterPositionInY 0 mm
+/ShowerMax/SetCenterPositionInZ 0 mm
+/ShowerMax/YawRotation 0 deg                           #Rotates the detector about the y-axis
+/ShowerMax/PolarRotation 0 deg                         #counter rotate the detector as a whole about the x-axis
+/ShowerMax/AzimuthalRotation 0 deg                 #Rotates the detector about the z-axis
+
+/ShowerMax/UpdateGeometry
+
+#------------------#Scintillator---------------#
+
+#None exist for this setup. If you need a scintillator, add it here
+
+#------------------#Beam commands -----------------------#
+
+/Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons, 3 for positrons
+/Generator/EventHitRegion 2                       #1 = center, 2 = controlled position, 3 = Mainz, 4-5 = HallD?
+/Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
+/Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
+/Generator/SegmentHitPosY 80                       #Tile starts at ~ 0.5mm
+/Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
+/Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
+/Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
+/Generator/BeamEnergy 1000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
+/Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
+
+/Storage/DetectorFocus 1                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.
+
+/RunAction/SetID 2
+/random/setSeeds 346082 823457
+/vis/disable
+/run/beamOn 100

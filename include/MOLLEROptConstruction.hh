@@ -11,7 +11,6 @@
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptDetector.hh"
 #include "MOLLEROptAuxilary.hh"
-#include "MOLLEROptInsensitive.hh"
 #include "MOLLEROptTrackingReadout.hh"
 
 class MOLLEROptMessenger;
@@ -46,10 +45,7 @@ private:
   
   void DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int depth=0);
   
-  MOLLEROptDetector*     MainDet;
-
-
-  MOLLEROptInsensitive*  AlPlate;
+  MOLLEROptDetector*     ShowerMax;
 
   MOLLEROptMessenger*  MOLLERMessenger;
 

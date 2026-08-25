@@ -11,7 +11,7 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   Materials       = mat;
 
   //Modules
-  MainDet        = NULL;
+  ShowerMax        = NULL;
 
   fWorldLengthInX = 0.0; 
   fWorldLengthInY = 0.0;
@@ -25,19 +25,16 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
 MOLLEROptConstruction::~MOLLEROptConstruction()
 {
   //BF segment objects
-  if (MainDet)          delete MainDet;
+  if (ShowerMax)          delete ShowerMax;
 
   if (MOLLERMessenger)    delete MOLLERMessenger;             
 }
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  MainDet = new MOLLEROptDetector(TrackingReadout,"MainDet",Materials,"UVS"); //"UVS" & "UVC" are the available options. Must be changed here in the single-det branch
+  ShowerMax = new MOLLEROptDetector(TrackingReadout,"ShowerMax",Materials,"UVS"); //"UVS" & "UVC" are the available options. Must be changed here in the single-det branch
 
   //Auxilary detectors (for now just scintillators) used to track particle positions
-
-  //Insensitive objects (for now just an aluminum plate) that do not store hit info
-
   
   fWorldLengthInX =  2.0*m;
   fWorldLengthInY =  2.0*m;
@@ -61,32 +58,36 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 				     "World_Physical", 
 				     0,false,0);             
   
-  //----------------FF SEGMENT OBJECTS----------------//
-  //Main Det 9currently R1 dimensions)
-  MainDet->SetQuartzSizeX(16.9*cm);
-  MainDet->SetQuartzSizeY(2.0*cm);  //without the 45 degree cut region
-  MainDet->SetQuartzSizeZ(2.0*cm);
-  MainDet->SetLowerInterfacePlane(7.5*cm);
-  MainDet->SetMiddleBoxHeight(41.0*cm);
-  MainDet->SetUpperInterfacePlane(25.1*cm);
-  MainDet->SetLowerConeFrontFaceAngle(18*degree);
-  MainDet->SetLowerConeBackFaceAngle(22*degree);
-  MainDet->SetLowerConeSideFaceAngle(0*degree);
-  MainDet->SetQuartzInterfaceOpeningZ(2.7*cm);
-  MainDet->SetQuartzInterfaceOpeningX(17.7*cm);
-  MainDet->SetQuartzToPMTOffsetInZ(-0.2*cm);  
-  MainDet->SetPMTInterfaceOpeningZ(7.0*cm);
-  MainDet->SetPMTInterfaceOpeningX(7.0*cm);  
-  MainDet->SetPMTCathodeRadius(3.5*cm);
-  MainDet->SetPMTCathodeThickness(0.1*cm);
-  MainDet->SetAzimuthalRotationAngle(0*degree);
-  MainDet->SetPolarRotationAngle(3*degree);
-  MainDet->SetYawRotationAngle(0*degree);
-  MainDet->Initialize();
-  MainDet->ConstructDetector(World_Physical);
-  MainDet->SetCenterPositionInX(0*mm);           //Positions must be set after placing the detector in the world
-  MainDet->SetCenterPositionInY(270.7*mm);
-  MainDet->SetCenterPositionInZ(1923.94*mm);
+  //----------------ShowerMax OBJECTS----------------//
+  //Currently R1 dimensions
+  ShowerMax->SetQuartzSizeX(265*mm);
+  ShowerMax->SetQuartzSizeY(160*mm);  //without the 45 degree cut region
+  ShowerMax->SetQuartzSizeZ(6*mm);
+  //ShowerMax->SetQuartzRotX(0*degree);
+  ShowerMax->SetTungstenSizeX(265*mm);
+  ShowerMax->SetTungstenSizeY(160*mm);  //without the 45 degree cut region
+  ShowerMax->SetTungstenSizeZ(8*mm);
+  ShowerMax->SetLowerInterfacePlane(67.462*mm);
+  ShowerMax->SetMiddleBoxHeight(0.01*mm);
+  ShowerMax->SetUpperInterfacePlane(250.52*mm);
+  ShowerMax->SetLowerConeFrontFaceAngle(12.9*degree);
+  ShowerMax->SetLowerConeBackFaceAngle(12.9*degree);
+  ShowerMax->SetLowerConeSideFaceAngle(0*degree);
+  ShowerMax->SetQuartzInterfaceOpeningZ(5.496*mm);
+  ShowerMax->SetQuartzInterfaceOpeningX(266*mm);
+  ShowerMax->SetQuartzToPMTOffsetInZ(0.0*mm);  
+  ShowerMax->SetPMTInterfaceOpeningZ(7.0*cm);
+  ShowerMax->SetPMTInterfaceOpeningX(7.0*cm);  
+  ShowerMax->SetPMTCathodeRadius(3.5*cm);
+  ShowerMax->SetPMTCathodeThickness(0.1*cm);
+  ShowerMax->SetAzimuthalRotationAngle(0*degree);
+  ShowerMax->SetPolarRotationAngle(0*degree);
+  ShowerMax->SetYawRotationAngle(0*degree);
+  ShowerMax->Initialize();
+  ShowerMax->ConstructDetector(World_Physical);
+  ShowerMax->SetCenterPositionInX(0*mm);           //Positions must be set after placing the detector in the world
+  ShowerMax->SetCenterPositionInY(0*mm);
+  ShowerMax->SetCenterPositionInZ(0*mm);
 
   //-------Misc. objects-------//
 
@@ -107,12 +108,12 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 
 void MOLLEROptConstruction::GetQuartzLimits(G4double *vals)
 {
-  MainDet->GetQuartzLimits(vals);
+  ShowerMax->GetQuartzLimits(vals);
 }
 
 void MOLLEROptConstruction::GetLightGuideLimits(G4double *vals)
 {
-  MainDet->GetLightGuideLimits(vals);
+  ShowerMax->GetLightGuideLimits(vals);
 }
 
 

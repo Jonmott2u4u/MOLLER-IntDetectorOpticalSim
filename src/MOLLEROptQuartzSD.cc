@@ -57,7 +57,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
         preStep->GetPhysicalVolume()->GetName().contains("Physical"))){
           QEx = 1; 
 	      }
-        if(((postStep->GetPhysicalVolume()->GetName().contains("MainDet") && postStep->GetPhysicalVolume()->GetName().contains("Physical")) ||
+        if(((postStep->GetPhysicalVolume()->GetName().contains("ShowerMax") && postStep->GetPhysicalVolume()->GetName().contains("Physical")) ||
         postStep->GetPhysicalVolume()->GetName().contains("LG_Physical"))&&(
         preStep->GetPhysicalVolume()->GetName().contains("Quartz")&&
         preStep->GetPhysicalVolume()->GetName().contains("Physical"))){

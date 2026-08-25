@@ -518,6 +518,12 @@ void MOLLEROptMaterial::DefineMaterials()
   A      = 26.981539*g/mole;
   G4Element* elAl = new G4Element(name, symbol, Z, A);
   //---------------------------------------------------------
+  name   = "Element_Tungsten";
+  symbol = "W"; 
+  Z      = 74.;
+  A      = 183.84*g/mole;
+  G4Element* elW = new G4Element(name, symbol, Z, A);
+  //---------------------------------------------------------
   name   = "Element_Silicon";
   symbol = "Si"; 
   Z      = 14.;
@@ -608,14 +614,20 @@ void MOLLEROptMaterial::DefineMaterials()
   nelements = 1;
   G4Material* matAl = new G4Material(name,density,nelements);
   matAl -> AddElement(elAl,1);
-  
+
+  // W material
+  name     = "Tungsten";
+  density  = 19.3*g/cm3;
+  nelements = 1;
+  G4Material* matW = new G4Material(name,density,nelements);
+  matW -> AddElement(elW,1);
   
   // gaseous Argon
   name      = "ArgonGas";
   density   = 1.7836*mg/cm3 ;       // STP
   nelements = 1;
   G4Material* matArgonGas = new G4Material(name,density,nelements, kStateGas, 273.15*kelvin,1.*atmosphere);
-  matArgonGas ->AddElement(elAr, 1);
+  matArgonGas -> AddElement(elAr, 1);
   
   // Lithium 6 material
   name =  "Lithium6";
@@ -625,7 +637,7 @@ void MOLLEROptMaterial::DefineMaterials()
   nelements = 1;
   // G4Material* matLithium6 = new G4Material(name, Z, A, density);
   G4Material* matLithium6 = new G4Material(name,density,nelements);
-  matLithium6 ->AddElement(elLi6, 1);
+  matLithium6 -> AddElement(elLi6, 1);
 
 
   // Iron material

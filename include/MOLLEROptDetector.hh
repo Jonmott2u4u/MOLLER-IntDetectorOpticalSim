@@ -8,6 +8,7 @@
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptDetectorQuartz.hh"
+#include "MOLLEROptDetectorTungsten.hh"
 #include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
@@ -39,6 +40,9 @@ public:
   void SetQuartzSizeX(G4double x); 
   void SetQuartzSizeY(G4double y); 
   void SetQuartzSizeZ(G4double z);
+  void SetTungstenSizeX(G4double x);
+  void SetTungstenSizeY(G4double y);
+  void SetTungstenSizeZ(G4double z);
   void SetLowerInterfacePlane(G4double LowerPlane);
   void SetMiddleBoxHeight(G4double MiddlePlane);
   void SetUpperInterfacePlane(G4double UpperPlane);
@@ -59,7 +63,7 @@ public:
 
   void SetPMTInterfaceOpeningZ(G4double size);
   void SetPMTInterfaceOpeningX(G4double size);
-  void SetQuartzBevel(G4double bev) {Quartz->SetBevelSize(bev);}
+  void SetQuartzBevel(G4double bev) {Quartz1->SetBevelSize(bev); Quartz2->SetBevelSize(bev);}
 
   void SetPMTCathodeRadius(G4double size);
   void SetPMTCathodeThickness(G4double size);
@@ -82,8 +86,15 @@ private:
   MOLLEROptDetectorMessenger*  detMessenger;
   MOLLEROptTrackingReadout*    TrackingReadout;
   MOLLEROptMaterial*           Materials;
+  MOLLEROptDetectorQuartz*     Quartz1;
+  MOLLEROptDetectorQuartz*     Quartz2;
+  MOLLEROptDetectorQuartz*     Quartz3;
+  MOLLEROptDetectorQuartz*     Quartz4;
+  MOLLEROptDetectorTungsten*   Tungsten1;
+  MOLLEROptDetectorTungsten*   Tungsten2;
+  MOLLEROptDetectorTungsten*   Tungsten3;
+  MOLLEROptDetectorTungsten*   Tungsten4;
   MOLLEROptDetectorLightGuide* LightGuide; 
-  MOLLEROptDetectorQuartz*     Quartz;
   MOLLEROptDetectorPMT*        PMT;
 
   G4VPhysicalVolume* MotherVolume;
@@ -99,7 +110,10 @@ private:
   G4double DetFullLengthZ;
 
   G4ThreeVector     PositionDet;
-  G4ThreeVector     QuartzPos;
+  G4ThreeVector     Quartz1Pos;
+  G4ThreeVector     Quartz2Pos;
+  G4ThreeVector     Quartz3Pos;
+  G4ThreeVector     Quartz4Pos;
 
   G4RotationMatrix* RotationDet;   
 

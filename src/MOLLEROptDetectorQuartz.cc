@@ -32,20 +32,35 @@ MOLLEROptDetectorQuartz::~MOLLEROptDetectorQuartz()
 }
 
 
-void MOLLEROptDetectorQuartz::Initialize()
+void MOLLEROptDetectorQuartz::Initialize(G4String direction)
 {
+  if(direction.contains("US")) {
   //Quartz backface at +FullLengthZ/2
   Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
   Vertices[1]=G4TwoVector(-FullLengthX/2,FullLengthY/2);
   Vertices[2]=G4TwoVector(FullLengthX/2,FullLengthY/2);
   Vertices[3]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
-  
   //Quartz frontface at -FullLengthZ/2
   Vertices[4]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
   Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2+FullLengthZ);
   Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2+FullLengthZ);
   Vertices[7]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
-
+  }
+  else if(direction.contains("DS")) {
+  //Quartz backface at +FullLengthZ/2
+  Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
+  Vertices[1]=G4TwoVector(-FullLengthX/2,FullLengthY/2+FullLengthZ);
+  Vertices[2]=G4TwoVector(FullLengthX/2,FullLengthY/2+FullLengthZ);
+  Vertices[3]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
+  //Quartz frontface at -FullLengthZ/2
+  Vertices[4]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
+  Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2);
+  Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2);
+  Vertices[7]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
+  }
+  else {
+    G4cout << "MOLLEROptDetectorQuartz::Initialize() - ERROR: Invalid type specified. Must be \"US\" or \"DS\"." << G4endl;
+  }
 
   G4GenericTrap *temp1Solid = new G4GenericTrap(Name+"_Solid_tmp1",FullLengthZ/2, Vertices);
 
@@ -100,7 +115,7 @@ void MOLLEROptDetectorQuartz::Initialize()
   new G4LogicalSkinSurface("QuartzSurface", QuartzLogical, QuartzSurface);
 
   SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("MainDet_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz",TrackingReadout);
+  if (Name.contains("ShowerMax_")) QuartzSD = new MOLLEROptQuartzSD("/Quartz",TrackingReadout);
   SDman->AddNewDetector(QuartzSD);  
   QuartzLogical->SetSensitiveDetector(QuartzSD);
 
@@ -192,7 +207,7 @@ void MOLLEROptDetectorQuartz::ClearVolumes()
 }
 
 
-void MOLLEROptDetectorQuartz::UpdateGeometry()
+void MOLLEROptDetectorQuartz::UpdateGeometry(G4String direction)
 {
   // G4PhysicalVolumeStore::GetInstance()->DeRegister(QuartzPhysical);
   // G4LogicalVolumeStore::GetInstance()->DeRegister(QuartzLogical);
@@ -202,17 +217,35 @@ void MOLLEROptDetectorQuartz::UpdateGeometry()
   // G4LogicalBorderSurface::CleanSurfaceTable();
   delete QuartzSolid;
 
+  //Setting the direction of the quartz tile 45 degree wedge
+  if(direction.contains("US")) {
   //Quartz backface at +FullLengthZ/2
   Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
   Vertices[1]=G4TwoVector(-FullLengthX/2,FullLengthY/2);
   Vertices[2]=G4TwoVector(FullLengthX/2,FullLengthY/2);
   Vertices[3]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
-  
   //Quartz frontface at -FullLengthZ/2
   Vertices[4]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
   Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2+FullLengthZ);
   Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2+FullLengthZ);
   Vertices[7]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
+  }
+  else if(direction.contains("DS")) {
+  //Quartz backface at +FullLengthZ/2
+  Vertices[0]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
+  Vertices[1]=G4TwoVector(-FullLengthX/2,FullLengthY/2+FullLengthZ);
+  Vertices[2]=G4TwoVector(FullLengthX/2,FullLengthY/2+FullLengthZ);
+  Vertices[3]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
+  //Quartz frontface at -FullLengthZ/2
+  Vertices[4]=G4TwoVector(-FullLengthX/2,-FullLengthY/2);
+  Vertices[5]=G4TwoVector(-FullLengthX/2,FullLengthY/2);
+  Vertices[6]=G4TwoVector(FullLengthX/2,FullLengthY/2);
+  Vertices[7]=G4TwoVector(FullLengthX/2,-FullLengthY/2);
+  }
+  else {
+    G4cout << "MOLLEROptDetectorQuartz::Initialize() - ERROR: Invalid type specified. Must be \"US\" or \"DS\"." << G4endl;
+  }
+
 
   G4GenericTrap *temp1Solid = new G4GenericTrap(Name+"_Solid_tmp1",FullLengthZ/2, Vertices);
 

@@ -83,7 +83,7 @@ void MOLLEROptDetectorPMT::Initialize()
   PMTCathodeLogical->SetVisAttributes(VisAtt2);
   
   SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("MainDet_")) CathSD = new MOLLEROptPMTSD("/Cathode",TrackingReadout);
+  if (Name.contains("ShowerMax_")) CathSD = new MOLLEROptPMTSD("/Cathode",TrackingReadout);
   SDman->AddNewDetector(CathSD);  
   PMTWindowLogical->SetSensitiveDetector(CathSD);
 

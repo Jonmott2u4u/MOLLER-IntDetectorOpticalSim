@@ -62,6 +62,8 @@ public:
   G4double GetLightGuideLength()               {return GuideTotalLength;};
   G4double GetLightGuideWidth()                {return GuideTotalWidth;};
   G4double GetLightGuideDepth()                {return GuideTotalDepth;};
+  G4double GetCurrentLightGuideQuartzInterfaceOpeningX()     {return QuartzInterfaceOpeningX;};
+  G4double GetCurrentLightGuideQuartzInterfaceOpeningZ()     {return QuartzInterfaceOpeningZ;};
 
   void GetLightGuideLimits(G4double *vals);
   void GetLightGuideLowerConeSideVertices(std::vector<G4TwoVector> *Vertices);

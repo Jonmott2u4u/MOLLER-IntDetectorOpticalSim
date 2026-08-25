@@ -40,6 +40,9 @@ private:
   G4UIcmdWithADoubleAndUnit* QuartzSizeXCmd;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeYCmd;       
   G4UIcmdWithADoubleAndUnit* QuartzSizeZCmd;
+  G4UIcmdWithADoubleAndUnit* TungstenSizeXCmd;
+  G4UIcmdWithADoubleAndUnit* TungstenSizeYCmd;
+  G4UIcmdWithADoubleAndUnit* TungstenSizeZCmd;
 
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;    
   G4UIcmdWithADoubleAndUnit* QuartzRotXCmd;

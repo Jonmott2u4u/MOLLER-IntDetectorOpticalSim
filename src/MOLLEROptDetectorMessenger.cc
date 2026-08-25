@@ -97,6 +97,24 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   QuartzSizeXCmd->SetUnitCategory("Length");
   QuartzSizeXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  TungstenSizeZCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/TungstenSizeZ",name.data()),this);
+  TungstenSizeZCmd->SetGuidance("Set the size of the tungsten in Z"); 
+  TungstenSizeZCmd->SetParameterName("Size",true);
+  TungstenSizeZCmd->SetUnitCategory("Length");
+  TungstenSizeZCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                  
+
+  TungstenSizeYCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/TungstenSizeY",name.data()),this);
+  TungstenSizeYCmd->SetGuidance("Set the size of the tungsten in Y"); 
+  TungstenSizeYCmd->SetParameterName("Size",true);
+  TungstenSizeYCmd->SetUnitCategory("Length");
+  TungstenSizeYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  TungstenSizeXCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/TungstenSizeX",name.data()),this);
+  TungstenSizeXCmd->SetGuidance("Set the size of the tungsten in X"); 
+  TungstenSizeXCmd->SetParameterName("Size",true);
+  TungstenSizeXCmd->SetUnitCategory("Length");
+  TungstenSizeXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   LightGuideQuartzToPMTOffsetCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/LightGuideQuartzToPMTOffset",name.data()),this);      
   LightGuideQuartzToPMTOffsetCmd->SetGuidance("Set the offset between the quartz and PMT light guide openings in the beam direction.") ;         
   LightGuideQuartzToPMTOffsetCmd->SetParameterName("Size",true);                                               
@@ -135,7 +153,7 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   LightGuideOffsetXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   QuartzRotXCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/QuartzRotX",name.data()),this);
-  QuartzRotXCmd->SetGuidance("Set the rotation angle of the quartz around X"); 
+  QuartzRotXCmd->SetGuidance("Set the rotation angle of the quartz and tungsten around X"); 
   QuartzRotXCmd->SetParameterName("Angle",true);
   QuartzRotXCmd->SetRange("Angle>=-90. && Angle<=90.");
   QuartzRotXCmd->SetDefaultUnit("deg");
@@ -188,6 +206,9 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(QuartzSizeXCmd                       ) delete QuartzSizeXCmd;                       
   if(QuartzSizeYCmd                       ) delete QuartzSizeYCmd;                       
   if(QuartzSizeZCmd                       ) delete QuartzSizeZCmd;
+  if(TungstenSizeXCmd                     ) delete TungstenSizeXCmd;
+  if(TungstenSizeYCmd                     ) delete TungstenSizeYCmd;
+  if(TungstenSizeZCmd                     ) delete TungstenSizeZCmd;
   if(LightGuideUpperInterfaceCmd          ) delete LightGuideUpperInterfaceCmd;          
   if(LightGuideMiddleBoxCmd               ) delete LightGuideMiddleBoxCmd;
   if(LightGuideLowerInterfaceCmd          ) delete LightGuideLowerInterfaceCmd;          
@@ -222,6 +243,9 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == QuartzSizeXCmd )                      { Det->SetQuartzSizeX(QuartzSizeXCmd->GetNewDoubleValue(newValue));}
   if( command == QuartzSizeYCmd )                      { Det->SetQuartzSizeY(QuartzSizeYCmd->GetNewDoubleValue(newValue));}
   if( command == QuartzSizeZCmd )                      { Det->SetQuartzSizeZ(QuartzSizeZCmd->GetNewDoubleValue(newValue));}
+  if( command == TungstenSizeXCmd )                    { Det->SetTungstenSizeX(TungstenSizeXCmd->GetNewDoubleValue(newValue));}
+  if( command == TungstenSizeYCmd )                    { Det->SetTungstenSizeY(TungstenSizeYCmd->GetNewDoubleValue(newValue));}
+  if( command == TungstenSizeZCmd )                    { Det->SetTungstenSizeZ(TungstenSizeZCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideUpperInterfaceCmd )         { Det->SetUpperInterfacePlane(LightGuideUpperInterfaceCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideMiddleBoxCmd )              { Det->SetMiddleBoxHeight(LightGuideMiddleBoxCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideLowerInterfaceCmd )         { Det->SetLowerInterfacePlane(LightGuideLowerInterfaceCmd->GetNewDoubleValue(newValue));}

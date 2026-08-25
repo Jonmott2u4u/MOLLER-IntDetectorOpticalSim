@@ -18,7 +18,7 @@ public:
   ~MOLLEROptDetectorQuartz();
 
   void Construct(G4VPhysicalVolume* Mother);
-  void Initialize();
+  void Initialize(G4String direction);
   void SetMaterial(G4String materialName);
 
   void SetCenterPositionInX(G4double xPos);
@@ -48,7 +48,7 @@ public:
 
   void GetQuartzLimits(G4double *vals,G4ThreeVector pos);
 
-  void UpdateGeometry();
+  void UpdateGeometry(G4String direction);
   void ClearVolumes();
   void SetSegRadDamageFlag() {SegRadDamageFlag = true;};
 

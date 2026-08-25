@@ -249,7 +249,7 @@ void MOLLEROptDetectorLightGuide::Initialize(string mat_flag)
   CreateOpticalSurface(GuideLogical, mat_flag);
 
   G4SDManager* SDman = G4SDManager::GetSDMpointer();
-  if (Name.contains("MainDet_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide",TrackingReadout);
+  if (Name.contains("ShowerMax_")) LightGuideSD = new MOLLEROptLightGuideSD("/LightGuide",TrackingReadout);
   SDman->AddNewDetector(LightGuideSD);  
 
   GuideCoreLogical->SetSensitiveDetector(LightGuideSD);
@@ -371,15 +371,15 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   InnerSolid = new G4UnionSolid(Name+"_InnerSolid",IntermediateInnerSolid,UpperCone,rot,trans);
   OuterSolid = new G4UnionSolid(Name+"_OuterSolid",IntermediateOuterSolid,UpperCone_out,rot,trans);
 
-  G4SubtractionSolid *tempSolid = new G4SubtractionSolid(Name+"_Temp_Solid",OuterSolid,InnerSolid);
+  //G4SubtractionSolid *tempSolid = new G4SubtractionSolid(Name+"_Temp_Solid",OuterSolid,InnerSolid);
   
   // G4Box *LowerConeSideCutout = new G4Box(Name+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,QuartzInterfaceOpeningZ/2.0,
   // 					 QuartzInterfaceOpeningZ/2.0);
-  trans = G4ThreeVector(0,0,-(LowerInterfacePlane/2.0-(QuartzInterfaceOpeningZ-4.0*mm)/2.0)-2.0*mm);
-  G4Box *LowerConeSideCutout = new G4Box(Name+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0);
+  //trans = G4ThreeVector(0,0,-(LowerInterfacePlane/2.0-(QuartzInterfaceOpeningZ-4.0*mm)/2.0)-2.0*mm);
+  //G4Box *LowerConeSideCutout = new G4Box(Name+"_LowerConeSideCutout_Solid_BX",(QuartzInterfaceOpeningX+10.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0,(QuartzInterfaceOpeningZ-4.0*mm)/2.0);
   
-  // GuideSolid = new G4SubtractionSolid(Name+"_Solid",OuterSolid,InnerSolid);
-  GuideSolid = new G4SubtractionSolid(Name+"_Solid",tempSolid,LowerConeSideCutout,rot,trans);
+  GuideSolid = new G4SubtractionSolid(Name+"_Solid",OuterSolid,InnerSolid);
+  //GuideSolid = new G4SubtractionSolid(Name+"_Solid",tempSolid,LowerConeSideCutout,rot,trans);
 
   //*******************************************************************************************************************
 

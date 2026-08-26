@@ -132,6 +132,28 @@ void MOLLEROptTrackingReadout::SetScintHitLocation(Int_t id, G4ThreeVector loc, 
   for(int n = 0; n < Tracks.size(); n++) if(Tracks[n]->ID == id) tr = n;
   if(tr == -1) return;
 
+  //cout << scint << endl;
+  if((Tracks[tr]->Scint1HitFlag == 0) & (scint ==  "ScintHitCollection1")){ 
+    Tracks[tr]->Scint1HitFlag = 1;
+    Tracks[tr]->Scint1HitX = loc.x();
+    Tracks[tr]->Scint1HitY = loc.y();
+    Tracks[tr]->Scint1HitZ = loc.z();
+  }
+
+  if((Tracks[tr]->Scint2HitFlag == 0) & (scint ==  "ScintHitCollection2")){ 
+    Tracks[tr]->Scint2HitFlag = 1;
+    Tracks[tr]->Scint2HitX = loc.x();
+    Tracks[tr]->Scint2HitY = loc.y();
+    Tracks[tr]->Scint2HitZ = loc.z();
+  }
+
+  if((Tracks[tr]->Scint3HitFlag == 0) & (scint ==  "ScintHitCollection3")){ 
+    Tracks[tr]->Scint3HitFlag = 1;
+    Tracks[tr]->Scint3HitX = loc.x();
+    Tracks[tr]->Scint3HitY = loc.y();
+    Tracks[tr]->Scint3HitZ = loc.z();
+  }
+
 }
 
 

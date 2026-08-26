@@ -53,9 +53,25 @@ private:
 
   vector <Int_t> RingQuartzTrackHit;
 
+  vector <Int_t> Scint1TrackHit;
+  vector <Int_t> Scint2TrackHit;
+  vector <Int_t> Scint3TrackHit;
+
   vector <Float_t> RingTileHitX;
   vector <Float_t> RingTileHitY;
   vector <Float_t> RingTileHitZ;
+
+  vector <Float_t> Scint1HitX;
+  vector <Float_t> Scint1HitY;
+  vector <Float_t> Scint1HitZ;
+
+  vector <Float_t> Scint2HitX;
+  vector <Float_t> Scint2HitY;
+  vector <Float_t> Scint2HitZ;
+
+  vector <Float_t> Scint3HitX;
+  vector <Float_t> Scint3HitY;
+  vector <Float_t> Scint3HitZ;
 
   vector <Int_t> RingPEs;
 
@@ -101,9 +117,25 @@ public:
   
   void AddRingQuartzTrackHit(Int_t tID){RingQuartzTrackHit.push_back(tID);};
 
+  void AddScint1TrackHit(Int_t tID){Scint1TrackHit.push_back(tID);};
+  void AddScint2TrackHit(Int_t tID){Scint2TrackHit.push_back(tID);};
+  void AddScint3TrackHit(Int_t tID){Scint3TrackHit.push_back(tID);};
+
   void AddRingQuartzHitPositionX(Float_t x) {RingTileHitX.push_back(x);};
   void AddRingQuartzHitPositionY(Float_t y) {RingTileHitY.push_back(y);};
   void AddRingQuartzHitPositionZ(Float_t z) {RingTileHitZ.push_back(z);};
+
+  void AddScint1HitPositionX(Float_t x) {Scint1HitX.push_back(x);};
+  void AddScint1HitPositionY(Float_t y) {Scint1HitY.push_back(y);};
+  void AddScint1HitPositionZ(Float_t z) {Scint1HitZ.push_back(z);};
+
+  void AddScint2HitPositionX(Float_t x) {Scint2HitX.push_back(x);};
+  void AddScint2HitPositionY(Float_t y) {Scint2HitY.push_back(y);};
+  void AddScint2HitPositionZ(Float_t z) {Scint2HitZ.push_back(z);};
+
+  void AddScint3HitPositionX(Float_t x) {Scint3HitX.push_back(x);};
+  void AddScint3HitPositionY(Float_t y) {Scint3HitY.push_back(y);};
+  void AddScint3HitPositionZ(Float_t z) {Scint3HitZ.push_back(z);};
 
   void AddRingPEs(Int_t pes) {RingPEs.push_back(pes);};
  

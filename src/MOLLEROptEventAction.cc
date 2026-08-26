@@ -90,8 +90,11 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
   //--------Segment Variables--------//
   G4double Ring_pes = 0;
-  G4int RingHit;
+  G4int RingHit, Scint1Hit, Scint2Hit, Scint3Hit;
   G4int Ring_Tracker = 0;  //Stores whether the tile has been hit this event  
+  G4int Scint1_Tracker = 0;
+  G4int Scint2_Tracker = 0;
+  G4int Scint3_Tracker = 0;
 
 
   ctrackID = -1;
@@ -105,7 +108,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   for(int t = 0; t < NumTracks; t++){
 
     PMThit = 0;
-    RingHit = 0;
+    RingHit = 0, Scint1Hit = 0, Scint2Hit = 0, Scint3Hit = 0;
     analysis->MOLLERMainEvent->MOLLERGeneralEvent.Initialize();  
     track  = TrackingReadout->GetTrackData(t);
     if(track){
@@ -129,7 +132,41 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
               analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingPEs(Ring_pes);
             }
           }
-          if(RingHit==1) Ring_Tracker = 1;
+          if(track->Scint1HitFlag){
+            Scint1Hit = 1;
+            if(Det != 999){
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1TrackHit(1);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1HitPositionX((Float_t)track->Scint1HitX/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1HitPositionY((Float_t)track->Scint1HitY/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1HitPositionZ((Float_t)track->Scint1HitZ/cm);
+              //cout << "Scint1 HIT" << endl;
+            }
+          }
+          if(track->Scint2HitFlag){
+            Scint2Hit = 1;
+            if(Det != 999){
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2TrackHit(1);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2HitPositionX((Float_t)track->Scint2HitX/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2HitPositionY((Float_t)track->Scint2HitY/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2HitPositionZ((Float_t)track->Scint2HitZ/cm);
+            }
+          }
+          if(track->Scint3HitFlag){
+            Scint3Hit = 1;
+            if(Det != 999){
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3TrackHit(1);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionX((Float_t)track->Scint3HitX/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionY((Float_t)track->Scint3HitY/cm);
+              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionZ((Float_t)track->Scint3HitZ/cm);
+            }
+          }
+          if((Scint1Hit == 1) && (Scint2Hit == 1) && (Scint3Hit == 1)){
+            //if(RingHit==1) Ring_Tracker = 1;
+            Scint1_Tracker = 1;
+            Scint2_Tracker = 1;
+            Scint3_Tracker = 1;
+          }
+          if(RingHit==1) Ring_Tracker = 1; //Currently not using ScintCuts
         }
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1

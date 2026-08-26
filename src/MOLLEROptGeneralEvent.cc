@@ -68,14 +68,40 @@ void MOLLEROptGeneralEvent::Initialize()
   RingQuartzTrackHit.clear();  
   RingQuartzTrackHit.resize(0);
 
+  Scint1TrackHit.clear();
+  Scint1TrackHit.resize(0);
+  Scint2TrackHit.clear();
+  Scint2TrackHit.resize(0);
+  Scint3TrackHit.clear();
+  Scint3TrackHit.resize(0);
+
   RingTileHitX.clear();  
   RingTileHitX.resize(0);
-
   RingTileHitY.clear();  
   RingTileHitY.resize(0);
-
   RingTileHitZ.clear();  
   RingTileHitZ.resize(0);
+
+  Scint1HitX.clear();
+  Scint1HitX.resize(0);
+  Scint1HitY.clear();
+  Scint1HitY.resize(0);
+  Scint1HitZ.clear();
+  Scint1HitZ.resize(0);
+
+  Scint2HitX.clear();
+  Scint2HitX.resize(0);
+  Scint2HitY.clear();
+  Scint2HitY.resize(0);
+  Scint2HitZ.clear();
+  Scint2HitZ.resize(0);
+
+  Scint3HitX.clear();
+  Scint3HitX.resize(0);
+  Scint3HitY.clear();
+  Scint3HitY.resize(0);
+  Scint3HitZ.clear();
+  Scint3HitZ.resize(0);
 
   PMTPhotonEnergy.clear();  
   PMTPhotonEnergy.resize(0);

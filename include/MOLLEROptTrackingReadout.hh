@@ -37,6 +37,9 @@ public:
   Int_t PMTHitFlag;
   Int_t RingPMTHitFlag;
   Int_t RingQuartzHitFlag = 0;
+  Int_t Scint1HitFlag=0;
+  Int_t Scint2HitFlag=0;
+  Int_t Scint3HitFlag=0;
   Int_t LGHitFlag=0;
   Int_t Ring_Detected;
   Float_t InitEnergy;
@@ -52,6 +55,15 @@ public:
   Float_t RingQuartzHitX=0;
   Float_t RingQuartzHitY=0;
   Float_t RingQuartzHitZ=0;
+  Float_t Scint1HitX=0;
+  Float_t Scint1HitY=0;
+  Float_t Scint1HitZ=0;
+  Float_t Scint2HitX=0;
+  Float_t Scint2HitY=0;
+  Float_t Scint2HitZ=0;
+  Float_t Scint3HitX=0;
+  Float_t Scint3HitY=0;
+  Float_t Scint3HitZ=0;
   vector <Float_t> StepLength;
   vector <Float_t> StepAngle;  
   vector <Float_t> SecPhotonAngle;  

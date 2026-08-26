@@ -36,6 +36,9 @@ public:
   
   void       GetQuartzLimits(G4double *vals);
   void       GetLightGuideLimits(G4double *vals);
+  void       GetScint1Limits(G4double *vals);
+  void       GetScint2Limits(G4double *vals);
+  void       GetScint3Limits(G4double *vals);
 
 
 private:
@@ -46,6 +49,10 @@ private:
   void DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int depth=0);
   
   MOLLEROptDetector*     ShowerMax;
+
+  MOLLEROptAuxilary*     Scint1;
+  MOLLEROptAuxilary*     Scint2;
+  MOLLEROptAuxilary*     Scint3;
 
   MOLLEROptMessenger*  MOLLERMessenger;
 

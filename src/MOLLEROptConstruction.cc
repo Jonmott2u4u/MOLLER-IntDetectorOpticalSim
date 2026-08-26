@@ -13,6 +13,11 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
   //Modules
   ShowerMax        = NULL;
 
+  //Scintillators
+  Scint1 = NULL;
+  Scint2 = NULL;
+  Scint3 = NULL;
+
   fWorldLengthInX = 0.0; 
   fWorldLengthInY = 0.0;
   fWorldLengthInZ = 0.0;
@@ -27,6 +32,10 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
   //BF segment objects
   if (ShowerMax)          delete ShowerMax;
 
+  if (Scint1)             delete Scint1;
+  if (Scint2)             delete Scint2;
+  if (Scint3)             delete Scint3;
+
   if (MOLLERMessenger)    delete MOLLERMessenger;             
 }
 
@@ -35,7 +44,10 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   ShowerMax = new MOLLEROptDetector(TrackingReadout,"ShowerMax",Materials,"UVS"); //"UVS" & "UVC" are the available options. Must be changed here in the single-det branch
 
   //Auxilary detectors (for now just scintillators) used to track particle positions
-  
+  Scint1 = new MOLLEROptAuxilary(TrackingReadout,"Scint1",Materials);
+  Scint2 = new MOLLEROptAuxilary(TrackingReadout,"Scint2",Materials);
+  Scint3 = new MOLLEROptAuxilary(TrackingReadout,"Scint3",Materials);
+
   fWorldLengthInX =  2.0*m;
   fWorldLengthInY =  2.0*m;
   fWorldLengthInZ =  2.0*m;
@@ -58,12 +70,10 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 				     "World_Physical", 
 				     0,false,0);             
   
-  //----------------ShowerMax OBJECTS----------------//
-  //Currently R1 dimensions
+  //----------------ShowerMax Initial Settings----------------//
   ShowerMax->SetQuartzSizeX(265*mm);
   ShowerMax->SetQuartzSizeY(160*mm);  //without the 45 degree cut region
   ShowerMax->SetQuartzSizeZ(6*mm);
-  //ShowerMax->SetQuartzRotX(0*degree);
   ShowerMax->SetTungstenSizeX(265*mm);
   ShowerMax->SetTungstenSizeY(160*mm);  //without the 45 degree cut region
   ShowerMax->SetTungstenSizeZ(8*mm);
@@ -89,7 +99,39 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   ShowerMax->SetCenterPositionInY(0*mm);
   ShowerMax->SetCenterPositionInZ(0*mm);
 
-  //-------Misc. objects-------//
+  //-------Scintillator Initial Settings-------//
+  Scint1->SetSizeX(30.5*cm);
+  Scint1->SetSizeY(30.5*cm);
+  Scint1->SetSizeZ(2.54*cm);
+  Scint1->SetAzimuthalRotationAngle(0);
+  Scint1->SetPolarRotationAngle(0);
+  Scint1->Initialize();
+  Scint1->ConstructAuxilary(World_Physical);
+  Scint1->SetCenterPositionInX(0*mm);
+  Scint1->SetCenterPositionInY(0*mm);
+  Scint1->SetCenterPositionInZ(-400*mm);
+
+  Scint2->SetSizeX(20*cm);
+  Scint2->SetSizeY(7*cm);
+  Scint2->SetSizeZ(0.7*cm);
+  Scint2->SetAzimuthalRotationAngle(0);
+  Scint2->SetPolarRotationAngle(0);
+  Scint2->Initialize();
+  Scint2->ConstructAuxilary(World_Physical);
+  Scint2->SetCenterPositionInX(0*mm);
+  Scint2->SetCenterPositionInY(0*mm);
+  Scint2->SetCenterPositionInZ(-100*mm);
+
+  Scint3->SetSizeX(30.5*cm);
+  Scint3->SetSizeY(30.5*cm);
+  Scint3->SetSizeZ(2.54*cm);
+  Scint3->SetAzimuthalRotationAngle(0);
+  Scint3->SetPolarRotationAngle(0);
+  Scint3->Initialize();
+  Scint3->ConstructAuxilary(World_Physical);
+  Scint3->SetCenterPositionInX(0*mm);
+  Scint3->SetCenterPositionInY(0*mm);
+  Scint3->SetCenterPositionInZ(400*mm);
 
   
   //End of object parameter setting
@@ -114,6 +156,21 @@ void MOLLEROptConstruction::GetQuartzLimits(G4double *vals)
 void MOLLEROptConstruction::GetLightGuideLimits(G4double *vals)
 {
   ShowerMax->GetLightGuideLimits(vals);
+}
+
+void MOLLEROptConstruction::GetScint1Limits(G4double *vals)
+{
+  Scint1->GetScintLimits(vals);
+}
+
+void MOLLEROptConstruction::GetScint2Limits(G4double *vals)
+{
+  Scint2->GetScintLimits(vals);
+}
+
+void MOLLEROptConstruction::GetScint3Limits(G4double *vals)
+{
+  Scint3->GetScintLimits(vals);
 }
 
 

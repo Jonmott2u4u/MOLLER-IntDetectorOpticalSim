@@ -108,8 +108,8 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint1->Initialize();
   Scint1->ConstructAuxilary(World_Physical);
   Scint1->SetCenterPositionInX(0*mm);
-  Scint1->SetCenterPositionInY(0*mm);
-  Scint1->SetCenterPositionInZ(-400*mm);
+  Scint1->SetCenterPositionInY(0.8*mm);
+  Scint1->SetCenterPositionInZ(-919*mm);
 
   Scint2->SetSizeX(20*cm);
   Scint2->SetSizeY(7*cm);
@@ -119,8 +119,8 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint2->Initialize();
   Scint2->ConstructAuxilary(World_Physical);
   Scint2->SetCenterPositionInX(0*mm);
-  Scint2->SetCenterPositionInY(0*mm);
-  Scint2->SetCenterPositionInZ(-100*mm);
+  Scint2->SetCenterPositionInY(-116.7*mm);
+  Scint2->SetCenterPositionInZ(-40*mm);
 
   Scint3->SetSizeX(30.5*cm);
   Scint3->SetSizeY(30.5*cm);
@@ -130,8 +130,8 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint3->Initialize();
   Scint3->ConstructAuxilary(World_Physical);
   Scint3->SetCenterPositionInX(0*mm);
-  Scint3->SetCenterPositionInY(0*mm);
-  Scint3->SetCenterPositionInZ(400*mm);
+  Scint3->SetCenterPositionInY(15.8*mm);
+  Scint3->SetCenterPositionInZ(794*mm);
 
   
   //End of object parameter setting

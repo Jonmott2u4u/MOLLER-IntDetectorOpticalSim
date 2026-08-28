@@ -39,7 +39,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double Slim1[4];
   G4double Slim2[4];
   G4double Slim3[4];
-  Construction->GetQuartzLimits(Qlim); //Calls the limits from quartz1, the furthers US in ShowerMax
+  Construction->GetQuartzLimits(Qlim); //Calls the limits from quartz1, the furtherst US in ShowerMax
   Construction->GetLightGuideLimits(LGlim);
   Construction->GetScint1Limits(Slim1);
   Construction->GetScint2Limits(Slim2);

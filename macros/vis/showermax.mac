@@ -136,15 +136,15 @@
 
 #------------------#Beam commands -----------------------#
 
-/Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons, 3 for positrons
-/Generator/EventHitRegion 2                       #1 = center, 2 = controlled position, 3 = Mainz, 4-5 = HallD?
+/Generator/PrimaryParticle 2                      #Sets the primary particle type. 1 for electrons, 2 for muons, 3 for positrons
+/Generator/EventHitRegion 6                       #1 = center, 2 = controlled position, 3 = Mainz, 4-5 = HallD?
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
-/Generator/SegmentHitPosY 128                       #Tile starts at ~ 0.5mm
+/Generator/SegmentHitPosY 0                       #Tile starts at ~ 0.5mm
 /Generator/BeamSolidAngle 14                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
-/Generator/BeamEnergy 8000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
+/Generator/BeamEnergy 1000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
 /Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.

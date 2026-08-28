@@ -57,9 +57,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = Qlim[2] + cuty;
   }
   else if(EventRegion == 3){
-    //Used for the BF segment scan
-    x = (Qlim[1]+Qlim[0])/2.0 - 0.3 + 0.6*G4UniformRand() + cutx;
-    y = Qlim[2] - 0.3 + 0.6*G4UniformRand() + cuty;
+    //Same as 2, but random_tilt is enabled
+    random_tilt = 1;
+    x = (Qlim[1]+Qlim[0])/2.0 + cutx;
+    y = Qlim[2] + cuty;
   }
   else if(EventRegion == 4){
     //Horizontal band across tile
@@ -86,9 +87,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double sinTilt;
   G4double tilt_rad = tilt; //Global tilt applied to the beam. In radians due to internal G4 process
   G4double tilt_dir_rad = tilt_dir; //Sets the direction of the beam tilt. In radians due to internal G4 process
+  G4double rand2 = G4UniformRand();
   if (random_tilt == 1) {
-    cosTilt = TMath::Cos(G4UniformRand()*tilt_rad); //Uses a randomized tilt angle between the set value and 0
-    sinTilt = TMath::Sin(G4UniformRand()*tilt_rad); //
+    cosTilt = TMath::Cos(tilt_rad*(1-2*rand2)); //Uses a randomized tilt angle between the set tilt and its negative value
+    sinTilt = TMath::Sin(tilt_rad*(1-2*rand2)); //
   }
   else {
     cosTilt = TMath::Cos(tilt_rad); //Uses a fixed tilt angle
@@ -116,8 +118,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
 
   //-650 mm is ~ the right distance for a 3.5 deg tilted beam to hit the edge of the R5 tile. Used for 2025 HallD beam test
-  //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -470*mm)); //Use when scintillators are active
-  particleGun->SetParticlePosition(G4ThreeVector((x-470*p_x_tilt)*mm, (y+shift-470*p_y_tilt)*mm, (-470*p_z_tilt - 34.48)*mm)); //Adjusted beam positioning. Ensures angled primaries hit specific spots on the tile at specific angles/orientations on the xy-plane
+  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -932*mm)); //Use when scintillators are active
+  //particleGun->SetParticlePosition(G4ThreeVector((x-932*p_x_tilt)*mm, (y+shift-932*p_y_tilt)*mm, (-932*p_z_tilt - 34.48)*mm)); //Adjusted beam positioning. Ensures angled primaries hit specific spots on the tile at specific angles/orientations on the xy-plane
   //34.48 ensures the beam hits the face of the US tungsten at the correct position. It's composed of tungsten, wrapper, quartz, and LG thickness
   //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -470*p_z_tilt*mm)); //Normal beam positioning?
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));

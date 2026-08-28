@@ -161,12 +161,12 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             }
           }
           if((Scint1Hit == 1) && (Scint2Hit == 1) && (Scint3Hit == 1)){
-            //if(RingHit==1) Ring_Tracker = 1;
+            if(RingHit==1) Ring_Tracker = 1;
             Scint1_Tracker = 1;
             Scint2_Tracker = 1;
             Scint3_Tracker = 1;
           }
-          if(RingHit==1) Ring_Tracker = 1; //Currently not using ScintCuts
+          //if(RingHit==1) Ring_Tracker = 1; //Currently not using ScintCuts
         }
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1

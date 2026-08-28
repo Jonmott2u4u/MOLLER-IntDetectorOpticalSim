@@ -22,8 +22,8 @@ shift = 0         #Shifts the particle spawn location by that much. What this af
 tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 2      #hr = 2 for this branch. This spawns particles at the US scint (scint1)
-hr_stop = 2
+hr_start = 6      #hr = 6 for this branch. This spawns particles at the US scint (scint1)
+hr_stop = 6
 hr_step = 1     
 
 cutx_start = 0.0  #Used for hr = 9. Used to move the beam across the segment in mm increments
@@ -82,8 +82,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/Scint1/SetSizeY 30.5 cm" + "\n"
                 Text += "/Scint1/SetSizeZ 2.54 cm" + "\n"
                 Text += "/Scint1/SetCenterPositionInX 0 mm" + "\n"
-                Text += "/Scint1/SetCenterPositionInY 0 mm" + "\n"
-                Text += "/Scint1/SetCenterPositionInZ -400 mm" + "\n"
+                Text += "/Scint1/SetCenterPositionInY 0.8 mm" + "\n"
+                Text += "/Scint1/SetCenterPositionInZ -919 mm" + "\n"
                 Text += "/Scint1/PolarRotation 0 deg" + "\n"
                 Text += "/Scint1/AzimuthalRotation 0 deg" + "\n"
                 Text += "/Scint1/UpdateGeometry" + "\n"
@@ -91,8 +91,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/Scint2/SetSizeY 30.5 cm" + "\n"
                 Text += "/Scint2/SetSizeZ 2.54 cm" + "\n"
                 Text += "/Scint2/SetCenterPositionInX 0 mm" + "\n"
-                Text += "/Scint2/SetCenterPositionInY 0 mm" + "\n"
-                Text += "/Scint2/SetCenterPositionInZ -400 mm" + "\n"
+                Text += "/Scint2/SetCenterPositionInY -116.7 mm" + "\n"
+                Text += "/Scint2/SetCenterPositionInZ -40 mm" + "\n"
                 Text += "/Scint2/PolarRotation 0 deg" + "\n"
                 Text += "/Scint2/AzimuthalRotation 0 deg" + "\n"
                 Text += "/Scint2/UpdateGeometry" + "\n"
@@ -100,8 +100,8 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/Scint3/SetSizeY 30.5 cm" + "\n"
                 Text += "/Scint3/SetSizeZ 2.54 cm" + "\n"
                 Text += "/Scint3/SetCenterPositionInX 0 mm" + "\n"
-                Text += "/Scint3/SetCenterPositionInY 0 mm" + "\n"
-                Text += "/Scint3/SetCenterPositionInZ -400 mm" + "\n"
+                Text += "/Scint3/SetCenterPositionInY 15.8 mm" + "\n"
+                Text += "/Scint3/SetCenterPositionInZ 794 mm" + "\n"
                 Text += "/Scint3/PolarRotation 0 deg" + "\n"
                 Text += "/Scint3/AzimuthalRotation 0 deg" + "\n"
                 Text += "/Scint3/UpdateGeometry" + "\n"

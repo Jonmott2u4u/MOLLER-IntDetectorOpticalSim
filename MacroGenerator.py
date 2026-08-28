@@ -34,7 +34,7 @@ cuty_start = 0.0  #Y moves the beam in the radial direction, and R1 starts at 0.
 cuty_stop = 0.0
 cuty_step = 0.1
 
-sa = 0            #Controls the angular spread of the beam from the Z-axis (in +- degrees)
+sa = 14            #Controls the angular spread of the beam from the Z-axis (in +- degrees)
 
 tilt = 00          #Controls the tilt of the beam from the z-axis in degrees
 

@@ -65,7 +65,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     jsubf.write("#SBATCH --nodes=1\n")
                     jsubf.write("#SBATCH --ntasks=1\n")
                     jsubf.write("#SBATCH --cpus-per-task=1\n")
-                    jsubf.write("#SBATCH --mem=1G\n")
+                    jsubf.write("#SBATCH --mem=400M\n")
                     #---General submission info---
                     jsubf.write("echo \"Current working directory is `pwd`\"\n")	
                     jsubf.write("source /etc/skel/.bashrc \n")

@@ -119,7 +119,7 @@
 /Scint2/SizeY 70 mm                 
 /Scint2/SetCenterPositionInX 0 mm            
 /Scint2/SetCenterPositionInY -116.7 mm            #-200 is ~ start of stack     
-/Scint2/SetCenterPositionInZ -40 mm            
+/Scint2/SetCenterPositionInZ -51 mm            
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint2/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
 /Scint2/UpdateGeometry
@@ -141,13 +141,13 @@
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/SegmentHitPosY 0                       #Tile starts at ~ 0.5mm
-/Generator/BeamSolidAngle 14                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
+/Generator/BeamSolidAngle 0                       #Units of degrees. Determines the angular spread of the beam from the z-axis with a cos^2 distribution. For Mainz was 0.0872665
 /Generator/BeamTiltAngle 0                        #Tilts the beam away from the z-axis in units of degrees (rotation about the y-axis)
 /Generator/BeamTiltDirection 90.0                 #Sets the direction of the tilt. 0 is the x-axis, 90 is the y-axis, etc. (rotation about z-axis)
 /Generator/BeamEnergy 1000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 999                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.
+/Storage/DetectorFocus 0                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.
 
 #/RunAction/SetID 3
 #/random/setSeeds 346082 823457

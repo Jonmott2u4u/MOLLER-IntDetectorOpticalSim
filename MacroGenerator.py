@@ -92,7 +92,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                 Text += "/Scint2/SizeZ 0.7 cm" + "\n"
                 Text += "/Scint2/SetCenterPositionInX 0 mm" + "\n"
                 Text += "/Scint2/SetCenterPositionInY -116.7 mm" + "\n"
-                Text += "/Scint2/SetCenterPositionInZ -40 mm" + "\n"
+                Text += "/Scint2/SetCenterPositionInZ -51 mm" + "\n"
                 Text += "/Scint2/PolarRotation 0 deg" + "\n"
                 Text += "/Scint2/AzimuthalRotation 0 deg" + "\n"
                 Text += "/Scint2/UpdateGeometry" + "\n"

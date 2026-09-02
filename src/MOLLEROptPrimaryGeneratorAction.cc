@@ -77,6 +77,16 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = Slim1[0] + (Slim1[1]-Slim1[0])*G4UniformRand();
     y = Slim1[2] + (Slim1[3]-Slim1[2])*G4UniformRand();
   }
+  else if(EventRegion == 7){
+    //Anywhere within Scint2 (the DS scintillator)
+    x = Slim2[0] + (Slim2[1]-Slim2[0])*G4UniformRand();
+    y = Slim2[2] + (Slim2[3]-Slim2[2])*G4UniformRand();
+  }
+  else if(EventRegion == 8){
+    //Anywhere within Scint3 (the middle scintillator)
+    x = Slim3[0] + (Slim3[1]-Slim3[0])*G4UniformRand();
+    y = Slim3[2] + (Slim3[3]-Slim3[2])*G4UniformRand();
+  }
   else{
     //Defaults to EventRegion == 1
     x = (Qlim[1]+Qlim[0])/2.0;

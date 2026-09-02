@@ -202,17 +202,26 @@ void MOLLEROptDetector::UpdateThisGeometry()
 
 void MOLLEROptDetector::CalculateDimensions()
 {
+  //Adding manual DetFullLength parameters for Showermax
+  //Done to decrease size of detector box to allow for scints to rest as close to the surface as possible
+  //DetFullLengthX = 1.0*PMT->GetRadius() + 0.1*cm;
+  DetFullLengthZ = 1.3*(PMT->GetRadius() + PMTToQuartzOffset) - 0.5*cm;
+  //DetFullLengthY = 1.0*(Quartz1->GetQuartzSizeY() + LightGuide->GetLightGuideLength() + LightGuide->GetCurrentMiddleBoxHeight() + PMT->GetPMTLength()) + 1.0*cm;
+
+  //Old code
   if(LightGuide->GetLightGuideWidth() > 2*PMT->GetRadius())
     DetFullLengthX = LightGuide->GetLightGuideWidth() - 4*cm;
   else
     DetFullLengthX = 2*PMT->GetRadius() - 4.0*cm;
-  
-  if(LightGuide->GetLightGuideDepth() > 2*PMT->GetRadius())
+
+  /*if(LightGuide->GetLightGuideDepth() > 2*PMT->GetRadius())
     DetFullLengthZ = LightGuide->GetLightGuideDepth() + 2*PMTToQuartzOffset - 1.0*cm;
   else
-    DetFullLengthZ = 2*PMT->GetRadius() + 2*PMTToQuartzOffset - 1.0*cm;
+    DetFullLengthZ = 2*PMT->GetRadius() + 2*PMTToQuartzOffset - 1.0*cm;*/
   
   DetFullLengthY = Quartz1->GetQuartzSizeY()+LightGuide->GetLightGuideLength()+PMT->GetPMTLength()+1.0*cm+LightGuide->GetCurrentMiddleBoxHeight();
+  
+  //End of old code
 }
 
 void MOLLEROptDetector::ResetCenterLocation()
@@ -331,9 +340,9 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 
   //-----------------------------------------------------//
 
-  G4Colour  grey      ( 127/255., 127/255., 127/255.);
-  G4VisAttributes *att = new G4VisAttributes(grey);
-  att->SetVisibility(false);
+  G4Colour  white      ( 255/255., 255/255., 255/255.);
+  G4VisAttributes *att = new G4VisAttributes(white);
+  att->SetVisibility(true);
   att->SetForceWireframe(true);
   DetLogical->SetVisAttributes(att);
 

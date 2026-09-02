@@ -67,10 +67,11 @@ void MOLLEROptAnalysis::EndOfRun()
 
     //--------BF segment histograms--------//
     Ring_CathodeEventsDistrHist->Write();
-
-   
     TrackingReadout->WriteAbsProfiles();
+    //MOLLEROptNtuple->OptimizeBaskets(); //Removes empty baskets from the tree, lowering file size
     MOLLEROptFile->Write("",TObject::kOverwrite); // Writing the data to the ROOT file
+
+    //MOLLEROptNtuple->OptimizeBaskets(); //Removes empty baskets from the tree, lowering file size
     
     MOLLEROptNtuple->Reset(); //This needs to be here, so that the file size doesn't keep growing for new files.
                             //Apparently things are kept in the background, from the previous tree, and then 

@@ -100,10 +100,10 @@
 /Generator/BeamEnergy 1000		                  #Units of MeV. Does nothing if PrimaryParticle != 1
 /Generator/BeamEnergyCut 0                        #Units of MeV. Sets minimum energy for primary particles (less than or equal is rejected)
 
-/Storage/DetectorFocus 0                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.
+/Storage/DetectorFocus 1                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.
 
 
 /RunAction/SetID 2
 /random/setSeeds 346082 823457
 /vis/disable
-/run/beamOn 10
+/run/beamOn 100

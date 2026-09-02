@@ -82,7 +82,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4int hitflag = 0;
   G4int NumSecPhotons = 0;
   G4float InitialBeamAngle = 99;
-  G4double LGTrackLength, QuartzTrackLength, TotalTrackLength;
+  //G4double LGTrackLength, QuartzTrackLength, TotalTrackLength;
   G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt;
 
   G4int R0_Tracker = 0, R999_Tracker = 0;
@@ -112,9 +112,8 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     track  = TrackingReadout->GetTrackData(t);
     if(track){
 
-      analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
-      analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
-      analysis->MOLLERGeneralEvent->AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);      
+      //analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
+      //analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
 
       
       if(track->Particle == myBeam){
@@ -170,30 +169,27 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1
           analysis->MOLLERGeneralEvent->AddElectronTrackID(track->ID);
-          analysis->MOLLERGeneralEvent->AddPhotonTrackID(0);
           if(track->ID == 1){
             InitialBeamAngle = asin(sqrt(pow(track->InitMomDirX,2) + pow(track->InitMomDirY,2)))*180./TMath::Pi();
             analysis->MOLLERGeneralEvent->AddInitialBeamEnergy(track->InitKinEnergy/GeV);
             analysis->MOLLERGeneralEvent->AddInitialBeamAngle(InitialBeamAngle);
+            analysis->MOLLERGeneralEvent->AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);
+
           }
           for(int p = 0; p < track->StepNChPhotons.size(); p++){
-            analysis->MOLLERGeneralEvent->AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
-            analysis->MOLLERGeneralEvent->AddQuartzStepNPhotons(track->StepNChPhotons[p]);
-            analysis->MOLLERGeneralEvent->AddQuartzElectronStepLength(track->StepLength[p]/cm);
-          }
-          for(int p = 0; p < track->SecPhotonAngle.size(); p++){
-            analysis->MOLLERGeneralEvent->AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+            //analysis->MOLLERGeneralEvent->AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+            //analysis->MOLLERGeneralEvent->AddQuartzStepNPhotons(track->StepNChPhotons[p]);
+            //analysis->MOLLERGeneralEvent->AddQuartzElectronStepLength(track->StepLength[p]/cm);
           }
         }
       }
       if(track->Particle == myPhoton){
         if(Det == 0){
           analysis->MOLLERGeneralEvent->AddPhotonTrackID(track->ID);	
-          analysis->MOLLERGeneralEvent->AddElectronTrackID(0);
-          analysis->MOLLERGeneralEvent->AddQuartzTrackData(track->QLength/cm, track->QSteps);
+          //analysis->MOLLERGeneralEvent->AddQuartzTrackData(track->QLength/cm, track->QSteps);
           analysis->MOLLERGeneralEvent->AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
           analysis->MOLLERGeneralEvent->AddQuartzPhotonAtExitFlag(track->QExitFlag);
-          analysis->MOLLERGeneralEvent->AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
+          //analysis->MOLLERGeneralEvent->AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
           analysis->MOLLERGeneralEvent->AddPMTTrackHit(track->PMTHitFlag);
           analysis->MOLLERGeneralEvent->AddLightGuideTrackHit(track->LGHitFlag);
           //analysis->MOLLERGeneralEvent->AddPMTPhotonEnergy(track->InitKinEnergy/eV);
@@ -226,10 +222,9 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           }
         }
       }
-      if(Det == 0){
+      if((Det == 0) || (Det == 1 && track->Particle == myBeam)){
         analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
         analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
-        analysis->MOLLERGeneralEvent->AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);
       }
     }  
 

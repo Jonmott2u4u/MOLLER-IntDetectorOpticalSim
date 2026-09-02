@@ -5,10 +5,10 @@
 #include "Root_include.h"
 
 // user includes
-#include "MOLLEROptPrimaryEvent.hh"
+//#include "MOLLEROptPrimaryEvent.hh"
 #include "MOLLEROptGeneralEvent.hh"   
 
-class MOLLEROptPrimaryEvent;   
+//class MOLLEROptPrimaryEvent;   
 class MOLLEROptGeneralEvent;  
 
 class MOLLEROptMainEvent : public TObject
@@ -18,7 +18,7 @@ private:
 
 public:
     
-  MOLLEROptPrimaryEvent          MOLLERPrimEvent;
+  //MOLLEROptPrimaryEvent          MOLLERPrimEvent;
   MOLLEROptGeneralEvent          MOLLERGeneralEvent;
 
 public:

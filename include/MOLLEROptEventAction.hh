@@ -52,12 +52,12 @@ private:
   MOLLEROptAnalysis*             analysis;
   MOLLEROptTrackingReadout*      TrackingReadout;
 
-  Float_t  OriginVertexX;
-  Float_t  OriginVertexY;
-  Float_t  OriginVertexZ;
+  //Float_t  OriginVertexX;
+  //Float_t  OriginVertexY;
+  //Float_t  OriginVertexZ;
   Float_t  OriginVertexKineticEnergy;
   
-  G4int  primaryEventNumber;
+  //G4int  primaryEventNumber;
   TH1D *PMTSecOptPhotonCnt;
   TH1D *QuartzSecOptPhotonCnt;
   TH1D *LightGuideSecOptPhotonCnt;

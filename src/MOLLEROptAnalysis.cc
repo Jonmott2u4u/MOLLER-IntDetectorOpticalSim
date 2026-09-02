@@ -4,7 +4,8 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
 {	
     // Initialize 
 
-    MOLLERMainEvent    = NULL;
+    //MOLLERMainEvent    = NULL;
+    MOLLERGeneralEvent = NULL;
     MOLLEROptMainBranch   = NULL;
 
     MOLLEROptNtuple         = NULL;
@@ -36,7 +37,8 @@ void MOLLEROptAnalysis::Init()
 
 void MOLLEROptAnalysis::Finish()
 {
-  if (MOLLERMainEvent)         delete MOLLERMainEvent;
+  //if (MOLLERMainEvent)         delete MOLLERMainEvent;
+  if (MOLLERGeneralEvent)      delete MOLLERGeneralEvent;
   if (MOLLEROptMainBranch)     delete MOLLEROptMainBranch;
   if (MOLLEROptNtuple)         {MOLLEROptNtuple->Delete();}
   if (MOLLEROptFile)           delete MOLLEROptFile;
@@ -79,7 +81,8 @@ void MOLLEROptAnalysis::EndOfRun()
     MOLLEROptFile->Close();
   }
 
-  if (MOLLERMainEvent)         delete MOLLERMainEvent;
+  //if (MOLLERMainEvent)         delete MOLLERMainEvent;
+  if (MOLLERGeneralEvent)         delete MOLLERGeneralEvent;
   if (MOLLEROptFile)           delete MOLLEROptFile;
   
 }
@@ -91,11 +94,13 @@ void MOLLEROptAnalysis::EndOfEvent(G4int flag)
 
 void MOLLEROptAnalysis::ConstructRootNtuple() 
 {
-  MOLLERMainEvent   = new MOLLEROptMainEvent();
+  //MOLLERMainEvent   = new MOLLEROptMainEvent();
+  MOLLERGeneralEvent = new MOLLEROptGeneralEvent();
 
   if(ROOTFileFlag) {
+    TClass::GetClass("MOLLEROptGeneralEvent")->IgnoreTObjectStreamer();//This wipes the TObject branch from MOLLERGeneralEvent
     MOLLEROptNtuple = new TTree("MOLLEROptTree","MOLLEROptTree");
-    MOLLEROptMainBranch  = MOLLEROptNtuple->Branch("MOLLEROptData", "MOLLEROptMainEvent", &MOLLERMainEvent, 64000, 10);
+    MOLLEROptMainBranch  = MOLLEROptNtuple->Branch("MOLLEROptData", "MOLLEROptGeneralEvent", &MOLLERGeneralEvent, 64000, 10);
   }
 }
 

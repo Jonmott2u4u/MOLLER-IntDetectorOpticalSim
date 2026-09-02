@@ -78,7 +78,6 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 {
 
   Initialize();
-  analysis->MOLLERMainEvent->MOLLERPrimEvent.Initialize(); 
   
   G4int hitflag = 0;
   G4int NumSecPhotons = 0;
@@ -109,13 +108,13 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 
     PMThit = 0;
     RingHit = 0, Scint1Hit = 0, Scint2Hit = 0, Scint3Hit = 0;
-    analysis->MOLLERMainEvent->MOLLERGeneralEvent.Initialize();  
+    analysis->MOLLERGeneralEvent->Initialize();  
     track  = TrackingReadout->GetTrackData(t);
     if(track){
 
-      analysis->MOLLERMainEvent->MOLLERGeneralEvent.SetEventID(evt->GetEventID());
-      analysis->MOLLERMainEvent->MOLLERGeneralEvent.SetTrackParentID(track->ParentID);      
-      analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);      
+      analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
+      analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
+      analysis->MOLLERGeneralEvent->AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);      
 
       
       if(track->Particle == myBeam){
@@ -125,39 +124,39 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             RingHit = 1;
             Ring_pes = TrackingReadout->Ring_GetCathodeDetections();
             if((Det == 0) || (Det == 1)){
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzTrackHit(1);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionX((Float_t)track->RingQuartzHitX/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionY((Float_t)track->RingQuartzHitY/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingQuartzHitPositionZ((Float_t)track->RingQuartzHitZ/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddRingPEs(Ring_pes);
+              analysis->MOLLERGeneralEvent->AddRingQuartzTrackHit(1);
+              analysis->MOLLERGeneralEvent->AddRingQuartzHitPositionX((Float_t)track->RingQuartzHitX/cm);
+              analysis->MOLLERGeneralEvent->AddRingQuartzHitPositionY((Float_t)track->RingQuartzHitY/cm);
+              analysis->MOLLERGeneralEvent->AddRingQuartzHitPositionZ((Float_t)track->RingQuartzHitZ/cm);
+              analysis->MOLLERGeneralEvent->AddRingPEs(Ring_pes);
             }
           }
           if(track->Scint1HitFlag){
             Scint1Hit = 1;
             if(Det != 999){
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1TrackHit(1);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1HitPositionX((Float_t)track->Scint1HitX/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1HitPositionY((Float_t)track->Scint1HitY/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint1HitPositionZ((Float_t)track->Scint1HitZ/cm);
+              analysis->MOLLERGeneralEvent->AddScint1TrackHit(1);
+              analysis->MOLLERGeneralEvent->AddScint1HitPositionX((Float_t)track->Scint1HitX/cm);
+              analysis->MOLLERGeneralEvent->AddScint1HitPositionY((Float_t)track->Scint1HitY/cm);
+              analysis->MOLLERGeneralEvent->AddScint1HitPositionZ((Float_t)track->Scint1HitZ/cm);
               //cout << "Scint1 HIT" << endl;
             }
           }
           if(track->Scint2HitFlag){
             Scint2Hit = 1;
             if(Det != 999){
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2TrackHit(1);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2HitPositionX((Float_t)track->Scint2HitX/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2HitPositionY((Float_t)track->Scint2HitY/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint2HitPositionZ((Float_t)track->Scint2HitZ/cm);
+              analysis->MOLLERGeneralEvent->AddScint2TrackHit(1);
+              analysis->MOLLERGeneralEvent->AddScint2HitPositionX((Float_t)track->Scint2HitX/cm);
+              analysis->MOLLERGeneralEvent->AddScint2HitPositionY((Float_t)track->Scint2HitY/cm);
+              analysis->MOLLERGeneralEvent->AddScint2HitPositionZ((Float_t)track->Scint2HitZ/cm);
             }
           }
           if(track->Scint3HitFlag){
             Scint3Hit = 1;
             if(Det != 999){
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3TrackHit(1);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionX((Float_t)track->Scint3HitX/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionY((Float_t)track->Scint3HitY/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddScint3HitPositionZ((Float_t)track->Scint3HitZ/cm);
+              analysis->MOLLERGeneralEvent->AddScint3TrackHit(1);
+              analysis->MOLLERGeneralEvent->AddScint3HitPositionX((Float_t)track->Scint3HitX/cm);
+              analysis->MOLLERGeneralEvent->AddScint3HitPositionY((Float_t)track->Scint3HitY/cm);
+              analysis->MOLLERGeneralEvent->AddScint3HitPositionZ((Float_t)track->Scint3HitZ/cm);
             }
           }
           if((Scint1Hit == 1) && (Scint2Hit == 1) && (Scint3Hit == 1)){
@@ -170,67 +169,67 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
         }
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddElectronTrackID(track->ID);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPhotonTrackID(0);
+          analysis->MOLLERGeneralEvent->AddElectronTrackID(track->ID);
+          analysis->MOLLERGeneralEvent->AddPhotonTrackID(0);
           if(track->ID == 1){
             InitialBeamAngle = asin(sqrt(pow(track->InitMomDirX,2) + pow(track->InitMomDirY,2)))*180./TMath::Pi();
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddInitialBeamEnergy(track->InitKinEnergy/GeV);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddInitialBeamAngle(InitialBeamAngle);
+            analysis->MOLLERGeneralEvent->AddInitialBeamEnergy(track->InitKinEnergy/GeV);
+            analysis->MOLLERGeneralEvent->AddInitialBeamAngle(InitialBeamAngle);
           }
           for(int p = 0; p < track->StepNChPhotons.size(); p++){
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzStepNPhotons(track->StepNChPhotons[p]);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzElectronStepLength(track->StepLength[p]/cm);
+            analysis->MOLLERGeneralEvent->AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+            analysis->MOLLERGeneralEvent->AddQuartzStepNPhotons(track->StepNChPhotons[p]);
+            analysis->MOLLERGeneralEvent->AddQuartzElectronStepLength(track->StepLength[p]/cm);
           }
           for(int p = 0; p < track->SecPhotonAngle.size(); p++){
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
+            analysis->MOLLERGeneralEvent->AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
           }
         }
       }
       if(track->Particle == myPhoton){
         if(Det == 0){
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPhotonTrackID(track->ID);	
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddElectronTrackID(0);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzTrackData(track->QLength/cm, track->QSteps);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzPhotonAtExitFlag(track->QExitFlag);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTTrackHit(track->PMTHitFlag);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideTrackHit(track->LGHitFlag);
-          //analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
-          analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
+          analysis->MOLLERGeneralEvent->AddPhotonTrackID(track->ID);	
+          analysis->MOLLERGeneralEvent->AddElectronTrackID(0);
+          analysis->MOLLERGeneralEvent->AddQuartzTrackData(track->QLength/cm, track->QSteps);
+          analysis->MOLLERGeneralEvent->AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
+          analysis->MOLLERGeneralEvent->AddQuartzPhotonAtExitFlag(track->QExitFlag);
+          analysis->MOLLERGeneralEvent->AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
+          analysis->MOLLERGeneralEvent->AddPMTTrackHit(track->PMTHitFlag);
+          analysis->MOLLERGeneralEvent->AddLightGuideTrackHit(track->LGHitFlag);
+          //analysis->MOLLERGeneralEvent->AddPMTPhotonEnergy(track->InitKinEnergy/eV);
+          analysis->MOLLERGeneralEvent->AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
           QuartzSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
           if(track->QExitFlag)
             LightGuideSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
           if(track->PMTHitFlag){
             //G4cout << "PHOTON" << G4endl;
             PMTSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTHitPositionX((Float_t)track->PMTHitX/cm);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTHitPositionY((Float_t)track->PMTHitY/cm);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonEnergy(track->InitKinEnergy/eV);
-            analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddPMTPhotonWavelength(track->InitWavelength);
+            analysis->MOLLERGeneralEvent->AddPMTHitPositionX((Float_t)track->PMTHitX/cm);
+            analysis->MOLLERGeneralEvent->AddPMTHitPositionY((Float_t)track->PMTHitY/cm);
+            analysis->MOLLERGeneralEvent->AddPMTHitPositionZ((Float_t)track->PMTHitZ/cm);
+            analysis->MOLLERGeneralEvent->AddPMTWindowReflectionAngle((Float_t)track->PMTWinRefl);
+            analysis->MOLLERGeneralEvent->AddPMTPhotonEnergy(track->InitKinEnergy/eV);
+            analysis->MOLLERGeneralEvent->AddPMTPhotonWavelength(track->InitWavelength);
             optPhEng = track->InitKinEnergy/eV;
             OptParam* op = TrackingReadout->GetOpticalParameters();
             PMThit++;
           }     
           for(int s = 0; s < track->NSteps; s++){
             if(track->StepVolume[s] == myQuartz){
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzStepLength(track->StepLength[s]/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddQuartzIncidentPhotonAngle(track->StepAngle[s]);
+              analysis->MOLLERGeneralEvent->AddQuartzStepLength(track->StepLength[s]/cm);
+              analysis->MOLLERGeneralEvent->AddQuartzIncidentPhotonAngle(track->StepAngle[s]);
             }
             if(track->StepVolume[s] == myLightGuide){
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideStepLength(track->StepLength[s]/cm);
-              analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddLightGuideIncidentPhotonAngle(track->StepAngle[s]);
+              analysis->MOLLERGeneralEvent->AddLightGuideStepLength(track->StepLength[s]/cm);
+              analysis->MOLLERGeneralEvent->AddLightGuideIncidentPhotonAngle(track->StepAngle[s]);
             }
           }
         }
       }
       if(Det == 0){
-        analysis->MOLLERMainEvent->MOLLERGeneralEvent.SetEventID(evt->GetEventID());
-        analysis->MOLLERMainEvent->MOLLERGeneralEvent.SetTrackParentID(track->ParentID);      
-        analysis->MOLLERMainEvent->MOLLERGeneralEvent.AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);
+        analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
+        analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
+        analysis->MOLLERGeneralEvent->AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);
       }
     }  
 
@@ -269,6 +268,6 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 void MOLLEROptEventAction::Initialize()
 {	  
   
-  primaryEventNumber = 0;
+  //primaryEventNumber = 0;
   
 }

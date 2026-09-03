@@ -49,7 +49,7 @@ void MOLLEROptAnalysis::BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackin
 
   if(ROOTFileFlag){
 
-    MOLLEROptFile = new TFile(Form("%s_%04d.root",name1.c_str(),runID),"RECREATE","MOLLEROpt ROOT file");
+    MOLLEROptFile = new TFile(Form("rootfiles/%s_%04d.root",name1.c_str(),runID),"RECREATE","MOLLEROpt ROOT file");
   }
   TrackingReadout = TrRO;
     

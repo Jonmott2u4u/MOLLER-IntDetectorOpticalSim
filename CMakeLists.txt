@@ -104,8 +104,7 @@ set(MOLLER_SCRIPTS
   macros/gui.mac
   macros/run/showermax.mac
   macros/vis/showermax.mac
-  data/OpticalPropertiesInputData.txt
-  data/OpticalPropertiesInputData-Michaels-uvs.txt
+  data/Showermax_OpticalPropertiesInputData.txt
   data/cosmics.txt
   MacroFolder/placeholder.md
   rootfiles/placeholder.md

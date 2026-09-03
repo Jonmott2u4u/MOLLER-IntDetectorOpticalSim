@@ -9,12 +9,6 @@ class MOLLEROptGeneralEvent : public TObject
 
 private:
 
-  vector <Int_t> PType;
-  vector <Int_t> ElectronTrackID;
-  vector <Int_t> PhotonTrackID;
-  vector <Int_t> ParentID;
-  vector <Int_t> EventID;
-
   vector <Float_t> InitialTrackMomDirectionX;
   vector <Float_t> InitialTrackMomDirectionY;
   vector <Float_t> InitialTrackMomDirectionZ;
@@ -30,26 +24,14 @@ private:
   vector <Float_t> PMTCathodeHitZ;
   vector <Float_t> PMTWindowReflectionAngle;
   
-  vector <Int_t> LightGuideSteps;
   vector <Int_t> LightGuideTrackHit;
-  vector <Int_t> LightGuideReflectionProcess;
   vector <Float_t> LightGuidePhotonEnergy;
-  vector <Float_t> LightGuideStepLength;
-  vector <Float_t> LightGuideTrackLength;
   vector <Float_t> LightGuideIncidentPhotonAngle;
 
-  vector <Int_t> QuartzSteps;
   vector <Int_t>  QuartzPhotonAtExit;
   vector <Float_t> QuartzPhotonEnergy;
-  vector <Float_t> QuartzTrackLength;
-  vector <Int_t> TotalSteps;
-  vector <Int_t>  QuartzStepNPhotons;
   vector <Float_t> QuartzSecondaryPhotonAngle;
-  vector <Float_t> QuartzStepLength;
-  vector <Float_t> QuartzElectronStepLength;
   vector <Float_t> QuartzIncidentPhotonAngle;
-
-  //vector <Float_t> TotalTrackLength; 
 
   vector <Int_t> RingQuartzTrackHit;
 
@@ -85,24 +67,12 @@ public:
 
   void AddLightGuidePhotonEnergy(Float_t eng) {LightGuidePhotonEnergy.push_back(eng);};
   void AddLightGuideTrackHit(Int_t tID){LightGuideTrackHit.push_back(tID);};
-  void AddLightGuideStepLength(Float_t dx){ LightGuideStepLength.push_back(dx);};
   void AddLightGuideIncidentPhotonAngle(Float_t angle) {LightGuideIncidentPhotonAngle.push_back(angle);};
-  void AddLightGuideReflectionProcess(Int_t proc){LightGuideReflectionProcess.push_back(proc);};
-  //void AddLightGuideTrackData(Float_t LGTrackL, Int_t LGSteps);
 
   void AddQuartzPhotonEnergy(Float_t eng) {QuartzPhotonEnergy.push_back(eng);};
-  void AddQuartzStepLength(Float_t dx){ QuartzStepLength.push_back(dx);};
-  void AddQuartzElectronStepLength(Float_t dx) {QuartzElectronStepLength.push_back(dx);};
   void AddQuartzIncidentPhotonAngle(Float_t angle) {QuartzIncidentPhotonAngle.push_back(angle);};
-  //void AddQuartzTrackData(Float_t QTrackL, Int_t QSteps);
-  void AddQuartzStepNPhotons(Int_t n){QuartzStepNPhotons.push_back(n);};
   void AddQuartzPhotonAtExitFlag(Int_t flag){QuartzPhotonAtExit.push_back(flag);};
   void AddQuartzTrackSecPhotonAngle(Float_t angle) {QuartzSecondaryPhotonAngle.push_back(angle);}
-
-  //void AddScintTrackData(Float_t STrackL, Int_t SSteps);
-
-  void AddElectronTrackID(Int_t tID){ElectronTrackID.push_back(tID);};
-  void AddPhotonTrackID(Int_t tID){PhotonTrackID.push_back(tID);};
 
   void AddInitialBeamEnergy(Float_t eng) {InitialBeamEnergy.push_back(eng);};
   void AddInitialBeamAngle(Float_t aang) {InitialBeamAngle.push_back(aang);};
@@ -145,8 +115,6 @@ public:
     InitialTrackMomDirectionZ.push_back(z);
   };
 
-  void SetTrackParentID(Int_t ID) {ParentID.push_back(ID);};
-  void SetEventID(Int_t ID) {EventID.push_back(ID);};
   
   ClassDef(MOLLEROptGeneralEvent,1)
 

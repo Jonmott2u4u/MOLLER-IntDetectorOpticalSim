@@ -25,156 +25,56 @@ MOLLEROptGeneralEvent::~MOLLEROptGeneralEvent()
 
 void MOLLEROptGeneralEvent::Initialize()
 {
-  LightGuideStepLength.clear();  
-  //LightGuideStepLength.resize(0);
 
   LightGuideIncidentPhotonAngle.clear();
-  //LightGuideIncidentPhotonAngle.resize(0);
-
   QuartzIncidentPhotonAngle.clear();
-  //QuartzIncidentPhotonAngle.resize(0);
-
   QuartzSecondaryPhotonAngle.clear();
-  //QuartzSecondaryPhotonAngle.resize(0);
 
-  QuartzStepLength.clear();  
-  //QuartzStepLength.resize(0);
-  
-  //TotalTrackLength.clear();  
-  //TotalTrackLength.resize(0);
-
-  //QuartzTrackLength.clear();
-
-  //ScintTrackLength = 0;
-
-  //LightGuideTrackLength.clear();  
-  //LightGuideTrackLength.resize(0);
-  
-  TotalSteps.clear();  
-  //TotalSteps.resize(0);
-
-  //QuartzSteps.clear();
-
-  //ScintStept = 0;
-
-  //LightGuideSteps.clear();  
-  //LightGuideSteps.resize(0);
-
+  RingQuartzTrackHit.clear(); 
+  LightGuideTrackHit.clear(); 
   PMTTrackHit.clear();
-  //PMTTrackHit.resize(0);
 
-  LightGuideTrackHit.clear();  
-  //LightGuideTrackHit.resize(0);
-
-  RingQuartzTrackHit.clear();  
-  //RingQuartzTrackHit.resize(0);
 
   Scint1TrackHit.clear();
-  //Scint1TrackHit.resize(0);
   Scint2TrackHit.clear();
-  //Scint2TrackHit.resize(0);
   Scint3TrackHit.clear();
-  //Scint3TrackHit.resize(0);
 
   RingTileHitX.clear();  
-  //RingTileHitX.resize(0);
   RingTileHitY.clear();  
-  //RingTileHitY.resize(0);
   RingTileHitZ.clear();  
-  //RingTileHitZ.resize(0);
 
   Scint1HitX.clear();
-  //Scint1HitX.resize(0);
   Scint1HitY.clear();
-  //Scint1HitY.resize(0);
   Scint1HitZ.clear();
-  //Scint1HitZ.resize(0);
 
   Scint2HitX.clear();
-  //Scint2HitX.resize(0);
   Scint2HitY.clear();
-  //Scint2HitY.resize(0);
   Scint2HitZ.clear();
-  //Scint2HitZ.resize(0);
 
   Scint3HitX.clear();
-  //Scint3HitX.resize(0);
   Scint3HitY.clear();
-  //Scint3HitY.resize(0);
   Scint3HitZ.clear();
-  //Scint3HitZ.resize(0);
 
   PMTPhotonEnergy.clear();  
-  //PMTPhotonEnergy.resize(0);
-
   PMTPhotonWavelength.clear();  
-  //PMTPhotonWavelength.resize(0);
 
   InitialBeamEnergy.clear();
-  //InitialBeamEnergy.resize(0);
-
   InitialBeamAngle.clear();
-  //InitialBeamAngle.resize(0);
 
   QuartzPhotonEnergy.clear();
-
-  QuartzStepNPhotons.clear();
-  //QuartzStepNPhotons.resize(0);
-  
   LightGuidePhotonEnergy.clear();  
-  //LightGuidePhotonEnergy.resize(0);
-
-  QuartzElectronStepLength.clear();
-  //QuartzElectronStepLength.resize(0);
-
-  ElectronTrackID.clear();
-  //ElectronTrackID.resize(0);
-  PhotonTrackID.clear();
-  //PhotonTrackID.resize(0);
-  ParentID.clear();
-  EventID.clear();
 
   InitialTrackMomDirectionX.clear();
   InitialTrackMomDirectionY.clear();
   InitialTrackMomDirectionZ.clear();
 
-  QuartzPhotonAtExit.clear();
-
-
-  PType.clear();  
-  //PType.resize(0);
-
   PMTCathodeHitX.clear();  
-  //PMTCathodeHitX.resize(0);
   PMTCathodeHitY.clear();  
-  //PMTCathodeHitY.resize(0);
   PMTCathodeHitZ.clear();  
-  //PMTCathodeHitZ.resize(0);
 
+  QuartzPhotonAtExit.clear();
   PMTWindowReflectionAngle.clear();  
-  //PMTWindowReflectionAngle.resize(0);
 
   RingPEs.clear();
-  //RingPEs.resize(0);
 
 }	
-
-
-/*void MOLLEROptGeneralEvent::AddQuartzTrackData(Float_t QTrackL, Int_t QSteps)
-{
-  QuartzTrackLength.push_back(QTrackL);  
-  QuartzSteps = QSteps;  
-}*/
-
-/*void MOLLEROptGeneralEvent::AddScintTrackData(Float_t STrackL, Int_t SSteps)
-{
-  ScintTrackLength = STrackL;  
-  ScintSteps = SSteps;  
-}*/
-
-/*void MOLLEROptGeneralEvent::AddLightGuideTrackData(Float_t LGTrackL, Int_t LGSteps)
-{
-  LightGuideTrackLength.push_back(LGTrackL);
-  LightGuideSteps.push_back(LGSteps);  
-}*/
-

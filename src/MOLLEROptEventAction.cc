@@ -82,7 +82,6 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
   G4int hitflag = 0;
   G4int NumSecPhotons = 0;
   G4float InitialBeamAngle = 99;
-  //G4double LGTrackLength, QuartzTrackLength, TotalTrackLength;
   G4int hitCnt1, hitCnt2, PMThit, qtrackID, lgtrackID, pmttrackID, ctrackID, LGSteps, QSteps, TSteps, secPhCnt;
 
   G4int R0_Tracker = 0, R999_Tracker = 0;
@@ -111,11 +110,7 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
     analysis->MOLLERGeneralEvent->Initialize();  
     track  = TrackingReadout->GetTrackData(t);
     if(track){
-
-      //analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
-      //analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
-
-      
+    
       if(track->Particle == myBeam){
         //--------Segment tracking--------//
         if(track->ID == 1){//Prevents secondaries from being stored
@@ -159,41 +154,30 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
             }
           }
           if((Scint1Hit == 1) && (Scint2Hit == 1) && (Scint3Hit == 1)){
-            if(RingHit==1) Ring_Tracker = 1;
+            if(RingHit==1) Ring_Tracker = 1; //Uncomment if you DO want scint cuts
             Scint1_Tracker = 1;
             Scint2_Tracker = 1;
             Scint3_Tracker = 1;
           }
-          //if(RingHit==1) Ring_Tracker = 1; //Currently not using ScintCuts
+          //if(RingHit==1) Ring_Tracker = 1; //Uncomment if you DON'T want scint cuts
         }
         if(Det != 999){
           //G4cout << track->ID << G4endl; //Original particle has ID = 1
-          analysis->MOLLERGeneralEvent->AddElectronTrackID(track->ID);
+          //analysis->MOLLERGeneralEvent->AddElectronTrackID(track->ID);
           if(track->ID == 1){
             InitialBeamAngle = asin(sqrt(pow(track->InitMomDirX,2) + pow(track->InitMomDirY,2)))*180./TMath::Pi();
             analysis->MOLLERGeneralEvent->AddInitialBeamEnergy(track->InitKinEnergy/GeV);
             analysis->MOLLERGeneralEvent->AddInitialBeamAngle(InitialBeamAngle);
             analysis->MOLLERGeneralEvent->AddTrackInitMomDirection(track->InitMomDirX,track->InitMomDirY,track->InitMomDirZ);
-
-          }
-          for(int p = 0; p < track->StepNChPhotons.size(); p++){
-            //analysis->MOLLERGeneralEvent->AddQuartzTrackSecPhotonAngle(track->SecPhotonAngle[p]);
-            //analysis->MOLLERGeneralEvent->AddQuartzStepNPhotons(track->StepNChPhotons[p]);
-            //analysis->MOLLERGeneralEvent->AddQuartzElectronStepLength(track->StepLength[p]/cm);
           }
         }
       }
       if(track->Particle == myPhoton){
         if(Det == 0){
-          analysis->MOLLERGeneralEvent->AddPhotonTrackID(track->ID);	
-          //analysis->MOLLERGeneralEvent->AddQuartzTrackData(track->QLength/cm, track->QSteps);
           analysis->MOLLERGeneralEvent->AddQuartzPhotonEnergy(track->InitKinEnergy/eV);
           analysis->MOLLERGeneralEvent->AddQuartzPhotonAtExitFlag(track->QExitFlag);
-          //analysis->MOLLERGeneralEvent->AddLightGuideTrackData(track->LGLength/cm, track->LGSteps);
           analysis->MOLLERGeneralEvent->AddPMTTrackHit(track->PMTHitFlag);
           analysis->MOLLERGeneralEvent->AddLightGuideTrackHit(track->LGHitFlag);
-          //analysis->MOLLERGeneralEvent->AddPMTPhotonEnergy(track->InitKinEnergy/eV);
-          analysis->MOLLERGeneralEvent->AddLightGuidePhotonEnergy(track->InitKinEnergy/eV);
           QuartzSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
           if(track->QExitFlag)
             LightGuideSecOptPhotonCnt->Fill(track->InitWavelength,1.0/(bwdt));
@@ -212,19 +196,13 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
           }     
           for(int s = 0; s < track->NSteps; s++){
             if(track->StepVolume[s] == myQuartz){
-              analysis->MOLLERGeneralEvent->AddQuartzStepLength(track->StepLength[s]/cm);
               analysis->MOLLERGeneralEvent->AddQuartzIncidentPhotonAngle(track->StepAngle[s]);
             }
             if(track->StepVolume[s] == myLightGuide){
-              analysis->MOLLERGeneralEvent->AddLightGuideStepLength(track->StepLength[s]/cm);
               analysis->MOLLERGeneralEvent->AddLightGuideIncidentPhotonAngle(track->StepAngle[s]);
             }
           }
         }
-      }
-      if((Det == 0) || (Det == 1 && track->Particle == myBeam)){
-        analysis->MOLLERGeneralEvent->SetEventID(evt->GetEventID());
-        analysis->MOLLERGeneralEvent->SetTrackParentID(track->ParentID);      
       }
     }  
 

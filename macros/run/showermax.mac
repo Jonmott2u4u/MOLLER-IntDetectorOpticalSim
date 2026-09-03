@@ -103,7 +103,7 @@
 /Storage/DetectorFocus 1                        #Controls what data is saved to the ROOT Ntuple. 0 for everything, 1 for events hitting the ShowerMax, 999 saves nothing, etc.
 
 
-/RunAction/SetID 2
+/RunAction/SetID 3
 /random/setSeeds 346082 823457
 /vis/disable
 /run/beamOn 100

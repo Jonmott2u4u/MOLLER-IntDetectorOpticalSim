@@ -41,7 +41,7 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  ShowerMax = new MOLLEROptDetector(TrackingReadout,"ShowerMax",Materials,"UVS"); //"UVS" & "UVC" are the available options. Must be changed here in the single-det branch
+  ShowerMax = new MOLLEROptDetector(TrackingReadout,"ShowerMax",Materials,"MiroIV"); //Showermax uses MiroIV. The 45 degree datafile for MiroIV is incorrect, but no better one exists currently
 
   //Auxilary detectors (for now just scintillators) used to track particle positions
   Scint1 = new MOLLEROptAuxilary(TrackingReadout,"Scint1",Materials);

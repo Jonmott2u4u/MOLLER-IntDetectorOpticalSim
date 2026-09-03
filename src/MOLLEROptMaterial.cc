@@ -304,7 +304,7 @@ void MOLLEROptMaterial::SetOpticalParameters()
   
 
   //ifstream optPropFile("data/OpticalPropertiesInputData.txt");
-  ifstream optPropFile("data/OpticalPropertiesInputData-Michaels-uvs.txt"); //Loads UVC and UVS data, with UVS data provided by Michael Gericke
+  ifstream optPropFile("data/Showermax_OpticalPropertiesInputData.txt"); //Loads Mylar and MiroIV reflectivity data
   if(!optPropFile.is_open()){
     G4cout << "Cannot read optical input file named: OpticalPropertiesInputData.txt " << endl;
     G4cout << "The file must be located in the execution directory." << endl;
@@ -345,14 +345,14 @@ void MOLLEROptMaterial::SetOpticalParameters()
       OptPar->QEff[n]     = var[1]; 
       OptPar->QRefl[n]    = var[2];
       OptPar->QTrans[n]   = 1.0-var[2];
-      OptPar->LGRefl30UVC[n] = var[3]; 
-      OptPar->LGRefl45UVC[n] = var[4]; 
-      OptPar->LGRefl60UVC[n] = var[5]; 
-      OptPar->LGRefl90UVC[n] = var[6];
-      OptPar->LGRefl30UVS[n] = var[7]; 
-      OptPar->LGRefl45UVS[n] = var[8]; 
-      OptPar->LGRefl60UVS[n] = var[9]; 
-      OptPar->LGRefl90UVS[n] = var[10];
+      OptPar->LGRefl30Mylar[n] = var[3]; 
+      OptPar->LGRefl45Mylar[n] = var[4]; 
+      OptPar->LGRefl60Mylar[n] = var[5]; 
+      OptPar->LGRefl90Mylar[n] = var[6];
+      OptPar->LGRefl30MiroIV[n] = var[7]; 
+      OptPar->LGRefl45MiroIV[n] = var[8]; 
+      OptPar->LGRefl60MiroIV[n] = var[9]; 
+      OptPar->LGRefl90MiroIV[n] = var[10];
       OptPar->QAbs[n]     = var[11]*cm; 
       OptPar->QAbs70[n]   = var[12]*cm; 
       OptPar->QAbs170[n]  = var[13]*cm;
@@ -377,32 +377,32 @@ void MOLLEROptMaterial::SetOpticalParameters()
   }
   
   QEffhst  = new TH1D("QEfficiency","",N,bins);
-  LGRefl30UVC  = new TH1D("LGRefl30UVC","",N,bins);
-  LGRefl45UVC  = new TH1D("LGRefl45UVC","",N,bins);
-  LGRefl60UVC  = new TH1D("LGRefl60UVC","",N,bins);
-  LGRefl90UVC  = new TH1D("LGRefl90UVC","",N,bins);
-  LGRefl30UVS  = new TH1D("LGRefl30UVS","",N,bins);
-  LGRefl45UVS  = new TH1D("LGRefl45UVS","",N,bins);
-  LGRefl60UVS  = new TH1D("LGRefl60UVS","",N,bins);
-  LGRefl90UVS  = new TH1D("LGRefl90UVS","",N,bins);
+  LGRefl30Mylar  = new TH1D("LGRefl30Mylar","",N,bins);
+  LGRefl45Mylar  = new TH1D("LGRefl45Mylar","",N,bins);
+  LGRefl60Mylar  = new TH1D("LGRefl60Mylar","",N,bins);
+  LGRefl90Mylar  = new TH1D("LGRefl90Mylar","",N,bins);
+  LGRefl30MiroIV  = new TH1D("LGRefl30MiroIV","",N,bins);
+  LGRefl45MiroIV  = new TH1D("LGRefl45MiroIV","",N,bins);
+  LGRefl60MiroIV  = new TH1D("LGRefl60MiroIV","",N,bins);
+  LGRefl90MiroIV  = new TH1D("LGRefl90MiroIV","",N,bins);
   CathIndR  = new TH1D("CathIndR","",N,bins);
   CathIndI  = new TH1D("CathIndI","",N,bins);
  
   for(int k = 0; k < N; k++){    
     QEffhst->SetBinContent(QEffhst->FindBin(OptPar->EPhoton[k]/eV),OptPar->QEff[k]);
-    LGRefl30UVC->SetBinContent(LGRefl30UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30UVC[k]);
-    LGRefl45UVC->SetBinContent(LGRefl45UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45UVC[k]);
-    LGRefl60UVC->SetBinContent(LGRefl60UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60UVC[k]);
-    LGRefl90UVC->SetBinContent(LGRefl90UVC->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90UVC[k]);
-    LGRefl30UVS->SetBinContent(LGRefl30UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30UVS[k]);
-    LGRefl45UVS->SetBinContent(LGRefl45UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45UVS[k]);
-    LGRefl60UVS->SetBinContent(LGRefl60UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60UVS[k]);
-    LGRefl90UVS->SetBinContent(LGRefl90UVS->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90UVS[k]);
+    LGRefl30Mylar->SetBinContent(LGRefl30Mylar->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30Mylar[k]);
+    LGRefl45Mylar->SetBinContent(LGRefl45Mylar->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45Mylar[k]);
+    LGRefl60Mylar->SetBinContent(LGRefl60Mylar->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60Mylar[k]);
+    LGRefl90Mylar->SetBinContent(LGRefl90Mylar->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90Mylar[k]);
+    LGRefl30MiroIV->SetBinContent(LGRefl30MiroIV->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl30MiroIV[k]);
+    LGRefl45MiroIV->SetBinContent(LGRefl45MiroIV->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl45MiroIV[k]);
+    LGRefl60MiroIV->SetBinContent(LGRefl60MiroIV->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl60MiroIV[k]);
+    LGRefl90MiroIV->SetBinContent(LGRefl90MiroIV->FindBin(OptPar->EPhoton[k]/eV),OptPar->LGRefl90MiroIV[k]);
     CathIndR->SetBinContent(CathIndR->FindBin(OptPar->EPhoton[k]/eV),OptPar->Cath_RIndR[k]);
     CathIndI->SetBinContent(CathIndI->FindBin(OptPar->EPhoton[k]/eV),OptPar->Cath_IIndR[k]);
   }  										 
 										 
-  TrackingReadout->StoreGuideOpticalPlots(LGRefl30UVC,LGRefl45UVC,LGRefl60UVC,LGRefl90UVC,LGRefl30UVS,LGRefl45UVS,LGRefl60UVS,LGRefl90UVS);
+  TrackingReadout->StoreGuideOpticalPlots(LGRefl30Mylar,LGRefl45Mylar,LGRefl60Mylar,LGRefl90Mylar,LGRefl30MiroIV,LGRefl45MiroIV,LGRefl60MiroIV,LGRefl90MiroIV);
   TrackingReadout->StoreCathodeOpticalPlots(CathIndR, CathIndI);
   TrackingReadout->SetOpticalParameters(OptPar);
 }

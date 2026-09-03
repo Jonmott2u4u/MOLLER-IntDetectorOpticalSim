@@ -1,3 +1,9 @@
+#include "TProfile.h"
+#include "TGraph.h"
+#include "TMath.h"
+#include "TFile.h"
+#include "TCanvas.h"
+
 double PhotonEnergy[58] = {1.55,1.58,1.61,1.64,1.67,1.70,1.73,1.76,1.79,1.82,1.85,
 			   1.88, 1.91, 1.94, 1.97, 2.00, 2.03, 2.07, 2.10, 2.14, 2.18, 
 			   2.21, 2.25, 2.30, 2.34, 2.38, 2.43, 2.48, 2.53, 2.58, 2.64, 
@@ -12,27 +18,27 @@ TProfile *CathIndR = new TProfile("CathIndR","",100,1.38,6.21,0,4.0);
 TProfile *CathIndI = new TProfile("CathIndI","",100,1.38,6.21,0,4.0);
 
 //LG material reflectivity profiles
-//------UVC------//
-TProfile *LG30UVCRefl = new TProfile("LG30UVCRefl","",100,1.38,6.21,0,1.0);
-TProfile *LG45UVCRefl = new TProfile("LG45UVCRefl","",100,1.38,6.21,0,1.0);
-TProfile *LG60UVCRefl = new TProfile("LG60UVCRefl","",100,1.38,6.21,0,1.0);
-TProfile *LG90UVCRefl = new TProfile("LG90UVCRefl","",100,1.38,6.21,0,1.0);
+//------Mylar------//
+TProfile *LG30MylarRefl = new TProfile("LG30MylarRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG45MylarRefl = new TProfile("LG45MylarRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG60MylarRefl = new TProfile("LG60MylarRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG90MylarRefl = new TProfile("LG90MylarRefl","",100,1.38,6.21,0,1.0);
 
-TProfile *LG30UVCReflwv = new TProfile("LG30UVCReflwv","",750,150,900,0,1.0);
-TProfile *LG45UVCReflwv = new TProfile("LG45UVCReflwv","",750,150,900,0,1.0);
-TProfile *LG60UVCReflwv = new TProfile("LG60UVCReflwv","",750,150,900,0,1.0);
-TProfile *LG90UVCReflwv = new TProfile("LG90UVCReflwv","",750,150,900,0,1.0);
+TProfile *LG30MylarReflwv = new TProfile("LG30MylarReflwv","",750,150,900,0,1.0);
+TProfile *LG45MylarReflwv = new TProfile("LG45MylarReflwv","",750,150,900,0,1.0);
+TProfile *LG60MylarReflwv = new TProfile("LG60MylarReflwv","",750,150,900,0,1.0);
+TProfile *LG90MylarReflwv = new TProfile("LG90MylarReflwv","",750,150,900,0,1.0);
 
-//------UVS------//
-TProfile *LG30UVSRefl = new TProfile("LG30UVSRefl","",100,1.38,6.21,0,1.0);
-TProfile *LG45UVSRefl = new TProfile("LG45UVSRefl","",100,1.38,6.21,0,1.0);
-TProfile *LG60UVSRefl = new TProfile("LG60UVSRefl","",100,1.38,6.21,0,1.0);
-TProfile *LG90UVSRefl = new TProfile("LG90UVSRefl","",100,1.38,6.21,0,1.0);
+//------MiroIV------//
+TProfile *LG30MiroIVRefl = new TProfile("LG30MiroIVRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG45MiroIVRefl = new TProfile("LG45MiroIVRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG60MiroIVRefl = new TProfile("LG60MiroIVRefl","",100,1.38,6.21,0,1.0);
+TProfile *LG90MiroIVRefl = new TProfile("LG90MiroIVRefl","",100,1.38,6.21,0,1.0);
 
-TProfile *LG30UVSReflwv = new TProfile("LG30UVSReflwv","",750,150,900,0,1.0);
-TProfile *LG45UVSReflwv = new TProfile("LG45UVSReflwv","",750,150,900,0,1.0);
-TProfile *LG60UVSReflwv = new TProfile("LG60UVSReflwv","",750,150,900,0,1.0);
-TProfile *LG90UVSReflwv = new TProfile("LG90UVSReflwv","",750,150,900,0,1.0);
+TProfile *LG30MiroIVReflwv = new TProfile("LG30MiroIVReflwv","",750,150,900,0,1.0);
+TProfile *LG45MiroIVReflwv = new TProfile("LG45MiroIVReflwv","",750,150,900,0,1.0);
+TProfile *LG60MiroIVReflwv = new TProfile("LG60MiroIVReflwv","",750,150,900,0,1.0);
+TProfile *LG90MiroIVReflwv = new TProfile("LG90MiroIVReflwv","",750,150,900,0,1.0);
 
 //Quantum absorption profiles 
 TProfile *QAbsorption  = new TProfile("QAbsorption","",60,1.38,6.21,0,250.0);
@@ -41,14 +47,14 @@ TProfile *QAbsorption170  = new TProfile("QAbsorption170","",60,1.38,6.21,0,250.
 
 TGraph *PMTQEout = new TGraph(); 
 TGraph *QReflout = new TGraph(); 
-TGraph *LGR30UVCout = new TGraph(); 
-TGraph *LGR45UVCout = new TGraph(); 
-TGraph *LGR60UVCout = new TGraph(); 
-TGraph *LGR90UVCout = new TGraph(); 
-TGraph *LGR30UVSout = new TGraph(); 
-TGraph *LGR45UVSout = new TGraph(); 
-TGraph *LGR60UVSout = new TGraph(); 
-TGraph *LGR90UVSout = new TGraph();
+TGraph *LGR30Mylarout = new TGraph(); 
+TGraph *LGR45Mylarout = new TGraph(); 
+TGraph *LGR60Mylarout = new TGraph(); 
+TGraph *LGR90Mylarout = new TGraph(); 
+TGraph *LGR30MiroIVout = new TGraph(); 
+TGraph *LGR45MiroIVout = new TGraph(); 
+TGraph *LGR60MiroIVout = new TGraph(); 
+TGraph *LGR90MiroIVout = new TGraph();
 TGraph *Absout = new TGraph();   
 TGraph *Abs70out = new TGraph(); 
 TGraph *Abs170out = new TGraph();
@@ -175,16 +181,16 @@ void FillGuideReflectivity()
   ifstream iFile2("bogdanMylar_45.txt");
   ifstream iFile3("bogdanMylar_60.txt");
   ifstream iFile4("bogdanMylar.txt");*/
-  //UVC files
-  ifstream iFile("filtered_UVC32deg.txt");
-  ifstream iFile2("filtered_UVC45deg.txt");
-  ifstream iFile3("filtered_UVC62deg.txt");
-  ifstream iFile4("filtered_UVC90deg.txt");
-  ///UVS files
-  ifstream iFile5("uvs30.txt");
-  ifstream iFile6("uvs45.txt");
-  ifstream iFile7("uvs60.txt");
-  ifstream iFile8("uvs.txt");
+  //Mylar files
+  ifstream iFile("bogdanMylar_30.txt");
+  ifstream iFile2("bogdanMylar_45.txt");
+  ifstream iFile3("bogdanMylar_60.txt");
+  ifstream iFile4("bogdanMylar.txt");
+  ///MiroIV files
+  ifstream iFile5("miroIV_30.txt");
+  ifstream iFile6("miroIV_45.txt");
+  ifstream iFile7("miroIV_60.txt");
+  ifstream iFile8("miroIV_90.txt");
 
   Float_t x,y,e;
   Int_t n = 0, bin;
@@ -196,8 +202,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG30UVCRefl->Fill(eng,scale*y,1);
-    LG30UVCReflwv->Fill(x,scale*y,1);
+    LG30MylarRefl->Fill(eng,scale*y,1);
+    LG30MylarReflwv->Fill(x,scale*y,1);
   }
   iFile.close();
 
@@ -207,8 +213,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG45UVCRefl->Fill(eng,scale*y,1);
-    LG45UVCReflwv->Fill(x,scale*y,1);
+    LG45MylarRefl->Fill(eng,scale*y,1);
+    LG45MylarReflwv->Fill(x,scale*y,1);
   }
   iFile2.close();
 
@@ -218,8 +224,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG60UVCRefl->Fill(eng,scale*y,1);
-    LG60UVCReflwv->Fill(x,scale*y,1);
+    LG60MylarRefl->Fill(eng,scale*y,1);
+    LG60MylarReflwv->Fill(x,scale*y,1);
   }
   iFile3.close();
 
@@ -229,8 +235,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG90UVCRefl->Fill(eng,scale*y,1);
-    LG90UVCReflwv->Fill(x,scale*y,1);
+    LG90MylarRefl->Fill(eng,scale*y,1);
+    LG90MylarReflwv->Fill(x,scale*y,1);
   }
   iFile4.close();
 
@@ -240,8 +246,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG30UVSRefl->Fill(eng,scale*y,1);
-    LG30UVSReflwv->Fill(x,scale*y,1);
+    LG30MiroIVRefl->Fill(eng,scale*y,1);
+    LG30MiroIVReflwv->Fill(x,scale*y,1);
   }
   iFile5.close();
 
@@ -251,8 +257,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG45UVSRefl->Fill(eng,scale*y,1);
-    LG45UVSReflwv->Fill(x,scale*y,1);
+    LG45MiroIVRefl->Fill(eng,scale*y,1);
+    LG45MiroIVReflwv->Fill(x,scale*y,1);
   }
   iFile6.close();
 
@@ -262,8 +268,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG60UVSRefl->Fill(eng,scale*y,1);
-    LG60UVSReflwv->Fill(x,scale*y,1);
+    LG60MiroIVRefl->Fill(eng,scale*y,1);
+    LG60MiroIVReflwv->Fill(x,scale*y,1);
   }
   iFile7.close();
 
@@ -273,8 +279,8 @@ void FillGuideReflectivity()
     eng = 1242.0/wvl;
     //scale = 0.95;
     scale = 1.;
-    LG90UVSRefl->Fill(eng,scale*y,1);
-    LG90UVSReflwv->Fill(x,scale*y,1);
+    LG90MiroIVRefl->Fill(eng,scale*y,1);
+    LG90MiroIVReflwv->Fill(x,scale*y,1);
   }
   iFile8.close();
 }
@@ -402,14 +408,14 @@ void MakeTable()
 {
   PMTQEout->SetName("PMTQEout"); 
   QReflout->SetName("QReflout");  
-  LGR30UVCout->SetName("LGR30UVCout");  
-  LGR45UVCout->SetName("LGR45UVCout");  
-  LGR60UVCout->SetName("LGR60UVCout");  
-  LGR90UVCout->SetName("LGR90UVCout"); 
-  LGR30UVSout->SetName("LGR30UVSout");  
-  LGR45UVSout->SetName("LGR45UVSout");  
-  LGR60UVSout->SetName("LGR60UVSout");  
-  LGR90UVSout->SetName("LGR90UVSout"); 
+  LGR30Mylarout->SetName("LGR30Mylarout");  
+  LGR45Mylarout->SetName("LGR45Mylarout");  
+  LGR60Mylarout->SetName("LGR60Mylarout");  
+  LGR90Mylarout->SetName("LGR90Mylarout"); 
+  LGR30MiroIVout->SetName("LGR30MiroIVout");  
+  LGR45MiroIVout->SetName("LGR45MiroIVout");  
+  LGR60MiroIVout->SetName("LGR60MiroIVout");  
+  LGR90MiroIVout->SetName("LGR90MiroIVout"); 
   Absout->SetName("Absout");    
   Abs70out->SetName("Abs70out");  
   Abs170out->SetName("Abs170out");
@@ -417,17 +423,17 @@ void MakeTable()
   TCanvas *c1 = new TCanvas("","",600,400);
   c1->cd();
   FillGuideReflectivity();
-  LG90UVCRefl->Draw();
-  LG60UVCRefl->Draw("same");
-  LG45UVCRefl->Draw("same");
-  LG30UVCRefl->Draw("same");
+  LG90MylarRefl->Draw();
+  LG60MylarRefl->Draw("same");
+  LG45MylarRefl->Draw("same");
+  LG30MylarRefl->Draw("same");
 
   TCanvas *c2 = new TCanvas("","",600,400);
   c2->cd();
-  LG90UVSRefl->Draw();
-  LG60UVSRefl->Draw("same");
-  LG45UVSRefl->Draw("same");
-  LG30UVSRefl->Draw("same");
+  LG90MiroIVRefl->Draw();
+  LG60MiroIVRefl->Draw("same");
+  LG45MiroIVRefl->Draw("same");
+  LG30MiroIVRefl->Draw("same");
 
   FillPMTQE();
   PMTQE->Draw("same");
@@ -439,17 +445,17 @@ void MakeTable()
   
   TCanvas *c3 = new TCanvas("","",600,400);
   c3->cd();
-  LG90UVCReflwv->Draw();
-  LG60UVCReflwv->Draw("same");
-  LG45UVCReflwv->Draw("same");
-  LG30UVCReflwv->Draw("same");
+  LG90MylarReflwv->Draw();
+  LG60MylarReflwv->Draw("same");
+  LG45MylarReflwv->Draw("same");
+  LG30MylarReflwv->Draw("same");
 
   TCanvas *c4 = new TCanvas("","",600,400);
   c4->cd();
-  LG90UVSReflwv->Draw();
-  LG60UVSReflwv->Draw("same");
-  LG45UVSReflwv->Draw("same");
-  LG30UVSReflwv->Draw("same");
+  LG90MiroIVReflwv->Draw();
+  LG60MiroIVReflwv->Draw("same");
+  LG45MiroIVReflwv->Draw("same");
+  LG30MiroIVReflwv->Draw("same");
 
   TCanvas *c5 = new TCanvas("","",600,400);
   c5->cd();
@@ -465,23 +471,23 @@ void MakeTable()
   
   ofstream oFile("OpticalPropertiesInputData.txt");
 
-  oFile << "E_ph " << "QE " << "QRefl " << "LGRefl30_UVC " << "LGRefl45_UVC " << "LGRefl60_UVC " << "LGRefl90_UVC " << "LGRefl30_UVS " << "LGRefl45_UVS " << "LGRefl60_UVS " << "LGRefl90_UVS " << "QAbs " << "QAbs(70 MRad) " <<  "QAbs(170 MRad) " << "CathIndR " << "CathIndI " << '\n';
+  oFile << "E_ph " << "QE " << "QRefl " << "LGRefl30_Mylar " << "LGRefl45_Mylar " << "LGRefl60_Mylar " << "LGRefl90_Mylar " << "LGRefl30_MiroIV " << "LGRefl45_MiroIV " << "LGRefl60_MiroIV " << "LGRefl90_MiroIV " << "QAbs " << "QAbs(70 MRad) " <<  "QAbs(170 MRad) " << "CathIndR " << "CathIndI " << '\n';
 
   for(int n = 0; n < 58; n++){
 
 
     PMTQEout->SetPoint(n,PhotonEnergy[n],PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])));
     QReflout->SetPoint(n,PhotonEnergy[n],QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])));
-    //UVC reflectivity
-    LGR30UVCout->SetPoint(n,PhotonEnergy[n],LG30UVCRefl->GetBinContent(LG30UVCRefl->FindBin(PhotonEnergy[n])));
-    LGR45UVCout->SetPoint(n,PhotonEnergy[n],LG45UVCRefl->GetBinContent(LG45UVCRefl->FindBin(PhotonEnergy[n])));
-    LGR60UVCout->SetPoint(n,PhotonEnergy[n],LG60UVCRefl->GetBinContent(LG60UVCRefl->FindBin(PhotonEnergy[n])));
-    LGR90UVCout->SetPoint(n,PhotonEnergy[n],LG90UVCRefl->GetBinContent(LG90UVCRefl->FindBin(PhotonEnergy[n])));
-    //UVS reflectivity
-    LGR30UVSout->SetPoint(n,PhotonEnergy[n],LG30UVSRefl->GetBinContent(LG30UVSRefl->FindBin(PhotonEnergy[n])));
-    LGR45UVSout->SetPoint(n,PhotonEnergy[n],LG45UVSRefl->GetBinContent(LG45UVSRefl->FindBin(PhotonEnergy[n])));
-    LGR60UVSout->SetPoint(n,PhotonEnergy[n],LG60UVSRefl->GetBinContent(LG60UVSRefl->FindBin(PhotonEnergy[n])));
-    LGR90UVSout->SetPoint(n,PhotonEnergy[n],LG90UVSRefl->GetBinContent(LG90UVSRefl->FindBin(PhotonEnergy[n])));
+    //Mylar reflectivity
+    LGR30Mylarout->SetPoint(n,PhotonEnergy[n],LG30MylarRefl->GetBinContent(LG30MylarRefl->FindBin(PhotonEnergy[n])));
+    LGR45Mylarout->SetPoint(n,PhotonEnergy[n],LG45MylarRefl->GetBinContent(LG45MylarRefl->FindBin(PhotonEnergy[n])));
+    LGR60Mylarout->SetPoint(n,PhotonEnergy[n],LG60MylarRefl->GetBinContent(LG60MylarRefl->FindBin(PhotonEnergy[n])));
+    LGR90Mylarout->SetPoint(n,PhotonEnergy[n],LG90MylarRefl->GetBinContent(LG90MylarRefl->FindBin(PhotonEnergy[n])));
+    //MiroIV reflectivity
+    LGR30MiroIVout->SetPoint(n,PhotonEnergy[n],LG30MiroIVRefl->GetBinContent(LG30MiroIVRefl->FindBin(PhotonEnergy[n])));
+    LGR45MiroIVout->SetPoint(n,PhotonEnergy[n],LG45MiroIVRefl->GetBinContent(LG45MiroIVRefl->FindBin(PhotonEnergy[n])));
+    LGR60MiroIVout->SetPoint(n,PhotonEnergy[n],LG60MiroIVRefl->GetBinContent(LG60MiroIVRefl->FindBin(PhotonEnergy[n])));
+    LGR90MiroIVout->SetPoint(n,PhotonEnergy[n],LG90MiroIVRefl->GetBinContent(LG90MiroIVRefl->FindBin(PhotonEnergy[n])));
     Absout->SetPoint(n,PhotonEnergy[n],QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])));
     Abs70out->SetPoint(n,PhotonEnergy[n],QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])));
     Abs170out->SetPoint(n,PhotonEnergy[n],QAbsorption170->GetBinContent(QAbsorption170->FindBin(PhotonEnergy[n])));
@@ -490,16 +496,16 @@ void MakeTable()
     oFile << PhotonEnergy[n] << ' '
 	  << PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])) << ' '
 	  << QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])) << ' '
-    //UVC reflectivity
-	  << LG30UVCRefl->GetBinContent(LG30UVCRefl->FindBin(PhotonEnergy[n])) << ' '    
-    << LG45UVCRefl->GetBinContent(LG45UVCRefl->FindBin(PhotonEnergy[n])) << ' '     
-	  << LG60UVCRefl->GetBinContent(LG60UVCRefl->FindBin(PhotonEnergy[n])) << ' '     
-	  << LG90UVCRefl->GetBinContent(LG90UVCRefl->FindBin(PhotonEnergy[n])) << ' '   
-    ///UVS reflectivity  
-    << LG30UVSRefl->GetBinContent(LG30UVSRefl->FindBin(PhotonEnergy[n])) << ' '    
-    << LG45UVSRefl->GetBinContent(LG45UVSRefl->FindBin(PhotonEnergy[n])) << ' '     
-	  << LG60UVSRefl->GetBinContent(LG60UVSRefl->FindBin(PhotonEnergy[n])) << ' '     
-	  << LG90UVSRefl->GetBinContent(LG90UVSRefl->FindBin(PhotonEnergy[n])) << ' '     
+    //Mylar reflectivity
+	  << LG30MylarRefl->GetBinContent(LG30MylarRefl->FindBin(PhotonEnergy[n])) << ' '    
+    << LG45MylarRefl->GetBinContent(LG45MylarRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG60MylarRefl->GetBinContent(LG60MylarRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG90MylarRefl->GetBinContent(LG90MylarRefl->FindBin(PhotonEnergy[n])) << ' '   
+    ///MiroIV reflectivity  
+    << LG30MiroIVRefl->GetBinContent(LG30MiroIVRefl->FindBin(PhotonEnergy[n])) << ' '    
+    << LG45MiroIVRefl->GetBinContent(LG45MiroIVRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG60MiroIVRefl->GetBinContent(LG60MiroIVRefl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG90MiroIVRefl->GetBinContent(LG90MiroIVRefl->FindBin(PhotonEnergy[n])) << ' '     
 	  // << QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])) << ' '     
 	  << AbsLPre->Eval(PhotonEnergy[n]) << ' '
 	  << QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])) << ' ' 
@@ -519,17 +525,17 @@ void MakeTable()
 
   TCanvas *c9 = new TCanvas("","",600,400);
   c9->cd();
-  LGR30UVCout->Draw("ap");
-  LGR45UVCout->Draw("samep");
-  LGR60UVCout->Draw("samep");
-  LGR90UVCout->Draw("AP");
+  LGR30Mylarout->Draw("ap");
+  LGR45Mylarout->Draw("samep");
+  LGR60Mylarout->Draw("samep");
+  LGR90Mylarout->Draw("AP");
 
   TCanvas *c10 = new TCanvas("","",600,400);
   c10->cd();
-  LGR30UVSout->Draw("ap");
-  LGR45UVSout->Draw("samep");
-  LGR60UVSout->Draw("samep");
-  LGR90UVSout->Draw("AP");
+  LGR30MiroIVout->Draw("ap");
+  LGR45MiroIVout->Draw("samep");
+  LGR60MiroIVout->Draw("samep");
+  LGR90MiroIVout->Draw("AP");
 
   TCanvas *c11 = new TCanvas("","",600,400);
   c11->cd();

@@ -6,10 +6,10 @@
 #include "Geant4_include.hh" 
 
 #include "MOLLEROptMaterial.hh"
-#include "MOLLEROptMainEvent.hh"
+#include "MOLLEROptGeneralEvent.hh"
 #include "MOLLEROptTrackingReadout.hh"
 
-class MOLLEROptMainEvent;
+class MOLLEROptGeneralEvent;
 
 class MOLLEROptAnalysis {
 public:
@@ -40,7 +40,7 @@ public:
   //--------BF segment histograms--------//
   void Ring_AddCathodeDetectionEvent(Int_t events) {Ring_CathodeEventsDistrHist->Fill(events);};
 
-  MOLLEROptMainEvent* MOLLERMainEvent;
+  MOLLEROptGeneralEvent* MOLLERGeneralEvent;
 
 private:
 

@@ -101,14 +101,14 @@ private:
   TProfile* Transm170;
   TProfile* Reflectivity;
   
-  TH1D *LGRefl30UVC;
-  TH1D *LGRefl45UVC;
-  TH1D *LGRefl60UVC;
-  TH1D *LGRefl90UVC;
-  TH1D *LGRefl30UVS;
-  TH1D *LGRefl45UVS;
-  TH1D *LGRefl60UVS;
-  TH1D *LGRefl90UVS;
+  TH1D *LGRefl30Mylar;
+  TH1D *LGRefl45Mylar;
+  TH1D *LGRefl60Mylar;
+  TH1D *LGRefl90Mylar;
+  TH1D *LGRefl30MiroIV;
+  TH1D *LGRefl45MiroIV;
+  TH1D *LGRefl60MiroIV;
+  TH1D *LGRefl90MiroIV;
 
   TH1D* CathIndR;  
   TH1D* CathIndI;  

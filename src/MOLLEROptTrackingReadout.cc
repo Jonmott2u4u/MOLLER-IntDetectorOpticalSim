@@ -196,16 +196,16 @@ void MOLLEROptTrackingReadout::StoreQuartzOpticalPlots(TProfile* tr35, TProfile*
   if(Qeff )  {QEfficiency  = (TH1D*)Qeff->Clone(); }
 }
 
-void MOLLEROptTrackingReadout::StoreGuideOpticalPlots(TH1D* rl30uvc,TH1D* rl45uvc,TH1D* rl60uvc,TH1D* rl90uvc,TH1D* rl30uvs,TH1D* rl45uvs,TH1D* rl60uvs,TH1D* rl90uvs)
+void MOLLEROptTrackingReadout::StoreGuideOpticalPlots(TH1D* rl30Mylar,TH1D* rl45Mylar,TH1D* rl60Mylar,TH1D* rl90Mylar,TH1D* rl30MiroIV,TH1D* rl45MiroIV,TH1D* rl60MiroIV,TH1D* rl90MiroIV)
 {
-  if(rl30uvc)  {LGRefl30UVC = (TH1D*)rl30uvc->Clone();}
-  if(rl45uvc)  {LGRefl45UVC = (TH1D*)rl45uvc->Clone();}
-  if(rl60uvc)  {LGRefl60UVC = (TH1D*)rl60uvc->Clone();}
-  if(rl90uvc)  {LGRefl90UVC = (TH1D*)rl90uvc->Clone();}
-  if(rl30uvs)  {LGRefl30UVS = (TH1D*)rl30uvs->Clone();}
-  if(rl45uvs)  {LGRefl45UVS = (TH1D*)rl45uvs->Clone();}
-  if(rl60uvs)  {LGRefl60UVS = (TH1D*)rl60uvs->Clone();}
-  if(rl90uvs)  {LGRefl90UVS = (TH1D*)rl90uvs->Clone();}
+  if(rl30Mylar)  {LGRefl30Mylar = (TH1D*)rl30Mylar->Clone();}
+  if(rl45Mylar)  {LGRefl45Mylar = (TH1D*)rl45Mylar->Clone();}
+  if(rl60Mylar)  {LGRefl60Mylar = (TH1D*)rl60Mylar->Clone();}
+  if(rl90Mylar)  {LGRefl90Mylar = (TH1D*)rl90Mylar->Clone();}
+  if(rl30MiroIV)  {LGRefl30MiroIV = (TH1D*)rl30MiroIV->Clone();}
+  if(rl45MiroIV)  {LGRefl45MiroIV = (TH1D*)rl45MiroIV->Clone();}
+  if(rl60MiroIV)  {LGRefl60MiroIV = (TH1D*)rl60MiroIV->Clone();}
+  if(rl90MiroIV)  {LGRefl90MiroIV = (TH1D*)rl90MiroIV->Clone();}
 }
 
 void MOLLEROptTrackingReadout::StoreCathodeOpticalPlots(TH1D* CIndR, TH1D* CIndI)
@@ -248,14 +248,14 @@ void MOLLEROptTrackingReadout::WriteAbsProfiles()
   if(Reflectivity)  {Reflectivity->Write();}
   if(QEfficiency )  {QEfficiency->Write();}
 
-  if(LGRefl30UVC){LGRefl30UVC->Write();};
-  if(LGRefl45UVC){LGRefl45UVC->Write();};
-  if(LGRefl60UVC){LGRefl60UVC->Write();};
-  if(LGRefl90UVC){LGRefl90UVC->Write();};
-  if(LGRefl30UVS){LGRefl30UVS->Write();};
-  if(LGRefl45UVS){LGRefl45UVS->Write();};
-  if(LGRefl60UVS){LGRefl60UVS->Write();};
-  if(LGRefl90UVS){LGRefl90UVS->Write();};
+  if(LGRefl30Mylar){LGRefl30Mylar->Write();};
+  if(LGRefl45Mylar){LGRefl45Mylar->Write();};
+  if(LGRefl60Mylar){LGRefl60Mylar->Write();};
+  if(LGRefl90Mylar){LGRefl90Mylar->Write();};
+  if(LGRefl30MiroIV){LGRefl30MiroIV->Write();};
+  if(LGRefl45MiroIV){LGRefl45MiroIV->Write();};
+  if(LGRefl60MiroIV){LGRefl60MiroIV->Write();};
+  if(LGRefl90MiroIV){LGRefl90MiroIV->Write();};
   
   if(CathIndR)  {CathIndR->Write();}
   if(CathIndI)  {CathIndI->Write();}

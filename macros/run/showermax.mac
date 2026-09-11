@@ -46,7 +46,7 @@
 
 /ShowerMax/SpacerSizeX 265 mm
 /ShowerMax/SpacerSizeY 160 mm
-/ShowerMax/SpacerSizeZ 0.870 mm
+/ShowerMax/SpacerSizeZ 0.860 mm
 
 /ShowerMax/QuartzRotX 0 deg                           #rotate the quartz & tungsten w.r.t. the light guide. Not working in this branch atm
 
@@ -76,7 +76,7 @@
 /Scint2/SizeY 70 mm                              # 70
 /Scint2/SetCenterPositionInX 0 mm            
 /Scint2/SetCenterPositionInY -116.7 mm            #-200 is ~ start of stack   
-/Scint2/SetCenterPositionInZ -51 mm             
+/Scint2/SetCenterPositionInZ -56 mm             
 /Scint2/PolarRotation 0 deg                     #Rotates the Scintillator about the x-axis
 /Scint2/AzimuthalRotation 0 deg                 #Rotates the Scintillator about the z-axis
 /Scint2/UpdateGeometry

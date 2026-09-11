@@ -14,7 +14,7 @@
 class MOLLEROptDetectorQuartz 
 {
 public:
-  MOLLEROptDetectorQuartz(MOLLEROptTrackingReadout*, G4String type, MOLLEROptMaterial* mat);
+  MOLLEROptDetectorQuartz(MOLLEROptTrackingReadout*, G4String type, G4int num, MOLLEROptMaterial* mat);
   ~MOLLEROptDetectorQuartz();
 
   void Construct(G4VPhysicalVolume* Mother);

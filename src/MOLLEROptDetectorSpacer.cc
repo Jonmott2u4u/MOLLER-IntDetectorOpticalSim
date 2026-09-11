@@ -2,9 +2,9 @@
 #include "G4Version.hh"
 
 
-MOLLEROptDetectorSpacer::MOLLEROptDetectorSpacer(G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorSpacer::MOLLEROptDetectorSpacer(G4String name, G4int num, MOLLEROptMaterial* mat)
 {
-  Name = name+"_Spacer";
+  Name = name+"_Spacer"+num;
 
   SpacerWidth       = 265*mm;
   SpacerHeight      = 160*mm;
@@ -120,8 +120,8 @@ void MOLLEROptDetectorSpacer::Initialize(string mat_flag)
     RotationSpacer = new G4RotationMatrix;
     //RotationSpacer->rotateX(0.0*degree);
 
-    G4Colour blue ( 0.0, 0.0, 1.0);
-    G4VisAttributes* VisAtt = new G4VisAttributes(blue);
+    G4Colour green ( 0.0, 1.0, 0.0);
+    G4VisAttributes* VisAtt = new G4VisAttributes(green);
     VisAtt->SetVisibility(true);
     VisAtt->SetForceWireframe(true);
     SpacerLogical->SetVisAttributes(VisAtt);

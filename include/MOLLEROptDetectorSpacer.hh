@@ -11,7 +11,7 @@
 class MOLLEROptDetectorSpacer 
 {
 public:
-    MOLLEROptDetectorSpacer(G4String name, MOLLEROptMaterial* mat);
+    MOLLEROptDetectorSpacer(G4String name, G4int num, MOLLEROptMaterial* mat);
     ~MOLLEROptDetectorSpacer();
 
     G4LogicalVolume*   GetLogicalVolume()    {return SpacerLogical;}

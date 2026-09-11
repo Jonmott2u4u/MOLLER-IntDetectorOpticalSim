@@ -1,8 +1,8 @@
 #include "MOLLEROptDetectorTungsten.hh"
 
-MOLLEROptDetectorTungsten::MOLLEROptDetectorTungsten(G4String name, MOLLEROptMaterial* mat)
+MOLLEROptDetectorTungsten::MOLLEROptDetectorTungsten(G4String name, G4int num, MOLLEROptMaterial* mat)
 {
-  Name = name+"_Tungsten";
+  Name = name+"_Tungsten"+num;
   
   Materials = mat;
   PlateMaterial = Materials->GetMaterial("Tungsten");  

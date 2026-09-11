@@ -11,7 +11,7 @@
 class MOLLEROptDetectorTungsten 
 {
 public:
-  MOLLEROptDetectorTungsten(G4String type13, MOLLEROptMaterial* mat);
+  MOLLEROptDetectorTungsten(G4String type13, G4int num, MOLLEROptMaterial* mat);
   ~MOLLEROptDetectorTungsten();
 
   void Construct(G4VPhysicalVolume* Mother);

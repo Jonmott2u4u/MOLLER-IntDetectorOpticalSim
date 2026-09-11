@@ -123,16 +123,25 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double p_y = sinTheta*TMath::Sin(Phi);
   G4double p_z = cosTheta;
 
+  //This may have problems when not using the tilt feature. Investigate
   G4double p_x_tilt = cosTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*sinTilt_dir;
   G4double p_y_tilt = sinTilt_dir*(p_x*cosTilt + p_z*sinTilt) - p_y*cosTilt_dir;
   G4double p_z_tilt = p_z*cosTilt - p_x*sinTilt;
 
-  //-650 mm is ~ the right distance for a 3.5 deg tilted beam to hit the edge of the R5 tile. Used for 2025 HallD beam test
-  particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -932*mm)); //Use when scintillators are active
-  //particleGun->SetParticlePosition(G4ThreeVector((x-932*p_x_tilt)*mm, (y+shift-932*p_y_tilt)*mm, (-932*p_z_tilt - 34.48)*mm)); //Adjusted beam positioning. Ensures angled primaries hit specific spots on the tile at specific angles/orientations on the xy-plane
-  //34.48 ensures the beam hits the face of the US tungsten at the correct position. It's composed of tungsten, wrapper, quartz, and LG thickness
-  //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -470*p_z_tilt*mm)); //Normal beam positioning?
+  //-----Basic positioning. Required particles spawn behing Scint1-----//
+  //particleGun->SetParticlePosition(G4ThreeVector(x*mm, (y+shift)*mm, -932*mm));
+
+  //-----Adjusted beam positioning. Ensures angled primaries hit specific spots on the tile at specific angles/orientations on the xy-plane-----//
+  G4double IdahoShift = 1219200.0; //The difference in height (~4000 ft or 1219200 mm) between JLab and Pocatello, Idaho
+  //particleGun->SetParticlePosition(G4ThreeVector((x-IdahoShift*p_x)*mm, (y+shift-IdahoShift*p_y)*mm, (-932-IdahoShift*p_z)*mm));
+
+  //-----34.48 ensures the beam hits the face of the US tungsten at the correct position. It's composed of tungsten, wrapper, quartz, and LG thickness-----//
+  particleGun->SetParticlePosition(G4ThreeVector((x-932*p_x_tilt)*mm, (y+shift-932*p_y_tilt)*mm, (-932*p_z_tilt - 34.48)*mm));
+
+  //-----If using the tilt feature-----//
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x_tilt, p_y_tilt, p_z_tilt));
+  //-----If not using the tilt feature-----//
+  //particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y,  p_z));
 
   //The following section reads cosmics.txt to generate beam energies following cosmic muon energy distributions
   //****************************************

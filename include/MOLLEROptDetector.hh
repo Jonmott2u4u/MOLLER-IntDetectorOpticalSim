@@ -8,6 +8,7 @@
 #include "MOLLEROptMaterial.hh"
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptDetectorQuartz.hh"
+#include "MOLLEROptDetectorSpacer.hh"
 #include "MOLLEROptDetectorTungsten.hh"
 #include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorPMT.hh"
@@ -40,6 +41,9 @@ public:
   void SetQuartzSizeX(G4double x); 
   void SetQuartzSizeY(G4double y); 
   void SetQuartzSizeZ(G4double z);
+  void SetSpacerSizeX(G4double x);
+  void SetSpacerSizeY(G4double y);
+  void SetSpacerSizeZ(G4double z);
   void SetTungstenSizeX(G4double x);
   void SetTungstenSizeY(G4double y);
   void SetTungstenSizeZ(G4double z);
@@ -90,6 +94,14 @@ private:
   MOLLEROptDetectorQuartz*     Quartz2;
   MOLLEROptDetectorQuartz*     Quartz3;
   MOLLEROptDetectorQuartz*     Quartz4;
+  MOLLEROptDetectorSpacer*     Spacer1;
+  MOLLEROptDetectorSpacer*     Spacer2;
+  MOLLEROptDetectorSpacer*     Spacer3;
+  MOLLEROptDetectorSpacer*     Spacer4;
+  MOLLEROptDetectorSpacer*     Spacer5;
+  MOLLEROptDetectorSpacer*     Spacer6;
+  MOLLEROptDetectorSpacer*     Spacer7;
+  MOLLEROptDetectorSpacer*     Spacer8;
   MOLLEROptDetectorTungsten*   Tungsten1;
   MOLLEROptDetectorTungsten*   Tungsten2;
   MOLLEROptDetectorTungsten*   Tungsten3;

@@ -43,6 +43,9 @@ private:
   G4UIcmdWithADoubleAndUnit* TungstenSizeXCmd;
   G4UIcmdWithADoubleAndUnit* TungstenSizeYCmd;
   G4UIcmdWithADoubleAndUnit* TungstenSizeZCmd;
+  G4UIcmdWithADoubleAndUnit* SpacerSizeXCmd;
+  G4UIcmdWithADoubleAndUnit* SpacerSizeYCmd;
+  G4UIcmdWithADoubleAndUnit* SpacerSizeZCmd;
 
   G4UIcmdWithADoubleAndUnit* QuartzBevelCmd;    
   G4UIcmdWithADoubleAndUnit* QuartzRotXCmd;

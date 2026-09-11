@@ -48,9 +48,9 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Scint2 = new MOLLEROptAuxilary(TrackingReadout,"Scint2",Materials);
   Scint3 = new MOLLEROptAuxilary(TrackingReadout,"Scint3",Materials);
 
-  fWorldLengthInX =  2.0*m;
-  fWorldLengthInY =  2.0*m;
-  fWorldLengthInZ =  2.0*m;
+  fWorldLengthInX =  10.0*m;
+  fWorldLengthInY =  10.0*m;
+  fWorldLengthInZ =  10.0*m;
   
   World_Material = Materials->GetMaterial("Air");
   //World_Material = Materials->GetMaterial("Vacuum");
@@ -77,6 +77,9 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   ShowerMax->SetTungstenSizeX(265*mm);
   ShowerMax->SetTungstenSizeY(160*mm);  //without the 45 degree cut region
   ShowerMax->SetTungstenSizeZ(8*mm);
+  ShowerMax->SetSpacerSizeX(265*mm);
+  ShowerMax->SetSpacerSizeY(160*mm);
+  ShowerMax->SetSpacerSizeZ(0.870*mm);
   ShowerMax->SetLowerInterfacePlane(67.462*mm);
   ShowerMax->SetMiddleBoxHeight(0.01*mm);
   ShowerMax->SetUpperInterfacePlane(250.52*mm);

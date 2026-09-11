@@ -115,6 +115,24 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   TungstenSizeXCmd->SetUnitCategory("Length");
   TungstenSizeXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  SpacerSizeZCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/SpacerSizeZ",name.data()),this);
+  SpacerSizeZCmd->SetGuidance("Set the size of the spacer in Z");
+  SpacerSizeZCmd->SetParameterName("Size",true);
+  SpacerSizeZCmd->SetUnitCategory("Length");
+  SpacerSizeZCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  SpacerSizeYCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/SpacerSizeY",name.data()),this);
+  SpacerSizeYCmd->SetGuidance("Set the size of the spacer in Y");
+  SpacerSizeYCmd->SetParameterName("Size",true);
+  SpacerSizeYCmd->SetUnitCategory("Length");
+  SpacerSizeYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  SpacerSizeXCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/SpacerSizeX",name.data()),this);
+  SpacerSizeXCmd->SetGuidance("Set the size of the spacer in X");
+  SpacerSizeXCmd->SetParameterName("Size",true);
+  SpacerSizeXCmd->SetUnitCategory("Length");
+  SpacerSizeXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   LightGuideQuartzToPMTOffsetCmd =  new G4UIcmdWithADoubleAndUnit(Form("/%s/LightGuideQuartzToPMTOffset",name.data()),this);      
   LightGuideQuartzToPMTOffsetCmd->SetGuidance("Set the offset between the quartz and PMT light guide openings in the beam direction.") ;         
   LightGuideQuartzToPMTOffsetCmd->SetParameterName("Size",true);                                               
@@ -209,6 +227,9 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(TungstenSizeXCmd                     ) delete TungstenSizeXCmd;
   if(TungstenSizeYCmd                     ) delete TungstenSizeYCmd;
   if(TungstenSizeZCmd                     ) delete TungstenSizeZCmd;
+  if(SpacerSizeXCmd                       ) delete SpacerSizeXCmd;
+  if(SpacerSizeYCmd                       ) delete SpacerSizeYCmd;
+  if(SpacerSizeZCmd                       ) delete SpacerSizeZCmd;
   if(LightGuideUpperInterfaceCmd          ) delete LightGuideUpperInterfaceCmd;          
   if(LightGuideMiddleBoxCmd               ) delete LightGuideMiddleBoxCmd;
   if(LightGuideLowerInterfaceCmd          ) delete LightGuideLowerInterfaceCmd;          
@@ -246,6 +267,9 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == TungstenSizeXCmd )                    { Det->SetTungstenSizeX(TungstenSizeXCmd->GetNewDoubleValue(newValue));}
   if( command == TungstenSizeYCmd )                    { Det->SetTungstenSizeY(TungstenSizeYCmd->GetNewDoubleValue(newValue));}
   if( command == TungstenSizeZCmd )                    { Det->SetTungstenSizeZ(TungstenSizeZCmd->GetNewDoubleValue(newValue));}
+  if( command == SpacerSizeXCmd )                      { Det->SetSpacerSizeX(SpacerSizeXCmd->GetNewDoubleValue(newValue));}
+  if( command == SpacerSizeYCmd )                      { Det->SetSpacerSizeY(SpacerSizeYCmd->GetNewDoubleValue(newValue));}
+  if( command == SpacerSizeZCmd )                      { Det->SetSpacerSizeZ(SpacerSizeZCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideUpperInterfaceCmd )         { Det->SetUpperInterfacePlane(LightGuideUpperInterfaceCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideMiddleBoxCmd )              { Det->SetMiddleBoxHeight(LightGuideMiddleBoxCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideLowerInterfaceCmd )         { Det->SetLowerInterfacePlane(LightGuideLowerInterfaceCmd->GetNewDoubleValue(newValue));}

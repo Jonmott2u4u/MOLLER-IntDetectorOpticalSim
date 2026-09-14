@@ -7,8 +7,8 @@ MOLLEROptDetectorSpacer::MOLLEROptDetectorSpacer(G4String name, G4int num, MOLLE
   Name = name+"_Spacer"+num;
 
   SpacerWidth       = 265*mm;
-  SpacerHeight      = 160*mm;
-  SpacerThickness   = 0.870*mm;
+  SpacerHeight      = 160.865*mm; //Quartz height (160 mm w/o wedge) + 0.865 mm
+  SpacerThickness   = 7.73*mm;   //Quartz thickness (6 mm) + 1.73 mm
 
   Materials = mat;
   SpacerMaterial = Materials->GetMaterial("Aluminum");
@@ -111,14 +111,19 @@ void MOLLEROptDetectorSpacer::SetCenterPositionInZ(G4double z)
 
 void MOLLEROptDetectorSpacer::Initialize(string mat_flag)
 {
-    SpacerSolid = new G4Box(Name+"_Solid",SpacerWidth/2,SpacerHeight/2,SpacerThickness/2);
+    RotationSpacer = new G4RotationMatrix;
+    G4RotationMatrix *rot = new G4RotationMatrix();
+    G4ThreeVector trans = G4ThreeVector(0,0.43*mm,0);
+
+    SpacerSolid_Out = new G4Box(Name+"_SolidOut",SpacerWidth/2,SpacerHeight/2,SpacerThickness/2);
+    SpacerSolid_In = new G4Box(Name+"_SolidIn",SpacerWidth/2,(SpacerHeight-0.86*mm)/2,(SpacerThickness-1.72*mm)/2);
+
+    SpacerSolid = new G4SubtractionSolid(Name+"Solid",SpacerSolid_Out,SpacerSolid_In,rot,trans);
     SpacerLogical = new G4LogicalVolume(SpacerSolid,SpacerMaterial,Name+"_Logical");
     
     CreateOpticalSurface(SpacerLogical, mat_flag);
     
     PositionSpacer  = G4ThreeVector(CenterPositionX,CenterPositionY,CenterPositionZ);
-    RotationSpacer = new G4RotationMatrix;
-    //RotationSpacer->rotateX(0.0*degree);
 
     G4Colour green ( 0.0, 1.0, 0.0);
     G4VisAttributes* VisAtt = new G4VisAttributes(green);
@@ -131,9 +136,19 @@ void MOLLEROptDetectorSpacer::Initialize(string mat_flag)
 void MOLLEROptDetectorSpacer::UpdateGeometry()
 {
     G4SolidStore::GetInstance()->DeRegister(SpacerSolid);
+    G4SolidStore::GetInstance()->DeRegister(SpacerSolid_In);
+    G4SolidStore::GetInstance()->DeRegister(SpacerSolid_Out);
 
     delete SpacerSolid;
+    delete SpacerSolid_In;
+    delete SpacerSolid_Out;
 
-    SpacerSolid = new G4Box(Name+"_Solid",SpacerWidth/2,SpacerHeight/2,SpacerThickness/2);
+    G4RotationMatrix *rot = new G4RotationMatrix();
+    G4ThreeVector trans = G4ThreeVector(0,0.43*mm,0);
+
+    SpacerSolid_Out = new G4Box(Name+"_SolidOut",SpacerWidth/2,SpacerHeight/2,SpacerThickness/2);
+    SpacerSolid_In = new G4Box(Name+"_SolidIn",SpacerWidth/2,(SpacerHeight-0.86*mm)/2,(SpacerThickness-1.72*mm)/2);
+
+    SpacerSolid = new G4SubtractionSolid(Name+"Solid",SpacerSolid_Out,SpacerSolid_In,rot,trans);
     SpacerLogical->SetSolid(SpacerSolid);
 }

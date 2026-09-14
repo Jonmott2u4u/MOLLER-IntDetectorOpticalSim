@@ -78,8 +78,8 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   ShowerMax->SetTungstenSizeY(160*mm);  //without the 45 degree cut region
   ShowerMax->SetTungstenSizeZ(8*mm);
   ShowerMax->SetSpacerSizeX(265*mm);
-  ShowerMax->SetSpacerSizeY(160*mm);
-  ShowerMax->SetSpacerSizeZ(0.860*mm);
+  ShowerMax->SetSpacerSizeY(160.865*mm);
+  ShowerMax->SetSpacerSizeZ(7.73*mm);
   ShowerMax->SetLowerInterfacePlane(67.462*mm);
   ShowerMax->SetMiddleBoxHeight(0.01*mm);
   ShowerMax->SetUpperInterfacePlane(250.52*mm);

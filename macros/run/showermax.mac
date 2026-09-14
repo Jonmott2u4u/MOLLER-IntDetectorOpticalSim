@@ -45,8 +45,8 @@
 /ShowerMax/TungstenSizeZ 8 mm
 
 /ShowerMax/SpacerSizeX 265 mm
-/ShowerMax/SpacerSizeY 160 mm
-/ShowerMax/SpacerSizeZ 0.860 mm
+/ShowerMax/SpacerSizeY 160.865 mm
+/ShowerMax/SpacerSizeZ 7.73 mm
 
 /ShowerMax/QuartzRotX 0 deg                           #rotate the quartz & tungsten w.r.t. the light guide. Not working in this branch atm
 

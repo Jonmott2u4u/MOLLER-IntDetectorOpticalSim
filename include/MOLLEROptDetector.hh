@@ -98,10 +98,6 @@ private:
   MOLLEROptDetectorSpacer*     Spacer2;
   MOLLEROptDetectorSpacer*     Spacer3;
   MOLLEROptDetectorSpacer*     Spacer4;
-  MOLLEROptDetectorSpacer*     Spacer5;
-  MOLLEROptDetectorSpacer*     Spacer6;
-  MOLLEROptDetectorSpacer*     Spacer7;
-  MOLLEROptDetectorSpacer*     Spacer8;
   MOLLEROptDetectorTungsten*   Tungsten1;
   MOLLEROptDetectorTungsten*   Tungsten2;
   MOLLEROptDetectorTungsten*   Tungsten3;

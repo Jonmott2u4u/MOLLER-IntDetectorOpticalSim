@@ -43,7 +43,9 @@ private:
     G4String Name;
     MOLLEROptMaterial* Materials;
     
-    G4Box* SpacerSolid;
+    G4Box* SpacerSolid_In;
+    G4Box* SpacerSolid_Out;
+    G4SubtractionSolid* SpacerSolid;
     G4VPhysicalVolume* Mother;
     G4VPhysicalVolume* SpacerPhysical;
     G4LogicalVolume*   SpacerLogical;

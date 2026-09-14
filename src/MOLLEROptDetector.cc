@@ -20,10 +20,6 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String na
   Spacer2 = new MOLLEROptDetectorSpacer(name,2,Materials);
   Spacer3 = new MOLLEROptDetectorSpacer(name,3,Materials);
   Spacer4 = new MOLLEROptDetectorSpacer(name,4,Materials);
-  Spacer5 = new MOLLEROptDetectorSpacer(name,5,Materials);
-  Spacer6 = new MOLLEROptDetectorSpacer(name,6,Materials);
-  Spacer7 = new MOLLEROptDetectorSpacer(name,7,Materials);
-  Spacer8 = new MOLLEROptDetectorSpacer(name,8,Materials);
   LightGuide = new MOLLEROptDetectorLightGuide(TrackingReadout,name,Materials);
   PMT = new MOLLEROptDetectorPMT(TrackingReadout,name,Materials,LightGuide);
 
@@ -55,10 +51,6 @@ MOLLEROptDetector::~MOLLEROptDetector()
   delete Spacer2;
   delete Spacer3;
   delete Spacer4;
-  delete Spacer5;
-  delete Spacer6;
-  delete Spacer7;
-  delete Spacer8;
 }
 
 void MOLLEROptDetector::SetAzimuthalRotationAngle(G4double val)
@@ -146,10 +138,6 @@ void MOLLEROptDetector::SetSpacerSizeX(G4double x)
   if(Spacer2) Spacer2->SetSizeX(x);
   if(Spacer3) Spacer3->SetSizeX(x);
   if(Spacer4) Spacer4->SetSizeX(x);
-  if(Spacer5) Spacer5->SetSizeX(x);
-  if(Spacer6) Spacer6->SetSizeX(x);
-  if(Spacer7) Spacer7->SetSizeX(x);
-  if(Spacer8) Spacer8->SetSizeX(x);
 }
 void MOLLEROptDetector::SetSpacerSizeY(G4double y)
 {
@@ -157,10 +145,6 @@ void MOLLEROptDetector::SetSpacerSizeY(G4double y)
   if(Spacer2) Spacer2->SetSizeY(y);
   if(Spacer3) Spacer3->SetSizeY(y);
   if(Spacer4) Spacer4->SetSizeY(y);
-  if(Spacer5) Spacer5->SetSizeY(y);
-  if(Spacer6) Spacer6->SetSizeY(y);
-  if(Spacer7) Spacer7->SetSizeY(y);
-  if(Spacer8) Spacer8->SetSizeY(y);
 }
 void MOLLEROptDetector::SetSpacerSizeZ(G4double z)
 {
@@ -168,10 +152,6 @@ void MOLLEROptDetector::SetSpacerSizeZ(G4double z)
   if(Spacer2) Spacer2->SetSizeZ(z);
   if(Spacer3) Spacer3->SetSizeZ(z);
   if(Spacer4) Spacer4->SetSizeZ(z);
-  if(Spacer5) Spacer5->SetSizeZ(z);
-  if(Spacer6) Spacer6->SetSizeZ(z);
-  if(Spacer7) Spacer7->SetSizeZ(z);
-  if(Spacer8) Spacer8->SetSizeZ(z);
 }
 void MOLLEROptDetector::SetLowerInterfacePlane(G4double LowerPlane)
 {
@@ -237,10 +217,6 @@ void MOLLEROptDetector::UpdateThisGeometry()
   Spacer2->UpdateGeometry();
   Spacer3->UpdateGeometry();
   Spacer4->UpdateGeometry();
-  Spacer5->UpdateGeometry();
-  Spacer6->UpdateGeometry();
-  Spacer7->UpdateGeometry();
-  Spacer8->UpdateGeometry();
   LightGuide->UpdateGeometry();
   PMT->UpdateGeometry();
 
@@ -312,10 +288,6 @@ void MOLLEROptDetector::Initialize()
   Spacer2->Initialize("Mylar");
   Spacer3->Initialize("Mylar");
   Spacer4->Initialize("Mylar");
-  Spacer5->Initialize("Mylar");
-  Spacer6->Initialize("Mylar");
-  Spacer7->Initialize("Mylar");
-  Spacer8->Initialize("Mylar");
 
   LightGuide->Initialize(LightGuideMat);
   PMT->Initialize();
@@ -355,8 +327,8 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   G4double Offset  = LightGuide->GetCurrentQuartzToPMTOffsetInZ();
   G4double lguideOpeningZ = LightGuide->GetCurrentLightGuideQuartzInterfaceOpeningZ();
   G4double lguideThickness = 1.0*mm;
-  G4double WrapperThickness = Spacer1->GetSizeZ();
-  G4double WrapperSpacing = WrapperThickness + 0.010*mm;
+  //G4double WrapperThickness = Spacer1->GetSizeZ();
+  G4double WrapperSpacing = 0.87*mm;
   G4double WrapperOffset = 0.5*(tungstenZ + WrapperSpacing);
   G4double Qgap = quartzZ + 2.0*WrapperSpacing + tungstenZ;
 
@@ -385,37 +357,20 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 
   Spacer1->Construct(DetPhysical);
   Spacer1->SetCenterPositionInX(0);
-  Spacer1->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset)*(TMath::Cos(Qrot)));
-  Spacer1->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset)*(TMath::Sin(Qrot)));
+  Spacer1->SetCenterPositionInZ(DefaultQuartzZ);
+  Spacer1->SetCenterPositionInY(DefaultTungstenY -.4325*mm);
   Spacer2->Construct(DetPhysical);
   Spacer2->SetCenterPositionInX(0);
-  Spacer2->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + WrapperSpacing + quartzZ)*(TMath::Cos(Qrot)));
-  Spacer2->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + WrapperSpacing + quartzZ)*(TMath::Sin(Qrot)));
+  Spacer2->SetCenterPositionInZ(DefaultQuartzZ + Qgap*(TMath::Cos(Qrot)));
+  Spacer2->SetCenterPositionInY(DefaultTungstenY - .4325*mm + Qgap*(TMath::Sin(Qrot)));
   Spacer3->Construct(DetPhysical);
   Spacer3->SetCenterPositionInX(0);
-  Spacer3->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + Qgap)*(TMath::Cos(Qrot)));
-  Spacer3->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + Qgap)*(TMath::Sin(Qrot)));
+  Spacer3->SetCenterPositionInZ(DefaultQuartzZ + 2*Qgap*(TMath::Cos(Qrot)));
+  Spacer3->SetCenterPositionInY(DefaultTungstenY - .4325*mm + 2*Qgap*(TMath::Sin(Qrot)));
   Spacer4->Construct(DetPhysical);
   Spacer4->SetCenterPositionInX(0);
-  Spacer4->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + WrapperSpacing + quartzZ + Qgap)*(TMath::Cos(Qrot)));
-  Spacer4->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + WrapperSpacing + quartzZ + Qgap)*(TMath::Sin(Qrot)));
-  Spacer5->Construct(DetPhysical);
-  Spacer5->SetCenterPositionInX(0);
-  Spacer5->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + 2*Qgap)*(TMath::Cos(Qrot)));
-  Spacer5->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + 2*Qgap)*(TMath::Sin(Qrot)));
-  Spacer6->Construct(DetPhysical);
-  Spacer6->SetCenterPositionInX(0);
-  Spacer6->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + WrapperSpacing + quartzZ + 2*Qgap)*(TMath::Cos(Qrot)));
-  Spacer6->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + WrapperSpacing + quartzZ + 2*Qgap)*(TMath::Sin(Qrot)));
-  Spacer7->Construct(DetPhysical);
-  Spacer7->SetCenterPositionInX(0);
-  Spacer7->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + 3*Qgap)*(TMath::Cos(Qrot)));
-  Spacer7->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + 3*Qgap)*(TMath::Sin(Qrot)));
-  Spacer8->Construct(DetPhysical);
-  Spacer8->SetCenterPositionInX(0);
-  Spacer8->SetCenterPositionInZ(DefaultTungstenZ + (WrapperOffset + WrapperSpacing + quartzZ + 3*Qgap)*(TMath::Cos(Qrot)));
-  Spacer8->SetCenterPositionInY(DefaultTungstenY + (WrapperOffset + WrapperSpacing + quartzZ + 3*Qgap)*(TMath::Sin(Qrot)));
- 
+  Spacer4->SetCenterPositionInZ(DefaultQuartzZ + 3*Qgap*(TMath::Cos(Qrot)));
+  Spacer4->SetCenterPositionInY(DefaultTungstenY - .4325*mm + 3*Qgap*(TMath::Sin(Qrot)));
 
   Tungsten1->Construct(DetPhysical);
   Tungsten1->SetCenterPositionInX(0);
@@ -538,8 +493,8 @@ void MOLLEROptDetector::GetQuartzLimits(G4double *vals)
   G4double QPol = PolarAngle;
   G4double lguideOpeningZ = LightGuide->GetCurrentLightGuideQuartzInterfaceOpeningZ();
   G4double lguideThickness = 1.0*mm;
-  G4double WrapperThickness = Spacer1->GetSizeZ();
-  G4double WrapperSpacing = WrapperThickness + 0.010*mm;
+  //G4double WrapperThickness = Spacer1->GetSizeZ();
+  G4double WrapperSpacing = 0.87*mm;
   G4double Qgap = quartzZ + 2.0*WrapperSpacing + tungstenZ;
   //G4double QYaw = YawAngle; //Not accounted for in QuartzPos.setX or setZ. Should be, but not important currently
   //G4double QAzi = AzimuAngle;

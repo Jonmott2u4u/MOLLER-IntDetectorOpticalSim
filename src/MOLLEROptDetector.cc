@@ -358,19 +358,19 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   Spacer1->Construct(DetPhysical);
   Spacer1->SetCenterPositionInX(0);
   Spacer1->SetCenterPositionInZ(DefaultQuartzZ);
-  Spacer1->SetCenterPositionInY(DefaultTungstenY - .4335*mm);
+  Spacer1->SetCenterPositionInY(DefaultTungstenY - .4425*mm);
   Spacer2->Construct(DetPhysical);
   Spacer2->SetCenterPositionInX(0);
   Spacer2->SetCenterPositionInZ(DefaultQuartzZ + Qgap*(TMath::Cos(Qrot)));
-  Spacer2->SetCenterPositionInY(DefaultTungstenY - .4335*mm + Qgap*(TMath::Sin(Qrot)));
+  Spacer2->SetCenterPositionInY(DefaultTungstenY - .4425*mm + Qgap*(TMath::Sin(Qrot)));
   Spacer3->Construct(DetPhysical);
   Spacer3->SetCenterPositionInX(0);
   Spacer3->SetCenterPositionInZ(DefaultQuartzZ + 2*Qgap*(TMath::Cos(Qrot)));
-  Spacer3->SetCenterPositionInY(DefaultTungstenY - .4335*mm + 2*Qgap*(TMath::Sin(Qrot)));
+  Spacer3->SetCenterPositionInY(DefaultTungstenY - .4425*mm + 2*Qgap*(TMath::Sin(Qrot)));
   Spacer4->Construct(DetPhysical);
   Spacer4->SetCenterPositionInX(0);
   Spacer4->SetCenterPositionInZ(DefaultQuartzZ + 3*Qgap*(TMath::Cos(Qrot)));
-  Spacer4->SetCenterPositionInY(DefaultTungstenY - .4335*mm + 3*Qgap*(TMath::Sin(Qrot)));
+  Spacer4->SetCenterPositionInY(DefaultTungstenY - .4425*mm + 3*Qgap*(TMath::Sin(Qrot)));
 
   Tungsten1->Construct(DetPhysical);
   Tungsten1->SetCenterPositionInX(0);

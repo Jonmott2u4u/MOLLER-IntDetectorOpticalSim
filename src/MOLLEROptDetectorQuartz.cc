@@ -123,6 +123,7 @@ void MOLLEROptDetectorQuartz::Initialize(G4String direction)
   G4VisAttributes* VisAtt = new G4VisAttributes(orange);
   VisAtt->SetVisibility(true);
   VisAtt->SetForceWireframe(true);
+  //VisAtt->SetForceSolid(true);
   QuartzLogical->SetVisAttributes(VisAtt);
 
 }
@@ -287,6 +288,7 @@ void MOLLEROptDetectorQuartz::UpdateGeometry(G4String direction)
     G4VisAttributes* CellVisAtt = new G4VisAttributes(grey);
     CellVisAtt->SetVisibility(true);
     CellVisAtt->SetForceWireframe(true);
+    //CellVisAtt->SetForceSolid(true);
     
     for(int n = 0; n < nCells; n++){
 

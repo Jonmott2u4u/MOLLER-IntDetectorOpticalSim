@@ -8,8 +8,8 @@ sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
-hr_start = 2    #1->8 = BF det centers 1-8, 9->10 are segment scans
-hr_stop = 2
+hr_start = 6    #6 places the spawned beam directly US of Scint1, 7 Scint2, and 8 Scint3
+hr_stop = 6
 hr_step = 1     
 
 cutx_start = 0.0  #Used for hr = 9. Used to move the beam across the segment in mm increments

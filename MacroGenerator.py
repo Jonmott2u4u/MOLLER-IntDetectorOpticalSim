@@ -22,7 +22,7 @@ shift = 0         #Shifts the particle spawn location by that much. What this af
 tilt_dir = 90     #Controls the direction of the beam tilt (units of degrees, 0 = x-axis, 90 = y-axis, rotation about z-axis)
 
 #Scannable parameters (those that can be easily adjusted for each run)
-hr_start = 6      #hr = 6 for this branch. This spawns particles at the US scint (scint1)
+hr_start = 6      #6 places the spawned beam directly US of Scint1, 7 Scint2, and 8 Scint3
 hr_stop = 6
 hr_step = 1     
 

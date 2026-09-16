@@ -116,7 +116,7 @@ void MOLLEROptDetectorSpacer::Initialize(string mat_flag)
     G4ThreeVector trans = G4ThreeVector(0,0.43*mm,0);
 
     SpacerSolid_Out = new G4Box(Name+"_SolidOut",SpacerWidth/2,SpacerHeight/2,SpacerThickness/2);
-    SpacerSolid_In = new G4Box(Name+"_SolidIn",SpacerWidth/2,(SpacerHeight-0.86*mm)/2,(SpacerThickness-1.72*mm)/2);
+    SpacerSolid_In = new G4Box(Name+"_SolidIn",SpacerWidth/2,(SpacerHeight-0.86*mm)/2,(SpacerThickness-1.70*mm)/2);
 
     SpacerSolid = new G4SubtractionSolid(Name+"Solid",SpacerSolid_Out,SpacerSolid_In,rot,trans);
     SpacerLogical = new G4LogicalVolume(SpacerSolid,SpacerMaterial,Name+"_Logical");

@@ -75,7 +75,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
   if((aStep->GetTrack()->GetDefinition() == G4Electron::ElectronDefinition()) || (aStep->GetTrack()->GetDefinition() == G4MuonMinus::MuonMinusDefinition()) || (aStep->GetTrack()->GetDefinition() == G4Positron::PositronDefinition())){
     G4ThreeVector primom = aStep->GetTrack()->GetMomentumDirection();         
     for(int n = 0; n < (*Secondaries).size(); n++){
-      if((*Secondaries)[n]->GetDefinition() ==  G4OpticalPhoton::OpticalPhotonDefinition() && (*Secondaries)[n]->GetCreatorProcess()->GetProcessName().contains("Cerenkov")){
+      if((*Secondaries)[n]->GetDefinition() ==  G4OpticalPhoton::OpticalPhotonDefinition() && ((*Secondaries)[n]->GetCreatorProcess()->GetProcessName().contains("Cerenkov")) || ((*Secondaries)[n]->GetCreatorProcess()->GetProcessName().contains("Bremsstrahlung"))){
         G4ThreeVector secmom = (*Secondaries)[n]->GetMomentumDirection();
         Float_t Angle = 180.0*TMath::ACos(secmom.dot(primom))/TMath::Pi();
         TrackingReadout->AddSecPhoton(aStep->GetTrack()->GetTrackID(),Angle,1239.842/((*Secondaries)[n]->GetTotalEnergy()/eV));

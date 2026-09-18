@@ -1111,19 +1111,6 @@ void MOLLEROptMaterial::DefineMaterials()
    //myMPT_FusedSilica->AddProperty("REFLECTIVITY", OptPar->EPhoton,OptPar->QRefl, nEntries);
    matwindowQuartz->SetMaterialPropertiesTable(myMPT_FusedSilica_window);
 
-
-   // G4double RefractiveIndex_Si[nEntries];
-   // for(int i = 0; i < nEntries; i++){
-   //   RefractiveIndex_Si[i] = 1.438 + (.01197*OptPar->EPhoton[i]/eV) - (.001955*OptPar->EPhoton[i]*OptPar->EPhoton[i]/eV/eV) + (.0004793*OptPar->EPhoton[i]*OptPar->EPhoton[i]*OptPar->EPhoton[i]/eV/eV/eV);
-   // }
-   // G4MaterialPropertiesTable* myMPT_Si = new G4MaterialPropertiesTable();
-   // myMPT_Si->AddProperty("RINDEX",    OptPar->EPhoton, RefractiveIndex_Si , nEntries);
-   // myMPT_Si->AddProperty("ABSLENGTH", OptPar->EPhoton, AbsPtr, nEntries);
-   // //myMPT_Si->AddProperty("REFLECTIVITY", OptPar->EPhoton,OptPar->QRefl, nEntries);
-   // matSiO2->SetMaterialPropertiesTable(myMPT_Si);
-   
-   
-
    if(GetPixellatedRelativeRate())
      CalculateAbsorptionLengths(elSi,elO);
 

@@ -134,7 +134,7 @@ void MOLLEROptDetectorLightGuide::CreateOpticalSurface(G4LogicalVolume *logV, st
 {
   OptParam* Optpar = Materials->GetOpticalParametersTable();
   
-  GuideOptSurface = new G4OpticalSurface ( Name+"_OpSurface",glisur, polished, dielectric_metal );
+  GuideOptSurface = new G4OpticalSurface ( Name+"_OpSurface",unified, polished, dielectric_metal );
   //GuideOptSurface->SetPolish ( 0.99 ); //only works for "ground" surface
   
   #if G4VERSION_NUMBER >= 1100

@@ -13,6 +13,8 @@ MOLLEROptPhysicsList::MOLLEROptPhysicsList(G4bool toggle)
   theAbsorptionProcess         = NULL;
   theRayleighScattering        = NULL;
   theMieHGScatteringProcess    = NULL;
+  theeBremsstrahlungProcess    = NULL;
+  theMuBremsstrahlungProcess   = NULL;
   
   AbsorptionOn                 = toggle;
 
@@ -46,14 +48,20 @@ void MOLLEROptPhysicsList::ConstructProcess()
   theCerenkovProcess->SetMaxNumPhotonsPerStep(5000);
   theCerenkovProcess->SetTrackSecondariesFirst(true);
 
+  theeBremsstrahlungProcess = new G4eBremsstrahlung();
+  //theeBremsstrahlungProcess->SetMaxNumPhotonsPerStep(5000);
+  //theeBremsstrahlungProcess->SetTrackSecondariesFirst(true);
+  theMuBremsstrahlungProcess = new G4MuBremsstrahlung();
+  //theMuBremsstrahlungProcess->SetMaxNumPhotonsPerStep(5000);
+  //theMuBremsstrahlungProcess->SetTrackSecondariesFirst(true);
+
   theAbsorptionProcess      = new G4OpAbsorption();
   theRayleighScattering     = new G4OpRayleigh();
   theMieHGScatteringProcess = new G4OpMieHG();
 
   theBoundaryProcess        = new MOLLEROptOpBoundaryProcess();
 
-  G4ProcessManager* pManager =
-                G4OpticalPhoton::OpticalPhoton()->GetProcessManager();
+  G4ProcessManager* pManager = G4OpticalPhoton::OpticalPhoton()->GetProcessManager();
   //pManager->AddProcess(new G4UserSpecialCuts(),-1,-1,1);
 
   if (!pManager) {
@@ -104,6 +112,14 @@ void MOLLEROptPhysicsList::ConstructProcess()
       //pManager->SetProcessOrdering(theCerenkovProcess,idxAlongStep);
       pManager->SetProcessOrdering(theCerenkovProcess,idxPostStep);
     }
+    if(theeBremsstrahlungProcess->IsApplicable(*particle)){
+      pManager->AddProcess(theeBremsstrahlungProcess);
+      pManager->SetProcessOrdering(theeBremsstrahlungProcess,idxPostStep);
+    }
+    if(theMuBremsstrahlungProcess->IsApplicable(*particle)){
+      pManager->AddProcess(theMuBremsstrahlungProcess);
+      pManager->SetProcessOrdering(theMuBremsstrahlungProcess,idxPostStep);
+    }
     if(theScintProcess->IsApplicable(*particle)){
       pManager->AddProcess(theScintProcess);
       pManager->SetProcessOrderingToLast(theScintProcess,idxAtRest);
@@ -117,6 +133,12 @@ void MOLLEROptPhysicsList::SetNbOfPhotonsCerenkov(G4int MaxNumber)
 {
   theCerenkovProcess->SetMaxNumPhotonsPerStep(MaxNumber);
 }
+/*void MOLLEROptPhysicsList::SetNbOfPhotonsBremsstrahlung(G4int MaxNumber)
+{
+  theeBremsstrahlungProcess->SetMaxNumPhotonsPerStep(MaxNumber);
+  theMuBremsstrahlungProcess->SetMaxNumPhotonsPerStep(MaxNumber);
+}*/
+
 
 
 

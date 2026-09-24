@@ -75,7 +75,7 @@
 /MainDet/LightGuideLowerConeBackAngle 19 deg         #Angle between positive y-axis (length of quartz) and the downstream lower cone surface 
 /MainDet/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y-axis (length of quartz) and the upstream lower cone surface
 /MainDet/LightGuideLowerInterface 90 mm              #Distance between quartz-LG interface and lower interface plane
-/MainDet/LightGuideMiddleBox 0.001 mm			       #Height of box between upper and lower cones	
+/MainDet/LightGuideMiddleBox 0.001 mm			     #Height of box between upper and lower cones	
 /MainDet/LightGuideUpperInterface 329.5 mm           #Distance between upper and lower interface planes
 /MainDet/LightGuideQuartzInterfaceOpeningX 8.8 cm    #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
 /MainDet/LightGuideQuartzInterfaceOpeningZ 2.4 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
@@ -108,7 +108,7 @@
 #------------------#Beam commands -----------------------#
 
 /Generator/PrimaryParticle 1                      #Sets the primary particle type. 1 for electrons, 2 for muons, 3 for positrons
-/Generator/EventHitRegion 2                       #1 = center, 2 = controlled position, 3 = Mainz, 4-5 = HallD?
+/Generator/EventHitRegion 2                       #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 /Generator/EventShift 0 mm                        #Use to move the spawning location of primary events. Set usage in MOLLEROptPrimaryGeneratorAction.cc
 /Generator/SegmentHitPosX 0                       #Select a section of the segment to fire the beam at. Currently only works if EventHitRegion = 10
 /Generator/SegmentHitPosY 0                       #Tile starts at ~ 0.5 mm

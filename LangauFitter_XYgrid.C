@@ -1,5 +1,8 @@
 #include <iostream>
 #include <TString.h>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 Double_t langaufun(Double_t *x, Double_t *par);  
 TF1 *langaufit(TH1D *his, Double_t *fitrange, Double_t *startvalues, Double_t *parlimitslo, Double_t *parlimitshi, Double_t *fitparams, Double_t *fiterrors, Double_t *ChiSqr, Int_t *NDF);
@@ -10,106 +13,101 @@ void DoFit(TH1D *hst, Double_t *fitP, Double_t *fitE);
 
 void LangauFitter_XYgrid()
 {
-  //gSystem->Load("libMOLLEROptDictionaries.so");
 
-  std::ofstream ring_dat;       //Opens a txt file where info like mean PE's is stored. Was added to create data formatted for a specific script
-  std::ofstream ring_dat_weighted;
-  ring_dat.open ("r1.txt"); //Change the name to match the ring being analyzed, otherwise files will be overwritten
-  ring_dat_weighted.open ("r1_w.txt");
+   fs::create_directory("txtfiles"); fs::create_directory("datfiles");
+   cout << "File path files are located in txtfiles/; Data files are located in datfiles/" << endl;
 
-  std::ifstream rfiles("r1files.dat");
-  std::string line;
-  TFile *file;
+   std::ofstream ring_dat;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
+   ring_dat.open ("datfiles/r1.dat");     //Change the name to match the ring being analyzed, otherwise files will be overwritten
 
-  Double_t paramx_start=-85.0, paramy_start=0.5; //Start positions of tile
-  Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
-  Double_t limity=40.5;
-  Int_t events=10000; //Total events per file
-  
-  TH1D *hst, *tmp;
-  TSpectrum *s = new TSpectrum(1);
-  Double_t paramx_run, paramy_run, counterx, countery;
-  Double_t y_clock;
-  TString tmpStr;
-  Double_t fitP[4], fitE[4];
+   std::ifstream rfiles("txtfiles/r1files.txt"); //Opens a txt file where the root file paths to scan over are stored
+   std::string line;
+   TFile *file;
 
-  float mean, mp, rms, rms_mean, res, gsigma;
-  float w_mean, w_mp, w_rms, w_rms_mean, w_res, w_gsigma;
-  float weight;
+   Double_t paramx_start=-85.0, paramy_start=0.5; //Start positions of tile
+   Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
+   Double_t limity=40.5;
+   Int_t events=10000; //Total events per file
+   
+   TH1D *hst, *tmp;
+   TSpectrum *s = new TSpectrum(1);
+   Double_t paramx_run, paramy_run, counterx, countery;
+   Double_t y_clock;
+   TString tmpStr;
+   Double_t fitP[4], fitE[4];
 
-  counterx=0, countery=0; 
-  paramx_run = paramx_start;
-  while(std::getline(rfiles, line)){
+   float mean, mp, rms, rms_mean, res, gsigma, weight;
+   //float w_mean, w_mp, w_rms, w_rms_mean, w_res, w_gsigma;
 
-    file = TFile::Open(line.data()); 
-    cout << line.data() << endl;
-    //tmpStr = line.data();
-    //tmpStr = tmpStr.ReplaceAll("MOLLEROpt_","");    
-    
-    paramy_run = paramy_start + countery*paramy_step;
-    countery = countery + 1.0;
+   counterx=0, countery=0; 
+   paramx_run = paramx_start;
+   while(std::getline(rfiles, line)){
 
-    tmp = (TH1D*)file->Get("Ring_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
-    hst = (TH1D*)tmp->Clone("PEs");
-    hst->SetTitle("Photoelectron Distribution");
-    hst->GetXaxis()->SetTitle("Photoelectrons");
-    hst->GetXaxis()->SetRangeUser(0,100);
-    hst->SetDirectory(0);
-    DoFit(hst,fitP,fitE);
+      file = TFile::Open(line.data()); 
+      cout << line.data() << endl;
+      
+      paramy_run = paramy_start + countery*paramy_step;
+      countery = countery + 1.0;
 
-        
-    //Histogram parameters
-    mean = hst->GetMean();
-    rms = hst->GetRMS();
-    mp = fitP[1];
-    gsigma = fitP[3];
-    rms_mean = 100.*rms/mean;
-    res = 100.*fitP[3]/fitP[1];
-    //Conditions and misc. parameters
-    //weight = (hst->GetEffectiveEntries())/(hst->GetEntries()); //Use w/ original version of MOLLEROpt
-    weight = (hst->GetEntries())/(events); //Use w/ independent detector version of MOLLEROpt
-    if((mean == 0) || (hst->GetRMS() == 0)) rms_mean = 0;
-    if((mp < 0.5) || (fitP[3] < 0.5)) res = 0;
-    //Event weighted variables
-    w_mean = mean*weight;
-    w_rms = rms*weight;
-    w_rms_mean = rms_mean*weight;
-    w_mp = mp*weight;
-    w_res = res*weight;
-    w_gsigma = gsigma*weight;
+      tmp = (TH1D*)file->Get("Ring_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+      hst = (TH1D*)tmp->Clone("PEs");
+      hst->SetTitle("Photoelectron Distribution");
+      hst->GetXaxis()->SetTitle("Photoelectrons");
+      hst->GetXaxis()->SetRangeUser(0,100);
+      hst->SetDirectory(0);
+      DoFit(hst,fitP,fitE);
 
-    if(hst->GetEntries() < 100){
-      mean = 0.1;
-      rms = 0.1;
-      mp = 0.1;
-      rms_mean = 0.1;
-      res = 0.1;
-      gsigma = 0.1;
-    }
-    if(mp >= mean*2){
-      mp = mean;
-      res = rms;
-      w_mp = w_mean;
-      w_res = w_rms;
-    }
+         
+      //Histogram parameters
+      mean = hst->GetMean();
+      rms = hst->GetRMS();
+      mp = fitP[1];
+      gsigma = fitP[3];
+      rms_mean = 100.*rms/mean;
+      res = 100.*fitP[3]/fitP[1];
+      //Conditions and misc. parameters
+      //weight = (hst->GetEffectiveEntries())/(hst->GetEntries()); //Use w/ original version of MOLLEROpt
+      weight = (hst->GetEntries())/(events); //Use w/ independent detector version of MOLLEROpt
+      if((mean == 0) || (hst->GetRMS() == 0)) rms_mean = 0;
+      if((mp < 0.5) || (fitP[3] < 0.5)) res = 0;
+      //Event weighted variables
+      //w_mean = mean*weight;
+      //w_rms = rms*weight;
+      //w_rms_mean = rms_mean*weight;
+      //w_mp = mp*weight;
+      //w_res = res*weight;
+      //w_gsigma = gsigma*weight;
 
-    //rms and gsigma are not weighted, but rms/mean and res are
-    ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
-    ring_dat_weighted<<paramx_run<<" "<<paramy_run<<" "<<w_mean<<" "<<w_rms<<" "<<w_mp<<" "<<w_gsigma<<" "<<w_rms_mean<<" "<<w_res<<"\n";
+      if(hst->GetEntries() < 100){
+         mean = 0.1;
+         rms = 0.1;
+         mp = 0.1;
+         rms_mean = 0.1;
+         res = 0.1;
+         gsigma = 0.1;
+      }
+      /*if(mp >= mean*2){
+         mp = mean;
+         res = rms;
+         w_mp = w_mean;
+         w_res = w_rms;
+      }*/
+
+      //rms and gsigma are not weighted, but rms/mean and res are
+      ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
 
 
-    file->Close("R");    
+      file->Close("R");    
 
-    if (paramy_run == limity){
-      counterx = counterx + 1.0;
-      paramx_run = paramx_start + counterx*paramx_step;
-      countery = 0.0;
-    }
+      if (paramy_run == limity){
+         counterx = counterx + 1.0;
+         paramx_run = paramx_start + counterx*paramx_step;
+         countery = 0.0;
+      }
 
-  }
-  ring_dat.close();
-  ring_dat_weighted.close();
-  rfiles.close();
+   }
+   ring_dat.close();
+   rfiles.close();
 }
 
 

@@ -30,7 +30,7 @@ void MOLLEROptRunAction::BeginOfRunAction(const G4Run* aRun)
   CLHEP::HepRandom::showEngineStatus();
 
   TString InfoFile;
-  InfoFile.Form("%s_%04d.rndm",ROOTFileName.c_str(),MyRunID);
+  InfoFile.Form("seeds/%s_%04d.rndm",ROOTFileName.c_str(),MyRunID);
   CLHEP::HepRandom::saveEngineStatus(InfoFile); 
   
   if (G4VVisManager::GetConcreteInstance())

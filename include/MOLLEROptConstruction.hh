@@ -48,8 +48,7 @@ private:
   
   MOLLEROptDetector*     MainDet;
 
-
-  MOLLEROptInsensitive*  AlPlate;
+  //MOLLEROptInsensitive*  AlPlate;
 
   MOLLEROptMessenger*  MOLLERMessenger;
 

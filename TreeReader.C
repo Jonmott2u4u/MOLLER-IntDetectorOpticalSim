@@ -30,21 +30,21 @@ void plot_r5_pes_vs_pos() {
     // Setup TTreeReader //
     //These readers are used to store the number of entries per position bin (w/ cuts included)
     TTreeReader reader_entries(MOLLEROptTree);
-    TTreeReaderArray<float> R5TileHitX_ent(reader_entries, "MOLLERGeneralEvent.R5TileHitX");
-    TTreeReaderArray<float> R5TileHitY_ent(reader_entries, "MOLLERGeneralEvent.R5TileHitY");
-    TTreeReaderArray<int> Scint1TrackHit_ent(reader_entries, "MOLLERGeneralEvent.Scint1TrackHit");
-    TTreeReaderArray<int> Scint2TrackHit_ent(reader_entries, "MOLLERGeneralEvent.Scint2TrackHit");
-    TTreeReaderArray<int> R5AdjacentCutQuartzTrackHit_ent(reader_entries, "MOLLERGeneralEvent.R5AdjacentCutQuartzTrackHit");
-    TTreeReaderArray<int> R5SoloCutQuartzTrackHit_ent(reader_entries, "MOLLERGeneralEvent.R5SoloCutQuartzTrackHit");
+    TTreeReaderArray<float> R5TileHitX_ent(reader_entries, "R5TileHitX");
+    TTreeReaderArray<float> R5TileHitY_ent(reader_entries, "R5TileHitY");
+    TTreeReaderArray<int> Scint1TrackHit_ent(reader_entries, "Scint1TrackHit");
+    TTreeReaderArray<int> Scint2TrackHit_ent(reader_entries, "Scint2TrackHit");
+    TTreeReaderArray<int> R5AdjacentCutQuartzTrackHit_ent(reader_entries, "R5AdjacentCutQuartzTrackHit");
+    TTreeReaderArray<int> R5SoloCutQuartzTrackHit_ent(reader_entries, "R5SoloCutQuartzTrackHit");
     //These readers are used for the "xy" histograms.
     TTreeReader reader_main(MOLLEROptTree);
-    TTreeReaderArray<float> R5TileHitX(reader_main, "MOLLERGeneralEvent.R5TileHitX");
-    TTreeReaderArray<float> R5TileHitY(reader_main, "MOLLERGeneralEvent.R5TileHitY");
-    TTreeReaderArray<int> Scint1TrackHit(reader_main, "MOLLERGeneralEvent.Scint1TrackHit");
-    TTreeReaderArray<int> Scint2TrackHit(reader_main, "MOLLERGeneralEvent.Scint2TrackHit");
-    TTreeReaderArray<int> R5AdjacentCutQuartzTrackHit(reader_main, "MOLLERGeneralEvent.R5AdjacentCutQuartzTrackHit");
-    TTreeReaderArray<int> R5SoloCutQuartzTrackHit(reader_main, "MOLLERGeneralEvent.R5SoloCutQuartzTrackHit");
-    TTreeReaderArray<int> R5PEs(reader_main, "MOLLERGeneralEvent.R5PEs");
+    TTreeReaderArray<float> R5TileHitX(reader_main, "R5TileHitX");
+    TTreeReaderArray<float> R5TileHitY(reader_main, "R5TileHitY");
+    TTreeReaderArray<int> Scint1TrackHit(reader_main, "Scint1TrackHit");
+    TTreeReaderArray<int> Scint2TrackHit(reader_main, "Scint2TrackHit");
+    TTreeReaderArray<int> R5AdjacentCutQuartzTrackHit(reader_main, "R5AdjacentCutQuartzTrackHit");
+    TTreeReaderArray<int> R5SoloCutQuartzTrackHit(reader_main, "R5SoloCutQuartzTrackHit");
+    TTreeReaderArray<int> R5PEs(reader_main, "R5PEs");
 
     // Prepare 2D histograms //
     //The "entry" plots store the number of hits per bin

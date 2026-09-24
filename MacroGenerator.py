@@ -9,8 +9,9 @@ import numpy as np
 runscript = "#!/bin/bash\n\n"
 datadir = "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
-Detector = 5
-data = 999 #Sets what data is stored in the rootfile. Can be 999, 0 or 1
+Detector = 8
+data = 999      #Sets what data is stored in the rootfile. Can be 999, 0 or 1
+scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 
 beam_controls = {
     "Particle": 1,
@@ -18,20 +19,10 @@ beam_controls = {
     "EnergyCut": 0,
     "NumEvents": 10000,
     "sa": 0,
-    "tilt": 1.0,
+    "tilt": 0,
     "tilt_dir": 90,
     "shift": 0,
 }
-
-#Looped parameters
-hr_start, hr_stop, hr_step = 2, 2, 1
-
-cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
-
-cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
-
-ID_start, ID_stop, ID_step = 3, 3, 1
-#End of looped parameters
 
 common_geometric_commands = [
     ("LightGuidePMTInterfaceOpeningX", "7.0 cm"),
@@ -41,6 +32,15 @@ common_geometric_commands = [
     ("AzimuthalRotation", "0 deg"),
     ("UpdateGeometry", ""),
 ]
+
+#Looped parameters
+cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
+
+cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
+
+ID_start, ID_stop, ID_step = 3, 3, 1
+#End of looped parameters
+
 
 det_configs = {
     1: (
@@ -58,8 +58,8 @@ det_configs = {
             "QuartzSizeX": "169 mm",
             "QuartzSizeY": "20 mm",
             "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "270.7 mm",
-            "SetCenterPositionInZ": "1923.94 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     2: (
@@ -77,8 +77,8 @@ det_configs = {
             "QuartzSizeX": "179 mm",
             "QuartzSizeY": "60 mm",
             "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "292.8 mm",
-            "SetCenterPositionInZ": "1645.6 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     3: (
@@ -96,8 +96,8 @@ det_configs = {
             "QuartzSizeX": "190 mm",
             "QuartzSizeY": "60 mm",
             "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "329.8 mm",
-            "SetCenterPositionInZ": "1371.51 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     4: (
@@ -115,8 +115,8 @@ det_configs = {
             "QuartzSizeX": "213 mm",
             "QuartzSizeY": "120 mm",
             "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "366.9 mm",
-            "SetCenterPositionInZ": "1092.08 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     5: (
@@ -134,8 +134,8 @@ det_configs = {
             "QuartzSizeX": "80 mm",
             "QuartzSizeY": "140 mm",
             "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "435.3 mm",
-            "SetCenterPositionInZ": "651.64 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     6: (
@@ -152,9 +152,9 @@ det_configs = {
             "QuartzSizeZ": "17 mm",
             "QuartzSizeX": "80 mm",
             "QuartzSizeY": "140 mm",
-            "SetCenterPositionInX": "-86.7 mm",
-            "SetCenterPositionInY": "427.4 mm",
-            "SetCenterPositionInZ": "802.47 mm",
+            "SetCenterPositionInX": "0 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     7: (
@@ -171,9 +171,9 @@ det_configs = {
             "QuartzSizeZ": "17 mm",
             "QuartzSizeX": "80 mm",
             "QuartzSizeY": "140 mm",
-            "SetCenterPositionInX": "86.7 mm",
-            "SetCenterPositionInY": "427.4 mm",
-            "SetCenterPositionInZ": "802.47 mm",
+            "SetCenterPositionInX": "0 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
     8: (
@@ -191,8 +191,8 @@ det_configs = {
             "QuartzSizeX": "260 mm",
             "QuartzSizeY": "100 mm",
             "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "517 mm",
-            "SetCenterPositionInZ": "501.78 mm",
+            "SetCenterPositionInY": "0 mm",
+            "SetCenterPositionInZ": "0 mm",
         },
     ),
 }
@@ -208,47 +208,46 @@ main_det_lines = [
     for key, value in list(det_params.items()) + common_geometric_commands
 ]
 
-for hr in np.arange(hr_start, hr_stop + hr_step, hr_step):
-    for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
-        for cutx in np.arange(cutx_start, cutx_stop + cutx_step, cutx_step):
-            for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
-                RndSeed1 = random.randrange(300000, 600000)
-                RndSeed2 = random.randrange(600001, 900000)
-                FileIDString = f"_hR{hr}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
-                lines = [
-                    f"#------------------#{label} commands --------------------#",
-                    "",
-                    *main_det_lines,
-                    "",
-                    "#------------------#Beam commands --------------------#",
-                    "",
-                    f"/Generator/PrimaryParticle {beam_controls['Particle']}",
-                    f"/Generator/EventShift {beam_controls['shift']} mm",
-                    f"/Generator/BeamEnergy {beam_controls['Energy']}",
-                    f"/Generator/BeamEnergyCut {beam_controls['EnergyCut']}",
-                    f"/Generator/BeamSolidAngle {beam_controls['sa']} degree",
-                    f"/Generator/BeamTiltAngle {beam_controls['tilt']} degree",
-                    f"/Generator/BeamTiltDirection {beam_controls['tilt_dir']} degree",
-                    f"/Generator/EventShift {beam_controls['shift']} mm",
-                    f"/Generator/SegmentHitPosX {cutx} mm",
-                    f"/Generator/SegmentHitPosY {cuty} mm",
-                    f"/Generator/EventHitRegion {hr}",
-                    "",
-                    "#------------------#General commands --------------------#",
-                    "",
-                    f"/Storage/DetectorFocus {data}",
-                    f"/RunAction/SetID {id}",
-                    f"/RunAction/SetOutputName {FileIDString}",
-                    f"/random/setSeeds {RndSeed1} {RndSeed2}",
-                    "/vis/disable",
-                    f"/run/beamOn {beam_controls['NumEvents']}",
-                ]
-                text = "\n".join(lines) + "\n"
-                text_root.append(f"rootfiles/{FileIDString}_000{id}.root")
-                FileName = f"{OutputFilePrefix}{FileIDString}_ID{id}.mac"
-                with open(os.path.join(datadir, FileName), "w") as fout:
-                    fout.write(text)
-                runscript += f"./MOLLEROpt {datadir}{FileName} > {datadir}{OutputFilePrefix}{FileIDString}.out & \n"
+for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
+    for cutx in np.arange(cutx_start, cutx_stop + cutx_step, cutx_step):
+        for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
+            RndSeed1 = random.randrange(300000, 600000)
+            RndSeed2 = random.randrange(600001, 900000)
+            FileIDString = f"_Scan{scan_type}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
+            lines = [
+                f"#------------------#{label} commands --------------------#",
+                "",
+                *main_det_lines,
+                "",
+                "#------------------#Beam commands --------------------#",
+                "",
+                f"/Generator/PrimaryParticle {beam_controls['Particle']}",
+                f"/Generator/EventShift {beam_controls['shift']} mm",
+                f"/Generator/BeamEnergy {beam_controls['Energy']}",
+                f"/Generator/BeamEnergyCut {beam_controls['EnergyCut']}",
+                f"/Generator/BeamSolidAngle {beam_controls['sa']} degree",
+                f"/Generator/BeamTiltAngle {beam_controls['tilt']} degree",
+                f"/Generator/BeamTiltDirection {beam_controls['tilt_dir']} degree",
+                f"/Generator/EventShift {beam_controls['shift']} mm",
+                f"/Generator/SegmentHitPosX {cutx} mm",
+                f"/Generator/SegmentHitPosY {cuty} mm",
+                f"/Generator/EventHitRegion {scan_type}",
+                "",
+                "#------------------#General commands --------------------#",
+                "",
+                f"/Storage/DetectorFocus {data}",
+                f"/RunAction/SetID {id}",
+                f"/RunAction/SetOutputName {FileIDString}",
+                f"/random/setSeeds {RndSeed1} {RndSeed2}",
+                "/vis/disable",
+                f"/run/beamOn {beam_controls['NumEvents']}",
+            ]
+            text = "\n".join(lines) + "\n"
+            text_root.append(f"rootfiles/{FileIDString}_000{id}.root")
+            FileName = f"{OutputFilePrefix}{FileIDString}_ID{id}.mac"
+            with open(os.path.join(datadir, FileName), "w") as fout:
+                fout.write(text)
+            runscript += f"./MOLLEROpt {datadir}{FileName} > {datadir}{OutputFilePrefix}{FileIDString}.out & \n"
 
 with open("StartRuns", "w") as scfile:
     scfile.write(runscript)

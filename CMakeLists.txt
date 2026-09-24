@@ -120,6 +120,7 @@ set(MOLLER_SCRIPTS
   MacroFolder/placeholder.md
   rootfiles/placeholder.md
   plots/placeholder.md
+  seeds/placeholder.md
   MacroGenerator.py
   MacroSubmitter.py
   MacroSubmitter.sh
@@ -129,6 +130,8 @@ set(MOLLER_SCRIPTS
   PlotExtractor.C
   segment_scan.C
   TreeReader.C
+  MainDet_Performance_LookupTable.C
+  EnergyDep_LookupTable.C
 )
 
 foreach(_script ${MOLLER_SCRIPTS})

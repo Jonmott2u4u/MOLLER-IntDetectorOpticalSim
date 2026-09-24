@@ -1,3 +1,8 @@
+#include <iostream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 void hitpos_tracker()
 {
 
@@ -8,7 +13,6 @@ float max_mean = 0;
 float max_langau = 0;
 float max_RMS = 0;
 float max_RES = 0;
-
 int det = 6;
 
 if (det == 1){
@@ -62,7 +66,7 @@ for (int angle = 1; angle < 6; angle++){
     char direction[] = "thetaX";
 
     ifstream infile;
-    infile.open(Form("txtfiles/r%i_%ideg_%s%s.txt",det,angle,direction,weighted));
+    infile.open(Form("datfiles/r%i_%ideg_%s%s.txt",det,angle,direction,weighted));
 
     //Loading simulation results
     // i_max = quartz radial length + bevel radial length + 20mm (10 above bevel, 10 below butt of tile)
@@ -135,6 +139,9 @@ for (int angle = 1; angle < 6; angle++){
 
 
     //..................Printing the plots.................................//
+    fs::create_directories(Form("plots/r%i",det));
+    cout << "Plots are within plots/R#" << endl;
+
     c1->Print(Form("plots/r%i/r%i_%ideg_%s_mean_PE_yield%s.root",det,det,angle,direction,weighted));
     c2->Print(Form("plots/r%i/r%i_%ideg_%s_langau_PE_yield%s.root",det,det,angle,direction,weighted));
     c3->Print(Form("plots/r%i/r%i_%ideg_%s_rms_mean_yield%s.root",det,det,angle,direction,weighted));

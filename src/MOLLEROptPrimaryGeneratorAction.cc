@@ -47,20 +47,24 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     y = (Qlim[3]+Qlim[2])/2.0;
   }
   else if(EventRegion == 2){
-    x = (Qlim[1]+Qlim[0])/2.0 + cutx;
+    x = (Qlim[1]+Qlim[0])/2.0;
     y = Qlim[2] + cuty;
   }
   else if(EventRegion == 3){
+    x = (Qlim[1]+Qlim[0])/2.0 + cutx + 5*G4UniformRand();
+    y = Qlim[2] + cuty + 5*G4UniformRand();
+  }
+  else if(EventRegion == 4){
     //Used for the BF segment scan
     x = (Qlim[1]+Qlim[0])/2.0 - 0.3 + 0.6*G4UniformRand() + cutx;
     y = Qlim[2] - 0.3 + 0.6*G4UniformRand() + cuty;
   }
-  else if(EventRegion == 4){
+  else if(EventRegion == 5){
     //Horizontal band across tile
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
     y = (Qlim[3]+Qlim[2])/2.0 - 2.5 + 5*G4UniformRand();
   }
-  else if(EventRegion == 5){
+  else if(EventRegion == 6){
     random_tilt = 1;
     x = (Qlim[1]+Qlim[0])/2;
     y = (Qlim[3]+Qlim[2])/2.0 - 2.5 + 5*G4UniformRand();
@@ -116,6 +120,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if (PrimaryParticle == 1) particle = G4Electron::Definition();
   if (PrimaryParticle == 2) particle = G4MuonMinus::Definition();
   if (PrimaryParticle == 3) particle = G4Positron::Definition();
+  if (PrimaryParticle == 4) particle = G4Gamma::Definition();
   particleGun->SetParticleDefinition(particle);
 
   G4int muon_energy = 0;
@@ -159,7 +164,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //G4cout << "Random integer was finally: " << rand_int << "\n" << G4endl;
   //*****************************************
 
-  if ((PrimaryParticle == 1) || (PrimaryParticle == 3)) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
+  if (PrimaryParticle != 2) particleGun->SetParticleEnergy(Energy*MeV); //Uses energy set by macro
   if (PrimaryParticle == 2) particleGun->SetParticleEnergy(muon_energy*MeV);// Uses energy following sea level cosmic muon distribution
 
   particleGun->GeneratePrimaryVertex(anEvent);

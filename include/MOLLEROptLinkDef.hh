@@ -4,9 +4,6 @@
 #pragma link off all classes;
 #pragma link off all functions;
 
-#pragma link C++ class MOLLEROptMainEvent+;
-#pragma link C++ class MOLLEROptPrimaryEvent+;
 #pragma link C++ class MOLLEROptGeneralEvent+;
-#pragma link C++ class MOLLEROptPrimaryEventGenerator+;
 
 #endif

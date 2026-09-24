@@ -1,6 +1,8 @@
-//#include <fstream>
 #include <iostream>
 #include <TString.h>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 Double_t langaufun(Double_t *x, Double_t *par);  
 TF1 *langaufit(TH1D *his, Double_t *fitrange, Double_t *startvalues, Double_t *parlimitslo, Double_t *parlimitshi, Double_t *fitparams, Double_t *fiterrors, Double_t *ChiSqr, Int_t *NDF);
@@ -12,40 +14,43 @@ TCanvas *C_mp = new TCanvas("C_mp","C_mp");
 void Langau_fitter()
 {
 
-  std::ifstream rfiles("analyzed_files.dat");
-  std::string line;
-  TFile *file;
-  
-  TH1D *hst, *tmp;
-  TSpectrum *s = new TSpectrum(1);
-  Int_t m;
-  TString tmpStr;
-  //Ssiz_t from = 0;
-  Double_t fitP[4], fitE[4];
+   fs::create_directories("plots/Langau");
+   cout << "Fitted data is located within plots/Langau/" << endl;
 
-  while(std::getline(rfiles, line)){
+   std::ifstream rfiles("txtfiles/analyzed_files.dat"); //Loads rootfiles
+   std::string line;
+   TFile *file;
+   
+   TH1D *hst, *tmp;
+   TSpectrum *s = new TSpectrum(1);
+   Int_t m;
+   TString tmpStr;
+   //Ssiz_t from = 0;
+   Double_t fitP[4], fitE[4];
 
-    //from = 0;
-    file = TFile::Open(line.data());
+   while(std::getline(rfiles, line)){
+
+      //from = 0;
+      file = TFile::Open(line.data());
+         
+      cout << line.data() << endl;
+      tmpStr = line.data();
+      tmpStr = tmpStr.ReplaceAll("plots/nofit/","");//wherever your files happen to be
+
+      tmp = (TH1D*)file->Get("pes");  //Loads a histogram associated with a ring of the user's choice
       
-    cout << line.data() << endl;
-    tmpStr = line.data();
-    tmpStr = tmpStr.ReplaceAll("plots/nofit_","");//wherever your files happen to be
+      hst = (TH1D*)tmp->Clone("Langau PEs");
+      hst->SetTitle("Photoelectron Distribution");
+      hst->GetXaxis()->SetTitle("Photoelectrons");
+      hst->GetXaxis()->SetRangeUser(0,100);
+      hst->SetDirectory(0);
 
-    tmp = (TH1D*)file->Get("pes");  //Loads a histogram associated with a ring of the user's choice
-    
-    hst = (TH1D*)tmp->Clone("Langau PEs");
-    hst->SetTitle("Photoelectron Distribution");
-    hst->GetXaxis()->SetTitle("Photoelectrons");
-    hst->GetXaxis()->SetRangeUser(0,100);
-    hst->SetDirectory(0);
-
-    DoFit(hst,fitP,fitE);
-    hst->SaveAs(Form("plots/Langau_%s",tmpStr.Data()));
-    
-    file->Close("R");    
-  }
-  rfiles.close();
+      DoFit(hst,fitP,fitE);
+      hst->SaveAs(Form("plots/Langau/%s",tmpStr.Data()));
+      
+      file->Close("R");    
+   }
+   rfiles.close();
 }
 
 void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)

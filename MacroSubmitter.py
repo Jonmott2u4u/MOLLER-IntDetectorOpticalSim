@@ -1,126 +1,81 @@
-from pathlib import Path
-import os
-import shlex
 import sys
+import os
+import subprocess
+import time
+import numpy as np
 
-# Commands for using swif2
-# swif2 create <workflow> : creates a workflow
-# swif2 status <workflow> : Gives the status of your workflow
-# swif2 run <workflow>    : Starts the jobs
-# swif2 pause <workflow>  : Pauses the jobs
-# For more details visit scicomp.jlab.org/docs/swif2
+sourceDir = "./"
+datadir =  "MacroFolder/"
+OutputFilePrefix = "MOLLEROpt_Scan"
+Detector = 8
+data = 999      #Sets what data is stored in the rootfile. Can be 999, 0 or 1
+scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 
-# If no workflow exists, run "swif2 create MOLLEROpt"
-workflow = os.environ.get("SWIF_WORKFLOW", "MOLLEROpt")
-output_prefix = "MOLLEROpt_Scan"
-macro_dir = Path("MacroFolder")
-jobs_dir = Path("jobs")
-build_dir = Path(__file__).resolve().parent  # Build directory containing this script
-
-tilt = 1.0
-# Controls the tilt of the beam from the z-axis in degrees
-data = 999
-# Sets what data is stored in the rootfile
-
-hr_start, hr_stop, hr_step = 2, 2, 1 
-# 1 = tile center, 2 enables cutx & cuty, 3 is the Mainz BF segment scan (maybe defunct), 4 is a strip across the tile, 5 randomizes the beam tilt
-
+#Looped parameters
 cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
-# X moves across the width of the tiles (the long sides of R1->R4, R6), and 0 is the center. Units of mm
 
-cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
-# Y moves the beam in the radial direction, starting at ~0.5 mm
+cuty_start, cuty_stop, cuty_step = 0.5, 0.5, 5.0
 
-ID_start, ID_stop, ID_step = 3, 3, 1
-# Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
+ID_start, ID_stop, ID_step = 1, 1, 1
 
-det_start, det_stop, det_step = 5, 5, 1
-# Sets which detector is being used
+tilt_start, tilt_stop, tilt_step = 0, 0, 1
 
+#tilt_dir_start, tilt__dir_stop, tilt_dir_step = 0, 0, 1
 
-jobs_dir.mkdir(parents=True, exist_ok=True)
+energy_start, energy_stop, energy_step = 2, 1000, 2
+#End of looped parameters
 
 
-def frange(start, stop, step):
-    current = start
-    while current <= stop + 1e-12:
-        yield round(current, 10)
-        current += step
-
-
-def write_job_script(script_path: Path, macro_path: Path, build_dir: Path) -> None:
-    # Use absolute path for macro file
-    macro_abs = macro_path.resolve()
-    binary_abs = build_dir / "MOLLEROpt"
-    
-    script_path.write_text(
-        "#!/bin/bash\n"
-        "set -e\n"  # Exit on any error
-        "set -u\n"  # Exit on undefined variable
-        "set -o pipefail\n"  # Exit on pipe failure
-        "\n"
-        "echo \"Current working directory: $(pwd)\"\n"
-        "echo \"Starting job at $(date)\"\n"
-        "echo \"Hostname: $(hostname)\"\n"
-        "\n"
-        "# Verify binary and macro exist\n"
-        f"echo \"Checking for binary at: {binary_abs}\"\n"
-        f"if [ ! -f \"{binary_abs}\" ]; then\n"
-        f"    echo \"ERROR: Binary not found at {binary_abs}\"\n"
-        f"    exit 1\n"
-        f"fi\n"
-        f"echo \"Checking for macro at: {macro_abs}\"\n"
-        f"if [ ! -f \"{macro_abs}\" ]; then\n"
-        f"    echo \"ERROR: Macro not found at {macro_abs}\"\n"
-        f"    exit 1\n"
-        f"fi\n"
-        "\n"
-        f"# Run simulation\n"
-        f"cd \"{build_dir}\"\n"
-        "echo \"Working directory after cd: $(pwd)\"\n"
-        f"echo \"Running MOLLEROpt with macro: {macro_abs}\"\n"
-        f'"{binary_abs}" "{macro_abs}"\n'
-        f"echo \"Job completed successfully at $(date)\"\n"
-    )
-    script_path.chmod(0o755)
-
-
-for hr in range(hr_start, hr_stop + hr_step, hr_step):
-    for run_id in range(ID_start, ID_stop + ID_step, ID_step):
-        for det in range(det_start, det_stop + det_step, det_step):
-            for cutx in frange(cutx_start, cutx_stop, cutx_step):
-                for cuty in frange(cuty_start, cuty_stop, cuty_step):
-                    file_id = (
-                        f"_hR{hr}_cutx{round(cutx, 2)}"
-                        f"_cuty{round(cuty, 2)}_tilt{round(tilt, 2)}"
-                        f"_det{det}_data{data}_ID{run_id}"
-                    )
-                    macro_path = macro_dir / f"{output_prefix}{file_id}.mac"
-                    if not macro_path.exists():
-                        #sys.exit(f"ERROR: Macro file {macro_path} does not exist. Please run the macro generator first.")
-                        continue
-
-                    script_path = jobs_dir / f"{output_prefix}{file_id}.sh"
-                    write_job_script(script_path, macro_path, build_dir)
-
-                    swif_command = [
-                        "swif2",
-                        "add-job",
-                        workflow,
-                        "-name",
-                        f"{output_prefix}{file_id}",
-                        "-time",
-                        "24h",
-                        "-ram",
-                        "400M",
-                        "-partition",
-                        "production",
-                        "-constraint",
-                        "el9",
-                        "-shell",
-                        "/bin/bash",
-                        "--",
-                        str(script_path),
-                    ]
-
-                    print(" ".join(shlex.quote(arg) for arg in swif_command))
+for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
+    for cutx in np.arange(cutx_start,cutx_stop+cutx_step,cutx_step):
+        for cuty in np.arange(cuty_start,cuty_stop+cuty_step,cuty_step):
+            for tilt in np.arange(tilt_start,tilt_stop+tilt_step,tilt_step):
+            #for tilt_dir in np.arange(tilt_dir_start,tilt_dir_stop+tilt_dir_step,tilt_dir_step):
+                for energy in np.arange(energy_start,energy_stop+energy_step,energy_step):
+                    FileIDString = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_Energy"+str(energy)+"MeV_detector"+str(Detector)+"_ID"+str(id)
+                    rootfile = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_Energy"+str(energy)+"MeV_detector"+str(Detector)+".root"
+                    #FileIDString = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+"_ID"+str(id)
+                    #rootfile = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+".root"
+                    jobs="jobs"
+                    outDir = "rootfiles/"
+                    if not os.path.exists(jobs):
+                        os.system("mkdir "+jobs)
+                    home = sourceDir
+                    FileName="./MacroFolder/"+OutputFilePrefix + FileIDString+".mac"
+                    if os.path.exists(FileName):
+                        jsubf=open(jobs+"/"+OutputFilePrefix + FileIDString+".sh", "w")
+                        jsubf.write("#!/bin/bash\n")
+                        #---Submission info for Mocha---
+                        #jsubf.write("#SBATCH --partition=mocha\n")
+                        #jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                        #jsubf.write("#SBATCH --output=out.out\n")
+                        #jsubf.write("#SBATCH --error=e.err\n")
+                        #jsubf.write("#SBATCH --time=24:00:00\n")
+                        #jsubf.write("#SBATCH --nodes=1\n")
+                        #jsubf.write("#SBATCH --ntasks=1\n")
+                        #jsubf.write("#SBATCH --cpus-per-task=1\n")
+                        #jsubf.write("#SBATCH --mem=40G\n")
+                        #---Submission info for IFarm---
+                        #jsubf.write("#SBATCH --account=halla\n")
+                        #jsubf.write("#SBATCH --partition=priority\n")
+                        jsubf.write("#SBATCH --partition=production\n")
+                        jsubf.write("#SBATCH --job-name=PMT_EP\n")
+                        jsubf.write("#SBATCH --constraint=el9\n")
+                        jsubf.write("#SBATCH --output=/farm_out/%u/%x-%j-%N.out\n")
+                        jsubf.write("#SBATCH --error=/farm_out/%u/%x-%j-%N.err\n")
+                        jsubf.write("#SBATCH --time=24:00:00\n")
+                        jsubf.write("#SBATCH --nodes=1\n")
+                        jsubf.write("#SBATCH --ntasks=1\n")
+                        jsubf.write("#SBATCH --cpus-per-task=1\n")
+                        jsubf.write("#SBATCH --mem=400M\n")
+                        #---General submission info---
+                        jsubf.write("echo \"Current working directory is `pwd`\"\n")	
+                        jsubf.write("source /etc/skel/.bashrc \n")
+                        jsubf.write("module reset \n")
+                        jsubf.write("module use /group/halla/modulefiles \n")
+                        jsubf.write("module load root/6.30.04 geant4/11.2.1 \n")
+                        jsubf.write("export G4LEDATA=$GEANT4_DATA_DIR/G4EMLOW8.5 \n")
+                        jsubf.write("env \n")
+                        jsubf.write("ldd ./MOLLEROpt \n")
+                        jsubf.write("./MOLLEROpt "+FileName+"\n")
+                        print("sbatch "+jobs+"/"+OutputFilePrefix + FileIDString+".sh")

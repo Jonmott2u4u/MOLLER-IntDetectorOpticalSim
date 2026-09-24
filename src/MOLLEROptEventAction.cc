@@ -205,6 +205,5 @@ void MOLLEROptEventAction::EndOfEventAction(const G4Event* evt)
 void MOLLEROptEventAction::Initialize()
 {	  
   
-  primaryEventNumber = 0;
   
 }

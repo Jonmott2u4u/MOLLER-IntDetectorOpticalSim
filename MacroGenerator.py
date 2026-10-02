@@ -11,7 +11,7 @@ runscript = "#!/bin/bash\n\n"
 datadir =  "MacroFolder/"                   #Location where macros are stored after generation
 OutputFilePrefix = "MOLLEROpt_Scan"         #String that starts all the output files from this script (all macro files and root output files)
 
-Detector = 4      #Sets the detector to use
+Detector = 3      #Sets the detector to use
 
 Particle = 2      #Sets the primary particle type. 1 for electrons, 2 for muons
 Energy = 8000     #Sets energy of primary particle in units of MeV. Only works for electrons. This is handled automatically for muons using a custom distribution
@@ -36,12 +36,12 @@ cuty_start = 0.0  #Y moves the beam in the radial direction, and R1 starts at 0.
 cuty_stop = 0.0
 cuty_step = 0.1
 
-sa = 24            #Controls the angular spread of the beam from the Z-axis (in +- degrees)
+sa = 24            #Controls the angular spread of the beam from the Z-axis (in +- degrees); Actual spread is 24, but only going to 10 in analysis
 
 tilt = 00          #Controls the tilt of the beam from the z-axis in degrees
 
 ID_start = 1      #Set this to distinguish identical runs (to prevent file overwrite issues when changing no other parameters)
-ID_stop = 1000
+ID_stop = 2000
 ID_step = 1
 
 det_start = 1    #Sets which detector will have its info stored in the root file
@@ -77,7 +77,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInY 200 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
-                        Text += "/MainDet/PolarRotation 3 deg" + "\n"
+                        Text += "/MainDet/PolarRotation 1 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
                     if Detector == 2:
@@ -99,7 +99,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInY 175 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
-                        Text += "/MainDet/PolarRotation 3 deg" + "\n"
+                        Text += "/MainDet/PolarRotation 0 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
                     if Detector == 3:
@@ -121,7 +121,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInY 145 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
-                        Text += "/MainDet/PolarRotation 3 deg" + "\n"
+                        Text += "/MainDet/PolarRotation 1 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
                     if Detector == 4:
@@ -143,7 +143,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInY 100 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
-                        Text += "/MainDet/PolarRotation 3 deg" + "\n"
+                        Text += "/MainDet/PolarRotation 2 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
                     if Detector == 5:
@@ -165,7 +165,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
-                        Text += "/MainDet/PolarRotation 3 deg" + "\n"
+                        Text += "/MainDet/PolarRotation 0 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
                     if Detector == 6:
@@ -231,7 +231,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                         Text += "/MainDet/SetCenterPositionInX 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInY 0 mm" + "\n"
                         Text += "/MainDet/SetCenterPositionInZ 276.5 mm" + "\n"
-                        Text += "/MainDet/PolarRotation 3 deg" + "\n"
+                        Text += "/MainDet/PolarRotation 1 deg" + "\n"
                         Text += "/MainDet/AzimuthalRotation 0 deg" + "\n"
                         Text += "/MainDet/UpdateGeometry" + "\n\n"
                     Text += "#------------------#Scintillator commands --------------------#" + "\n\n"
@@ -242,7 +242,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Gem1/SetCenterPositionInY -160 mm" + "\n"
                     Text += "/Gem1/SetCenterPositionInZ 0 mm" + "\n"
                     Text += "/Gem1/PolarRotation 0 deg" + "\n"
-                    Text += "/Gem1/AzimuthalRotation 90 deg" + "\n"
+                    Text += "/Gem1/AzimuthalRotation 0 deg" + "\n"
                     Text += "/Gem1/UpdateGeometry" + "\n"
                     Text += "/Gem2/SizeZ 3 mm" + "\n"
                     Text += "/Gem2/SizeX 100 mm" + "\n"
@@ -251,7 +251,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Gem2/SetCenterPositionInY -160 mm" + "\n"
                     Text += "/Gem2/SetCenterPositionInZ 159 mm" + "\n"
                     Text += "/Gem2/PolarRotation 0 deg" + "\n"
-                    Text += "/Gem2/AzimuthalRotation 90 deg" + "\n"
+                    Text += "/Gem2/AzimuthalRotation 0 deg" + "\n"
                     Text += "/Gem2/UpdateGeometry" + "\n"
                     Text += "/Gem3/SizeZ 3 mm" + "\n"
                     Text += "/Gem3/SizeX 100 mm" + "\n"
@@ -260,7 +260,7 @@ for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
                     Text += "/Gem3/SetCenterPositionInY -160 mm" + "\n"
                     Text += "/Gem3/SetCenterPositionInZ 519 mm" + "\n"
                     Text += "/Gem3/PolarRotation 0 deg" + "\n"
-                    Text += "/Gem3/AzimuthalRotation 90 deg" + "\n"
+                    Text += "/Gem3/AzimuthalRotation 0 deg" + "\n"
                     Text += "/Gem3/UpdateGeometry" + "\n"
                     Text += "#------------------#General commands --------------------#" + "\n\n"
                     Text += "/Generator/PrimaryParticle " + str(Particle) + "\n"

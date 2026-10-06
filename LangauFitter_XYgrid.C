@@ -13,20 +13,20 @@ void DoFit(TH1D *hst, Double_t *fitP, Double_t *fitE);
 
 void LangauFitter_XYgrid()
 {
-
-   fs::create_directory("txtfiles"); fs::create_directory("datfiles");
+   int ring = 5, angle = 0; //The ring being analyzed with hits at some angle
+   fs::create_directories(Form("datfiles/r%i", ring));
    cout << "File path files are located in txtfiles/; Data files are located in datfiles/" << endl;
 
    std::ofstream ring_dat;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
-   ring_dat.open ("datfiles/r1.dat");     //Change the name to match the ring being analyzed, otherwise files will be overwritten
+   ring_dat.open (Form("datfiles/r%i/ThetaY_%ideg.dat", ring, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
 
-   std::ifstream rfiles("txtfiles/r1files.txt"); //Opens a txt file where the root file paths to scan over are stored
+   std::ifstream rfiles(Form("txtfiles/r%i/ThetaY_%ideg.txt", ring, angle)); //Opens a txt file where the root file paths to scan over are stored
    std::string line;
    TFile *file;
 
-   Double_t paramx_start=-85.0, paramy_start=0.5; //Start positions of tile
+   Double_t paramx_start=-40.0, paramy_start=0.5; //Start positions of tile
    Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
-   Double_t limity=40.5;
+   Double_t limity=160.5;
    Int_t events=10000; //Total events per file
    
    TH1D *hst, *tmp;
@@ -53,7 +53,7 @@ void LangauFitter_XYgrid()
       hst = (TH1D*)tmp->Clone("PEs");
       hst->SetTitle("Photoelectron Distribution");
       hst->GetXaxis()->SetTitle("Photoelectrons");
-      hst->GetXaxis()->SetRangeUser(0,100);
+      hst->GetXaxis()->SetRangeUser(1,100);
       hst->SetDirectory(0);
       DoFit(hst,fitP,fitE);
 

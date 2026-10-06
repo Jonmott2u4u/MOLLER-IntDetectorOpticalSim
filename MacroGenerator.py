@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import random
 import numpy as np
 
@@ -9,7 +10,7 @@ import numpy as np
 runscript = "#!/bin/bash\n\n"
 datadir = "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
-Detector = 8
+Detector = 5
 data = 999      #Sets what data is stored in the rootfile. Can be 999, 0 or 1
 scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 
@@ -20,7 +21,7 @@ beam_controls = {
     "NumEvents": 10000,
     "sa": 0,
     "tilt": 0,
-    "tilt_dir": 90,
+    "tilt_dir": 90, #90 is towards the pmt, 0 is to the right from US perspective. If editing, modify the ThetaY/X term at the bottom
     "shift": 0,
 }
 
@@ -34,9 +35,9 @@ common_geometric_commands = [
 ]
 
 #Looped parameters
-cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
+cutx_start, cutx_stop, cutx_step = -40.0, 40.0, 5.0
 
-cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
+cuty_start, cuty_stop, cuty_step = 0.5, 160.5, 5.0
 
 ID_start, ID_stop, ID_step = 3, 3, 1
 #End of looped parameters
@@ -139,44 +140,6 @@ det_configs = {
         },
     ),
     6: (
-        "Ring 5 BF1",
-        {
-            "LightGuideLowerConeBackAngle": "19 deg",
-            "LightGuideLowerConeFrontAngle": "18 deg",
-            "LightGuideLowerInterface": "90 mm",
-            "LightGuideMiddleBox": "0.001 mm",
-            "LightGuideUpperInterface": "329.5 mm",
-            "LightGuideQuartzToPMTOffset": "-2 mm",
-            "LightGuideQuartzInterfaceOpeningX": "8.8 cm",
-            "LightGuideQuartzInterfaceOpeningZ": "2.4 cm",
-            "QuartzSizeZ": "17 mm",
-            "QuartzSizeX": "80 mm",
-            "QuartzSizeY": "140 mm",
-            "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "0 mm",
-            "SetCenterPositionInZ": "0 mm",
-        },
-    ),
-    7: (
-        "Ring 5 BF2",
-        {
-            "LightGuideLowerConeBackAngle": "19 deg",
-            "LightGuideLowerConeFrontAngle": "18 deg",
-            "LightGuideLowerInterface": "90 mm",
-            "LightGuideMiddleBox": "0.001 mm",
-            "LightGuideUpperInterface": "329.5 mm",
-            "LightGuideQuartzToPMTOffset": "-2 mm",
-            "LightGuideQuartzInterfaceOpeningX": "8.8 cm",
-            "LightGuideQuartzInterfaceOpeningZ": "2.4 cm",
-            "QuartzSizeZ": "17 mm",
-            "QuartzSizeX": "80 mm",
-            "QuartzSizeY": "140 mm",
-            "SetCenterPositionInX": "0 mm",
-            "SetCenterPositionInY": "0 mm",
-            "SetCenterPositionInZ": "0 mm",
-        },
-    ),
-    8: (
         "Ring 6",
         {
             "LightGuideLowerConeBackAngle": "20 deg",
@@ -249,9 +212,10 @@ for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
                 fout.write(text)
             runscript += f"./MOLLEROpt {datadir}{FileName} > {datadir}{OutputFilePrefix}{FileIDString}.out & \n"
 
+txtpath = Path(f"txtfiles/r{Detector}/ThetaY_{beam_controls['tilt']}deg.txt") #This is where the root file paths will be stored.
+txtpath.parent.mkdir(parents=True, exist_ok=True)  # Ensure the directory exists
+
 with open("StartRuns", "w") as scfile:
     scfile.write(runscript)
-with open("files.dat", "w") as files_dat:
-    files_dat.write("\n".join(text_root) + "\n")
-
-            
+with open(txtpath, "w") as txtfile:
+    txtfile.write("\n".join(text_root) + "\n")

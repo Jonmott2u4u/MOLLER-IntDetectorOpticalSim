@@ -41,9 +41,9 @@ char direction[] = "thetaY";
 //Creating directories to store results
 fs::create_directories(Form("plots/theta_dependence/r%i",det));
 fs::create_directories(Form("csvfiles/mean",det));
-cout << "Angle dependency data is store in plots/theta_dependence/; LookupTables are stored in csvfiles/" << endl
+cout << "Angle dependency data is store in plots/theta_dependence/; LookupTables are stored in csvfiles/" << endl;
 
-//Loading simulation data from MOLLEROptical txtfiles
+//Loading simulation data from MOLLEROptical datfiles. composite is made by hand by combining the txtfiles of each angle from neg -> pos
 ifstream infile;
 infile.open(Form("datfiles/composite/r%i_Scan%s.dat",det,direction));
 
@@ -91,7 +91,7 @@ for (int entry=0; entry<entries; entry++){
     fit->SetParameter(3,0);
     fit->SetParameter(4,0);*/
     mean_pes->Fit("fit","Q");
-    mean_pes->SaveAs(Form("theta_dependence/r%i/small_New%s_Xpos%.1f_Ypos%.1f.root",det,direction,h_pos[entry],v_pos[entry]));
+    mean_pes->SaveAs(Form("plots/theta_dependence/r%i/%s_Xpos%.1f_Ypos%.1f.root",det,direction,h_pos[entry],v_pos[entry]));
 
     /*if (mp_langau[entry] == 0){
         fit->SetParameter(0,mean[entry]);

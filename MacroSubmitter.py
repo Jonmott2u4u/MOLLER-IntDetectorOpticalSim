@@ -32,12 +32,12 @@ for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
             for tilt in np.arange(tilt_start,tilt_stop+tilt_step,tilt_step):
             #for tilt_dir in np.arange(tilt_dir_start,tilt_dir_stop+tilt_dir_step,tilt_dir_step):
                 #for energy in np.arange(energy_start,energy_stop+energy_step,energy_step):
-                    #FileIDString = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_Energy"+str(energy)+"MeV_detector"+str(Detector)+"_ID"+str(id)
-                    #rootfile = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_Energy"+str(energy)+"MeV_detector"+str(Detector)+".root"
-                    FileIDString = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_detector"+str(Detector)+"_ID"+str(id)
-                    rootfile = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_detector"+str(Detector)+".root"
-                    #FileIDString = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+"_ID"+str(id)
-                    #rootfile = "_ST"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+".root"
+                    #FileIDString = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_Energy"+str(energy)+"MeV_det"+str(Detector)+"_ID"+str(id)
+                    #rootfile = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_Energy"+str(energy)+"MeV_det"+str(Detector)+".root"
+                    FileIDString = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_det"+str(Detector)+"_ID"+str(id)
+                    rootfile = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt"+str(round(tilt,2))+"_det"+str(Detector)+".root"
+                    #FileIDString = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+"_ID"+str(id)
+                    #rootfile = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+".root"
                     jobs="jobs"
                     outDir = "rootfiles/"
                     if not os.path.exists(jobs):

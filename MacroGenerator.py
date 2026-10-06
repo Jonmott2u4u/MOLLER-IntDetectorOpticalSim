@@ -176,7 +176,7 @@ for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
         for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
             RndSeed1 = random.randrange(300000, 600000)
             RndSeed2 = random.randrange(600001, 900000)
-            FileIDString = f"_Scan{scan_type}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
+            FileIDString = f"_Scan{scan_type}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}"
             lines = [
                 f"#------------------#{label} commands --------------------#",
                 "",

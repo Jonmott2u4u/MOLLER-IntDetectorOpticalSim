@@ -39,7 +39,8 @@ char run_type[] = "";
 char direction[] = "ThetaY";
 
 //Creating directories to store results
-fs::create_directories(Form("plots/theta_dependence/r%i",det));
+fs::create_directories(Form("plots/theta_dependence/r%i/pngs",det));
+fs::create_directories(Form("plots/theta_dependence/r%i/root",det));
 fs::create_directories(Form("csvfiles/mean",det));
 cout << "Angle dependency data is store in plots/theta_dependence/; LookupTables are stored in csvfiles/" << endl;
 
@@ -91,7 +92,8 @@ for (int entry=0; entry<entries; entry++){
     fit->SetParameter(3,0);
     fit->SetParameter(4,0);*/
     mean_pes->Fit("fit","Q");
-    mean_pes->SaveAs(Form("plots/theta_dependence/r%i/%s_Xpos%.1f_Ypos%.1f.root",det,direction,h_pos[entry],v_pos[entry]));
+    mean_pes->SaveAs(Form("plots/theta_dependence/r%i/root/%s_Xpos%.1f_Ypos%.1f.root",det,direction,h_pos[entry],v_pos[entry]));
+    mean_pes->SaveAs(Form("plots/theta_dependence/r%i/pngs/%s_Xpos%.1f_Ypos%.1f.png",det,direction,h_pos[entry],v_pos[entry]));
 
     /*if (mp_langau[entry] == 0){
         fit->SetParameter(0,mean[entry]);

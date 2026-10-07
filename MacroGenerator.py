@@ -206,7 +206,7 @@ for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
                 f"/run/beamOn {beam_controls['NumEvents']}",
             ]
             text = "\n".join(lines) + "\n"
-            text_root.append(f"rootfiles/{FileIDString}_000{id}.root")
+            text_root.append(f"rootfiles/r{Detector}/{FileIDString}_000{id}.root")
             FileName = f"{OutputFilePrefix}{FileIDString}_ID{id}.mac"
             with open(os.path.join(datadir, FileName), "w") as fout:
                 fout.write(text)

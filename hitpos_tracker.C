@@ -63,10 +63,10 @@ for (int angle = 1; angle < 6; angle++){
 
     char run_type[] = "";
     char weighted[] = ""; //"_w" for weighted runs, "" for no weight
-    char direction[] = "thetaY";
+    char direction[] = "ThetaY";
 
     ifstream infile;
-    infile.open(Form("txtfiles/r%i/%s_%ideg%s.txt",det,direction,angle,weighted));
+    infile.open(Form("datfiles/r%i/%s_%ideg%s.dat",det,direction,angle,weighted));
 
     //Loading simulation results
     // i_max = quartz radial length + bevel radial length + 20mm (10 above bevel, 10 below butt of tile)
@@ -139,18 +139,19 @@ for (int angle = 1; angle < 6; angle++){
 
 
     //..................Printing the plots.................................//
-    fs::create_directories(Form("plots/position_dependence/r%i",det));
+    fs::create_directories(Form("plots/position_dependence/r%i/pngs",det));
+    fs::create_directories(Form("plots/position_dependence/r%i/root",det));
     cout << "Plots are within plots/position_dependence/R#" << endl;
 
-    c1->Print(Form("plots/position_dependence/r%i/%ideg_%s_mean_PE_yield%s.root",det,angle,direction,weighted));
-    c2->Print(Form("plots/position_dependence/r%i/%ideg_%s_langau_PE_yield%s.root",det,angle,direction,weighted));
-    c3->Print(Form("plots/position_dependence/r%i/%ideg_%s_rms_mean_yield%s.root",det,angle,direction,weighted));
-    c4->Print(Form("plots/position_dependence/r%i/%ideg_%s_res_yield%s.root",det,angle,direction,weighted));
+    c1->Print(Form("plots/position_dependence/r%i/root/%ideg_%s_mean_PE_yield%s.root",det,angle,direction,weighted));
+    c2->Print(Form("plots/position_dependence/r%i/root/%ideg_%s_langau_PE_yield%s.root",det,angle,direction,weighted));
+    c3->Print(Form("plots/position_dependence/r%i/root/%ideg_%s_rms_mean_yield%s.root",det,angle,direction,weighted));
+    c4->Print(Form("plots/position_dependence/r%i/root/%ideg_%s_res_yield%s.root",det,angle,direction,weighted));
 
-    c1->Print(Form("plots/position_dependence/r%i/%ideg_%s_mean_PE_yield%s.png",det,angle,direction,weighted));
-    c2->Print(Form("plots/position_dependence/r%i/%ideg_%s_langau_PE_yield%s.png",det,angle,direction,weighted));
-    c3->Print(Form("plots/position_dependence/r%i/%ideg_%s_rms_mean_yield%s.png",det,angle,direction,weighted));
-    c4->Print(Form("plots/position_dependence/r%i/%ideg_%s_res_yield%s.png",det,angle,direction,weighted));
+    c1->Print(Form("plots/position_dependence/r%i/pngs/%ideg_%s_mean_PE_yield%s.png",det,angle,direction,weighted));
+    c2->Print(Form("plots/position_dependence/r%i/pngs/%ideg_%s_langau_PE_yield%s.png",det,angle,direction,weighted));
+    c3->Print(Form("plots/position_dependence/r%i/pngs/%ideg_%s_rms_mean_yield%s.png",det,angle,direction,weighted));
+    c4->Print(Form("plots/position_dependence/r%i/pngs/%ideg_%s_res_yield%s.png",det,angle,direction,weighted));
 
 
     }

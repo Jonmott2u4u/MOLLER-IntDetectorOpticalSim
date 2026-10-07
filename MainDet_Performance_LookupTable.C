@@ -36,7 +36,7 @@ int total_entries = entries*9;
 float h_pos[total_entries],v_pos[total_entries],mean[total_entries],rms[total_entries],mp_langau[total_entries],gsigma_langau[total_entries],rms_mean[total_entries],res_langau[total_entries],weight[total_entries];
 
 char run_type[] = "";
-char direction[] = "thetaY";
+char direction[] = "ThetaY";
 
 //Creating directories to store results
 fs::create_directories(Form("plots/theta_dependence/r%i",det));

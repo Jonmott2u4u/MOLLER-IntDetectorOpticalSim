@@ -16,7 +16,7 @@ scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled 
 
 beam_controls = {
     "Particle": 1,
-    "Energy": 8000,
+    #"Energy": 8000, //Temporarily made a scannable parameter
     "EnergyCut": 0,
     "NumEvents": 10000,
     "sa": 0,
@@ -40,6 +40,8 @@ cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
 cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
 
 ID_start, ID_stop, ID_step = 3, 3, 1
+
+energy_start, energy_stop, energy_step = 2, 1000, 2
 #End of looped parameters
 
 
@@ -172,47 +174,49 @@ main_det_lines = [
 ]
 
 for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
-    for cutx in np.arange(cutx_start, cutx_stop + cutx_step, cutx_step):
-        for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
-            RndSeed1 = random.randrange(300000, 600000)
-            RndSeed2 = random.randrange(600001, 900000)
-            FileIDString = f"_Scan{scan_type}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
-            lines = [
-                f"#------------------#{label} commands --------------------#",
-                "",
-                *main_det_lines,
-                "",
-                "#------------------#Beam commands --------------------#",
-                "",
-                f"/Generator/PrimaryParticle {beam_controls['Particle']}",
-                f"/Generator/EventShift {beam_controls['shift']} mm",
-                f"/Generator/BeamEnergy {beam_controls['Energy']}",
-                f"/Generator/BeamEnergyCut {beam_controls['EnergyCut']}",
-                f"/Generator/BeamSolidAngle {beam_controls['sa']} degree",
-                f"/Generator/BeamTiltAngle {beam_controls['tilt']} degree",
-                f"/Generator/BeamTiltDirection {beam_controls['tilt_dir']} degree",
-                f"/Generator/EventShift {beam_controls['shift']} mm",
-                f"/Generator/SegmentHitPosX {cutx} mm",
-                f"/Generator/SegmentHitPosY {cuty} mm",
-                f"/Generator/EventHitRegion {scan_type}",
-                "",
-                "#------------------#General commands --------------------#",
-                "",
-                f"/Storage/DetectorFocus {data}",
-                f"/RunAction/SetID {id}",
-                f"/RunAction/SetOutputName {FileIDString}",
-                f"/random/setSeeds {RndSeed1} {RndSeed2}",
-                "/vis/disable",
-                f"/run/beamOn {beam_controls['NumEvents']}",
-            ]
-            text = "\n".join(lines) + "\n"
-            text_root.append(f"rootfiles/{FileIDString}_000{id}.root")
-            FileName = f"{OutputFilePrefix}{FileIDString}_ID{id}.mac"
-            with open(os.path.join(datadir, FileName), "w") as fout:
-                fout.write(text)
-            runscript += f"./MOLLEROpt {datadir}{FileName} > {datadir}{OutputFilePrefix}{FileIDString}.out & \n"
+    for energy in np.arange(energy_start, energy_stop + energy_step, energy_step):
+        for cutx in np.arange(cutx_start, cutx_stop + cutx_step, cutx_step):
+            for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
+                RndSeed1 = random.randrange(300000, 600000)
+                RndSeed2 = random.randrange(600001, 900000)
+                FileIDString = f"_Scan{scan_type}_energy{round(energy,2)}MeV_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
+                lines = [
+                    f"#------------------#{label} commands --------------------#",
+                    "",
+                    *main_det_lines,
+                    "",
+                    "#------------------#Beam commands --------------------#",
+                    "",
+                    f"/Generator/PrimaryParticle {beam_controls['Particle']}",
+                    f"/Generator/EventShift {beam_controls['shift']} mm",
+                    #f"/Generator/BeamEnergy {beam_controls['Energy']}", //Commented out because energy is now a scannable parameter
+                    f"/Generator/BeamEnergy {energy} MeV",
+                    f"/Generator/BeamEnergyCut {beam_controls['EnergyCut']}",
+                    f"/Generator/BeamSolidAngle {beam_controls['sa']} degree",
+                    f"/Generator/BeamTiltAngle {beam_controls['tilt']} degree",
+                    f"/Generator/BeamTiltDirection {beam_controls['tilt_dir']} degree",
+                    f"/Generator/EventShift {beam_controls['shift']} mm",
+                    f"/Generator/SegmentHitPosX {cutx} mm",
+                    f"/Generator/SegmentHitPosY {cuty} mm",
+                    f"/Generator/EventHitRegion {scan_type}",
+                    "",
+                    "#------------------#General commands --------------------#",
+                    "",
+                    f"/Storage/DetectorFocus {data}",
+                    f"/RunAction/SetID {id}",
+                    f"/RunAction/SetOutputName {FileIDString}",
+                    f"/random/setSeeds {RndSeed1} {RndSeed2}",
+                    "/vis/disable",
+                    f"/run/beamOn {beam_controls['NumEvents']}",
+                ]
+                text = "\n".join(lines) + "\n"
+                text_root.append(f"rootfiles/{FileIDString}_000{id}.root")
+                FileName = f"{OutputFilePrefix}{FileIDString}_ID{id}.mac"
+                with open(os.path.join(datadir, FileName), "w") as fout:
+                    fout.write(text)
+                runscript += f"./MOLLEROpt {datadir}{FileName} > {datadir}{OutputFilePrefix}{FileIDString}.out & \n"
 
-txtpath = Path(f"txtfiles/r{Detector}/Gamma/ThetaY_{beam_controls['tilt']}deg.txt") #This is where the root file paths will be stored.
+txtpath = Path(f"txtfiles/r{Detector}/Gamma/Energy_{energy}_ThetaY_{beam_controls['tilt']}deg.txt") #This is where the root file paths will be stored.
 txtpath.parent.mkdir(parents=True, exist_ok=True)  # Ensure the directory exists
 
 with open("StartRuns", "w") as scfile:

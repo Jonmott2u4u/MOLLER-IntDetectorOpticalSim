@@ -41,14 +41,14 @@ void multi_extract()
     std::ofstream ring_dat;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
     std::ofstream ring_dat2;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
 
-    ring_dat.open (Form("datfiles/r%i/Gamma/ThetaY_%ideg.dat", ring, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
-    ring_dat2.open (Form("datfiles/r%i/Gamma/No0_ThetaY_%ideg.dat", ring, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
+    int ring = 5, angle = 0, energy = 100; //The ring being analyzed with hits at some angle and energy
+    ring_dat.open (Form("datfiles/r%i/Gamma/Energy_%iMeV_ThetaY_%ideg.dat", ring, energy, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
+    ring_dat2.open (Form("datfiles/r%i/Gamma/No0_Energy_%iMeV_ThetaY_%ideg.dat", ring, energy, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
 
-    std::ifstream rfiles(Form("txtfiles/r%i/Gamma/ThetaY_%ideg.txt", ring, angle)); //Opens a txt file where the root file paths to scan over are stored
+    std::ifstream rfiles(Form("txtfiles/r%i/Gamma/Energy_%iMeV_ThetaY_%ideg.txt", ring, energy, angle)); //Opens a txt file where the root file paths to scan over are stored
     std::string line;
     TFile *file;
 
-    int ring = 5, angle = 0; //The ring being analyzed with hits at some angle
     Double_t paramx_start=-40.0, paramy_start=0.5; //Start positions of tile
     Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
     Double_t limity=160.5;

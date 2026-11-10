@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import random
+from pathlib import Path
 import numpy as np
 
 # This script produces a series of G4 macros that vary a specified set of simulation parameters that are of relevance to the MOLLER detector design.
@@ -10,7 +10,7 @@ import numpy as np
 runscript = "#!/bin/bash\n\n"
 datadir = "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
-Detector = 5
+Detector = 6
 data = 999      #Sets what data is stored in the rootfile. Can be 999, 0 or 1
 scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 
@@ -21,7 +21,7 @@ beam_controls = {
     "NumEvents": 10000,
     "sa": 0,
     "tilt": 0,
-    "tilt_dir": 90, #90 is towards the pmt, 0 is to the right from US perspective. If editing, modify the ThetaY/X term at the bottom
+    "tilt_dir": 90,
     "shift": 0,
 }
 
@@ -35,9 +35,9 @@ common_geometric_commands = [
 ]
 
 #Looped parameters
-cutx_start, cutx_stop, cutx_step = -40.0, 40.0, 5.0
+cutx_start, cutx_stop, cutx_step = 0.0, 0.0, 5.0
 
-cuty_start, cuty_stop, cuty_step = 0.5, 160.5, 5.0
+cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
 
 ID_start, ID_stop, ID_step = 3, 3, 1
 #End of looped parameters
@@ -176,7 +176,7 @@ for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
         for cuty in np.arange(cuty_start, cuty_stop + cuty_step, cuty_step):
             RndSeed1 = random.randrange(300000, 600000)
             RndSeed2 = random.randrange(600001, 900000)
-            FileIDString = f"_Scan{scan_type}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}"
+            FileIDString = f"_Scan{scan_type}_cutx{round(cutx,2)}_cuty{round(cuty,2)}_tilt{round(beam_controls['tilt'],2)}_det{Detector}_data{data}"
             lines = [
                 f"#------------------#{label} commands --------------------#",
                 "",
@@ -206,16 +206,18 @@ for id in np.arange(ID_start, ID_stop + ID_step, ID_step):
                 f"/run/beamOn {beam_controls['NumEvents']}",
             ]
             text = "\n".join(lines) + "\n"
-            text_root.append(f"rootfiles/r{Detector}/{FileIDString}_000{id}.root")
+            text_root.append(f"rootfiles/{FileIDString}_000{id}.root")
             FileName = f"{OutputFilePrefix}{FileIDString}_ID{id}.mac"
             with open(os.path.join(datadir, FileName), "w") as fout:
                 fout.write(text)
             runscript += f"./MOLLEROpt {datadir}{FileName} > {datadir}{OutputFilePrefix}{FileIDString}.out & \n"
 
-txtpath = Path(f"txtfiles/r{Detector}/ThetaY_{beam_controls['tilt']}deg.txt") #This is where the root file paths will be stored.
+txtpath = Path(f"txtfiles/r{Detector}/Gamma/ThetaY_{beam_controls['tilt']}deg.txt") #This is where the root file paths will be stored.
 txtpath.parent.mkdir(parents=True, exist_ok=True)  # Ensure the directory exists
 
 with open("StartRuns", "w") as scfile:
     scfile.write(runscript)
 with open(txtpath, "w") as txtfile:
     txtfile.write("\n".join(text_root) + "\n")
+
+            

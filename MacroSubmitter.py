@@ -7,18 +7,19 @@ import numpy as np
 sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
-Detector = 5
+Detector = 6
 data = 999      #Sets what data is stored in the rootfile. Can be 999, 0 or 1
 scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 
 #Looped parameters
-cutx_start, cutx_stop, cutx_step = -40.0, 40.0, 5.0
+cutx_start, cutx_stop, cutx_step = -130.0, 130.0, 5.0
 
-cuty_start, cuty_stop, cuty_step = 0.5, 160.5, 5.0
+cuty_start, cuty_stop, cuty_step = 0.5, 120.5, 5.0
 
 ID_start, ID_stop, ID_step = 1, 1, 1
 
-tilt_start, tilt_stop, tilt_step = 0, 0, 1
+tilt_start, tilt_stop, tilt_step = 3, 4, 1
+
 
 #tilt_dir_start, tilt__dir_stop, tilt_dir_step = 0, 0, 1
 
@@ -39,7 +40,6 @@ for id in np.arange(ID_start,ID_stop+ID_step,ID_step):
                     #FileIDString = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+"_ID"+str(id)
                     #rootfile = "_Scan"+str(scan_type)+"_cutx"+str(round(cutx,2))+"_cuty"+str(round(cuty,2))+"_tilt_dir"+str(round(tilt_dir,2))+"_det"+str(det)+".root"
                     jobs="jobs"
-                    outDir = "rootfiles/"
                     if not os.path.exists(jobs):
                         os.system("mkdir "+jobs)
                     home = sourceDir

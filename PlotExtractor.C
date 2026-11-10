@@ -2,13 +2,15 @@
 #include <TString.h>
 #include <math.h>
 
+namespace fs = std::filesystem;
+
 void pes()
 {
     std::ofstream analysis;
-    analysis.open ("analyzed_files.dat");
+    analysis.open ("analyzed_files.txt");
     std::string str;
     TFile *file;
-    file = TFile::Open("MOLLEROpt_0002.root");
+    file = TFile::Open("rootfiles/MOLLEROpt_0002.root");
     TH1D *hst, *tmp;
 
     //PE spectrum of the detector
@@ -17,7 +19,7 @@ void pes()
     hst->SetTitle("Photoelectron Distribution");
     hst->GetXaxis()->SetTitle("Photoelectrons");
     hst->GetYaxis()->SetTitle("Events");
-    hst->GetXaxis()->SetRangeUser(0,100);
+    hst->GetXaxis()->SetRangeUser(1,100);
     hst->SetDirectory(0);
     str = "plots/nofit_PEs.root";
     hst->SaveAs(str.data());
@@ -25,6 +27,74 @@ void pes()
     file->Close("R");
 
     analysis.close();
+}
+
+void multi_extract()
+{
+    //This function extracts the PE yield from a position-based rootfiles
+    //Two datfiles are saved per rootfile: One with the raw pe yield, and another cutting 0-pe events.
+    //Similar to LangauFitter_XYgrid.C, but without the fitting procedure.
+
+    fs::create_directories(Form("datfiles/r%i/Gamma", ring));
+    cout << "File path files are located in txtfiles/; Data files are located in datfiles/" << endl;
+
+    std::ofstream ring_dat;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
+    std::ofstream ring_dat2;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
+
+    ring_dat.open (Form("datfiles/r%i/Gamma/ThetaY_%ideg.dat", ring, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
+    ring_dat2.open (Form("datfiles/r%i/Gamma/No0_ThetaY_%ideg.dat", ring, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
+
+    std::ifstream rfiles(Form("txtfiles/r%i/Gamma/ThetaY_%ideg.txt", ring, angle)); //Opens a txt file where the root file paths to scan over are stored
+    std::string line;
+    TFile *file;
+
+    int ring = 5, angle = 0; //The ring being analyzed with hits at some angle
+    Double_t paramx_start=-40.0, paramy_start=0.5; //Start positions of tile
+    Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
+    Double_t limity=160.5;
+
+    TH1D *hst, *tmp;
+    Double_t paramx_run, paramy_run, counterx, countery;
+
+    float mean;
+
+    counterx=0, countery=0; 
+    paramx_run = paramx_start;
+    while(std::getline(rfiles, line)){
+
+       file = TFile::Open(line.data()); 
+       cout << line.data() << endl;
+      
+       paramy_run = paramy_start + countery*paramy_step;
+       countery = countery + 1.0;
+ 
+       tmp = (TH1D*)file->Get("Ring_CathodeEventsDistrHist");  //Loads a histogram associated with a ring of the user's choice
+       hst = (TH1D*)tmp->Clone("PEs");
+       hst->SetDirectory(0);
+       hst->SetTitle("Photoelectron Distribution");
+       hst->GetXaxis()->SetTitle("Photoelectrons");
+
+       //Filling the datfile that considers all events
+       hst->GetXaxis()->SetRangeUser(0,100);
+       mean = hst->GetMean();
+       ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
+
+       //Filling the datfile that only considers non-zero events
+       hst->GetXaxis()->SetRangeUser(1,100);
+       mean = hst->GetMean();
+       ring_dat2<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
+
+       file->Close("R");    
+
+       if (paramy_run == limity){
+          counterx = counterx + 1.0;
+          paramx_run = paramx_start + counterx*paramx_step;
+          countery = 0.0;
+       }
+    }
+    ring_dat.close();
+    ring_dat2.close();
+    rfiles.close();
 }
 
 //This object performs cuts over the quartz in the x-direction

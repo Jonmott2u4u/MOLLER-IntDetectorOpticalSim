@@ -32,8 +32,9 @@ void pes()
 void multi_extract()
 {
     //This function extracts the PE yield from a position-based rootfiles
-    //Two datfiles are saved per rootfile: One with the raw pe yield, and another cutting 0-pe events.
     //Similar to LangauFitter_XYgrid.C, but without the fitting procedure.
+
+    int ring = 5, angle = 0, energy = 100; //The ring being analyzed with hits at some angle and energy
 
     fs::create_directories(Form("datfiles/r%i/Gamma", ring));
     cout << "File path files are located in txtfiles/; Data files are located in datfiles/" << endl;
@@ -41,29 +42,27 @@ void multi_extract()
     std::ofstream ring_dat;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
     std::ofstream ring_dat2;       //Opens a dat file where info like mean PE's is stored. Was added to create data formatted for a specific script
 
-    int ring = 5, angle = 0, energy = 100; //The ring being analyzed with hits at some angle and energy
     ring_dat.open (Form("datfiles/r%i/Gamma/Energy_%iMeV_ThetaY_%ideg.dat", ring, energy, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
-    ring_dat2.open (Form("datfiles/r%i/Gamma/No0_Energy_%iMeV_ThetaY_%ideg.dat", ring, energy, angle));     //Change the name to match the ring being analyzed, otherwise files will be overwritten
 
     std::ifstream rfiles(Form("txtfiles/r%i/Gamma/Energy_%iMeV_ThetaY_%ideg.txt", ring, energy, angle)); //Opens a txt file where the root file paths to scan over are stored
     std::string line;
     TFile *file;
 
-    Double_t paramx_start=-40.0, paramy_start=0.5; //Start positions of tile
+    Double_t paramx_start=-40.0, paramy_start=160.5; //Start positions of tile
     Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
     Double_t limity=160.5;
 
     TH1D *hst, *tmp;
     Double_t paramx_run, paramy_run, counterx, countery;
 
-    float mean;
+    float mean1, mean2, entries;
 
     counterx=0, countery=0; 
     paramx_run = paramx_start;
     while(std::getline(rfiles, line)){
 
        file = TFile::Open(line.data()); 
-       cout << line.data() << endl;
+       //cout << line.data() << endl;
       
        paramy_run = paramy_start + countery*paramy_step;
        countery = countery + 1.0;
@@ -74,15 +73,14 @@ void multi_extract()
        hst->SetTitle("Photoelectron Distribution");
        hst->GetXaxis()->SetTitle("Photoelectrons");
 
-       //Filling the datfile that considers all events
+       //Filling the datfile
        hst->GetXaxis()->SetRangeUser(0,100);
-       mean = hst->GetMean();
-       ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
-
-       //Filling the datfile that only considers non-zero events
+       mean1 = hst->GetMean();
        hst->GetXaxis()->SetRangeUser(1,100);
-       mean = hst->GetMean();
-       ring_dat2<<paramx_run<<" "<<paramy_run<<" "<<mean<<" "<<rms<<" "<<mp<<" "<<gsigma<<" "<<rms_mean<<" "<<res<<" "<<1.0<<"\n";
+       mean2 = hst->GetMean();
+       entries = 100.*hst->GetEffectiveEntries()/hst->GetEntries(); //Percent of entries with nonzero pe yield
+       //Stores x and y pos, mean pes w & w/o 0 pe events, and % of events with non-zero pes 
+       ring_dat<<paramx_run<<" "<<paramy_run<<" "<<mean1<<" "<<mean2<<" "<<entries<<"\n";
 
        file->Close("R");    
 

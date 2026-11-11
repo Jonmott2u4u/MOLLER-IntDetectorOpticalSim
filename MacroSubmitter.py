@@ -7,14 +7,14 @@ import numpy as np
 sourceDir = "./"
 datadir =  "MacroFolder/"
 OutputFilePrefix = "MOLLEROpt_Scan"
-Detector = 6
+Detector = 5
 data = 999      #Sets what data is stored in the rootfile. Can be 999, 0 or 1
 scan_type = 3   #Sets the beam position (1 is tile center, 2 & 3 are controlled positions, 4-6 are for other branches)
 
 #Looped parameters
-cutx_start, cutx_stop, cutx_step = -40.0, 40.0, 5.0
+cutx_start, cutx_stop, cutx_step = -40.0, 0.0, 5.0
 
-cuty_start, cuty_stop, cuty_step = 0.5, 160.5, 5.0
+cuty_start, cuty_stop, cuty_step = 70.5, 70.5, 5.0
 
 ID_start, ID_stop, ID_step = 1, 1, 1
 
@@ -22,7 +22,7 @@ tilt_start, tilt_stop, tilt_step = 0, 0, 1
 
 #tilt_dir_start, tilt__dir_stop, tilt_dir_step = 0, 0, 1
 
-energy_start, energy_stop, energy_step = 2, 1000, 2
+energy_start, energy_stop, energy_step = 100, 100, 2
 #End of looped parameters
 
 

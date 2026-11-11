@@ -48,7 +48,7 @@ void multi_extract()
     std::string line;
     TFile *file;
 
-    Double_t paramx_start=-40.0, paramy_start=160.5; //Start positions of tile
+    Double_t paramx_start=-40.0, paramy_start=0.5; //Start positions of tile
     Double_t paramx_step=5.0, paramy_step=5.0; //Increment for the horizontal axis
     Double_t limity=160.5;
 

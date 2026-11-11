@@ -3,7 +3,7 @@
 
 namespace fs = std::filesystem;
 
-void hitpos_tracker()
+void hitpos_tracker_electron()
 {
 
 gStyle->SetOptStat(0);
@@ -13,7 +13,7 @@ float max_mean = 0;
 float max_langau = 0;
 float max_RMS = 0;
 float max_RES = 0;
-int det = 6;
+int det = 5;
 
 if (det == 1){
     entries = 315;
@@ -58,15 +58,18 @@ else if (det == 6){
     max_RES = 100;
 }
 
-for (int angle = 1; angle < 6; angle++){
+for (int angle = 0; angle < 1; angle++){
     float h_pos[entries],v_pos[entries],mean[entries],rms[entries],mp_langau[entries],gsigma_langau[entries],rms_mean[entries],res_langau[entries],weight[entries];
 
-    char run_type[] = "";
     char weighted[] = ""; //"_w" for weighted runs, "" for no weight
     char direction[] = "ThetaY";
 
     ifstream infile;
     infile.open(Form("datfiles/r%i/%s_%ideg%s.dat",det,direction,angle,weighted));
+    if (!infile.is_open()) {
+        std::cerr << "Error opening file: " << Form("datfiles/r%i/%s_%ideg%s.dat",det,direction,angle,weighted) << std::endl;
+        return;
+    }
 
     //Loading simulation results
     // i_max = quartz radial length + bevel radial length + 20mm (10 above bevel, 10 below butt of tile)
@@ -154,5 +157,101 @@ for (int angle = 1; angle < 6; angle++){
     c4->Print(Form("plots/position_dependence/r%i/pngs/%ideg_%s_res_yield%s.png",det,angle,direction,weighted));
 
 
+}
+}
+
+
+void hitpos_tracker_gamma()
+{
+    gStyle->SetOptStat(0);
+
+int entries = 0;
+float max_mean = 0;
+int det = 5;
+int energy = 100;
+
+if (det == 1){
+    entries = 315;
+    max_mean = 30;
+}
+else if (det == 2){
+    entries = 629;
+    max_mean = 35;
+}
+else if (det == 3){
+    entries = 663;
+    max_mean = 35;
+}
+else if (det == 4){
+    entries = 1305;
+    max_mean = 31;
+}
+else if (det == 5){
+    entries = 561;
+    max_mean = 42;
+}
+else if (det == 6){
+    entries = 1325;
+    max_mean = 30;
+}
+
+for (int angle = 0; angle < 1; angle++){
+    float h_pos[entries],v_pos[entries],mean1[entries],mean2[entries],hits[entries];;
+
+    char weighted[] = ""; //"_w" for weighted runs, "" for no weight
+    char direction[] = "ThetaY";
+
+    ifstream infile;
+    infile.open(Form("datfiles/r%i/Gamma/Energy_%iMeV_%s_%ideg%s.dat",det,energy,direction,angle,weighted));
+    if (!infile.is_open()) {
+        std::cerr << "Error opening file: " << Form("datfiles/r%i/Gamma/Energy_%iMeV_%s_%ideg%s.dat",det,energy,direction,angle,weighted) << std::endl;
+        return;
     }
+
+    //Loading simulation results
+    // i_max = quartz radial length + bevel radial length + 20mm (10 above bevel, 10 below butt of tile)
+    // for LG signals, set i_max = entries
+    for (int i=0; i<entries; i++)
+    {
+    infile>>h_pos[i]>>v_pos[i]>>mean1[i]>>mean2[i]>>hits[i];
+    //cout << h_pos[i] << endl;
+    }
+    float x_step = 5.0, y_step = 5.0;
+    float x_start = h_pos[0], x_stop = h_pos[entries-1], x_bins = (x_stop - x_start)/x_step;
+    float y_start = v_pos[0], y_stop = v_pos[entries-1], y_bins = (y_stop - y_start)/y_step;
+
+
+
+    //..................Mean PE yield plot.................................//
+    TProfile2D *mean1_pes = new TProfile2D("mean1_pes",Form("Mean PE yield of R%i per tile hit position",det),x_bins,x_start,x_stop,y_bins,y_start,y_stop);
+    TProfile2D *mean2_pes = new TProfile2D("mean2_pes",Form("Mean PE yield of R%i per tile hit position w/ nonzero PE events",det),x_bins,x_start,x_stop,y_bins,y_start,y_stop);
+    for(int i=0; i<entries; i++){
+        mean1_pes->Fill(h_pos[i],v_pos[i],mean1[i],1);
+        mean2_pes->Fill(h_pos[i],v_pos[i],mean2[i],1);
+    }
+    mean1_pes->GetXaxis()->SetTitle("Azimuthal Position [mm]");
+    mean1_pes->GetYaxis()->SetTitle("Radial Position [mm]");
+    mean1_pes->GetZaxis()->SetRangeUser(0,max_mean);
+    mean2_pes->GetXaxis()->SetTitle("Azimuthal Position [mm]");
+    mean2_pes->GetYaxis()->SetTitle("Radial Position [mm]");
+    mean2_pes->GetZaxis()->SetRangeUser(0,max_mean);
+
+    TCanvas *c1 = new TCanvas();
+    mean1_pes->Draw("colz");
+    TCanvas *c2 = new TCanvas();
+    mean2_pes->Draw("colz");
+
+
+    //..................Printing the plots.................................//
+    fs::create_directories(Form("plots/position_dependence/r%i/Gamma_pngs",det));
+    fs::create_directories(Form("plots/position_dependence/r%i/Gamma_root",det));
+    cout << "Plots are within plots/position_dependence/R#" << endl;
+
+    c1->Print(Form("plots/position_dependence/r%i/Gamma_root/Energy%iMeV_%ideg_%s_mean_PE_yield%s.root",det,energy,angle,direction,weighted));
+    c2->Print(Form("plots/position_dependence/r%i/Gamma_root/Energy%iMeV_%ideg_%s_mean_PE_yield_nonzero%s.root",det,energy,angle,direction,weighted));
+
+    //c1->Print(Form("plots/position_dependence/r%i/pngs/%ideg_%s_mean_PE_yield%s.png",det,angle,direction,weighted));
+
+
+}
 }

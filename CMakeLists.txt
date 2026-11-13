@@ -130,7 +130,7 @@ set(MOLLER_SCRIPTS
   PlotExtractor.C
   segment_scan.C
   TreeReader.C
-  MainDet_Performance_LookupTable.C
+  MainDetPerformance_LookupTable.C
   EnergyDep_LookupTable.C
 )
 

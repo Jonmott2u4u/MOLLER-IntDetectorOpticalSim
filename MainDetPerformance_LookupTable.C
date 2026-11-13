@@ -4,7 +4,7 @@ using namespace std;
 namespace fs = std::filesystem;
 
 
-void lookuptable2_newfit()
+void MainDetPerformance_LookupTable()
 {
 
 float yshift = -0.5;
